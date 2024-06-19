@@ -15,7 +15,7 @@
 <link href="css/jcarousel.css" rel="stylesheet" />
 <link href="css/flexslider.css" rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet" />
-<Style>
+<style>
 /* Popup styling */
 .hidden {
     display: none;
@@ -62,13 +62,24 @@
     border-color: red;
 }
 
-</Style>
+/* Error message styling */
+.error-msg {
+    color: red;
+    margin-top: 5px;
+}
+</style>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
 </head>
 <body>
-
     <div id="wrapper">
         <!-- start header -->
-        
         <div id="headerPlaceholder"></div>
         <div class="container">
             <div class="container10">
@@ -93,7 +104,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-6">
                                 <br>
@@ -157,8 +167,6 @@
             </svg>
         </div>
     </div>
-    
-    
     <div id="footerPlaceholder"></div>
     
     <!-- Include JavaScript to load header and footer -->
@@ -179,7 +187,6 @@
     <script src="js/animate.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/validate.js"></script>
-
    <script>
    document.addEventListener("DOMContentLoaded", function() {
     var form = document.getElementById("contact-form");
@@ -216,6 +223,7 @@
         // If all fields are filled and formats are valid, proceed with form submission
         var formData = new FormData(form);
 
+
         // Append phone number to the message
         var fullMessage = message + "\n\nPhone Number: " + phoneNumber;
         formData.set('message', fullMessage);
@@ -232,7 +240,6 @@
             },
             body: JSON.stringify(formObject)
         };
-
         fetch("http://api.itstrending.in/submitForm", requestOptions)
             .then(response => {
                 if (!response.ok) {
@@ -274,11 +281,6 @@ function resetErrorMessages() {
         element.remove();
     });
 }
-
-
 </script>
-
-
-
 </body>
 </html>
