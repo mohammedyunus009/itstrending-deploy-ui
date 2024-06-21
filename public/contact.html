@@ -68,12 +68,19 @@
     margin-top: 5px;
 }
 </style>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
+
 </head>
 <body>
-
     <div id="wrapper">
         <!-- start header -->
-        
         <div id="headerPlaceholder"></div>
         <div class="container">
             <div class="container10">
@@ -98,7 +105,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-6">
                                 <br>
@@ -162,8 +168,6 @@
             </svg>
         </div>
     </div>
-    
-    
     <div id="footerPlaceholder"></div>
     
     <!-- Include JavaScript to load header and footer -->
@@ -184,7 +188,6 @@
     <script src="js/animate.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/validate.js"></script>
-
    <script>
    document.addEventListener("DOMContentLoaded", function() {
     var form = document.getElementById("contact-form");
@@ -239,7 +242,6 @@
             },
             body: JSON.stringify(formObject)
         };
-
         fetch("http://api.itstrending.in/submitForm", requestOptions)
             .then(response => {
                 if (!response.ok) {
@@ -306,8 +308,5 @@ app.listen(PORT, () => {
 
 
 </script>
-
-
-
 </body>
 </html>
