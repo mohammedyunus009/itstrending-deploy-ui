@@ -76,6 +76,7 @@
   gtag('js', new Date());
   gtag('config', 'G-PQLTG22ZFC');
 </script>
+
 </head>
 <body>
     <div id="wrapper">
@@ -235,6 +236,7 @@
 
         var requestOptions = {
             method: 'POST',
+            
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -281,6 +283,30 @@ function resetErrorMessages() {
         element.remove();
     });
 }
+
+const express = require('express');
+const app = express();
+
+// CORS middleware
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
+// Define your API endpoints here
+app.get('/submitForm', (req, res) => {
+    // Handle API logic here
+    res.send('API response');
+});
+
+// Start your server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});
+
+
 </script>
 </body>
 </html>
