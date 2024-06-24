@@ -242,7 +242,7 @@
             },
             body: JSON.stringify(formObject)
         };
-        fetch("http://api.itstrending.in/submitForm", requestOptions)
+        fetch("https://api.itstrending.in/submitForm", requestOptions)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
