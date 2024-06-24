@@ -5,14 +5,14 @@
 <link rel="icon" href="img/WebLogo.jpg" type="image/x-icon">
 
 <title>Contact &amp; The Logical Islam</title>
-<meta name="description" content="Get in touch with The Logical Islam team. Whether you have questions, feedback, or need support, we're here to help. Reach out to us today.">
+<meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://google.com" />
 <!-- css -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="css/jcarousel.css" rel="stylesheet" />
+<!-- <link href="css/jcarousel.css" rel="stylesheet" /> -->
 <link href="css/flexslider.css" rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet" />
 <style>
@@ -68,19 +68,12 @@
     margin-top: 5px;
 }
 </style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PQLTG22ZFC');
-</script>
-
 </head>
 <body>
+
     <div id="wrapper">
         <!-- start header -->
+        
         <div id="headerPlaceholder"></div>
         <div class="container">
             <div class="container10">
@@ -105,6 +98,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <br>
@@ -168,6 +162,8 @@
             </svg>
         </div>
     </div>
+    
+    
     <div id="footerPlaceholder"></div>
     
     <!-- Include JavaScript to load header and footer -->
@@ -177,17 +173,7 @@
     <!-- javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.fancybox.pack.js"></script>
-    <script src="js/jquery.fancybox-media.js"></script>
-    <script src="js/portfolio/jquery.quicksand.js"></script>
-    <script src="js/portfolio/setting.js"></script>
-    <script src="js/jquery.flexslider.js"></script>
-    <script src="js/animate.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/validate.js"></script>
+
    <script>
    document.addEventListener("DOMContentLoaded", function() {
     var form = document.getElementById("contact-form");
@@ -242,6 +228,7 @@
             },
             body: JSON.stringify(formObject)
         };
+
         fetch("http://api.itstrending.in/submitForm", requestOptions)
             .then(response => {
                 if (!response.ok) {
@@ -284,29 +271,32 @@ function resetErrorMessages() {
     });
 }
 
-const express = require('express');
-const app = express();
+// const express = require('express');
+// const app = express();
 
-// CORS middleware
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
+// // CORS middleware
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
+//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//     next();
+// });
 
-// Define your API endpoints here
-app.get('/submitForm', (req, res) => {
-    // Handle API logic here
-    res.send('API response');
-});
+// // Define your API endpoints here
+// app.get('/submitForm', (req, res) => {
+//     // Handle API logic here
+//     res.send('API response');
+// });
 
-// Start your server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
-});
+// // Start your server
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//     console.log(`Server listening on port ${PORT}`);
+// });
 
 
 </script>
+
+
+
 </body>
 </html>
