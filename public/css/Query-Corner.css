@@ -1,0 +1,85 @@
+/* Query-Corner.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.question, .answer {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.vote-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.vote-buttons button {
+    width: auto;
+    padding: 5px 10px;
+}
+
+#question-body-editor {
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+/* Mobile-friendly styles */
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 5px;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.5em;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 1em;
+    }
+
+    .question, .answer {
+        font-size: 1em;
+    }
+}
