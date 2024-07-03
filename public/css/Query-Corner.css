@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #000;
+=======
 /* Query-Corner.css */
 body {
     font-family: Arial, sans-serif;
@@ -5,10 +13,65 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+>>>>>>> origin/release-forum
 }
 
 .container {
     width: 90%;
+<<<<<<< HEAD
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content h1 {
+    margin: 0;
+}
+
+.user-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-icon img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-icon p {
+    margin: 0;
+}
+
+.main-content {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #333;
+    color: white;
+    margin: 5px 0;
+=======
     margin: 0 auto;
     padding: 10px;
 }
@@ -34,22 +97,95 @@ button {
     background-color: #333;
     color: #fff;
     border: none;
+>>>>>>> origin/release-forum
 }
 
 button:hover {
     background-color: #555;
 }
 
+<<<<<<< HEAD
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button#back-to-questions {
+    background-color: #6c757d;
+}
+
+button#back-to-questions:hover {
+    background-color: #5a6268;
+}
+
+.question, .answer {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+=======
 .question, .answer {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
     background-color: #fff;
+>>>>>>> origin/release-forum
 }
 
 .vote-buttons {
     display: flex;
+<<<<<<< HEAD
+    align-items: center;
+}
+
+.vote-buttons button {
+    margin-right: 10px;
+}
+
+footer {
+    background-color: #333;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .user-icon {
+        margin-top: 10px;
+    }
+
+    .button-row {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    input[type="text"], textarea, button[type="submit"] {
+        font-size: 14px;
+=======
     gap: 10px;
 }
 
@@ -81,5 +217,6 @@ button:hover {
 
     .question, .answer {
         font-size: 1em;
+>>>>>>> origin/release-forum
     }
 }
