@@ -101,8 +101,19 @@ button#back-to-questions:hover, button#back-to-home:hover {
 }
 
 .vote-buttons button {
+    font-size: 10px; /* Adjust the font size of the text inside */
+    padding: 6px 6px; /* Adjust padding to decrease overall button size */
+    margin-right: 75px;
+}
+.vote-buttons .vote-count {
+    position: relative;
+    left: -76px; /* Adjust as needed */
+}
+.vote-count {
+    margin-left: 10px; /* Adjust margin to create space between button and count */
     margin-right: 10px;
 }
+
 
 footer {
     background-color: #333;
@@ -138,4 +149,31 @@ footer {
     input[type="text"], input[type="email"], textarea, button[type="submit"] {
         font-size: 14px;
     }
+}
+
+/* Add to your existing CSS */
+#message-box {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+#messages-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.message h3 {
+    margin: 0;
+}
+
+.message p {
+    margin: 5px 0;
 }
