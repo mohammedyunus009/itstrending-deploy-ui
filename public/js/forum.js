@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userSection = document.getElementById('user-section');
     const submitAnswerButton = document.getElementById('submit-answer');
     const backToHomeButton = document.getElementById('back-to-home');
-    const clearStorageButton = document.getElementById('clear-storage-button');
+    // const clearStorageButton = document.getElementById('clear-storage-button');
     const messagesContainer = document.getElementById('messages-container');
 
     // Initialize Quill editor for questions
@@ -339,18 +339,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (clearStorageButton) {
-        clearStorageButton.addEventListener('click', () => {
-            if (confirm('Are you sure you want to clear all data?')) {
-                localStorage.clear();
-                users = [];
-                questions = [];
-                currentUser = null;
-                displayQuestions();
-                displayUser();
-            }
-        });
-    }
+    // if (clearStorageButton) {
+    //     clearStorageButton.addEventListener('click', () => {
+    //         if (confirm('Are you sure you want to clear all data?')) {
+    //             localStorage.clear();
+    //             users = [];
+    //             questions = [];
+    //             currentUser = null;
+    //             displayQuestions();
+    //             displayUser();
+    //         }
+    //     });
+    // }
 
     if (searchBar) {
         searchBar.addEventListener('input', () => {

@@ -101,8 +101,19 @@ button#back-to-questions:hover, button#back-to-home:hover {
 }
 
 .vote-buttons button {
+    font-size: 10px; /* Adjust the font size of the text inside */
+    padding: 6px 6px; /* Adjust padding to decrease overall button size */
+    margin-right: 75px;
+}
+.vote-buttons .vote-count {
+    position: relative;
+    left: -76px; /* Adjust as needed */
+}
+.vote-count {
+    margin-left: 10px; /* Adjust margin to create space between button and count */
     margin-right: 10px;
 }
+
 
 footer {
     background-color: #333;
