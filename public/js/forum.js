@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const userSection = document.getElementById('user-section');
     const submitAnswerButton = document.getElementById('submit-answer');
     const backToHomeButton = document.getElementById('back-to-home');
-    const clearStorageButton = document.getElementById('clear-storage-button');
+    // const clearStorageButton = document.getElementById('clear-storage-button');
+    const messagesContainer = document.getElementById('messages-container');
 
     // Initialize Quill editor for questions
     const quill = new Quill('#question-body-editor', {
@@ -94,12 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="downvote-button" data-index="${index}">Downvote</button>
                     <span class="vote-count">${question.downvotes}</span>
                 </div>
-                <p>Asked by: ${question.user}</p>
+                <p>Asked by: ${question.user} (${question.userEmail})</p>
                 <button class="view-answers-button" data-index="${index}">View Answers (${question.answers.length})</button>
                 <button class="delete-question-button" data-index="${index}">Delete Question</button>
             `;
             questionsContainer.appendChild(questionDiv);
         });
+        displayMessages();
     };
 
     const displayAnswers = (questionIndex) => {
@@ -110,166 +112,272 @@ document.addEventListener('DOMContentLoaded', () => {
             answerDiv.classList.add('answer');
             answerDiv.innerHTML = `
                 <p>${answer.body}</p>
+                <p>Answered by: ${answer.user} (${answer.userEmail})</p>
                 <div class="vote-buttons">
-                    <button class="upvote-answer-button" data-question-index="${questionIndex}" data-answer-index="${index}">Upvote</button>
+                    <button class="upvote-button" data-question-index="${questionIndex}" data-index="${index}">Upvote</button>
                     <span class="vote-count">${answer.upvotes}</span>
-                    <button class="downvote-answer-button" data-question-index="${questionIndex}" data-answer-index="${index}">Downvote</button>
+                    <button class="downvote-button" data-question-index="${questionIndex}" data-index="${index}">Downvote</button>
                     <span class="vote-count">${answer.downvotes}</span>
                 </div>
-                <p>Answered by: ${answer.user}</p>
             `;
             answersContainer.appendChild(answerDiv);
         });
     };
 
-    userForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const newUser = { username, email };
-        users.push(newUser);
-        currentUser = JSON.stringify(newUser);
-        saveToLocalStorage();
-        displayUser();
-        userSection.style.display = 'none';
-        homeSection.style.display = 'block';
-    });
-
-    questionForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const title = document.getElementById('question-title').value;
-        const body = quill.root.innerHTML;
-        const user = currentUser ? JSON.parse(currentUser).username : 'Anonymous';
-        const newQuestion = { title, body, upvotes: 0, downvotes: 0, answers: [], user };
-        questions.push(newQuestion);
-        saveToLocalStorage();
-        displayQuestions();
-        askQuestionSection.style.display = 'none';
-        homeSection.style.display = 'block';
-    });
-
-    questionsContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('view-answers-button')) {
-            const index = e.target.dataset.index;
-            questionDetail.innerHTML = `
-                <h3>${questions[index].title}</h3>
-                <p>${questions[index].body}</p>
-                <p>Asked by: ${questions[index].user}</p>
-            `;
-            displayAnswers(index);
-            answersSection.style.display = 'block';
-            homeSection.style.display = 'none';
-        } else if (e.target.classList.contains('upvote-button')) {
-            const index = e.target.dataset.index;
-            questions[index].upvotes++;
-            saveToLocalStorage();
-            displayQuestions();
-        } else if (e.target.classList.contains('downvote-button')) {
-            const index = e.target.dataset.index;
-            questions[index].downvotes--;
-            saveToLocalStorage();
-            displayQuestions();
-        } else if (e.target.classList.contains('delete-question-button')) {
-            const index = e.target.dataset.index;
-            questions.splice(index, 1);
-            saveToLocalStorage();
-            displayQuestions();
-        }
-    });
-
-    answersContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('upvote-answer-button')) {
-            const questionIndex = e.target.dataset.questionIndex;
-            const answerIndex = e.target.dataset.answerIndex;
-            questions[questionIndex].answers[answerIndex].upvotes++;
-            saveToLocalStorage();
-            displayAnswers(questionIndex);
-        } else if (e.target.classList.contains('downvote-answer-button')) {
-            const questionIndex = e.target.dataset.questionIndex;
-            const answerIndex = e.target.dataset.answerIndex;
-            questions[questionIndex].answers[answerIndex].downvotes--;
-            saveToLocalStorage();
-            displayAnswers(questionIndex);
-        }
-    });
-
-    submitAnswerButton.addEventListener('click', () => {
-        const answerBody = answerQuill.root.innerHTML;
-        const questionIndex = questions.findIndex(q => q.title === questionDetail.querySelector('h3').innerText);
-        if (currentUser) {
-            const user = JSON.parse(currentUser);
-            const newAnswer = { body: answerBody, upvotes: 0, downvotes: 0, user: user.username };
-            questions[questionIndex].answers.push(newAnswer);
-            saveToLocalStorage();
-            displayAnswers(questionIndex);
-        } else {
-            alert('Please register or log in to submit an answer.');
-        }
-    });
-
-    backToQuestionsButton.addEventListener('click', () => {
-        answersSection.style.display = 'none';
-        homeSection.style.display = 'block';
-    });
-
-    backToHomeButton.addEventListener('click', () => {
-        askQuestionSection.style.display = 'none';
-        homeSection.style.display = 'block';
-    });
-
-    searchBar.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
-        const filteredQuestions = questions.filter(q => q.title.toLowerCase().includes(query) || q.body.toLowerCase().includes(query));
-        questionsContainer.innerHTML = '';
-        filteredQuestions.forEach((question, index) => {
-            const questionDiv = document.createElement('div');
-            questionDiv.classList.add('question');
-            questionDiv.innerHTML = `
-                <h3>${question.title}</h3>
+    const displayMessages = () => {
+        messagesContainer.innerHTML = '';
+        questions.forEach(question => {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.innerHTML = `
+                <h3>Question: ${question.title}</h3>
                 <p>${question.body}</p>
-                <div class="vote-buttons">
-                    <button class="upvote-button" data-index="${index}">Upvote</button>
-                    <span class="vote-count">${question.upvotes}</span>
-                    <button class="downvote-button" data-index="${index}">Downvote</button>
-                    <span class="vote-count">${question.downvotes}</span>
-                </div>
-                <p>Asked by: ${question.user}</p>
-                <button class="view-answers-button" data-index="${index}">View Answers (${question.answers.length})</button>
-                <button class="delete-question-button" data-index="${index}">Delete Question</button>
+                <p>Asked by: ${question.user} (${question.userEmail})</p>
             `;
-            questionsContainer.appendChild(questionDiv);
+            question.answers.forEach(answer => {
+                const answerDiv = document.createElement('div');
+                answerDiv.classList.add('message');
+                answerDiv.innerHTML = `
+                    <h4>Answer</h4>
+                    <p>${answer.body}</p>
+                    <p>Answered by: ${answer.user} (${answer.userEmail})</p>
+                `;
+                messageDiv.appendChild(answerDiv);
+            });
+            messagesContainer.appendChild(messageDiv);
         });
-    });
+    };
 
-    askQuestionButton.addEventListener('click', () => {
-        askQuestionSection.style.display = 'block';
-        homeSection.style.display = 'none';
-    });
+    const sendToAPI = (data) => {
+        fetch('https://api.itstrending.in/submitForm', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(response => {
+            if (response.accepted) {
+                // Simulate email notification
+                console.log(`Question/Answer accepted: ${data.title || 'Answer'}`);
+                // Update UI or reload questions
+                displayQuestions();
+            } else {
+                // Simulate email notification
+                console.log(`Question/Answer declined: ${data.title || 'Answer'}`);
+                // Optionally, inform the user about the decline
+                alert(`Your question/answer "${data.title || 'Answer'}" has been declined.`);
+                // Remove the question/answer if needed
+                // const index = questions.findIndex(q => q.title === data.title);
+                // if (index !== -1) {
+                //     questions.splice(index, 1);
+                //     saveToLocalStorage();
+                //     displayQuestions();
+                // }
+            }
+        })
+        .catch(error => {
+            console.error('Error sending data to API:', error);
+            // Handle error scenarios
+        });
+    };
 
-    allQuestionsButton.addEventListener('click', () => {
-        displayQuestions();
-    });
+    if (userForm) {
+        userForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const user = { username, email };
+            users.push(user);
+            currentUser = JSON.stringify(user);
+            saveToLocalStorage();
+            userSection.style.display = 'none';
+            homeSection.style.display = 'block';
+            displayUser();
+        });
+    }
 
-    unansweredQuestionsButton.addEventListener('click', () => {
-        displayQuestions(true);
-    });
+    if (questionForm) {
+        questionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('question-title').value;
+            const body = quill.root.innerHTML;
+            const user = JSON.parse(currentUser);
+            const question = {
+                title,
+                body,
+                user: user.username,
+                userEmail: user.email,
+                upvotes: 0,
+                downvotes: 0,
+                answers: []
+            };
+            questions.push(question);
+            saveToLocalStorage();
+            // Send question to API
+            sendToAPI(question);
+            questionForm.reset();
+            quill.root.innerHTML = '';
+            askQuestionSection.style.display = 'none';
+            homeSection.style.display = 'block';
+            // displayQuestions();
+        });
+    }
 
-    userIcon.addEventListener('click', () => {
-        userSection.style.display = 'block';
-        homeSection.style.display = 'none';
-    });
+    if (askQuestionButton) {
+        askQuestionButton.addEventListener('click', () => {
+            homeSection.style.display = 'none';
+            askQuestionSection.style.display = 'block';
+        });
+    }
 
-    clearStorageButton.addEventListener('click', () => {
-        localStorage.clear();
-        users = [];
-        questions = [];
-        currentUser = null;
-        saveToLocalStorage();
-        displayQuestions();
-        displayUser();
-        alert('All data has been cleared.');
-    });
+    if (backToHomeButton) {
+        backToHomeButton.addEventListener('click', () => {
+            askQuestionSection.style.display = 'none';
+            homeSection.style.display = 'block';
+        });
+    }
 
-    displayUser();
+    if (backToQuestionsButton) {
+        backToQuestionsButton.addEventListener('click', () => {
+            answersSection.style.display = 'none';
+            homeSection.style.display = 'block';
+        });
+    }
+
+    if (allQuestionsButton) {
+        allQuestionsButton.addEventListener('click', () => {
+            displayQuestions();
+        });
+    }
+
+    if (unansweredQuestionsButton) {
+        unansweredQuestionsButton.addEventListener('click', () => {
+            displayQuestions(true);
+        });
+    }
+
+    if (questionsContainer) {
+        questionsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('view-answers-button')) {
+                const index = e.target.dataset.index;
+                const question = questions[index];
+                questionDetail.innerHTML = `
+                    <h3>${question.title}</h3>
+                    <p>${question.body}</p>
+                    <p>Asked by: ${question.user} (${question.userEmail})</p>
+                `;
+                displayAnswers(index);
+                homeSection.style.display = 'none';
+                answersSection.style.display = 'block';
+                submitAnswerButton.dataset.questionIndex = index;
+            } else if (e.target.classList.contains('delete-question-button')) {
+                const index = e.target.dataset.index;
+                questions.splice(index, 1);
+                saveToLocalStorage();
+                displayQuestions();
+            } else if (e.target.classList.contains('upvote-button')) {
+                const index = e.target.dataset.index;
+                questions[index].upvotes++;
+                saveToLocalStorage();
+                displayQuestions();
+            } else if (e.target.classList.contains('downvote-button')) {
+                const index = e.target.dataset.index;
+                questions[index].downvotes++;
+                saveToLocalStorage();
+                displayQuestions();
+            }
+        });
+    }
+
+    if (answersContainer) {
+        answersContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('upvote-button')) {
+                const questionIndex = e.target.dataset.questionIndex;
+                const index = e.target.dataset.index;
+                questions[questionIndex].answers[index].upvotes++;
+                saveToLocalStorage();
+                displayAnswers(questionIndex);
+            } else if (e.target.classList.contains('downvote-button')) {
+                const questionIndex = e.target.dataset.questionIndex;
+                const index = e.target.dataset.index;
+                questions[questionIndex].answers[index].downvotes++;
+                saveToLocalStorage();
+                displayAnswers(questionIndex);
+            }
+        });
+    }
+
+    if (submitAnswerButton) {
+        submitAnswerButton.addEventListener('click', () => {
+            const body = answerQuill.root.innerHTML;
+            const user = JSON.parse(currentUser);
+            const answer = {
+                body,
+                user: user.username,
+                userEmail: user.email,
+                upvotes: 0,
+                downvotes: 0
+            };
+            const questionIndex = submitAnswerButton.dataset.questionIndex;
+            questions[questionIndex].answers.push(answer);
+            saveToLocalStorage();
+            // Send answer to API
+            sendToAPI(answer);
+            answerQuill.root.innerHTML = '';
+            displayAnswers(questionIndex);
+        });
+    }
+
+    if (userIcon) {
+        userIcon.addEventListener('click', () => {
+            homeSection.style.display = 'none';
+            askQuestionSection.style.display = 'none';
+            answersSection.style.display = 'none';
+            userSection.style.display = 'block';
+        });
+    }
+
+    // if (clearStorageButton) {
+    //     clearStorageButton.addEventListener('click', () => {
+    //         if (confirm('Are you sure you want to clear all data?')) {
+    //             localStorage.clear();
+    //             users = [];
+    //             questions = [];
+    //             currentUser = null;
+    //             displayQuestions();
+    //             displayUser();
+    //         }
+    //     });
+    // }
+
+    if (searchBar) {
+        searchBar.addEventListener('input', () => {
+            const query = searchBar.value.toLowerCase();
+            const filteredQuestions = questions.filter(q => q.title.toLowerCase().includes(query) || q.body.toLowerCase().includes(query));
+            questionsContainer.innerHTML = '';
+            filteredQuestions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question');
+                questionDiv.innerHTML = `
+                    <h3>${question.title}</h3>
+                    <p>${question.body}</p>
+                    <div class="vote-buttons">
+                        <button class="upvote-button" data-index="${index}">Upvote</button>
+                        <span class="vote-count">${question.upvotes}</span>
+                        <button class="downvote-button" data-index="${index}">Downvote</button>
+                        <span class="vote-count">${question.downvotes}</span>
+                    </div>
+                    <p>Asked by: ${question.user} (${question.userEmail})</p>
+                    <button class="view-answers-button" data-index="${index}">View Answers (${question.answers.length})</button>
+                    <button class="delete-question-button" data-index="${index}">Delete Question</button>
+                `;
+                questionsContainer.appendChild(questionDiv);
+            });
+        });
+    }
+
     displayQuestions();
+    displayUser();
 });
