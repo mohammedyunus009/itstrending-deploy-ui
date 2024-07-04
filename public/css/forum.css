@@ -149,6 +149,7 @@ footer {
     input[type="text"], input[type="email"], textarea, button[type="submit"] {
         font-size: 14px;
     }
+<<<<<<< HEAD
 }
 
 /* Add to your existing CSS */
@@ -176,4 +177,6 @@ footer {
 
 .message p {
     margin: 5px 0;
+=======
+>>>>>>> origin/Forum
 }
