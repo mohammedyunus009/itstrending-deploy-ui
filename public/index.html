@@ -3,35 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Modern Blog</title>
-    <link rel="stylesheet" href="css/blog2.css">
+    <title>Blog Page</title>
+    <link rel="stylesheet" href="css/blog3.css">
 </head>
 <body>
     <header>
-        <h1>My Modern Blog</h1>
-    </header>
-    <main id="content">
-        <div class="container">
-            <aside id="sidebar">
-                <div class="widget">
-                    <h2>Categories</h2>
-                    <select id="categories">
-                        <option value="All">All</option>
-                    </select>
-                </div>
-                <div class="widget">
-                    <h2>Search</h2>
-                    <input type="text" id="search" placeholder="Search posts...">
-                </div>
-            </aside>
-            <section id="posts">
-                <!-- Blog posts will be dynamically inserted here -->
-            </section>
+        <div class="logo">
+            <img src="image/logo.png" width="120" height="70" alt="Logo">
         </div>
-    </main>
+        <button id="menuButton" class="menu-button">☰ </button>
+    </header>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <button id="closeButton" class="close-button">✖</button>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </aside>
+        <main class="content">
+            <h1>Welcome to My Blog</h1>
+            <p>This is a sample blog page.</p>
+            <div id="blogPosts">
+                <!-- Blog posts will be inserted here by JavaScript -->
+            </div>
+        </main>
+    </div>
     <footer>
-        <p>&copy; 2024 My Modern Blog</p>
+        <p>© 2024 info@itstrending.in</p>
     </footer>
-    <script src="js/blog2.js"></script>
+    <script src="js/blog3.js"></script>
 </body>
 </html>
