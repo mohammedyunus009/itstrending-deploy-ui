@@ -46,5 +46,8 @@ body {
   .dropdown-menu.show {
       display: block; /* Show when toggled */
   }
+  .Submit{
+margin-left: 300px;
   }
+}
   
