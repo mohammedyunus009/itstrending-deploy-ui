@@ -411,14 +411,41 @@ bottom: 120px;  color: #fff; margin: 0; padding: 25px 25px 25px 30px; position: 
     background-color: rgba(0, 0, 0, 0.5); /* Example background color */
     padding: 10px; /* Example padding */
     text-align: center; /* Example alignment */
-    width: 355px; /* Adjust width if needed */
+    width: 100%; /* Adjust width if needed */
     box-sizing: border-box; /* Ensure padding is included in width */
-    margin-top: 17px;
+    margin-top: 20px;
   }
 }
 
+.test-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 10px;
+    padding: 0;
+    list-style-type: none;
+}
 
+.test-categories li {
+    margin: 0;
+    padding: 0;
+}
 
+.test-categories a {
+    text-decoration: none;
+    color: #259ab8;
+}
+
+.test-categories a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 </style>
 </head>
@@ -749,12 +776,12 @@ bottom: 120px;  color: #fff; margin: 0; padding: 25px 25px 25px 30px; position: 
     <div class="heading text-center"> 
       <!-- Heading -->
       <h2>About Us</h2>
-      <p>Thyrocare 1st NABL Lab.</p>
     </div>
     <div class="row feature design">
       <div class="area1 columns right">
         <h3>OUR LEGACY
           "TESTS YOU CAN TRUST".</h3>
+        <p>Thyrocare 1st NABL Lab.</p>
         <p>At Medi-Surge Clinic and Laboratory, we are dedicated to providing comprehensive healthcare services to our community. Our state-of-the-art facility is equipped with the latest technology to ensure accurate diagnoses and effective treatments.</p> 
         <p>Our mission is to deliver high-quality medical care with compassion and professionalism. We strive to create a welcoming environment where patients feel comfortable and confident in their healthcare journey.</p>
         <p>Our team consists of experienced and caring healthcare professionals, including doctors, nurses, and laboratory technicians. We work collaboratively to provide personalized care tailored to each patient’s unique needs.</p>
@@ -1020,25 +1047,22 @@ bottom: 120px;  color: #fff; margin: 0; padding: 25px 25px 25px 30px; position: 
               <div class="col-md-3">
                 <div class="col">
                     <h4>Test Categories</h4>
-                    <ul>
+                    <ul class="test-categories">
                         <li><a href="#diabetes">Diabetes</a></li>
-                        <li><a href="#heart-care">Heart Care</a></li>
+                        <li><a href="#heart-care">Heart</a></li>
                         <li><a href="#thyroid">Thyroid</a></li>
                         <li><a href="#pcod">PCOD</a></li>
-                        <li><a href="#infertility">Infertility Check</a></li>
+                        <li><a href="#infertility">Infertility</a></li>
                         <li><a href="#antenatal">Antenatal</a></li>
                         <li><a href="#pre-marital">Pre-marital</a></li>
                         <li><a href="#skin-care">Skin Care</a></li>
                         <li><a href="#hairfall">Hairfall</a></li>
-                        <li><a href="#seasonal-fever">Seasonal Fever</a></li>
+                        <li><a href="#seasonal-fever">Fever</a></li>
                         <li><a href="#cancer">Cancer</a></li>
                         <li><a href="#std">STD</a></li>
                     </ul>
                 </div>
             </div>
-            
-            
-              
               <div class="col-md-3">
                 <div class="col col-social-icons">
                       <h4>Follow us</h4>
@@ -1048,21 +1072,8 @@ bottom: 120px;  color: #fff; margin: 0; padding: 25px 25px 25px 30px; position: 
                       <a href="#"><i class="fa fa-twitter"></i></a>
                   </div>
               </div>
-  
-               <div class="col-md-3">
-                 <div class="col">
-                      <h4>Latest Health Plans</h4>
-                      <p>
-                        Introducing our latest health plans for diabetes management, designed to provide comprehensive care and support.
-                      <br><br>
-                      <a href="#services" class="btn">See More!</a>
-                      </p>
-                  </div>
-              </div>
           </div>
-           
       </div>
-      
   </footer>
 <!--/.page-section-->
 <section class="copyright">
@@ -1094,9 +1105,20 @@ bottom: 120px;  color: #fff; margin: 0; padding: 25px 25px 25px 30px; position: 
     window.location.href = '#contactUs';
     document.getElementById('selectedTest').value = localStorage.getItem('selectedTest');
     document.getElementById('totalAmount').value = localStorage.getItem('totalAmount');
+    updateMessageField();  // Call the function to update the message field
   }
-  
-  // Ensure the form fields are filled if the user refreshes the billing page
+
+  // Function to update the message field
+  function updateMessageField() {
+    const selectedTestInput = document.getElementById('selectedTest');
+    const totalAmountInput = document.getElementById('totalAmount');
+    const messageTextarea = document.getElementById('message');
+
+    const selectedTest = selectedTestInput.value;
+    const totalAmount = totalAmountInput.value;
+    messageTextarea.value = `Selected Test: ${selectedTest}\nTotal Amount: ${totalAmount}`;
+  }
+
   document.addEventListener('DOMContentLoaded', (event) => {
     if (localStorage.getItem('selectedTest')) {
       document.getElementById('selectedTest').value = localStorage.getItem('selectedTest');
@@ -1104,24 +1126,12 @@ bottom: 120px;  color: #fff; margin: 0; padding: 25px 25px 25px 30px; position: 
     if (localStorage.getItem('totalAmount')) {
       document.getElementById('totalAmount').value = localStorage.getItem('totalAmount');
     }
-  });
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    const selectedTestInput = document.getElementById('selectedTest');
-    const totalAmountInput = document.getElementById('totalAmount');
-    const messageTextarea = document.getElementById('message');
-    const form = document.getElementById('contactfrm');
-  
-    function updateMessageField() {
-        const selectedTest = selectedTestInput.value;
-        const totalAmount = totalAmountInput.value;
-        messageTextarea.value = `Selected Test: ${selectedTest}\nTotal Amount: ${totalAmount}`;
-    }
-  
+
     // Call the function to update the message field on page load
     updateMessageField();
   });
-  </script>
+</script>
+
 <script>
   document.getElementById('contactfrm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
@@ -1167,6 +1177,20 @@ bottom: 120px;  color: #fff; margin: 0; padding: 25px 25px 25px 30px; position: 
   // Example of how to update the selected test and amount
   // Call this function when a new test is selected
   // updateSelectedTestAndAmount('Test Name', '100');
+</script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+<script>
+$(document).ready(function() {
+    // Close navbar toggle on click
+    $('#mainNav li a').on('click', function(){
+        if($('.navbar-toggle').css('display') !='none'){
+            $(".navbar-toggle").trigger( "click" );
+        }
+    });
+});
 </script>
 </body>
 </html>
