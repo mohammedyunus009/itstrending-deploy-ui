@@ -1,103 +1,1198 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en-gb" class="no-js">
+<!--<![endif]-->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category Page</title>
-    <link rel="stylesheet" href="css/category3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--[if lt IE 9]> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+<title>Medi-Surge Clinic & Laboratory</title>
+<link rel="icon" href="images/IMG-20240709-WA0002~3.jpg" type="image/jpg">
+<meta name="description" content="">
+<meta name="author" content="WebThemez">
+<!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<!--[if lte IE 8]>
+		<script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+	<![endif]-->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />
+<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+<link href="css/animate.css" rel="stylesheet" media="screen">
+<link href="flexslider/flexslider.css" rel="stylesheet" />
+<link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+<!-- Font Awesome -->
+<link href="font/css/font-awesome.min.css" rel="stylesheet">
+<style>
+  .navbar-inverse .navbar-toggle {
+      border-color: transparent;
+    }
+    .navbar-inverse .navbar-toggle .icon-bar {
+      background-color: #fff;
+    }
+    .navbar-inverse .navbar-brand {
+      color: #fff;
+    }
+    .navbar-inverse .navbar-nav > li > a {
+      color: #020202;
+    }
+    @media (max-width: 767px) {
+      .navbar-header {
+        float: none;
+        width: 100%;
+        text-align: left;
+      }
+      .navbar-toggle {
+        float: right;
+        margin-right: -285px;
+        margin-top: -50px;
+        top: 60px;
+      }
+      .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+      .navbar-collapse.collapse {
+        display: none !important;
+      }
+      .navbar-nav {
+        float: none !important;
+        margin: 7.5px -15px;
+      }
+      .navbar-nav > li {
+        float: none;
+      }
+      .navbar-nav > li > a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+
+    .flexslider {
+    margin: -6px;
+    padding: 0;
+}
+
+
+
+
+  .package-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .package-box img {
+    max-width: 100%;
+    height: auto;
+  }
+  .package-box h3, .package-box h5 {
+    margin-top: 15px;
+  }
+  .package-box .case {
+    border: none;
+    padding: 0px;
+  }
+  .page-section {
+    padding: 60px 0;
+  }
+  .heading h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  .heading p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  .pswp-gallery {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .pswp-gallery li {
+    margin: 15px;
+    text-align: center;
+    max-width: 300px;
+    flex: 1 1 30%;
+  }
+  .pswp-gallery img {
+    max-width: 100%;
+    height: auto;
+  }
+  .pswp-gallery h4 {
+    margin-top: 15px;
+    font-size: 18px;
+  }
+  .pswp-gallery h4 span {
+    display: block;
+    font-size: 14px;
+    color: #666;
+  }
+  .cmn-buton p {
+    margin: 10px 0 0;
+  }
+  .cmn-buton a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: yellow;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  .cmn-buton a:hover {
+    background-color: #ffd700;
+  }
+  /* New CSS for mobile responsiveness */
+@media (max-width: 768px) {
+  .header .navbar-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  .header .navbar-header .navbar-brand {
+      margin-bottom: 10px;
+  }
+  .navbar-collapse {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  .navbar-nav {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+  }
+  .navbar-nav > li {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+  }
+}
+.blog-box {
+border: 1px solid #ddd;
+padding: 15px;
+margin-bottom: 30px;
+text-align: center;
+border-radius: 5px;
+background-color: #f9f9f9;
+transition: box-shadow 0.3s ease;
+}
+
+.blog-box:hover {
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blog-box img {
+max-width: 100%;
+height: auto;
+border-radius: 5px;
+margin-bottom: 15px;
+}
+
+.blog-box h3 {
+font-size: 24px;
+margin-bottom: 15px;
+}
+
+.blog-box p {
+font-size: 16px;
+color: #777;
+margin-bottom: 20px;
+}
+
+.blog-box .btn {
+background-color: #333;
+color: #fff;
+border: none;
+padding: 10px 20px;
+text-transform: uppercase;
+border-radius: 5px;
+transition: background-color 0.3s ease;
+}
+
+.blog-box .btn:hover {
+background-color: #555;
+}
+
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+.blog-box {
+  margin-bottom: 20px;
+}
+}
+
+.cart-btn i {
+  margin-right: 5px; /* Adjust the margin if needed */
+}
+/* CSS for transparent background */
+.form-group input[readonly] {
+  background-color: transparent;
+  border: 1px solid #ccc; /* Optional: to keep a visible border */
+  color: #dbd2d2; /* Optional: to ensure the text color is still visible */
+}
+.pack-deils {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pck-img {
+  margin-bottom: 20px;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+	color: #0a0a0a;
+	background: #56A6D1;
+	border-radius: 0px;
+}
+/* Container styles */
+.pack-deils {
+  background-color: #fff7e6; /* Cream color background */
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative; /* Ensure relative positioning for absolute button positioning */
+
+  /* Optional: Set max-width and center horizontally */
+  max-width: 1000px;
+  margin: 15px auto;
+}
+
+
+/* General Styles */
+.pack-deils {
+  margin-bottom: 20px;
+  height: 325px;
+  width: 300px;
+}
+
+.pck-img {
+  border: 0px solid #ddd;
+  padding: 0px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.pck-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+@media (min-width: 992px) {
+  .service-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .service-grid .col-lg-4 {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+}
+
+
+/* Mobile View */
+@media (max-width: 991px) {
+  .col-md-6 {
+    width: 50%;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 767px) {
+  .col-md-6 {
+    width: 50%;
+  }
+}
+
+
+
+.img-responsive {
+    display: block;
+    height: auto;
+    max-width: 65%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/* General styles */
+.pack-deils {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 10px 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect for both desktop and mobile */
+.pack-deils:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/* Additional effect for images */
+.pack-deils .pck-img img {
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.pack-deils:hover .pck-img img {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .pack-deils {
+    margin: 10px;
+  }
+}
+/*  Sliders
+==================================== */
+ 
+.flex-direction-nav .flex-prev{
+left:0px; 
+}
+.flex-direction-nav .flex-next{ 
+right:0px;
+}
+.flex-caption {zoom: 1;
+bottom: 120px;  color: #fff; margin: 0; padding: 25px 25px 25px 30px; position: absolute; left: 0; background: transparent;margin: 0 auto;right: 0;}
+.flex-caption h3 {color: #fff; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase;font-size: 50px;font-weight: bolder;}
+.flex-caption p {margin: 0 0 15px;font-size: 20px !important;}	
+.flex-caption a{
+    background: transparent !important;
+    border: 1px solid #fff;
+}
+.flex-caption a:hover{
+    background: #fff !important;
+    border: 1px solid #fff;
+	color:#000 !important;
+}
+/* Add media query for mobile view */
+@media (max-width: 768px) {
+    .flex-caption {
+        bottom: 20px; /* Adjust the position to be closer to the bottom */
+        padding: 15px; /* Reduce padding */
+    }
+
+    .flex-caption h3 {
+        font-size: 24px; /* Reduce font size for smaller screens */
+    }
+
+    .flex-caption p {
+        font-size: 16px !important; /* Reduce font size */
+    }
+
+    .flex-caption a {
+        padding: 10px 20px; /* Adjust button padding */
+        font-size: 14px; /* Adjust button font size */
+    }
+}
+
+/* Adjustments for smaller screens (mobile) */
+@media (max-width: 767px) {
+  .flex-caption {
+    display: block !important; /* Ensure it's visible */
+    position: relative; /* Adjust positioning if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Example background color */
+    padding: 10px; /* Example padding */
+    text-align: center; /* Example alignment */
+    width: 100%; /* Adjust width if needed */
+    box-sizing: border-box; /* Ensure padding is included in width */
+    margin-top: 20px;
+  }
+}
+
+.test-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 10px;
+    padding: 0;
+    list-style-type: none;
+}
+
+.test-categories li {
+    margin: 0;
+    padding: 0;
+}
+
+.test-categories a {
+    text-decoration: none;
+    color: #259ab8;
+}
+
+.test-categories a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+</style>
 </head>
 
 <body>
+  <header class="header">
+    <div class="container">
+      <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+          <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav"> 
+            <span class="sr-only">Toggle navigation</span> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+          </button>
+          <a href="#" class="navbar-brand scroll-top logo animated bounceInLeft"><b>MEDI-<i>SURGE </i></b></a>
+        </div>
+        <!--/.navbar-header-->
+        <div id="main-nav" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav" id="mainNav">
+            <li class="active" id="firstLink"><a href="#top" class="scroll-link">Home</a></li>
+            <li><a href="#services" class="scroll-link">Health Checkup</a></li>
+            <li><a href="#aboutUs" class="scroll-link">About Us</a></li>
+            <li><a href="#work" class="scroll-link">Accreditation</a></li>
+            <!-- <li><a href="#plans" class="scroll-link">Plans</a></li> -->
+            <li><a href="#team" class="scroll-link">Blogs</a></li>
+            <li><a href="#contactUs" class="scroll-link">Billing</a></li>
+          </ul>
+        </div>
+        <!--/.navbar-collapse--> 
+      </nav>
+      <!--/.navbar--> 
+    </div>
+    <!--/.container--> 
+  </header>
+<!--/.header-->
+<div id="#top"></div>
+<section id="home">
+  <div class="banner-container"> 
+  <!-- Slider -->
+        <div id="main-slider" class="flexslider">
+            <ul class="slides">
+              <li>
+                <img src="images/slides/1.jpg" alt="" />
+                <div class="flex-caption container">
+                    <h3>Packages</h3> 
+					<p>Health packages for
+            you and your family .</p> 
+					<a href="#services" class="btn btn-theme">Read More</a>
+                </div>
+              </li>
+              <li>
+                <img src="images/slides/2.jpg" alt="" />
+                <div class="flex-caption container">
+                    <h3>Accreditation</h3> 
+					<p>Pioneering Quality with
+            CAP,ISO,NABL,NGSP Accreditation .</p> 
+					<a href="#work" class="btn btn-theme">Read More</a>
+                </div>
+              </li>
+              <li>
+                <img src="images/slides/3.jpg" alt="" />
+                <div class="flex-caption container">
+                    <h3>WHY CHOOSE MEDI-SURGE?</h3> 
+					<p>OUR LEGACY
+            ENSURING “CARE” IN HEALTHCARE .</p> 
+					<a href="#aboutUs" class="btn btn-theme">Read More</a>
+                </div>
+              </li>
+            </ul>
+            
+        </div>
+	<!-- end slider -->
+  </div>
+  
+</section>
+<div class="container hero-text2">
+  <h3>* Easy/multiple booking channels- Telephone, Whatsapp, Email, Live Chat, Online Appointment Form<br>* Home Care Kit: A complete sample collection kit, sealed for one time use.<br>* Since 2012, Ensuring Care in Healthcare, putting customer convenience first</h3>
+  </div>
+<section id="services" class="page-section colord">
+  <div class="container">
+    <div class="row service-grid">
+      <!-- Image 1 -->
+      <div id="diabetes" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163506.png" class="img-fluid" alt="Image 1" height="200" onclick="selectPackage('Jaanch - Diabetic Screen (48 Parameters)', '₹ 1,199')">
+          </div>
+        </div>
+      </div>
+      <!-- Image 2 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163506 (1).png" class="img-fluid" alt="Image 2" height="200" onclick="selectPackage('Jaanch - Diabetic Profile Basics (73 Parameters)', '₹ 2,499')">
+          </div>
+        </div>
+      </div>
+      <!-- image 3 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163506 (2).png" class="img-fluid" alt="Image 3" height="200" onclick="selectPackage('Jaanch - Diabetic Profile Advanced (109 Tests)', '₹ 4,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 4 -->
+      <div id="heart-care" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163639.png" class="img-fluid" alt="Image 4" height="200" onclick="selectPackage('Jaanch Healthy Heart (Basic)(48 Parameters)', '₹ 1,499')">
+          </div>
+        </div>
+      </div>
+      <!-- image 5 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163639 (1).png" class="img-fluid" alt="Image 5" height="200" onclick="selectPackage('Jaanch Healthy Heart (Advanced)(53 Parameters)', '₹ 2,999')">
+          </div>
+        </div>
+      </div>
+      <!-- Image 6 -->
+      <div id="thyroid" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163707.png" class="img-fluid" alt="Image 6" height="200" onclick="selectPackage('Jaanch Thyroid Profile (Basic)(5 Parameters)', '₹ 499')">
+          </div>
+        </div>
+      </div>
+      <!-- image 7 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163707 (1).png" class="img-fluid" alt="Image 7" height="200" onclick="selectPackage('Jaanch Thyroid Profile (Advanced)(8 Parameters)', '₹ 2,499')">
+          </div>
+        </div>
+      </div>
+      <!-- image 8 -->
+      <div id="pcod" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163732.png" class="img-fluid" alt="Image 8" height="200" onclick="selectPackage('Jaanch - PCDO (Mini)(50 Parameters)', '₹ 1,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 9 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163732 (1).png" class="img-fluid" alt="Image 9" height="200" onclick="selectPackage('Jaanch - PCDO (Basic)(69 Parameters)', '₹ 3,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 10 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163732 (2).png" class="img-fluid" alt="Image 10" height="200" onclick="selectPackage('Jaanch - PCDO (Advanced)(73 Parameters)', '₹ 5,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 11 -->
+      <div id="infertility" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163757.png" class="img-fluid" alt="Image 11" height="200" onclick="selectPackage('Jaanch - Infertility Profile (Basic)(7 Parameters)', '₹ 1,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 12 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163757 (1).png" class="img-fluid" alt="Image 12" height="200" onclick="selectPackage('Jaanch - Infertility Profile (Advanced)(21 Parameters)', '₹ 4,499')">
+          </div>
+        </div>
+      </div>
+      <!-- image 13 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163757 (2).png" class="img-fluid" alt="Image 13" height="200" onclick="selectPackage('Jaanch - Infertility Profile (Extended)(29 Parameters)', '₹ 6,499')">
+          </div>
+        </div>
+      </div>
+      <!-- image 14 -->
+      <div id="antenatal" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163822.png" class="img-fluid" alt="Image 14" height="200" onclick="selectPackage('Jaanch Antenatal Profile (Basic)(35 Parameters)', '₹ 1,500')">
+          </div>
+        </div>
+      </div>
+      <!-- image 15 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163822 (1).png" class="img-fluid" alt="Image 15" height="200" onclick="selectPackage('Jaanch Antenatal Profile (Advanced)(51 Parameters)', '₹ 2,799')">
+          </div>
+        </div>
+      </div>
+      <!-- image 16 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163822 (2).png" class="img-fluid" alt="Image 16" height="200" onclick="selectPackage('Jaanch Antenatal Profile (Extended)(85 Parameters)', '₹ 4,500')">
+          </div>
+        </div>
+      </div>
+      <!-- image 17 -->
+      <div id="pre-marital" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163841.png" class="img-fluid" alt="Image 17" height="200" onclick="selectPackage('Jaanch Pre Material Health Checkup (48 Parameters)', '₹ 1,900')">
+          </div>
+        </div>
+      </div>
+      <!-- image 18 -->
+      <div id="skin-care" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163917.png" class="img-fluid" alt="Image 18" height="200" onclick="selectPackage('Jaanch - Mens Skin Care Checkup (36 Parameters)', '₹ 2,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 19 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163917 (1).png" class="img-fluid" alt="Image 19" height="200" onclick="selectPackage('Jaanch - Womens Skin Care Checkup (43 Parameters)', '₹ 2,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 20 -->
+      <div id="hairfall" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163949.png" class="img-fluid" alt="Image 20" height="200" onclick="selectPackage('Jaanch - Mens Hairfall Screening Advanced (47 Parameters)', '₹ 2,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 21 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-163949 (1).png" class="img-fluid" alt="Image 21" height="200" onclick="selectPackage('Jaanch - Womens Hairfall Screening Advanced (51 Parameters)', '₹ 2,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 22 -->
+      <div id="seasonal-fever" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-164015.png" class="img-fluid" alt="Image 22" height="200" onclick="selectPackage('Jaanch Winter Fever Panel Basic (37 Parameters)', '₹ 1,799')">
+          </div>
+        </div>
+      </div>
+      <!-- image 23 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-164015 (1).png" class="img-fluid" alt="Image 23" height="200" onclick="selectPackage('Jaanch Winter Fever Panel Advanced (39 Parameters)', '₹ 2,299')">
+          </div>
+        </div>
+      </div>
+      <!-- image 24 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-164015 (2).png" class="img-fluid" alt="Image 24" height="200" onclick="selectPackage('Jaanch - Winter Fever Panel Advanced (Including Influenza) (42 Parameters)', '₹ 4,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 25 -->
+      <div id="cancer" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-164039.png" class="img-fluid" alt="Image 25" height="200" onclick="selectPackage('Jaanch - Tumour Panel (Male) (7 Parameters)', '₹ 1,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 26 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-164039 (1).png" class="img-fluid" alt="Image 26" height="200" onclick="selectPackage('Jaanch - Tumour Panel (Female) (6 Parameters)', '₹ 1,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 27 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-164039 (2).png" class="img-fluid" alt="Image 27" height="200" onclick="selectPackage('Jaanch - Tumour Panel Advanced (Female) (12 Parameters)', '₹ 6,999')">
+          </div>
+        </div>
+      </div>
+      <!-- image 28 -->
+      <div id="std" class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-164055.png" class="img-fluid" alt="Image 28" height="200" onclick="selectPackage('Jaanch - STD Profile Basic (12 Parameters)', '₹ 2,499')">
+          </div>
+        </div>
+      </div>
+      <!-- image 29 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-164055 (1).png" class="img-fluid" alt="Image 29" height="200" onclick="selectPackage('Jaanch - STD Profile Advanced (12 Parameters)', '₹ 6,499')">
+          </div>
+        </div>
+      </div>
+      <!-- image 30 -->
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="pack-deils">
+          <div class="pck-img">
+            <img src="images/plans2/Screenshot_20240709-164055 (2).png" class="img-fluid" alt="Image 30" height="200" onclick="selectPackage('Jaanch - STD Profile Extended (14 Parameters)', '₹ 10,499')">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="aboutUs">
+  <div class="container">
+    <div class="heading text-center"> 
+      <!-- Heading -->
+      <h2>About Us</h2>
+    </div>
+    <div class="row feature design">
+      <div class="area1 columns right">
+        <h3>OUR LEGACY
+          "TESTS YOU CAN TRUST".</h3>
+        <p>Thyrocare 1st NABL Lab.</p>
+        <p>At Medi-Surge Clinic and Laboratory, we are dedicated to providing comprehensive healthcare services to our community. Our state-of-the-art facility is equipped with the latest technology to ensure accurate diagnoses and effective treatments.</p> 
+        <p>Our mission is to deliver high-quality medical care with compassion and professionalism. We strive to create a welcoming environment where patients feel comfortable and confident in their healthcare journey.</p>
+        <p>Our team consists of experienced and caring healthcare professionals, including doctors, nurses, and laboratory technicians. We work collaboratively to provide personalized care tailored to each patient’s unique needs.</p>
+        <p>At Medi-Surge Clinic and Laboratory, we are committed to excellence in all aspects of healthcare. We continually update our practices to incorporate the latest medical advancements and ensure the highest standards of patient care.</p>
+      </div>
+      <div class="area2 columns feature-media left"> <img src="images/feature-img-1.png" alt="" width="100%"> </div>
+    </div>
+	
+    </div>
+	
+</section>
+<section id="clients">
+  <div id="demo" class="clients">
+    <div class="container"> 
+      <div class="row">
+        <div class="col-md-12">
+          <div class="customNavigation"> <a class="prev"><i class="fa fa-chevron-circle-left"></i></a> <a class="next"><i class="fa fa-chevron-circle-right"></i></a> </div>
+          <div id="owl-demo" class="owl-carousel">
+            <div class="item"> <span class="helper"> <img src="images/clients/cap-accreditation-logo.webp" alt="client" /></span> </div>
+            <div class="item"> <span class="helper"> <img src="images/clients/iso-1080x675.jpg" alt="client" /></span> </div>
+            <div class="item"> <span class="helper"> <img src="images/clients/nabl.jpg" alt="client" /></span> </div>
+            <div class="item"> <span class="helper"> <img src="images/clients/ngsp.jpeg" alt="client" /></span> </div>
+            <div class="item"> <span class="helper"> <img src="images/clients/thyrocare.png" alt="client" /></span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="work" class="page-section page">
+  <div class="container text-center">
+    <div class="heading">
+      <h2>OUR ACCREDITATION</h2><br><br>
+      <p>At Medi-Surge Clinic and Laboratory, we take pride in our commitment to quality and excellence. Our facility is accredited and certified by several prestigious organizations, underscoring our dedication to providing top-notch healthcare services.</p>
+      <p>We are certified by the College of American Pathologists (CAP), which ensures our laboratory meets the highest standards of quality, accuracy, and reliability in diagnostic testing. This certification reflects our adherence to rigorous protocols and our continuous efforts to improve patient care.</p>
+      <p>Our clinic and laboratory are ISO-certified, affirming our commitment to maintaining an efficient and effective quality management system. This certification guarantees that our services consistently meet customer and regulatory requirements, fostering trust and confidence among our patients.</p>
+      <p>We hold accreditation from the National Accreditation Board for Testing and Calibration Laboratories (NABL), demonstrating our competence and credibility in laboratory testing. NABL accreditation is a mark of excellence that assures our patients of precise and dependable test results.</p>
+      <p>Our laboratory is NGSP-certified, ensuring the accuracy of our HbA1c testing for diabetes management. This certification indicates that our testing methods are standardized and traceable to global reference standards, providing reliable data for effective diabetes control.</p>
+      <p>As a certified partner of Thyrocare, we leverage their extensive network and advanced diagnostic capabilities to offer a comprehensive range of tests and services. This partnership enables us to provide high-quality, affordable, and timely diagnostic solutions to our patients.</p>  
+  </div>
+    <!-- <div class="row">
+      <div class="col-md-12">
+        <ul class="pswp-gallery" id="my-gallery">
+          <li>
+             <img src="images/cer-3.9d40e9483ad629a7aa83.jpg" alt="call" class="img-fluid">
+             <h4> NARL <span>Certificate</span></h4>
+             <div class="cmn-buton">
+                <p><a href="pdf/narl-new.pdf" target="_blank" rel="noreferrer">View Certificate</a></p>
+             </div>
+          </li>
+          <li>
+             <img src="images/scope-5.c258a94780703182d6d2.jpg" alt="call" class="img-fluid">
+             <h4> Scope <span> NARL </span></h4>
+             <div class="cmn-buton">
+                <p><a href="pdf/NARL-New-scope-2023.pdf" target="_blank" rel="noreferrer">View Certificate</a></p>
+             </div>
+          </li>
+       </ul>
+      </div>
+    </div> -->
+  </div>
+</section>
+<!-- <section id="plans" class="page-section">
+  <div class="container">
+    <div class="heading text-center"> 
+      <h2>Our Plans</h2>
+      <p>At lorem Ipsum available, but the majority have suffered alteration in some form by injected humour.</p>
+    </div>
+    <div class="row flat">
+      <div class="col-lg-3 col-md-3 col-xs-12">
+        <ul class="plan plan1">
+          <li class="plan-name">Basic </li>
+          <li class="plan-price"> <strong>₹2,421</strong> / month </li>
+          <li> <strong>5GB</strong> Storage </li>
+          <li> <strong>1GB</strong> RAM </li>
+          <li> <strong>400GB</strong> Bandwidth </li>
+          <li> <strong>10</strong> Email Address </li>
+          <li> <strong>Forum</strong> Support </li>
+          <li class="plan-action"> <a href="#" class="btn btn-danger btn-lg">Signup</a> </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-12">
+        <ul class="plan plan2 featured">
+          <li class="plan-name">Standard </li>
+          <li class="plan-price"> <strong>₹3,256</strong> / month </li>
+          <li> <strong>5GB</strong> Storage </li>
+          <li> <strong>1GB</strong> RAM </li>
+          <li> <strong>400GB</strong> Bandwidth </li>
+          <li> <strong>10</strong> Email Address </li>
+          <li> <strong>Forum</strong> Support </li>
+          <li class="plan-action"> <a href="#" class="btn btn-danger btn-lg">Signup</a> </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-12">
+        <ul class="plan plan3">
+          <li class="plan-name">Advanced </li>
+          <li class="plan-price"> <strong>₹16,614</strong> / month </li>
+          <li> <strong>50GB</strong> Storage </li>
+          <li> <strong>8GB</strong> RAM </li>
+          <li> <strong>1024GB</strong> Bandwidth </li>
+          <li> <strong>Unlimited</strong> Email Address </li>
+          <li> <strong>Forum</strong> Support </li>
+          <li class="plan-action"> <a href="#" class="btn btn-danger btn-lg">Signup</a> </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-12">
+        <ul class="plan plan4">
+          <li class="plan-name">Mighty </li>
+          <li class="plan-price"> <strong>₹83,405</strong> / month </li>
+          <li> <strong>50GB</strong> Storage </li>
+          <li> <strong>8GB</strong> RAM </li>
+          <li> <strong>1024GB</strong> Bandwidth </li>
+          <li> <strong>Unlimited</strong> Email Address </li>
+          <li> <strong>Forum</strong> Support </li>
+          <li class="plan-action"> <a href="#" class="btn btn-danger btn-lg">Signup</a> </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section> -->
+<section id="team" class="page-section">
+  <div class="container">
+    <div class="heading text-center">
+      <!-- Heading -->
+      <h2>Our Blogs</h2>
+      <p>Diagnostic Centres in Modern Healthcare</p>
+      <p>
+        In today's fast-paced world, maintaining health is more crucial than ever. Diagnostic centres play a pivotal role in the early detection, diagnosis, and monitoring of diseases, making them an essential component of the healthcare system. Let’s explore what diagnostic centres are, the services they offer, and why they are indispensable in modern medicine.
+      </p>
+    </div>
+    <div class="content">
+      <h3>What is a Diagnostic Centre?</h3>
+      <img src="images/blogs/blog1.jpg" alt="Diagnostic Centre" class="img-responsive">
+      <p>A diagnostic centre is a medical facility equipped with advanced technology and skilled professionals that provide a wide range of diagnostic services. These centres are dedicated to conducting various tests and examinations to diagnose health conditions accurately. They serve as the first point of reference for patients and healthcare providers in understanding and managing health issues.</p>
 
-    <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input class="search__input" type="text" placeholder="Search">
-    </div> 
+      <h3>Services Offered by Diagnostic Centres</h3>
+      <div class="service">
+        <h4>Laboratory Testing:</h4>
+        <img src="images/blogs/blog2.jpg" alt="Laboratory Testing" class="img-responsive">
+        <ul>
+          <li>Blood Tests: To check for conditions like anemia, diabetes, infections, and more.</li>
+          <li>Urine Tests: For diagnosing urinary tract infections, kidney diseases, and other metabolic conditions.</li>
+          <li>Biopsy: To detect cancer and other abnormal tissue growths.</li>
+        </ul>
+      </div>
+      <div class="service">
+        <h4>Imaging Services:</h4>
+        <img src="images/blogs/blog3.jpg" alt="Imaging Services" class="img-responsive">
+        <ul>
+          <li>X-rays: For detecting bone fractures, infections, and other abnormalities.</li>
+          <li>Ultrasound: Used for monitoring pregnancies, and diagnosing abdominal issues and soft tissue conditions.</li>
+          <li>MRI (Magnetic Resonance Imaging): Provides detailed images of organs and tissues.</li>
+          <li>CT Scans (Computed Tomography): Combines multiple X-ray images to create detailed cross-sectional views of the body.</li>
+        </ul>
+      </div>
+      <div class="service">
+        <h4>Cardiology Tests:</h4>
+        <img src="images/blogs/blog4.jpg" alt="Cardiology Tests" class="img-responsive">
+        <ul>
+          <li>ECG (Electrocardiogram): Monitors heart activity and detects irregularities.</li>
+          <li>Echocardiogram: Uses sound waves to create images of the heart.</li>
+          <li>Stress Tests: Assess heart function under physical exertion.</li>
+        </ul>
+      </div>
+      <div class="service">
+        <h4>Other Specialized Tests:</h4>
+        <ul>
+          <li>Allergy Testing: Identifies specific allergens causing allergic reactions.</li>
+          <li>Genetic Testing: Detects genetic disorders and predispositions.</li>
+          <li>Endoscopy and Colonoscopy: Visual examination of the gastrointestinal tract.</li>
+        </ul>
+      </div>
 
-    <main>
-        <section class="category-row">
-            <div class="category-item">
-                <a href="Alfajr-WY16B-Youth-Digital-Watch--For-Men-Boys.html">
-                <img src="images/2422-beige-libas-xxl-original-imaegfjeybmdzcfy.jpeg" alt="Category 1 Image"></a>
-                <div class="category-details">
-                    <h3 class="showcase-title">Roadster Men's Zipper Solid Cardigan</h3>
-                    <div class="showcase-rating">
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star-outline" role="img" class="md hydrated" aria-label="star outline"></ion-icon>
-                        <ion-icon name="star-outline" role="img" class="md hydrated" aria-label="star outline"></ion-icon>
-                    </div>
-                    <p class="discount">Discount: 10%</p>
-                    <p class="price">₹100</p>
-                    <del><p class="retail-price">₹300</del></p>
+      <h3>Importance of Diagnostic Centres</h3>
+      <ul>
+        <li><strong>Early Detection and Prevention:</strong> Diagnostic centres play a crucial role in the early detection of diseases. Early diagnosis can significantly improve the chances of successful treatment and can even prevent certain conditions from developing further.</li>
+        <li><strong>Accurate Diagnosis:</strong> Accurate and timely diagnosis is the cornerstone of effective treatment. Diagnostic centres provide precise results that help healthcare providers devise appropriate treatment plans.</li>
+        <li><strong>Monitoring and Management:</strong> For chronic conditions like diabetes, hypertension, and heart disease, regular monitoring through diagnostic tests is essential. This helps in managing the disease effectively and adjusting treatment as needed.</li>
+        <li><strong>Advanced Technology:</strong> Diagnostic centres are equipped with the latest medical technology, ensuring high accuracy and efficiency in test results. This reduces the margin for error and enhances patient care.</li>
+        <li><strong>Convenience and Accessibility:</strong> With diagnostic centres available in various locations, patients have easy access to essential healthcare services. This convenience ensures that more people can undergo necessary tests without significant travel or wait times.</li>
+      </ul>
+
+      <h3>Choosing the Right Diagnostic Centre</h3>
+      <img src="images/blogs/blog5.jpg" alt="Choosing the Right Diagnostic Centre" class="img-responsive">
+      <ul>
+        <li><strong>Accreditation and Certification:</strong> Ensure that the centre is accredited by relevant health authorities and follows standard protocols.</li>
+        <li><strong>Qualified Staff:</strong> The centre should have experienced and qualified healthcare professionals who can accurately conduct tests and interpret results.</li>
+        <li><strong>Technology and Equipment:</strong> Advanced and well-maintained equipment is crucial for accurate diagnosis.</li>
+        <li><strong>Reputation and Reviews:</strong> Look for centres with positive reviews and a good reputation in the community.</li>
+        <li><strong>Range of Services:</strong> Choose a centre that offers a comprehensive range of diagnostic services to cater to all your healthcare needs.</li>
+      </ul>
+
+      <h3>Final Thoughts:</h3>
+      <p>Diagnostic centres are vital in the healthcare ecosystem, providing essential services that aid in the early detection, diagnosis, and management of diseases. By choosing a reliable and accredited diagnostic centre, you ensure that you receive accurate and timely health assessments, paving the way for better health outcomes.</p>
+      <p>Stay proactive about your health and make regular diagnostic checks a part of your healthcare routine. After all, timely diagnosis can be the key to a healthier, happier life.</p>
+    </div>
+  </div>
+  <!--/.container-->
+</section>
+
+<section id="contactUs" class="contact-parlex">
+  <div class="parlex-back">
+    <div class="container">
+      <div class="row">
+        <div class="heading text-center">
+          <!-- Heading -->
+          <h2>Billing Counter</h2>
+          <p>Welcome to the Billing Counter at Medi-Surge Clinic and Laboratory. Our friendly and efficient staff are here to assist you with all your billing and payment needs. We ensure a seamless and transparent process, providing detailed invoices and answering any questions you may have regarding your charges. Your convenience and satisfaction are our top priorities. Thank you for choosing Medi-Surge Clinic and Laboratory!</p>
+        </div>
+      </div>
+      <div class="row mrgn30">
+        <form method="post" action="" id="contactfrm" role="form">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" title="Please enter your name (at least 2 characters)">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone number</label>
+              <input type="phopne" class="form-control" name="phone" id="phone" placeholder="Enter phone number" title="Please enter your phone number">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" title="Please enter a valid email address">
+            </div>
+            <div class="form-group">
+              <label for="selectedTest">Selected Test</label>
+              <input type="text" class="form-control" name="selectedTest" id="selectedTest" readonly>
+            </div>
+            <div class="form-group">
+              <label for="totalAmount">Total Amount</label>
+              <input type="text" class="form-control" name="totalAmount" id="totalAmount" readonly>
+            </div>
+            <div class="form-group" >
+              <label for="message">Message</label>
+              <textarea name="message" class="form-control" id="message" cols="3" rows="5" placeholder="Enter your message…" title="Please enter your message (at least 10 characters)"></textarea>
+            </div>
+            <div class="form-group">
+              <button name="submit" type="submit" class="btn btn-lg btn-primary" id="submit">Submit</button>
+            </div>
+            <div class="result"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--/.container-->
+</section>
+<footer>
+  <div class="container">
+          <div class="row">
+              <div class="col-md-3">
+                <div class="col">
+                     <h4>Contact us</h4>
+                     <ul>
+                          <li>#2, 6th Cross, Oil Mill Road, Bangalore – 560084</li>
+                          <li>Phone: 8310980266, 9886046141</li>
+                          <li>Email: <a href="mail_papu786@yahoo.cok.uk" title="Email Us">mail_papu786@yahoo.cok.uk</a></li>
+                      </ul>
+                   </div>
+              </div>
+              
+              <div class="col-md-3">
+                <div class="col">
+                    <h4>Test Categories</h4>
+                    <ul class="test-categories">
+                        <li><a href="#diabetes">Diabetes</a></li>
+                        <li><a href="#heart-care">Heart</a></li>
+                        <li><a href="#thyroid">Thyroid</a></li>
+                        <li><a href="#pcod">PCOD</a></li>
+                        <li><a href="#infertility">Infertility</a></li>
+                        <li><a href="#antenatal">Antenatal</a></li>
+                        <li><a href="#pre-marital">Pre-marital</a></li>
+                        <li><a href="#skin-care">Skin Care</a></li>
+                        <li><a href="#hairfall">Hairfall</a></li>
+                        <li><a href="#seasonal-fever">Fever</a></li>
+                        <li><a href="#cancer">Cancer</a></li>
+                        <li><a href="#std">STD</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="category-item">
-                <a href="Alfajr-WY16B-Youth-Digital-Watch--For-Men-Boys.html">
+              <div class="col-md-3">
+                <div class="col col-social-icons">
+                      <h4>Follow us</h4>
+                      <a href="#"><i class="fa fa-facebook"></i></a>
+                      <a href="#"><i class="fa fa-youtube-play"></i></a>
+                      <a href="#"><i class="fa fa-linkedin"></i></a>
+                      <a href="#"><i class="fa fa-twitter"></i></a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
+<!--/.page-section-->
+<section class="copyright">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center"> Copyright @ 2022 | All Rights Reserved <a href="http://www.hitechdesign.in/">hitechdesign.in</a> </div>
+    </div>
+    <!-- / .row --> 
+  </div>
+</section>
+<a href="#top" class="topHome"><i class="fa fa-chevron-up fa-2x"></i></a> 
 
-                <img src="images/1-1-872907-roadster-l-original-imaeczn7g9zcqhny.jpeg" alt="Category 2 Image"></a>
-                <div class="category-details">
-                    <h3 class="showcase-title">Roadster Men's Zipper Solid Cardigan</h3>
-                    <div class="showcase-rating">
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star-outline" role="img" class="md hydrated" aria-label="star outline"></ion-icon>
-                        <ion-icon name="star-outline" role="img" class="md hydrated" aria-label="star outline"></ion-icon>
-                    </div>
-                    <p class="discount">Discount: 15%</p>
-                    <p class="price">₹150</p>
-                    <del><p class="retail-price">₹300</del></p>
-                </div>
-            </div>
-        </section>
-        <section class="category-row">
-            <div class="category-item">
-                <a href="Alfajr-WY16B-Youth-Digital-Watch--For-Men-Boys.html">
+<!--[if lte IE 8]><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><![endif]--> 
+<script src="js/modernizr-latest.js"></script> 
+<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script> 
+<script src="js/bootstrap.min.js" type="text/javascript"></script> 
+<script src="js/jquery.isotope.min.js" type="text/javascript"></script> 
+<script src="js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script> 
+<script src="js/jquery.nav.js" type="text/javascript"></script> 
+<script src="js/jquery.fittext.js"></script> 
+<script src="js/waypoints.js"></script> 
+<script src="flexslider/jquery.flexslider.js"></script>
+<script src="js/custom.js" type="text/javascript"></script> 
+<script src="js/owl-carousel/owl.carousel.js"></script>
+<script>
+  function selectPackage(test, amount) {
+    localStorage.setItem('selectedTest', test);
+    localStorage.setItem('totalAmount', amount);
+    window.location.href = '#contactUs';
+    document.getElementById('selectedTest').value = localStorage.getItem('selectedTest');
+    document.getElementById('totalAmount').value = localStorage.getItem('totalAmount');
+    updateMessageField();  // Call the function to update the message field
+  }
 
-                <img src="images/1-1-lg-green08-fdt-xl-original-imae58jpwqj5gh5e.jpeg" alt="Category 3 Image"></a>
-                <div class="category-details">
-                    <h3 class="showcase-title">Roadster Men's Zipper Solid Cardigan</h3>
-                    <div class="showcase-rating">
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star-outline" role="img" class="md hydrated" aria-label="star outline"></ion-icon>
-                        <ion-icon name="star-outline" role="img" class="md hydrated" aria-label="star outline"></ion-icon>
-                    </div>
-                    <p class="discount">Discount: 20%</p>
-                    <p class="price">₹200</p>
-                    <del><p class="retail-price">₹300</del></p>
-                </div>
-            </div>
-            <div class="category-item">
-                <a href="Alfajr-WY16B-Youth-Digital-Watch--For-Men-Boys.html">
+  // Function to update the message field
+  function updateMessageField() {
+    const selectedTestInput = document.getElementById('selectedTest');
+    const totalAmountInput = document.getElementById('totalAmount');
+    const messageTextarea = document.getElementById('message');
 
-                <img src="images/2422-beige-libas-xxl-original-imaegfjeybmdzcfy.jpeg" alt="Category 4 Image"></a>
-                <div class="category-details">
-                    <h3 class="showcase-title">Roadster Men's Zipper Solid Cardigan</h3>
-                    <div class="showcase-rating">
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star" role="img" class="md hydrated" aria-label="star"></ion-icon>
-                        <ion-icon name="star-outline" role="img" class="md hydrated" aria-label="star outline"></ion-icon>
-                        <ion-icon name="star-outline" role="img" class="md hydrated" aria-label="star outline"></ion-icon>
-                    </div>
-                    <p class="discount">Discount: 25%</p>
-                    
-                    <p class="price">₹250</p>
-                    <del><p class="retail-price">₹300</del></p>
-                </div>
-            </div>
-        </section>
-        <!-- Add more rows as needed -->
-    </main>
-    <script src="products.js"></script>
-    <script src="products2.js"></script>
+    const selectedTest = selectedTestInput.value;
+    const totalAmount = totalAmountInput.value;
+    messageTextarea.value = `Selected Test: ${selectedTest}\nTotal Amount: ${totalAmount}`;
+  }
 
+  document.addEventListener('DOMContentLoaded', (event) => {
+    if (localStorage.getItem('selectedTest')) {
+      document.getElementById('selectedTest').value = localStorage.getItem('selectedTest');
+    }
+    if (localStorage.getItem('totalAmount')) {
+      document.getElementById('totalAmount').value = localStorage.getItem('totalAmount');
+    }
+
+    // Call the function to update the message field on page load
+    updateMessageField();
+  });
+</script>
+
+<script>
+  document.getElementById('contactfrm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const selectedTest = document.getElementById('selectedTest').value;
+    const totalAmount = document.getElementById('totalAmount').value;
+    const message = document.getElementById('message').value;
+
+    const data = {
+      name: name,
+      phone: phone,
+      email: email,
+      message: message
+    };
+
+    fetch('https://api.itstrending.in/submitForm', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      alert('Form submitted successfully!');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('Error submitting the form. Please try again.');
+    });
+  });
+
+  // Function to update selected test and total amount
+  function updateSelectedTestAndAmount(test, amount) {
+    document.getElementById('selectedTest').value = test;
+    document.getElementById('totalAmount').value = amount;
+  }
+
+  // Example of how to update the selected test and amount
+  // Call this function when a new test is selected
+  // updateSelectedTestAndAmount('Test Name', '100');
+</script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+<script>
+$(document).ready(function() {
+    // Close navbar toggle on click
+    $('#mainNav li a').on('click', function(){
+        if($('.navbar-toggle').css('display') !='none'){
+            $(".navbar-toggle").trigger( "click" );
+        }
+    });
+});
+</script>
 </body>
-
+</html>
+</body>
 </html>
