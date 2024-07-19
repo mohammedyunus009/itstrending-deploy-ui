@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filter Page</title>
+    <link rel="stylesheet" href="css/matrimony/profile.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div id="headerPlaceholder"></div>
+
+  <div class="container mt-4">
+    <div class="d-flex align-items-center mb-4">
+      <button><i class="fas fa-arrow-left mr-2"></i></button> 
+      <h3 class="mb-0">Filter Page</h3>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <h6>Filters</h6>
+        <div class="list-group" id="filterButtons">
+          <!-- Gender Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Gender">
+            Looking-for
+          </a>
+          <!-- Religion Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Religion">
+            Cast
+          </a>
+          <!-- Personality Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Personality">
+            Height
+          </a>
+          <!-- Age Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Age">
+            Age
+          </a>
+          <!-- Mother-Tongue Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Tongue">
+            Mother-Tongue
+          </a>
+          <!-- Qualification Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Qualification">
+            Qualification
+          </a>
+          <!-- Job/Business Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Job">
+            Job/Business
+          </a>
+          <!-- Marital Status Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Marital">
+           Marital Status
+          </a>
+        </div>
+      </div>
+      <div class="col-6">
+        <div id="selectedFilters">
+          <!-- Filter options will be displayed here -->
+        </div>
+      </div>
+    </div>
+    <button class="Submit" id="submitButton" style="margin-left: 250px; color: whitesmoke; background-color: black;">
+      Submit
+    </button>
+    <h6 style="color: red; margin-left: 50px;">Selected Filters</h6>
+    <div id="selectedFiltersDisplay" style="margin-left: 50px; color: black;"></div>
+  </div>
+  <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div>
+  
+  <script src="js/scripts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('#filterButtons a');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          const filter = event.target.getAttribute('data-filter');
+          displayFilterOptions(filter);
+        });
+      });
+
+      document.getElementById('submitButton').addEventListener('click', (event) => {
+        event.preventDefault();
+        window.location.href = 'profileSearch.html';
+      });
+    });
+
+    function displayFilterOptions(filter) {
+      const selectedFilters = document.getElementById('selectedFilters');
+      selectedFilters.innerHTML = '';
+
+      if (filter === 'Gender') {
+        selectedFilters.innerHTML = `
+          <div id="lookingForButtons">
+            <button type="button" class="btn btn-primary" data-value="male">Male</button>
+            <button type="button" class="btn btn-primary" data-value="female">Female</button>
+          </div>
+        `;
+
+        const buttons = document.querySelectorAll('#lookingForButtons button');
+
+        buttons.forEach(button => {
+          button.addEventListener('click', function(event) {
+            const lookingFor = event.target.getAttribute('data-value');
+            localStorage.setItem('searchCriteria', JSON.stringify({ gender: lookingFor }));
+          });
+        });
+      }
+    }
+  </script>
+</body>
+</html>
