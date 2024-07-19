@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>His Information Page</title>
+    <link rel="stylesheet" href="css/matrimony/malefemale.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer (1).css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="headerPlaceholder"></div>
+
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> &lt; </div>
+        <div class="title">His Details</div>
+        <div></div>
+    </div>
+    <div class="user-details">
+        <div class="user-icon small">
+            <i class="fa-regular fa-user"></i>
+        </div>
+
+        <h1>His name</h1>
+        <form action="submit-male-info.html" method="POST" id="maleForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br><br>
+            
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+        </form>
+        <br>
+    </div>
+    <input type="button" value="Next" onclick="submitForm()" id="nextButton">
+    <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function submitForm() {
+            // Validate the form fields
+            var name = document.getElementById('name').value.trim();
+            var dob = document.getElementById('dob').value.trim();
+
+            if (!name || !dob) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // Store values in cookies
+            document.cookie = `name=${name};`;
+            document.cookie = `dob=${dob};`;
+
+            // Redirect to the next page
+            window.location.href = "religion.html"; // Change this URL to your actual next page
+        }
+    </script>
+
+</body>
+</html>
