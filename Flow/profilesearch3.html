@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrimony Profiles</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.profile-buttons {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    background-color: skyblue;
+    border-radius: 10px;
+}
+
+.profile-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.profile-card {
+    width: calc(25% - 20px);
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    text-align: center;
+    overflow: hidden; /* Ensure content doesn't overflow */
+    max-height: 400px; /* Adjust as needed */
+}
+
+.profile-card h3 {
+    margin-top: 8px;
+}
+
+.profile-card p {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.profile-card img {
+    max-width: 100%; /* Ensure image fits within the card */
+    height: auto;
+    display: block;
+    margin: auto;
+    border-radius: 5%;
+}
+
+.profile-card p span {
+    font-weight: bold;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .profile-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div id="headerPlaceholder"></div>
+    
+    <div class="container">
+        <div class="profile-buttons">
+            <button id="maleButton">Male</button>
+            <button id="femaleButton">Female</button>
+        </div>
+        
+        <div class="profile-grid" id="profileGrid">
+            <div class="profile-card male">
+                <img id="profileImage" src="img/matrimony/profile-picture-smiling-successful-young-260nw-2040223583.webp" alt="profile-picture">
+                <h3 id="name"></h3>
+                <p><span>Year of Birth :</span> <span id="dob"></span></p>
+                <p><span>Revert :</span> No</p>
+                <p><span>Marital status :</span> <span id="maritalStatus"></span></p>
+                <p><span>Native Language :</span> <span id="nativeLanguage"></span></p>
+                <p><span>About me :</span> <span id="aboutMe"></span></p>
+                <p><span>Preferred alliance details :</span> <span id="preferredAlliance"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="footerPlaceholder"></div>
+    <script src="js/include.js"></script>
+
+    <script>
+    document.getElementById('maleButton').addEventListener('click', function() {
+        showProfiles('male');
+    });
+
+    document.getElementById('femaleButton').addEventListener('click', function() {
+        showProfiles('female');
+    });
+
+    function showProfiles(gender) {
+        const profileCards = document.querySelectorAll('.profile-card');
+        profileCards.forEach(card => card.classList.remove('active'));
+
+        const genderProfileCards = document.querySelectorAll(`.profile-card.${gender}`);
+        genderProfileCards.forEach(card => card.classList.add('active'));
+    }
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    function populateProfileCards() {
+        const profileImage = getCookie('profileImage');
+        const name = decodeURIComponent(getCookie('field1'));
+        const dob = getCookie('field2');
+        const revert = decodeURIComponent(getCookie('field4'));
+        const maritalStatus = decodeURIComponent(getCookie('field5'));
+        const nativeLanguage = decodeURIComponent(getCookie('field6'));
+        const aboutMe = decodeURIComponent(getCookie('field7'));
+        const preferredAlliance = decodeURIComponent(getCookie('field8'));
+
+        document.getElementById('profileImage').src = profileImage;
+        document.getElementById('name').textContent = name;
+        document.getElementById('dob').textContent = dob;
+        document.getElementById('maritalStatus').textContent = maritalStatus;
+        document.getElementById('nativeLanguage').textContent = nativeLanguage;
+        document.getElementById('aboutMe').textContent = aboutMe;
+        document.getElementById('preferredAlliance').textContent = preferredAlliance;
+
+        // Log the values to the console
+        console.log('Name:', name);
+        console.log('Date of Birth:', dob);
+        console.log('Revert:', revert);
+        console.log('Marital Status:', maritalStatus);
+        console.log('Native Language:', nativeLanguage);
+        console.log('About Me:', aboutMe);
+        console.log('Preferred Alliance Details:', preferredAlliance);
+    }
+
+    populateProfileCards();
+
+    // Function to get a cookie value by name
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // Get the token value from cookies
+    const token = getCookie('token');
+
+    // Check if the token is present before using it
+    if (!token) {
+        console.error('Authorization token is missing.');
+    }
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", token); // Use the token value from cookies
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "profile_id": "1",
+        "description": "hi iam rajesh",
+        "gender": "male",
+        "images": "1.jpg,2.jpg,3.jpg",
+        "bio": "There are many factors that contribute to a satisfying marriage/relationship such as; Love, Commitment, Trust, Time, Attention, Good Communication including Listening , Partnership, Tolerance, Patience, Openness, Honesty, Respect, Sharing, Consideration, Generosity, Willingness/Ability to Compromise, Constructive ",
+        field1: getCookie('field1'),
+        field2: getCookie('field2'),
+        field3: getCookie('field3'),
+        field4: getCookie('field4'),
+        field5: getCookie('field5'),
+        field6: getCookie('field6'),
+        field7: getCookie('field7'),
+        field8: getCookie('field8'),
+        field9: getCookie('field9'),
+        field10: getCookie('field10'),
+        field11: getCookie('field11'),
+        field12: ""
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    fetch("http://35.233.133.10:5001/api/v1/profiles", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+
+
+
+    </script>
+</body>
+</html>

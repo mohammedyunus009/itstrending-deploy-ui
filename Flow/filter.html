@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filter Page</title>
+  <link rel="stylesheet" href="css/matrimony/profile.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .header .back-button {
+      position: absolute;
+      left: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .header .title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .container.mt-4 {
+      width: 100%;
+    }
+    .submit-button-wrapper {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #submitButton {
+      width: 100%;
+      color: whitesmoke;
+      background-color: black;
+      text-align: center;
+    }
+    .checkbox-label {
+      margin-right: 10px;
+    }
+    .filter-count {
+      color: red;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="headerPlaceholder"></div>
+
+  <div class="header">
+    <div class="back-button" onclick="goBack()"> < </div>
+    <div class="title">Filter Page</div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-6">
+        <div class="list-group" id="filterButtons">
+          <!-- Gender Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Gender">
+            Looking-for <span id="genderCount" class="filter-count">0</span>
+          </a>
+          <!-- Religion Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Religion">
+            Cast <span id="religionCount" class="filter-count">0</span>
+          </a>
+          <!-- Height Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Height">
+            Height <span id="heightCount" class="filter-count">0</span>
+          </a>
+          <!-- Age Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Age">
+            Age <span id="ageCount" class="filter-count">0</span>
+          </a>
+          <!-- State Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="State">
+            State <span id="stateCount" class="filter-count">0</span>
+          </a>
+          <!-- Qualification Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Qualification">
+            Qualification <span id="qualificationCount" class="filter-count">0</span>
+          </a>
+          <!-- Job/Business Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Job">
+            Job/Business <span id="jobCount" class="filter-count">0</span>
+          </a>
+          <!-- Marital Status Filter -->
+          <a href="#" class="list-group-item list-group-item-action" data-filter="Marital">
+           Marital Status <span id="maritalCount" class="filter-count">0</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-6">
+        <div id="selectedFilters">
+          <!-- Filter options will be displayed here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="submit-button-wrapper">
+    <button class="Submit" id="submitButton">
+      Submit
+    </button>
+  </div>
+
+  <div id="selectedFiltersDisplay" style="margin-left: 50px; color: black;"></div>
+  <script src="js/include.js"></script>
+  <div id="footerPlaceholder"></div>
+  
+  <script src="js/matrimony/scripts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('#filterButtons a');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          const filter = event.target.getAttribute('data-filter');
+          displayFilterOptions(filter);
+        });
+      });
+
+      document.getElementById('submitButton').addEventListener('click', (event) => {
+        event.preventDefault();
+        window.location.href = 'profileSearch.html';
+      });
+    });
+
+    function displayFilterOptions(filter) {
+      const selectedFilters = document.getElementById('selectedFilters');
+      selectedFilters.innerHTML = '';
+
+      if (filter === 'Gender') {
+        selectedFilters.innerHTML = `
+          <div id="genderButtons">
+            <label class="checkbox-label"><input type="checkbox" value="male"> Male</label>
+            <label class="checkbox-label"><input type="checkbox" value="female"> Female</label>
+          </div>
+        `;
+        handleMultipleSelection('gender', '#genderButtons', '#genderCount');
+      } else if (filter === 'Religion') {
+        selectedFilters.innerHTML = `
+          <div id="religionButtons">
+            <label class="checkbox-label"><input type="checkbox" value="sunni"> Sunni</label>
+            <label class="checkbox-label"><input type="checkbox" value="syed"> Syed</label>
+            <label class="checkbox-label"><input type="checkbox" value="pathan"> Pathan</label>
+            <label class="checkbox-label"><input type="checkbox" value="sheikh"> Sheikh</label>
+            <label class="checkbox-label"><input type="checkbox" value="retreived-muslims"> Retreived Muslims</label>
+            <label class="checkbox-label"><input type="checkbox" value="others"> Others</label>
+          </div>
+        `;
+        handleMultipleSelection('caste', '#religionButtons', '#religionCount');
+      } else if (filter === 'Height') {
+        selectedFilters.innerHTML = `
+          <div id="heightButtons">
+            <label class="checkbox-label"><input type="checkbox" value="150"> 150 cm</label>
+            <label class="checkbox-label"><input type="checkbox" value="160"> 160 cm</label>
+            <label class="checkbox-label"><input type="checkbox" value="170"> 170 cm</label>
+            <label class="checkbox-label"><input type="checkbox" value="180"> 180 cm</label>
+            <label class="checkbox-label"><input type="checkbox" value="190"> 190 cm</label>
+          </div>
+        `;
+        handleMultipleSelection('height', '#heightButtons', '#heightCount');
+      } else if (filter === 'Age') {
+        selectedFilters.innerHTML = `
+          <div id="ageButtons">
+            <label class="checkbox-label"><input type="checkbox" value="18-25"> 18-25</label>
+            <label class="checkbox-label"><input type="checkbox" value="26-35"> 26-35</label>
+            <label class="checkbox-label"><input type="checkbox" value="36-45"> 36-45</label>
+            <label class="checkbox-label"><input type="checkbox" value="46-55"> 46-55</label>
+            <label class="checkbox-label"><input type="checkbox" value="56+"> 56+</label>
+          </div>
+        `;
+        handleMultipleSelection('age', '#ageButtons', '#ageCount');
+      } else if (filter === 'State') {
+        selectedFilters.innerHTML = `
+          <div id="stateButtons">
+            <label class="checkbox-label"><input type="checkbox" value="Andhra Pradesh"> Andhra Pradesh</label>
+            <label class="checkbox-label"><input type="checkbox" value="Arunachal Pradesh"> Arunachal Pradesh</label>
+            <label class="checkbox-label"><input type="checkbox" value="Assam"> Assam</label>
+            <label class="checkbox-label"><input type="checkbox" value="Bihar"> Bihar</label>
+            <label class="checkbox-label"><input type="checkbox" value="Chhattisgarh"> Chhattisgarh</label>
+            <label class="checkbox-label"><input type="checkbox" value="Goa"> Goa</label>
+          </div>
+        `;
+        handleMultipleSelection('state', '#stateButtons', '#stateCount');
+      } else if (filter === 'Qualification') {
+        selectedFilters.innerHTML = `
+          <div id="qualificationButtons">
+            <label class="checkbox-label"><input type="checkbox" value="Graduate"> Graduate</label>
+            <label class="checkbox-label"><input type="checkbox" value="Postgraduate"> Postgraduate</label>
+            <label class="checkbox-label"><input type="checkbox" value="PhD"> PhD</label>
+            <label class="checkbox-label"><input type="checkbox" value="Diploma"> Diploma</label>
+            <label class="checkbox-label"><input type="checkbox" value="Others"> Others</label>
+          </div>
+        `;
+        handleMultipleSelection('qualification', '#qualificationButtons', '#qualificationCount');
+      } else if (filter === 'Job') {
+        selectedFilters.innerHTML = `
+          <div id="jobButtons">
+            <label class="checkbox-label"><input type="checkbox" value="Employed"> Employed</label>
+            <label class="checkbox-label"><input type="checkbox" value="Self-employed"> Self-employed</label>
+            <label class="checkbox-label"><input type="checkbox" value="Business"> Business</label>
+            <label class="checkbox-label"><input type="checkbox" value="Unemployed"> Unemployed</label>
+          </div>
+        `;
+        handleMultipleSelection('job', '#jobButtons', '#jobCount');
+      } else if (filter === 'Marital') {
+        selectedFilters.innerHTML = `
+          <div id="maritalButtons">
+            <label class="checkbox-label"><input type="checkbox" value="Single"> Single</label>
+            <label class="checkbox-label"><input type="checkbox" value="Married"> Married</label>
+            <label class="checkbox-label"><input type="checkbox" value="Divorced"> Divorced</label>
+            <label class="checkbox-label"><input type="checkbox" value="Widowed"> Widowed</label>
+          </div>
+        `;
+        handleMultipleSelection('marital', '#maritalButtons', '#maritalCount');
+      }
+    }
+
+    function handleMultipleSelection(filterType, containerId, countId) {
+      const container = document.querySelector(containerId);
+      const countElement = document.querySelector(countId);
+
+      container.addEventListener('change', (event) => {
+        const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+        let selectedCount = 0;
+
+        checkboxes.forEach(checkbox => {
+          if (checkbox.checked) {
+            selectedCount++;
+            updateLocalStorage(filterType, checkbox.value, true);
+          } else {
+            updateLocalStorage(filterType, checkbox.value, false);
+          }
+        });
+
+        countElement.textContent = selectedCount;
+      });
+    }
+
+    function updateLocalStorage(filterType, value, isAdding) {
+      let filters = JSON.parse(localStorage.getItem('filters')) || {};
+
+      if (!filters[filterType]) {
+        filters[filterType] = [];
+      }
+
+      if (isAdding) {
+        if (!filters[filterType].includes(value)) {
+          filters[filterType].push(value);
+        }
+      } else {
+        filters[filterType] = filters[filterType].filter(item => item !== value);
+      }
+
+      localStorage.setItem('filters', JSON.stringify(filters));
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>
