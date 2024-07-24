@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/matrimony/profile2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="headerPlaceholder"></div>
+
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> < </div>
+        <div class="title">Income</div>
+    </div>
+    
+    <div class="user-details">
+        <!-- Choose one of the sizes below by changing the class name -->
+        <div class="user-icon small">
+            <i class="fa-solid fa-briefcase"></i>
+        </div>
+        <h2>You are almost done!</h2>
+
+        <div class="dropdown-container">
+            <form id="income-form" onsubmit="return submitForm()">
+                <label for="monthly-salary">Monthly salary range</label>
+                <input type="text" id="monthly-salary" name="monthly-salary" placeholder="Monthly salary range">
+                <br><br>
+
+                <label for="professional">Professional</label>
+                <input type="text" id="professional" name="professional" placeholder="Professional">
+                <br><br>
+
+                <div class="form-group">
+                    <label for="Business">Business Type <span class="Business"></span></label>
+                    <select id="Business" name="Business" required>
+                        <option value="">Select Business Type</option>
+                        <option value="Propriteor">Propriteor</option>
+                        <option value="Partner">Partner</option>
+                        <option value="Family">Family</option>
+                    </select>
+                </div>
+
+                <label for="how-i-know">How I Know Khurshid bhai</label>
+                <select id="how-i-know" required>
+                    <option value="#">How I know</option>
+                    <option value="Friend">Friend</option>
+                    <option value="Family">Family</option>
+                    <option value="Colleague">Colleague</option>
+                    <option value="Other">Other</option>
+                </select>
+                <br><br>
+
+            </form>
+        </div>
+    </div>
+    <input type="button" value="Next" onclick="submitForm()" id="nextButton">
+    <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    
+        function submitForm() {
+            // Handle form data
+            let monthlySalary = document.getElementById('monthly-salary').value;
+            let professional = document.getElementById('professional').value;
+            let businessType = document.getElementById('Business').value;
+            let howIKnowDropdown = document.getElementById('how-i-know');
+            let howIKnow = howIKnowDropdown.options[howIKnowDropdown.selectedIndex].value;
+
+            // Validate form fields
+            if (!monthlySalary.trim()) {
+                alert("Please enter your monthly salary range.");
+                return false;
+            }
+            if (!professional.trim()) {
+                alert("Please enter your profession.");
+                return false;
+            }
+            if (howIKnow === "#") {
+                alert("Please select how you know Khurshid bhai.");
+                return false;
+            }
+
+            // Set cookies with the entered values
+            document.cookie = `salaryRange=${encodeURIComponent(monthlySalary)}; path=/`;
+            document.cookie = `profession=${encodeURIComponent(professional)}; path=/`;
+            document.cookie = `businessType=${encodeURIComponent(businessType)}; path=/`;
+            document.cookie = `howIKnow=${encodeURIComponent(howIKnow)}; path=/`;
+
+            // Redirect to the next page
+            window.location.href = 'partnerRequired.html';
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>
