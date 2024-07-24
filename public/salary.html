@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/matrimony/profile2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer (1).css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="headerPlaceholder"></div>
+
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> < </div>
+        <div class="title">Income</div>
+    </div>
+    
+    <div class="user-details">
+        <!-- Choose one of the sizes below by changing the class name -->
+        <div class="user-icon small">
+            <i class="fa-solid fa-briefcase"></i>
+        </div>
+        <h2>You are almost done!</h2>
+
+        <div class="dropdown-container">
+            <form id="income-form" onsubmit="return submitForm()">
+                <label for="monthly-salary">Monthly salary range</label>
+                <input type="text" id="monthly-salary" name="monthly-salary" placeholder="Monthly salary range">
+                <br><br>
+
+                <label for="professional">Professional</label>
+                <input type="text" id="professional" name="professional" placeholder="Professional">
+                <br><br>
+
+                <label for="how-i-know">How I Know Khurshid bhai</label>
+                <select id="how-i-know" required>
+                    <option value="#">How I know</option>
+                    <option value="Friend">Friend</option>
+                    <option value="Family">Family</option>
+                    <option value="Colleague">Colleague</option>
+                    <option value="Other">Other</option>
+                </select>
+                <br><br>
+
+            </form>
+        </div>
+    </div>
+    <input type="button" value="Next" onclick="submitForm()" id="nextButton">
+    <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    
+        function submitForm() {
+            // Handle form data
+            let monthlySalary = document.getElementById('monthly-salary').value;
+            let professional = document.getElementById('professional').value;
+            let howIKnowDropdown = document.getElementById('how-i-know');
+            let howIKnow = howIKnowDropdown.options[howIKnowDropdown.selectedIndex].value;
+
+            // Validate form fields
+            if (!monthlySalary.trim()) {
+                alert("Please enter your monthly salary range.");
+                return false;
+            }
+            if (!professional.trim()) {
+                alert("Please enter your profession.");
+                return false;
+            }
+            if (howIKnow === "#") {
+                alert("Please select how you know Khurshid bhai.");
+                return false;
+            }
+
+            // Set cookies with the entered values
+            document.cookie = `field23=${encodeURIComponent(monthlySalary)}; path=/`;
+            document.cookie = `field24=${encodeURIComponent(professional)}; path=/`;
+            document.cookie = `field25=${encodeURIComponent(howIKnow)}; path=/`;
+
+            // Redirect to the next page
+            window.location.href = '#';
+            return false; // Prevent form submission
+        }
+// Function to get a cookie by name
+// function getCookie(name) {
+//     let cookieName = name + "=";
+//     let decodedCookie = decodeURIComponent(document.cookie);
+//     let cookiesArray = decodedCookie.split(';');
+//     for (let i = 0; i < cookiesArray.length; i++) {
+//         let cookie = cookiesArray[i];
+//         while (cookie.charAt(0) === ' ') {
+//             cookie = cookie.substring(1);
+//         }
+//         if (cookie.indexOf(cookieName) === 0) {
+//             return cookie.substring(cookieName.length, cookie.length);
+//         }
+//     }
+//     return "";
+// }
+
+// // Retrieve the token from cookies
+// const token = getCookie('token');
+// console.log('Token from cookie:', token); // Log the token
+
+// // Create the data object
+// const data = {
+//     profile_id: "1",
+//     description: "hi iam rajesh",
+//     gender: "male",
+//     images: "1.jpg,2.jpg,3.jpg",
+//     bio: "There are many factors that contribute to a satisfying marriage/relationship such as; Love, Commitment, Trust, Time, Attention, Good Communication including Listening , Partnership, Tolerance, Patience, Openness, Honesty, Respect, Sharing, Consideration, Generosity, Willingness/Ability to Compromise, Constructive",
+//     field1: getCookie('field1'),
+//     field2: getCookie('field2'),
+//     field3: getCookie('field3'),
+//     field4: getCookie('field4'),
+//     field5: getCookie('field5'),
+//     field6: getCookie('field6'),
+//     field7: getCookie('field7'),
+//     field8: getCookie('field8'),
+//     field9: getCookie('field9'),
+//     field10: getCookie('field10'),
+//     field11: getCookie('field11'),
+//     field12: ""
+// };
+
+// // Define the API URL
+// const apiUrl = 'http://35.233.133.10:5001/api/v1/profiles';
+
+// // Send the POST request with the Authorization header
+// fetch(apiUrl, {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Token ${token}` // Ensure correct token format
+//     },
+//     body: JSON.stringify(data),
+//     credentials: 'include' // Ensure cookies are sent with the request
+// })
+// .then(response => response.json())
+// .then(result => {
+//     console.log('Success:', result);
+// })
+// .catch(error => {
+//     console.error('Error:', error);
+// });
+
+        
+
+// Function to get a cookie value by name
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// Get the token value from cookies
+const token = getCookie('token');
+
+// Check if the token is present before using it
+if (!token) {
+  console.error('Authorization token is missing.');
+}
+
+const myHeaders = new Headers();
+myHeaders.append("Authorization", token); // Use the token value from cookies
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "profile_id": "1",
+  "description": "hi iam rajesh",
+  "gender": "male",
+  "images": "1.jpg,2.jpg,3.jpg",
+  "bio": "There are many factors that contribute to a satisfying marriage/relationship such as; Love, Commitment, Trust, Time, Attention, Good Communication including Listening , Partnership, Tolerance, Patience, Openness, Honesty, Respect, Sharing, Consideration, Generosity, Willingness/Ability to Compromise, Constructive ",
+  field1: getCookie('field1'),
+  field2: getCookie('field2'),
+  field3: getCookie('field3'),
+  field4: getCookie('field4'),
+  field5: getCookie('field5'),
+  field6: getCookie('field6'),
+  field7: getCookie('field7'),
+  field8: getCookie('field8'),
+  field9: getCookie('field9'),
+  field10: getCookie('field10'),
+  field11: getCookie('field11'),
+  field12: ""
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("http://35.233.133.10:5001/api/v1/profiles", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+
+    </script>
+</body>
+</html>
