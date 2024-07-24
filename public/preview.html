@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/matrimony/prview.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .profile-container {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .profile-container {
+                width: 60%;
+                margin: 0 auto;
+                border: 1px solid #ccc;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="headerPlaceholder"></div>
+
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> < </div>
+        <div class="title">Profile</div>
+    </div>
+
+    <div class="profile-container">
+        <div id="profilePhoto" class="resizeable" style="background-image: url('https://w0.peakpx.com/wallpaper/262/146/HD-wallpaper-virat-and-anushka-anushka-couple-kohli-love-sharma-virat.jpg');"></div>
+        <div class="profile-details">
+            <h2>Marriage Profile</h2>
+            <div class="detail-item">
+                <label>Name:</label>
+                <span id="name"></span>
+            </div>
+            <div class="detail-item">
+                <label>Date of Birth:</label>
+                <span id="dob"></span>
+            </div>
+            <div class="detail-item">
+                <label>Gender:</label>
+                <span id="gender"></span>
+            </div>
+            <div class="detail-item">
+                <label>Caste:</label>
+                <span id="caste"></span>
+            </div>
+           
+            <div class="detail-item">
+                <label>Phone Number:</label>
+                <span id="phoneNumber"></span>
+            </div>
+            <div class="detail-item">
+                <label>Native Language:</label>
+                <span id="nativeLanguage"></span>
+            </div>
+            <div class="detail-item">
+                <label>Residence Language:</label>
+                <span id="residenceLanguage"></span>
+            </div>
+            <div class="detail-item">
+                <label>Country:</label>
+                <span id="country"></span>
+            </div>
+            <div class="detail-item">
+                <label>State:</label>
+                <span id="state"></span>
+            </div>
+            <div class="detail-item">
+                <label>City:</label>
+                <span id="city"></span>
+            </div>
+            <div class="detail-item">
+                <label>Address:</label>
+                <span id="address"></span>
+            </div>
+            <div class="detail-item">
+                <label>Marital Status:</label>
+                <span id="maritalStatus"></span>
+            </div>
+            <div class="detail-item" id="childrenDetail" style="display: none;">
+                <label>Children:</label>
+                <span id="children"></span>
+            </div>
+            <div class="detail-item">
+                <label>Height:</label>
+                <span id="height"></span>
+            </div>
+            <div class="detail-item">
+                <label>Weight:</label>
+                <span id="weight"></span>
+            </div>
+            <div class="detail-item">
+                <label>About Me:</label>
+                <span id="aboutMe"></span>
+            </div>
+            <div class="detail-item">
+                <label>Preferred Alliance:</label>
+                <span id="preferredAlliance"></span>
+            </div>
+            <div class="detail-item">
+                <label>Any Marriage Conditions:</label>
+                <span id="marriageConditions"></span>
+            </div>
+            <div class="detail-item">
+                <label>Siblings:</label>
+                <span id="siblings"></span>
+            </div>
+            <div class="detail-item">
+                <label>About Family:</label>
+                <span id="aboutFamily"></span>
+            </div>
+            <div class="detail-item">
+                <label>Monthly Salary Range:</label>
+                <span id="salaryRange"></span>
+            </div>
+            <div class="detail-item">
+                <label>Profession:</label>
+                <span id="profession"></span>
+            </div>
+            <div class="detail-item">
+                <label>Revert:</label>
+                <span id="revert"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <button onclick="continueToFilters()" style="
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #333;
+            color: white;
+        ">Continue</button>
+    </div>
+
+    <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div>
+    <script src="js/matrimony/prview.js"></script>
+   
+</html>
