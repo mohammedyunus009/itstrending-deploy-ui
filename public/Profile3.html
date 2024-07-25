@@ -80,6 +80,10 @@
                 <label for="about_family">About Family </label>
                 <textarea id="about_family" name="about_family" rows="5"></textarea>
             </div>
+            <div class="form-group" id="preferedalliancedetails">
+                <label for="aboutme">Prefered Alliance details</label>
+                <textarea id="preferedalliancedetail" name="preferedalliancedetail"></textarea>
+            </div>
             
         </form>
     </div>
@@ -94,6 +98,8 @@
             var weight = document.getElementById('weight').value;
             var aboutme = document.getElementById('aboutme').value;
             var aboutFamily = document.getElementById('about_family').value;
+            var preferedalliancedetail = document.getElementById('preferedalliancedetail').value;
+
     
             // Perform validation checks if needed
             if (!maritalStatus) {
@@ -108,6 +114,8 @@
             document.cookie = `weight=${encodeURIComponent(weight)};`;
             document.cookie = `aboutMe=${encodeURIComponent(aboutme)};`;
             document.cookie = `aboutFamily=${encodeURIComponent(aboutFamily)}; path=/`;
+            document.cookie = `preferedalliancedetail=${encodeURIComponent(preferedalliancedetail)}; path=/`;
+
     
             return true; // Allow form submission
         }

@@ -119,11 +119,11 @@
                 <img id="profileImage" src="img/matrimony/profile-picture-smiling-successful-young-260nw-2040223583.webp" alt="profile-picture">
                 <h3 id="name"></h3>
                 <p><span>Year of Birth :</span> <span id="dob"></span></p>
-                <p><span>Revert :</span> No</p>
+                <p><span>Revert :</span> <span id="revert"></span></p>
                 <p><span>Marital status :</span> <span id="maritalStatus"></span></p>
                 <p><span>Native Language :</span> <span id="nativeLanguage"></span></p>
                 <p><span>About me :</span> <span id="aboutMe"></span></p>
-                <p><span>Preferred alliance details :</span> <span id="preferredAlliance"></span></p>
+                <p><span>Preferred alliance details :</span> <span id="preferedalliancedetail"></span></p>
                 <div class="profile-popup">
                     <h4>Popup Preview</h4>
                     <p><strong>Name:</strong> <span id="popupName"></span></p>
@@ -167,18 +167,20 @@
             const profileImage = getCookie('profileImage');
             const name = decodeURIComponent(getCookie('name'));
             const dob = getCookie('dob');
+            const revert = getCookie('revert');
             const maritalStatus = decodeURIComponent(getCookie('maritalStatus'));
             const nativeLanguage = decodeURIComponent(getCookie('nativeLanguage'));
             const aboutMe = decodeURIComponent(getCookie('aboutMe'));
-            const preferredAlliance = decodeURIComponent(getCookie('preferredAlliance'));
+            const preferedalliancedetail = decodeURIComponent(getCookie('preferedalliancedetail'));
 
             document.getElementById('profileImage').src = profileImage;
             document.getElementById('name').textContent = name;
             document.getElementById('dob').textContent = dob;
+            document.getElementById('revert').textContent = revert;
             document.getElementById('maritalStatus').textContent = maritalStatus;
             document.getElementById('nativeLanguage').textContent = nativeLanguage;
             document.getElementById('aboutMe').textContent = aboutMe;
-            document.getElementById('preferredAlliance').textContent = preferredAlliance;
+            document.getElementById('preferedalliancedetail').textContent = preferedalliancedetail;
 
             document.getElementById('popupName').textContent = name;
             document.getElementById('popupDob').textContent = dob;
