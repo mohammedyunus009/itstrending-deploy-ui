@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrimony Profiles</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .profile-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: skyblue;
+            border-radius: 10px;
+        }
+
+        .profile-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .profile-card {
+            width: calc(25% - 20px);
+            margin: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            text-align: center;
+            overflow: hidden; /* Ensure content doesn't overflow */
+            max-height: 400px; /* Adjust as needed */
+            cursor: pointer;
+            position: relative;
+        }
+
+        .profile-card h3 {
+            margin-top: 8px;
+        }
+
+        .profile-card p {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .profile-card img {
+            max-width: 100%; /* Ensure image fits within the card */
+            height: auto;
+            display: block;
+            margin: auto;
+            border-radius: 5%;
+        }
+
+        .profile-card p span {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .profile-card:hover .profile-popup {
+            display: block;
+        }
+
+        .profile-popup {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 200px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="headerPlaceholder"></div>
+    
+    <div class="container">
+        <div class="profile-buttons">
+            <button id="maleButton">Male</button>
+            <button id="femaleButton">Female</button>
+        </div>
+        
+        <div class="profile-grid" id="profileGrid">
+            <div class="profile-card male" onclick="redirectToPreview()">
+                <img id="profileImage" src="img/matrimony/profile-picture-smiling-successful-young-260nw-2040223583.webp" alt="profile-picture">
+                <h3 id="name"></h3>
+                <p><span>Year of Birth :</span> <span id="dob"></span></p>
+                <p><span>Revert :</span> <span id="revert"></span></p>
+                <p><span>Marital status :</span> <span id="maritalStatus"></span></p>
+                <p><span>Native Language :</span> <span id="nativeLanguage"></span></p>
+                <p><span>About me :</span> <span id="aboutMe"></span></p>
+                <p><span>Preferred alliance details :</span> <span id="preferedalliancedetail"></span></p>
+                <div class="profile-popup">
+                    <h4>Popup Preview</h4>
+                    <p><strong>Name:</strong> <span id="popupName"></span></p>
+                    <p><strong>Year of Birth:</strong> <span id="popupDob"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footerPlaceholder"></div>
+    <script src="js/include.js"></script>
+
+    <script>
+        document.getElementById('maleButton').addEventListener('click', function() {
+            showProfiles('male');
+        });
+
+        document.getElementById('femaleButton').addEventListener('click', function() {
+            showProfiles('female');
+        });
+
+        function showProfiles(gender) {
+            const profileCards = document.querySelectorAll('.profile-card');
+            profileCards.forEach(card => card.classList.remove('active'));
+
+            const genderProfileCards = document.querySelectorAll(`.profile-card.${gender}`);
+            genderProfileCards.forEach(card => card.classList.add('active'));
+        }
+
+        function redirectToPreview() {
+            window.location.href = 'preview.html';
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function populateProfileCards() {
+            const profileImage = getCookie('profileImage');
+            const name = decodeURIComponent(getCookie('name'));
+            const dob = getCookie('dob');
+            const revert = getCookie('revert');
+            const maritalStatus = decodeURIComponent(getCookie('maritalStatus'));
+            const nativeLanguage = decodeURIComponent(getCookie('nativeLanguage'));
+            const aboutMe = decodeURIComponent(getCookie('aboutMe'));
+            const preferedalliancedetail = decodeURIComponent(getCookie('preferedalliancedetail'));
+
+            document.getElementById('profileImage').src = profileImage;
+            document.getElementById('name').textContent = name;
+            document.getElementById('dob').textContent = dob;
+            document.getElementById('revert').textContent = revert;
+            document.getElementById('maritalStatus').textContent = maritalStatus;
+            document.getElementById('nativeLanguage').textContent = nativeLanguage;
+            document.getElementById('aboutMe').textContent = aboutMe;
+            document.getElementById('preferedalliancedetail').textContent = preferedalliancedetail;
+
+            document.getElementById('popupName').textContent = name;
+            document.getElementById('popupDob').textContent = dob;
+        }
+
+        populateProfileCards();
+    </script>
+</body>
+</html>
