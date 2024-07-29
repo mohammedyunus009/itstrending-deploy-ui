@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Requirement</title>
+    <link href="css/matrimony/partner.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            var height = document.getElementById('height').value;
+            var weight = document.getElementById('weight').value;
+            var caste = document.getElementById('Caste').value;
+            var education = document.getElementById('Education').value;
+            var occupation = document.getElementById('Occupation').value;
+            var follow = document.getElementById('FOLLOW').value;
+            var personal = document.getElementById('Personal').value;
+
+            // Validate each field
+            if (!height.trim()) {
+                alert("Please enter height.");
+                return false;
+            }
+            if (!weight.trim()) {
+                alert("Please enter weight.");
+                return false; 
+            }
+            if (!caste) {
+                alert("Please select a caste.");
+                return false;
+            }
+            if (!education.trim()) {
+                alert("Please enter education.");
+                return false;
+            }
+            if (!occupation.trim()) {
+                alert("Please enter occupation.");
+                return false;
+            }
+            if (!follow) {
+                alert("Please select a follow option.");
+                return false;
+            }
+            if (!personal) {
+                alert("Please select personal attributes.");
+                return false;
+            }
+
+            // Set cookies
+            document.cookie = `field36=${encodeURIComponent(height)}; path=/`;
+            document.cookie = `field37=${encodeURIComponent(weight)}; path=/`;
+            document.cookie = `field38=${encodeURIComponent(caste)}; path=/`;
+            document.cookie = `field39=${encodeURIComponent(education)}; path=/`;
+            document.cookie = `field40=${encodeURIComponent(occupation)}; path=/`;
+            document.cookie = `field41=${encodeURIComponent(follow)}; path=/`;
+            document.cookie = `field42=${encodeURIComponent(personal)}; path=/`;
+
+            // Redirect to the next page
+            window.location.href = 'preview.html';
+            return false; // Prevent form submission to stay on the same page
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+        
+        // Function to get a cookie by name
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+        
+        // Extract values from cookies
+        const field1 = getCookie('field1');
+        const field2 = getCookie('field2');
+        const field3 = getCookie('field3');
+        const field4 = getCookie('field4');
+        const field5 = getCookie('field5');
+        const field6 = getCookie('field6');
+        const field7 = getCookie('field7');
+        const field8 = getCookie('field8');
+        const field9 = getCookie('field9');
+        const field10 = getCookie('field10');
+        const field11 = getCookie('field11');
+        const field12 = getCookie('');
+        
+        // Extract images from cookies
+        const images = getCookie('images0'); // Assuming images are stored as a comma-separated string in the cookie
+        
+        // Extract authToken from cookies
+        const authToken = getCookie('token');
+        
+        // Extract gender from cookies
+        const gender = getCookie('gender'); // Ensure gender is stored as 'gender' in the cookie
+        
+        // Construct the request body
+        const requestBody = {
+            "profile_id": "1",
+            "description": "Rajesh",
+            "gender": gender || "male", // Use the gender from the cookie or default to 'male'
+            "images": images || "", // Use images from the cookie
+            "bio": "There are many factors that contribute to a satisfying marriage/relationship such as; Love, Commitment, Trust, Time, Attention, Good Communication including Listening , Partnership, Tolerance, Patience, Openness, Honesty, Respect, Sharing, Consideration, Generosity, Willingness/Ability to Compromise, Constructive ",
+            "field1": field1 || "",
+            "field2": field2 || "",
+            "field3": field3 || "",
+            "field4": field4 || "",
+            "field5": field5 || "",
+            "field6": field6 || "",
+            "field7": field7 || "",
+            "field8": field8 || "",
+            "field9": field9 || "",
+            "field10": field10 || "",
+            "field11": field11 || "",
+            "field12": field12 || ""
+        };
+        
+        // Send POST request
+        fetch('http://35.233.133.10:5001/api/v1/profiles', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': authToken // Include the authToken directly in the Authorization header
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    </script>
+</head>
+<body>
+    <div id="headerPlaceholder"></div>
+
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> < </div>
+        <div class="title">Partner Requirement</div>
+        <div></div> <!-- This empty div is to ensure proper alignment -->
+    </div>
+    
+    <div class="user-details">
+        <!-- Choose one of the sizes below by changing the class name -->
+        <div class="user-icon small">
+            <i class="fa-regular fa-user"></i>
+        </div>
+        <!-- <div class="user-icon medium">
+            <i class="fa-regular fa-user"></i>
+        </div> -->
+        <!-- <div class="user-icon large">
+            <i class="fa-regular fa-user"></i>
+        </div> -->
+
+        <div class="container1">
+            <h2>Partner Requirement</h2>
+            
+            <form id="maritalForm" onsubmit="validateForm(event)">
+                <div class="form-group">
+                    <label for="height">Height <span class="required"></span></label>
+                    <input type="text" id="height" name="height" required>
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight <span class="required"></span></label>
+                    <input type="text" id="weight" name="weight" required>
+                </div>
+                <div class="form-group">
+                    <label for="Caste">Caste <span class="required"></span></label>
+                    <select id="Caste" name="Caste" required>
+                        <option value="">Select Caste</option>
+                        <option value="Syed">Syed</option>
+                        <option value="Shaik">Shaik</option>
+                        <option value="Shariff">Shariff</option>
+                        <option value="Khan">Khan/Pathan</option>
+                        <option value="Baig">Baig</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Education">Education <span class="required"></span></label>
+                    <textarea id="Education" name="Education" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="Occupation">Occupation <span class="required"></span></label>
+                    <textarea id="Occupation" name="Occupation" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="FOLLOW">FOLLOW <span class="required"></span></label>
+                    <select id="FOLLOW" name="FOLLOW" required>
+                        <option value="">Select FOLLOW</option>
+                        <option value="Dargah-Fateha">Dargah Fateha</option>
+                        <option value="Tabligh">Tabligh</option>
+                        <option value="Jamaat-e-Islam">Jamaat e Islam</option>
+                        <option value="Ahle">Ahle hadees</option>
+                        <option value="Moderate">Moderate Practising Muslims</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Personal">Personal Attributes <span class="required"></span></label>
+                    <select id="Personal" name="Personal" required>
+                        <option value="">Select Attributes</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Beautiful">Beautiful</option>
+                        <option value="Deender">Deender</option>
+                        <option value="Practising">Practising</option>
+                        <option value="Namaz">Namaz</option>
+                        <option value="Hijabi">Hijabi</option>
+                    </select>
+                </div>
+                <button type="submit" class="button" id="nextButton">NEXT</button>
+            </form>
+        </div>
+    </div> <br>
+    
+    <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div>
+</body>
+</html>

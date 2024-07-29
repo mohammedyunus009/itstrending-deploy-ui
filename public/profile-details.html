@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #333;
+      color: #ffffff;
+      padding: 15px 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header .back-button {
+      font-size: 24px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .header .back-button:hover {
+      color: #bbbbbb;
+    }
+
+    .header .title {
+      flex-grow: 1;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .profile-container {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 220px;
+      
+    }
+
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #000;
+      cursor: nwse-resize;
+      resize: both;
+      overflow: auto;
+      transition: transform 0.3s ease-in-out;
+      margin-left: 220px;
+    }
+
+    .profile-photo:hover {
+      transform: scale(1.1);
+    }
+
+    .profile-details {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 600px;
+      margin-top: 20px;
+    }
+
+    .profile-details h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .row .detail-item {
+      width: 48%;
+    }
+
+    @media (min-width: 768px) {
+      .profile-container {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .profile-photo {
+        margin-right: 20px;
+        margin-bottom: 0;
+      }
+
+      .profile-details {
+        margin-left: 20px;
+      }
+    }
+
+    .back-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .back-button:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="back-button" onclick="goBack()">&#9664;</span>
+    <div class="title">Profile Details</div>
+  </div>
+  <div id="profileDetails" class="profile-container"></div>
+
+  <script>
+    function fetchProfileDetails(profileId) {
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjIzMTU3OTUsImlhdCI6MTcyMjIyOTM5NSwidXNlciI6eyJpZCI6MywiY3JlYXRlZF9hdCI6IjIwMjQtMDctMTdUMDU6NTA6MTQuNjk1NjMyIiwidXBkYXRlZF9hdCI6bnVsbCwiZmlyc3RuYW1lIjoiTWFub2p2IiwibGFzdG5hbWUiOiJ2YXNhbnRoIiwiZW1haWwiOiJyYWpAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpc19hY3RpdmF0ZWQiOmZhbHNlfX0.gcFrwfiXwRbh9wnLLveceyYV4kBNHadVshrK53HAsXU");
+      myHeaders.append("Content-Type", "application/json");
+
+      const raw = JSON.stringify({ "profile_id": profileId });
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+      };
+
+      fetch("http://35.233.133.10:5001/api/v1/profiles/get_profile_details", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result.data.profile);
+          displayProfileDetails(result.data.profile);
+        })
+        .catch(error => console.error('Error fetching profile details:', error));
+    }
+
+    function displayProfileDetails(profile) {
+      const detailsContainer = document.getElementById('profileDetails');
+      detailsContainer.innerHTML = '';
+
+      const images = profile.images.split(',').map(img => img.trim());
+
+      const detailsCard = document.createElement('div');
+      detailsCard.className = 'profile-details';
+
+      detailsCard.innerHTML = `
+        <div class="profile-photo" style="background-image: url('${images[0]}');"></div>
+        
+        <div class="detail-item">
+          <span class="label">Name:</span>
+          <span>${profile.field1}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Date of Birth:</span>
+          <span>${profile.field2}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Caste:</span>
+          <span>${profile.field3}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Follow:</span>
+          <span>${profile.field4}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Phone Number:</span>
+          <span>${profile.field5}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Native Language:</span>
+          <span>${profile.field6}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Residence Language:</span>
+          <span>${profile.field7}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Hobbies:</span>
+          <span>${profile.field8}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Country:</span>
+          <span>${profile.field9}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">State:</span>
+          <span>${profile.field10}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">City:</span>
+          <span>${profile.field11}</span>
+        </div>
+      `;
+
+      detailsContainer.appendChild(detailsCard);
+    }
+
+    function getProfileIdFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('profile_id');
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    const profileId = getProfileIdFromUrl();
+    if (profileId) {
+      fetchProfileDetails(profileId);
+    } else {
+      document.getElementById('profileDetails').innerHTML = '<p>No profile ID found.</p>';
+    }
+  </script>
+</body>
+</html>
