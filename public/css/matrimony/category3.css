@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F4F4F4;
+}
+/* search input */
+
+.search-container {
+    position: relative;
+    margin-left: 90px;
+    margin-top: 10px;
+}
+
+.search__input {
+    width: 200px;
+    padding-left: 30px; /* Adjust this value to fit your icon */
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px; /* Adjust this value to fit your icon */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevents the icon from blocking input */
+    color: grey;
+    transition: color 0.3s ease;
+}
+
+.search-container:hover .search__input {
+    border-color: #007BFF; /* Change to your preferred hover color */
+}
+
+.search-container:hover .search-icon {
+    color: #007BFF; /* Change to your preferred hover color */
+}
+/* ens search input  */
+main {
+    padding: 1em;
+}
+.category-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+.category-item {
+    display: flex;
+    background-color: #fff;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.category-item:hover {
+    transform: scale(1.05);
+}
+.category-item img {
+    width: 150px; /* Fixed width */
+    height: 150px; /* Fixed height */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+.category-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+.category-details h3 {
+    margin: 0.5em 0;
+    font-size: 1em;
+    color: #333;
+}
+.showcase-rating{
+    display: flex;
+    color:yellow;         
+}
+.category-details p {
+    color: #666;
+    font-size: 0.9em;
+}
+.discount {
+    color: red;
+    font-weight: bold;
+}
+.price {
+    color: green;
+    font-weight: bold;
+}
+
+@media (min-width: 601px) {
+    .category-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1em;
+    }
+    .category-item img {
+        width: 200px; /* Fixed width */
+        height: 200px; /* Fixed height */
+    }
+}
