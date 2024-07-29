@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Display</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Add some basic styling */
+    .profile-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+    }
+    .profile-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      width: 220px; /* Adjusted width to fit additional details */
+      text-align: left;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow for better visibility */
+      background-color: #fff; /* Added background color */
+      transition: transform 0.2s; /* Added transition for hover effect */
+      cursor: pointer; /* Indicate clickable */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-card:hover {
+      transform: scale(1.05); /* Added hover effect */
+    }
+    .profile-card img {
+      width: 100%;
+      height: 30%; /* Occupy 30% of the card's height */
+      border-radius: 8px;
+    }
+    .profile-card h2 {
+      font-size: 18px;
+      margin: 8px 0;
+      color: #333; /* Improved text color */
+      text-align: center; /* Centered description */
+    }
+    .profile-card p {
+      font-size: 14px;
+      color: #555;
+      margin: 4px 0; /* Adjusted margins for better spacing */
+    }
+    .profile-card .bio {
+      font-size: 12px;
+      color: #666;
+      margin-top: 8px;
+    }
+    .profile-card .images {
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+      justify-content: center;
+    }
+    .profile-card .images img {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+    }
+    .profile-card .gender {
+      text-align: left;
+      width: 100%; /* Ensure it spans the full width */
+      color: #555; /* Improved text color */
+    }
+    .profile-card .gender span {
+      font-weight: bold; /* Bold the label */
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .profile-card {
+        width: 100%; /* Full width on smaller screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="headerPlaceholder"></div>
+  <div id="profileContainer" class="profile-container"></div>
+  <script src="js/include.js"></script>
+  <div id="footerPlaceholder"></div>
+  <script>
+    // Function to create and display profile cards
+    function displayProfiles(profiles) {
+      const container = document.getElementById('profileContainer');
+      container.innerHTML = ''; // Clear any existing content
+      profiles.forEach(profile => {
+        const card = document.createElement('div');
+        card.className = 'profile-card';
+        card.dataset.profileId = profile.profile_id; // Store profile_id in a data attribute
+        // Create card content
+        card.innerHTML = `
+          <img src="${Array.isArray(profile.images) ? profile.images[0] : profile.images}" alt="Profile Image">
+          <h2>${profile.description}</h2>
+          <p class="gender"><span>Gender:</span> ${profile.gender}</p>
+          <p class="bio">${profile.bio}</p>
+        `;
+        // Append card to container
+        container.appendChild(card);
+      });
+      // Handle clicks on profile cards
+      document.querySelectorAll('.profile-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const profileId = card.dataset.profileId;
+          window.location.href = `profile-details.html?profile_id=${profileId}`;
+        });
+      });
+    }
+    // Retrieve data from session storage
+    const data = JSON.parse(sessionStorage.getItem('profileData'));
+    if (data && data.profile) {
+      console.log('Profile array:', data.profile);
+      // Display profiles if data is available
+      if (data.profile.length > 0) {
+        displayProfiles(data.profile);
+      } else {
+        document.getElementById('profileContainer').innerHTML = '<p>No profiles found.</p>';
+      }
+    } else {
+      console.log('No profile data found in session storage.');
+      document.getElementById('profileContainer').innerHTML = '<p>No profiles found.</p>';
+    }
+  </script>
+</body>
+</html>
