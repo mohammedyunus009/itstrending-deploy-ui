@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Religion</title>
+    <link rel="stylesheet" href="css/matrimony/religion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- <div id="headerPlaceholder"></div> -->
+
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> < </div>
+        <div class="title">Religion</div>
+        <div></div> <!-- This empty div is to ensure proper alignment -->
+    </div>
+    
+    <div class="user-details">
+        <!-- Choose one of the sizes below by changing the class name -->
+        <div class="user-icon small">
+            <i class="fa-regular fa-user"></i>
+        </div>
+        <!-- <div class="user-icon medium">
+            <i class="fa-regular fa-user"></i>
+        </div> -->
+        <!-- <div class="user-icon large">
+            <i class="fa-regular fa-user"></i>
+        </div> -->
+        <br>
+    </div>
+    <h2>Religion</h2>
+
+    <div class="container1">
+        <br>
+        <form id="religionForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <!-- If religion is needed, uncomment and adjust the code -->
+                <!-- <label for="religion">Religion<span class="required"></span></label>
+                <select id="religion" name="religion">
+                    <option value="">Select Religion</option>
+                    <option value="Religion1">Religion1</option>
+                    <option value="Religion2">Religion2</option>
+                    <option value="Religion3">Religion3</option>
+                    <option value="Religion4">Religion4</option>
+                    <option value="Religion5">Religion5</option>
+                </select> -->
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="caste">Caste<span class="required"></span></label>
+                <select id="caste" name="caste" onchange="updateCountryDropdown()">
+                    <option value="">Select Caste</option>
+                    <option value="Sunni">Sunni</option>
+                    <option value="Syed">Syed</option>
+                    <option value="Pathan">Pathan</option>
+                    <option value="Sheikh">Sheikh</option>
+                    <option value="Reverted Muslims">Reverted Muslims</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="FOLLOW">FOLLOW <span class="required"></span></label>
+                <select id="FOLLOW" name="FOLLOW" required>
+                    <option value="">Select FOLLOW</option>
+                    <option value="Dargah-Fateha">Dargah Fateha</option>
+                    <option value="Tabligh">Tabligh</option>
+                    <option value="Jamaat-e-Islam">Jamaat e Islam</option>
+                    <option value="Ahle">Ahle hadees</option>
+                    <option value="Moderate">Moderate Practising Muslims</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <br>
+            <input type="button" value="Next" onclick="validateForm();" id="nextButton">
+
+        </form>
+    </div>
+
+    <!-- <div id="footerPlaceholder"></div>
+    
+    <script src="js/include.js"></script> -->
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    
+        function validateForm() {
+            var caste = document.getElementById('caste').value;
+            var follow = document.getElementById('FOLLOW').value;
+
+            // Set cookies with the selected values, replacing spaces with underscores
+            if (caste) document.cookie = `caste=${caste.replace(/ /g, '_')}; path=/`;
+            if (follow) document.cookie = `follow=${follow.replace(/ /g, '_')}; path=/`;
+
+            // Redirect to the next page
+            window.location.href = 'verfiy.html';
+            return false; // Prevent form submission to stay on the same page
+        }
+    </script>
+</body>
+</html>
