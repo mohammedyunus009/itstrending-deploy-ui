@@ -203,15 +203,7 @@
                 <label>Partner Personal Attribute to be:</label>
                 <span id="partner_personal_attribute"></span>
             </div>
-            <div class="footer">
-                <button onclick="continueToFilters()" style="
-                    width: 100%;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    background-color: #333;
-                    color: white;
-                ">Continue</button>
-            </div>
+            
         </div>
     </div>
 
@@ -229,7 +221,7 @@ function goBack() {
 }
 
 function continueToFilters() {
-    window.location.href = "payment.html";
+    window.location.href = "profilesearch3.html";
 }
 
 // Function to get a cookie value or return "N/A" if not found
@@ -278,7 +270,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("phoneNumber").innerText = getCookie("field5");
     document.getElementById("nativeLanguage").innerText = getCookie("field6");
     document.getElementById("residenceLanguage").innerText = getCookie("field7");
-    document.getElementById("Hobbies").innerText = getCookie("field8");
+    document.getElementById("Hobbies").innerText = getCookie("fileld8");
     document.getElementById("country").innerText = getCookie("field9");
     document.getElementById("state").innerText = getCookie("field10");
     document.getElementById("city").innerText = getCookie("field11");

@@ -14,7 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="headerPlaceholder"></div>
+    <!-- <div id="headerPlaceholder"></div> -->
 
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
@@ -78,14 +78,14 @@
                 </select>
             </div>
             <br>
-            
+            <input type="button" value="Next" onclick="validateForm();" id="nextButton">
+
         </form>
     </div>
-    <input type="button" value="Next" onclick="validateForm();" id="nextButton">
 
-    <div id="footerPlaceholder"></div>
+    <!-- <div id="footerPlaceholder"></div>
     
-    <script src="js/include.js"></script>
+    <script src="js/include.js"></script> -->
     <script>
         function goBack() {
             window.history.back();
