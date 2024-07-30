@@ -14,7 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="headerPlaceholder"></div>
+    <!-- <div id="headerPlaceholder"></div> -->
 
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
@@ -74,14 +74,15 @@
                     <label for="address-input">Address</label>
                     <input type="text" id="address-input" name="address-input" placeholder="Enter Address">
                     <br><br>
+                    <input type="button" value="Next" onclick="submitForm()" id="nextButton">
+
                 </form>
             </div>
         </div>
     </div>
-    <input type="button" value="Next" onclick="submitForm()" id="nextButton">
 
-    <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div>
+    <!-- <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div> -->
     
     <script>
         function goBack() {
