@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         password: password
       };
   
-      fetch('http://35.233.133.10:5001/api/v1/auth/signup', {
+      fetch('https://api.itstrending.in:5001/api/v1/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const password = document.getElementById('password').value;
   
     try {
-      const response = await fetch('http://35.233.133.10:5001/api/v1/auth/login', {
+      const response = await fetch('https://api.itstrending.in:5001/api/v1/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const email = document.getElementById('forgot-email').value;
 
     try {
-      const response = await fetch('http://35.233.133.10:5000/api/v1/auth/reset-password', {
+      const response = await fetch('https://api.itstrending.in:5001/api/v1/auth/reset-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

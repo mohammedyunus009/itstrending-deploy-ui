@@ -328,7 +328,7 @@
             // Prepare API request
             const formdata = new FormData();
             formdata.append("file", file);
-            fetch("http://35.233.133.10:5001/api/v1/profiles/upload_images", {
+            fetch("https://api.itstrending.in:5001/api/v1/profiles/upload_images", {
                 method: "POST",
                 headers: {
                     "Authorization": token, // Use token from cookies
