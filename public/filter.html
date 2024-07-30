@@ -348,7 +348,7 @@
     // Function to apply filters and fetch data from the API
   // Function to apply filters and fetch data from the API
 function applyFilters() {
-  fetch('http://35.233.133.10:5001/api/v1/profiles/search_multiple', {
+  fetch('https://api.itstrending.in:5001/api/v1/profiles/search_multiple', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -377,7 +377,38 @@ sessionStorage.setItem('profileData', JSON.stringify(data.data));
 console.log('Data stored in sessionStorage:', data.data); // Debug log
 
 
-    
+const express = require('express');
+const app = express();
+
+// CORS middleware
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
+});
+
+// Other middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Define your API endpoints here
+app.get('/api/v1/profiles/get_profile_details', (req, res) => {
+  // Your logic for GET request
+  res.json({ message: 'GET profile details endpoint' });
+});
+
+app.post('/api/v1/profiles/search_multiple', (req, res) => {
+  // Your logic for POST request
+  res.json({ message: 'POST search multiple profiles endpoint' });
+});
+
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
   </script>
   
 

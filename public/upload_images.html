@@ -328,7 +328,7 @@
             // Prepare API request
             const formdata = new FormData();
             formdata.append("file", file);
-            fetch("http://35.233.133.10:5001/api/v1/profiles/upload_images", {
+            fetch("https://api.itstrending.in:5001/api/v1/profiles/upload_images", {
                 method: "POST",
                 headers: {
                     "Authorization": token, // Use token from cookies
@@ -422,6 +422,49 @@
     // Redirect to profile2.html
     window.location.href = 'profile2.html';
 });
+
+
+const express = require('express');
+const app = express();
+const path = require('path');
+
+// CORS middleware
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+// Middleware to parse JSON request bodies
+app.use(express.json());
+
+// Middleware to serve static files (like your HTML, CSS, JS)
+app.use(express.static(path.join(__dirname, 'public'))); // Assumes static files are in the 'public' directory
+
+// Define your API endpoints here
+app.get('/login', (req, res) => {
+  // Handle API logic here
+  res.send('API response');
+});
+
+// Example POST endpoint for handling file uploads (you might need 'multer' for handling multipart/form-data)
+app.post('/api/v1/profiles/upload_images', (req, res) => {
+  // Handle file upload logic here
+  res.json({
+    status: 'success',
+    data: {
+      images: ['http://example.com/image1.jpg', 'http://example.com/image2.jpg']
+    }
+  });
+});
+
+// Start your server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+
+
 
     </script>
 </body>
