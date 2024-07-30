@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
     console.error('signupForm1 element not found');
   }
   
-
   const signInForm = document.getElementById('loginForm1');
   const successPopup = document.getElementById('successPopup');
   const doneButton = document.getElementById('doneButton');
@@ -85,9 +84,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // Extract the token
         const token = data.data.token;
   
-        // Set expiration time for the cookie (e.g., 1 hour from now)
+        // Set expiration time for the cookie (e.g., 1 year from now)
         const expirationTime = new Date();
-        expirationTime.setHours(expirationTime.getHours() + 1);
+        expirationTime.setFullYear(expirationTime.getFullYear() + 1);
   
         // Store the token in a cookie with expiration time
         document.cookie = `token=${token}; path=/; Secure; SameSite=Strict; expires=${expirationTime.toUTCString()}`;
@@ -105,10 +104,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   
   doneButton.addEventListener('click', () => {
-    // Redirect to profiile.html on "Done" button click
+    // Redirect to button.html on "Done" button click
     window.location.href = 'button.html';
   });
-  
   
 
   const forgotPasswordLink = document.getElementById('forgotPasswordLink');
