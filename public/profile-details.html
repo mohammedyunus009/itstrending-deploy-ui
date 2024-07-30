@@ -162,7 +162,7 @@
         body: raw,
         redirect: "follow"
       };
-      fetch("http://35.233.133.10:5001/api/v1/profiles/get_profile_details", requestOptions)
+      fetch("https://api.itstrending.in:5001/api/v1/profiles/get_profile_details", requestOptions)
         .then(response => response.json())
         .then(result => {
           console.log(result.data.profile);
@@ -274,6 +274,56 @@
     } else {
       document.getElementById('profileDetails').innerHTML = '<p>No profile ID found.</p>';
     }
+
+
+
+    // Import required modules
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+// Initialize Express app
+const app = express();
+
+// CORS middleware
+app.use(cors());
+
+// Middleware to parse JSON bodies
+app.use(bodyParser.json());
+
+// Define your API endpoints here
+app.post('/api/v1/profiles/get_profile_details', (req, res) => {
+  // Example logic for handling profile details
+  const profileId = req.body.profile_id;
+
+  // Simulate a profile object based on profileId (replace with actual logic)
+  const profile = {
+    field1: 'John Doe',
+    field2: '01/01/1990',
+    field3: 'Brahmin',
+    field4: 'Yes',
+    field5: '123-456-7890',
+    field6: 'Kannada',
+    field7: 'English',
+    field8: 'Reading, Traveling',
+    field9: 'India',
+    field10: 'Karnataka',
+    field11: 'Bengaluru',
+    images: 'http://example.com/image1.jpg,http://example.com/image2.jpg,http://example.com/image3.jpg'
+  };
+
+  // Send the profile object as a response
+  res.json({ status: 'success', data: { profile } });
+});
+
+// Define additional API endpoints if needed
+
+// Start your server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+
   </script>
 </body>
 </html>

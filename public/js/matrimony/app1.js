@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         password: password
       };
   
-      fetch('http://35.233.133.10:5001/api/v1/auth/signup', {
+      fetch('https://api.itstrending.in:5001/api/v1/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const password = document.getElementById('password').value;
   
     try {
-      const response = await fetch('http://35.233.133.10:5001/api/v1/auth/login', {
+      const response = await fetch('https://api.itstrending.in:5001/api/v1/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const email = document.getElementById('forgot-email').value;
 
     try {
-      const response = await fetch('http://35.233.133.10:5000/api/v1/auth/reset-password', {
+      const response = await fetch('https://35.233.133.10:5000/api/v1/auth/reset-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -153,4 +153,58 @@ document.addEventListener('DOMContentLoaded', function () {
 
     forgotPasswordModal.style.display = 'none';
   });
+});
+
+
+
+
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+// Middleware setup
+app.use(cors()); // Use CORS middleware
+app.use(bodyParser.json()); // Parse JSON bodies
+
+// CORS middleware (optional, if you want to customize CORS)
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+// Define API endpoints
+app.post('/api/v1/auth/signup', (req, res) => {
+  const { email, firstname, lastname, password } = req.body;
+  
+  // Implement signup logic here
+  // For example, save user details to the database and respond with success or error
+  
+  res.json({ success: true, message: 'Signup successful' });
+});
+
+app.post('/api/v1/auth/login', (req, res) => {
+  const { email, password } = req.body;
+  
+  // Implement login logic here
+  // For example, verify user credentials and issue a token if successful
+  
+  const token = 'example-token'; // Replace with actual token generation logic
+  res.json({ success: true, data: { token } });
+});
+
+app.post('/api/v1/auth/reset-password', (req, res) => {
+  const { email } = req.body;
+  
+  // Implement password reset logic here
+  // For example, generate a password reset link and send it to the email address
+  
+  res.json({ success: true, message: 'Password reset link sent' });
+});
+
+// Start your server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
