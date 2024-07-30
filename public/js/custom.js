@@ -1,115 +1,94 @@
-// Custom Script
-// Developed by: Samson.Onna
-// CopyRights : http://webthemez.com
-var customScripts = {
-    profile: function () {
-     	 var portfolio = $('#portfolio');
-		var items = $('.items', portfolio); 
-		var filters = $('.filters li a', portfolio); 
+/*global jQuery:false */
+jQuery(document).ready(function($) {
+"use strict";
+
 	
-		items.imagesLoaded(function() {
-			items.isotope({
-				itemSelector: '.item',
-				layoutMode: 'fitRows',
-				transitionDuration: '0.7s'
-			});
+		//add some elements with animate effect
+
+		$(".big-cta").hover(
+			function () {
+			$('.cta a').addClass("animated shake");
+			},
+			function () {
+			$('.cta a').removeClass("animated shake");
+			}
+		);
+		$(".box").hover(
+			function () {
+			$(this).find('.icon').addClass("animated fadeInDown");
+			$(this).find('p').addClass("animated fadeInUp");
+			},
+			function () {
+			$(this).find('.icon').removeClass("animated fadeInDown");
+			$(this).find('p').removeClass("animated fadeInUp");
+			}
+		);
+		
+		
+		$('.accordion').on('show', function (e) {
+		
+			$(e.target).prev('.accordion-heading').find('.accordion-toggle').addClass('active');
+			$(e.target).prev('.accordion-heading').find('.accordion-toggle i').removeClass('icon-plus');
+			$(e.target).prev('.accordion-heading').find('.accordion-toggle i').addClass('icon-minus');
 		});
 		
-		filters.click(function(){
-			var el = $(this);
-			filters.removeClass('active');
-			el.addClass('active');
-			var selector = el.attr('data-filter');
-			items.isotope({ filter: selector });
-			return false;
-		});            
-    },
-    fancybox: function () {
-        // fancybox
-        $(".fancybox").fancybox();
-    },
-    onePageNav: function () {
+		$('.accordion').on('hide', function (e) {
+			$(this).find('.accordion-toggle').not($(e.target)).removeClass('active');
+			$(this).find('.accordion-toggle i').not($(e.target)).removeClass('icon-minus');
+			$(this).find('.accordion-toggle i').not($(e.target)).addClass('icon-plus');
+		});	
 
-        $('#mainNav').onePageNav({
-            currentClass: 'active',
-            changeHash: false,
-            scrollSpeed: 950,
-            scrollThreshold: 0.2,
-            filter: '',
-            easing: 'swing',
-            begin: function () {
-                //I get fired when the animation is starting
-            },
-            end: function () {
-                   //I get fired when the animation is ending
-				if(!$('#main-nav ul li:first-child').hasClass('active')){
-					$('.header').addClass('addBg');
-				}else{
-						$('.header').removeClass('addBg');
-				}
-				
-            },
-            scrollChange: function ($currentListItem) {
-                //I get fired when you enter a section and I pass the list item of the section
-				if(!$('#main-nav ul li:first-child').hasClass('active')){
-					$('.header').addClass('addBg');
-				}else{
-						$('.header').removeClass('addBg');
-				}
-			}
-        });
 		
-		$("a[href='#top']").click(function () {
-                $("html, body").animate({ scrollTop: 0 }, "slow");
-                return false;
-            });
-			$("a[href='#basics']").click(function () {
-                $("html, body").animate({ scrollTop: $('#services').offset().top - 75 }, "slow"); 
-                return false;
-            });
-    }, 
-    owlSlider: function () {
-        var owl = $("#owl-demo");
-        owl.owlCarousel();
-        // Custom Navigation Events
-        $(".next").click(function () {
-            owl.trigger('owl.next');
-        })
-        $(".prev").click(function () {
-            owl.trigger('owl.prev');
-        })
-    },
-    bannerHeight: function () {
-        var bHeight = $(".banner-container").height();
-        $('#da-slider').height(bHeight);
-        $(window).resize(function () {
-            var bHeight = $(".banner-container").height();
-            $('#da-slider').height(bHeight);
-        });
-    },
-	waySlide: function(){
-		  	/* Waypoints Animations
-		   ------------------------------------------------------ */		   			  
-		 
-			 						 
-		},
-		fitText: function(){			  
-				setTimeout(function() {			
-				$('h1.responsive-headline').fitText(1.2, { minFontSize: '16px', maxFontSize: '30px' });			
-				}, 100);
-		},
-    init: function () {
-        customScripts.onePageNav();
-        customScripts.profile();
-        customScripts.fancybox(); 
-        customScripts.owlSlider();
-		customScripts.waySlide();
-		customScripts.fitText();
-        customScripts.bannerHeight();
-    }
-}
-$('document').ready(function () {
-    customScripts.init();
+		// tooltip
+		$('.social-network li a, .options_box .color a').tooltip();
+
+		// fancybox
+		$(".fancybox").fancybox({				
+				padding : 0,
+				autoResize: true,
+				beforeShow: function () {
+					this.title = $(this.element).attr('title');
+					this.title = '<h4>' + this.title + '</h4>' + '<p>' + $(this.element).parent().find('img').attr('alt') + '</p>';
+				},
+				helpers : {
+					title : { type: 'inside' },
+				}
+			});
+
+		
+		//scroll to top
+		$(window).scroll(function(){
+			if ($(this).scrollTop() > 100) {
+				$('.scrollup').fadeIn();
+				} else {
+				$('.scrollup').fadeOut();
+			}
+		});
+		$('.scrollup').click(function(){
+			$("html, body").animate({ scrollTop: 0 }, 1000);
+				return false;
+		});
+    $('#post-slider').flexslider({
+        // Primary Controls
+        controlNav          : false,              //Boolean: Create navigation for paging control of each clide? Note: Leave true for manualControls usage
+        directionNav        : true,              //Boolean: Create navigation for previous/next navigation? (true/false)
+        prevText            : "Previous",        //String: Set the text for the "previous" directionNav item
+        nextText            : "Next",            //String: Set the text for the "next" directionNav item
+         
+        // Secondary Navigation
+        keyboard            : true,              //Boolean: Allow slider navigating via keyboard left/right keys
+        multipleKeyboard    : false,             //{NEW} Boolean: Allow keyboard navigation to affect multiple sliders. Default behavior cuts out keyboard navigation with more than one slider present.
+        mousewheel          : false,             //{UPDATED} Boolean: Requires jquery.mousewheel.js (https://github.com/brandonaaron/jquery-mousewheel) - Allows slider navigating via mousewheel
+        pausePlay           : false,             //Boolean: Create pause/play dynamic element
+        pauseText           : 'Pause',           //String: Set the text for the "pause" pausePlay item
+        playText            : 'Play',            //String: Set the text for the "play" pausePlay item
+         
+        // Special properties
+        controlsContainer   : "",                //{UPDATED} Selector: USE CLASS SELECTOR. Declare which container the navigation elements should be appended too. Default container is the FlexSlider element. Example use would be ".flexslider-container". Property is ignored if given element is not found.
+        manualControls      : "",                //Selector: Declare custom control navigation. Examples would be ".flex-control-nav li" or "#tabs-nav li img", etc. The number of elements in your controlNav should match the number of slides/tabs.
+        sync                : "",                //{NEW} Selector: Mirror the actions performed on this slider with another slider. Use with care.
+        asNavFor            : "",                //{NEW} Selector: Internal property exposed for turning the slider into a thumbnail navigation for another slider
+    });
 	
     $('#main-slider').flexslider({
         namespace           : "flex-",           //{NEW} String: Prefix string attached to the class of every element generated by the plugin
@@ -156,3 +135,22 @@ $('document').ready(function () {
     });
 
 });
+
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    slides[slideIndex-1].style.display = "block";  
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
+}
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}

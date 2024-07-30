@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal</title>
+    <link rel="stylesheet" href="css/matrimony/verfiy.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> < </div>
+        <div class="title"> Personal details</div>
+        <div></div> <!-- This empty div is to ensure proper alignment -->
+    </div>
+    <div class="user-details">
+        <div class="user-icon small">
+            <i class="fa-solid fa-check"></i>
+        </div>
+    </div>
+    <h2>Personal details</h2>
+    <form id="mobileForm">
+        <div class="form-group">
+            <label for="phoneNumber">Phone number <span class="required">*</span></label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="nativeLanguage">Native language</label>
+            <input type="text" id="nativeLanguage" name="nativeLanguage">
+        </div>
+        <div class="form-group">
+            <label for="residenceLanguage">Residence language</label>
+            <input type="text" id="residenceLanguage" name="residenceLanguage">
+        </div>
+        <div class="form-group">
+            <label for="Hobbies">Hobbies</label>
+            <input type="text" id="Hobbies" name="Hobbies" required>
+        </div>
+    
+        <input type="button" value="Next" onclick="validateForm();" id="nextButton"> 
+    </form>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function validateForm() {
+            var form = document.getElementById("mobileForm");
+            var phoneNumber = document.getElementById("phoneNumber").value;
+            var hobbies = document.getElementById("Hobbies").value;
+            if (phoneNumber.trim() === "" || hobbies.trim() === "") {
+                alert("Please fill in all required fields.");
+                return false;
+            }
+            // Set cookies for the form fields
+            setCookie("field5", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field6", document.getElementById("nativeLanguage").value, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field7", document.getElementById("residenceLanguage").value, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field8", hobbies, new Date(new Date().getTime() + 24*60*60*1000));
+
+            // Redirect to the next page
+            window.location.href = "upload_images.html";
+            return true;
+        }
+
+        function setCookie(name, value, expires) {
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+        }
+        
+        document.getElementById("nextButton").addEventListener("click", validateForm);
+    </script>
+</body>
+</html>
