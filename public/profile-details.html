@@ -162,7 +162,7 @@
         body: raw,
         redirect: "follow"
       };
-      fetch("http://35.233.133.10:5001/api/v1/profiles/get_profile_details", requestOptions)
+      fetch("https://35.233.133.10:5001/api/v1/profiles/get_profile_details", requestOptions)
         .then(response => response.json())
         .then(result => {
           console.log(result.data.profile);
