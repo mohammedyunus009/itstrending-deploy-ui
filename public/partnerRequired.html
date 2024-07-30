@@ -128,7 +128,7 @@
             "field12": field12 || ""
         };
         // Send POST request
-        fetch('http://35.233.133.10:5001/api/v1/profiles', {
+        fetch('https://api.itstrending.in:5001/api/v1/profiles', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -143,6 +143,47 @@
         .catch((error) => {
             console.error('Error:', error);
         });
+
+
+        const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+
+// Middleware to parse JSON request bodies
+app.use(bodyParser.json());
+
+// CORS middleware
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+// Define your API endpoints here
+app.get('/login', (req, res) => {
+  // Handle API logic here
+  res.send('API response');
+});
+
+// POST endpoint for profile creation
+app.post('/api/v1/profiles', (req, res) => {
+  const { profile_id, description, gender, images, bio, ...fields } = req.body;
+
+  // Validate request body here if needed
+
+  // Simulate saving profile data (you should replace this with your actual data handling logic)
+  console.log('Profile Data:', { profile_id, description, gender, images, bio, ...fields });
+
+  // Send response
+  res.status(200).json({ success: true, message: 'Profile data received', data: req.body });
+});
+
+// Start your server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+
     </script>
 </head>
 <body>
