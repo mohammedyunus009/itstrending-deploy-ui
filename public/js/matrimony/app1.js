@@ -13,19 +13,19 @@ document.addEventListener('DOMContentLoaded', function () {
   if (signupForm) {
     signupForm.addEventListener('submit', function (event) {
       event.preventDefault();
-  
+
       const email = document.getElementById('signup-email').value;
       const firstname = document.getElementById('signup-firstname').value;
       const lastname = document.getElementById('signup-lastname').value;
       const password = document.getElementById('signup-password').value;
-  
+
       const formData = {
         email: email,
         firstname: firstname,
         lastname: lastname,
         password: password
       };
-  
+
       fetch('http://35.233.133.10:5001/api/v1/auth/signup', {
         method: 'POST',
         headers: {
@@ -43,10 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(data => {
         console.log('Success:', data);
-  
-        // Store email in cookies
-        document.cookie = `email=${encodeURIComponent(email)}; path=/`;
-  
         alert('Signup successful!');
         signupForm.reset();
       })
@@ -58,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     console.error('signupForm1 element not found');
   }
-  
+
   const signInForm = document.getElementById('loginForm1');
   const successPopup = document.getElementById('successPopup');
   const doneButton = document.getElementById('doneButton');
@@ -70,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const password = document.getElementById('password').value;
   
     try {
-      const response = await fetch('http://35.233.133.10:5001/api/v1/auth/login', {
+      const response = await fetch('https://35.233.133.10:5001/api/v1/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,9 +80,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // Extract the token
         const token = data.data.token;
   
-        // Set expiration time for the cookie (e.g., 1 year from now)
+        // Set expiration time for the cookie (e.g., 1 hour from now)
         const expirationTime = new Date();
-        expirationTime.setFullYear(expirationTime.getFullYear() + 1);
+        expirationTime.setHours(expirationTime.getHours() + 1);
   
         // Store the token in a cookie with expiration time
         document.cookie = `token=${token}; path=/; Secure; SameSite=Strict; expires=${expirationTime.toUTCString()}`;
@@ -104,9 +100,10 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   
   doneButton.addEventListener('click', () => {
-    // Redirect to button.html on "Done" button click
-    window.location.href = 'button.html';
+    // Redirect to profiile.html on "Done" button click
+    window.location.href = 'profiile.html';
   });
+  
   
 
   const forgotPasswordLink = document.getElementById('forgotPasswordLink');

@@ -14,7 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="headerPlaceholder"></div>
+    <!-- <div id="headerPlaceholder"></div> -->
 
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
@@ -45,7 +45,7 @@
                         <option value="Propriteor">Propriteor</option>
                         <option value="Partner">Partner</option>
                         <option value="Family">Family</option>
-                    </select>
+                    </select><br><br>
                 </div>
 
                 <label for="how-i-know">How I Know Khurshid bhai</label>
@@ -57,13 +57,13 @@
                     <option value="Other">Other</option>
                 </select>
                 <br><br>
+                <input type="button" value="Next" onclick="submitForm()" id="nextButton">
 
             </form>
         </div>
     </div>
-    <input type="button" value="Next" onclick="submitForm()" id="nextButton">
-    <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div>
+    <!-- <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div> -->
 
     <script>
         function goBack() {
