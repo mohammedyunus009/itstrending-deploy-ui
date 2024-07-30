@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Search Results</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      color: #343a40;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+
+    .profile-buttons {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .profile-button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .profile-button:hover {
+      background-color: #0056b3;
+    }
+
+    .results {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .category-item {
+      background-color: #ffffff;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      padding: 15px;
+      width: calc(20% - 20px); /* 4 items per row for desktop */
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .category-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .category-item img {
+      max-width: 100%;
+      border-radius: 5px;
+      height: auto;
+    }
+
+    .category-details {
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    .category-details p {
+      margin: 5px 0;
+    }
+
+    .category-details .description {
+      font-weight: bold;
+    }
+
+    .category-details .gender,
+    .category-details .profile_id,
+    .category-details .bio {
+      color: #6c757d;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .category-item {
+        width: calc(50% - 20px); /* 2 items per row for tablets */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .category-item {
+        width: 100%; /* 1 item per row for mobile */
+      }
+    }
+
+  </style>  
+</head>
+<body>
+  <div id="headerPlaceholder"></div>
+
+  <div class="container">
+    <h1>Profile Search Results</h1>
+
+    <!-- Profile Buttons -->
+    <div class="profile-buttons">
+      <button class="profile-button" id="maleButton">Male</button>
+      <button class="profile-button" id="femaleButton">Female</button>
+    </div>
+
+    <!-- Profiles Container -->
+    <div id="profileResults" class="results">
+      <!-- Profiles will be dynamically added here -->
+    </div>
+  </div>
+
+  <div id="footerPlaceholder"></div>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script src="js/include.js"></script>
+  <script src="js/matrimony/scripts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Your existing JavaScript for fetching profiles goes here
+      // Make sure to update the displayProfiles function to handle male and female profiles based on the button clicks
+    });
+
+    // Example function to fetch male profiles
+    document.getElementById('maleButton').addEventListener('click', async () => {
+      const searchCriteria = {
+        gender: 'male' // Update with your actual search criteria
+      };
+      await fetchAndDisplayProfiles(searchCriteria);
+    });
+
+    // Example function to fetch female profiles
+    document.getElementById('femaleButton').addEventListener('click', async () => {
+      const searchCriteria = {
+        gender: 'female' // Update with your actual search criteria
+      };
+      await fetchAndDisplayProfiles(searchCriteria);
+    });
+
+    async function fetchAndDisplayProfiles(searchCriteria) {
+      const apiUrl = 'http://35.233.133.10:5001/api/v1/profiles/search_multiple';
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(searchCriteria)
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log('API Response:', data); // Log the response to the console for debugging
+
+        if (data && data.status === 'success' && data.data && data.data.profile && data.data.profile.length > 0) {
+          displayProfiles(data.data.profile);
+        } else {
+          displayNoProfilesMessage();
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        displayNoProfilesMessage();
+      }
+    }
+
+    function displayProfiles(profiles) {
+      const resultsContainer = document.getElementById('profileResults');
+      resultsContainer.innerHTML = '';
+
+      profiles.forEach(profile => {
+        const profileElement = document.createElement('div');
+        profileElement.classList.add('category-item');
+
+        const imageUrls = profile.images.split(',');
+        const imageUrl = imageUrls.length > 0 ? imageUrls[0] : 'default-image.jpg';
+
+        profileElement.innerHTML = `
+          <a href="#">
+            <img src="${imageUrl}" alt="Profile Image">
+          </a>
+          <div class="category-details">
+            <p class="description">Description: ${profile.description}</p>
+            <p class="gender">Gender: ${profile.gender}</p>
+            <p class="profile_id">Profile ID: ${profile.profile_id}</p>
+            <p class="bio">Bio: ${profile.bio}</p>
+          </div>
+        `;
+        resultsContainer.appendChild(profileElement);
+      });
+    }
+
+    function displayNoProfilesMessage() {
+      const resultsContainer = document.getElementById('profileResults');
+      resultsContainer.innerHTML = '<p>No profiles found.</p>';
+    }
+  </script>
+</body>
+</html>

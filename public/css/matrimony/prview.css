@@ -1,0 +1,205 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    color: #ffffff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header .back-button {
+     /* Hide back button by default */
+    font-size: 34px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.header .back-button:hover {
+    color: #bbbbbb;
+}
+.header .title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+/* Media Query for Mobile View */
+@media only screen and (max-width: 768px) {
+    .header .back-button {
+        display: block; /* Show back button for mobile view */
+    }
+}
+
+.profile-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-photo {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+    /* border-radius: 50%; */
+    margin-bottom: 20px;
+}
+
+.profile-details {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.profile-details h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.row .detail-item {
+    width: 48%;
+}
+
+@media (min-width: 768px) {
+    .profile-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .profile-photo {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+    .profile-details {
+        margin-left: 20px;
+        width: auto;
+        max-width: 600px;
+    }
+}
+
+
+#profilePhoto {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #000;
+    cursor: nwse-resize; /* Two-sided arrow cursor for resizing */
+    resize: both; /* Allow resizing */
+}
+
+#profilePhoto {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #000;
+    transition: transform 0.3s ease-in-out;
+}
+
+#profilePhoto:hover {
+    transform: scale(1.1); /* Scale up slightly on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+#profilePhoto {
+    width: 150px;
+    height: 150px;
+    background-size: contain; /* Ensure image fits within the container */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-position: center;
+    border: 2px solid #000;
+    cursor: grab; /* Set cursor to grab to indicate draggable */
+}
+
+#profilePhoto:hover {
+    transform: scale(1.1); /* Scale up slightly on hover */
+}
+
+.resizeable {
+    resize: both; /* Allow resizing */
+    overflow: auto; /* Enable scrolling if resized smaller than content */
+}
+
+
+  /* Additional CSS styles can be added here */
+
+        /* Adjustments for mobile view */
+        @media (max-width: 768px) {
+            .footer {
+                text-align: center;
+                
+            }
+            .footer button {
+                width: 100%;
+                padding: 10px; /* Adjust padding as needed */
+                box-sizing: border-box; /* Ensure padding does not affect width */
+                background-color: #333;
+                color: white;
+            }
+        }
+
+
+
+
+        
+
+        .resizeable {
+            width: 300px; /* Adjust size as needed */
+            height: 300px; /* Adjust size as needed */
+            background-size: cover;
+            background-position: center;
+            position: relative; /* Ensures positioning of child elements */
+            overflow: hidden; /* Hide any overflow content */
+        }
+        
+        .navButton {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10; /* Ensure buttons are above the image */
+        }
+        
+        #prevButton {
+            left: -2px; /* Adjust as needed */
+        }
+        
+        #nextButton {
+            right: -2px; /* Adjust as needed */
+        }
+        
