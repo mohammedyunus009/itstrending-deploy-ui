@@ -11,37 +11,36 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
     <script>
         function validateForm(event) {
-            event.preventDefault(); // Prevent form submission
-            
-            var height = document.getElementById('height').value;
-            var weight = document.getElementById('weight').value;
+            console.log('validateForm called');
+            event.preventDefault(); // Prevent default form submission
+            var height = document.getElementById('height').value.trim();
+            var weight = document.getElementById('weight').value.trim();
             var caste = document.getElementById('Caste').value;
-            var education = document.getElementById('Education').value;
-            var occupation = document.getElementById('Occupation').value;
+            var education = document.getElementById('Education').value.trim();
+            var occupation = document.getElementById('Occupation').value.trim();
             var follow = document.getElementById('FOLLOW').value;
             var personal = document.getElementById('Personal').value;
-
+            var images = document.getElementById('images').files;
             // Validate each field
-            if (!height.trim()) {
+            if (!height) {
                 alert("Please enter height.");
                 return false;
             }
-            if (!weight.trim()) {
+            if (!weight) {
                 alert("Please enter weight.");
-                return false; 
+                return false;
             }
             if (!caste) {
                 alert("Please select a caste.");
                 return false;
             }
-            if (!education.trim()) {
+            if (!education) {
                 alert("Please enter education.");
                 return false;
             }
-            if (!occupation.trim()) {
+            if (!occupation) {
                 alert("Please enter occupation.");
                 return false;
             }
@@ -53,8 +52,18 @@
                 alert("Please select personal attributes.");
                 return false;
             }
-
-            // Set cookies
+            // Store images in cookies
+            if (images.length > 0) {
+                for (let i = 0; i < images.length; i++) {
+                    if (i > 5) break; // Limit to 6 images
+                    let reader = new FileReader();
+                    reader.onload = function(event) {
+                        document.cookie = `images${i}=${encodeURIComponent(event.target.result)}; path=/`;
+                    }
+                    reader.readAsDataURL(images[i]);
+                }
+            }
+            // Set other cookies
             document.cookie = `field36=${encodeURIComponent(height)}; path=/`;
             document.cookie = `field37=${encodeURIComponent(weight)}; path=/`;
             document.cookie = `field38=${encodeURIComponent(caste)}; path=/`;
@@ -62,23 +71,19 @@
             document.cookie = `field40=${encodeURIComponent(occupation)}; path=/`;
             document.cookie = `field41=${encodeURIComponent(follow)}; path=/`;
             document.cookie = `field42=${encodeURIComponent(personal)}; path=/`;
-
             // Redirect to the next page
             window.location.href = 'preview.html';
-            return false; // Prevent form submission to stay on the same page
+            return false; // Prevent form submission
         }
-
         function goBack() {
             window.history.back();
         }
-        
         // Function to get a cookie by name
         function getCookie(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
-        
         // Extract values from cookies
         const field1 = getCookie('field1');
         const field2 = getCookie('field2');
@@ -92,23 +97,23 @@
         const field10 = getCookie('field10');
         const field11 = getCookie('field11');
         const field12 = getCookie('');
-        
         // Extract images from cookies
-        const images = getCookie('images0'); // Assuming images are stored as a comma-separated string in the cookie
-        
+        const images = [];
+        for (let i = 0; i < 6; i++) {
+            let img = getCookie(`images${i}`);
+            if (img) images.push(img);
+        }
         // Extract authToken from cookies
         const authToken = getCookie('token');
-        
         // Extract gender from cookies
-        const gender = getCookie('gender'); // Ensure gender is stored as 'gender' in the cookie
-        
+        const gender = getCookie('gender') || "male"; // Default to 'male' if not found
         // Construct the request body
         const requestBody = {
             "profile_id": "1",
             "description": "Rajesh",
-            "gender": gender || "male", // Use the gender from the cookie or default to 'male'
-            "images": images || "", // Use images from the cookie
-            "bio": "There are many factors that contribute to a satisfying marriage/relationship such as; Love, Commitment, Trust, Time, Attention, Good Communication including Listening , Partnership, Tolerance, Patience, Openness, Honesty, Respect, Sharing, Consideration, Generosity, Willingness/Ability to Compromise, Constructive ",
+            "gender": gender,
+            "images": images,
+            "bio": "There are many factors that contribute to a satisfying marriage/relationship such as; Love, Commitment, Trust, Time, Attention, Good Communication including Listening, Partnership, Tolerance, Patience, Openness, Honesty, Respect, Sharing, Consideration, Generosity, Willingness/Ability to Compromise, Constructive",
             "field1": field1 || "",
             "field2": field2 || "",
             "field3": field3 || "",
@@ -122,7 +127,6 @@
             "field11": field11 || "",
             "field12": field12 || ""
         };
-        
         // Send POST request
         fetch('http://35.233.133.10:5001/api/v1/profiles', {
             method: 'POST',
@@ -143,13 +147,11 @@
 </head>
 <body>
     <div id="headerPlaceholder"></div>
-
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
         <div class="title">Partner Requirement</div>
         <div></div> <!-- This empty div is to ensure proper alignment -->
     </div>
-    
     <div class="user-details">
         <!-- Choose one of the sizes below by changing the class name -->
         <div class="user-icon small">
@@ -161,10 +163,8 @@
         <!-- <div class="user-icon large">
             <i class="fa-regular fa-user"></i>
         </div> -->
-
         <div class="container1">
             <h2>Partner Requirement</h2>
-            
             <form id="maritalForm" onsubmit="validateForm(event)">
                 <div class="form-group">
                     <label for="height">Height <span class="required"></span></label>
@@ -218,12 +218,19 @@
                         <option value="Hijabi">Hijabi</option>
                     </select>
                 </div>
+                <div class="form-group" style="display: none;">
+                    <label for="images">Upload Images (max 6) <span class="required"></span></label>
+                    <input type="file" id="images" name="images" accept="image/*" multiple>
+                </div>
                 <button type="submit" class="button" id="nextButton">NEXT</button>
             </form>
         </div>
-    </div> <br>
-    
+    </div>
+    <br>
     <script src="js/include.js"></script>
     <div id="footerPlaceholder"></div>
 </body>
 </html>
+
+
+

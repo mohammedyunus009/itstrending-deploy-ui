@@ -9,62 +9,55 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
+      background-color: #F0F0F0;
     }
-
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       background-color: #333;
-      color: #ffffff;
+      color: #FFFFFF;
       padding: 15px 20px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-
     .header .back-button {
       font-size: 24px;
       cursor: pointer;
       transition: color 0.3s ease;
     }
-
     .header .back-button:hover {
-      color: #bbbbbb;
+      color: #BBBBBB;
     }
-
     .header .title {
       flex-grow: 1;
       text-align: center;
       font-size: 24px;
       font-weight: bold;
     }
-
     .profile-container {
       padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-left: 220px;
-      
     }
-
-    .profile-photo {
+    .profile-photo-container {
+      position: relative;
       width: 150px;
       height: 150px;
+      overflow: hidden;
+      border: 2px solid #000;
+      margin-bottom: 20px;
+    }
+    .profile-photo {
+      width: 100%;
+      height: 100%;
       background-size: cover;
       background-position: center;
-      border: 2px solid #000;
-      cursor: nwse-resize;
-      resize: both;
-      overflow: auto;
       transition: transform 0.3s ease-in-out;
-      margin-left: 220px;
     }
-
     .profile-photo:hover {
       transform: scale(1.1);
     }
-
     .profile-details {
       background-color: white;
       padding: 20px;
@@ -73,69 +66,74 @@
       width: 100%;
       max-width: 600px;
       margin-top: 20px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-
     .profile-details h2 {
       margin-top: 0;
       text-align: center;
     }
-
     .detail-item {
       display: flex;
       justify-content: space-between;
       padding: 10px 0;
       border-bottom: 1px solid #ddd;
+      width: 100%;
     }
-
     .detail-item:last-child {
       border-bottom: none;
     }
-
     .label {
       font-weight: bold;
     }
-
     .row {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
     }
-
     .row .detail-item {
       width: 48%;
     }
-
     @media (min-width: 768px) {
       .profile-container {
-        flex-direction: row;
-        align-items: flex-start;
-      }
-
-      .profile-photo {
-        margin-right: 20px;
-        margin-bottom: 0;
-      }
-
-      .profile-details {
-        margin-left: 20px;
+        flex-direction: column;
+        align-items: center;
       }
     }
-
     .back-button {
       margin-top: 20px;
       padding: 10px 20px;
-      background-color: #007bff;
+      background-color: #007BFF;
       color: #fff;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       text-align: center;
     }
-
     .back-button:hover {
-      background-color: #0056b3;
+      background-color: #0056B3;
     }
-
+    .slideshow-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+    .slideshow-buttons button {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    .slideshow-buttons button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
   </style>
 </head>
 <body>
@@ -144,22 +142,26 @@
     <div class="title">Profile Details</div>
   </div>
   <div id="profileDetails" class="profile-container"></div>
-
   <script>
+    // Function to get a cookie by name
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
     function fetchProfileDetails(profileId) {
+      const token = getCookie('token'); // Retrieve the token from cookies
       const myHeaders = new Headers();
-      myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjI0MDkxMjMsImlhdCI6MTcyMjMyMjcyMywidXNlciI6eyJpZCI6MywiY3JlYXRlZF9hdCI6IjIwMjQtMDctMTdUMDU6NTA6MTQuNjk1NjMyIiwidXBkYXRlZF9hdCI6bnVsbCwiZmlyc3RuYW1lIjoiTWFub2p2IiwibGFzdG5hbWUiOiJ2YXNhbnRoIiwiZW1haWwiOiJyYWpAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpc19hY3RpdmF0ZWQiOmZhbHNlfX0.OgLhk4FqCnNYmluJGFLWUz9FAW0DHMcTy2ah2Ohj08Y");
+      myHeaders.append("Authorization", token); // Use the token in the header
       myHeaders.append("Content-Type", "application/json");
-
       const raw = JSON.stringify({ "profile_id": profileId });
-
       const requestOptions = {
         method: "POST",
         headers: myHeaders,
         body: raw,
         redirect: "follow"
       };
-
       fetch("http://35.233.133.10:5001/api/v1/profiles/get_profile_details", requestOptions)
         .then(response => response.json())
         .then(result => {
@@ -168,19 +170,47 @@
         })
         .catch(error => console.error('Error fetching profile details:', error));
     }
-
+    
     function displayProfileDetails(profile) {
       const detailsContainer = document.getElementById('profileDetails');
       detailsContainer.innerHTML = '';
+      const images = profile.images.split(',').map(img => img.trim().replace('{', '').replace('}', ''));
+      
+      const slideshowContainer = document.createElement('div');
+      slideshowContainer.className = 'profile-photo-container';
+      
+      const slideshow = document.createElement('div');
+      slideshow.className = 'profile-photo';
+      slideshow.style.backgroundImage = `url('${images[0]}')`;
+      slideshowContainer.appendChild(slideshow);
+      
+      const buttonsContainer = document.createElement('div');
+      buttonsContainer.className = 'slideshow-buttons';
+      const prevButton = document.createElement('button');
+      prevButton.textContent = '◀';
+      prevButton.onclick = () => showSlide(--currentSlide);
+      const nextButton = document.createElement('button');
+      nextButton.textContent = '▶';
+      nextButton.onclick = () => showSlide(++currentSlide);
+      buttonsContainer.appendChild(prevButton);
+      buttonsContainer.appendChild(nextButton);
+      slideshowContainer.appendChild(buttonsContainer);
 
-      const images = profile.images.split(',').map(img => img.trim());
+      detailsContainer.appendChild(slideshowContainer);
+      
+      let currentSlide = 0;
+      function showSlide(index) {
+        if (index >= images.length) currentSlide = 0;
+        else if (index < 0) currentSlide = images.length - 1;
+        else currentSlide = index;
+        slideshow.style.backgroundImage = `url('${images[currentSlide]}')`;
+      }
+      
+      showSlide(currentSlide);
 
       const detailsCard = document.createElement('div');
       detailsCard.className = 'profile-details';
-
       detailsCard.innerHTML = `
-        <div class="profile-photo" style="background-image: url('${images[0]}');"></div>
-        
         <div class="detail-item">
           <span class="label">Name:</span>
           <span>${profile.field1}</span>
@@ -226,19 +256,18 @@
           <span>${profile.field11}</span>
         </div>
       `;
-
       detailsContainer.appendChild(detailsCard);
     }
-
+    
     function getProfileIdFromUrl() {
       const params = new URLSearchParams(window.location.search);
       return params.get('profile_id');
     }
-
+    
     function goBack() {
       window.history.back();
     }
-
+    
     const profileId = getProfileIdFromUrl();
     if (profileId) {
       fetchProfileDetails(profileId);

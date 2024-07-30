@@ -40,164 +40,38 @@
             <label for="Hobbies">Hobbies</label>
             <input type="text" id="Hobbies" name="Hobbies" required>
         </div>
-        <div class="form-group">
-            <label for="photo">Upload a Photo</label>
-            <div id="photo-upload-boxes">
-                <!-- Photo upload boxes will be dynamically added here -->
-            </div>
-            <input type="file" id="file-input" style="display: none;" accept="image/*">
-        </div>
-        <div id="error-message" style="display: none;">Please upload at least one photo.</div>
-        <input type="button" value="Next" onclick="validateForm();" id="nextButton">
+    
+        <input type="button" value="Next" onclick="validateForm();" id="nextButton"> 
     </form>
     <script>
-        const photoStorageKey = 'uploadedPhotos';
-        let uploadCounter = 0;
-        const maxPhotos = 1;
-        let uploadResponses = [];
         function goBack() {
             window.history.back();
         }
-        document.addEventListener('DOMContentLoaded', function() {
-            function createPhotoUploadBox(index) {
-                const box = document.createElement('div');
-                box.classList.add('photo-upload-box');
-                const uploadButton = document.createElement('button');
-                uploadButton.type = 'button';
-                uploadButton.classList.add('photo-upload-button');
-                uploadButton.setAttribute('data-index', index);
-                uploadButton.innerHTML = `
-                    <svg width="120px" height="120px" viewBox="0 0 1024 1024" fill-rule="evenodd">
-                        <!-- SVG Path Here -->
-                    </svg>
-                    <div class="photo-upload-label"><span>Add photo</span></div>
-                    <div class="processing-overlay" style="display: none;">
-                        <div class="processing-spinner"></div>
-                    </div>
-                `;
-                box.appendChild(uploadButton);
-                const deleteButton = document.createElement('button');
-                deleteButton.classList.add('delete-button');
-                deleteButton.innerText = 'X';
-                deleteButton.addEventListener('click', function() {
-                    deletePhoto(index);
-                });
-                box.appendChild(deleteButton);
-                return box;
-            }
-            function handleFileUpload(event) {
-    const files = event.target.files;
-    const index = event.target.getAttribute('data-index');
-    const uploadButton = document.querySelector(`.photo-upload-button[data-index="${index}"]`);
-    const processingOverlay = uploadButton.querySelector('.processing-overlay');
-    processingOverlay.style.display = 'flex';
-    while (uploadButton.firstChild) {
-        uploadButton.removeChild(uploadButton.firstChild);
-    }
-    const file = files[0]; // Handle only the first file
-    if (file.size > 5 * 1024 * 1024) { // 5 MB
-        const errorMessage = document.createElement('div');
-        errorMessage.className = 'error-message';
-        errorMessage.innerText = `Error: ${file.name} exceeds 5 MB limit.`;
-        uploadButton.appendChild(errorMessage);
-        processingOverlay.style.display = 'none';
-        return;
-    }
-    // Prepare API request
-    const formdata = new FormData();
-    formdata.append("file", file);
-    fetch("http://35.233.133.10:5001/api/v1/profiles/upload_images", {
-        method: "POST",
-        headers: {
-            "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjI0MDkxMjMsImlhdCI6MTcyMjMyMjcyMywidXNlciI6eyJpZCI6MywiY3JlYXRlZF9hdCI6IjIwMjQtMDctMTdUMDU6NTA6MTQuNjk1NjMyIiwidXBkYXRlZF9hdCI6bnVsbCwiZmlyc3RuYW1lIjoiTWFub2p2IiwibGFzdG5hbWUiOiJ2YXNhbnRoIiwiZW1haWwiOiJyYWpAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpc19hY3RpdmF0ZWQiOmZhbHNlfX0.OgLhk4FqCnNYmluJGFLWUz9FAW0DHMcTy2ah2Ohj08Y",
-        },
-        body: formdata,
-    })
-    .then(response => response.json())
-    .then(result => {
-        uploadResponses[index] = result; // Store the result based on index
-        console.log(result); // Optional: Log each upload result immediately
-        if (result.data && result.data.images) {
-            // Store Firebase Storage URLs in cookies
-            result.data.images.forEach((image, idx) => {
-                // Construct URL with ?alt=media if not already present
-                const imageUrl = image.includes('?alt=media') ? image : `${image}?alt=media`;
-                setCookie(`images${idx}`, imageUrl, new Date(new Date().getTime() + 24*60*60*1000));
-            });
-        }
-        processingOverlay.style.display = 'none';
-        uploadButton.innerHTML = `<img src="${URL.createObjectURL(file)}">`;
-        uploadCounter++;
-        if (uploadCounter === maxPhotos) {
-            // Handle the case where all images are uploaded
-            document.getElementById('file-input').style.display = 'none';
-        }
-    })
-    .catch(error => {
-        console.error(error);
-        processingOverlay.style.display = 'none';
-        const errorMessage = document.createElement('div');
-        errorMessage.className = 'error-message';
-        errorMessage.innerText = 'Upload failed. Please try again.';
-        uploadButton.appendChild(errorMessage);
-    });
-}
 
-            function deletePhoto(index) {
-                // Handle photo deletion if necessary, e.g., send a request to delete it from the server.
-                const uploadButton = document.querySelector(`.photo-upload-button[data-index="${index}"]`);
-                while (uploadButton.firstChild) {
-                    uploadButton.removeChild(uploadButton.firstChild);
-                }
-                uploadButton.innerHTML = `
-                    <svg width="120px" height="120px" viewBox="0 0 1024 1024" fill-rule="evenodd">
-                        <!-- SVG Path Here -->
-                    </svg>
-                    <div class="photo-upload-label"><span>Add photo</span></div>
-                    <div class="processing-overlay" style="display: none;">
-                        <div class="processing-spinner"></div>
-                    </div>
-                `;
-                uploadCounter--;
-                document.getElementById('file-input').style.display = 'block'; // Show file input again if needed
+        function validateForm() {
+            var form = document.getElementById("mobileForm");
+            var phoneNumber = document.getElementById("phoneNumber").value;
+            var hobbies = document.getElementById("Hobbies").value;
+            if (phoneNumber.trim() === "" || hobbies.trim() === "") {
+                alert("Please fill in all required fields.");
+                return false;
             }
-            document.getElementById('file-input').addEventListener('change', handleFileUpload);
-            const photoUploadBoxes = document.getElementById('photo-upload-boxes');
-            for (let i = 0; i < maxPhotos; i++) {
-                const box = createPhotoUploadBox(i);
-                photoUploadBoxes.appendChild(box);
-            }
-            document.querySelectorAll('.photo-upload-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const index = this.getAttribute('data-index');
-                    const fileInput = document.getElementById('file-input');
-                    fileInput.setAttribute('data-index', index);
-                    fileInput.click();
-                });
-            });
-            function setCookie(name, value, expires) {
-                document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
-            }
-            function validateForm() {
-                var form = document.getElementById("mobileForm");
-                var phoneNumber = document.getElementById("phoneNumber").value;
-                var hobbies = document.getElementById("Hobbies").value;
-                if (phoneNumber.trim() === "" || hobbies.trim() === "" || uploadCounter === 0) {
-                    alert("Please fill in all required fields and upload at least one photo.");
-                    return false;
-                }
-                setCookie("field5", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
-                setCookie("field6", document.getElementById("nativeLanguage").value, new Date(new Date().getTime() + 24*60*60*1000));
-                setCookie("field7", document.getElementById("residenceLanguage").value, new Date(new Date().getTime() + 24*60*60*1000));
-                setCookie("field8", hobbies, new Date(new Date().getTime() + 24*60*60*1000));
-                // Log upload responses to the console when the form is submitted
-                console.log('Upload responses:', uploadResponses);
-                // Redirect to the next page
-                window.location.href = "profile2.html";
-                return true;
-            }
-            document.getElementById("nextButton").addEventListener("click", validateForm);
-        });
+            // Set cookies for the form fields
+            setCookie("field5", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field6", document.getElementById("nativeLanguage").value, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field7", document.getElementById("residenceLanguage").value, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field8", hobbies, new Date(new Date().getTime() + 24*60*60*1000));
+
+            // Redirect to the next page
+            window.location.href = "upload_images.html";
+            return true;
+        }
+
+        function setCookie(name, value, expires) {
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+        }
+        
+        document.getElementById("nextButton").addEventListener("click", validateForm);
     </script>
 </body>
 </html>

@@ -168,3 +168,38 @@ body {
                 color: white;
             }
         }
+
+
+
+
+        
+
+        .resizeable {
+            width: 300px; /* Adjust size as needed */
+            height: 300px; /* Adjust size as needed */
+            background-size: cover;
+            background-position: center;
+            position: relative; /* Ensures positioning of child elements */
+            overflow: hidden; /* Hide any overflow content */
+        }
+        
+        .navButton {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10; /* Ensure buttons are above the image */
+        }
+        
+        #prevButton {
+            left: -2px; /* Adjust as needed */
+        }
+        
+        #nextButton {
+            right: -2px; /* Adjust as needed */
+        }
+        
