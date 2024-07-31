@@ -14,15 +14,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="headerPlaceholder"></div>
-
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
         <div class="title">Address</div>
     </div>
 
     <div class="user-details">
-        <!-- Choose one of the sizes below by changing the class name -->
         <div class="user-icon small">
             <i class="fa-sharp fa-solid fa-location-dot"></i>        
         </div>
@@ -31,13 +28,12 @@
             <div class="dropdown-container">
                 <form id="car-form">
                     <div class="form-group" id="countryGroup">
-                        <label for="country">Country <span class="required"></span></label>
+                        <label for="country" style="display: block;">Country :<span class="required"></span></label>
                         <input type="text" id="country" name="country" value="India" readonly>
                     </div>
-                    <label for="state-dropdown">Select State</label>
-                    <select id="state-dropdown" required>
+                    <label for="state-dropdown" style="display: block;">Select State :</label>
+                    <select id="state-dropdown" onchange="updateCities()" required>
                         <option value="#">Select State</option>
-                        <!-- Options for states here -->  
                         <option value="Andhra Pradesh">Andhra Pradesh</option>
                         <option value="Arunachal Pradesh">Arunachal Pradesh</option>
                         <option value="Assam">Assam</option>
@@ -68,21 +64,20 @@
                         <option value="West Bengal">West Bengal</option>
                     </select>
                     <br><br>
-                    <label for="city-input">City</label>
-                    <input type="text" id="city-input" name="city-input" placeholder="Enter City">
+                    <label for="city-input" style="display: block;">City :</label>
+                    <select id="city-dropdown" name="city-dropdown" required>
+                        <option value="#">Select City</option>
+                    </select>
                     <br><br>
-                    <label for="address-input">Address</label>
+                    <label for="address-input" style="display: block;">Address :</label>
                     <input type="text" id="address-input" name="address-input" placeholder="Enter Address">
                     <br><br>
+                    <input type="button" value="Next" onclick="submitForm()" id="nextButton">
                 </form>
             </div>
         </div>
     </div>
-    <input type="button" value="Next" onclick="submitForm()" id="nextButton">
 
-    <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div>
-    
     <script>
         function goBack() {
             window.history.back();
@@ -110,21 +105,126 @@
         }
 
         function submitForm() {
-            // Get selected values
             let country = document.getElementById('country').value;
             let stateDropdown = document.getElementById('state-dropdown');
             let state = stateDropdown.options[stateDropdown.selectedIndex].value;
-            let city = document.getElementById('city-input').value;
+            let cityDropdown = document.getElementById('city-dropdown');
+            let city = cityDropdown.options[cityDropdown.selectedIndex].value;
             let address = document.getElementById('address-input').value;
 
-            // Set cookies with the selected values
             setCookie('field9', country, 1);
             setCookie('field10', state, 1);
             setCookie('field11', city, 1);
             setCookie('field12', address, 1);
 
-            // Redirect to the next page
             window.location.href = 'Profile3.html';
+        }
+
+        function updateCities() {
+            let stateDropdown = document.getElementById('state-dropdown');
+            let cityDropdown = document.getElementById('city-dropdown');
+            let selectedState = stateDropdown.options[stateDropdown.selectedIndex].value;
+            
+            const cityOptions = {
+    "Andhra Pradesh": [
+        "Visakhapatnam", "Vijayawada", "Guntur", "Krishna", "Chittoor", "Kakinada", "West Godavari", "East Godavari", "Srikakulam", "Prakasam", "Y.S.R."
+    ],
+    "Arunachal Pradesh": [
+        "Itanagar", "Tawang", "Papum Pare", "West Kameng", "East Kameng", "Lower Subansiri", "Upper Subansiri", "Kurung Kumey", "Kra Daadi", "Lohit", "Namsai", "Changlang", "Longding", "Siang", "Upper Siang", "Lower Siang"
+    ],
+    "Assam": [
+        "Guwahati", "Dibrugarh", "Kokrajhar", "Jorhat", "Nagaon", "Karimganj", "Barpeta", "Bongaigaon", "Golaghat", "Dhemaji", "Lakhimpur", "Hailakandi", "Cachar", "Sivasagar", "Tinsukia", "Dhubri", "Sonitpur", "Nalbari", "Kamrup"
+    ],
+    "Bihar": [
+        "Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Darbhanga", "Purnia", "Sasaram", "Arrah", "Nalanda", "Munger", "Kishanganj", "Vaishali", "Siwan", "Samastipur", "Jahanabad", "Buxar", "Sitamarhi", "Kaimur", "Katihar", "Supaul"
+    ],
+    "Chhattisgarh": [
+        "Raipur", "Bilaspur", "Durg", "Jagdalpur", "Korba", "Rajnandgaon", "Ambikapur", "Jashpur", "Surguja", "Kondagaon", "Bastar", "Dantewada", "Kabirdham", "Gaurela-Pendra-Marwahi", "Mungeli", "Balod", "Baloda Bazar", "Rajnandgaon", "Gariaband"
+    ],
+    "Goa": [
+        "Panaji", "Margao", "Vasco da Gama", "Mapusa", "Ponda", "Cortalim", "Cuncolim", "Quepem", "Sanguem", "Canacona", "Bicholim", "Sattari"
+    ],
+    "Gujarat": [
+        "Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Junagadh", "Gandhinagar", "Anand", "Patan", "Mehsana", "Narmada", "Porbandar", "Sabarkantha", "Kutch", "Banaskantha", "Dang", "Navsari", "Dahod", "Girsomnath"
+    ],
+    "Haryana": [
+        "Gurgaon", "Faridabad", "Hisar", "Karnal", "Ambala", "Yamunanagar", "Rohtak", "Jind", "Sirsa", "Panchkula", "Bhiwani", "Mahendragarh", "Kurukshetra", "Fatehabad", "Palwal", "Sonipat", "Kaithal"
+    ],
+    "Himachal Pradesh": [
+        "Shimla", "Manali", "Dharamshala", "Kullu", "Mandi", "Hamirpur", "Una", "Solan", "Bilaspur", "Chamba", "Kangra", "Lahaul and Spiti", "Sirmaur"
+    ],
+    "Jharkhand": [
+        "Ranchi", "Jamshedpur", "Dhanbad", "Bokaro", "Giridih", "Hazaribagh", "Deoghar", "Chaibasa", "Dumka", "Pakur", "Godda", "Koderma", "Latehar", "Palamu", "Saraikela-Kharsawan"
+    ],
+    "Karnataka": [
+        "Bangalore", "Mangalore", "Mysore", "Hubli", "Dharwad", "Bellary", "Tumkur", "Raichur", "Bagalkot", "Gulbarga", "Kolar", "Chikkamagalur", "Kodagu", "Udupi", "Dakshina Kannada", "Chitradurga", "Hassan", "Bijapur"
+    ],
+    "Kerala": [
+        "Thiruvananthapuram", "Kochi", "Kollam", "Alappuzha", "Pathanamthitta", "Kottayam", "Idukki", "Ernakulam", "Thrissur", "Malappuram", "Kozhikode", "Wayanad", "Kannur", "Kasargod"
+    ],
+    "Madhya Pradesh": [
+        "Bhopal", "Indore", "Jabalpur", "Ujjain", "Gwalior", "Sagar", "Ratlam", "Satna", "Khandwa", "Dewas", "Chhindwara", "Mandsaur", "Rewa", "Shivpuri", "Khargone", "Harda", "Balaghat", "Sehore"
+    ],
+    "Maharashtra": [
+        "Mumbai", "Pune", "Nagpur", "Aurangabad", "Nashik", "Thane", "Solapur", "Kolhapur", "Jalgaon", "Akola", "Amravati", "Satara", "Beed", "Osmanabad", "Ratnagiri", "Sindhudurg", "Latur", "Nanded"
+    ],
+    "Manipur": [
+        "Imphal", "Thoubal", "Bishnupur", "Churachandpur", "Senapati", "Ukhrul", "Tamenglong", "Jiribam", "Kangpokpi", "Kakching"
+    ],
+    "Meghalaya": [
+        "Shillong", "Tura", "Jowai", "Berlapara", "Nongstoin", "Williamnagar", "Mairang", "Baghmara", "Rongram", "Khliehriat"
+    ],
+    "Mizoram": [
+        "Aizawl", "Lunglei", "Saiha", "Champhai", "Kolasib", "Mamit", "Serchhip", "Hnahthial", "Lawngtlai"
+    ],
+    "Nagaland": [
+        "Kohima", "Dimapur", "Mokokchung", "Tuensang", "Wokha", "Phek", "Zunheboto", "Longleng", "Kiphire", "Mon"
+    ],
+    "Odisha": [
+        "Bhubaneswar", "Cuttack", "Berhampur", "Sambalpur", "Rourkela", "Balasore", "Jeypore", "Bargarh", "Angul", "Dhenkanal", "Khurda", "Ganjam", "Gajapati", "Nabarangpur", "Kendrapara"
+    ],
+    "Punjab": [
+        "Chandigarh", "Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Mohali", "Bathinda", "Hoshiarpur", "Moga", "Rupnagar", "Faridkot", "Fatehgarh Sahib", "Sangrur", "Kapurthala", "Tarn Taran"
+    ],
+    "Rajasthan": [
+        "Jaipur", "Udaipur", "Jodhpur", "Kota", "Bikaner", "Ajmer", "Alwar", "Sikar", "Bhilwara", "Pali", "Nagaur", "Barmer", "Dungarpur", "Chittorgarh", "Hanumangarh", "Jhunjhunu", "Sirohi", "Jaisalmer", "Jalore"
+    ],
+    "Sikkim": [
+        "Gangtok", "Namchi", "Gyalshing", "Mangan", "Pelling"
+    ],
+    "Tamil Nadu": [
+        "Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Tirunelveli", "Dindigul", "Vellore", "Kancheepuram", "Cuddalore", "Kanyakumari", "Karur", "Thanjavur", "Ramanathapuram", "Virudhunagar", "Tiruppur", "Nagapattinam", "Perambalur"
+    ],
+    "Telangana": [
+        "Hyderabad", "Warangal", "Nizamabad", "Khammam", "Karimnagar", "Mahabubnagar", "Adilabad", "Medak", "Nalgonda", "Jogulamba Gadwal", "Jayashankar Bhupalapally"
+    ],
+    "Tripura": [
+        "Agartala", "Udaipur", "Khowai", "Dharmanagar", "Belonia", "Sepahijala", "Gomati", "South Tripura", "Dhalai", "North Tripura"
+    ],
+    "Uttar Pradesh": [
+        "Lucknow", "Kanpur", "Agra", "Varanasi", "Allahabad", "Meerut", "Bareilly", "Jhansi", "Aligarh", "Gorakhpur", "Moradabad", "Muzaffarnagar", "Rampur", "Shahjahanpur", "Azamgarh", "Fatehpur", "Etawah", "Sitapur"
+    ],
+    "Uttarakhand": [
+        "Dehradun", "Haridwar", "Nainital", "Udham Singh Nagar", "Pauri Garhwal", "Tehri Garhwal", "Chamoli", "Rudraprayag", "Bageshwar", "Almora", "Pithoragarh", "Uttarkashi"
+    ],
+    "West Bengal": [
+        "Kolkata", "Howrah", "Darjeeling", "Siliguri", "Asansol", "Durgapur", "Kharagpur", "Medinipur", "Burdwan", "Murarai", "Bankura", "Jalpaiguri", "Cooch Behar", "Malda", "Purulia", "Hooghly", "North 24 Parganas", "South 24 Parganas"
+    ]
+};
+
+
+
+            // Clear the city dropdown
+            cityDropdown.innerHTML = '<option value="#">Select City</option>';
+            
+            if (selectedState in cityOptions) {
+                cityOptions[selectedState].forEach(function(city) {
+                    let option = document.createElement('option');
+                    option.value = city;
+                    option.textContent = city;
+                    cityDropdown.appendChild(option);
+                });
+            }
         }
     </script>
 </body>
