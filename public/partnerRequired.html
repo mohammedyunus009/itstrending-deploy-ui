@@ -11,73 +11,66 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* CSS for the Revert Section */
+#revert {
+    margin: 20px 0; /* Space around the section */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+}
+
+#revert input[type="radio"] {
+    margin-right: 10px; /* Space between radio button and label */
+}
+
+#revert label {
+    margin-right: 20px; /* Space between labels */
+    font-size: 16px; /* Font size for labels */
+    color: #333; /* Dark grey color for labels */
+    cursor: pointer; /* Pointer cursor for labels */
+}
+
+#revert input[type="radio"]:checked + label {
+    color: #007bff; /* Highlight color for selected radio button */
+    font-weight: bold; /* Bold text for selected option */
+}
+
+input[type=radio], input[type=checkbox] {
+    margin: 0px 9px 0px;
+    margin-top: 1px \9;
+    line-height: normal;
+}
+
+    </style>
     <script>
         function validateForm(event) {
-            console.log('validateForm called');
-            event.preventDefault(); // Prevent default form submission
-            var height = document.getElementById('height').value.trim();
-            var weight = document.getElementById('weight').value.trim();
-            var caste = document.getElementById('Caste').value;
-            var education = document.getElementById('Education').value.trim();
-            var occupation = document.getElementById('Occupation').value.trim();
-            var follow = document.getElementById('FOLLOW').value;
-            var personal = document.getElementById('Personal').value;
-            var images = document.getElementById('images').files;
-            // Validate each field
-            if (!height) {
-                alert("Please enter height.");
-                return false;
-            }
-            if (!weight) {
-                alert("Please enter weight.");
-                return false;
-            }
-            if (!caste) {
-                alert("Please select a caste.");
-                return false;
-            }
-            if (!education) {
-                alert("Please enter education.");
-                return false;
-            }
-            if (!occupation) {
-                alert("Please enter occupation.");
-                return false;
-            }
-            if (!follow) {
-                alert("Please select a follow option.");
-                return false;
-            }
-            if (!personal) {
-                alert("Please select personal attributes.");
-                return false;
-            }
-            // Store images in cookies
-            if (images.length > 0) {
-                for (let i = 0; i < images.length; i++) {
-                    if (i > 5) break; // Limit to 6 images
-                    let reader = new FileReader();
-                    reader.onload = function(event) {
-                        document.cookie = `images${i}=${encodeURIComponent(event.target.result)}; path=/`;
-                    }
-                    reader.readAsDataURL(images[i]);
-                }
-            }
-            // Set other cookies
-            document.cookie = `field36=${encodeURIComponent(height)}; path=/`;
-            document.cookie = `field37=${encodeURIComponent(weight)}; path=/`;
-            document.cookie = `field38=${encodeURIComponent(caste)}; path=/`;
-            document.cookie = `field39=${encodeURIComponent(education)}; path=/`;
-            document.cookie = `field40=${encodeURIComponent(occupation)}; path=/`;
-            document.cookie = `field41=${encodeURIComponent(follow)}; path=/`;
-            document.cookie = `field42=${encodeURIComponent(personal)}; path=/`;
-            // Redirect to the next page
-            window.location.href = 'preview.html';
-            return false; // Prevent form submission
-        }
-        function goBack() {
-            window.history.back();
-        }
+    console.log('validateForm called'); // Add this to confirm function call
+    event.preventDefault(); // Prevent default form submission
+    
+    var revert = document.querySelector('input[name="revert"]:checked');
+    var partnerRequirement = document.getElementById('partnerRequirement').value.trim();
+    
+    if (!revert) {
+        alert("Please select a revert option.");
+        return false;
+    }
+    if (!partnerRequirement) {
+        alert("Please enter partner requirement.");
+        return false;
+    }
+
+    // Store images in cookies
+    // ...
+
+    // Set other cookies
+    // ...
+
+    // Redirect to the next page
+    window.location.href = 'preview.html';
+    return false; // Prevent form submission
+}
+
+
         // Function to get a cookie by name
         function getCookie(name) {
             const value = `; ${document.cookie}`;
@@ -208,63 +201,21 @@ app.listen(PORT, () => {
             <h2>Partner Requirement</h2>
             <form id="maritalForm" onsubmit="validateForm(event)">
                 <div class="form-group">
-                    <label for="height">Height <span class="required"></span></label>
-                    <input type="text" id="height" name="height" required>
+                    <label for="revert">Revert? </label>
+                    <div id="revert">
+                        <input type="radio" id="revertYes" name="revert" value="Yes" required> 
+                        <label for="revertYes">Yes</label>
+                        <input type="radio" id="revertNo" name="revert" value="No"> 
+                        <label for="revertNo">No</label>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="weight">Weight <span class="required"></span></label>
-                    <input type="text" id="weight" name="weight" required>
-                </div>
-                <div class="form-group">
-                    <label for="Caste">Caste <span class="required"></span></label>
-                    <select id="Caste" name="Caste" required>
-                        <option value="">Select Caste</option>
-                        <option value="Syed">Syed</option>
-                        <option value="Shaik">Shaik</option>
-                        <option value="Shariff">Shariff</option>
-                        <option value="Khan">Khan/Pathan</option>
-                        <option value="Baig">Baig</option>
-                        <option value="Others">Others</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="Education">Education <span class="required"></span></label>
-                    <textarea id="Education" name="Education" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="Occupation">Occupation <span class="required"></span></label>
-                    <textarea id="Occupation" name="Occupation" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="FOLLOW">FOLLOW <span class="required"></span></label>
-                    <select id="FOLLOW" name="FOLLOW" required>
-                        <option value="">Select FOLLOW</option>
-                        <option value="Dargah-Fateha">Dargah Fateha</option>
-                        <option value="Tabligh">Tabligh</option>
-                        <option value="Jamaat-e-Islam">Jamaat e Islam</option>
-                        <option value="Ahle">Ahle hadees</option>
-                        <option value="Moderate">Moderate Practising Muslims</option>
-                        <option value="Others">Others</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="Personal">Personal Attributes <span class="required"></span></label>
-                    <select id="Personal" name="Personal" required>
-                        <option value="">Select Attributes</option>
-                        <option value="Fair">Fair</option>
-                        <option value="Beautiful">Beautiful</option>
-                        <option value="Deender">Deender</option>
-                        <option value="Practising">Practising</option>
-                        <option value="Namaz">Namaz</option>
-                        <option value="Hijabi">Hijabi</option>
-                    </select>
-                </div>
-                <div class="form-group" style="display: none;">
-                    <label for="images">Upload Images (max 6) <span class="required"></span></label>
-                    <input type="file" id="images" name="images" accept="image/*" multiple>
+                    <label for="partnerRequirement">Partner Requirement <span class="required"></span></label>
+                    <textarea id="partnerRequirement" name="partnerRequirement" required></textarea>
                 </div>
                 <button type="submit" class="button" id="nextButton">NEXT</button>
             </form>
+            
         </div>
     </div>
     <br>
@@ -272,6 +223,3 @@ app.listen(PORT, () => {
     <div id="footerPlaceholder"></div>
 </body>
 </html>
-
-
-
