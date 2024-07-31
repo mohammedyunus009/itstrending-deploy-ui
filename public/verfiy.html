@@ -17,60 +17,94 @@
         <div class="title"> Personal details</div>
         <div></div> <!-- This empty div is to ensure proper alignment -->
     </div>
+
     <div class="user-details">
         <div class="user-icon small">
             <i class="fa-solid fa-check"></i>
         </div>
     </div>
+
     <h2>Personal details</h2>
     <form id="mobileForm">
         <div class="form-group">
-            <label for="phoneNumber">Phone number <span class="required">*</span></label>
+            <label for="phoneNumber">Phone number :<span class="required">*</span></label>
             <input type="tel" id="phoneNumber" name="phoneNumber" required>
         </div>
         <div class="form-group">
-            <label for="nativeLanguage">Native language</label>
-            <input type="text" id="nativeLanguage" name="nativeLanguage">
+            <label for="nativeLanguage">Native language :</label>
+            <input list="nativeLanguages" id="nativeLanguage" name="nativeLanguage">
+            <datalist id="nativeLanguages">
+                <option value="Assamese">
+                <option value="Bengali">
+                <option value="Gujarati">
+                <option value="Kannada">
+                <option value="Kashmiri">
+                <option value="Konkani">
+                <option value="Malayalam">
+                <option value="Marathi">
+                <option value="Nepali">
+                <option value="Odia">
+                <option value="Punjabi">
+                <option value="Sanskrit">
+                <option value="Tamil">
+                <option value="Telugu">
+                <option value="Urdu">
+                <option value="Arabic">
+            </datalist>
         </div>
         <div class="form-group">
-            <label for="residenceLanguage">Residence language</label>
-            <input type="text" id="residenceLanguage" name="residenceLanguage">
+            <label for="residenceLanguage">Residence language :</label>
+            <input list="residenceLanguages" id="residenceLanguage" name="residenceLanguage">
+            <datalist id="residenceLanguages">
+                <option value="Assamese">
+                <option value="Bengali">
+                <option value="Gujarati">
+                <option value="Kannada">
+                <option value="Kashmiri">
+                <option value="Konkani">
+                <option value="Malayalam">
+                <option value="Marathi">
+                <option value="Nepali">
+                <option value="Odia">
+                <option value="Punjabi">
+                <option value="Sanskrit">
+                <option value="Tamil">
+                <option value="Telugu">
+                <option value="Urdu">
+                <option value="Arabic">
+            </datalist>
         </div>
-        <div class="form-group">
-            <label for="Hobbies">Hobbies</label>
-            <input type="text" id="Hobbies" name="Hobbies" required>
-        </div>
-    
-        <input type="button" value="Next" onclick="validateForm();" id="nextButton"> 
+        <input type="button" value="Next" onclick="validateForm();" id="nextButton">
     </form>
+
     <script>
         function goBack() {
             window.history.back();
         }
 
+        function setCookie(name, value, expires) {
+            document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
+        }
+
         function validateForm() {
-            var form = document.getElementById("mobileForm");
             var phoneNumber = document.getElementById("phoneNumber").value;
-            var hobbies = document.getElementById("Hobbies").value;
-            if (phoneNumber.trim() === "" || hobbies.trim() === "") {
+            var nativeLanguage = document.getElementById("nativeLanguage").value;
+            var residenceLanguage = document.getElementById("residenceLanguage").value;
+
+            if (phoneNumber.trim() === "" || nativeLanguage.trim() === "" || residenceLanguage.trim() === "") {
                 alert("Please fill in all required fields.");
                 return false;
             }
-            // Set cookies for the form fields
-            setCookie("field5", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
-            setCookie("field6", document.getElementById("nativeLanguage").value, new Date(new Date().getTime() + 24*60*60*1000));
-            setCookie("field7", document.getElementById("residenceLanguage").value, new Date(new Date().getTime() + 24*60*60*1000));
-            setCookie("field8", hobbies, new Date(new Date().getTime() + 24*60*60*1000));
+
+            setCookie("field6", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field7", nativeLanguage, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field8", residenceLanguage, new Date(new Date().getTime() + 24*60*60*1000));
 
             // Redirect to the next page
             window.location.href = "upload_images.html";
             return true;
         }
 
-        function setCookie(name, value, expires) {
-            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
-        }
-        
         document.getElementById("nextButton").addEventListener("click", validateForm);
     </script>
 </body>
