@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile Display</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- Bootstrap JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link href="css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Matrimonial</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+     <link href="fonts/css/solid.min.css" rel="stylesheet" />
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+
+
   <style>
     /* Add some basic styling */
     .profile-container {
@@ -88,10 +95,214 @@
   </style>
 </head>
 <body>
-  <div id="headerPlaceholder"></div>
+  
+<section id="top" class="bg_brown pt-2 pb-2">
+  <div class="container-xl">
+   <div class="row top_1">
+    <div class="col-md-6">
+     <div class="top_1l mt-1">
+    <ul class="mb-0 font_14">
+       <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+     <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+     </ul>
+   </div>
+    </div>
+    <div class="col-md-6">
+     <div class="top_1r text-end">
+      <ul class="mb-0">
+       <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+       <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+       <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+       <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+     </ul>
+   </div>
+    </div>
+   </div>
+  </div>
+ </section>
+ 
+ <section id="header">
+   <nav class="navbar navbar-expand-md navbar-light p-0 pt-2 pb-2" id="navbar_sticky">
+     <div class="container-xl">
+     <a class="p-0 navbar-brand fw-bold me-0 family_1 col_red" href="index.html">
+       <i class="fa fa-heart me-1 col_brown"></i> ISC<br>
+       <span class="family_2 fw-normal font_14 col_brown">Looking for partner</span>
+     </a>
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+       <ul class="navbar-nav mb-0 ms-auto">
+       <li class="nav-item">
+         <a class="nav-link " aria-current="page" href="index.html">Home</a>
+       </li> 
+       <li class="nav-item">
+         <a class="nav-link" href="about.html">About </a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="event.html">Event </a>
+         </li>
+         <!-- <ul  dropdown-toggle  class="dropdown-menu drop_1" aria-labelledby="navbarDropdown">
+         <li><a class="dropdown-item" href="event.html"> Events</a></li>
+         <li><a class="dropdown-item border-0" href="event_detail.html"> Events Detail</a></li>
+         </ul> -->
+       </li> 
+       <li class="nav-item">
+         <a class="nav-link" href="profiile.html">Register </a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="filter.html">Search </a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="contact.html">Contact </a>
+       </li>
+     
+         <li class="nav-item">
+         <a class="nav-link" href="payment.html">Payment </a>
+         </li>
+       <li class="nav-item">
+         <a class="nav-link" href="login.html">Sign In/Sign Up </a>
+       </li>
+       </ul>
+     </div>
+     </div>
+   </nav>
+   </section>
   <div id="profileContainer" class="profile-container"></div>
-  <script src="js/include.js"></script>
-  <div id="footerPlaceholder"></div>
+  
+
+
+
+
+  <!-- footer -->
+  
+  <section id="footer" class="p_3 px_4">
+    <div class="container-fluid">
+      <div class="footer_m bg_light p-4">
+        <div class="footer_1 row">
+        <div class="col-md-3">
+       <div class="footer_1i">
+         <h1 class="mb-3"><a class="family_1" href="index.html"><i class="fa fa-heart me-1 col_brown"></i>  ISC <br>
+   <span class="family_2 fw-normal font_14 col_brown">Lookimg for a patner </span>
+   </a></h1>
+   <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+   <ul class="mb-0"> 
+   <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
+   <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
+   <li class="mt-3"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+   </ul>
+       </div>
+      </div>
+        <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">Social media</h5>
+        <ul class="mb-0">
+          <li><a href="#">Facebook</a></li>
+         <li class="mt-3"><a href="#">Twitter</a></li>
+         <li class="mt-3"><a href="#">Pinterest</a></li>
+         <li class="mt-3"><a href="#">Instagram</a></li>
+        </ul>
+       </div>
+      </div> 
+      
+      <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">Get TO Know US</h5>
+        <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+     
+         <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+        
+       </div>
+      </div>
+      <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">TELEGRAM</h5>
+        <div class="footer_1i1 row mx-0">
+         <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+        </div>
+        <div class="footer_1i1 row mx-0">
+         <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+        </div>
+       </div>
+      </div>
+      </div><hr class="mt-4 mb-4">
+      <div class="footer_2 row">
+        <div class="col-md-8">
+       <div class="footer_2l">
+           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+       </div>
+      </div>
+     <!-- <div class="col-md-4">
+       <div class="footer_2r text-end">
+          <ul class="text-uppercase font_13 mb-0">
+           <li class="d-inline-block"><a href="#"> Facebook</a></li>
+         <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Twitter</a></li>
+          <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+          <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Instagram</a></li>
+         </ul>
+       </div>
+      </div> -->
+      </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  
   <script>
     // Function to create and display profile cards
     function displayProfiles(profiles) {
