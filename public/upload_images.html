@@ -34,6 +34,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            width: 500px;
         }
 
         .photo-upload-grid {
@@ -257,7 +258,7 @@
     <header>
         <h1 class="header-title">Photo Upload</h1>
     </header>
-    <div class="photo-upload-container">
+    <div class="photo-upload-container" style="margin: auto;">
         <div class="photo-upload-grid">
             <!-- Photo upload boxes will be dynamically added here -->
         </div>
@@ -268,7 +269,7 @@
     <script>
         const photoStorageKey = 'uploadedPhotos';
         let uploadCounter = 0;
-        const maxPhotos = 6;
+        const maxPhotos = 2;
         let uploadResponses = [];
 
         function getCookie(name) {
