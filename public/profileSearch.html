@@ -101,11 +101,9 @@
         const card = document.createElement('div');
         card.className = 'profile-card';
         card.dataset.profileId = profile.profile_id; // Store profile_id in a data attribute
-
         // Extract first image URL from the comma-separated string
         const imagesArray = profile.images ? profile.images.split(',') : [];
         const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
-
         // Create card content
         card.innerHTML = `
           <img src="${firstImage}" alt="Profile Image">
@@ -124,7 +122,6 @@
         });
       });
     }
-
     // Retrieve data from session storage
     const data = JSON.parse(sessionStorage.getItem('profileData'));
     if (data && data.profile) {

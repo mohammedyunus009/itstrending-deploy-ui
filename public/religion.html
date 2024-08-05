@@ -14,7 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="headerPlaceholder"></div>
+    <!-- <div id="headerPlaceholder"></div> -->
 
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
@@ -54,19 +54,20 @@
             </div>
             <br>
             <div class="form-group">
-                <label for="caste">Caste<span class="required"></span></label>
+                <label for="caste">Caste :<span class="required"></span></label>
                 <select id="caste" name="caste" onchange="updateCountryDropdown()">
                     <option value="">Select Caste</option>
-                    <option value="Sunni">Sunni</option>
                     <option value="Syed">Syed</option>
-                    <option value="Pathan">Pathan</option>
+                    <option value="Pathan/Khan">Pathan/Khan</option>
                     <option value="Sheikh">Sheikh</option>
                     <option value="Reverted Muslims">Reverted Muslims</option>
+                    <option value="Maimun sait">Maimun sait</option>
+                    <option value="Baig">Baig</option>
                     <option value="other">Other</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="FOLLOW">FOLLOW <span class="required"></span></label>
+                <label for="FOLLOW">Follow :<span class="required"></span></label>
                 <select id="FOLLOW" name="FOLLOW" required>
                     <option value="">Select FOLLOW</option>
                     <option value="Dargah-Fateha">Dargah Fateha</option>
@@ -78,14 +79,14 @@
                 </select>
             </div>
             <br>
-            
+            <input type="button" value="Next" onclick="validateForm();" id="nextButton">
+
         </form>
     </div>
-    <input type="button" value="Next" onclick="validateForm();" id="nextButton">
 
-    <div id="footerPlaceholder"></div>
+    <!-- <div id="footerPlaceholder"></div>
     
-    <script src="js/include.js"></script>
+    <script src="js/include.js"></script> -->
     <script>
         function goBack() {
             window.history.back();
@@ -96,8 +97,8 @@
             var follow = document.getElementById('FOLLOW').value;
 
             // Set cookies with the selected values, replacing spaces with underscores
-            if (caste) document.cookie = `field3=${caste.replace(/ /g, '_')}; path=/`;
-            if (follow) document.cookie = `field4=${follow.replace(/ /g, '_')}; path=/`;
+            if (caste) document.cookie = `field4=${caste.replace(/ /g, '_')}; path=/`;
+            if (follow) document.cookie = `field5=${follow.replace(/ /g, '_')}; path=/`;
 
             // Redirect to the next page
             window.location.href = 'verfiy.html';

@@ -151,12 +151,17 @@
     }
 
     function fetchProfileDetails(profileId) {
-      const token = getCookie('token'); // Retrieve the token from cookies
+      const token = getCookie('token');
+      const Email = getCookie('email');
+      const decodedEmail = decodeURIComponent(Email); // Retrieve the token from cookies
       const myHeaders = new Headers();
       myHeaders.append("Authorization", token); // Use the token in the header
       myHeaders.append("Content-Type", "application/json");
-      const raw = JSON.stringify({ "profile_id": profileId });
-      const requestOptions = {
+
+      const raw = JSON.stringify({
+    "profile_id": profileId,
+    "email": decodedEmail // Use the decoded email in the payload
+  });      const requestOptions = {
         method: "POST",
         headers: myHeaders,
         body: raw,
@@ -211,51 +216,105 @@
       const detailsCard = document.createElement('div');
       detailsCard.className = 'profile-details';
       detailsCard.innerHTML = `
-        <div class="detail-item">
-          <span class="label">Name:</span>
-          <span>${profile.field1}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Date of Birth:</span>
-          <span>${profile.field2}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Caste:</span>
-          <span>${profile.field3}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Follow:</span>
-          <span>${profile.field4}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Phone Number:</span>
-          <span>${profile.field5}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Native Language:</span>
-          <span>${profile.field6}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Residence Language:</span>
-          <span>${profile.field7}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Hobbies:</span>
-          <span>${profile.field8}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Country:</span>
-          <span>${profile.field9}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">State:</span>
-          <span>${profile.field10}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">City:</span>
-          <span>${profile.field11}</span>
-        </div>
-      `;
+  <div class="detail-item">
+    <span class="label">Name:</span>
+    <span>${decodeURIComponent(profile.field1)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Date of Birth:</span>
+    <span>${decodeURIComponent(profile.field2)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Revert:</span>
+    <span>${decodeURIComponent(profile.field3)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Gender:</span>
+    <span>${decodeURIComponent(profile.gender)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Caste:</span>
+    <span>${decodeURIComponent(profile.field4)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Follow</span>
+    <span>${decodeURIComponent(profile.field5)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Phone Number:</span>
+    <span>${decodeURIComponent(profile.field6)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Native Language:</span>
+    <span>${decodeURIComponent(profile.field7)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Residence Language:</span>
+    <span>${decodeURIComponent(profile.field8)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Country:</span>
+    <span>${decodeURIComponent(profile.field9)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">State:</span>
+    <span>${decodeURIComponent(profile.field10)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">City:</span>
+    <span>${decodeURIComponent(profile.field11)}</span>
+  </div>
+ 
+  <div class="detail-item">
+    <span class="label">Marital Status:</span>
+    <span>${decodeURIComponent(profile.field13)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Height:</span>
+    <span>${decodeURIComponent(profile.field15)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Weight:</span>
+    <span>${decodeURIComponent(profile.field16)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">AboutMe:</span>
+    <span>${decodeURIComponent(profile.field17)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">About Family:</span>
+    <span>${decodeURIComponent(profile.field18)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Father Name:</span>
+    <span>${decodeURIComponent(profile.field19)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Father Occupation:</span>
+    <span>${decodeURIComponent(profile.field20)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Mother Name:</span>
+    <span>${decodeURIComponent(profile.field21)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Mother Occupation:</span>
+    <span>${decodeURIComponent(profile.field22)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Number Of Brothers:</span>
+    <span>${decodeURIComponent(profile.field23)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">number Of Sister:</span>
+    <span>${decodeURIComponent(profile.field24)}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Salary Range:</span>
+    <span>${decodeURIComponent(profile.field25)}</span>
+  </div>
+`;
+
       detailsContainer.appendChild(detailsCard);
     }
     

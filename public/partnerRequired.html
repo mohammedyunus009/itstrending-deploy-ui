@@ -11,179 +11,92 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* CSS for the Revert Section */
+        #revert2 {
+            margin: 20px 0; /* Space around the section */
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Center items vertically */
+        }
+
+        #revert2 input[type="radio"] {
+            margin-right: 10px; /* Space between radio button and label */
+        }
+
+        #revert2 label {
+            margin-right: 20px; /* Space between labels */
+            font-size: 16px; /* Font size for labels */
+            color: #333; /* Dark grey color for labels */
+            cursor: pointer; /* Pointer cursor for labels */
+        }
+
+        #revert2 input[type="radio"]:checked + label {
+            color: #007bff; /* Highlight color for selected radio button */
+            font-weight: bold; /* Bold text for selected option */
+        }
+
+        input[type=radio], input[type=checkbox] {
+            margin: 0px 9px 0px;
+            margin-top: 1px \9;
+            line-height: normal;
+        }
+    </style>
     <script>
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+
         function validateForm(event) {
-            console.log('validateForm called');
+            console.log('validateForm called'); // Add this to confirm function call
             event.preventDefault(); // Prevent default form submission
-            var height = document.getElementById('height').value.trim();
-            var weight = document.getElementById('weight').value.trim();
-            var caste = document.getElementById('Caste').value;
-            var education = document.getElementById('Education').value.trim();
-            var occupation = document.getElementById('Occupation').value.trim();
-            var follow = document.getElementById('FOLLOW').value;
-            var personal = document.getElementById('Personal').value;
-            var images = document.getElementById('images').files;
-            // Validate each field
-            if (!height) {
-                alert("Please enter height.");
+            
+            var revert2 = document.querySelector('input[name="revert2"]:checked');
+            var partnerRequirement = document.getElementById('partnerRequirement').value.trim();
+            
+            if (!revert2) {
+                alert("Please select a revert option.");
                 return false;
             }
-            if (!weight) {
-                alert("Please enter weight.");
+            if (!partnerRequirement) {
+                alert("Please enter partner requirement.");
                 return false;
             }
-            if (!caste) {
-                alert("Please select a caste.");
-                return false;
-            }
-            if (!education) {
-                alert("Please enter education.");
-                return false;
-            }
-            if (!occupation) {
-                alert("Please enter occupation.");
-                return false;
-            }
-            if (!follow) {
-                alert("Please select a follow option.");
-                return false;
-            }
-            if (!personal) {
-                alert("Please select personal attributes.");
-                return false;
-            }
-            // Store images in cookies
-            if (images.length > 0) {
-                for (let i = 0; i < images.length; i++) {
-                    if (i > 5) break; // Limit to 6 images
-                    let reader = new FileReader();
-                    reader.onload = function(event) {
-                        document.cookie = `images${i}=${encodeURIComponent(event.target.result)}; path=/`;
-                    }
-                    reader.readAsDataURL(images[i]);
-                }
-            }
-            // Set other cookies
-            document.cookie = `field36=${encodeURIComponent(height)}; path=/`;
-            document.cookie = `field37=${encodeURIComponent(weight)}; path=/`;
-            document.cookie = `field38=${encodeURIComponent(caste)}; path=/`;
-            document.cookie = `field39=${encodeURIComponent(education)}; path=/`;
-            document.cookie = `field40=${encodeURIComponent(occupation)}; path=/`;
-            document.cookie = `field41=${encodeURIComponent(follow)}; path=/`;
-            document.cookie = `field42=${encodeURIComponent(personal)}; path=/`;
+
+            // Store values in cookies
+            setCookie('field32', revert2.value, 7);
+            setCookie('field33', partnerRequirement, 7);
+
             // Redirect to the next page
             window.location.href = 'preview.html';
             return false; // Prevent form submission
         }
-        function goBack() {
-            window.history.back();
-        }
+
         // Function to get a cookie by name
         function getCookie(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
-        // Extract values from cookies
-        const field1 = getCookie('field1');
-        const field2 = getCookie('field2');
-        const field3 = getCookie('field3');
-        const field4 = getCookie('field4');
-        const field5 = getCookie('field5');
-        const field6 = getCookie('field6');
-        const field7 = getCookie('field7');
-        const field8 = getCookie('field8');
-        const field9 = getCookie('field9');
-        const field10 = getCookie('field10');
-        const field11 = getCookie('field11');
-        const field12 = getCookie('');
-        // Extract images from cookies
-        const images = [];
-        for (let i = 0; i < 6; i++) {
-            let img = getCookie(`images${i}`);
-            if (img) images.push(img);
-        }
-        // Extract authToken from cookies
-        const authToken = getCookie('token');
-        // Extract gender from cookies
-        const gender = getCookie('gender') || "male"; // Default to 'male' if not found
-        // Construct the request body
-        const requestBody = {
-            "profile_id": "1",
-            "description": "Rajesh",
-            "gender": gender,
-            "images": images,
-            "bio": "There are many factors that contribute to a satisfying marriage/relationship such as; Love, Commitment, Trust, Time, Attention, Good Communication including Listening, Partnership, Tolerance, Patience, Openness, Honesty, Respect, Sharing, Consideration, Generosity, Willingness/Ability to Compromise, Constructive",
-            "field1": field1 || "",
-            "field2": field2 || "",
-            "field3": field3 || "",
-            "field4": field4 || "",
-            "field5": field5 || "",
-            "field6": field6 || "",
-            "field7": field7 || "",
-            "field8": field8 || "",
-            "field9": field9 || "",
-            "field10": field10 || "",
-            "field11": field11 || "",
-            "field12": field12 || ""
-        };
-        // Send POST request
-        fetch('https://api.itstrending.in:5001/api/v1/profiles', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': authToken // Include the authToken directly in the Authorization header
-            },
-            body: JSON.stringify(requestBody)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Extract values from cookies and populate the form
+            const revert2Value = getCookie('revert2');
+            if (revert2Value) {
+                document.querySelector(`input[name="revert2"][value="${revert2Value}"]`).checked = true;
+            }
+            const partnerRequirementValue = getCookie('partnerRequirement');
+            if (partnerRequirementValue) {
+                document.getElementById('partnerRequirement').value = partnerRequirementValue;
+            }
         });
 
-
-        const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-
-// Middleware to parse JSON request bodies
-app.use(bodyParser.json());
-
-// CORS middleware
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
-
-// Define your API endpoints here
-app.get('/login', (req, res) => {
-  // Handle API logic here
-  res.send('API response');
-});
-
-// POST endpoint for profile creation
-app.post('/api/v1/profiles', (req, res) => {
-  const { profile_id, description, gender, images, bio, ...fields } = req.body;
-
-  // Validate request body here if needed
-
-  // Simulate saving profile data (you should replace this with your actual data handling logic)
-  console.log('Profile Data:', { profile_id, description, gender, images, bio, ...fields });
-
-  // Send response
-  res.status(200).json({ success: true, message: 'Profile data received', data: req.body });
-});
-
-// Start your server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
-
+        
     </script>
 </head>
 <body>
@@ -208,60 +121,17 @@ app.listen(PORT, () => {
             <h2>Partner Requirement</h2>
             <form id="maritalForm" onsubmit="validateForm(event)">
                 <div class="form-group">
-                    <label for="height">Height <span class="required"></span></label>
-                    <input type="text" id="height" name="height" required>
+                    <label for="revert2">Revert? </label>
+                    <div id="revert2">
+                        <input type="radio" id="revert2Yes" name="revert2" value="Yes" required> 
+                        <label for="revert2Yes">Yes</label>
+                        <input type="radio" id="revert2No" name="revert2" value="No"> 
+                        <label for="revert2No">No</label>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="weight">Weight <span class="required"></span></label>
-                    <input type="text" id="weight" name="weight" required>
-                </div>
-                <div class="form-group">
-                    <label for="Caste">Caste <span class="required"></span></label>
-                    <select id="Caste" name="Caste" required>
-                        <option value="">Select Caste</option>
-                        <option value="Syed">Syed</option>
-                        <option value="Shaik">Shaik</option>
-                        <option value="Shariff">Shariff</option>
-                        <option value="Khan">Khan/Pathan</option>
-                        <option value="Baig">Baig</option>
-                        <option value="Others">Others</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="Education">Education <span class="required"></span></label>
-                    <textarea id="Education" name="Education" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="Occupation">Occupation <span class="required"></span></label>
-                    <textarea id="Occupation" name="Occupation" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="FOLLOW">FOLLOW <span class="required"></span></label>
-                    <select id="FOLLOW" name="FOLLOW" required>
-                        <option value="">Select FOLLOW</option>
-                        <option value="Dargah-Fateha">Dargah Fateha</option>
-                        <option value="Tabligh">Tabligh</option>
-                        <option value="Jamaat-e-Islam">Jamaat e Islam</option>
-                        <option value="Ahle">Ahle hadees</option>
-                        <option value="Moderate">Moderate Practising Muslims</option>
-                        <option value="Others">Others</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="Personal">Personal Attributes <span class="required"></span></label>
-                    <select id="Personal" name="Personal" required>
-                        <option value="">Select Attributes</option>
-                        <option value="Fair">Fair</option>
-                        <option value="Beautiful">Beautiful</option>
-                        <option value="Deender">Deender</option>
-                        <option value="Practising">Practising</option>
-                        <option value="Namaz">Namaz</option>
-                        <option value="Hijabi">Hijabi</option>
-                    </select>
-                </div>
-                <div class="form-group" style="display: none;">
-                    <label for="images">Upload Images (max 6) <span class="required"></span></label>
-                    <input type="file" id="images" name="images" accept="image/*" multiple>
+                    <label for="partnerRequirement">Partner Requirement <span class="required"></span></label>
+                    <textarea id="partnerRequirement" name="partnerRequirement" required></textarea>
                 </div>
                 <button type="submit" class="button" id="nextButton">NEXT</button>
             </form>
@@ -272,6 +142,3 @@ app.listen(PORT, () => {
     <div id="footerPlaceholder"></div>
 </body>
 </html>
-
-
-
