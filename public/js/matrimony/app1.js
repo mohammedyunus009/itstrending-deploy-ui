@@ -90,6 +90,9 @@ document.addEventListener('DOMContentLoaded', function () {
   
         // Store the token in a cookie with expiration time
         document.cookie = `token=${token}; path=/; Secure; SameSite=Strict; expires=${expirationTime.toUTCString()}`;
+        
+        // Store email in cookies
+        document.cookie = `email=${decodeURIComponent(email)}; path=/; Secure; SameSite=Strict; expires=${expirationTime.toUTCString()}`;
   
         // Show the success popup
         successPopup.style.display = 'flex';
@@ -105,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
   doneButton.addEventListener('click', () => {
     // Redirect to button.html on "Done" button click
-    window.location.href = 'button.html';
+    window.location.href = 'payment2.html';
   });
   
 
@@ -153,58 +156,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     forgotPasswordModal.style.display = 'none';
   });
-});
-
-
-
-
-const express = require('express');
-const app = express();
-const cors = require('cors');
-const bodyParser = require('body-parser');
-
-// Middleware setup
-app.use(cors()); // Use CORS middleware
-app.use(bodyParser.json()); // Parse JSON bodies
-
-// CORS middleware (optional, if you want to customize CORS)
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
-
-// Define API endpoints
-app.post('/api/v1/auth/signup', (req, res) => {
-  const { email, firstname, lastname, password } = req.body;
-  
-  // Implement signup logic here
-  // For example, save user details to the database and respond with success or error
-  
-  res.json({ success: true, message: 'Signup successful' });
-});
-
-app.post('/api/v1/auth/login', (req, res) => {
-  const { email, password } = req.body;
-  
-  // Implement login logic here
-  // For example, verify user credentials and issue a token if successful
-  
-  const token = 'example-token'; // Replace with actual token generation logic
-  res.json({ success: true, data: { token } });
-});
-
-app.post('/api/v1/auth/reset-password', (req, res) => {
-  const { email } = req.body;
-  
-  // Implement password reset logic here
-  // For example, generate a password reset link and send it to the email address
-  
-  res.json({ success: true, message: 'Password reset link sent' });
-});
-
-// Start your server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
 });
