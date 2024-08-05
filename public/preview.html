@@ -1,410 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="css/matrimony/prview.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Profile</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+    <link href="fonts/css/solid.min.css" rel="stylesheet" />
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/prview.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    .profile-container {
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    #profilePhoto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navButton {
+  background-color: #F9F9F9; /* Adjust the button background color */
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+#prevButton {
+  order: 1; /* Ensure prevButton comes first */
+}
+#nextButton {
+  order: 2; /* Ensure nextButton comes last */
+}
+    @media (min-width: 768px) {
         .profile-container {
+            width: 60%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
             padding: 20px;
-            box-sizing: border-box;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
-        
-        @media (min-width: 768px) {
-            .profile-container {
-                width: 60%;
-                margin: 0 auto;
-                border: 1px solid #ccc;
-                padding: 20px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                border-radius: 10px;
-            }
-        }
+    }
 
 
-    </style>
+</style>
 </head>
 <body>
-    <!-- <div id="headerPlaceholder"></div> -->
-
-    <div class="header">
-        <div class="back-button" onclick="goBack()"> < </div>
-        <div class="title">Profile</div>
+  <section id="top" class="bg_brown pt-2 pb-2">
+    <div class="container-xl">
+     <div class="row top_1">
+      <div class="col-md-6">
+       <div class="top_1l mt-1">
+      <ul class="mb-0 font_14">
+         <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+       </ul>
+     </div>
+      </div>
+      <div class="col-md-6">
+       <div class="top_1r text-end">
+        <ul class="mb-0">
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+       </ul>
+     </div>
+      </div>
+     </div>
     </div>
+   </section>
+   
+   <section id="header">
+     <nav class="navbar navbar-expand-md navbar-light p-0 pt-2 pb-2" id="navbar_sticky">
+       <div class="container-xl">
+       <a class="p-0 navbar-brand fw-bold me-0 family_1 col_red" href="index.html">
+         <i class="fa fa-heart me-1 col_brown"></i> ISC<br>
+         <span class="family_2 fw-normal font_14 col_brown">Looking for partner</span>
+       </a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav mb-0 ms-auto">
+         <li class="nav-item">
+           <a class="nav-link " aria-current="page" href="index.html">Home</a>
+         </li> 
+         <li class="nav-item">
+           <a class="nav-link" href="about.html">About </a>
+         </li>
+         <li class="nav-item">
+          <a class="nav-link" href="event.html">Event </a>
+          </li>
+        
+         <li class="nav-item">
+           <a class="nav-link" href="profiile.html">Register </a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="filter.html">Search </a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="contact.html">Contact </a>
+         </li>
+         <li class="nav-item">
+          <a class="nav-link" href="payment.html">Payment </a>
+          </li>
+         <li class="nav-item">
+           <a class="nav-link" href="login.html">Sign In/Sign Up </a>
+         </li>
+         </ul>
+       </div>
+       </div>
+     </nav>
+     </section>
+     <div class="header">
+      <div class="back-button" onclick="goBack()"> < </div>
+      <div class="title">Profile</div>
+  </div>
 
-    <div class="profile-container">
+  <div class="profile-container">
 <div id="profilePhoto" class="resizeable">
-    <button id="prevButton" class="navButton">◀</button>
-    <button id="nextButton" class="navButton">▶</button>
+  <button id="prevButton" class="navButton">◀</button>
+  <button id="nextButton" class="navButton">▶</button>
 </div>
 
-        <div class="profile-details">
-            <h2>Marriage Profile</h2>
-            <div class="detail-item">
-                <label>Name:</label>
-                <span id="name"></span>
-            </div>
-            <div class="detail-item">
-                <label>Date of Birth:</label>
-                <span id="dob"></span>
-            </div>
-            <div class="detail-item">
-                <label>Gender:</label>
-                <span id="gender"></span>
-            </div>
-            <div class="detail-item">
-                <label>Caste:</label>
-                <span id="caste"></span>
-            </div>
-            <div class="detail-item">
-                <label>Follow:</label>
-                <span id="follow"></span>
-            </div>
-            <div class="detail-item">
-                <label>Phone Number:</label>
-                <span id="phoneNumber"></span>
-            </div>
-            <div class="detail-item">
-                <label>Native Language:</label>
-                <span id="nativeLanguage"></span>
-            </div>
-            <div class="detail-item">
-                <label>Residence Language:</label>
-                <span id="residenceLanguage"></span>
-            </div>
-            <div class="detail-item">
-                <label>Hobbies:</label>
-                <span id="Hobbies"></span>
-            </div>
-            <div class="detail-item">
-                <label>Country:</label>
-                <span id="country"></span>
-            </div>
-            <div class="detail-item">
-                <label>State:</label>
-                <span id="state"></span>
-            </div>
-            <div class="detail-item">
-                <label>City:</label>
-                <span id="city"></span>
-            </div>
-            <div class="detail-item">
-                <label>Address:</label>
-                <span id="address"></span>
-            </div>
-            <div class="detail-item">
-                <label>Marital Status:</label>
-                <span id="maritalStatus"></span>
-            </div>
-            <div class="detail-item" id="childrenDetail" style="display: none;">
-                <label>Children:</label>
-                <span id="children"></span>
-            </div>
-            <div class="detail-item">
-                <label>Height:</label>
-                <span id="height"></span>
-            </div>
-            <div class="detail-item">
-                <label>Weight:</label>
-                <span id="weight"></span>
-            </div>
-            <div class="detail-item">
-                <label>About Me:</label>
-                <span id="aboutMe"></span>
-            </div>
-            <div class="detail-item">
-                <label>About Family:</label>
-                <span id="aboutFamily"></span>
-            </div>
-            <!-- <div class="detail-item">
-                <label>Prefered Alliance details:</label>
-                <span id="preferedalliancedetail"></span>
-            </div> -->
-            <!-- <div class="detail-item">
-                <label>Family Type:</label>
-                <span id="familyType"></span>
-            </div> -->
-            <div class="detail-item">
-                <label>Father Name:</label>
-                <span id="fatherName"></span>
-            </div>
-            <div class="detail-item">
-                <label>Father Occupation:</label>
-                <span id="fatherOccupation"></span>
-            </div>
-            <div class="detail-item">
-                <label>Mother Name:</label>
-                <span id="motherName"></span>
-            </div>
-            <div class="detail-item">
-                <label>Mother Occupation:</label>
-                <span id="motherOccupation"></span>
-            </div>
-            <div class="detail-item">
-                <label>Number of Brothers:</label>
-                <span id="numberOfBrothers"></span>
-            </div>
-            <div id="brothersDetailsContainer"></div>
-            <div class="detail-item">
-                <label>Number of Sisters:</label>
-                <span id="numberOfSisters"></span>
-            </div>
-            <div id="sistersDetailsContainer"></div>
-            <div class="detail-item">
-                <label>Education Qualification:</label>
-                <span id="education"></span>
-            </div>
-            <div class="detail-item">
-                <label>Revert:</label>
-                <span id="revert"></span>
-            </div>
-            <div class="detail-item">
-                <label>Monthly Salary Range:</label>
-                <span id="salaryRange"></span>
-            </div>
-            <div class="detail-item">
-                <label>Profession:</label>
-                <span id="profession"></span>
-            </div>
-            <div class="detail-item">
-                <label>Business Type:</label>
-                <span id="businessType"></span>
-            </div>
-            <div class="detail-item">
-                <label>How I Know Kurshid Bhai:</label>
-                <span id="howIKnow"></span>
-            </div>
-            <!-- <div class="detail-item">
-                <label>Partner Height to be:</label>
-                <span id="partner_height"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Weight to be:</label>
-                <span id="partner_weight"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Caste to be:</label>
-                <span id="partner_caste"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Education to be:</label>
-                <span id="partner_education"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Occupation to be:</label>
-                <span id="partner_occupation"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Follow to be:</label>
-                <span id="partner_follow"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Personal Attribute to be:</label>
-                <span id="partner_personal_attribute"></span>
-            </div> -->
-            <div class="footer">
-                <button onclick="continueToFilters()" style="
-                    width: 100%;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    background-color: #333;
-                    color: white;
-                ">Continue</button>
-            </div>
+      <div class="profile-details">
+          <h2>Marriage Profile</h2>
+          <div class="detail-item">
+              <label>Name:</label>
+              <span id="name"></span>
+          </div>
+          <div class="detail-item">
+              <label>Date of Birth:</label>
+              <span id="dob"></span>
+          </div>
+
+          <div class="detail-item">
+            <label>Revert:</label>
+            <span id="revert"></span>
         </div>
+          <div class="detail-item">
+              <label>Gender:</label>
+              <span id="gender"></span>
+          </div>
+          <div class="detail-item">
+              <label>Caste:</label>
+              <span id="caste"></span>
+          </div>
+          <div class="detail-item">
+              <label>Follow:</label>
+              <span id="follow"></span>
+          </div>
+          <div class="detail-item">
+              <label>Phone Number:</label>
+              <span id="phoneNumber"></span>
+          </div>
+          <div class="detail-item">
+              <label>Native Language:</label>
+              <span id="nativeLanguage"></span>
+          </div>
+          <div class="detail-item">
+              <label>Residence Language:</label>
+              <span id="residenceLanguage"></span>
+          </div>
+          <!-- <div class="detail-item">
+              <label>Hobbies:</label>
+              <span id="Hobbies"></span>
+          </div> -->
+          <div class="detail-item">
+              <label>Country:</label>
+              <span id="country"></span>
+          </div>
+          <div class="detail-item">
+              <label>State:</label>
+              <span id="state"></span>
+          </div>
+          <div class="detail-item">
+              <label>City:</label>
+              <span id="city"></span>
+          </div>
+          <div class="detail-item">
+              <label>Address:</label>
+              <span id="address"></span>
+          </div>
+          <div class="detail-item">
+              <label>Marital Status:</label>
+              <span id="maritalStatus"></span>
+          </div>
+          <div class="detail-item" id="childrenDetail" style="display: none;">
+              <label>Children:</label>
+              <span id="children"></span>
+          </div>
+          <div class="detail-item">
+              <label>Height:</label>
+              <span id="height"></span>
+          </div>
+          <div class="detail-item">
+              <label>Weight:</label>
+              <span id="weight"></span>
+          </div>
+          <div class="detail-item">
+              <label>About Me:</label>
+              <span id="aboutMe"></span>
+          </div>
+          <div class="detail-item">
+              <label>About Family:</label>
+              <span id="aboutFamily"></span>
+          </div>
+          
+          <div class="detail-item">
+              <label>Father Name:</label>
+              <span id="fatherName"></span>
+          </div>
+          <div class="detail-item">
+              <label>Father Occupation:</label>
+              <span id="fatherOccupation"></span>
+          </div>
+          <div class="detail-item">
+              <label>Mother Name:</label>
+              <span id="motherName"></span>
+          </div>
+          <div class="detail-item">
+              <label>Mother Occupation:</label>
+              <span id="motherOccupation"></span>
+          </div>
+          <div class="detail-item">
+              <label>Number of Brothers:</label>
+              <span id="numberOfBrothers"></span>
+          </div>
+          <div id="brothersDetailsContainer"></div>
+          <div class="detail-item">
+              <label>Number of Sisters:</label>
+              <span id="numberOfSisters"></span>
+          </div>
+          <div id="sistersDetailsContainer"></div>
+          <div class="detail-item">
+              <label>Education Qualification:</label>
+              <span id="education"></span>
+          </div>
+          
+          <div class="detail-item">
+              <label>Monthly Salary Range:</label>
+              <span id="salaryRange"></span>
+          </div>
+          <div class="detail-item">
+              <label>Profession:</label>
+              <span id="profession"></span>
+          </div>
+          <div class="detail-item">
+              <label>Business Type:</label>
+              <span id="businessType"></span>
+          </div>
+          <div class="detail-item">
+            <label>Partner Revert:</label>
+            <span id="revert2"></span>
+        </div>
+        <div class="detail-item">
+            <label>Partner Requirement:</label>
+            <span id="partnerRequirement"></span>
+        </div>
+
+   <div class="footer">
+        <button onclick="continueToFilters()" style="
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #333;
+            color: white;">Continue</button>
     </div>
-
-    
-
-    <!-- <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div> -->
-    <!-- <script src="js/matrimony/prview.js"></script> -->
-</body>
+    </div>
+    </div>
+    <section id="footer" class="p_3 px_4">
+      <div class="container-fluid">
+        <div class="footer_m bg_light p-4">
+          <div class="footer_1 row">
+          <div class="col-md-3">
+         <div class="footer_1i">
+           <h1 class="mb-3"><a class="family_1" href="index.html"><i class="fa fa-heart me-1 col_brown"></i>  ISC <br>
+     <span class="family_2 fw-normal font_14 col_brown">Lookimg for a patner </span>
+     </a></h1>
+     <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+     <ul class="mb-0"> 
+     <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
+     <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
+     <li class="mt-3"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+     </ul>
+         </div>
+        </div>
+          <div class="col-md-3">
+         <div class="footer_1i">
+            <h5 class="mt-3 mb-4">Social media</h5>
+          <ul class="mb-0">
+            <li><a href="#">Facebook</a></li>
+           <li class="mt-3"><a href="#">Twitter</a></li>
+           <li class="mt-3"><a href="#">Pinterest</a></li>
+           <li class="mt-3"><a href="#">Instagram</a></li>
+          </ul>
+         </div>
+        </div> 
+        
+        <div class="col-md-3">
+         <div class="footer_1i">
+            <h5 class="mt-3 mb-4">Get TO Know US</h5>
+          <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+       
+           <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+          
+         </div>
+        </div>
+        <div class="col-md-3">
+         <div class="footer_1i">
+            <h5 class="mt-3 mb-4">TELEGRAM</h5>
+          <div class="footer_1i1 row mx-0">
+           <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+         <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+         <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+          </div>
+          <div class="footer_1i1 row mx-0">
+           <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+         <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+         <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+          </div>
+         </div>
+        </div>
+        </div><hr class="mt-4 mb-4">
+        <div class="footer_2 row">
+          <div class="col-md-8">
+         <div class="footer_2l">
+             <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+         </div>
+        </div>
+       <!-- <div class="col-md-4">
+         <div class="footer_2r text-end">
+            <ul class="text-uppercase font_13 mb-0">
+             <li class="d-inline-block"><a href="#"> Facebook</a></li>
+           <li class="d-inline-block mx-2 text-muted">|</li>
+            <li class="d-inline-block"><a href="#"> Twitter</a></li>
+            <li class="d-inline-block mx-2 text-muted">|</li>
+            <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+            <li class="d-inline-block mx-2 text-muted">|</li>
+            <li class="d-inline-block"><a href="#"> Instagram</a></li>
+           </ul>
+         </div>
+        </div> -->
+        </div>
+        </div>
+       </div>
+      </div>
+     </section>
+    <div id="footerPlaceholder"></div>
+    <script src="js/prview.js"></script>
 </html>
-
-<script>
-function goBack() {
-    window.history.back();
-}
-
-function continueToFilters() {
-    window.location.href = "filter.html";
-}
-
-// Function to get a cookie value or return "N/A" if not found
-function getCookie(name) {
-    let cookieArr = document.cookie.split(";");
-    for (let i = 0; i < cookieArr.length; i++) {
-        let cookiePair = cookieArr[i].split("=");
-        if (name == cookiePair[0].trim()) {
-            let value = decodeURIComponent(cookiePair[1]);
-            return value ? value : "N/A";
-        }
-    }
-    return "N/A";
-}
-
-// Function to create sibling fields
-function createSiblingFields(containerId, numberOfSiblings, siblingType) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-
-    for (let i = 1; i <= numberOfSiblings; i++) {
-        const siblingContainer = document.createElement('div');
-        siblingContainer.className = 'sibling-details';
-
-        const siblingOccupation = document.createElement('div');
-        siblingOccupation.className = 'detail-item';
-        siblingOccupation.innerHTML = `<label>${siblingType} ${i} Occupation:</label><span id="${siblingType.toLowerCase()}${i}Occupation"></span>`;
-        siblingContainer.appendChild(siblingOccupation);
-
-        const siblingMaritalStatus = document.createElement('div');
-        siblingMaritalStatus.className = 'detail-item';
-        siblingMaritalStatus.innerHTML = `<label>${siblingType} ${i} Marital Status:</label><span id="${siblingType.toLowerCase()}${i}MaritalStatus"></span>`;
-        siblingContainer.appendChild(siblingMaritalStatus);
-
-        container.appendChild(siblingContainer);
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Fetch the data from cookies and set it to the respective fields
-    document.getElementById("name").innerText = getCookie("field1");
-    document.getElementById("dob").innerText = getCookie("field2");
-    document.getElementById("gender").innerText = getCookie("gender");
-    document.getElementById("caste").innerText = getCookie("filed3");
-    document.getElementById("follow").innerText = getCookie("field4");
-    document.getElementById("phoneNumber").innerText = getCookie("field5");
-    document.getElementById("nativeLanguage").innerText = getCookie("field6");
-    document.getElementById("residenceLanguage").innerText = getCookie("field7");
-    document.getElementById("Hobbies").innerText = getCookie("field8");
-    document.getElementById("country").innerText = getCookie("field9");
-    document.getElementById("state").innerText = getCookie("field10");
-    document.getElementById("city").innerText = getCookie("field11");
-    document.getElementById("address").innerText = getCookie("field12");
-    document.getElementById("maritalStatus").innerText = getCookie("field13");
-    document.getElementById("children").innerText = getCookie("field14");
-    document.getElementById("height").innerText = getCookie("field15");
-    document.getElementById("weight").innerText = getCookie("field16");
-    document.getElementById("aboutMe").innerText = getCookie("field17");
-    document.getElementById("aboutFamily").innerText = getCookie("field18");
-    // document.getElementById("familyType").innerText = getCookie("field19");
-    document.getElementById("fatherName").innerText = getCookie("field20");
-    document.getElementById("fatherOccupation").innerText = getCookie("field21");
-    document.getElementById("motherName").innerText = getCookie("field22");
-    document.getElementById("motherOccupation").innerText = getCookie("field23");
-
-    document.getElementById('numberOfBrothers').textContent = getCookie('field24');
-    document.getElementById('numberOfSisters').textContent = getCookie('field25');
-
-    document.getElementById("education").innerText = getCookie("field30");
-    document.getElementById("revert").innerText = getCookie("field31");
-    document.getElementById("salaryRange").innerText = getCookie("field32");
-    document.getElementById("profession").innerText = getCookie("field33");
-    document.getElementById("businessType").innerText = getCookie("field34");
-    document.getElementById("howIKnow").innerText = getCookie("field35");
-    document.getElementById("partner_height").innerText = getCookie("field36");
-    document.getElementById("partner_weight").innerText = getCookie("field37");
-    document.getElementById("partner_caste").innerText = getCookie("field38");
-    document.getElementById("partner_education").innerText = getCookie("field39");
-    document.getElementById("partner_occupation").innerText = getCookie("field40");
-    document.getElementById("partner_follow").innerText = getCookie("field41");
-    document.getElementById("partner_personal_attribute").innerText = getCookie("field42");
-
-    if (numBrothers > 0) {
-        showBrothersDetails(numBrothers);
-    }
-
-    if (numSisters > 0) {
-        showSistersDetails(numSisters);
-    }
-
-    // Show children detail section if the marital status indicates there are children
-    const maritalStatus = getCookie("maritalStatus");
-    if (maritalStatus && maritalStatus.toLowerCase() === 'married' && getCookie("children")) {
-        document.getElementById("childrenDetail").style.display = 'block';
-    }
-    // Create fields for brothers and sisters details
-createSiblingFields('brothersDetailsContainer', getCookie('numberOfBrothers'), 'Brother');
-createSiblingFields('sistersDetailsContainer', getCookie('numberOfSisters'), 'Sister');
-});
-
-
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     // Function to get a cookie by name
-//     function getCookie(name) {
-//         const value = `; ${document.cookie}`;
-//         const parts = value.split(`; ${name}=`);
-//         if (parts.length === 2) return parts.pop().split(';').shift();
-//     }
-
-//     // Get the image URL from the cookies
-//     const imageUrl = getCookie('images0'); // Adjust the cookie name as needed
-
-//     // Set the background image of the profilePhoto div
-//     if (imageUrl) {
-//         const profilePhotoDiv = document.getElementById('profilePhoto');
-//         profilePhotoDiv.style.backgroundImage = `url('${imageUrl}')`;
-//     }
-// });
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Function to get a cookie by name
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-
-    // Function to get image URLs from cookies
-    function getImageUrls() {
-        const urls = [];
-        for (let i = 0; i <= 5; i++) {
-            const url = getCookie(`images${i}`);
-            if (url) {
-                urls.push(url);
-            }
-        }
-        return urls;
-    }
-
-    // Function to update the background image
-    function updateImage(index) {
-        if (imageUrls.length > 0) {
-            profilePhotoDiv.style.backgroundImage = `url('${imageUrls[index]}')`;
-        }
-    }
-
-    // Initialize variables
-    const profilePhotoDiv = document.getElementById('profilePhoto');
-    const prevButton = document.getElementById('prevButton');
-    const nextButton = document.getElementById('nextButton');
-    const imageUrls = getImageUrls();
-    let currentIndex = 0;
-
-    // Set initial image
-    updateImage(currentIndex);
-
-    // Event listeners for navigation buttons
-    prevButton.addEventListener('click', function() {
-        currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
-        updateImage(currentIndex);
-    });
-
-    nextButton.addEventListener('click', function() {
-        currentIndex = (currentIndex + 1) % imageUrls.length;
-        updateImage(currentIndex);
-    });
-});
-
-
-</script>

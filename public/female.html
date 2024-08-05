@@ -1,353 +1,489 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Female Information Page</title>
-    <link rel="stylesheet" href="css/matrimony/malefemale.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer (1).css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Female Information page</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+    <link href="fonts/css/solid.min.css" rel="stylesheet" />
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+   
+    <link rel="stylesheet" href="css/malefemale.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div id="headerPlaceholder"></div>
-
-    <div class="header">
-        <div class="back-button" onclick="goBack()"> &lt; </div>
-        <div class="title">Her Details</div>
-        <div></div> <!-- Empty div for alignment -->
+  <section id="top" class="bg_brown pt-2 pb-2">
+    <div class="container-xl">
+     <div class="row top_1">
+      <div class="col-md-6">
+       <div class="top_1l mt-1">
+      <ul class="mb-0 font_14">
+         <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+       </ul>
+     </div>
+      </div>
+      <div class="col-md-6">
+       <div class="top_1r text-end">
+        <ul class="mb-0">
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+       </ul>
+     </div>
+      </div>
+     </div>
     </div>
-    <div class="user-details">
-        <!-- Choose one of the sizes below by changing the class name -->
-        <div class="user-icon small">
-            <i class="fa-regular fa-user"></i>
-        </div>
-        <!-- <div class="user-icon medium">
-            <i class="fa-regular fa-user"></i>
-        </div> -->
-        <!-- <div class="user-icon large">
-            <i class="fa-regular fa-user"></i>
-        </div> -->
-
-        <h1>Her name</h1>
-        <form action="submit-female-info.html" method="POST" id="femaleForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required><br><br><br>
-            
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" required><br><br><br>
-        </form>
+   </section>
        
-        <br>
-        <div id="photo-preview-container"></div>
+        <section id="header">
+       <nav class="navbar navbar-expand-md navbar-light  p-0 pt-2 pb-2" id="navbar_sticky">
+         <div class="container-xl">
+           <a class="p-0 navbar-brand fw-bold me-0 family_1 col_red" href="index.html"><i class="fa fa-heart me-1 col_brown"></i> ISC<br>
+       <span class="family_2 fw-normal font_14 col_brown">Looking for patner</span>
+       </a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mb-0 ms-auto">
+              <li class="nav-item">
+                 <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+               </li>
+                
+               <li class="nav-item">
+                 <a class="nav-link" href="about.html">About </a>
+               </li> 
+               
+               <!-- <li class="nav-item">
+                 <a class="nav-link" href="services.html">Services </a>
+               </li> -->
+               
+               <li class="nav-item">
+                <a class="nav-link" href="event.html">Event </a>
+                </li>
+                
+               <!-- <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Product
+                 </a>
+                 <ul class="dropdown-menu drop_1" aria-labelledby="navbarDropdown">
+                   <li><a class="dropdown-item" href="shop.html"> Product</a></li>
+                   <li><a class="dropdown-item" href="detail.html"> Product Detail</a></li>
+                   <li><a class="dropdown-item" href="cart.html"> Shopping Cart</a></li>
+                   <li><a class="dropdown-item border-0" href="checkout.html"> Checkout</a></li>
+                 </ul>
+               </li> -->
+<!--                
+               <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Blog
+                 </a>
+                 <ul class="dropdown-menu drop_1" aria-labelledby="navbarDropdown">
+                   <li><a class="dropdown-item" href="blog.html"> Blog</a></li>
+                   <li><a class="dropdown-item border-0" href="blog_detail.html"> Blog Detail</a></li>
+                 </ul>
+               </li> -->
+               
+               <!-- <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Pages
+                 </a>
+                 <ul class="dropdown-menu drop_1" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="story.html"> Story</a></li>
+                    <li><a class="dropdown-item" href="team.html"> Team</a></li>
+                     <li><a class="dropdown-item border-0" href="gallery.html"> Gallery</a></li>
+                 </ul>
+               </li> -->
+               <li class="nav-item">
+                   <a class="nav-link" href="profiile.html">Register </a>
+                 </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="filter.html">Search </a>
+                 </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="contact.html">Contact </a>
+               </li>
+               <li class="nav-item">
+                <a class="nav-link" href="payment.html">Payment </a>
+                </li>
+               <li class="nav-item">
+                <a class="nav-link" href="login.html">Sigin/Sign up </a>
+              </li>
+             </ul>
+             <ul class="navbar-nav mb-0 ms-auto">
+            <!-- <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle dropdown_search nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <i class="fa fa-search"></i>
+                 </a>
+                 <ul class="dropdown-menu drop_2 p-3" aria-labelledby="navbarDropdown">
+                   <li>
+                     <div class="input-group">
+                       <input type="text" class="form-control bg_light border-0 font_13" placeholder="Enter Keyword">
+                       <span class="input-group-btn">
+                           <button class="btn btn-primary bg_brown  p-3 px-4 border-0" type="button">
+                               <i class="fa fa-search"></i> </button>
+                       </span>
+               </div>
+                   </li>
+                 </ul>
+               </li> -->
+               <!-- <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle drop_togn nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <i class="fa fa-shopping-cart"></i>
+                 </a> -->
+                 <ul class="dropdown-menu drop_cart rounded-0 border-0" aria-labelledby="navbarDropdown" style="">
+                               <li>
+                                <div class="drop_1i row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il"><h5 class="fs-6">2 ITEMS</h5></div>
+                                 </div>
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il text-end"><h5 class="fs-6"><a href="cart.html">VIEW CART</a></h5></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i1 row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Nulla Quis</a> <br> <span class="d-inline-block mt-1 font_15">1x - $89.00</span></h6></div>
+                                 </div>
+                                 <div class="col-md-4 col-4">
+                                  <div class="drop_1i1r"><a href="#"><img src="img/52.jpg" class="w-100" alt="abc"></a></div>
+                                 </div>
+                                 <div class="col-md-2 col-2">
+                                  <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i1 row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Eget Nulla</a> <br> <span class="d-inline-block mt-1 font_15">1x - $49.00</span></h6></div>
+                                 </div>
+                                 <div class="col-md-4 col-4">
+                                  <div class="drop_1i1r"><a href="#"><img src="img/53.jpg" class="w-100" alt="abc"></a></div>
+                                 </div>
+                                 <div class="col-md-2 col-2">
+                                  <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i2 row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il"><h5 class="fs-6">TOTAL</h5></div>
+                                 </div>
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il text-end"><h5 class="fs-5">$142.00</h5></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i3 text-center row">
+                                 <div class="col-md-12 col-12">
+                                   <ul class="mb-0">
+                                    <li class="d-inline-block mx-1"><a class="button_2 px-3 pt-2 pb-2 font_14" href="#">View Order</a></li>
+                                    <li class="d-inline-block mx-1"><a class="button_1 px-3 pb-2 pt-2 font_14" href="#">Checkout</a></li>
+                                   </ul>
+                                 </div>
+                                </div>
+                               </li>
+                             </ul>
+               </li>
+             </ul>
+           </div>
+         </div>
+       </nav>
+
+       </section>
+       <div class="header">
+        <div class="back-button" onclick="goBack()"> &lt; </div>
+        <div class="title">His Details</div>
+        <div></div>
     </div>
-        <input type="button" value="Next" onclick="submitForm()" id="nextButton"> <br>
-        
-        <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
+    <div class="container">
+      <div class="user-details">
+          <div class="user-icon small">
+              <i class="fa-regular fa-user"></i>
+          </div>
 
-        function submitForm() {
-            // Validate the form fields
-            var name = document.getElementById('name').value.trim();
-            var dob = document.getElementById('dob').value.trim();
+          <h1>Her name</h1>
+          <form action="submit-male-info.html" method="POST" id="maleForm">
+              <label for="name" style="display: block;">Name:</label>
+              <input type="text" id="name" name="name" required><br><br><br>
+              
+              <label for="dob" style="display: block;">Date of Birth:</label>
+              <input type="date" id="dob" name="dob" required><br><br>
 
-            if (!name || !dob) {
-                alert('Please fill in all fields.');
-                return;
-            }
+              <div class="form-group">
+                  <label for="revert" style="display: block;">Revert? </label>
+                  <div id="revert">
+                      <input type="radio" name="revert" value="Yes" required> Yes
+                      <input type="radio" name="revert" value="No"> No
+                  </div>
+              </div>
+          </form>
+          <input type="button" value="Next" onclick="submitForm()" id="nextButton">
 
-            // Store values in cookies
-            document.cookie = `field1=${name};`;
-            document.cookie = `field2=${dob};`;
+      </div>
+  </div>
+  
+        <br>
+        <br>
+        <br>
+        <br>
+        <section id="footer" class="p_3 px_4">
+          <div class="container-fluid">
+            <div class="footer_m bg_light p-4">
+              <div class="footer_1 row">
+              <div class="col-md-3">
+             <div class="footer_1i">
+               <h1 class="mb-3"><a class="family_1" href="index.html"><i class="fa fa-heart me-1 col_brown"></i>  ISC <br>
+         <span class="family_2 fw-normal font_14 col_brown">Lookimg for a patner </span>
+         </a></h1>
+         <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+         <ul class="mb-0"> 
+         <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
+         <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
+         <li class="mt-3"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+         </ul>
+             </div>
+            </div>
+              <div class="col-md-3">
+             <div class="footer_1i">
+                <h5 class="mt-3 mb-4">Social media</h5>
+              <ul class="mb-0">
+                <li><a href="#">Facebook</a></li>
+               <li class="mt-3"><a href="#">Twitter</a></li>
+               <li class="mt-3"><a href="#">Pinterest</a></li>
+               <li class="mt-3"><a href="#">Instagram</a></li>
+              </ul>
+             </div>
+            </div> 
+            
+            <div class="col-md-3">
+             <div class="footer_1i">
+                <h5 class="mt-3 mb-4">Get TO Know US</h5>
+              <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+           
+               <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+              
+             </div>
+            </div>
+            <div class="col-md-3">
+             <div class="footer_1i">
+                <h5 class="mt-3 mb-4">TELEGRAM</h5>
+              <div class="footer_1i1 row mx-0">
+               <div class="col-md-4 p-0">
+               <div class="footer_1i1l">
+                 <div class="grid clearfix">
+               <figure class="effect-jazz mb-0">
+               <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+               </figure>
+               </div>
+               </div>
+             </div>
+             <div class="col-md-4 p-0">
+               <div class="footer_1i1l">
+                 <div class="grid clearfix">
+               <figure class="effect-jazz mb-0">
+               <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+               </figure>
+               </div>
+               </div>
+             </div>
+             <div class="col-md-4 p-0">
+               <div class="footer_1i1l">
+                 <div class="grid clearfix">
+               <figure class="effect-jazz mb-0">
+               <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+               </figure>
+               </div>
+               </div>
+             </div>
+              </div>
+              <div class="footer_1i1 row mx-0">
+               <div class="col-md-4 p-0">
+               <div class="footer_1i1l">
+                 <div class="grid clearfix">
+               <figure class="effect-jazz mb-0">
+               <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+               </figure>
+               </div>
+               </div>
+             </div>
+             <div class="col-md-4 p-0">
+               <div class="footer_1i1l">
+                 <div class="grid clearfix">
+               <figure class="effect-jazz mb-0">
+               <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+               </figure>
+               </div>
+               </div>
+             </div>
+             <div class="col-md-4 p-0">
+               <div class="footer_1i1l">
+                 <div class="grid clearfix">
+               <figure class="effect-jazz mb-0">
+               <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+               </figure>
+               </div>
+               </div>
+             </div>
+              </div>
+             </div>
+            </div>
+            </div><hr class="mt-4 mb-4">
+            <div class="footer_2 row">
+              <div class="col-md-8">
+             <div class="footer_2l">
+                 <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+             </div>
+            </div>
+           <!-- <div class="col-md-4">
+             <div class="footer_2r text-end">
+                <ul class="text-uppercase font_13 mb-0">
+                 <li class="d-inline-block"><a href="#"> Facebook</a></li>
+               <li class="d-inline-block mx-2 text-muted">|</li>
+                <li class="d-inline-block"><a href="#"> Twitter</a></li>
+                <li class="d-inline-block mx-2 text-muted">|</li>
+                <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+                <li class="d-inline-block mx-2 text-muted">|</li>
+                <li class="d-inline-block"><a href="#"> Instagram</a></li>
+               </ul>
+             </div>
+            </div> -->
+            </div>
+            </div>
+           </div>
+          </div>
+         </section>
+         <script>
+              function submitForm() {
+            // Get form elements
+            const name = document.getElementById('name').value;
+            const dob = document.getElementById('dob').value;
+            const revert = document.querySelector('input[name="revert"]:checked').value;
+
+            // Set cookies
+            document.cookie = `field1=${encodeURIComponent(name)}; path=/`;
+            document.cookie = `field2=${encodeURIComponent(dob)}; path=/`;
+            document.cookie = `field3=${encodeURIComponent(revert)}; path=/`;
 
             // Redirect to the next page
-            window.location.href = "religion.html"; // Change this URL to your actual next page
+            window.location.href = 'religion.html';
         }
-        document.addEventListener('DOMContentLoaded', function() {
-    const maxFileSize = 5 * 1024 * 1024; // 5 MB
-    const maxPhotos = 1;
-    const photoStorageKey = 'uploadedPhotos';
-
-    function setCookie(name, value, days) {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        const expires = "expires=" + date.toUTCString();
-        document.cookie = name + "=" + value + ";" + expires + ";path=/";
-    }
-
-    function getCookie(name) {
-        const nameEQ = name + "=";
-        const ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
-
-    function createPhotoUploadBox(index) {
-        const box = document.createElement('div');
-        box.classList.add('photo-upload-box');
-        box.setAttribute('data-index', index);
-
-        const uploadButton = document.createElement('button');
-        uploadButton.type = 'button';
-        uploadButton.classList.add('photo-upload-button');
-        uploadButton.setAttribute('data-index', index);
-        uploadButton.innerHTML = `
-            <svg width="120px" height="120px" viewBox="0 0 1024 1024" fill-rule="evenodd">
-                <path class="icon-path" d="M861.099 667.008v78.080h77.568v77.653h-77.568v77.141h-77.568v-77.184h-77.611v-77.611h77.611v-78.080h77.568zM617.515 124.16l38.784 116.437h165.973l38.827 38.827v271.659l-38.827 38.357-38.741-38.4v-232.832h-183.125l-38.784-116.48h-176.853l-38.784 116.48h-183.083v426.923h426.667l38.784 38.357-38.784 39.253h-465.493l-38.741-38.869v-504.491l38.784-38.827h165.973l38.827-116.437h288.597zM473.216 318.208c106.837 0 193.92 86.955 193.92 194.048 0 106.923-87.040 194.091-193.92 194.091s-193.963-87.168-193.963-194.091c0-107.093 87.083-194.048 193.963-194.048zM473.216 395.861c-64.213 0-116.352 52.181-116.352 116.395 0 64.256 52.139 116.437 116.352 116.437 64.171 0 116.352-52.181 116.352-116.437 0-64.213-52.181-116.437-116.352-116.437z"></path>
-            </svg>
-            <div class="photo-upload-label"><span>Add photo</span></div>
-            <div class="processing-overlay" style="display: none;">
-                <div class="processing-spinner"></div>
-            </div>
-        `;
-        box.appendChild(uploadButton);
-
-        const deleteButton = document.createElement('button');
-        deleteButton.classList.add('delete-button');
-        deleteButton.innerText = 'X';
-        deleteButton.addEventListener('click', function() {
-            deletePhoto(index);
-        });
-        box.appendChild(deleteButton);
-
-        return box;
-    }
-
-    function handleFileUpload(event) {
-        const files = event.target.files;
-        const index = event.target.getAttribute('data-index');
-        const uploadButton = document.querySelector(`.photo-upload-button[data-index="${index}"]`);
-        const processingOverlay = uploadButton.querySelector('.processing-overlay');
-
-        processingOverlay.style.display = 'flex';
-
-        while (uploadButton.firstChild) {
-            uploadButton.removeChild(uploadButton.firstChild);
-        }
-
-        const file = files[0]; // Handle only the first file
-
-        if (file.size > maxFileSize) {
-            const errorMessage = document.createElement('div');
-            errorMessage.className = 'error-message';
-            errorMessage.innerText = `Error: ${file.name} exceeds 5 MB limit.`;
-            uploadButton.appendChild(errorMessage);
-            processingOverlay.style.display = 'none';
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            uploadButton.appendChild(img);
-            processingOverlay.style.display = 'none';
-
-            savePhotoToCookies(index, e.target.result);
-            createPhotoPreview(e.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
-
-    function savePhotoToCookies(index, dataUrl) {
-        const photos = JSON.parse(getCookie(photoStorageKey) || '[]');
-        photos[index] = dataUrl;
-        setCookie(photoStorageKey, JSON.stringify(photos), 7); // Store for 7 days
-    }
-
-    function loadPhotosFromCookies() {
-        const photos = JSON.parse(getCookie(photoStorageKey) || '[]');
-        photos.forEach((dataUrl, index) => {
-            if (dataUrl) {
-                const uploadButton = document.querySelector(`.photo-upload-button[data-index="${index}"]`);
-                if (uploadButton) {
-                    const img = document.createElement('img');
-                    img.src = dataUrl;
-                    uploadButton.innerHTML = '';
-                    uploadButton.appendChild(img);
-                }
-                createPhotoPreview(dataUrl);
-            }
-        });
-    }
-
-    function createPhotoPreview(dataUrl) {
-        const previewContainer = document.getElementById('photo-preview-container');
-        const preview = document.createElement('div');
-        preview.classList.add('photo-preview');
-        preview.style.backgroundImage = `url(${dataUrl})`;
-
-        const deleteButton = document.createElement('button');
-        deleteButton.classList.add('delete-preview-button');
-        deleteButton.innerText = 'X';
-        deleteButton.addEventListener('click', function() {
-            previewContainer.removeChild(preview);
-            removePhotoFromCookies(dataUrl);
-        });
-        preview.appendChild(deleteButton);
-
-        previewContainer.appendChild(preview);
-    }
-
-    function removePhotoFromCookies(dataUrl) {
-        const photos = JSON.parse(getCookie(photoStorageKey) || '[]');
-        const newPhotos = photos.filter(photo => photo !== dataUrl);
-        setCookie(photoStorageKey, JSON.stringify(newPhotos), 7);
-    }
-
-    function deletePhoto(index) {
-        const photoUploadBox = document.querySelector(`.photo-upload-box[data-index="${index}"]`);
-        if (photoUploadBox) {
-            photoUploadBox.parentNode.removeChild(photoUploadBox);
-            const dataUrl = getCookie(photoStorageKey)[index];
-            removePhotoFromCookies(dataUrl);
-        }
-    }
-
-    function initializePhotoUpload() {
-        const photoUploadBoxes = document.getElementById('photo-upload-boxes');
-        for (let i = 0; i < maxPhotos; i++) {
-            const box = createPhotoUploadBox(i);
-            photoUploadBoxes.appendChild(box);
-
-            const uploadButton = box.querySelector('.photo-upload-button');
-            uploadButton.addEventListener('click', function() {
-                document.getElementById('file-input').setAttribute('data-index', i);
-                document.getElementById('file-input').click();
-            });
-        }
-
-        document.getElementById('file-input').addEventListener('change', function(event) {
-            const index = this.getAttribute('data-index');
-            handleFileUpload(event, index);
-        });
-    }
-
-    initializePhotoUpload();
-    loadPhotosFromCookies();
-});
-    </script>
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-        }
-        .header .back-button {
-            cursor: pointer;
-        }
-        .header .title {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .user-details {
-            padding: 20px;
-        }
-        .user-icon.small {
-            font-size: 50px;
-        }
-        #photo-preview-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .photo-preview {
-            width: 100px;
-            height: 100px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .delete-preview-button {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: red;
-            border: none;
-            color: white;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .photo-upload-box {
-            display: inline-block;
-            width: 120px;
-            height: 120px;
-            border: 1px solid #ccc;
-            margin-right: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-        .photo-upload-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .photo-upload-button {
-            width: 100%;
-            height: 100%;
-            background-color: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-        }
-        .photo-upload-button .processing-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        .photo-upload-button .processing-spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #333;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .delete-button {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: red;
-            border: none;
-            color: white;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-    </style>
+      </script>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+      }
+      .header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background-color: #333;
+          color: white;
+          padding: 10px;
+      }
+      .header .back-button {
+          cursor: pointer;
+      }
+      .header .title {
+          font-size: 18px;
+          font-weight: bold;
+      }
+      .user-details {
+          padding: 20px;
+      }
+      .user-icon.small {
+          font-size: 50px;
+      }
+      #photo-preview-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+      }
+      .photo-preview {
+          width: 100px;
+          height: 100px;
+          background-size: cover;
+          background-position: center;
+          position: relative;
+      }
+      .delete-preview-button {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          background: red;
+          border: none;
+          color: white;
+          border-radius: 50%;
+          cursor: pointer;
+      }
+      .photo-upload-box {
+          display: inline-block;
+          width: 120px;
+          height: 120px;
+          border: 1px solid #ccc;
+          margin-right: 10px;
+          position: relative;
+          overflow: hidden;
+      }
+      .photo-upload-box img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+      }
+      .photo-upload-button {
+          width: 100%;
+          height: 100%;
+          background-color: #eee;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          position: relative;
+      }
+      .photo-upload-button .processing-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+      }
+      .photo-upload-button .processing-spinner {
+          border: 4px solid rgba(0, 0, 0, 0.1);
+          border-left-color: #333;
+          border-radius: 50%;
+          width: 24px;
+          height: 24px;
+          animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+      .delete-button {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          background: red;
+          border: none;
+          color: white;
+          border-radius: 50%;
+          cursor: pointer;
+      }
+  </style>
 </body>
 </html>
+
