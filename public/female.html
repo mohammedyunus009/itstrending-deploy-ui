@@ -15,9 +15,47 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
+    <style>
+        /* CSS for the Revert Section */
+#revert {
+    margin: 20px 0; /* Space around the section */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+}
+
+#revert input[type="radio"] {
+    margin-right: 10px; /* Space between radio button and label */
+}
+
+#revert label {
+    margin-right: 20px; /* Space between labels */
+    font-size: 16px; /* Font size for labels */
+    color: #333; /* Dark grey color for labels */
+    cursor: pointer; /* Pointer cursor for labels */
+}
+
+#revert input[type="radio"]:checked + label {
+    color: #007bff; /* Highlight color for selected radio button */
+    font-weight: bold; /* Bold text for selected option */
+}
+input[type=radio], input[type=checkbox] {
+    margin: 0px 9px 0px;
+    margin-top: 1px \9;
+    line-height: normal;
+}
+
+    </style>
 </head>
 <body>
-    <div id="headerPlaceholder"></div>
+    <!-- <div id="headerPlaceholder"></div> -->
 
     <div class="header">
         <div class="back-button" onclick="goBack()"> &lt; </div>
@@ -29,325 +67,64 @@
         <div class="user-icon small">
             <i class="fa-regular fa-user"></i>
         </div>
-        <!-- <div class="user-icon medium">
-            <i class="fa-regular fa-user"></i>
-        </div> -->
-        <!-- <div class="user-icon large">
-            <i class="fa-regular fa-user"></i>
-        </div> -->
+
 
         <h1>Her name</h1>
         <form action="submit-female-info.html" method="POST" id="femaleForm">
-            <label for="name">Name:</label>
+            <label for="name" style="display: block;">Name:</label>
             <input type="text" id="name" name="name" required><br><br><br>
             
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" required><br><br><br>
+            <label for="dob" style="display: block;">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required><br><br>
+
+            <div class="form-group">
+                <label for="revert" style="display: block;">Revert? </label>
+                <div id="revert">
+                    <input type="radio" name="revert" value="Yes" required> Yes
+                    <input type="radio" name="revert" value="No"> No
+                </div>
+            </div>
+            <input type="button" value="Next" onclick="submitForm()" id="nextButton"> <br>
+
         </form>
-       
-        <br>
-        <div id="photo-preview-container"></div>
     </div>
-        <input type="button" value="Next" onclick="submitForm()" id="nextButton"> <br>
         
-        <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div>
+    <!-- <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div> -->
     <script>
         function goBack() {
             window.history.back();
+        }
+
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
 
         function submitForm() {
             // Validate the form fields
             var name = document.getElementById('name').value.trim();
             var dob = document.getElementById('dob').value.trim();
+            var revert = document.querySelector('input[name="revert"]:checked');
 
-            if (!name || !dob) {
+            if (!name || !dob || !revert) {
                 alert('Please fill in all fields.');
                 return;
             }
 
             // Store values in cookies
-            document.cookie = `field1=${name};`;
-            document.cookie = `field2=${dob};`;
+            setCookie('field1', name, 7);
+            setCookie('field2', dob, 7);
+            setCookie('field30', revert.value, 7);
 
             // Redirect to the next page
             window.location.href = "religion.html"; // Change this URL to your actual next page
         }
-        document.addEventListener('DOMContentLoaded', function() {
-    const maxFileSize = 5 * 1024 * 1024; // 5 MB
-    const maxPhotos = 1;
-    const photoStorageKey = 'uploadedPhotos';
-
-    function setCookie(name, value, days) {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        const expires = "expires=" + date.toUTCString();
-        document.cookie = name + "=" + value + ";" + expires + ";path=/";
-    }
-
-    function getCookie(name) {
-        const nameEQ = name + "=";
-        const ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
-
-    function createPhotoUploadBox(index) {
-        const box = document.createElement('div');
-        box.classList.add('photo-upload-box');
-        box.setAttribute('data-index', index);
-
-        const uploadButton = document.createElement('button');
-        uploadButton.type = 'button';
-        uploadButton.classList.add('photo-upload-button');
-        uploadButton.setAttribute('data-index', index);
-        uploadButton.innerHTML = `
-            <svg width="120px" height="120px" viewBox="0 0 1024 1024" fill-rule="evenodd">
-                <path class="icon-path" d="M861.099 667.008v78.080h77.568v77.653h-77.568v77.141h-77.568v-77.184h-77.611v-77.611h77.611v-78.080h77.568zM617.515 124.16l38.784 116.437h165.973l38.827 38.827v271.659l-38.827 38.357-38.741-38.4v-232.832h-183.125l-38.784-116.48h-176.853l-38.784 116.48h-183.083v426.923h426.667l38.784 38.357-38.784 39.253h-465.493l-38.741-38.869v-504.491l38.784-38.827h165.973l38.827-116.437h288.597zM473.216 318.208c106.837 0 193.92 86.955 193.92 194.048 0 106.923-87.040 194.091-193.92 194.091s-193.963-87.168-193.963-194.091c0-107.093 87.083-194.048 193.963-194.048zM473.216 395.861c-64.213 0-116.352 52.181-116.352 116.395 0 64.256 52.139 116.437 116.352 116.437 64.171 0 116.352-52.181 116.352-116.437 0-64.213-52.181-116.437-116.352-116.437z"></path>
-            </svg>
-            <div class="photo-upload-label"><span>Add photo</span></div>
-            <div class="processing-overlay" style="display: none;">
-                <div class="processing-spinner"></div>
-            </div>
-        `;
-        box.appendChild(uploadButton);
-
-        const deleteButton = document.createElement('button');
-        deleteButton.classList.add('delete-button');
-        deleteButton.innerText = 'X';
-        deleteButton.addEventListener('click', function() {
-            deletePhoto(index);
-        });
-        box.appendChild(deleteButton);
-
-        return box;
-    }
-
-    function handleFileUpload(event) {
-        const files = event.target.files;
-        const index = event.target.getAttribute('data-index');
-        const uploadButton = document.querySelector(`.photo-upload-button[data-index="${index}"]`);
-        const processingOverlay = uploadButton.querySelector('.processing-overlay');
-
-        processingOverlay.style.display = 'flex';
-
-        while (uploadButton.firstChild) {
-            uploadButton.removeChild(uploadButton.firstChild);
-        }
-
-        const file = files[0]; // Handle only the first file
-
-        if (file.size > maxFileSize) {
-            const errorMessage = document.createElement('div');
-            errorMessage.className = 'error-message';
-            errorMessage.innerText = `Error: ${file.name} exceeds 5 MB limit.`;
-            uploadButton.appendChild(errorMessage);
-            processingOverlay.style.display = 'none';
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            uploadButton.appendChild(img);
-            processingOverlay.style.display = 'none';
-
-            savePhotoToCookies(index, e.target.result);
-            createPhotoPreview(e.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
-
-    function savePhotoToCookies(index, dataUrl) {
-        const photos = JSON.parse(getCookie(photoStorageKey) || '[]');
-        photos[index] = dataUrl;
-        setCookie(photoStorageKey, JSON.stringify(photos), 7); // Store for 7 days
-    }
-
-    function loadPhotosFromCookies() {
-        const photos = JSON.parse(getCookie(photoStorageKey) || '[]');
-        photos.forEach((dataUrl, index) => {
-            if (dataUrl) {
-                const uploadButton = document.querySelector(`.photo-upload-button[data-index="${index}"]`);
-                if (uploadButton) {
-                    const img = document.createElement('img');
-                    img.src = dataUrl;
-                    uploadButton.innerHTML = '';
-                    uploadButton.appendChild(img);
-                }
-                createPhotoPreview(dataUrl);
-            }
-        });
-    }
-
-    function createPhotoPreview(dataUrl) {
-        const previewContainer = document.getElementById('photo-preview-container');
-        const preview = document.createElement('div');
-        preview.classList.add('photo-preview');
-        preview.style.backgroundImage = `url(${dataUrl})`;
-
-        const deleteButton = document.createElement('button');
-        deleteButton.classList.add('delete-preview-button');
-        deleteButton.innerText = 'X';
-        deleteButton.addEventListener('click', function() {
-            previewContainer.removeChild(preview);
-            removePhotoFromCookies(dataUrl);
-        });
-        preview.appendChild(deleteButton);
-
-        previewContainer.appendChild(preview);
-    }
-
-    function removePhotoFromCookies(dataUrl) {
-        const photos = JSON.parse(getCookie(photoStorageKey) || '[]');
-        const newPhotos = photos.filter(photo => photo !== dataUrl);
-        setCookie(photoStorageKey, JSON.stringify(newPhotos), 7);
-    }
-
-    function deletePhoto(index) {
-        const photoUploadBox = document.querySelector(`.photo-upload-box[data-index="${index}"]`);
-        if (photoUploadBox) {
-            photoUploadBox.parentNode.removeChild(photoUploadBox);
-            const dataUrl = getCookie(photoStorageKey)[index];
-            removePhotoFromCookies(dataUrl);
-        }
-    }
-
-    function initializePhotoUpload() {
-        const photoUploadBoxes = document.getElementById('photo-upload-boxes');
-        for (let i = 0; i < maxPhotos; i++) {
-            const box = createPhotoUploadBox(i);
-            photoUploadBoxes.appendChild(box);
-
-            const uploadButton = box.querySelector('.photo-upload-button');
-            uploadButton.addEventListener('click', function() {
-                document.getElementById('file-input').setAttribute('data-index', i);
-                document.getElementById('file-input').click();
-            });
-        }
-
-        document.getElementById('file-input').addEventListener('change', function(event) {
-            const index = this.getAttribute('data-index');
-            handleFileUpload(event, index);
-        });
-    }
-
-    initializePhotoUpload();
-    loadPhotosFromCookies();
-});
     </script>
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-        }
-        .header .back-button {
-            cursor: pointer;
-        }
-        .header .title {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .user-details {
-            padding: 20px;
-        }
-        .user-icon.small {
-            font-size: 50px;
-        }
-        #photo-preview-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .photo-preview {
-            width: 100px;
-            height: 100px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .delete-preview-button {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: red;
-            border: none;
-            color: white;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .photo-upload-box {
-            display: inline-block;
-            width: 120px;
-            height: 120px;
-            border: 1px solid #ccc;
-            margin-right: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-        .photo-upload-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .photo-upload-button {
-            width: 100%;
-            height: 100%;
-            background-color: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-        }
-        .photo-upload-button .processing-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        .photo-upload-button .processing-spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #333;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .delete-button {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: red;
-            border: none;
-            color: white;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-    </style>
 </body>
 </html>

@@ -10,10 +10,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
 </head>
 <body>
-    <div id="headerPlaceholder"></div>
-
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
         <div class="title">Family Details</div>
@@ -27,125 +33,116 @@
 
         <div class="dropdown-container">
             <form id="family-details-form" onsubmit="return submitForm()">
-                <label for="family-type">Family Type</label>
-                <select id="family-type" name="family-type" required>
-                    <option value="">Select Family Type</option>
-                    <option value="Small">Small</option>
-                    <option value="Big">Big</option>
-                    <option value="Joint">Joint</option>
-                </select>
+                
+
+                <label for="father-name" style="display: block;">Father's Name :</label>
+                <input type="text" id="father-name" name="father-name" placeholder="Father's Name" required>
                 <br><br>
 
-                <label for="father-name">Father's Name</label>
-                <input type="text" id="father-name" name="father-name" placeholder="Father's Name">
+                <label for="father-occupation" style="display: block;">Father's Occupation :</label>
+                <input type="text" id="father-occupation" name="father-occupation" placeholder="Father's Occupation" required>
                 <br><br>
 
-                <label for="father-occupation">Father's Occupation</label>
-                <input type="text" id="father-occupation" name="father-occupation" placeholder="Father's Occupation">
+                <label for="mother-name" style="display: block;">Mother's Name :</label>
+                <input type="text" id="mother-name" name="mother-name" placeholder="Mother's Name" required>
                 <br><br>
 
-                <label for="mother-name">Mother's Name</label>
-                <input type="text" id="mother-name" name="mother-name" placeholder="Mother's Name">
+                <label for="mother-occupation" style="display: block;">Mother's Occupation :</label>
+                <input type="text" id="mother-occupation" name="mother-occupation" placeholder="Mother's Occupation" required>
                 <br><br>
 
-                <label for="mother-occupation">Mother's Occupation</label>
-                <input type="text" id="mother-occupation" name="mother-occupation" placeholder="Mother's Occupation">
-                <br><br>
-
-                <label for="num-brothers">Number of Brothers</label>
+                <!-- <label for="num-brothers" style="display: block;">Number of Brothers :</label>
                 <select id="num-brothers" name="num-brothers" onchange="showBrothersDetails()">
-                    <option value="No Brothers">No Brothers</option>
+                    <option value="0">No Brothers :</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                </select>
+                </select><br><br>
                 <div id="brothers-details"></div>
 
-                <label for="num-sisters">Number of Sisters</label>
+                <label for="num-sisters" style="display: block;">Number of Sisters :</label>
                 <select id="num-sisters" name="num-sisters" onchange="showSistersDetails()">
-                    <option value="No Sisters">No Sisters</option>
+                    <option value="0">No Sisters :</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                </select>
-                <div id="sisters-details"></div>
-                
+                </select><br><br>
+                <div id="sisters-details"></div><br> -->
+                <input type="button" value="Next" onclick="submitForm()" id="nextButton">
             </form>
         </div>
     </div>
-    <input type="button" value="Next" onclick="submitForm()" id="nextButton">
-
-
-    <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div>
 
     <script>
         function goBack() {
-            window.location.href = 'salary.html';
+            window.history.back();
         }
-        function createSiblingFields(containerId, num) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-            for (let i = 1; i <= num; i++) {
-                container.innerHTML += `
-                    <h4>Details for ${i}${num > 1 ? 'th' : 'st'} Sibling</h4>
-                    <label for="${containerId}-occupation-${i}">${containerId === 'brothers-details' ? 'Brother' : 'Sister'} ${i}'s Occupation</label>
-                    <input type="text" id="${containerId}-occupation-${i}" name="${containerId}-occupation-${i}" placeholder="${containerId === 'brothers-details' ? 'Brother' : 'Sister'} ${i}'s Occupation">
-                    <br><br>
-                    <label for="${containerId}-marital-status-${i}">${containerId === 'brothers-details' ? 'Brother' : 'Sister'} ${i}'s Marital Status</label>
-                    <input type="text" id="${containerId}-marital-status-${i}" name="${containerId}-marital-status-${i}" placeholder="${containerId === 'brothers-details' ? 'Brother' : 'Sister'} ${i}'s Marital Status">
-                    <br><br>
-                `;
-            }
-        }
-        function showBrothersDetails() {
-            const numBrothers = parseInt(document.getElementById('num-brothers').value);
-            if (numBrothers > 0) {
-                createSiblingFields('brothers-details', numBrothers);
-            } else {
-                document.getElementById('brothers-details').innerHTML = '';
-            }
-        }
-        function showSistersDetails() {
-            const numSisters = parseInt(document.getElementById('num-sisters').value);
-            if (numSisters > 0) {
-                createSiblingFields('sisters-details', numSisters);
-            } else {
-                document.getElementById('sisters-details').innerHTML = '';
-            }
-        }
+        
+        // function createSiblingFields(containerId, num) {
+        //     const container = document.getElementById(containerId);
+        //     container.innerHTML = '';
+        //     for (let i = 1; i <= num; i++) {
+        //         container.innerHTML += `
+        //             <h4>Details for ${i}${num > 1 ? 'th' : 'st'} ${containerId === 'brothers-details' ? 'Brother' : 'Sister'}</h4>
+        //             <label for="${containerId}-occupation-${i}">${containerId === 'brothers-details' ? 'Brother' : 'Sister'} ${i}'s Occupation</label>
+        //             <input type="text" id="${containerId}-occupation-${i}" name="${containerId}-occupation-${i}" placeholder="${containerId === 'brothers-details' ? 'Brother' : 'Sister'} ${i}'s Occupation" required>
+        //             <br><br>
+        //             <label for="${containerId}-marital-status-${i}">${containerId === 'brothers-details' ? 'Brother' : 'Sister'} ${i}'s Marital Status</label>
+        //             <input type="text" id="${containerId}-marital-status-${i}" name="${containerId}-marital-status-${i}" placeholder="${containerId === 'brothers-details' ? 'Brother' : 'Sister'} ${i}'s Marital Status" required>
+        //             <br><br>
+        //         `;
+        //     }
+        // }
+        
+        // function showBrothersDetails() {
+        //     const numBrothers = parseInt(document.getElementById('num-brothers').value);
+        //     if (numBrothers > 0) {
+        //         createSiblingFields('brothers-details', numBrothers);
+        //     } else {
+        //         document.getElementById('brothers-details').innerHTML = '';
+        //     }
+        // }
+        
+        // function showSistersDetails() {
+        //     const numSisters = parseInt(document.getElementById('num-sisters').value);
+        //     if (numSisters > 0) {
+        //         createSiblingFields('sisters-details', numSisters);
+        //     } else {
+        //         document.getElementById('sisters-details').innerHTML = '';
+        //     }
+        // }
+        
         function submitForm() {
-            // Handle form data
-            let familyType = document.getElementById('family-type').value;
+            // Collect form data
             let fatherName = document.getElementById('father-name').value;
             let fatherOccupation = document.getElementById('father-occupation').value;
             let motherName = document.getElementById('mother-name').value;
             let motherOccupation = document.getElementById('mother-occupation').value;
-            let numBrothers = document.getElementById('num-brothers').value;
-            let numSisters = document.getElementById('num-sisters').value;
+            // let numBrothers = parseInt(document.getElementById('num-brothers').value);
+            // let numSisters = parseInt(document.getElementById('num-sisters').value);
+            
             // Collect brothers' details
-            let brothersOccupation = [];
-            let brothersMaritalStatus = [];
-            for (let i = 1; i <= numBrothers; i++) {
-                brothersOccupation.push(document.getElementById(`brothers-details-occupation-${i}`)?.value || '');
-                brothersMaritalStatus.push(document.getElementById(`brothers-details-marital-status-${i}`)?.value || '');
-            }
+            // let brothersOccupation = [];
+            // let brothersMaritalStatus = [];
+            // for (let i = 1; i <= numBrothers; i++) {
+            //     brothersOccupation.push(document.getElementById(`brothers-details-occupation-${i}`).value);
+            //     brothersMaritalStatus.push(document.getElementById(`brothers-details-marital-status-${i}`).value);
+            // }
+            
             // Collect sisters' details
-            let sistersOccupation = [];
-            let sistersMaritalStatus = [];
-            for (let i = 1; i <= numSisters; i++) {
-                sistersOccupation.push(document.getElementById(`sisters-details-occupation-${i}`)?.value || '');
-                sistersMaritalStatus.push(document.getElementById(`sisters-details-marital-status-${i}`)?.value || '');
-            }
+            // let sistersOccupation = [];
+            // let sistersMaritalStatus = [];
+            // for (let i = 1; i <= numSisters; i++) {
+            //     sistersOccupation.push(document.getElementById(`sisters-details-occupation-${i}`).value);
+            //     sistersMaritalStatus.push(document.getElementById(`sisters-details-marital-status-${i}`).value);
+            // }
+            
             // Validate form fields
-            if (familyType === "") {
-                alert("Please select your family type.");
-                return false;
-            }
+            
             if (!fatherName.trim()) {
                 alert("Please enter your father's name.");
                 return false;
@@ -162,58 +159,87 @@
                 alert("Please enter your mother's occupation.");
                 return false;
             }
-            if (numBrothers !== "No Brothers" && (brothersOccupation.some(o => !o.trim()) || brothersMaritalStatus.some(s => !s.trim()))) {
-                alert("Please enter your brothers' occupation and marital status.");
-                return false;
-            }
-            if (numSisters !== "No Sisters" && (sistersOccupation.some(o => !o.trim()) || sistersMaritalStatus.some(s => !s.trim()))) {
-                alert("Please enter your sisters' occupation and marital status.");
-                return false;
-            }
+            // if (numBrothers > 0 && (brothersOccupation.some(o => !o.trim()) || brothersMaritalStatus.some(s => !s.trim()))) {
+            //     alert("Please enter your brothers' occupation and marital status.");
+            //     return false;
+            // }
+            // if (numSisters > 0 && (sistersOccupation.some(o => !o.trim()) || sistersMaritalStatus.some(s => !s.trim()))) {
+            //     alert("Please enter your sisters' occupation and marital status.");
+            //     return false;
+            // }
+            
             // Set cookies with the entered values
-            setCookie('field19', familyType, 7);
-            setCookie('field20', fatherName, 7);
-            setCookie('field21', fatherOccupation, 7);
-            setCookie('field22', motherName, 7);
-            setCookie('field23', motherOccupation, 7);
-            setCookie('field24', numBrothers, 7);
-            setCookie('field25', numSisters, 7);
-            brothersOccupation.forEach((occ, index) => {
-                setCookie(`field26${index + 1}Occupation`, occ, 7);
-            });
-            brothersMaritalStatus.forEach((status, index) => {
-                setCookie(`field27${index + 1}MaritalStatus`, status, 7);
-            });
-            sistersOccupation.forEach((occ, index) => {
-                setCookie(`field28${index + 1}Occupation`, occ, 7);
-            });
-            sistersMaritalStatus.forEach((status, index) => {
-                setCookie(`field29${index + 1}MaritalStatus`, status, 7);
-            });
-            // Navigate to education.html
-            window.location.href = 'education.html';
-            return false; // Prevent the default form submission
+            setCookie('field19', fatherName, 7);
+            setCookie('field20', fatherOccupation, 7);
+            setCookie('field21', motherName, 7);
+            setCookie('field22', motherOccupation, 7);
+            // setCookie('field23', numBrothers, 7);
+            // setCookie('field24', numSisters, 7);
+            // brothersOccupation.forEach((occ, index) => {
+            //     setCookie(`brother${index + 1}Occupation`, occ, 7);
+            // });
+            // brothersMaritalStatus.forEach((status, index) => {
+            //     setCookie(`brother${index + 1}MaritalStatus`, status, 7);
+            // });
+            // sistersOccupation.forEach((occ, index) => {
+            //     setCookie(`sister${index + 1}Occupation`, occ, 7);
+            // });
+            // sistersMaritalStatus.forEach((status, index) => {
+            //     setCookie(`sister${index + 1}MaritalStatus`, status, 7);
+            // });
+
+            // Redirect to the next page
+            window.location.href = "salary.html";
+            return false;
         }
-        function setCookie(cname, cvalue, exdays) {
-            const d = new Date();
-            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-            let expires = "expires=" + d.toUTCString();
-            document.cookie = cname + "=" + encodeURIComponent(cvalue) + ";" + expires + ";path=/";
+        
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
-        function loadFormData() {
-            // Set default empty values
-            document.getElementById('family-type').value = "";
-            document.getElementById('father-name').value = "";
-            document.getElementById('father-occupation').value = "";
-            document.getElementById('mother-name').value = "";
-            document.getElementById('mother-occupation').value = "";
-            document.getElementById('num-brothers').value = "No Brothers";
-            document.getElementById('num-sisters').value = "No Sisters";
-            // Ensure dynamic fields are cleared
-            document.getElementById('brothers-details').innerHTML = '';
-            document.getElementById('sisters-details').innerHTML = '';
+        
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
         }
-        document.addEventListener("DOMContentLoaded", loadFormData);
+
+        $(document).ready(function() {
+            const fields = ["field19", "field20", "field21", "field22"];
+            fields.forEach(field => {
+                let value = getCookie(field);
+                if (value) {
+                    $(`[name=${field}]`).val(value);
+                }
+            });
+            
+            // let numBrothers = parseInt(getCookie('field23')) || 0;
+            // let numSisters = parseInt(getCookie('field24')) || 0;
+            // if (numBrothers > 0) {
+            //     createSiblingFields('brothers-details', numBrothers);
+            //     for (let i = 1; i <= numBrothers; i++) {
+            //         $(`#brothers-details-occupation-${i}`).val(getCookie(`brother${i}Occupation`));
+            //         $(`#brothers-details-marital-status-${i}`).val(getCookie(`brother${i}MaritalStatus`));
+            //     }
+            // }
+            // if (numSisters > 0) {
+            //     createSiblingFields('sisters-details', numSisters);
+            //     for (let i = 1; i <= numSisters; i++) {
+            //         $(`#sisters-details-occupation-${i}`).val(getCookie(`sister${i}Occupation`));
+            //         $(`#sisters-details-marital-status-${i}`).val(getCookie(`sister${i}MaritalStatus`));
+            //     }
+            // }
+        });
     </script>
 </body>
 </html>
