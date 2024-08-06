@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
     <style>
         /* Base Styles */
         body {
@@ -34,6 +42,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            width: 500px;
         }
 
         .photo-upload-grid {
@@ -257,7 +266,7 @@
     <header>
         <h1 class="header-title">Photo Upload</h1>
     </header>
-    <div class="photo-upload-container">
+    <div class="photo-upload-container" style="margin: auto;">
         <div class="photo-upload-grid">
             <!-- Photo upload boxes will be dynamically added here -->
         </div>
@@ -268,7 +277,7 @@
     <script>
         const photoStorageKey = 'uploadedPhotos';
         let uploadCounter = 0;
-        const maxPhotos = 6;
+        const maxPhotos = 2;
         let uploadResponses = [];
 
         function getCookie(name) {
