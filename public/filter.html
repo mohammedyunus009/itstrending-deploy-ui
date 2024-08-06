@@ -12,6 +12,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
   <style>
     .header {
       display: flex;
@@ -90,7 +98,7 @@
         <a href="#" class="list-group-item list-group-item-action" data-filter="Gender">
           Looking-for <span id="genderCount" class="filter-count">0</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action" data-filter="Religion">
+        <!-- <a href="#" class="list-group-item list-group-item-action" data-filter="Religion">
           Cast <span id="religionCount" class="filter-count">0</span>
         </a>
         <a href="#" class="list-group-item list-group-item-action" data-filter="Height">
@@ -114,9 +122,9 @@
         <a href="#" class="list-group-item list-group-item-action" data-filter="Follow">
           Follow <span id="followCount" class="filter-count">0</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action" data-filter="Personal">
+        <a href="#" class="list-group-item list-group-item-action" data-filter="Personal" style="display: none;">
           Personal Attributes <span id="personalCount" class="filter-count">0</span>
-        </a>
+        </a> -->
       </div>
       
     </div>
@@ -174,100 +182,132 @@
           <label class="checkbox-label"><input type="checkbox" value="male"> Male</label>
           <label class="checkbox-label"><input type="checkbox" value="female"> Female</label>
         `;
-      } else if (filter === 'Religion') {
-        filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="sunni"> Sunni</label>
-          <label class="checkbox-label"><input type="checkbox" value="syed"> Syed</label>
-          <label class="checkbox-label"><input type="checkbox" value="pathan"> Pathan</label>
-          <label class="checkbox-label"><input type="checkbox" value="sheikh"> Sheikh</label>
-          <label class="checkbox-label"><input type="checkbox" value="retrieved-muslims"> Retrieved Muslims</label>
-          <label class="checkbox-label"><input type="checkbox" value="others"> Others</label>
-        `;
-      } else if (filter === 'Height') {
-        filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="4-4.5"> 4 to 4.5 ft</label>
-          <label class="checkbox-label"><input type="checkbox" value="4.5-5"> 4.5 to 5 ft</label>
-          <label class="checkbox-label"><input type="checkbox" value="5-5.5"> 5 to 5.5 ft</label>
-          <label class="checkbox-label"><input type="checkbox" value="5.5-6"> 5.5 to 6 ft</label>
-          <label class="checkbox-label"><input type="checkbox" value="6-6.5"> 6 to 6.5 ft</label>
-        `;
-      } else if (filter === 'Age') {
-        filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="18-25"> 18-25</label>
-          <label class="checkbox-label"><input type="checkbox" value="26-35"> 26-35</label>
-          <label class="checkbox-label"><input type="checkbox" value="36-45"> 36-45</label>
-          <label class="checkbox-label"><input type="checkbox" value="46-60"> 46-60</label>
-        `;
-      } else if (filter === 'State') {
-        filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="Andhra Pradesh"> Andhra Pradesh</label>
-          <label class="checkbox-label"><input type="checkbox" value="Arunachal Pradesh"> Arunachal Pradesh</label>
-          <label class="checkbox-label"><input type="checkbox" value="Assam"> Assam</label>
-          <label class="checkbox-label"><input type="checkbox" value="Bihar"> Bihar</label>
-          <label class="checkbox-label"><input type="checkbox" value="Chhattisgarh"> Chhattisgarh</label>
-          <label class="checkbox-label"><input type="checkbox" value="Goa"> Goa</label>
-          <label class="checkbox-label"><input type="checkbox" value="Gujarat"> Gujarat</label>
-          <label class="checkbox-label"><input type="checkbox" value="Haryana"> Haryana</label>
-          <label class="checkbox-label"><input type="checkbox" value="Himachal Pradesh"> Himachal Pradesh</label>
-          <label class="checkbox-label"><input type="checkbox" value="Jharkhand"> Jharkhand</label>
-          <label class="checkbox-label"><input type="checkbox" value="Karnataka"> Karnataka</label>
-          <label class="checkbox-label"><input type="checkbox" value="Kerala"> Kerala</label>
-          <label class="checkbox-label"><input type="checkbox" value="Madhya Pradesh"> Madhya Pradesh</label>
-          <label class="checkbox-label"><input type="checkbox" value="Maharashtra"> Maharashtra</label>
-          <label class="checkbox-label"><input type="checkbox" value="Manipur"> Manipur</label>
-          <label class="checkbox-label"><input type="checkbox" value="Meghalaya"> Meghalaya</label>
-          <label class="checkbox-label"><input type="checkbox" value="Mizoram"> Mizoram</label>
-          <label class="checkbox-label"><input type="checkbox" value="Nagaland"> Nagaland</label>
-          <label class="checkbox-label"><input type="checkbox" value="Odisha"> Odisha</label>
-          <label class="checkbox-label"><input type="checkbox" value="Punjab"> Punjab</label>
-          <label class="checkbox-label"><input type="checkbox" value="Rajasthan"> Rajasthan</label>
-          <label class="checkbox-label"><input type="checkbox" value="Sikkim"> Sikkim</label>
-          <label class="checkbox-label"><input type="checkbox" value="Tamil Nadu"> Tamil Nadu</label>
-          <label class="checkbox-label"><input type="checkbox" value="Telangana"> Telangana</label>
-          <label class="checkbox-label"><input type="checkbox" value="Tripura"> Tripura</label>
-          <label class="checkbox-label"><input type="checkbox" value="Uttar Pradesh"> Uttar Pradesh</label>
-          <label class="checkbox-label"><input type="checkbox" value="Uttarakhand"> Uttarakhand</label>
-          <label class="checkbox-label"><input type="checkbox" value="West Bengal"> West Bengal</label>
-        `;
-      } else if (filter === 'Qualification') {
-        filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="B.E"> B.E</label>
-          <label class="checkbox-label"><input type="checkbox" value="B.Tech"> B.Tech</label>
-          <label class="checkbox-label"><input type="checkbox" value="MBBS"> MBBS</label>
-          <label class="checkbox-label"><input type="checkbox" value="MBA"> MBA</label>
-          <label class="checkbox-label"><input type="checkbox" value="BCA"> BCA</label>
-          <label class="checkbox-label"><input type="checkbox" value="B.Com"> B.Com</label>
-          <label class="checkbox-label"><input type="checkbox" value="Ph.D"> Ph.D</label>
-          <label class="checkbox-label"><input type="checkbox" value="MCA"> MCA</label>
-          <label class="checkbox-label"><input type="checkbox" value="M.Com"> M.Com</label>
-        `;
-      } else if (filter === 'Job') {
-        filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="Engineer"> Engineer</label>
-          <label class="checkbox-label"><input type="checkbox" value="Doctor"> Doctor</label>
-          <label class="checkbox-label"><input type="checkbox" value="Teacher"> Teacher</label>
-          <label class="checkbox-label"><input type="checkbox" value="Lawyer"> Lawyer</label>
-          <label class="checkbox-label"><input type="checkbox" value="Business"> Business</label>
-          <label class="checkbox-label"><input type="checkbox" value="Artist"> Artist</label>
-          <label class="checkbox-label"><input type="checkbox" value="Others"> Others</label>
-        `;
-      } else if (filter === 'Marital') {
-        filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="Single"> Single</label>
-          <label class="checkbox-label"><input type="checkbox" value="Married"> Married</label>
-          <label class="checkbox-label"><input type="checkbox" value="Divorced"> Divorced</label>
-          <label class="checkbox-label"><input type="checkbox" value="Widowed"> Widowed</label>
-        `;
-      } else if (filter === 'Follow') {
-        filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="Yes"> Yes</label>
-          <label class="checkbox-label"><input type="checkbox" value="No"> No</label>
-        `;
-      } else if (filter === 'Personal') {
-        filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="Active"> Active</label>
-          <label class="checkbox-label"><input type="checkbox" value="Passive"> Passive</label>
-        `;
+//       } else if (filter === 'Religion') {
+//         filterHtml = `
+//           <label class="checkbox-label"><input type="checkbox" value="sunni"> Sunni</label>
+//           <label class="checkbox-label"><input type="checkbox" value="syed"> Syed</label>
+//           <label class="checkbox-label"><input type="checkbox" value="pathan"> Pathan</label>
+//           <label class="checkbox-label"><input type="checkbox" value="sheikh"> Sheikh</label>
+//           <label class="checkbox-label"><input type="checkbox" value="retrieved-muslims"> Retrieved Muslims</label>
+//           <label class="checkbox-label"><input type="checkbox" value="others"> Others</label>
+//         `;
+//       } else if (filter === 'Height') {
+//         filterHtml = `
+//           <label class="checkbox-label"><input type="checkbox" value="4-4.5"> 4 to 4.5 ft</label>
+//           <label class="checkbox-label"><input type="checkbox" value="4.5-5"> 4.5 to 5 ft</label>
+//           <label class="checkbox-label"><input type="checkbox" value="5-5.5"> 5 to 5.5 ft</label>
+//           <label class="checkbox-label"><input type="checkbox" value="5.5-6"> 5.5 to 6 ft</label>
+//           <label class="checkbox-label"><input type="checkbox" value="6-6.5"> 6 to 6.5 ft</label>
+//         `;
+//       } else if (filter === 'Age') {
+//         filterHtml = `
+//           <label class="checkbox-label"><input type="checkbox" value="18-25"> 18-25</label>
+//           <label class="checkbox-label"><input type="checkbox" value="26-35"> 26-35</label>
+//           <label class="checkbox-label"><input type="checkbox" value="36-45"> 36-45</label>
+//           <label class="checkbox-label"><input type="checkbox" value="46-60"> 46-60</label>
+//         `;
+//       } else if (filter === 'State') {
+//         filterHtml = `
+//           <label class="checkbox-label"><input type="checkbox" value="Andhra Pradesh"> Andhra Pradesh</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Arunachal Pradesh"> Arunachal Pradesh</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Assam"> Assam</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Bihar"> Bihar</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Chhattisgarh"> Chhattisgarh</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Goa"> Goa</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Gujarat"> Gujarat</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Haryana"> Haryana</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Himachal Pradesh"> Himachal Pradesh</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Jharkhand"> Jharkhand</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Karnataka"> Karnataka</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Kerala"> Kerala</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Madhya Pradesh"> Madhya Pradesh</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Maharashtra"> Maharashtra</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Manipur"> Manipur</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Meghalaya"> Meghalaya</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Mizoram"> Mizoram</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Nagaland"> Nagaland</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Odisha"> Odisha</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Punjab"> Punjab</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Rajasthan"> Rajasthan</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Sikkim"> Sikkim</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Tamil Nadu"> Tamil Nadu</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Telangana"> Telangana</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Tripura"> Tripura</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Uttar Pradesh"> Uttar Pradesh</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Uttarakhand"> Uttarakhand</label>
+//           <label class="checkbox-label"><input type="checkbox" value="West Bengal"> West Bengal</label>
+//         `;
+//       } else if (filter === 'Qualification') {
+//     filterHtml = `
+//         <label class="checkbox-label"><input type="checkbox" value="be_btech"> BE/BTech - Bachelor of Engineering / Bachelor of Technology</label>
+//         <label class="checkbox-label"><input type="checkbox" value="mbbs"> MBBS - Bachelor of Medicine and Bachelor of Surgery</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bsc"> BSc - Bachelor of Science</label>
+//         <label class="checkbox-label"><input type="checkbox" value="ba"> BA - Bachelor of Arts</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bcom"> BCom - Bachelor of Commerce</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bba"> BBA - Bachelor of Business Administration</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bca"> BCA - Bachelor of Computer Applications</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bpharm"> BPharm - Bachelor of Pharmacy</label>
+//         <label class="checkbox-label"><input type="checkbox" value="barch"> BArch - Bachelor of Architecture</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bed"> BEd - Bachelor of Education</label>
+//         <label class="checkbox-label"><input type="checkbox" value="llb"> LLB - Bachelor of Laws</label>
+//         <label class="checkbox-label"><input type="checkbox" value="mtech"> MTech - Master of Technology</label>
+//         <label class="checkbox-label"><input type="checkbox" value="md"> MD - Doctor of Medicine</label>
+//         <label class="checkbox-label"><input type="checkbox" value="msc"> MSc - Master of Science</label>
+//         <label class="checkbox-label"><input type="checkbox" value="ma"> MA - Master of Arts</label>
+//         <label class="checkbox-label"><input type="checkbox" value="mcom"> MCom - Master of Commerce</label>
+//         <label class="checkbox-label"><input type="checkbox" value="mba"> MBA - Master of Business Administration</label>
+//         <label class="checkbox-label"><input type="checkbox" value="mca"> MCA - Master of Computer Applications</label>
+//         <label class="checkbox-label"><input type="checkbox" value="mpharm"> MPharm - Master of Pharmacy</label>
+//         <label class="checkbox-label"><input type="checkbox" value="march"> MArch - Master of Architecture</label>
+//         <label class="checkbox-label"><input type="checkbox" value="med"> MEd - Master of Education</label>
+//         <label class="checkbox-label"><input type="checkbox" value="llm"> LLM - Master of Laws</label>
+//         <label class="checkbox-label"><input type="checkbox" value="phd"> PhD - Doctor of Philosophy</label>
+//         <label class="checkbox-label"><input type="checkbox" value="dsc"> DSc - Doctor of Science</label>
+//         <label class="checkbox-label"><input type="checkbox" value="diploma_engineering"> Diploma in Engineering - Polytechnic</label>
+//         <label class="checkbox-label"><input type="checkbox" value="pgdm"> PGDM - Post Graduate Diploma in Management</label>
+//         <label class="checkbox-label"><input type="checkbox" value="pgdca"> PGDCA - Post Graduate Diploma in Computer Applications</label>
+//         <label class="checkbox-label"><input type="checkbox" value="certificate_courses"> Certificate Courses - Various fields</label>
+//         <label class="checkbox-label"><input type="checkbox" value="ca"> CA - Chartered Accountant</label>
+//         <label class="checkbox-label"><input type="checkbox" value="cs"> CS - Company Secretary</label>
+//         <label class="checkbox-label"><input type="checkbox" value="cma"> CMA - Cost and Management Accountant</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bds"> BDS - Bachelor of Dental Surgery</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bams"> BAMS - Bachelor of Ayurvedic Medicine and Surgery</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bhms"> BHMS - Bachelor of Homeopathic Medicine and Surgery</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bvsc"> BVSc - Bachelor of Veterinary Science</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bpt"> BPT - Bachelor of Physiotherapy</label>
+//         <label class="checkbox-label"><input type="checkbox" value="bhm"> BHM - Bachelor of Hotel Management</label>
+//     `;
+// } else if (filter === 'Job') {
+//         filterHtml = `
+//           <label class="checkbox-label"><input type="checkbox" value="Engineer"> Engineer</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Doctor"> Doctor</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Teacher"> Teacher</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Lawyer"> Lawyer</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Business"> Business</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Artist"> Artist</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Others"> Others</label>
+//         `;
+//       } else if (filter === 'Marital') {
+//         filterHtml = `
+//           <label class="checkbox-label"><input type="checkbox" value="Never Married"> Married</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Divorced"> Divorced</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Widowed"> Widowed</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Awaiting Divorce"> Awaiting Divorce</label>
+//         `;
+//       } else if (filter === 'Follow') {
+//         filterHtml = `
+//           <label class="checkbox-label"><input type="checkbox" value="Yes"> Yes</label>
+//           <label class="checkbox-label"><input type="checkbox" value="No"> No</label>
+//         `;
+//       } else if (filter === 'Personal') {
+//         filterHtml = `
+//           <label class="checkbox-label"><input type="checkbox" value="Fair"> Fair</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Beautiful"> Beautiful</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Deendar"> Deendar</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Practising"> Practising</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Namazi"> Namazi</label>
+//           <label class="checkbox-label"><input type="checkbox" value="Hijabi"> Hijabi</label>
+//         `;
       }
   
       filterSection.innerHTML = filterHtml;
@@ -319,7 +359,7 @@
   
     // Function to load saved filters and counts
     function loadSavedFilters() {
-      ['Gender', 'Religion', 'Height', 'Age', 'State', 'Qualification', 'Job', 'Marital', 'Follow', 'Personal'].forEach(filter => {
+      ['Gender'].forEach(filter => {
         loadSavedFilterOptions(filter);
         updateFilterCount(filter);
       });
@@ -414,8 +454,3 @@ app.listen(PORT, () => {
 
 </body>
 </html>
-
-
-
-
-

@@ -12,13 +12,21 @@
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
 </head>
 <body>
-    <div id="headerPlaceholder"></div>
+    <!-- <div id="headerPlaceholder"></div> -->
 
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
-        <div class="title">Income</div>
+        <div class="title">Profile</div>
     </div>
     
     <div class="user-details">
@@ -29,27 +37,78 @@
         <h2>You are almost done!</h2>
 
         <div class="dropdown-container">
-            <form id="income-form" onsubmit="return submitForm()">
-                <label for="monthly-salary">Monthly salary range</label>
+            <form id="profile-form" onsubmit="return submitForm()">
+                <div class="form-group">
+                    <label for="education_qualification" style="display: block;">Education Qualification :</label>
+                    <select id="education_qualification" name="education_qualification" required onchange="toggleOtherEducationField()">
+                        <option value="" disabled selected>Select your qualification</option>
+                        <option value="be_btech">BE/BTech - Bachelor of Engineering / Bachelor of Technology</option>
+                        <option value="mbbs">MBBS - Bachelor of Medicine and Bachelor of Surgery</option>
+                        <option value="be_btech">BE/BTech - Bachelor of Engineering / Bachelor of Technology</option>
+                        <option value="mbbs">MBBS - Bachelor of Medicine and Bachelor of Surgery</option>
+                        <option value="bsc">BSc - Bachelor of Science</option>
+                        <option value="ba">BA - Bachelor of Arts</option>
+                        <option value="bcom">BCom - Bachelor of Commerce</option>
+                        <option value="bba">BBA - Bachelor of Business Administration</option>
+                        <option value="bca">BCA - Bachelor of Computer Applications</option>
+                        <option value="bpharm">BPharm - Bachelor of Pharmacy</option>
+                        <option value="barch">BArch - Bachelor of Architecture</option>
+                        <option value="bed">BEd - Bachelor of Education</option>
+                        <option value="llb">LLB - Bachelor of Laws</option>
+                        <option value="mtech">MTech - Master of Technology</option>
+                        <option value="md">MD - Doctor of Medicine</option>
+                        <option value="msc">MSc - Master of Science</option>
+                        <option value="ma">MA - Master of Arts</option>
+                        <option value="mcom">MCom - Master of Commerce</option>
+                        <option value="mba">MBA - Master of Business Administration</option>
+                        <option value="mca">MCA - Master of Computer Applications</option>
+                        <option value="mpharm">MPharm - Master of Pharmacy</option>
+                        <option value="march">MArch - Master of Architecture</option>
+                        <option value="med">MEd - Master of Education</option>
+                        <option value="llm">LLM - Master of Laws</option>
+                        <option value="phd">PhD - Doctor of Philosophy</option>
+                        <option value="dsc">DSc - Doctor of Science</option>
+                        <option value="diploma_engineering">Diploma in Engineering - Polytechnic</option>
+                        <option value="pgdm">PGDM - Post Graduate Diploma in Management</option>
+                        <option value="pgdca">PGDCA - Post Graduate Diploma in Computer Applications</option>
+                        <option value="certificate_courses">Certificate Courses - Various fields</option>
+                        <option value="ca">CA - Chartered Accountant</option>
+                        <option value="cs">CS - Company Secretary</option>
+                        <option value="cma">CMA - Cost and Management Accountant</option>
+                        <option value="bds">BDS - Bachelor of Dental Surgery</option>
+                        <option value="bams">BAMS - Bachelor of Ayurvedic Medicine and Surgery</option>
+                        <option value="bhms">BHMS - Bachelor of Homeopathic Medicine and Surgery</option>
+                        <option value="bvsc">BVSc - Bachelor of Veterinary Science</option>
+                        <option value="bpt">BPT - Bachelor of Physiotherapy</option>
+                        <option value="bhm">BHM - Bachelor of Hotel Management</option>                        <option value="others">Others</option>
+                    </select><br><br>
+                    <!-- Additional text field for custom education qualification -->
+                    <div id="other-education-field" style="display: none;">
+                        <label for="other_education" style="display: block;">Please specify your qualification :</label>
+                        <input type="text" id="other_education" name="other_education" placeholder="Specify your qualification">
+                    </div>
+                </div>
+                <br>
+                <label for="monthly-salary" style="display: block;">Monthly salary range :</label>
                 <input type="text" id="monthly-salary" name="monthly-salary" placeholder="Monthly salary range">
                 <br><br>
 
-                <label for="professional">Professional</label>
+                <label for="professional" style="display: block;">Profession :</label>
                 <input type="text" id="professional" name="professional" placeholder="Professional">
                 <br><br>
 
                 <div class="form-group">
-                    <label for="Business">Business Type <span class="Business"></span></label>
+                    <label for="Business" style="display: block;">Business Type :<span class="Business"></span></label>
                     <select id="Business" name="Business" required>
                         <option value="">Select Business Type</option>
                         <option value="Propriteor">Propriteor</option>
                         <option value="Partner">Partner</option>
                         <option value="Family">Family</option>
-                    </select>
+                    </select><br><br>
                 </div>
 
-                <label for="how-i-know">How I Know Khurshid bhai</label>
-                <select id="how-i-know" required>
+                <label for="how-i-know" style="display: block;">How I Know Khurshid bhai :</label>
+                <select id="how-i-know" name="how-i-know" required onchange="toggleContactFields()">
                     <option value="#">How I know</option>
                     <option value="Friend">Friend</option>
                     <option value="Family">Family</option>
@@ -57,19 +116,52 @@
                     <option value="Other">Other</option>
                 </select>
                 <br><br>
+                
+                <!-- Fields for name and phone number -->
+                <div id="contact-fields" style="display: none;">
+                    <label for="contact_name" style="display: block;">Referal name :</label>
+                    <input type="text" id="contact_name" name="contact_name" placeholder="Name">
+                    <br><br>
+                    <label for="contact_phone" style="display: block;">Referal phone number :</label>
+                    <input type="text" id="contact_phone" name="contact_phone" placeholder="Phone Number">
+                </div>
 
+                <input type="button" value="Next" onclick="submitForm()" id="nextButton">
             </form>
         </div>
     </div>
-    <input type="button" value="Next" onclick="submitForm()" id="nextButton">
-    <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div>
+    <!-- <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div> -->
 
     <script>
         function goBack() {
             window.history.back();
         }
-    
+
+        function toggleOtherEducationField() {
+            let educationDropdown = document.getElementById('education_qualification');
+            let otherEducationField = document.getElementById('other-education-field');
+            let selectedValue = educationDropdown.value;
+
+            if (selectedValue === 'others') {
+                otherEducationField.style.display = 'block';
+            } else {
+                otherEducationField.style.display = 'none';
+            }
+        }
+
+        function toggleContactFields() {
+            let howIKnowDropdown = document.getElementById('how-i-know');
+            let contactFields = document.getElementById('contact-fields');
+            let selectedValue = howIKnowDropdown.value;
+
+            if (selectedValue === 'Friend' || selectedValue === 'Family' || selectedValue === 'Colleague' || selectedValue === 'Other') {
+                contactFields.style.display = 'block';
+            } else {
+                contactFields.style.display = 'none';
+            }
+        }
+
         function submitForm() {
             // Handle form data
             let monthlySalary = document.getElementById('monthly-salary').value;
@@ -77,6 +169,10 @@
             let businessType = document.getElementById('Business').value;
             let howIKnowDropdown = document.getElementById('how-i-know');
             let howIKnow = howIKnowDropdown.options[howIKnowDropdown.selectedIndex].value;
+            let educationQualification = document.getElementById('education_qualification').value;
+            let otherEducation = document.getElementById('other_education') ? document.getElementById('other_education').value : '';
+            let contactName = document.getElementById('contact_name') ? document.getElementById('contact_name').value : '';
+            let contactPhone = document.getElementById('contact_phone') ? document.getElementById('contact_phone').value : '';
 
             // Validate form fields
             if (!monthlySalary.trim()) {
@@ -91,12 +187,23 @@
                 alert("Please select how you know Khurshid bhai.");
                 return false;
             }
+            if (educationQualification === 'others' && !otherEducation.trim()) {
+                alert("Please specify your education qualification.");
+                return false;
+            }
+            if ((howIKnow === 'Friend' || howIKnow === 'Family' || howIKnow === 'Colleague' || howIKnow === 'Other') && (!contactName.trim() || !contactPhone.trim())) {
+                alert("Please provide name and phone number of the selected person.");
+                return false;
+            }
 
             // Set cookies with the entered values
-            document.cookie = `field32=${encodeURIComponent(monthlySalary)}; path=/`;
-            document.cookie = `field33=${encodeURIComponent(professional)}; path=/`;
-            document.cookie = `field34=${encodeURIComponent(businessType)}; path=/`;
-            document.cookie = `field35=${encodeURIComponent(howIKnow)}; path=/`;
+            document.cookie = `field25=${encodeURIComponent(monthlySalary)}; path=/`;
+            document.cookie = `field26=${encodeURIComponent(professional)}; path=/`;
+            document.cookie = `field27=${encodeURIComponent(businessType)}; path=/`;
+            document.cookie = `field28=${encodeURIComponent(howIKnow)}; path=/`;
+            document.cookie = `field29=${encodeURIComponent(educationQualification === 'others' ? otherEducation : educationQualification)}; path=/`;
+            document.cookie = `field30=${encodeURIComponent(contactName)}; path=/`;
+            document.cookie = `field31=${encodeURIComponent(contactPhone)}; path=/`;
 
             // Redirect to the next page
             window.location.href = 'partnerRequired.html';

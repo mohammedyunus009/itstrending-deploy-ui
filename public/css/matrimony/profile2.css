@@ -38,7 +38,7 @@ body {
 
 /* Container for the dropdowns and inputs */
 .dropdown-container {
-  width: 50%; /* Full width */
+  width: 500px; /* Full width */
   margin: 20px auto;
   padding: 20px;
   background-color: white;
