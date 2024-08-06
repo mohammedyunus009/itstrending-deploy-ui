@@ -11,6 +11,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
   <style>
     /* Add some basic styling */
     .profile-container {
@@ -101,11 +109,9 @@
         const card = document.createElement('div');
         card.className = 'profile-card';
         card.dataset.profileId = profile.profile_id; // Store profile_id in a data attribute
-
         // Extract first image URL from the comma-separated string
         const imagesArray = profile.images ? profile.images.split(',') : [];
         const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
-
         // Create card content
         card.innerHTML = `
           <img src="${firstImage}" alt="Profile Image">
@@ -124,7 +130,6 @@
         });
       });
     }
-
     // Retrieve data from session storage
     const data = JSON.parse(sessionStorage.getItem('profileData'));
     if (data && data.profile) {

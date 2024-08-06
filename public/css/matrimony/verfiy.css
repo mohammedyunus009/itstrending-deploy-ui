@@ -447,10 +447,10 @@ input[type="file"] {
 
  /* General form styling */
  #mobileForm {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 0px solid #ccc;
   background-color: #f9f9f9;
   border-radius: 5px;
   margin-bottom: 30px;
@@ -500,43 +500,4 @@ input[type="file"] {
 }
 .fa-solid, .fas {
   font-size: xx-large;
-}
-
-
-
-
-.photo-upload-box {
-  position: relative;
-  display: inline-block;
-  margin: 10px;
-  border: 2px dashed #ddd;
-  padding: 10px;
-  width: 150px;
-  height: 150px;
-  overflow: hidden;
-  text-align: center;
-}
-
-.photo-upload-box img {
-  width: 100%;
-  height: auto;
-  max-height: 100%;
-}
-
-.photo-upload-box .photo-upload-label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.photo-upload-box .delete-button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: red;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
 }
