@@ -80,9 +80,9 @@
                     <option value="">Select FOLLOW</option>
                     <option value="Dargah-Fateha">Dargah Fateha</option>
                     <option value="Tabligh">Tabligh</option>
-                    <option value="Jamaat-e-Islam">Jamaat e Islam</option>
-                    <option value="Ahle">Ahle hadees</option>
-                    <option value="Moderate">Moderate Practising Muslims</option>
+                    <option value="Jamaat e Islam">Jamaat e Islam</option>
+                    <option value="Ahle hadees">Ahle hadees</option>
+                    <option value="Moderate Practising Muslims">Moderate Practising Muslims</option>
                     <option value="Others">Others</option>
                 </select>
             </div>
@@ -105,8 +105,8 @@
             var follow = document.getElementById('FOLLOW').value;
 
             // Set cookies with the selected values, replacing spaces with underscores
-            if (caste) document.cookie = `field4=${caste.replace(/ /g, '_')}; path=/`;
-            if (follow) document.cookie = `field5=${follow.replace(/ /g, '_')}; path=/`;
+            if (caste) document.cookie = `field1=${caste.replace(/ /g, '_')}; path=/`;
+            if (follow) document.cookie = `field2=${follow.replace(/ /g, '_')}; path=/`;
 
             // Redirect to the next page
             window.location.href = 'verfiy.html';
