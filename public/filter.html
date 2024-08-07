@@ -109,13 +109,13 @@
         <a href="#" class="list-group-item list-group-item-action" data-filter="State">
           State <span id="stateCount" class="filter-count">0</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action" data-filter="Qualification" style="display: none;">
+        <a href="#" class="list-group-item list-group-item-action" data-filter="Qualification">
           Qualification <span id="qualificationCount" class="filter-count">0</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action" data-filter="Job" style="display: none;">
+        <a href="#" class="list-group-item list-group-item-action" data-filter="Job">
           Job/Business <span id="jobCount" class="filter-count">0</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action" data-filter="Marital" style="display: none;">
+        <a href="#" class="list-group-item list-group-item-action" data-filter="Marital">
           Marital Status <span id="maritalCount" class="filter-count">0</span>
         </a>
         <a href="#" class="list-group-item list-group-item-action" data-filter="Follow">
@@ -277,17 +277,13 @@
     `;
 } else if (filter === 'Job') {
         filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="Engineer"> Engineer</label>
-          <label class="checkbox-label"><input type="checkbox" value="Doctor"> Doctor</label>
-          <label class="checkbox-label"><input type="checkbox" value="Teacher"> Teacher</label>
-          <label class="checkbox-label"><input type="checkbox" value="Lawyer"> Lawyer</label>
-          <label class="checkbox-label"><input type="checkbox" value="Business"> Business</label>
-          <label class="checkbox-label"><input type="checkbox" value="Artist"> Artist</label>
-          <label class="checkbox-label"><input type="checkbox" value="Others"> Others</label>
+          <label class="checkbox-label"><input type="checkbox" value="Propriteor"> Propriteor</label>
+          <label class="checkbox-label"><input type="checkbox" value="Partner"> Partner</label>
+          <label class="checkbox-label"><input type="checkbox" value="Family"> Family</label>
         `;
       } else if (filter === 'Marital') {
         filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="Never Married"> Married</label>
+          <label class="checkbox-label"><input type="checkbox" value="Never Married"> Never Married</label>
           <label class="checkbox-label"><input type="checkbox" value="Divorced"> Divorced</label>
           <label class="checkbox-label"><input type="checkbox" value="Widowed"> Widowed</label>
           <label class="checkbox-label"><input type="checkbox" value="Awaiting Divorce"> Awaiting Divorce</label>
@@ -349,6 +345,15 @@
       if (filter === 'Follow') {
         selectedFollow = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
       }
+      if (filter === 'Qualification') {
+        selectedQualification = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
+      }
+      if (filter === 'Job') {
+        selectedJob = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
+      }
+      if (filter === 'Marital') {
+        selectedMarital = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
+      }
 
     }
     
@@ -401,7 +406,24 @@
   
     // Function to apply filters and fetch data from the API
   // Function to apply filters and fetch data from the API
-function applyFilters() {
+  function applyFilters() {
+  // Prepare the payload dynamically
+  const payload = {};
+
+  if (selectedGender) payload.gender = selectedGender;
+  if (selectedReligion) payload.field1 = selectedReligion;
+  if (selectedState) payload.field3 = selectedState;
+  if (selectedFollow) payload.field2 = selectedFollow;
+  if (selectedQualification) payload.field4 = selectedQualification;
+  if (selectedJob) payload.field5 = selectedJob;
+  if (selectedMarital) payload.field6 = selectedMarital;
+
+
+  // Check if there's any data to send
+  if (Object.keys(payload).length === 0) {
+    console.warn('No filters selected. Please select at least one filter.');
+    return;
+  }
 
   fetch('https://api.itstrending.in:5001/api/v1/profiles/search_multiple', {
     method: 'POST',
@@ -409,20 +431,12 @@ function applyFilters() {
       'Content-Type': 'application/json',
       'Authorization': authToken
     },
-    body: JSON.stringify({
-      gender: selectedGender, // Use the selected gender value
-      field4: selectedReligion,
-       field10: selectedState
-      // field5: selectedFollow
-    })
+    body: JSON.stringify(payload)
   })
   .then(response => response.json())
   .then(data => {
     console.log(data);
-  
-    console.log(selectedFollow);
-
-
+    
     // Store the fetched data in session storage
     sessionStorage.setItem('profileData', JSON.stringify(data.data));
     
@@ -433,6 +447,7 @@ function applyFilters() {
     console.error('Error:', error);
   });
 }
+
 
 // Store the fetched data in session storage
 sessionStorage.setItem('profileData', JSON.stringify(data.data));

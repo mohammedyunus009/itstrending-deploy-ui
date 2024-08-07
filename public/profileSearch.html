@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script src="js/include.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -139,9 +140,42 @@
 .profile-card .field1 {
   font-weight:bold ;
 }
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+.back-button {
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 24px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+}
+.back-button:hover {
+    background-color: #777;
+}
   </style>
 </head>
 <body>
+  <div id="headerPlaceholder"></div>
+
+  <div class="header">
+    <div class="back-button" onclick="goBack()"> < </div>
+    <div class="title">All Profile</div>
+</div>
   <div id="profileContainer" class="profile-container"></div>
 
   <script>
@@ -161,10 +195,10 @@
           <img src="${firstImage}" alt="Profile Image">
           <p class="field1"> ${profile.field1}</p>
           <p class="gender"><span>Gender:</span> ${profile.gender}</p>
-          <p class="field3"><span>Revert:</span> ${profile.field3}</p>
-          <p class="field2"><span>DOB:</span> ${profile.field2}</p>
-          <p class="field10"><span>State:</span> ${profile.field10}</p>
-          <p class="field7"><span>Native Language:</span> ${profile.field7}</p>
+          <p class="field3"><span>Revert:</span> ${profile.field9}</p>
+          <p class="field2"><span>DOB:</span> ${profile.field8}</p>
+          <p class="field10"><span>State:</span> ${profile.field3}</p>
+          <p class="field7"><span>Native Language:</span> ${profile.field11}</p>
         `;
         // Append card to container
         container.appendChild(card);
@@ -191,6 +225,10 @@
       console.log('No profile data found in session storage.');
       document.getElementById('profileContainer').innerHTML = '<p>No profiles found.</p>';
     }
+
+    function goBack() {
+    window.history.back();
+}
   </script>
 </body>
 </html>
