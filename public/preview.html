@@ -115,7 +115,7 @@
                 <label>Marital Status:</label>
                 <span id="maritalStatus"></span>
             </div>
-            <div class="detail-item" id="childrenDetail" style="display: none;">
+            <div class="detail-item" id="children_dropdown">
                 <label>Children:</label>
                 <span id="children"></span>
             </div>
@@ -272,56 +272,56 @@ function createSiblingFields(containerId, numberOfSiblings, siblingType) {
 
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch the data from cookies, decode it, and set it to the respective fields
-    document.getElementById("name").innerText = decodeURIComponent(getCookie("field1") || '');
-    document.getElementById("dob").innerText = decodeURIComponent(getCookie("field2") || '');
-    document.getElementById("revert").innerText = decodeURIComponent(getCookie("field3") || '');
+    document.getElementById("name").innerText = decodeURIComponent(getCookie("field7") || '');
+    document.getElementById("dob").innerText = decodeURIComponent(getCookie("field8") || '');
+    document.getElementById("revert").innerText = decodeURIComponent(getCookie("field9") || '');
     document.getElementById("gender").innerText = decodeURIComponent(getCookie("gender") || '');
-    document.getElementById("caste").innerText = decodeURIComponent(getCookie("field4") || '');
-    document.getElementById("follow").innerText = decodeURIComponent(getCookie("field5") || '');
-    document.getElementById("phoneNumber").innerText = decodeURIComponent(getCookie("field6") || '');
-    document.getElementById("nativeLanguage").innerText = decodeURIComponent(getCookie("field7") || '');
-    document.getElementById("residenceLanguage").innerText = decodeURIComponent(getCookie("field8") || '');
-    document.getElementById("country").innerText = decodeURIComponent(getCookie("field9") || '');
-    document.getElementById("state").innerText = decodeURIComponent(getCookie("field10") || '');
-    document.getElementById("city").innerText = decodeURIComponent(getCookie("field11") || '');
-    document.getElementById("address").innerText = decodeURIComponent(getCookie("field12") || '');
-    document.getElementById("maritalStatus").innerText = decodeURIComponent(getCookie("field13") || '');
-    document.getElementById("children").innerText = decodeURIComponent(getCookie("field14") || '');
-    document.getElementById("height").innerText = decodeURIComponent(getCookie("field15") || '');
-    document.getElementById("weight").innerText = decodeURIComponent(getCookie("field16") || '');
-    document.getElementById("aboutMe").innerText = decodeURIComponent(getCookie("field17") || '');
-    document.getElementById("aboutFamily").innerText = decodeURIComponent(getCookie("field18") || '');
-    document.getElementById("fatherName").innerText = decodeURIComponent(getCookie("field19") || '');
-    document.getElementById("fatherOccupation").innerText = decodeURIComponent(getCookie("field20") || '');
-    document.getElementById("motherName").innerText = decodeURIComponent(getCookie("field21") || '');
-    document.getElementById("motherOccupation").innerText = decodeURIComponent(getCookie("field22") || '');
+    document.getElementById("caste").innerText = decodeURIComponent(getCookie("field1") || '');
+    document.getElementById("follow").innerText = decodeURIComponent(getCookie("field2") || '');
+    document.getElementById("phoneNumber").innerText = decodeURIComponent(getCookie("field10") || '');
+    document.getElementById("nativeLanguage").innerText = decodeURIComponent(getCookie("field11") || '');
+    document.getElementById("residenceLanguage").innerText = decodeURIComponent(getCookie("field13") || '');
+    document.getElementById("country").innerText = decodeURIComponent(getCookie("field14") || '');
+    document.getElementById("state").innerText = decodeURIComponent(getCookie("field3") || '');
+    document.getElementById("city").innerText = decodeURIComponent(getCookie("field15") || '');
+    document.getElementById("address").innerText = decodeURIComponent(getCookie("field16") || '');
+    document.getElementById("maritalStatus").innerText = decodeURIComponent(getCookie("field6") || '');
+    document.getElementById("children").innerText = decodeURIComponent(getCookie("field17") || '');
+    document.getElementById("height").innerText = decodeURIComponent(getCookie("field18") || '');
+    document.getElementById("weight").innerText = decodeURIComponent(getCookie("field19") || '');
+    document.getElementById("aboutMe").innerText = decodeURIComponent(getCookie("field20") || '');
+    document.getElementById("aboutFamily").innerText = decodeURIComponent(getCookie("field21") || '');
+    document.getElementById("fatherName").innerText = decodeURIComponent(getCookie("field22") || '');
+    document.getElementById("fatherOccupation").innerText = decodeURIComponent(getCookie("field23") || '');
+    document.getElementById("motherName").innerText = decodeURIComponent(getCookie("field24") || '');
+    document.getElementById("motherOccupation").innerText = decodeURIComponent(getCookie("field25") || '');
 
     // Uncomment these if the fields are present in the DOM
     // document.getElementById('numberOfBrothers').textContent = decodeURIComponent(getCookie('field23') || '');
     // document.getElementById('numberOfSisters').textContent = decodeURIComponent(getCookie('field24') || '');
 
-    document.getElementById("education").innerText = decodeURIComponent(getCookie("field29") || '');
-    document.getElementById("salaryRange").innerText = decodeURIComponent(getCookie("field25") || '');
-    document.getElementById("profession").innerText = decodeURIComponent(getCookie("field26") || '');
-    document.getElementById("businessType").innerText = decodeURIComponent(getCookie("field27") || '');
+    document.getElementById("education").innerText = decodeURIComponent(getCookie("field4") || '');
+    document.getElementById("salaryRange").innerText = decodeURIComponent(getCookie("field26") || '');
+    document.getElementById("profession").innerText = decodeURIComponent(getCookie("field27") || '');
+    document.getElementById("businessType").innerText = decodeURIComponent(getCookie("field5") || '');
     document.getElementById("howIKnow").innerText = decodeURIComponent(getCookie("field28") || '');
-    document.getElementById("contactName").innerText = decodeURIComponent(getCookie("field30") || '');
-    document.getElementById("contactPhone").innerText = decodeURIComponent(getCookie("field31") || '');
-    document.getElementById("revert2").innerText = decodeURIComponent(getCookie("field32") || '');
-    document.getElementById("partnerRequirement").innerText = decodeURIComponent(getCookie("field33") || '');
+    document.getElementById("contactName").innerText = decodeURIComponent(getCookie("field29") || '');
+    document.getElementById("contactPhone").innerText = decodeURIComponent(getCookie("field30") || '');
+    document.getElementById("revert2").innerText = decodeURIComponent(getCookie("field31") || '');
+    document.getElementById("partnerRequirement").innerText = decodeURIComponent(getCookie("field32") || '');
 
-    if (numBrothers > 0) {
-        showBrothersDetails(numBrothers);
-    }
+    // if (numBrothers > 0) {
+    //     showBrothersDetails(numBrothers);
+    // }
 
-    if (numSisters > 0) {
-        showSistersDetails(numSisters);
-    }
+    // if (numSisters > 0) {
+    //     showSistersDetails(numSisters);
+    // }
 
     // Show children detail section if the marital status indicates there are children
     const maritalStatus = getCookie("maritalStatus");
     if (maritalStatus && maritalStatus.toLowerCase() === 'married' && getCookie("children")) {
-        document.getElementById("childrenDetail").style.display = 'block';
+        document.getElementById("children").style.display = 'block';
     }
     
 });
