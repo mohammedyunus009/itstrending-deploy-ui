@@ -50,61 +50,56 @@
         }
     </style>
     <script>
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days*24*60*60*1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-        }
+      function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
 
-        function validateForm(event) {
-            console.log('validateForm called'); // Add this to confirm function call
-            event.preventDefault(); // Prevent default form submission
-            
-            var revert2 = document.querySelector('input[name="revert2"]:checked');
-            var partnerRequirement = document.getElementById('partnerRequirement').value.trim();
-            
-            if (!revert2) {
-                alert("Please select a revert option.");
-                return false;
-            }
-            if (!partnerRequirement) {
-                alert("Please enter partner requirement.");
-                return false;
-            }
+function validateForm(event) {
+    console.log('validateForm called'); // Add this to confirm function call
+    event.preventDefault(); // Prevent default form submission
 
-            // Store values in cookies
-            setCookie('field31', revert2.value, 7);
-            setCookie('field32', partnerRequirement, 7);
+    var revert2 = document.querySelector('input[name="revert2"]:checked');
+    var partnerRequirement = document.getElementById('partnerRequirement').value.trim();
 
-            // Redirect to the next page
-            window.location.href = 'preview.html';
-            return false; // Prevent form submission
-        }
+    // Store values in cookies (if they exist)
+    if (revert2) {
+        setCookie('field28', revert2.value, 7);
+    }
+    if (partnerRequirement) {
+        setCookie('field29', partnerRequirement, 7);
+    }
 
-        // Function to get a cookie by name
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
+    // Redirect to the next page
+    window.location.href = 'preview.html';
+    return false; // Prevent form submission
+}
 
-        document.addEventListener("DOMContentLoaded", function() {
-            // Extract values from cookies and populate the form
-            const revert2Value = getCookie('revert2');
-            if (revert2Value) {
-                document.querySelector(`input[name="revert2"][value="${revert2Value}"]`).checked = true;
-            }
-            const partnerRequirementValue = getCookie('partnerRequirement');
-            if (partnerRequirementValue) {
-                document.getElementById('partnerRequirement').value = partnerRequirementValue;
-            }
-        });
+// Function to get a cookie by name
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
-        
+document.addEventListener("DOMContentLoaded", function() {
+    // Extract values from cookies and populate the form
+    const revert2Value = getCookie('revert2');
+    if (revert2Value) {
+        document.querySelector(`input[name="revert2"][value="${revert2Value}"]`).checked = true;
+    }
+    const partnerRequirementValue = getCookie('partnerRequirement');
+    if (partnerRequirementValue) {
+        document.getElementById('partnerRequirement').value = partnerRequirementValue;
+    }
+});
+
+
     </script>
 </head>
 <body>

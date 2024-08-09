@@ -151,6 +151,45 @@ body {
     overflow: auto; /* Enable scrolling if resized smaller than content */
 }
 
+/* Container for the profile photo with resizable feature */
+#profilePhoto {
+    resize: both; /* Allow resizing in both directions */
+    overflow: auto; /* Enable scrolling if content overflows */
+    margin-top: 10px; /* Add space above the element */
+    border: 1px solid #ccc; /* Optional: add a border to make the resize handle more visible */
+    padding: 10px; /* Optional: add padding inside the element */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    position: relative; /* Needed for absolute positioning of buttons */
+    width: 300px; /* Set a default width for the resizable element */
+    height: 200px; /* Set a default height for the resizable element */
+}
+
+/* Navigation buttons */
+.navButton {
+    position: absolute; /* Position buttons inside the container */
+    background-color: #333; /* Background color for the button */
+    color: white; /* Text color for the button */
+    border: none; /* Remove default border */
+    padding: 10px; /* Add padding inside the button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    z-index: 1; /* Ensure buttons are above other content */
+}
+
+/* Position the previous button on the left */
+#prevButton {
+    top: 50%;
+    left: 10px; /* Adjust as needed */
+    transform: translateY(-50%); /* Center vertically */
+}
+
+/* Position the next button on the right */
+#nextButton {
+    top: 50%;
+    right: 10px; /* Adjust as needed */
+    transform: translateY(-50%); /* Center vertically */
+}
+
+
 
   /* Additional CSS styles can be added here */
 
