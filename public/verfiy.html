@@ -35,11 +35,11 @@
     <h2>Personal details</h2>
     <form id="mobileForm">
         <div class="form-group">
-            <label for="phoneNumber">Phone number :<span class="required">*</span></label>
+            <label for="phoneNumber">Phone number :<span class="required"></span></label>
             <input type="tel" id="phoneNumber" name="phoneNumber" required>
         </div>
         <div class="form-group">
-            <label for="nativeLanguage">Native language :</label>
+            <label for="nativeLanguage">Native language:</label>
             <input list="nativeLanguages" id="nativeLanguage" name="nativeLanguage">
             <datalist id="nativeLanguages">
                 <option value="Assamese">
@@ -61,7 +61,7 @@
             </datalist>
         </div>
         <div class="form-group">
-            <label for="residenceLanguage">Residence language :</label>
+            <label for="residenceLanguage">Residence language:</label>
             <input list="residenceLanguages" id="residenceLanguage" name="residenceLanguage">
             <datalist id="residenceLanguages">
                 <option value="Assamese">
@@ -82,38 +82,40 @@
                 <option value="Arabic">
             </datalist>
         </div>
+        <br>
+        <br>
         <input type="button" value="Next" onclick="validateForm();" id="nextButton">
     </form>
 
     <script>
-        function goBack() {
-            window.history.back();
-        }
+     function goBack() {
+    window.history.back();
+}
 
-        function setCookie(name, value, expires) {
-            document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
-        }
+function setCookie(name, value, expires) {
+    document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
+}
 
-        function validateForm() {
-            var phoneNumber = document.getElementById("phoneNumber").value;
-            var nativeLanguage = document.getElementById("nativeLanguage").value;
-            var residenceLanguage = document.getElementById("residenceLanguage").value;
+function validateForm() {
+    var phoneNumber = document.getElementById("phoneNumber").value;
+    var nativeLanguage = document.getElementById("nativeLanguage").value;
+    var residenceLanguage = document.getElementById("residenceLanguage").value;
 
-            if (phoneNumber.trim() === "" || nativeLanguage.trim() === "" || residenceLanguage.trim() === "") {
-                alert("Please fill in all required fields.");
-                return false;
-            }
+    if (phoneNumber.trim() === "") {
+        return false;
+    }
 
-            setCookie("field10", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
-            setCookie("field11", nativeLanguage, new Date(new Date().getTime() + 24*60*60*1000));
-            setCookie("field13", residenceLanguage, new Date(new Date().getTime() + 24*60*60*1000));
+    setCookie("field9", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
+    setCookie("field10", nativeLanguage, new Date(new Date().getTime() + 24*60*60*1000));
+    setCookie("field11", residenceLanguage, new Date(new Date().getTime() + 24*60*60*1000));
 
-            // Redirect to the next page
-            window.location.href = "upload_images.html";
-            return true;
-        }
+    // Redirect to the next page
+    window.location.href = "upload_images.html";
+    return true;
+}
 
-        document.getElementById("nextButton").addEventListener("click", validateForm);
+document.getElementById("nextButton").addEventListener("click", validateForm);
+
     </script>
 </body>
 </html>

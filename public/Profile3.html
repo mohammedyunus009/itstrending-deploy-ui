@@ -123,9 +123,10 @@ textarea {
                 <label for="marital_status">Marital Status :</label>
                 <select id="marital_status" name="marital_status" onchange="showChildrenDropdown()">
                     <option value="">Select Marital Status</option>
-                    <option value="Never Married">Never Married</option>
+                    <option value="Single">Single</option>
                     <option value="Divorced">Divorced</option>
-                    <option value="Widowed">Widowed</option>
+                    <option value=" Widower"> Widower</option>
+                    <option value=" Widow"> Widow</option>
                     <option value="Awaiting Divorce">Awaiting Divorce</option>
                 </select>
             </div>
@@ -230,12 +231,12 @@ textarea {
             }
     
             // Set cookies with the selected values
-            document.cookie = `field6=${encodeURIComponent(maritalStatus)};`;
-            document.cookie = `field17=${encodeURIComponent(children)};`;
-            document.cookie = `field18=${encodeURIComponent(height)};`;
-            document.cookie = `field19=${encodeURIComponent(weight)};`;
-            document.cookie = `field20=${encodeURIComponent(aboutme)};`;
-            document.cookie = `field21=${encodeURIComponent(aboutFamily)}; path=/`;
+            document.cookie = `field5=${encodeURIComponent(maritalStatus)};`;
+            document.cookie = `field16=${encodeURIComponent(children)};`;
+            document.cookie = `field17=${encodeURIComponent(height)};`;
+            document.cookie = `field18=${encodeURIComponent(weight)};`;
+            document.cookie = `field19=${encodeURIComponent(aboutme)};`;
+            document.cookie = `field20=${encodeURIComponent(aboutFamily)}; path=/`;
     
             return true; // Allow form submission
         }

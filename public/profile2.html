@@ -80,6 +80,7 @@
                     <label for="address-input" style="display: block;">Address :</label>
                     <input type="text" id="address-input" name="address-input" placeholder="Enter Address">
                     <br><br>
+                    <br>
                     <input type="button" value="Next" onclick="submitForm()" id="nextButton">
                 </form>
             </div>
@@ -120,10 +121,10 @@
             let city = cityDropdown.options[cityDropdown.selectedIndex].value;
             let address = document.getElementById('address-input').value;
 
-            setCookie('field14', country, 1);
-            setCookie('field3', state, 1);
-            setCookie('field15', city, 1);
-            setCookie('field16', address, 1);
+            setCookie('field13', country, 1);
+            setCookie('field2', state, 1);
+            setCookie('field14', city, 1);
+            setCookie('field15', address, 1);
 
             window.location.href = 'Profile3.html';
         }

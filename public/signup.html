@@ -5,9 +5,20 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/matrimony/profile2.css">
+
   <title>SIGNUP&SIGNIN</title>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -316,49 +327,141 @@ body{
 #done-button:hover {
   background: #45a049;
 }
+.message-area {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+}
+
+.message-area.success {
+    background-color: #4CAF50; /* Green */
+}
+
+.message-area.error {
+    background-color: #f44336; /* Red */
+}
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 
 </style>
 <body>
-    <div class="container1">
-        <form action="#" class="signup-form1" id="signupForm1">
-            <h2 class="form-heading">Signup</h2>
-            <label for="signup-firstname">First Name</label>
-            <input type="text" name="firstname" id="signup-firstname" placeholder="First Name" required>
-            
-            <label for="signup-lastname">Last Name</label>
-            <input type="text" name="lastname" id="signup-lastname" placeholder="Last Name" required>
-            
-            <label for="signup-email">Email</label>
-            <input type="email" name="email" id="signup-email" placeholder="Email" required>
-            
-            <label for="signup-password">Password</label>
-            <input type="password" name="password" id="signup-password" placeholder="Password" required>
-            
-            <label for="signup-confirm-password">Confirm Password</label>
-            <input type="password" name="confirm-password" id="signup-confirm-password" placeholder="Confirm Password" required>
-            
-            <button type="submit" id="signup">Signup</button>
-            <!-- <button type="button" id="login-toggle">Login</button> -->
-        </form>
+  <div id="headerPlaceholder"></div>
 
-        <!-- Links for existing account and forgot password -->
-        <div class="form-links">
-            <p> <a href="login.html" id="login-link">Already have an account?Login</a></p>
-            <p><a href="forgotpassword.html" id="forgot-password-link">Forgot Password?</a></p>
-        </div>
+  <div class="container1">
+    <!-- Message area -->
+    <div id="message-area" class="message-area"></div>
 
-        <!-- Popup Container -->
-        <div id="signup-popup" style="display: none;">
-            <div class="popup-content">
-                <h2>Account Created Successfully!</h2>
-                <p>Your account has been created. You can now proceed to the next step.</p>
-                <button id="done-button">Done</button>
-            </div>
+    <!-- Loading spinner -->
+    <div id="loading-spinner" class="loading-spinner" style="display: none;"></div>
+
+    <form action="#" class="signup-form1" id="signupForm1">
+        <h2 class="form-heading">Signup</h2>
+        <label for="signup-firstname">First Name</label>
+        <input type="text" name="firstname" id="signup-firstname" placeholder="First Name" required>
+        
+        <label for="signup-lastname">Last Name</label>
+        <input type="text" name="lastname" id="signup-lastname" placeholder="Last Name" required>
+        
+        <label for="signup-email">Email</label>
+        <input type="email" name="email" id="signup-email" placeholder="Email" required>
+        
+        <label for="signup-password">Password</label>
+        <input type="password" name="password" id="signup-password" placeholder="Password" required>
+        
+        <label for="signup-confirm-password">Confirm Password</label>
+        <input type="password" name="confirm-password" id="signup-confirm-password" placeholder="Confirm Password" required>
+        <label for="how-i-know" style="display: block;"></label>
+        <select id="how-i-know" name="how-i-know" onchange="toggleContactFields()">
+            <option value="#">Select an option</option>
+            <option value="I am from TLI Family / Samparkk">I am from TLI Family / Samparkk</option>
+            <option value="I am from his deeni circle">I am from his deeni circle</option>
+            <option value="I am his relative / acquaintances">I am his relative / acquaintances</option>
+            <option value="I know him through a common friend">I know him through a common friend</option>
+            <option value="I do not know brother Khurshid Imam">I do not know brother Khurshid Imam</option>
+        </select>
+        <div id="contact-fields" style="display: none;">
+            <label for="contact_name" style="display: block;">Referral name :</label>
+            <input type="text" id="contact_name" name="contact_name" placeholder="Name">
+            <br><br>
+            <label for="contact_phone" style="display: block;">Referral phone number :</label>
+            <input type="text" id="contact_phone" name="contact_phone" placeholder="Phone Number">
         </div>
+        
+        <button type="submit" id="signup" onclick="storeData()">Signup</button>
+        <!-- <button type="button" id="login-toggle">Login</button> -->
+    </form>
+
+    <!-- Links for existing account and forgot password -->
+    <div class="form-links">
+        <p><a href="login.html" id="login-link">Already have an account? Login</a></p>
+        <p><a href="forgotpassword.html" id="forgot-password-link">Forgot Password?</a></p>
     </div>
-
 </div>
 
+
+
+<div id="footerPlaceholder"></div>
+<script src="js/include.js"></script>
+
     <script src="js/login.js"></script>
+    <script>
+        function toggleContactFields() {
+            let howIKnowDropdown = document.getElementById('how-i-know');
+            let contactFields = document.getElementById('contact-fields');
+            let selectedValue = howIKnowDropdown.value;
+
+            if (selectedValue === 'I am from TLI Family / Samparkk' || selectedValue === 'I am from his deeni circle' || selectedValue === 'I am his relative / acquaintances' || selectedValue === 'I know him through a common friend') {
+                contactFields.style.display = 'block';
+            } else {
+                contactFields.style.display = 'none';
+            }
+        }
+
+
+        function toggleContactFields() {
+    const selectElement = document.getElementById('how-i-know');
+    const contactFields = document.getElementById('contact-fields');
+
+    if (selectElement.value === 'I do not know brother Khurshid Imam') {
+        contactFields.style.display = 'none';
+    } else {
+        contactFields.style.display = 'block';
+    }
+}
+
+function storeData() {
+    const howIKnow = document.getElementById('how-i-know').value;
+    const contactName = document.getElementById('contact_name').value;
+    const contactPhone = document.getElementById('contact_phone').value;
+
+    // Store values in cookies
+    document.cookie = `field30=${encodeURIComponent(howIKnow)}; path=/`;
+    document.cookie = `field31=${encodeURIComponent(contactName)}; path=/`;
+    document.cookie = `field32=${encodeURIComponent(contactPhone)}; path=/`;
+
+    // alert('Data has been stored in cookies.');
+}
+
+    </script>
+    
 </body>
 </html>
