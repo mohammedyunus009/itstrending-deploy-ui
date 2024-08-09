@@ -129,15 +129,15 @@
 }
 
 /* Specific styling for each field if needed */
-.profile-card .field3,
 .profile-card .field2,
 .profile-card .field7,
+.profile-card .field8,
 .profile-card .field10 {
   text-align: left;
   width: 100%; /* Ensure it spans the full width */
   color: #555; /* Improved text color */
 }
-.profile-card .field1 {
+.profile-card .field6 {
   font-weight:bold ;
 }
 .header {
@@ -193,12 +193,12 @@
         // Create card content
         card.innerHTML = `
           <img src="${firstImage}" alt="Profile Image">
-          <p class="field1"> ${profile.field1}</p>
+          <p class="field6"> ${profile.field6}</p>
           <p class="gender"><span>Gender:</span> ${profile.gender}</p>
-          <p class="field3"><span>Revert:</span> ${profile.field9}</p>
-          <p class="field2"><span>DOB:</span> ${profile.field8}</p>
-          <p class="field10"><span>State:</span> ${profile.field3}</p>
-          <p class="field7"><span>Native Language:</span> ${profile.field11}</p>
+          <p class="field8"><span>Revert:</span> ${profile.field8}</p>
+          <p class="field7"><span>DOB:</span> ${profile.field7}</p>
+          <p class="field2"><span>State:</span> ${profile.field2}</p>
+          <p class="field10"><span>Native Language:</span> ${profile.field10}</p>
         `;
         // Append card to container
         container.appendChild(card);
