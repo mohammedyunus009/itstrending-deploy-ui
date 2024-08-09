@@ -10,6 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/matrimony/religion.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
@@ -93,6 +95,7 @@
             
             <label for="dob" style="display: block;">Date of Birth :</label>
             <input type="date" id="dob" name="dob" required><br><br>
+            
 
             <div class="form-group">
                 <label for="gender" style="display: block;">Gender :</label>
@@ -113,70 +116,93 @@
                     <label for="No">No</label>
                 </div>
             </div>
-
+            <div class="form-group">
+                <label for="FOLLOW">Deeni Interest :<span class="required"></span></label>
+                <select id="FOLLOW" name="FOLLOW" required>
+                    <option value="">Select Deeni Interest</option>
+                    <option value="Moderate Practicing">Moderate Practicing </option>
+                    <option value="Strictly Practicing">Strictly Practicing</option>
+                    <option value="Non-Practicing">Non-Practicing</option>
+                    <option value="Ahle Hadees">Ahle Hadees</option>
+                    <option value="Dargah fateha">Dargah fateha</option>
+                    <option value="Tablighi">Tablighi</option>
+                    <option value="Jamat-e-Islami">Jamat-e-Islami</option>
+                    <!-- <option value="Others">Others</option> -->
+                </select>
+            </div>
             <input type="button" value="Next" onclick="submitForm()" id="nextButton">
         </form>
     </div>
 
     <script>
-        function goBack() {
-            window.history.back();
-        }
+      function goBack() {
+    window.history.back();
+}
 
-        function getCookie(name) {
-            let nameEQ = name + "=";
-            let ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
+function getCookie(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
 
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
 
-        function checkLogin() {
-            let token = getCookie('token');
-            if (!token) {
-                alert("User not logged in. Please login.");
-                window.location.href = 'login.html';
-            }
-        }
+function checkLogin() {
+    let token = getCookie('token');
+    if (!token) {
+        alert("User not logged in. Please login.");
+        window.location.href = 'login.html';
+    }
+}
 
-        function submitForm() {
-            // Validate the form fields
-            var name = document.getElementById('name').value.trim();
-            var dob = document.getElementById('dob').value.trim();
-            var gender = document.querySelector('input[name="gender"]:checked');
-            var revert = document.querySelector('input[name="revert"]:checked');
+function submitForm() {
+    // Validate the form fields
+    var name = document.getElementById('name').value.trim();
+    var dob = document.getElementById('dob').value.trim();
+    var gender = document.querySelector('input[name="gender"]:checked');
 
-            if (!name || !dob || !gender || !revert) {
-                alert('Please fill in all fields.');
-                return;
-            }
+    if (!name || !dob || !gender) {
+        // alert('Please fill in all required fields.');
+        return;
+    }
 
-            // Store values in cookies
-            setCookie('field7', name, 7);
-            setCookie('field8', dob, 7);
-            setCookie('gender', gender.value, 7);
-            setCookie('field9', revert.value, 7);
+    // Store values in cookies
+    setCookie('field6', name, 7);
+    setCookie('field7', dob, 7);
+    setCookie('gender', gender.value, 7);
 
-            // Redirect to the next page
-            window.location.href = "religion.html"; // Change this URL to your actual next page
-        }
+    // Optionally handle revert and follow fields if present
+    var revert = document.querySelector('input[name="revert"]:checked');
+    if (revert) {
+        setCookie('field8', revert.value, 7);
+    }
+    
+    var follow = document.getElementById('FOLLOW');
+    if (follow) {
+        setCookie('field1', follow.value, 7);
+    }
 
-        window.onload = function() {
-            checkLogin();
-        }
+    // Redirect to the next page
+    window.location.href = "verfiy.html"; // Change this URL to your actual next page
+}
+
+window.onload = function() {
+    checkLogin();
+}
+
     </script>
 </body>
 </html>

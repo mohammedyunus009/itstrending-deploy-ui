@@ -10,105 +10,158 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   const signupForm = document.getElementById('signupForm1');
-  if (signupForm) {
+const messageArea = document.getElementById('message-area');
+const loadingSpinner = document.getElementById('loading-spinner');
+
+if (signupForm) {
     signupForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-  
-      const email = document.getElementById('signup-email').value;
-      const firstname = document.getElementById('signup-firstname').value;
-      const lastname = document.getElementById('signup-lastname').value;
-      const password = document.getElementById('signup-password').value;
-  
-      const formData = {
-        email: email,
-        firstname: firstname,
-        lastname: lastname,
-        password: password
-      };
-  
-      fetch('https://api.itstrending.in:5001/api/v1/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-      .then(response => {
-        if (!response.ok) {
-          return response.json().then(errorData => {
-            throw new Error(`Error: ${errorData.message || response.statusText}`);
-          });
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Success:', data);
-  
-        // Store email in cookies
-        document.cookie = `email=${encodeURIComponent(email)}; path=/`;
-  
-        alert('Signup successful!');
-        signupForm.reset();
-        
-        // Redirect to login page
-        window.location.href = 'login.html';
-      })
-      .catch(error => {
-        console.error('Error:', error.message);
-        alert(`Signup failed: ${error.message}`);
-      });
+        event.preventDefault();
+    
+        // Show loading spinner
+        loadingSpinner.style.display = 'block';
+    
+        const email = document.getElementById('signup-email').value;
+        const firstname = document.getElementById('signup-firstname').value;
+        const lastname = document.getElementById('signup-lastname').value;
+        const password = document.getElementById('signup-password').value;
+    
+        const formData = {
+            email: email,
+            firstname: firstname,
+            lastname: lastname,
+            password: password
+        };
+    
+        fetch('https://api.itstrending.in:5001/api/v1/auth/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(errorData => {
+                    throw new Error(`Error: ${errorData.message || response.statusText}`);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+
+            // Store email in cookies
+            document.cookie = `email=${encodeURIComponent(email)}; path=/`;
+
+            // Show success message
+            messageArea.textContent = 'Signup successful!';
+            messageArea.className = 'message-area success';
+            
+            // Hide loading spinner after 5 seconds
+            setTimeout(() => {
+                loadingSpinner.style.display = 'none';
+            }, 5000); // 5 seconds delay
+
+            // Reset form
+            signupForm.reset();
+
+            // Redirect to login page after 5 seconds
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 5000); // 5 seconds delay
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+
+            // Show error message
+            messageArea.textContent = `Signup failed: ${error.message}`;
+            messageArea.className = 'message-area error';
+            
+            // Hide loading spinner after 5 seconds
+            setTimeout(() => {
+                loadingSpinner.style.display = 'none';
+            }, 5000); // 5 seconds delay
+        });
     });
-  } else {
+} else {
     console.error('signupForm1 element not found');
-  }
+}
+
   
   const signInForm = document.getElementById('loginForm1');
-  const successPopup = document.getElementById('successPopup');
-  const doneButton = document.getElementById('doneButton');
+  const messageContainer = document.getElementById('messageContainer');
+  const loadingContainer = document.getElementById('loadingContainer');
+  
   signInForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    try {
-      const response = await fetch('https://api.itstrending.in:5001/api/v1/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        // Extract the token
-        const token = data.data.token;
-        // Set expiration time for the cookies (e.g., 1 year from now)
-        const expirationTime = new Date();
-        expirationTime.setFullYear(expirationTime.getFullYear() + 1);
-        // Store the token in a cookie with expiration time
-        document.cookie = `token=${token}; path=/; Secure; SameSite=Strict; expires=${expirationTime.toUTCString()}`;
-        // Store the email in a cookie with expiration time
-        document.cookie = `email=${encodeURIComponent(email)}; path=/; Secure; SameSite=Strict; expires=${expirationTime.toUTCString()}`;
-        // Show the success popup
-        successPopup.style.display = 'flex';
-      } else {
-        console.log('Login failed:', data.message);
-        alert('Login failed. Please check your credentials.');
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // Show loading animation
+      loadingContainer.style.display = 'flex';
+  
+      try {
+          const response = await fetch('https://api.itstrending.in:5001/api/v1/auth/login', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email, password }),
+          });
+          const data = await response.json();
+          
+          if (response.ok) {
+              // Extract the token
+              const token = data.data.token;
+              // Set expiration time for the cookies (e.g., 1 year from now)
+              const expirationTime = new Date();
+              expirationTime.setFullYear(expirationTime.getFullYear() + 1);
+              // Store the token in a cookie with expiration time
+              document.cookie = `token=${token}; path=/; Secure; SameSite=Strict; expires=${expirationTime.toUTCString()}`;
+              // Store the email in a cookie with expiration time
+              document.cookie = `email=${encodeURIComponent(email)}; path=/; Secure; SameSite=Strict; expires=${expirationTime.toUTCString()}`;
+              // Display success message
+              messageContainer.textContent = 'Login successful. Redirecting...';
+              messageContainer.className = 'message-container success';
+              messageContainer.style.display = 'block';
+              
+              // Wait for 5 seconds to simulate loading
+              setTimeout(() => {
+                  // Hide loading animation
+                  loadingContainer.style.display = 'none';
+                  // Redirect to the next page
+                  window.location.href = 'payment.html';
+              }, 5000); // 5 seconds
+          } else {
+              console.log('Login failed:', data.message);
+              if (data.message.includes('email not registered')) {
+                  messageContainer.textContent = `${data.message}. Redirecting to create account page...`;
+                  messageContainer.className = 'message-container error';
+                  messageContainer.style.display = 'block';
+                  setTimeout(() => {
+                      loadingContainer.style.display = 'none';
+                      window.location.href = 'signup.html'; // Redirect to Create Account page
+                  }, 1500); // 1.5 seconds
+              } else {
+                  messageContainer.textContent = `Login failed. ${data.message}`;
+                  messageContainer.className = 'message-container error';
+                  messageContainer.style.display = 'block';
+                  setTimeout(() => {
+                      loadingContainer.style.display = 'none';
+                  }, 1500); // 1.5 seconds
+              }
+          }
+      } catch (error) {
+          console.error('Error during login:', error);
+          messageContainer.textContent = 'An error occurred during login. Please try again later.';
+          messageContainer.className = 'message-container error';
+          messageContainer.style.display = 'block';
+          setTimeout(() => {
+              loadingContainer.style.display = 'none';
+          }, 1500); // 1.5 seconds
       }
-    } catch (error) {
-      console.error('Error during login:', error);
-      alert('An error occurred during login. Please try again later.');
-    }
   });
-  doneButton.addEventListener('click', () => {
-    // Redirect to button.html on "Done" button click
-    window.location.href = 'button.html';
-  });
-
-
-
-
-
-
+  
 
 
 
@@ -268,3 +321,9 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
+
+
+
+
+
