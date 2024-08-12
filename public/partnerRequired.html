@@ -140,6 +140,24 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     </div>
     <br>
+<script>
+         function checkLogin() {
 
+let token = getCookie('token');
+    if (!token) {
+        alert("User not logged in. Please login.");
+        window.location.href = 'login.html';
+    }
+}
+
+window.onload = function() {
+    checkLogin();
+}
+
+
+function goBack() {
+            window.history.back();
+        }
+</script>
 </body>
 </html>
