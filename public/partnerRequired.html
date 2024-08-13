@@ -12,13 +12,13 @@
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PQLTG22ZFC');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PQLTG22ZFC');
+    </script>
     <style>
         /* CSS for the Revert Section */
         #revert2 {
@@ -51,55 +51,69 @@
     </style>
     <script>
       function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
 
-function validateForm(event) {
-    console.log('validateForm called'); // Add this to confirm function call
-    event.preventDefault(); // Prevent default form submission
+      function validateForm(event) {
+        console.log('validateForm called'); // Add this to confirm function call
+        event.preventDefault(); // Prevent default form submission
 
-    var revert2 = document.querySelector('input[name="revert2"]:checked');
-    var partnerRequirement = document.getElementById('partnerRequirement').value.trim();
+        var revert2 = document.querySelector('input[name="revert2"]:checked');
+        var partnerRequirement = document.getElementById('partnerRequirement').value.trim();
 
-    // Store values in cookies (if they exist)
-    if (revert2) {
-        setCookie('field28', revert2.value, 7);
-    }
-    if (partnerRequirement) {
-        setCookie('field29', partnerRequirement, 7);
-    }
+        // Store values in cookies (if they exist)
+        if (revert2) {
+            setCookie('field28', revert2.value, 7);
+        }
+        if (partnerRequirement) {
+            setCookie('field29', partnerRequirement, 7);
+        }
 
-    // Redirect to the next page
-    window.location.href = 'preview.html';
-    return false; // Prevent form submission
-}
+        // Redirect to the next page
+        window.location.href = 'preview.html';
+        return false; // Prevent form submission
+      }
 
-// Function to get a cookie by name
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Extract values from cookies and populate the form
-    const revert2Value = getCookie('revert2');
-    if (revert2Value) {
-        document.querySelector(`input[name="revert2"][value="${revert2Value}"]`).checked = true;
-    }
-    const partnerRequirementValue = getCookie('partnerRequirement');
-    if (partnerRequirementValue) {
-        document.getElementById('partnerRequirement').value = partnerRequirementValue;
-    }
-});
+      // Function to get a cookie by name
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+      }
 
 
+function goBack() {
+            window.history.back();
+        }
+
+      function checkLogin() {
+        let token = getCookie('token');
+        if (!token) {
+            // alert("User not logged in. Please login.");
+            window.location.href = 'login.html';
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        // Extract values from cookies and populate the form
+        const revert2Value = getCookie('revert2');
+        if (revert2Value) {
+            document.querySelector(`input[name="revert2"][value="${revert2Value}"]`).checked = true;
+        }
+        const partnerRequirementValue = getCookie('partnerRequirement');
+        if (partnerRequirementValue) {
+            document.getElementById('partnerRequirement').value = partnerRequirementValue;
+        }
+
+        // Check login status
+        checkLogin();
+      });
     </script>
 </head>
 <body>
@@ -140,6 +154,6 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     </div>
     <br>
-
 </body>
 </html>
+

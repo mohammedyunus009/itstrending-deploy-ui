@@ -163,10 +163,10 @@ function setCookie(name, value, days) {
 function checkLogin() {
     let token = getCookie('token');
     if (!token) {
-        alert("User not logged in. Please login.");
         window.location.href = 'login.html';
     }
 }
+
 
 function submitForm() {
     // Validate the form fields

@@ -226,7 +226,7 @@ textarea {
     
             // Perform validation checks if needed
             if (!maritalStatus) {
-                alert("Please select a marital status.");
+                // alert("Please select a marital status.");
                 return false;
             }
     
@@ -257,6 +257,27 @@ textarea {
     </script>
     
     <script>
+      function getCookie(name) {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
+function checkLogin() {
+    let token = getCookie('token'); // Use the correct cookie name
+    console.log("Token from cookie:", token); // Debugging: Check if token is retrieved
+
+    if (!token) {
+        // alert("User not logged in. Please login.");
+        window.location.href = 'login.html';
+    }
+}
+
+window.onload = function() {
+    checkLogin();
+}
+
+
         function showChildrenDropdown() {
             var maritalStatus = document.getElementById("marital_status").value;
             var childrenDropdown = document.getElementById("children_dropdown");
