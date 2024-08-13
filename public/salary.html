@@ -1,102 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+    <link href="fonts/css/solid.min.css" rel="stylesheet" />
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
     <title>Profile</title>
-    <link rel="stylesheet" href="css/matrimony/profile2.css">
+    <link rel="stylesheet" href="css/salary.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-PQLTG22ZFC');
-    </script>
-</head>
-<body>
-    <!-- <div id="headerPlaceholder"></div> -->
+<style>
+  /* Logo Image Styling */
+.logo-img {
+    width: 220px; /* Adjust size for desktop view */
+    height: 75px;
+}
 
-    <div class="header">
-        <div class="back-button" onclick="goBack()"> < </div>
-        <div class="title">Profile</div>
+@media (max-width: 768px) {
+    .logo-img {
+        max-width: 120px; /* Adjust size for mobile view */
+    }
+}
+</style>
+  </head>
+
+<body>
+  <section id="top" class="bg_brown pt-2 pb-2">
+    <div class="container-xl">
+     <div class="row top_1">
+      <div class="col-md-6">
+       <div class="top_1l mt-1">
+      <ul class="mb-0 font_14">
+         <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+       </ul>
+     </div>
+      </div>
+      <div class="col-md-6">
+       <div class="top_1r text-end">
+        <ul class="mb-0">
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+       </ul>
+     </div>
+      </div>
+     </div>
     </div>
-    
+   </section>
+       
+        <section id="header">
+       <nav class="navbar navbar-expand-md navbar-light  p-0 pt-2 pb-2" id="navbar_sticky">
+         <div class="container-xl">
+           <a class="navbar-brand p-0 me-0" href="index.html">
+				<img src="img/IMG-20240813-WA0001-removebg-preview.png" alt="ISC Logo" class="logo-img">
+			</a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-0 ms-auto">
+              <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Login/Register
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
+                <a class="dropdown-item" href="male.html">Create Profile</a>
+                <a class="dropdown-item" href="plans.html">Plans</a>
+              </div>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link" href="filter.html">Search</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="payment.html">Payment</a>
+              </li>
+            
+              <!-- Dropdown for Event -->
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Event
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="eventDropdown">
+                <li><a class="dropdown-item" href="#">Matrimonial</a></li>
+                <li><a class="dropdown-item" href="#">Meeting</a></li>
+                <li><a class="dropdown-item" href="#">KPN</a></li>
+                <li><a class="dropdown-item" href="health.html">Health & Wellness</a></li>
+                <li><a class="dropdown-item" href="#">Marita Consulting</a></li>
+              </ul>
+              </li>
+            
+              <!-- Dropdown for Donation -->
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="donationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Donation
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="donationDropdown">
+                <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
+                <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
+                <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food Directory</a></li>
+                <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+                <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
+                <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment Business Support</a></li>
+              </ul>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="#">Media</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+              <!-- <li class="nav-item">
+              <a class="nav-link" href="login.html">Sign In/Sign Up</a>
+              </li> -->
+            </ul>
+             <ul class="navbar-nav mb-0 ms-auto">
+            <!-- <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle dropdown_search nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <i class="fa fa-search"></i>
+                 </a>
+                 <ul class="dropdown-menu drop_2 p-3" aria-labelledby="navbarDropdown">
+                   <li>
+                     <div class="input-group">
+                       <input type="text" class="form-control bg_light border-0 font_13" placeholder="Enter Keyword">
+                       <span class="input-group-btn">
+                           <button class="btn btn-primary bg_brown  p-3 px-4 border-0" type="button">
+                               <i class="fa fa-search"></i> </button>
+                       </span>
+               </div>
+                   </li>
+                 </ul>
+               </li> -->
+               <!-- <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle drop_togn nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <i class="fa fa-shopping-cart"></i>
+                 </a> -->
+                 <ul class="dropdown-menu drop_cart rounded-0 border-0" aria-labelledby="navbarDropdown" >
+                               <li>
+                                <div class="drop_1i row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il"><h5 class="fs-6">2 ITEMS</h5></div>
+                                 </div>
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il text-end"><h5 class="fs-6"><a href="cart.html">VIEW CART</a></h5></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i1 row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Nulla Quis</a> <br> <span class="d-inline-block mt-1 font_15">1x - $89.00</span></h6></div>
+                                 </div>
+                                 <div class="col-md-4 col-4">
+                                  <div class="drop_1i1r"><a href="#"><img src="img/52.jpg" class="w-100" alt="abc"></a></div>
+                                 </div>
+                                 <div class="col-md-2 col-2">
+                                  <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i1 row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Eget Nulla</a> <br> <span class="d-inline-block mt-1 font_15">1x - $49.00</span></h6></div>
+                                 </div>
+                                 <div class="col-md-4 col-4">
+                                  <div class="drop_1i1r"><a href="#"><img src="img/53.jpg" class="w-100" alt="abc"></a></div>
+                                 </div>
+                                 <div class="col-md-2 col-2">
+                                  <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i2 row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il"><h5 class="fs-6">TOTAL</h5></div>
+                                 </div>
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il text-end"><h5 class="fs-5">$142.00</h5></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i3 text-center row">
+                                 <div class="col-md-12 col-12">
+                                   <ul class="mb-0">
+                                    <li class="d-inline-block mx-1"><a class="button_2 px-3 pt-2 pb-2 font_14" href="#">View Order</a></li>
+                                    <li class="d-inline-block mx-1"><a class="button_1 px-3 pb-2 pt-2 font_14" href="#">Checkout</a></li>
+                                   </ul>
+                                 </div>
+                                </div>
+                               </li>
+                             </ul>
+               </li>
+             </ul>
+           </div>
+         </div>
+       </nav>
+       </section>
+     
+       <div class="header">
+        <div class="back-button" onclick="goBack()"> < </div>
+        <div class="title">Income</div>
+    </div>
+
     <div class="user-details">
-        <!-- Choose one of the sizes below by changing the class name -->
         <div class="user-icon small">
             <i class="fa-solid fa-briefcase"></i>
         </div>
         <h2>You are almost done!</h2>
 
         <div class="dropdown-container">
-            <form id="profile-form" onsubmit="submitForm(); return false;">
+            <form id="profile-form" onsubmit="return submitForm()">
                 <div class="form-group">
-                    <label for="education_qualification" style="display: block;">Education:</label>
-                    <select id="education_qualification" name="education_qualification" onchange="toggleOtherEducationField()">
+                    <label for="education_qualification" style="display: block;">Education Qualification</label>
+                    <select id="education_qualification" name="education_qualification" required onchange="toggleOtherEducationField()">
                         <option value="" disabled selected>Select your qualification</option>
-                        <option value="high_school">High School</option>
-                        <option value="plus_two_puc">+2 / PUC</option>
-                        <option value="bachelors">Bachelors</option>
-                        <option value="masters">Masters</option>
-                        <option value="engineer_mca">Engineer / MCA</option>
-                        <option value="mbbs">MBBS</option>
-                        <option value="phd">PhD</option>
-                        <option value="others">Others</option>
-                    </select>
-                    <br><br>
+                        <option value="be_btech">BE/BTech - Bachelor of Engineering / Bachelor of Technology</option>
+                        <option value="mbbs">MBBS - Bachelor of Medicine and Bachelor of Surgery</option>
+                        <option value="be_btech">BE/BTech - Bachelor of Engineering / Bachelor of Technology</option>
+                        <option value="mbbs">MBBS - Bachelor of Medicine and Bachelor of Surgery</option>
+                        <option value="bsc">BSc - Bachelor of Science</option>
+                        <option value="ba">BA - Bachelor of Arts</option>
+                        <option value="bcom">BCom - Bachelor of Commerce</option>
+                        <option value="bba">BBA - Bachelor of Business Administration</option>
+                        <option value="bca">BCA - Bachelor of Computer Applications</option>
+                        <option value="bpharm">BPharm - Bachelor of Pharmacy</option>
+                        <option value="barch">BArch - Bachelor of Architecture</option>
+                        <option value="bed">BEd - Bachelor of Education</option>
+                        <option value="llb">LLB - Bachelor of Laws</option>
+                        <option value="mtech">MTech - Master of Technology</option>
+                        <option value="md">MD - Doctor of Medicine</option>
+                        <option value="msc">MSc - Master of Science</option>
+                        <option value="ma">MA - Master of Arts</option>
+                        <option value="mcom">MCom - Master of Commerce</option>
+                        <option value="mba">MBA - Master of Business Administration</option>
+                        <option value="mca">MCA - Master of Computer Applications</option>
+                        <option value="mpharm">MPharm - Master of Pharmacy</option>
+                        <option value="march">MArch - Master of Architecture</option>
+                        <option value="med">MEd - Master of Education</option>
+                        <option value="llm">LLM - Master of Laws</option>
+                        <option value="phd">PhD - Doctor of Philosophy</option>
+                        <option value="dsc">DSc - Doctor of Science</option>
+                        <option value="diploma_engineering">Diploma in Engineering - Polytechnic</option>
+                        <option value="pgdm">PGDM - Post Graduate Diploma in Management</option>
+                        <option value="pgdca">PGDCA - Post Graduate Diploma in Computer Applications</option>
+                        <option value="certificate_courses">Certificate Courses - Various fields</option>
+                        <option value="ca">CA - Chartered Accountant</option>
+                        <option value="cs">CS - Company Secretary</option>
+                        <option value="cma">CMA - Cost and Management Accountant</option>
+                        <option value="bds">BDS - Bachelor of Dental Surgery</option>
+                        <option value="bams">BAMS - Bachelor of Ayurvedic Medicine and Surgery</option>
+                        <option value="bhms">BHMS - Bachelor of Homeopathic Medicine and Surgery</option>
+                        <option value="bvsc">BVSc - Bachelor of Veterinary Science</option>
+                        <option value="bpt">BPT - Bachelor of Physiotherapy</option>
+                        <option value="bhm">BHM - Bachelor of Hotel Management</option>                        <option value="others">Others</option>
+                    </select><br>
                     <!-- Additional text field for custom education qualification -->
                     <div id="other-education-field" style="display: none;">
-                        <label for="other_education" style="display: block;">Please specify your qualification :</label>
+                        <label for="other_education" style="display: block;">Please specify your qualification</label>
                         <input type="text" id="other_education" name="other_education" placeholder="Specify your qualification">
                     </div>
                 </div>
                 <br>
-                <label for="monthly-salary" style="display: block;">Monthly salary range :</label>
+                <label for="monthly-salary" style="display: block;">Monthly salary range</label>
                 <input type="text" id="monthly-salary" name="monthly-salary" placeholder="Monthly salary range">
                 <br><br>
 
-               <!-- Profession input -->
-               <div class="form-group">
-                    <label for="professional" style="display: block;">Profession :</label>
-                    <select id="professional" name="professional">
-                        <option value="">Select Profession</option>
-                        <option value="Salaried Employee">Salaried Employee</option>
-                        <option value="Business">Business</option>
-                        <option value="Homemaker">Homemaker</option>
-                        <option value="Working Part time">Working Part time</option>
-                        <option value="Others">Others</option>
-                        <!-- Add more profession options as needed -->
-                    </select>
-                    <br><br>
-                </div>
+                <label for="professional" style="display: block;">Profession</label>
+                <input type="text" id="professional" name="professional" placeholder="Professional">
+                <br><br>
 
                 <div class="form-group">
-                    <label for="Business" style="display: block;">Business Type :</label>
-                    <select id="Business" name="Business">
+                    <label for="Business" style="display: block;">Business Type <span class="Business"></span></label>
+                    <select id="Business" name="Business" required>
                         <option value="">Select Business Type</option>
                         <option value="Propriteor">Propriteor</option>
                         <option value="Partner">Partner</option>
                         <option value="Family">Family</option>
+                        <option value="Entrepreneur">Entrepreneur</option>
                     </select>
-                    <br><br>
                 </div>
 
-                <input type="button" value="Next" onclick="submitForm()" id="nextButton">
+                <!-- <label for="how-i-know" style="display: block;">How I Know Khurshid bhai</label> -->
+<select id="how-i-know" name="how-i-know" required onchange="toggleContactFields()" style="display: none;">
+    <option value="#">How I know</option>
+    <option value="Friend">Friend</option>
+    <option value="Family">Family</option>
+    <option value="Colleague">Colleague</option>
+    <option value="Other">Other</option>
+</select>
+
+                <br><br>
+                
+                <!-- Fields for name and phone number -->
+                <div id="contact-fields" style="display: none;">
+                    <label for="contact_name" style="display: block;">Name</label>
+                    <input type="text" id="contact_name" name="contact_name" placeholder="Name">
+                    <br><br>
+                    <label for="contact_phone" style="display: block;">Phone Number</label>
+                    <input type="text" id="contact_phone" name="contact_phone" placeholder="Phone Number">
+                </div>
+
             </form>
+            <input type="button" value="Next" onclick="submitForm()" id="nextButton">
+
         </div>
     </div>
-    <!-- <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div> -->
-
-    <script>
+<br>
+<br>
+<br>
+<section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
+  <div class="container-fluid" style="background-color: #5c0951;">
+    <div class="footer_m bg_light p-4">
+      <div class="footer_1 row">
+      <div class="col-md-3">
+     <div class="footer_1i">
+       <h1 class="mb-3"><a class="family_1" href="index.html"><i class="fa fa-heart me-1 col_brown"></i>  ISC <br>
+ <span class="family_2 fw-normal font_14 col_brown">Lookimg for a patner </span>
+ </a></h1>
+ <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+ <ul class="mb-0"> 
+ <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
+ <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
+ <li class="mt-3"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+ </ul>
+     </div>
+    </div>
+      <div class="col-md-3">
+     <div class="footer_1i">
+        <h5 class="mt-3 mb-4">Social media</h5>
+      <ul class="mb-0">
+        <li><a href="#">Facebook</a></li>
+       <li class="mt-3"><a href="#">Twitter</a></li>
+       <li class="mt-3"><a href="#">Pinterest</a></li>
+       <li class="mt-3"><a href="#">Instagram</a></li>
+      </ul>
+     </div>
+    </div> 
+    
+    <div class="col-md-3">
+     <div class="footer_1i">
+        <h5 class="mt-3 mb-4">Get TO Know US</h5>
+      <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+   
+       <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+      
+     </div>
+    </div>
+    <div class="col-md-3">
+     <div class="footer_1i">
+        <h5 class="mt-3 mb-4">TELEGRAM</h5>
+      <div class="footer_1i1 row mx-0">
+       <div class="col-md-4 p-0">
+       <div class="footer_1i1l">
+         <div class="grid clearfix">
+       <figure class="effect-jazz mb-0">
+       <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+       </figure>
+       </div>
+       </div>
+     </div>
+     <div class="col-md-4 p-0">
+       <div class="footer_1i1l">
+         <div class="grid clearfix">
+       <figure class="effect-jazz mb-0">
+       <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+       </figure>
+       </div>
+       </div>
+     </div>
+     <div class="col-md-4 p-0">
+       <div class="footer_1i1l">
+         <div class="grid clearfix">
+       <figure class="effect-jazz mb-0">
+       <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+       </figure>
+       </div>
+       </div>
+     </div>
+      </div>
+      <div class="footer_1i1 row mx-0">
+       <div class="col-md-4 p-0">
+       <div class="footer_1i1l">
+         <div class="grid clearfix">
+       <figure class="effect-jazz mb-0">
+       <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+       </figure>
+       </div>
+       </div>
+     </div>
+     <div class="col-md-4 p-0">
+       <div class="footer_1i1l">
+         <div class="grid clearfix">
+       <figure class="effect-jazz mb-0">
+       <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+       </figure>
+       </div>
+       </div>
+     </div>
+     <div class="col-md-4 p-0">
+       <div class="footer_1i1l">
+         <div class="grid clearfix">
+       <figure class="effect-jazz mb-0">
+       <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+       </figure>
+       </div>
+       </div>
+     </div>
+      </div>
+     </div>
+    </div>
+    </div><hr class="mt-4 mb-4">
+    <div class="footer_2 row">
+      <div class="col-md-8">
+     <div class="footer_2l">
+         <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+     </div>
+    </div>
+   <!-- <div class="col-md-4">
+     <div class="footer_2r text-end">
+        <ul class="text-uppercase font_13 mb-0">
+         <li class="d-inline-block"><a href="#"> Facebook</a></li>
+       <li class="d-inline-block mx-2 text-muted">|</li>
+        <li class="d-inline-block"><a href="#"> Twitter</a></li>
+        <li class="d-inline-block mx-2 text-muted">|</li>
+        <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+        <li class="d-inline-block mx-2 text-muted">|</li>
+        <li class="d-inline-block"><a href="#"> Instagram</a></li>
+       </ul>
+     </div>
+    </div> -->
+    </div>
+    </div>
+   </div>
+  </div>
+ </section>
+ <script>
         function goBack() {
             window.history.back();
         }
@@ -113,65 +463,65 @@
             }
         }
 
-        function setCookie(name, value, days) {
-            let expires = "";
-            if (days) {
-                let date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
+        function toggleContactFields() {
+            let howIKnowDropdown = document.getElementById('how-i-know');
+            let contactFields = document.getElementById('contact-fields');
+            let selectedValue = howIKnowDropdown.value;
 
-        function getCookie(name) {
-            let nameEQ = name + "=";
-            let ca = document.cookie.split(';');
-            for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            if (selectedValue === 'Friend' || selectedValue === 'Family' || selectedValue === 'Colleague' || selectedValue === 'Other') {
+                contactFields.style.display = 'block';
+            } else {
+                contactFields.style.display = 'none';
             }
-            return null;
         }
 
         function submitForm() {
-            // Handle form data and store in cookies
+            // Handle form data
             let monthlySalary = document.getElementById('monthly-salary').value;
             let professional = document.getElementById('professional').value;
             let businessType = document.getElementById('Business').value;
+            let howIKnowDropdown = document.getElementById('how-i-know');
+            let howIKnow = howIKnowDropdown.options[howIKnowDropdown.selectedIndex].value;
             let educationQualification = document.getElementById('education_qualification').value;
             let otherEducation = document.getElementById('other_education') ? document.getElementById('other_education').value : '';
+            let contactName = document.getElementById('contact_name') ? document.getElementById('contact_name').value : '';
+            let contactPhone = document.getElementById('contact_phone') ? document.getElementById('contact_phone').value : '';
 
-            // Set cookies
-            setCookie('field25', monthlySalary, 1);
-            setCookie('field26', professional, 1);
-            setCookie('field4', businessType, 1);
-            setCookie('field3', educationQualification, 1);
-            setCookie('field27', otherEducation, 1);
-
-            console.log("Form submitted and data stored in cookies:");
-            console.log("Monthly Salary:", monthlySalary);
-            console.log("Profession:", professional);
-            console.log("Business Type:", businessType);
-            console.log("Education Qualification:", educationQualification);
-            console.log("Other Education:", otherEducation);
-
-            // Redirect to another page after form submission
-            window.location.href = 'partnerRequired.html';
-        }
-
-        function checkLogin() {
-            let token = getCookie('token');
-            if (!token) {
-                // alert("User not logged in. Please login.");
-                window.location.href = 'login.html';
+            // Validate form fields
+            if (!monthlySalary.trim()) {
+                alert("Please enter your monthly salary range.");
+                return false;
             }
-        }
+            if (!professional.trim()) {
+                alert("Please enter your profession.");
+                return false;
+            }
+            // if (howIKnow === "#") {
+            //     alert("Please select how you know Khurshid bhai.");
+            //     return false;
+            // }
+            if (educationQualification === 'others' && !otherEducation.trim()) {
+                alert("Please specify your education qualification.");
+                return false;
+            }
+            // if ((howIKnow === 'Friend' || howIKnow === 'Family' || howIKnow === 'Colleague' || howIKnow === 'Other') && (!contactName.trim() || !contactPhone.trim())) {
+            //     alert("Please provide name and phone number of the selected person.");
+            //     return false;
+            // }
 
-        window.onload = function() {
-            checkLogin();
+            // Set cookies with the entered values
+            document.cookie = `field26=${encodeURIComponent(monthlySalary)}; path=/`;
+            document.cookie = `field27=${encodeURIComponent(professional)}; path=/`;
+            document.cookie = `field5=${encodeURIComponent(businessType)}; path=/`;
+            // document.cookie = `field28=${encodeURIComponent(howIKnow)}; path=/`;
+            document.cookie = `field4=${encodeURIComponent(educationQualification === 'others' ? otherEducation : educationQualification)}; path=/`;
+            // document.cookie = `contactName=${encodeURIComponent(contactName)}; path=/`;
+            // document.cookie = `contactPhone=${encodeURIComponent(contactPhone)}; path=/`;
+
+            // Redirect to the next page
+            window.location.href = 'partnerRequired.html';
+            return false; // Prevent form submission
         }
-    </script>
+</script>
 </body>
 </html>
-
