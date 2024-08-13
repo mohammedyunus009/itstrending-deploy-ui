@@ -11,15 +11,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PQLTG22ZFC');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PQLTG22ZFC');
+    </script>
 </head>
-<body>
+<body onload="checkLogin()">
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
         <div class="title"> Personal details</div>
@@ -88,34 +88,50 @@
     </form>
 
     <script>
-     function goBack() {
-    window.history.back();
-}
+        function goBack() {
+            window.history.back();
+        }
 
-function setCookie(name, value, expires) {
-    document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
-}
+        function setCookie(name, value, expires) {
+            document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
+        }
 
-function validateForm() {
-    var phoneNumber = document.getElementById("phoneNumber").value;
-    var nativeLanguage = document.getElementById("nativeLanguage").value;
-    var residenceLanguage = document.getElementById("residenceLanguage").value;
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";");
+            for (let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if (name === cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
 
-    if (phoneNumber.trim() === "") {
-        return false;
-    }
+        function validateForm() {
+            var phoneNumber = document.getElementById("phoneNumber").value;
+            var nativeLanguage = document.getElementById("nativeLanguage").value;
+            var residenceLanguage = document.getElementById("residenceLanguage").value;
 
-    setCookie("field9", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
-    setCookie("field10", nativeLanguage, new Date(new Date().getTime() + 24*60*60*1000));
-    setCookie("field11", residenceLanguage, new Date(new Date().getTime() + 24*60*60*1000));
+            if (phoneNumber.trim() === "") {
+                return false;
+            }
 
-    // Redirect to the next page
-    window.location.href = "upload_images.html";
-    return true;
-}
+            setCookie("field9", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field10", nativeLanguage, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field11", residenceLanguage, new Date(new Date().getTime() + 24*60*60*1000));
 
-document.getElementById("nextButton").addEventListener("click", validateForm);
+            // Redirect to the next page
+            window.location.href = "upload_images.html";
+            return true;
+        }
 
+        function checkLogin() {
+            let token = getCookie('token');
+            if (!token) {
+                // alert("User not logged in. Please login.");
+                window.location.href = 'login.html';
+            }
+        }
     </script>
 </body>
 </html>

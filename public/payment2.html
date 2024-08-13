@@ -12,14 +12,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PQLTG22ZFC');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PQLTG22ZFC');
+  </script>
   <style>
     body {
       background-color: #f9f9f9;
@@ -63,42 +63,54 @@
       <input type="hidden" name="access_key" value="cd7be852-b96a-4846-b8f5-25b88687626a">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" name="name">
+        <input type="text" class="form-control" id="name" name="name" required>
       </div><br>
       <div class="mb-3">
         <label for="phone" class="form-label">Phone Number</label>
-        <input type="text" class="form-control" id="phone" name="phone">
+        <input type="text" class="form-control" id="phone" name="phone" required>
       </div><br>
       <div class="mb-3">
         <label for="transaction-id" class="form-label">Transaction ID</label>
-        <input type="text" class="form-control" id="transaction-id" name="transaction_id">
+        <input type="text" class="form-control" id="transaction-id" name="transaction_id" pattern="\d{11}" title="Please enter an 11-digit number" required>
+        <small id="transaction-id-error" class="form-text text-danger"></small>
       </div><br>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="email">
+        <input type="email" class="form-control" id="email" name="email" required>
       </div><br>
       <div class="mb-3">
         <label for="message" class="form-label">Message</label>
-        <textarea class="form-control" id="message" name="message"></textarea>
+        <textarea class="form-control" id="message" name="message" required></textarea>
       </div><br>
       <!-- Honeypot Spam Protection -->
       <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-</div>
+  </div>
 
-  
   <!-- <div class="container hidden" id="payment-done-container">
     <h2>Payment Status</h2>
     <p>Your payment is already done. Thank you!</p>
   </div> -->
-  
+
   <script src="js/include.js"></script>
+
   <div id="footerPlaceholder"></div>
 
   <script>
     document.getElementById('info-form').addEventListener('submit', function(e) {
       e.preventDefault(); // Prevent the default form submission
+      var transactionId = document.getElementById('transaction-id').value;
+      var errorElement = document.getElementById('transaction-id-error');
+
+      // Validate transaction ID
+      if (!/^\d{11}$/.test(transactionId)) {
+        errorElement.textContent = 'Transaction ID must be exactly 11 digits.';
+        return;
+      } else {
+        errorElement.textContent = '';
+      }
+
       // Submit the form using AJAX
       var formData = $(this).serialize();
       $.ajax({
@@ -106,11 +118,15 @@
         url: 'https://api.web3forms.com/submit',
         data: formData,
         success: function(response) {
-          // Redirect to button.html on successful form submission
-          window.location.href = 'button.html';
+          // Display alert on successful form submission
+          alert('Thanks for registering with us once admin approve you will receive a mail');
+          // Redirect to filter.html after a short delay
+          setTimeout(function() {
+            window.location.href = 'filter.html';
+          }, 2000); // 2 seconds delay
         },
         error: function() {
-          // alert('There was an error submitting the form. Please try again.');
+          alert('There was an error submitting the form. Please try again.');
         }
       });
     });
