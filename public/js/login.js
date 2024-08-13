@@ -130,7 +130,7 @@ if (signupForm) {
                   // Hide loading animation
                   loadingContainer.style.display = 'none';
                   // Redirect to the next page
-                  window.location.href = 'payment.html';
+                  window.location.href = 'male.html';
               }, 5000); // 5 seconds
           } else {
               console.log('Login failed:', data.message);
