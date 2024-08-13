@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filter Page</title>
-  <link rel="stylesheet" href="css/matrimony/profile.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- Bootstrap JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link href="css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
-<script src="js/include.js"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PQLTG22ZFC');
-</script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Matrimonial</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+     <link href="fonts/css/solid.min.css" rel="stylesheet" />
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+
   <style>
     .header {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
+      background-color: black;
+      color: #ccc;
       margin-bottom: 20px;
       position: relative;
     }
     .header .back-button {
+     
       position: absolute;
       left: 10px;
       font-size: 24px;
@@ -63,7 +62,7 @@
       margin-top: 20px;
     }
     #submitButton {
-      width: 100%;
+      width: 50%;
       color: whitesmoke;
       background-color: black;
       text-align: center;
@@ -83,15 +82,126 @@
     .filter-section.show {
       display: block;
     }
+    /* Logo Image Styling */
+.logo-img {
+    width: 220px; /* Adjust size for desktop view */
+    height: 75px;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        max-width: 120px; /* Adjust size for mobile view */
+    }
+}
   </style>
 </head>
 <body>
-  <div id="headerPlaceholder"></div>
-
+  <section id="top" class="bg_brown pt-2 pb-2">
+    <div class="container-xl">
+     <div class="row top_1">
+      <div class="col-md-6">
+       <div class="top_1l mt-1">
+      <ul class="mb-0 font_14">
+         <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+       </ul>
+     </div>
+      </div>
+      <div class="col-md-6">
+       <div class="top_1r text-end">
+        <ul class="mb-0">
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+       </ul>
+     </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   
+   <section id="header">
+     <nav class="navbar navbar-expand-md navbar-light p-0 pt-2 pb-2" id="navbar_sticky">
+       <div class="container-xl">
+       <a class="navbar-brand p-0 me-0" href="index.html">
+				<img src="img/IMG-20240813-WA0001-removebg-preview.png" alt="ISC Logo" class="logo-img">
+			</a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-0 ms-auto">
+          <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login/Register
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
+            <a class="dropdown-item" href="male.html">Create Profile</a>
+            <a class="dropdown-item" href="plans.html">Plans</a>
+          </div>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="filter.html">Search</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="payment.html">Payment</a>
+          </li>
+        
+          <!-- Dropdown for Event -->
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Event
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="eventDropdown">
+            <li><a class="dropdown-item" href="#">Matrimonial</a></li>
+            <li><a class="dropdown-item" href="#">Meeting</a></li>
+            <li><a class="dropdown-item" href="#">KPN</a></li>
+            <li><a class="dropdown-item" href="health.html">Health & Wellness</a></li>
+            <li><a class="dropdown-item" href="#">Marita Consulting</a></li>
+          </ul>
+          </li>
+        
+          <!-- Dropdown for Donation -->
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="donationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Donation
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="donationDropdown">
+            <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
+            <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
+            <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food Directory</a></li>
+            <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+            <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
+            <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment Business Support</a></li>
+          </ul>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">Media</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <!-- <li class="nav-item">
+          <a class="nav-link" href="login.html">Sign In/Sign Up</a>
+          </li> -->
+        </ul>
+       </div>
+       </div>
+     </nav>
+     </section>
   <div class="header">
     <div class="back-button" onclick="goBack()"> < </div>
     <div class="title">Filter Page</div>
   </div>
+  <!-- http://127.0.0.1:5502/matrimonial_zip/payment.html -->
 
   <div class="container-wrapper">
     <div class="container mt-4">
@@ -100,45 +210,31 @@
         <a href="#" class="list-group-item list-group-item-action" data-filter="Gender">
           Looking-for <span id="genderCount" class="filter-count">0</span>
         </a>
-    
-        <a href="#" class="list-group-item list-group-item-action" data-filter="Religion" style="display: none;">
-          Religion <span id="religionCount" class="filter-count">0</span>
+        <a href="#" class="list-group-item list-group-item-action" data-filter="Religion">
+          Cast <span id="religionCount" class="filter-count">0</span>
         </a>
-       
-        <a href="#" class="list-group-item list-group-item-action" data-filter="Height" style="display: none;">
+        <a href="#" class="list-group-item list-group-item-action" data-filter="Height">
           Height <span id="heightCount" class="filter-count">0</span>
         </a>
-        
-        <a href="#" class="list-group-item list-group-item-action" data-filter="Age" style="display: none;">
+        <a href="#" class="list-group-item list-group-item-action" data-filter="Age">
           Age <span id="ageCount" class="filter-count">0</span>
         </a>
-        <br>
         <a href="#" class="list-group-item list-group-item-action" data-filter="State">
           State <span id="stateCount" class="filter-count">0</span>
         </a>
-        <br>
-
         <a href="#" class="list-group-item list-group-item-action" data-filter="Qualification">
-          Education <span id="qualificationCount" class="filter-count">0</span>
+          Qualification <span id="qualificationCount" class="filter-count">0</span>
         </a>
-        <br>
-
         <a href="#" class="list-group-item list-group-item-action" data-filter="Job">
           Job/Business <span id="jobCount" class="filter-count">0</span>
         </a>
-        <br>
-
         <a href="#" class="list-group-item list-group-item-action" data-filter="Marital">
           Marital Status <span id="maritalCount" class="filter-count">0</span>
         </a>
-        <br>
-
         <a href="#" class="list-group-item list-group-item-action" data-filter="Follow">
-          Deeni Interest <span id="followCount" class="filter-count">0</span>
+          Follow <span id="followCount" class="filter-count">0</span>
         </a>
-        <br>
-
-        <a href="#" class="list-group-item list-group-item-action" data-filter="Personal" style="display: none;">
+        <a href="#" class="list-group-item list-group-item-action" data-filter="Personal">
           Personal Attributes <span id="personalCount" class="filter-count">0</span>
         </a>
       </div>
@@ -151,9 +247,6 @@
       </div>
     </div>
   </div>
-<br>
-<br>
-
 
   <div class="submit-button-wrapper">
     <button class="Submit" id="submitButton">
@@ -163,6 +256,135 @@
 
   <div id="selectedFiltersDisplay" style="margin-left: 50px; color: black;"></div>
 
+
+
+  <section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
+    <div class="container-fluid" style="background-color: #5c0951;">
+      <div class="footer_m bg_light p-4">
+        <div class="footer_1 row">
+        <div class="col-md-3">
+       <div class="footer_1i">
+         <h1 class="mb-3"><a class="family_1" href="index.html"><i class="fa fa-heart me-1 col_brown"></i>  ISC <br>
+   <span class="family_2 fw-normal font_14 col_brown">Lookimg for a patner </span>
+   </a></h1>
+   <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+   <ul class="mb-0"> 
+   <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
+   <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
+   <li class="mt-3"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+   </ul>
+       </div>
+      </div>
+        <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">Social media</h5>
+        <ul class="mb-0">
+          <li><a href="#">Facebook</a></li>
+         <li class="mt-3"><a href="#">Twitter</a></li>
+         <li class="mt-3"><a href="#">Pinterest</a></li>
+         <li class="mt-3"><a href="#">Instagram</a></li>
+        </ul>
+       </div>
+      </div> 
+      
+      <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">Get TO Know US</h5>
+        <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+     
+         <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+        
+       </div>
+      </div>
+      <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">TELEGRAM</h5>
+        <div class="footer_1i1 row mx-0">
+         <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+        </div>
+        <div class="footer_1i1 row mx-0">
+         <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+        </div>
+       </div>
+      </div>
+      </div><hr class="mt-4 mb-4">
+      <div class="footer_2 row">
+        <div class="col-md-8">
+       <div class="footer_2l">
+           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+       </div>
+      </div>
+     <!-- <div class="col-md-4">
+       <div class="footer_2r text-end">
+          <ul class="text-uppercase font_13 mb-0">
+           <li class="d-inline-block"><a href="#"> Facebook</a></li>
+         <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Twitter</a></li>
+          <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+          <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Instagram</a></li>
+         </ul>
+       </div>
+      </div> -->
+      </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  
   
   <script src="js/matrimony/scripts.js"></script>
   <script>
@@ -202,12 +424,12 @@
         `;
       } else if (filter === 'Religion') {
         filterHtml = `
-          <label class="checkbox-label"><input type="checkbox" value="Sunni"> Sunni</label>
-          <label class="checkbox-label"><input type="checkbox" value="Syed"> Syed</label>
-          <label class="checkbox-label"><input type="checkbox" value="Pathan/Khan"> Pathan</label>
-          <label class="checkbox-label"><input type="checkbox" value="Sheikh"> Sheikh</label>
-          <label class="checkbox-label"><input type="checkbox" value="Reverted muslims"> Reverted Muslims</label>
-          <label class="checkbox-label"><input type="checkbox" value="Others"> Others</label>
+          <label class="checkbox-label"><input type="checkbox" value="sunni"> Sunni</label>
+          <label class="checkbox-label"><input type="checkbox" value="syed"> Syed</label>
+          <label class="checkbox-label"><input type="checkbox" value="pathan"> Pathan</label>
+          <label class="checkbox-label"><input type="checkbox" value="sheikh"> Sheikh</label>
+          <label class="checkbox-label"><input type="checkbox" value="retrieved-muslims"> Retrieved Muslims</label>
+          <label class="checkbox-label"><input type="checkbox" value="others"> Others</label>
         `;
       } else if (filter === 'Height') {
         filterHtml = `
@@ -226,74 +448,96 @@
         `;
       } else if (filter === 'State') {
         filterHtml = `
-    <label class="checkbox-label"><input type="checkbox" value="Andhra Pradesh"> Andhra Pradesh</label>
-<label class="checkbox-label"><input type="checkbox" value="Arunachal Pradesh"> Arunachal Pradesh</label>
-<label class="checkbox-label"><input type="checkbox" value="Assam"> Assam</label>
-<label class="checkbox-label"><input type="checkbox" value="Bihar"> Bihar</label>
-<label class="checkbox-label"><input type="checkbox" value="Chhattisgarh"> Chhattisgarh</label>
-<label class="checkbox-label"><input type="checkbox" value="Goa"> Goa</label>
-<label class="checkbox-label"><input type="checkbox" value="Gujarat"> Gujarat</label>
-<label class="checkbox-label"><input type="checkbox" value="Haryana"> Haryana</label>
-<label class="checkbox-label"><input type="checkbox" value="Himachal Pradesh"> Himachal Pradesh</label>
-<label class="checkbox-label"><input type="checkbox" value="Jharkhand"> Jharkhand</label>
-<label class="checkbox-label"><input type="checkbox" value="Karnataka"> Karnataka</label>
-<label class="checkbox-label"><input type="checkbox" value="Kerala"> Kerala</label>
-<label class="checkbox-label"><input type="checkbox" value="Madhya Pradesh"> Madhya Pradesh</label>
-<label class="checkbox-label"><input type="checkbox" value="Maharashtra"> Maharashtra</label>
-<label class="checkbox-label"><input type="checkbox" value="Manipur"> Manipur</label>
-<label class="checkbox-label"><input type="checkbox" value="Meghalaya"> Meghalaya</label>
-<label class="checkbox-label"><input type="checkbox" value="Mizoram"> Mizoram</label>
-<label class="checkbox-label"><input type="checkbox" value="Nagaland"> Nagaland</label>
-<label class="checkbox-label"><input type="checkbox" value="Odisha"> Odisha</label>
-<label class="checkbox-label"><input type="checkbox" value="Punjab"> Punjab</label>
-<label class="checkbox-label"><input type="checkbox" value="Rajasthan"> Rajasthan</label>
-<label class="checkbox-label"><input type="checkbox" value="Sikkim"> Sikkim</label>
-<label class="checkbox-label"><input type="checkbox" value="Tamil Nadu"> Tamil Nadu</label>
-<label class="checkbox-label"><input type="checkbox" value="Telangana"> Telangana</label>
-<label class="checkbox-label"><input type="checkbox" value="Tripura"> Tripura</label>
-<label class="checkbox-label"><input type="checkbox" value="Uttar Pradesh"> Uttar Pradesh</label>
-<label class="checkbox-label"><input type="checkbox" value="Uttarakhand"> Uttarakhand</label>
-<label class="checkbox-label"><input type="checkbox" value="West Bengal"> West Bengal</label>
- `;
+          <label class="checkbox-label"><input type="checkbox" value="Andhra Pradesh"> Andhra Pradesh</label>
+          <label class="checkbox-label"><input type="checkbox" value="Arunachal Pradesh"> Arunachal Pradesh</label>
+          <label class="checkbox-label"><input type="checkbox" value="Assam"> Assam</label>
+          <label class="checkbox-label"><input type="checkbox" value="Bihar"> Bihar</label>
+          <label class="checkbox-label"><input type="checkbox" value="Chhattisgarh"> Chhattisgarh</label>
+          <label class="checkbox-label"><input type="checkbox" value="Goa"> Goa</label>
+          <label class="checkbox-label"><input type="checkbox" value="Gujarat"> Gujarat</label>
+          <label class="checkbox-label"><input type="checkbox" value="Haryana"> Haryana</label>
+          <label class="checkbox-label"><input type="checkbox" value="Himachal Pradesh"> Himachal Pradesh</label>
+          <label class="checkbox-label"><input type="checkbox" value="Jharkhand"> Jharkhand</label>
+          <label class="checkbox-label"><input type="checkbox" value="Karnataka"> Karnataka</label>
+          <label class="checkbox-label"><input type="checkbox" value="Kerala"> Kerala</label>
+          <label class="checkbox-label"><input type="checkbox" value="Madhya Pradesh"> Madhya Pradesh</label>
+          <label class="checkbox-label"><input type="checkbox" value="Maharashtra"> Maharashtra</label>
+          <label class="checkbox-label"><input type="checkbox" value="Manipur"> Manipur</label>
+          <label class="checkbox-label"><input type="checkbox" value="Meghalaya"> Meghalaya</label>
+          <label class="checkbox-label"><input type="checkbox" value="Mizoram"> Mizoram</label>
+          <label class="checkbox-label"><input type="checkbox" value="Nagaland"> Nagaland</label>
+          <label class="checkbox-label"><input type="checkbox" value="Odisha"> Odisha</label>
+          <label class="checkbox-label"><input type="checkbox" value="Punjab"> Punjab</label>
+          <label class="checkbox-label"><input type="checkbox" value="Rajasthan"> Rajasthan</label>
+          <label class="checkbox-label"><input type="checkbox" value="Sikkim"> Sikkim</label>
+          <label class="checkbox-label"><input type="checkbox" value="Tamil Nadu"> Tamil Nadu</label>
+          <label class="checkbox-label"><input type="checkbox" value="Telangana"> Telangana</label>
+          <label class="checkbox-label"><input type="checkbox" value="Tripura"> Tripura</label>
+          <label class="checkbox-label"><input type="checkbox" value="Uttar Pradesh"> Uttar Pradesh</label>
+          <label class="checkbox-label"><input type="checkbox" value="Uttarakhand"> Uttarakhand</label>
+          <label class="checkbox-label"><input type="checkbox" value="West Bengal"> West Bengal</label>
+        `;
       } else if (filter === 'Qualification') {
     filterHtml = `
-     <label class="checkbox-label"><input type="checkbox" value="high_school"> High School</label>
-<label class="checkbox-label"><input type="checkbox" value="plus_two_puc"> +2 / PUC</label>
-<label class="checkbox-label"><input type="checkbox" value="bachelors"> Bachelors</label>
-<label class="checkbox-label"><input type="checkbox" value="masters"> Masters</label>
-<label class="checkbox-label"><input type="checkbox" value="engineer_mca"> Engineer / MCA</label>
-<label class="checkbox-label"><input type="checkbox" value="mbbs"> MBBS</label>
-<label class="checkbox-label"><input type="checkbox" value="phd"> PhD</label>
-<label class="checkbox-label"><input type="checkbox" value="others"> Others</label>
-
-
+        <label class="checkbox-label"><input type="checkbox" value="be_btech"> BE/BTech - Bachelor of Engineering / Bachelor of Technology</label>
+        <label class="checkbox-label"><input type="checkbox" value="mbbs"> MBBS - Bachelor of Medicine and Bachelor of Surgery</label>
+        <label class="checkbox-label"><input type="checkbox" value="bsc"> BSc - Bachelor of Science</label>
+        <label class="checkbox-label"><input type="checkbox" value="ba"> BA - Bachelor of Arts</label>
+        <label class="checkbox-label"><input type="checkbox" value="bcom"> BCom - Bachelor of Commerce</label>
+        <label class="checkbox-label"><input type="checkbox" value="bba"> BBA - Bachelor of Business Administration</label>
+        <label class="checkbox-label"><input type="checkbox" value="bca"> BCA - Bachelor of Computer Applications</label>
+        <label class="checkbox-label"><input type="checkbox" value="bpharm"> BPharm - Bachelor of Pharmacy</label>
+        <label class="checkbox-label"><input type="checkbox" value="barch"> BArch - Bachelor of Architecture</label>
+        <label class="checkbox-label"><input type="checkbox" value="bed"> BEd - Bachelor of Education</label>
+        <label class="checkbox-label"><input type="checkbox" value="llb"> LLB - Bachelor of Laws</label>
+        <label class="checkbox-label"><input type="checkbox" value="mtech"> MTech - Master of Technology</label>
+        <label class="checkbox-label"><input type="checkbox" value="md"> MD - Doctor of Medicine</label>
+        <label class="checkbox-label"><input type="checkbox" value="msc"> MSc - Master of Science</label>
+        <label class="checkbox-label"><input type="checkbox" value="ma"> MA - Master of Arts</label>
+        <label class="checkbox-label"><input type="checkbox" value="mcom"> MCom - Master of Commerce</label>
+        <label class="checkbox-label"><input type="checkbox" value="mba"> MBA - Master of Business Administration</label>
+        <label class="checkbox-label"><input type="checkbox" value="mca"> MCA - Master of Computer Applications</label>
+        <label class="checkbox-label"><input type="checkbox" value="mpharm"> MPharm - Master of Pharmacy</label>
+        <label class="checkbox-label"><input type="checkbox" value="march"> MArch - Master of Architecture</label>
+        <label class="checkbox-label"><input type="checkbox" value="med"> MEd - Master of Education</label>
+        <label class="checkbox-label"><input type="checkbox" value="llm"> LLM - Master of Laws</label>
+        <label class="checkbox-label"><input type="checkbox" value="phd"> PhD - Doctor of Philosophy</label>
+        <label class="checkbox-label"><input type="checkbox" value="dsc"> DSc - Doctor of Science</label>
+        <label class="checkbox-label"><input type="checkbox" value="diploma_engineering"> Diploma in Engineering - Polytechnic</label>
+        <label class="checkbox-label"><input type="checkbox" value="pgdm"> PGDM - Post Graduate Diploma in Management</label>
+        <label class="checkbox-label"><input type="checkbox" value="pgdca"> PGDCA - Post Graduate Diploma in Computer Applications</label>
+        <label class="checkbox-label"><input type="checkbox" value="certificate_courses"> Certificate Courses - Various fields</label>
+        <label class="checkbox-label"><input type="checkbox" value="ca"> CA - Chartered Accountant</label>
+        <label class="checkbox-label"><input type="checkbox" value="cs"> CS - Company Secretary</label>
+        <label class="checkbox-label"><input type="checkbox" value="cma"> CMA - Cost and Management Accountant</label>
+        <label class="checkbox-label"><input type="checkbox" value="bds"> BDS - Bachelor of Dental Surgery</label>
+        <label class="checkbox-label"><input type="checkbox" value="bams"> BAMS - Bachelor of Ayurvedic Medicine and Surgery</label>
+        <label class="checkbox-label"><input type="checkbox" value="bhms"> BHMS - Bachelor of Homeopathic Medicine and Surgery</label>
+        <label class="checkbox-label"><input type="checkbox" value="bvsc"> BVSc - Bachelor of Veterinary Science</label>
+        <label class="checkbox-label"><input type="checkbox" value="bpt"> BPT - Bachelor of Physiotherapy</label>
+        <label class="checkbox-label"><input type="checkbox" value="bhm"> BHM - Bachelor of Hotel Management</label>
     `;
-
 } else if (filter === 'Job') {
         filterHtml = `
-         <label class="checkbox-label"><input type="checkbox" value="Propriteor"> Propriteor</label>
-<label class="checkbox-label"><input type="checkbox" value="Partner"> Partner</label>
-<label class="checkbox-label"><input type="checkbox" value="Family"> Family</label>
-  `;
+          <label class="checkbox-label"><input type="checkbox" value="Engineer"> Engineer</label>
+          <label class="checkbox-label"><input type="checkbox" value="Doctor"> Doctor</label>
+          <label class="checkbox-label"><input type="checkbox" value="Teacher"> Teacher</label>
+          <label class="checkbox-label"><input type="checkbox" value="Lawyer"> Lawyer</label>
+          <label class="checkbox-label"><input type="checkbox" value="Business"> Business</label>
+          <label class="checkbox-label"><input type="checkbox" value="Artist"> Artist</label>
+          <label class="checkbox-label"><input type="checkbox" value="Others"> Others</label>
+        `;
       } else if (filter === 'Marital') {
         filterHtml = `
-    <label class="checkbox-label"><input type="checkbox" value="Single"> Single</label>
-<label class="checkbox-label"><input type="checkbox" value="Divorced"> Divorced</label>
-<label class="checkbox-label"><input type="checkbox" value="Widower"> Widower</label>
-<label class="checkbox-label"><input type="checkbox" value="Widow"> Widow</label>
-<label class="checkbox-label"><input type="checkbox" value="Awaiting Divorce"> Awaiting Divorce</label>
- `;
-
+          <label class="checkbox-label"><input type="checkbox" value="Never Married"> Married</label>
+          <label class="checkbox-label"><input type="checkbox" value="Divorced"> Divorced</label>
+          <label class="checkbox-label"><input type="checkbox" value="Widowed"> Widowed</label>
+          <label class="checkbox-label"><input type="checkbox" value="Awaiting Divorce"> Awaiting Divorce</label>
+        `;
       } else if (filter === 'Follow') {
         filterHtml = `
-         <label class="checkbox-label"><input type="checkbox" value="Moderate Practicing"> Moderate Practicing</label>
-<label class="checkbox-label"><input type="checkbox" value="Strictly Practicing"> Strictly Practicing</label>
-<label class="checkbox-label"><input type="checkbox" value="Non-Practicing"> Non-Practicing</label>
-<label class="checkbox-label"><input type="checkbox" value="Ahle Hadees"> Ahle Hadees</label>
-<label class="checkbox-label"><input type="checkbox" value="Dargah fateha"> Dargah fateha</label>
-<label class="checkbox-label"><input type="checkbox" value="Tablighi"> Tablighi</label>
-<label class="checkbox-label"><input type="checkbox" value="Jamat-e-Islami"> Jamat-e-Islami</label>
-
+          <label class="checkbox-label"><input type="checkbox" value="Yes"> Yes</label>
+          <label class="checkbox-label"><input type="checkbox" value="No"> No</label>
         `;
       } else if (filter === 'Personal') {
         filterHtml = `
@@ -333,25 +577,7 @@
       if (filter === 'Gender') {
         selectedGender = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
       }
-     
-      if (filter === 'State') {
-        selectedState = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
-      }
-      if (filter === 'Follow') {
-        selectedFollow = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
-      }
-      if (filter === 'Qualification') {
-        selectedQualification = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
-      }
-      if (filter === 'Job') {
-        selectedJob = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
-      }
-      if (filter === 'Marital') {
-        selectedMarital = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
-      }
-
     }
-    
   
     // Function to save filter options to local storage
     function saveFilterOptions(filter) {
@@ -401,38 +627,20 @@
   
     // Function to apply filters and fetch data from the API
   // Function to apply filters and fetch data from the API
-  function applyFilters() {
-  // Prepare the payload dynamically
-  const payload = {};
-
-  if (selectedGender) payload.gender = selectedGender;
-  if (selectedState) payload.field2 = selectedState;
-  if (selectedFollow) payload.field1 = selectedFollow;
-  if (selectedQualification) payload.field3 = selectedQualification;
-  if (selectedJob) payload.field4 = selectedJob;
-  if (selectedMarital) payload.field5 = selectedMarital;
-
-  console.log('Payload:', payload);
-
-  // Check if there's any data to send
-  if (Object.keys(payload).length === 0) {
-    console.warn('No filters selected. Please select at least one filter.');
-    return;
-  }
-
-  fetch('https://api.itstrending.in:5001/api/v1/profiles/search_multiple', {
+function applyFilters() {
+  fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': authToken
-      
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify({
+      gender: selectedGender // Use the selected gender value
+    })
   })
   .then(response => response.json())
   .then(data => {
-    console.log('API Response:', data);
-    console.log('Payload:', payload);
+    console.log(data);
     // Store the fetched data in session storage
     sessionStorage.setItem('profileData', JSON.stringify(data.data));
     
@@ -440,10 +648,9 @@
     window.location.href = 'profileSearch.html';
   })
   .catch((error) => {
-    console.error('Error during fetch:', error);
+    console.error('Error:', error);
   });
 }
-
 
 // Store the fetched data in session storage
 sessionStorage.setItem('profileData', JSON.stringify(data.data));
@@ -487,3 +694,8 @@ app.listen(PORT, () => {
 
 </body>
 </html>
+
+
+
+
+

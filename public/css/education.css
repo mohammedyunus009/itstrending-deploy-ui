@@ -1,0 +1,50 @@
+.footer {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    align-items: center; /* Center the button vertically if needed */
+    padding: 20px; /* Add padding as needed */
+}
+
+.button {
+    width: 70%; /* Set the width to 70% of the container */
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center; /* Center text inside the button */
+}
+
+.button:hover {
+    background-color: #555; /* Optional: Change background color on hover */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .button{
+        width: 90%; /* Increase the width on smaller screens */
+    }
+}
+.Revert {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+    padding: 20px; /* Add padding as needed */
+}
+
+.Revert h5 {
+    margin: 0 0 10px 0; /* Add some margin to space out the elements */
+}
+
+.Revert input[type="radio"] {
+    margin-right: 10px; /* Add some space between the radio buttons and the labels */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .Revert {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}

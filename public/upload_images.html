@@ -1,165 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Upload</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- Google tag (gtag.js) -->
-     <link rel="stylesheet" href="css/matrimony/malefemale.css">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PQLTG22ZFC');
-</script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Matrimonial</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+     <link href="fonts/css/solid.min.css" rel="stylesheet" />
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+<section id="top" class="bg_brown pt-2 pb-2">
+ <div class="container-xl">
+  <div class="row top_1">
+   <div class="col-md-6">
+    <div class="top_1l mt-1">
+	 <ul class="mb-0 font_14">
+	    <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+		<li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+	  </ul>
+	</div>
+   </div>
+   <div class="col-md-6">
+    <div class="top_1r text-end">
+	   <ul class="mb-0">
+		  <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+		  <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+		  <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+		  <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+		</ul>
+	</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="header">
+	<nav class="navbar navbar-expand-md navbar-light p-0 pt-2 pb-2" id="navbar_sticky">
+	  <div class="container-xl">
+		<a class="navbar-brand p-0 me-0" href="index.html">
+				<img src="img/IMG-20240813-WA0001-removebg-preview.png" alt="ISC Logo" class="logo-img">
+			</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mb-0 ms-auto">
+			  <li class="nav-item">
+				<a class="nav-link" aria-current="page" href="index.html">Home</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="about.html">About</a>
+			  </li>
+			  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Login/Register
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
+					<a class="dropdown-item" href="male.html">Create Profile</a>
+					<a class="dropdown-item" href="plans.html">Plans</a>
+				</div>
+			</li>
+			  <li class="nav-item">
+				<a class="nav-link" href="filter.html">Search</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="payment.html">Payment</a>
+			  </li>
+		  
+			  <!-- Dropdown for Event -->
+			  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				  Event
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="eventDropdown">
+				  <li><a class="dropdown-item" href="#">Matrimonial</a></li>
+				  <li><a class="dropdown-item" href="#">Meeting</a></li>
+				  <li><a class="dropdown-item" href="#">KPN</a></li>
+				  <li><a class="dropdown-item" href="health.html">Health & Wellness</a></li>
+				  <li><a class="dropdown-item" href="#">Marita Consulting</a></li>
+				</ul>
+			  </li>
+		  
+			  <!-- Dropdown for Donation -->
+			  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="donationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				  Donation
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="donationDropdown">
+				  <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
+				  <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
+				  <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food Directory</a></li>
+				  <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+				  <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
+				  <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment Business Support</a></li>
+				</ul>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#">Media</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="contact.html">Contact</a>
+			  </li>
+			  <!-- <li class="nav-item">
+				<a class="nav-link" href="login.html">Sign In/Sign Up</a>
+			  </li> -->
+			</ul>
+		</div>
+	  </div>
+	</nav>
+
+
+
+    
+	</section>
     <style>
         /* Base Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensures full viewport height */
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-header {
-    background-color: #333;
-    padding: 10px 20px;
-    border-bottom: 1px solid #dee2e6;
-    text-align: center;
-}
+        header {
+            background-color: #333;
+            padding: 10px 20px;
+            border-bottom: 1px solid #dee2e6;
+            text-align: center;
+        }
 
-.header-title {
-    margin: 0;
-    font-size: 24px;
-    color: white;
-}
-/* Photo Upload Container */
-.photo-upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    width: 100%;
-    flex: 1; /* Takes available space */
-}
+        .header-title {
+            margin: 0;
+            font-size: 24px;
+            color: white;
+        }
 
-/* Photo Upload Grid */
-.photo-upload-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    max-width: 800px; /* Adjusted width */
-    width: 100%;
-    margin-bottom: 20px;
-}
+        .photo-upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
 
-/* Photo Upload Box */
-.photo-upload-box {
-    position: relative;
-    width: 100%;
-    height: 150px; /* Adjusted height */
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f9f9f9;
-}
+        .photo-upload-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-width: 800px; /* Adjusted width */
+            width: 100%;
+            margin-bottom: 20px;
+        }
 
-/* Photo Upload Button */
-.photo-upload-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    outline: none;
-}
+        .photo-upload-box {
+            position: relative;
+            width: 100%;
+            height: 150px; /* Adjusted height */
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+        }
 
-/* Photo Upload SVG Icon */
-.photo-upload-button svg {
-    width: 40px; /* Adjusted width */
-    height: 40px; /* Adjusted height */
-    fill: #007bff;
-}
+        .photo-upload-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            outline: none;
+        }
 
-/* Photo Upload Label */
-.photo-upload-label {
-    margin-top: 10px;
-}
+        .photo-upload-button svg {
+            width: 40px; /* Adjusted width */
+            height: 40px; /* Adjusted height */
+            fill: #007bff;
+        }
 
-/* Photo Upload Box Image */
-.photo-upload-box img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    display: block;
-}
+        .photo-upload-label {
+            margin-top: 10px;
+        }
 
-/* Processing Overlay */
-.processing-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .photo-upload-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-/* Processing Spinner */
-.processing-spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #007bff;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    animation: spin 1s linear infinite;
-}
+        .processing-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-/* Keyframes for Spinner */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+        .processing-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #007bff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
 
-/* Delete Button */
-.delete-button {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: rgba(255, 0, 0, 0.7);
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 16px;
-    text-align: center;
-}
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-/* Mobile Styles */
+        .delete-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 0, 0, 0.7);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .photo-upload-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-upload-box {
+                height: 120px; /* Adjusted height */
+            }
+
+            .photo-upload-button svg {
+                width: 30px;
+                height: 30px;
+            }
+
+            .photo-upload-label span {
+                font-size: 12px;
+            }
+
+            .delete-button {
+                width: 20px;
+                height: 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 769px) {
+            .photo-upload-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .photo-upload-box {
+                height: 150px; /* Adjusted height */
+            }
+
+            .photo-upload-button svg {
+                width: 40px; /* Adjusted width */
+                height: 40px; /* Adjusted height */
+            }
+
+            .photo-upload-label span {
+                font-size: 14px;
+            }
+
+            .delete-button {
+                width: 24px;
+                height: 24px;
+                font-size: 16px;
+            }
+        }
+
+        /* Mobile Styles */
 @media (max-width: 768px) {
     .photo-upload-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr); /* Two boxes per row */
     }
 
     .photo-upload-box {
@@ -180,13 +325,17 @@ header {
         height: 20px;
         font-size: 14px;
     }
-
-    #next-button {
-        width: 100%; /* Full width for mobile */
-    }
 }
 
-/* Button Styles */
+
+        /* Error Message */
+        #error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+     /* Button Styles */
 #next-button {
     padding: 10px 20px;
     font-size: 16px;
@@ -199,90 +348,208 @@ header {
     width: 100%; /* Full width */
     display: block; /* Ensures the button spans the full width */
     text-align: center; /* Center text */
-    margin-top: auto; /* Pushes the button to the bottom */
 }
 
 #next-button:hover {
     background-color: #222; /* Slightly darker on hover for better visibility */
 }
 
+/* Mobile Styles */
+@media (max-width: 768px) {
+    #next-button {
+        width: 50%; /* Full width for mobile */
+    }
+}
+
 /* Desktop Styles */
 @media (min-width: 769px) {
     #next-button {
-        width: 100%; /* Full width for desktop */
+        width: 50%; /* Full width for desktop */
     }
 }
+/* Logo Image Styling */
+.logo-img {
+    width: 220px; /* Adjust size for desktop view */
+    height: 75px;
+}
 
-/* Mobile Styles */
 @media (max-width: 768px) {
-    .photo-upload-container {
-        padding: 10px; /* Reduced padding for smaller screens */
-    }
-
-    .photo-upload-grid {
-        grid-template-columns: 1fr; /* Single column layout for mobile */
-        gap: 8px; /* Reduced gap for better fit */
-    }
-
-    .photo-upload-box {
-        height: 120px; /* Adjusted height for mobile view */
-    }
-
-    .photo-upload-button svg {
-        width: 30px; /* Adjusted width for mobile */
-        height: 30px; /* Adjusted height for mobile */
-    }
-
-    .photo-upload-label span {
-        font-size: 12px; /* Smaller font size for mobile */
-    }
-
-    .delete-button {
-        width: 20px; /* Smaller delete button for mobile */
-        height: 20px;
-        font-size: 14px; /* Adjusted font size for mobile */
-    }
-
-    #next-button {
-        padding: 10px; /* Adjusted padding for mobile */
-        font-size: 14px; /* Smaller font size for mobile */
-        width: 100%; /* Full width for mobile */
+    .logo-img {
+        max-width: 120px; /* Adjust size for mobile view */
     }
 }
-
-
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="back-button" onclick="goBack()"> &lt; </div>
-        <div class="title">User Details</div>
-        <div></div>
-    </div>
-    <div class="photo-upload-container" style="margin: auto;">
+    <header>
+        <h1 class="header-title">Photo Upload</h1>
+    </header>
+    <div class="photo-upload-container">
         <div class="photo-upload-grid">
             <!-- Photo upload boxes will be dynamically added here -->
         </div>
-        <input type="file" id="file-input" style="display: none;" accept="image/*" multiple>
+        <input type="file" id="file-input" style="display: none;" accept="image/*">
         <div id="error-message" style="display: none;">Please upload at least one photo.</div>
         <button id="next-button" class="btn btn-primary">Next</button>
     </div>
-    <script>
+
+    <!-- footer -->
+  
+  
+  
+
+
+
+
+    <section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
+        <div class="container-fluid" style="background-color: #5c0951;">
+          <div class="footer_m bg_light p-4">
+            <div class="footer_1 row">
+            <div class="col-md-3">
+             <div class="footer_1i">
+               <h1 class="mb-3"><a class="family_1" href="index.html"><i class="fa fa-heart me-1 col_brown"></i>  ISC <br>
+       <span class="family_2 fw-normal font_14 col_brown">Lookimg for a patner </span>
+       </a></h1>
+       <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+       <ul class="mb-0"> 
+       <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
+       <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
+       <li class="mt-3"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+       </ul>
+             </div>
+            </div>
+              <div class="col-md-3">
+             <div class="footer_1i">
+              <h5 class="mt-3 mb-4">Social media</h5>
+              <ul class="mb-0">
+                <li><a href="#">Facebook</a></li>
+                 <li class="mt-3"><a href="#">Twitter</a></li>
+                 <li class="mt-3"><a href="#">Pinterest</a></li>
+                 <li class="mt-3"><a href="#">Instagram</a></li>
+              </ul>
+             </div>
+            </div> 
+            
+            <div class="col-md-3">
+             <div class="footer_1i">
+              <h5 class="mt-3 mb-4">Get TO Know US</h5>
+              <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+           
+               <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+              
+             </div>
+            </div>
+            <div class="col-md-3">
+             <div class="footer_1i">
+              <h5 class="mt-3 mb-4">TELEGRAM</h5>
+              <div class="footer_1i1 row mx-0">
+               <div class="col-md-4 p-0">
+                 <div class="footer_1i1l">
+                   <div class="grid clearfix">
+                   <figure class="effect-jazz mb-0">
+                   <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+                   </figure>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-md-4 p-0">
+                 <div class="footer_1i1l">
+                   <div class="grid clearfix">
+                   <figure class="effect-jazz mb-0">
+                   <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+                   </figure>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-md-4 p-0">
+                 <div class="footer_1i1l">
+                   <div class="grid clearfix">
+                   <figure class="effect-jazz mb-0">
+                   <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+                   </figure>
+                   </div>
+                 </div>
+               </div>
+              </div>
+              <div class="footer_1i1 row mx-0">
+               <div class="col-md-4 p-0">
+                 <div class="footer_1i1l">
+                   <div class="grid clearfix">
+                   <figure class="effect-jazz mb-0">
+                   <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+                   </figure>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-md-4 p-0">
+                 <div class="footer_1i1l">
+                   <div class="grid clearfix">
+                   <figure class="effect-jazz mb-0">
+                   <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+                   </figure>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-md-4 p-0">
+                 <div class="footer_1i1l">
+                   <div class="grid clearfix">
+                   <figure class="effect-jazz mb-0">
+                   <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+                   </figure>
+                   </div>
+                 </div>
+               </div>
+              </div>
+             </div>
+            </div>
+          </div><hr class="mt-4 mb-4">
+          <div class="footer_2 row">
+            <div class="col-md-8">
+             <div class="footer_2l">
+               <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+             </div>
+            </div>
+           <!-- <div class="col-md-4">
+             <div class="footer_2r text-end">
+              <ul class="text-uppercase font_13 mb-0">
+                   <li class="d-inline-block"><a href="#"> Facebook</a></li>
+                   <li class="d-inline-block mx-2 text-muted">|</li>
+                    <li class="d-inline-block"><a href="#"> Twitter</a></li>
+                    <li class="d-inline-block mx-2 text-muted">|</li>
+                    <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+                    <li class="d-inline-block mx-2 text-muted">|</li>
+                    <li class="d-inline-block"><a href="#"> Instagram</a></li>
+                 </ul>
+             </div>
+            </div> -->
+          </div>
+          </div>
+         </div>
+        </div>
+       </section>
+
+
+
+
+
+
+
+  
+  <script>
         const photoStorageKey = 'uploadedPhotos';
         let uploadCounter = 0;
         const maxPhotos = 2;
         let uploadResponses = [];
-    
+
         function getCookie(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
-    
+
         function createPhotoUploadBox(index) {
             const box = document.createElement('div');
             box.classList.add('photo-upload-box');
-            box.setAttribute('data-index', index);
             const uploadButton = document.createElement('button');
             uploadButton.type = 'button';
             uploadButton.classList.add('photo-upload-button');
@@ -306,99 +573,87 @@ header {
             box.appendChild(deleteButton);
             return box;
         }
-    
+
         function handleFileUpload(event) {
-    const files = Array.from(event.target.files); // Convert FileList to Array
-    const uploadButtonContainer = document.querySelectorAll('.photo-upload-button');
-
-    files.forEach((file, fileIndex) => {
-        const index = fileIndex; // The index of the file
-        if (index >= maxPhotos) {
-            alert('You can only upload up to 2 photos.');
-            return;
-        }
-
-        const uploadButton = uploadButtonContainer[index];
-        const processingOverlay = uploadButton.querySelector('.processing-overlay');
-        processingOverlay.style.display = 'flex';
-        while (uploadButton.firstChild) {
-            uploadButton.removeChild(uploadButton.firstChild);
-        }
-
-        if (file.size > 5 * 1024 * 1024) { // 5 MB
-            const errorMessage = document.createElement('div');
-            errorMessage.className = 'error-message';
-            errorMessage.innerText = `Error: ${file.name} exceeds 5 MB limit.`;
-            uploadButton.appendChild(errorMessage);
-            processingOverlay.style.display = 'none';
-            return;
-        }
-
-        // Retrieve token from cookies
-        const token = getCookie('token'); // Make sure 'authToken' is the name of your cookie
-
-        // Prepare API request
-        const formdata = new FormData();
-        formdata.append("file", file);
-        fetch("https://api.itstrending.in:5001/api/v1/profiles/upload_images", {
-            method: "POST",
-            headers: {
-                "Authorization": token, // Use token from cookies
-            },
-            body: formdata,
-        })
-        .then(response => response.json())
-        .then(result => {
-            uploadResponses[index] = result; // Store the result based on index
-            console.log(result); // Optional: Log each upload result immediately
-            if (result.data && result.data.images && Array.isArray(result.data.images)) {
-                // Store Firebase Storage URLs in cookies
-                result.data.images.forEach((image, idx) => {
-                    // Construct URL with ?alt=media if not already present
-                    const imageUrl = image.includes('?alt=media') ? image : `${image}?alt=media`;
-                    // Store image in cookies with specific name format
-                    const cookieName = `images${uploadCounter}`;
-                    setCookie(cookieName, imageUrl, new Date(new Date().getTime() + 24*60*60*1000));
-                    uploadCounter++;
-                    if (uploadCounter >= maxPhotos) {
-                        document.getElementById('file-input').style.display = 'none'; // Hide file input if limit is reached
-                    }
-                });
-                // Add all images to the view
-                result.data.images.forEach(image => {
-                    uploadButton.innerHTML += `<img src="${image.includes('?alt=media') ? image : `${image}?alt=media`}">`;
-                });
+            const files = event.target.files;
+            const index = event.target.getAttribute('data-index');
+            const uploadButton = document.querySelector(`.photo-upload-button[data-index="${index}"]`);
+            const processingOverlay = uploadButton.querySelector('.processing-overlay');
+            processingOverlay.style.display = 'flex';
+            while (uploadButton.firstChild) {
+                uploadButton.removeChild(uploadButton.firstChild);
             }
-            processingOverlay.style.display = 'none';
-        })
-        .catch(error => {
-            console.error(error);
-            processingOverlay.style.display = 'none';
-            const errorMessage = document.createElement('div');
-            errorMessage.className = 'error-message';
-            errorMessage.innerText = 'Upload failed. Please try again.';
-            uploadButton.appendChild(errorMessage);
-        });
-    });
-}
+            const file = files[0]; // Handle only the first file
+            if (file.size > 5 * 1024 * 1024) { // 5 MB
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'error-message';
+                errorMessage.innerText = `Error: ${file.name} exceeds 5 MB limit.`;
+                uploadButton.appendChild(errorMessage);
+                processingOverlay.style.display = 'none';
+                return;
+            }
+            // Retrieve token from cookies
+            const token = getCookie('token'); // Make sure 'authToken' is the name of your cookie
+            
+            // Prepare API request
+            const formdata = new FormData();
+            formdata.append("file", file);
+            fetch("https://api.itstrending.in:5000/api/v1/profiles/upload_images", {
+                method: "POST",
+                headers: {
+                    "Authorization": token, // Use token from cookies
+                },
+                body: formdata,
+            })
+            .then(response => response.json())
+            .then(result => {
+                uploadResponses[index] = result; // Store the result based on index
+                console.log(result); // Optional: Log each upload result immediately
+                if (result.data && result.data.images && Array.isArray(result.data.images)) {
+                    // Store Firebase Storage URLs in cookies
+                    result.data.images.forEach((image, idx) => {
+                        // Construct URL with ?alt=media if not already present
+                        const imageUrl = image.includes('?alt=media') ? image : `${image}?alt=media`;
+                        // Store image in cookies with specific name format
+                        const cookieName = `images${uploadCounter}`;
+                        setCookie(cookieName, imageUrl, new Date(new Date().getTime() + 24*60*60*1000));
+                        uploadCounter++;
+                        if (uploadCounter >= maxPhotos) {
+                            document.getElementById('file-input').style.display = 'none'; // Hide file input if limit is reached
+                        }
+                    });
+                    // Add all images to the view
+                    result.data.images.forEach(image => {
+                        uploadButton.innerHTML += `<img src="${image.includes('?alt=media') ? image : `${image}?alt=media`}">`;
+                    });
+                }
+                processingOverlay.style.display = 'none';
+            })
+            .catch(error => {
+                console.error(error);
+                processingOverlay.style.display = 'none';
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'error-message';
+                errorMessage.innerText = 'Upload failed. Please try again.';
+                uploadButton.appendChild(errorMessage);
+            });
+        }
 
-    
-function deletePhoto(index) {
-    // Directly proceed with deletion
-    uploadResponses[index] = null;
-    document.querySelector(`.photo-upload-box[data-index="${index}"]`).remove();
-    uploadCounter--;
-
-    // Show the file input if there is space available
-    if (uploadCounter < maxPhotos) {
-        document.getElementById('file-input').style.display = 'none'; // Show file input if space is available
-    }
-}
+        function deletePhoto(index) {
+            if (confirm('Are you sure you want to delete this photo?')) {
+                uploadResponses[index] = null;
+                document.querySelector(`.photo-upload-box[data-index="${index}"]`).remove();
+                uploadCounter--;
+                if (uploadCounter < maxPhotos) {
+                    document.getElementById('file-input').style.display = 'block'; // Show file input if space is available
+                }
+            }
+        }
 
         function setCookie(name, value, expires) {
             document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
         }
-    
+
         function initializePhotoUpload() {
             const container = document.querySelector('.photo-upload-grid');
             for (let i = 0; i < maxPhotos; i++) {
@@ -410,9 +665,9 @@ function deletePhoto(index) {
                 container.appendChild(box);
             }
         }
-    
+
         document.getElementById('file-input').addEventListener('change', handleFileUpload);
-    
+
         document.getElementById('next-button').addEventListener('click', function() {
             const selectedPhotos = document.querySelectorAll('.photo-upload-box img');
             if (selectedPhotos.length === 0) {
@@ -420,12 +675,24 @@ function deletePhoto(index) {
                 return;
             }
             document.getElementById('error-message').style.display = 'none';
-            // Redirect to profile2.html
-            window.location.href = 'profile2.html';
+            // Handle the next step (e.g., form submission or navigation)
+            // alert('Proceeding to the next step');
         });
-    
+
         initializePhotoUpload();
-    
+
+
+        document.getElementById('next-button').addEventListener('click', function() {
+    const selectedPhotos = document.querySelectorAll('.photo-upload-box img');
+    if (selectedPhotos.length === 0) {
+        document.getElementById('error-message').style.display = 'block';
+        return;
+    }
+    document.getElementById('error-message').style.display = 'none';
+    // Redirect to profile2.html
+    window.location.href = 'profile2.html';
+});
+
 
 const express = require('express');
 const app = express();
@@ -468,23 +735,7 @@ app.listen(PORT, () => {
 });
 
 
-function goBack() {
-    window.history.back();
-}
 
-
-function checkLogin() {
-
-    let token = getCookie('token');
-        if (!token) {
-            alert("User not logged in. Please login.");
-            window.location.href = 'login.html';
-        }
-    }
-
-    window.onload = function() {
-        checkLogin();
-    }
     </script>
 </body>
 </html>
