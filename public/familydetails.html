@@ -131,6 +131,21 @@ $(document).ready(function() {
     });
 });
 
+
+
+function checkLogin() {
+
+let token = getCookie('token');
+    if (!token) {
+        // alert("User not logged in. Please login.");
+        window.location.href = 'login.html';
+    }
+}
+
+window.onload = function() {
+    checkLogin();
+}
+
     </script>
 </body>
 </html>
