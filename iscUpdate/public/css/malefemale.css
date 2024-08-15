@@ -80,14 +80,18 @@ h1 {
 }
 
 form {
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 350px;
+    box-shadow: 0 0 13px rgba(0, 0, 0, 2.1);
+    /* Remove fixed height to allow dynamic resizing */
+    height: auto; /* Allow the height to adjust based on content */
+    box-sizing: border-box; /* Ensure padding and borders are included in the total width and height */
+    margin-bottom: 30px;
 }
+
 
 label {
     display: block;
