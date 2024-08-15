@@ -47,8 +47,8 @@ function createSiblingFields(containerId, numberOfSiblings, siblingType) {
 
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch the data from cookies, decode it, and set it to the respective fields
-    document.getElementById("name").innerText = decodeURIComponent(getCookie("field7"));
-    document.getElementById("dob").innerText = decodeURIComponent(getCookie("field8"));
+    document.getElementById("coordinator-name").innerText = decodeURIComponent(getCookie("field1"));
+    document.getElementById("profile-status").innerText = decodeURIComponent(getCookie("field2"));
     document.getElementById("revert").innerText = decodeURIComponent(getCookie("field9"));
     document.getElementById("gender").innerText = decodeURIComponent(getCookie("gender"));
     document.getElementById("caste").innerText = decodeURIComponent(getCookie("field1"));
