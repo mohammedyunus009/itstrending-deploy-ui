@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/matrimony/profile2.css">
+
+  <title>SIGNUP&SIGNIN</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
+</head>
+ <style>
+  *{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body, html{
+    width:100%;
+    height:100%;
+    font-size:16px;
+}
+
+body{
+    background: white;
+}
+
+
+ /* Popup styles */
+ .popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  
+  }
+
+  .popup-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  .close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close-button:hover,
+  .close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Popup styles */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    animation: fadeIn 0.5s;
+  }
+  
+  .popup-header h2 {
+    margin: 0;
+  }
+  
+  .popup-footer {
+    margin-top: 20px;
+  }
+  
+  .popup-footer button {
+    padding: 10px 20px;
+    background: #28a745;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .popup-footer button:hover {
+    background: #218838;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+
+
+
+  /* Popup Container Style */
+#signup-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  /* Popup Content Style */
+  .popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    animation: fadeIn 0.5s;
+  }
+  
+  /* Fade-in Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Done Button Style */
+  #done-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: orangered;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #done-button:hover {
+    background: #45a049;
+  }
+  .form-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form-links a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.form-links a:hover {
+    text-decoration: underline;
+}
+
+
+/* Basic button styling */
+#signup {
+  background-color: #007bff; /* Change this to your preferred color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  display: block; /* Ensures the button is a block-level element */
+  margin: 0 auto;
+   /* Center the button horizontally */
+   text-align: center;
+}
+
+/* Add spacing below the button */
+#signup {
+  margin-top: 20px; /* Adjust the top margin as needed */
+}
+
+/* Optional: Add hover effect */
+#signup:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.container1 {
+  background: white;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  margin: 50px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signup-form1 {
+  margin-bottom: 20px;
+}
+
+.signup-form1 h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.signup-form1 label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.signup-form1 input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form-links a {
+  display: block;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.form-links a:hover {
+  text-decoration: underline;
+}
+
+#signup {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#signup:hover {
+  background-color: #0056b3;
+}
+
+#signup-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  animation: fadeIn 0.5s;
+}
+
+#done-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: orangered;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#done-button:hover {
+  background: #45a049;
+}
+.message-area {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+}
+
+.message-area.success {
+    background-color: #4CAF50; /* Green */
+}
+
+.message-area.error {
+    background-color: #f44336; /* Red */
+}
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+</style>
+<body>
+  <div id="headerPlaceholder"></div>
+
+  <div class="container1">
+    <!-- Message area -->
+    <div id="message-area" class="message-area"></div>
+
+    <!-- Loading spinner -->
+    <div id="loading-spinner" class="loading-spinner" style="display: none;"></div>
+
+    <form action="#" class="signup-form1" id="signupForm1">
+        <h2 class="form-heading">Signup</h2>
+        <label for="signup-firstname">First Name</label>
+        <input type="text" name="firstname" id="signup-firstname" placeholder="First Name" required>
+        
+        <label for="signup-lastname">Last Name</label>
+        <input type="text" name="lastname" id="signup-lastname" placeholder="Last Name" required>
+        
+        <label for="signup-email">Email</label>
+        <input type="email" name="email" id="signup-email" placeholder="Email" required>
+        
+        <label for="signup-password">Password</label>
+        <input type="password" name="password" id="signup-password" placeholder="Password" required>
+        
+        <label for="signup-confirm-password">Confirm Password</label>
+        <input type="password" name="confirm-password" id="signup-confirm-password" placeholder="Confirm Password" required>
+        <label for="how-i-know" style="display: block;">How do you know
+          Khurshid Imam</label>
+        <select id="how-i-know" name="how-i-know" onchange="toggleContactFields()">
+            <option value="#">Select an option</option>
+            <option value="I am from TLI Family / Samparkk">I am from TLI Family / Samparkk</option>
+            <option value="I am from his deeni circle">I am from his deeni circle</option>
+            <option value="I am his relative / acquaintances">I am his relative / acquaintances</option>
+            <option value="I know him through a common friend">I know him through a common friend</option>
+            <option value="I do not know brother Khurshid Imam">I do not know brother Khurshid Imam</option>
+        </select>
+        <div id="contact-fields" style="display: none;">
+            <label for="contact_name" style="display: block;">Referral name :</label>
+            <input type="text" id="contact_name" name="contact_name" placeholder="Name">
+            <br><br>
+            <label for="contact_phone" style="display: block;">Referral phone number :</label>
+            <input type="text" id="contact_phone" name="contact_phone" placeholder="Phone Number">
+        </div>
+        
+        <button type="submit" id="signup" onclick="storeData()">Signup</button>
+        <!-- <button type="button" id="login-toggle">Login</button> -->
+    </form>
+
+    <!-- Links for existing account and forgot password -->
+    <div class="form-links">
+        <p><a href="login.html" id="login-link">Already have an account? Login</a></p>
+        <p><a href="forgotpassword.html" id="forgot-password-link">Forgot Password?</a></p>
+    </div>
+</div>
+
+
+
+<div id="footerPlaceholder"></div>
+<script src="js/include.js"></script>
+
+    <script src="js/login.js"></script>
+    <script>
+        function toggleContactFields() {
+            let howIKnowDropdown = document.getElementById('how-i-know');
+            let contactFields = document.getElementById('contact-fields');
+            let selectedValue = howIKnowDropdown.value;
+
+            if (selectedValue === 'I am from TLI Family / Samparkk' || selectedValue === 'I am from his deeni circle' || selectedValue === 'I am his relative / acquaintances' || selectedValue === 'I know him through a common friend') {
+                contactFields.style.display = 'block';
+            } else {
+                contactFields.style.display = 'none';
+            }
+        }
+
+
+        function toggleContactFields() {
+    const selectElement = document.getElementById('how-i-know');
+    const contactFields = document.getElementById('contact-fields');
+
+    if (selectElement.value === 'I do not know brother Khurshid Imam') {
+        contactFields.style.display = 'none';
+    } else {
+        contactFields.style.display = 'block';
+    }
+}
+
+function storeData() {
+    const howIKnow = document.getElementById('how-i-know').value;
+    const contactName = document.getElementById('contact_name').value;
+    const contactPhone = document.getElementById('contact_phone').value;
+
+    // Store values in cookies
+    document.cookie = `field30=${encodeURIComponent(howIKnow)}; path=/`;
+    document.cookie = `field31=${encodeURIComponent(contactName)}; path=/`;
+    document.cookie = `field32=${encodeURIComponent(contactPhone)}; path=/`;
+
+    // alert('Data has been stored in cookies.');
+}
+
+    </script>
+    
+</body>
+</html>
