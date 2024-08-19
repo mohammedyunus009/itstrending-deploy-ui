@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Preview</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .table-container {
+            width: 100%;
+            margin: 0 auto;
+        }
+        .header-table {
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+        }
+        .card {
+            border: 1px solid black;
+        }
+        .card-header {
+            background-color: #333;
+            color: white;
+        }
+        .form-control.border-black {
+            border: 1px solid black;
+        }
+        .checkbox-group label {
+            margin-right: 1rem;
+        }
+        .status-list li {
+            list-style: none;
+            margin: 0.5rem 0;
+        }
+        .container-btn {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <table class="table table-bordered table-container header-table">
+            <tbody>
+                <tr>
+                    <td class="text-center"><u>INSTALLATION Preview</u></td>
+                </tr>
+            </tbody>
+        </table>
+    </header>
+
+    <h1 class="text-center">Form Data Preview</h1>
+
+    <div class="container mt-3">
+        <div class="card mb-3">
+            <div class="card-header text-center">
+                Customer Details
+            </div>
+            <div class="card-body">
+                <!-- Form Data Preview -->
+                <div class="mb-3">
+                    <div class="field">
+                        <label class="label">Date:</label>
+                        <input type="date" id="reportDatePreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Customer Name:</label>
+                        <input type="text" id="customerNamePreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Area:</label>
+                        <input type="text" id="customerAreaPreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Project:</label>
+                        <input type="text" id="customerProjectPreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Po No./Date:</label>
+                        <input type="date" id="poNoDatePreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Eqpt Model:</label>
+                        <input type="text" id="eqptModelPreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Eqpt Sl No:</label>
+                        <input type="text" id="eqptSlNoPreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Customer Complain Date:</label>
+                        <input type="date" id="complainDatePreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">AT HMR:</label>
+                        <input type="text" id="atHMRPreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Customer Complain Closed Date:</label>
+                        <input type="date" id="complainClosedDatePreview" class="form-control" readonly>
+                    </div>
+                </div>
+                
+    
+                <!-- Checklist -->
+                <section class="mb-3">
+                    <label class="form-label">Checklist</label>
+                    <!-- Checklist items -->
+                    <div class="container mb-2">
+                        <label class="form-label">Dcp Cylinder & Main Valve</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="cylinder_valve_status_1" value="good" onclick="toggleCheckbox(this)"> Good</label>
+                            <label><input type="checkbox" name="cylinder_valve_status_1" value="bad" onclick="toggleCheckbox(this)"> Damage</label>
+                        </div>
+                    </div>
+                    <!-- Repeat similar blocks for other items -->
+                </section>
+    
+                <!-- Submit Button and Result -->
+                <div class="mb-3">
+                   
+                    <br>
+                    <strong>System Working Condition</strong>
+                    <br>
+                    <div id="result" class="row mt-2">
+                        <div class="col text-center">
+                            <button type="button" id="goodButton" class="btn btn-success" style="display: none;">Good</button>
+                            <button type="button" id="badButton" class="btn btn-danger" style="display: none;">Damage</button>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Additional Inputs -->
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label class="form-label">Uee Part No</label>
+                        <input type="text" class="form-control border-black">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <input type="text" class="form-control border-black">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Qty</label>
+                        <input type="text" class="form-control border-black">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Repair/Reject/To Be Replaced</label>
+                        <input type="text" class="form-control border-black lastInput">
+                    </div>
+                </div>
+    
+                <!-- Status List -->
+                <div class="mb-3">
+                    <ul class="status-list">
+                        <li>Good</li>
+                        <li>Bad</li>
+                        <li>Very bad</li>
+                    </ul>
+                    <input type="text" placeholder="" class="form-control border-black">
+                </div>
+    
+                <!-- System Status -->
+                <div class="mb-3">
+                    <strong>Status Of System</strong>
+                    <br>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="warranty" onclick="handleCheckbox(this)"> <label for="warranty">Under Warranty</label>
+                        <br>
+                        <input type="checkbox" id="outOfWarranty" onclick="handleCheckbox(this)"> <label for="outOfWarranty">Out of Warranty</label>
+                    </div>
+                </div>
+    
+                <!-- Additional Details -->
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="forUee" class="form-label">For Uee</label>
+                        <input type="text" class="form-control border-black" id="forUee">
+                    </div>
+                    <div class="form-group">
+                        <label for="forCustomer" class="form-label">For Customer</label>
+                        <input type="text" class="form-control border-black" id="forCustomer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function getCookie(name) {
+            let nameEQ = name + "=";
+            let ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function displayFormData() {
+            document.getElementById('reportDatePreview').textContent = getCookie('field1') || 'Not Available';
+            document.getElementById('customerNamePreview').textContent = getCookie('field2') || 'Not Available';
+            document.getElementById('customerAreaPreview').textContent = getCookie('field3') || 'Not Available';
+            document.getElementById('customerProjectPreview').textContent = getCookie('field4') || 'Not Available';
+            document.getElementById('poNoDatePreview').textContent = getCookie('field5') || 'Not Available';
+            document.getElementById('eqptModelPreview').textContent = getCookie('field6') || 'Not Available';
+            document.getElementById('eqptSlNoPreview').textContent = getCookie('field7') || 'Not Available';
+            document.getElementById('complainDatePreview').textContent = getCookie('field8') || 'Not Available';
+            document.getElementById('atHMRPreview').textContent = getCookie('field9') || 'Not Available';
+            document.getElementById('complainClosedDatePreview').textContent = getCookie('field10') || 'Not Available';
+        }
+
+        displayFormData();
+    </script>
+</body>
+</html>

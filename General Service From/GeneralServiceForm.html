@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color:#1E90FF;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .nav-icons img {
+        height: 50px;
+        margin-left: 15px;
+    }
+
+    input {
+        border: 1px solid red;
+        /* Light black border */
+        border-radius: 4px;
+        /* Optional: for rounded corners */
+        padding: 5px;
+        /* Optional: to add some padding inside the input */
+    }
+
+    @media screen and (max-width: 600px) {
+        .navbar {
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .logo img {
+            height: 30px;
+        }
+
+        .nav-icons img {
+            margin-left: 8px;
+            height: 30px;
+        }
+    }
+
+    /* headr */
+    @media (max-width: 600px) {
+        .table {
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+<nav class="navbar">
+<div class="logo">
+    <img src="img/comapny log2.jpg" alt="Left Logo">
+</div>
+<div class="nav-icons">
+    <img src="img/mms.jpg" alt="Logo 1">
+    <img src="img/EGAC.png" alt="Logo 2">
+    <img src="img/IAF.png" alt="Logo 3">
+    <img src="img/NABCB.png" alt="Logo 4">
+</div>
+</nav>
+<header>
+<table class="table table-bordered table-container">
+    <tbody>
+        <tr>
+            <td class="text-center" id="repNo">Looding..</td>
+            <td class="text-center"><u>General Service Form</u></td>
+            <td class="text-center"></td>
+        </tr>
+    </tbody>
+</table>
+</header>
+<section>
+    <div class="container mt-3">
+        <div class="card border-dark">
+            <div class="card-header text-center bg-dark text-white">
+                Customer Details
+            </div>
+            <div class="card-body">
+                <!-- Date -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="reportDate" class="form-label">Date</label>
+                        <input type="date" class="form-control border-black" id="reportDate">
+                    </div>
+                </div>
+
+                <!-- Customer Name -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="customerName" class="form-label">Customer Name</label>
+                        <input type="text" id="customerName" class="form-control border-black" placeholder="Enter Your Name">
+                    </div>
+                </div>
+
+                <!-- Area -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="customerArea" class="form-label">Area</label>
+                        <input type="text" class="form-control border-black" id="customerArea" placeholder="Enter Your Area">
+                    </div>
+                </div>
+
+                <!-- Project -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="customerProject" class="form-label">Project</label>
+                        <input type="text" class="form-control border-black" id="customerProject" placeholder="Project Name">
+                    </div>
+                </div>
+
+                <!-- PO NO/Date -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="poNoDate" class="form-label">PO No./Date</label>
+                        <input type="date" class="form-control border-black" id="poNoDate">
+                    </div>
+                </div>
+
+                <!-- Eqpt Model -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="eqptModel" class="form-label">Eqpt Model</label>
+                        <input type="text" class="form-control border-black" id="eqptModel">
+                    </div>
+                </div>
+
+                <!-- Eqpt Sl No -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="eqptSlNo" class="form-label">Eqpt Sl No</label>
+                        <input type="text" class="form-control border-black" id="eqptSlNo">
+                    </div>
+                </div>
+
+                <!-- Customer Complain Date -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="complainDate" class="form-label">Customer Complain Date</label>
+                        <input type="date" class="form-control border-black" id="complainDate">
+                    </div>
+                </div>
+
+                <!-- AT HMR -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="atHMR" class="form-label">AT HMR</label>
+                        <input type="text" class="form-control border-black" id="atHMR">
+                    </div>
+                </div>
+
+                <!-- Customer Complain Closed Date -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="complainClosedDate" class="form-label">Customer Complain Closed Date</label>
+                        <input type="date" class="form-control border-black" id="complainClosedDate">
+                    </div>
+                </div>
+
+                <!-- AT HMR (Duplicate) -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="atHMR" class="form-label">AT HMR</label>
+                        <input type="text" class="form-control border-black" id="atHMR">
+                    </div>
+                </div>
+                <div class="container-btn text-center">
+                    <button type="button" class="btn btn-primary" onclick="redirectToNextPage()">
+                        <i class="fa-solid fa-arrow-right"></i><br>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script>
+        // dynamically number 
+        document.addEventListener("DOMContentLoaded", function () {
+            let min = 200;
+            let max = 400;
+            let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+            document.getElementById("repNo").textContent = randomNumber;
+        });
+
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            let nameEQ = name + "=";
+            let ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function saveFormData() {
+            const reportDate = document.getElementById('reportDate');
+            const customerName = document.getElementById('customerName');
+            const customerArea = document.getElementById('customerArea');
+            const customerProject = document.getElementById('customerProject');
+            const poNoDate = document.getElementById('poNoDate');
+            const eqptModel = document.getElementById('eqptModel');
+            const eqptSlNo = document.getElementById('eqptSlNo');
+            const complainDate = document.getElementById('complainDate');
+            const atHMR = document.getElementById('atHMR');
+            const complainClosedDate = document.getElementById('complainClosedDate');
+
+            if (reportDate) setCookie('field1', reportDate.value, 1);
+            if (customerName) setCookie('field2', customerName.value, 1);
+            if (customerArea) setCookie('field3', customerArea.value, 1);
+            if (customerProject) setCookie('field4', customerProject.value, 1);
+            if (poNoDate) setCookie('field5', poNoDate.value, 1);
+            if (eqptModel) setCookie('field6', eqptModel.value, 1);
+            if (eqptSlNo) setCookie('field7', eqptSlNo.value, 1);
+            if (complainDate) setCookie('field8', complainDate.value, 1);
+            if (atHMR) setCookie('field9', atHMR.value, 1);
+            if (complainClosedDate) setCookie('field10', complainClosedDate.value, 1);
+        }
+
+         function redirectToNextPage() {
+            // saveFormData();
+//    hitApi();i
+        window.location.href = 'componentStatus.html';
+         }
+
+        // function hitApi() {
+        //     const myHeaders = new Headers();
+        //     myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjM2MjY3NzAsImlhdCI6MTcyMzU0MDM3MCwidXNlciI6eyJpZCI6MiwiY3JlYXRlZF9hdCI6IjIwMjQtMDgtMDhUMTE6MjM6NTAuNzgwNjUyIiwidXBkYXRlZF9hdCI6IjIwMjQtMDgtMDlUMDY6MjE6MzkuNTM4OTYxIiwiZmlyc3RuYW1lIjoieXVudXMiLCJsYXN0bmFtZSI6ImZhcm9vIiwiZW1haWwiOiJtb2hhbW1lZHl1bnVzMDA5QGdtYWlsLmNvbSIsImlzX2FkbWluIjpmYWxzZSwiaXNfYWN0aXZhdGVkIjp0cnVlfX0.I_ntbZswj46ON9Lr4fZ7HO4m4XElaBsBK7NSZrmz9KU");
+        //     myHeaders.append("Content-Type", "application/json");
+
+        //     const fields = {};
+        //     for (let i = 1; i <= 30; i++) {
+        //         fields[`field${i}`] = getCookie(`field${i}`);
+        //     }
+
+        //     const raw = JSON.stringify({
+        //         "profile_id": "1",
+        //         "description": "",
+        //         "gender": "",
+        //         "images": "",
+        //         "bio": "",
+        //         ...fields,
+        //         "field31": "",
+        //         "field32": "",
+        //         "field33": "",
+        //         "field34": "",
+        //         "field35": "",
+        //         "field36": "",
+        //         "field37": "",
+        //         "field38": "",
+        //         "field39": "",
+        //         "field40": "",
+        //         "field41": "",
+        //         "field42": "",
+        //         "field43": "",
+        //         "field44": "",
+        //         "field45": "",
+        //         "field46": "",
+        //         "field47": "",
+        //         "field48": "",
+        //         "field49": "",
+        //         "field50": ""
+        //         // Add remaining fields if needed
+        //     });
+
+        //     const requestOptions = {
+        //         method: "POST",
+        //         headers: myHeaders,
+        //         body: raw,
+        //         redirect: "follow"
+        //     };
+
+        //     fetch("https://api.itstrending.in:5000/api/v1/profiles", requestOptions)
+        //         .then((response) => response.text())
+        //         .then((result) => console.log(result))
+        //         .catch((error) => console.error(error));
+        // }
+    </script>
+</body>
+
+</html>

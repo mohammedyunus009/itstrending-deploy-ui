@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Status Checklist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+</head>
+<style>
+     body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #333;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .nav-icons img {
+        height: 50px;
+        margin-left: 15px;
+    }
+
+    input {
+        border: 1px solid red; /* Light black border */
+        border-radius: 4px; /* Optional: for rounded corners */
+        padding: 5px; /* Optional: to add some padding inside the input */
+    }
+
+    @media screen and (max-width: 600px) {
+        .navbar {
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .logo img {
+            height: 30px;
+        }
+
+        .nav-icons img {
+            margin-left: 8px;
+            height: 30px;
+        }
+    }
+
+    /* headr */
+    @media (max-width: 600px) {
+        .table {
+            width: 100%;
+        }
+    }
+   
+</style>
+<body>
+    <!-- <nav class="navbar">
+        <div class="logo">
+            <img src="img/comapny log2.jpg" alt="Left Logo">
+        </div>
+        <div class="nav-icons">
+            <img src="img/mms.jpg" alt="Logo 1">
+            <img src="img/EGAC.png" alt="Logo 2">
+            <img src="img/IAF.png" alt="Logo 3">
+            <img src="img/NABCB.png" alt="Logo 4">
+        </div>
+    </nav>
+    <header>
+        <table class="table table-bordered table-container">
+            <tbody>
+                <tr>
+                  
+                    <td class="text-center"><u>INSTALLATION FORM</u></td>
+                
+                </tr>
+            </tbody>
+        </table>
+    </header> -->
+    <section>
+        <div class="container mt-3">
+            <div class="card border-dark">
+                <div class="card-header text-center bg-dark text-white">
+                    Component Status Checklist
+                </div>
+                <div class="card-body">
+                    <!-- 1 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Dcp Cylinder & Main Valve</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Good
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 2 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Nitrogen Catridge(16-18 Cu.in)</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Safe zone
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> leakage
+                        </div>
+                    </div>
+    
+                    <!-- 3 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Automatic & Manual Actuator</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Good Condition
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 4 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Manual Operate Actuator</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Good Condition
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 5 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Main Valve Peneumatic Actuator</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Good Condition
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 6 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Vent Check</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Good Condition
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 7 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Non Return Valve</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Good Condition
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 8 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Nozzle 1/2</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Good Condition
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 9 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Nozzle 1/4</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Good Condition
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 10 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Control Unit</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Working
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> not working
+                        </div>
+                    </div>
+    
+                    <!-- 11 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Main Harness</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Good Condition
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 12 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Sp Adaptor</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Found Good 
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 13 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Fire Sensor Wire per</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()">  Found Good 
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 14 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Hose Kit</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this);evaluateSelection()"> Found Good
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this);evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- 15 -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-control border-black">Ms Part</label>
+                            <input type="checkbox" name="cylinder_valve_status" value="good" onclick="toggleCheckbox(this); evaluateSelection()"> Good
+                            <wbr>
+                            <input type="checkbox" name="cylinder_valve_status" value="bad" onclick="toggleCheckbox(this); evaluateSelection()"> Damage
+                        </div>
+                    </div>
+    
+                    <!-- System Working Condition -->
+                    <div class="row mt-3">
+                        <div class="col">
+                            <strong>System Working Condition</strong>
+                            <br>
+                            <div id="result" class="mt-2">
+                                <button type="button" id="goodButton" class="btn btn-success" style="display: none;">Good</button>
+                                <button type="button" id="badButton" class="btn btn-danger" style="display: none;">Damage</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-btn text-center">
+                        <button type="button" class="btn btn-primary" onclick="redirectToNextPage();">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <br>
+    
+   
+    
+
+
+
+
+
+
+<!-- <script>
+    
+    
+   
+    
+    function saveDataToCookies() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                document.cookie = `${checkbox.id}=${checkbox.value};path=/`;
+            }
+        });
+        alert("Data saved to cookies!");
+    }
+    </script> -->
+
+
+
+<!-- Storing user-selected data in cookies -->
+<script>
+    function toggleCheckbox(element) {
+        // Ensure only one checkbox is selected per group
+        const container = element.closest('.row');
+        const checkboxes = container.querySelectorAll('input[name="cylinder_valve_status"]');
+        checkboxes.forEach((checkbox) => {
+            if (checkbox !== element) checkbox.checked = false;
+        });
+        // Store the selected data in cookies
+        storeInCookies();
+        // Evaluate the selection for 'Good' or 'Bad'
+        evaluateSelection();
+    }
+
+    function storeInCookies() {
+        const checkboxes = document.querySelectorAll('input[name="cylinder_valve_status"]');
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                let key = checkbox.closest('.row').querySelector('label').innerText.trim();
+                let value = checkbox.value;
+                setCookie(key, value, 7); // Save for 7 days
+            }
+        });
+    }
+
+    function setCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + d.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+
+    function evaluateSelection() {
+        const checkboxes = document.querySelectorAll('input[name="cylinder_valve_status"]');
+        const allGood = Array.from(checkboxes).every(checkbox => !checkbox.checked || checkbox.value === 'good');
+        const anyBad = Array.from(checkboxes).some(checkbox => checkbox.checked && checkbox.value === 'bad');
+        
+        if (allGood && !anyBad) {
+            document.getElementById('goodButton').style.display = 'inline-block';
+            document.getElementById('badButton').style.display = 'none';
+        } else {
+            document.getElementById('goodButton').style.display = 'none';
+            document.getElementById('badButton').style.display = 'inline-block';
+        }
+        
+        document.getElementById('result').style.display = 'block';
+    }
+
+    // Redirecting the page after button click
+    function redirectToNextPage(){
+        window.location.href = 'failedPart.html';
+    }
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic QR Code</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+   
+    <button onclick="generateQRCode()">Generate QR Code</button>
+    <div id="qrcode"></div>
+<br>
+<div class="container">
+    <button class="form-control" id="generateButton">Generate WARRANTY REGISTRATION FORM</button>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+
+document.getElementById('generateButton').onclick = function() {
+    window.location.href = 'vechicalOwner.html'; // Replace with the URL you want to redirect to
+};
+</script>
+
+    <script>
+        function getAllCookies() {
+            // Retrieve all cookies as a single string
+            const cookies = document.cookie;
+            return cookies || 'No cookies found';
+        }
+    
+        function generateQRCode() {
+            // Get all cookies data
+            const data = getAllCookies();
+    
+            const qrContainer = document.getElementById('qrcode');
+            // Clear the previous QR code
+            qrContainer.innerHTML = '';
+    
+            // Create a canvas element
+            const canvas = document.createElement('canvas');
+            qrContainer.appendChild(canvas);
+    
+            // Generate a new QR code with the cookie data
+            QRCode.toCanvas(canvas, data, function (error) {
+                if (error) console.error(error);
+                console.log('QR Code generated successfully with cookie data!');
+            });
+        }
+    </script>
+    
+</body>
+</html>
