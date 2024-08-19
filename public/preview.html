@@ -62,9 +62,19 @@
     }
 }
 </style>
+<style>
+  .left-align {
+      text-align: left;
+  }
+  
+  /* Ensure the parent container aligns text to the left */
+  #on-hold-reason-container {
+      text-align: left;
+  }
+</style>
 </head>
 <body>
-  <section id="top" class="bg_brown pt-2 pb-2">
+<section id="top" class="bg_brown pt-2 pb-2">
     <div class="container-xl">
      <div class="row top_1">
       <div class="col-md-6">
@@ -87,9 +97,9 @@
       </div>
      </div>
     </div>
-   </section>
+</section>
    
-   <section id="header">
+<section id="header">
      <nav class="navbar navbar-expand-md navbar-light p-0 pt-2 pb-2" id="navbar_sticky">
        <div class="container-xl">
        <a class="navbar-brand p-0 me-0" href="index.html">
@@ -164,11 +174,12 @@
        </div>
        </div>
      </nav>
-     </section>
-     <div class="header">
-      <div class="back-button" onclick="goBack()"> < </div>
-      <div class="title">Profile</div>
-  </div>
+</section>
+
+<div class="header">
+  <div class="back-button" onclick="goBack()"> < </div>
+  <div class="title">Profile</div>
+</div>
 
   <div class="profile-container">
 <div id="profilePhoto" class="resizeable">
@@ -176,19 +187,19 @@
   <button id="nextButton" class="navButton">▶</button>
 </div>
 
-      <div class="profile-details">
+      <div class="profile-details" style="width: 700px;">
           <h2>Marriage Profile</h2>
           <div class="detail-item">
               <label>Profile Coordinator Name:</label>
               <span id="coordinator-name"></span>
           </div>
           <div class="detail-item">
-              <label>Profile Status:</label>
-              <span id="profile-status"></span>
+            <label>Profile Status:</label>
+            <span id="profile-status" onchange="toggleOnHoldReason()"></span>
           </div>
-          <div class="detail-item">
+          <div class="detail-item" id="on-hold-reason-container" style="display: none;">
             <label>Reason for On Hold:</label>
-            <span id="on-hold-reason"></span>
+            <span id="on-hold-reason" class="left-align"></span>
           </div>
           <div class="detail-item">
             <label>Name:</label>
@@ -215,18 +226,18 @@
               <span id="follow"></span>
           </div>
           <div class="detail-item">
-              <label>Marital Status:</label>
-              <span id="marital-status"></span>
+            <label>Marital Status:</label>
+            <span id="marital-status" onchange="toggleMaritalDetails()"></span>
           </div>
-          <div class="detail-item">
+          <div class="detail-item" id="marital-tenure-container" style="display: none;">
             <label>Marital Tenure:</label>
             <span id="marital-tenure"></span>
           </div>
-          <div class="detail-item">
+          <div class="detail-item" id="children-container" style="display: none;">
             <label>Children:</label>
             <span id="children"></span>
           </div>
-          <div class="detail-item">
+          <div class="detail-item" id="divorce-document-container" style="display: none;">
             <label>Valid Divorce Document:</label>
             <span id="divorce-document"></span>
           </div>
@@ -457,4 +468,40 @@
      </section>
     <div id="footerPlaceholder"></div>
     <script src="js/prview.js"></script>
+    <script>
+      function toggleOnHoldReason() {
+          const profileStatus = document.getElementById('profile-status').innerText;
+          const onHoldReasonContainer = document.getElementById('on-hold-reason-container');
+          
+          if (profileStatus.toLowerCase() === 'on hold') {
+              onHoldReasonContainer.style.display = 'block';
+          } else {
+              onHoldReasonContainer.style.display = 'none';
+          }
+      }
+  
+      function toggleMaritalDetails() {
+          const maritalStatus = document.getElementById('marital-status').innerText;
+          const maritalTenureContainer = document.getElementById('marital-tenure-container');
+          const childrenContainer = document.getElementById('children-container');
+          const divorceDocumentContainer = document.getElementById('divorce-document-container');
+  
+          if (maritalStatus.toLowerCase() === 'divorced' || maritalStatus.toLowerCase() === 'widowed') {
+              maritalTenureContainer.style.display = 'block';
+              childrenContainer.style.display = 'block';
+              divorceDocumentContainer.style.display = 'block';
+          } else {
+              maritalTenureContainer.style.display = 'none';
+              childrenContainer.style.display = 'none';
+              divorceDocumentContainer.style.display = 'none';
+          }
+      }
+  
+      // Run the functions on page load in case the status is already set
+      document.addEventListener("DOMContentLoaded", function() {
+          toggleOnHoldReason();
+          toggleMaritalDetails();
+      });
+  </script>
+    </script>
 </html>

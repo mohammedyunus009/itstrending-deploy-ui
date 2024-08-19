@@ -188,6 +188,28 @@ button[type="submit"]:hover {
             height: 200px;
             border: none;
         }
+        .image-preview-container {
+      display: flex;
+      flex-wrap: wrap;
+  }
+  .image-wrapper {
+      position: relative;
+      margin: 10px;
+  }
+  .preview-image {
+      max-width: 100px;
+      max-height: 100px;
+      display: block;
+  }
+  .remove-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+  }
 </style>
   </head>
 <body>
@@ -376,12 +398,12 @@ button[type="submit"]:hover {
           <h2>Coordinator Details</h2>
           <div class="form-group">
               <label for="coordinator-name">Profile Coordinator Name:</label>
-              <input type="text" id="coordinator-name" name="field1" required>
+              <input type="text" id="coordinator-name" name="field10" required>
           </div>
 
           <div class="form-group">
               <label for="profile-status">Profile Status:</label>
-              <select id="profile-status" name="field2" required>
+              <select id="profile-status" name="field11" required>
                   <option value="Active">Please select</option>
                   <option value="Active">Active</option>
                   <option value="Closed">Closed</option>
@@ -391,13 +413,13 @@ button[type="submit"]:hover {
 
           <div id="on-hold-reason" class="hidden form-group">
               <label for="on-hold-reason">Reason for On Hold:</label>
-              <input type="text" id="on-hold-reason" name="on-hold-reason">
+              <input type="text" id="on-hold-reason" name="field13">
           </div>
 
           <h2>Personal Details</h2>
           <div class="form-group">
               <label for="name">Name:</label>
-              <input type="text" id="name" name="name" required>
+              <input type="text" id="name" name="field5" required>
           </div>
 
           <div class="form-group">
@@ -411,28 +433,28 @@ button[type="submit"]:hover {
         </div>
         <div class="form-group">
           <label for="age">Age:</label>
-          <select id="age" name="age" required>
+          <select id="age" name="field6" required>
               <!-- Options will be populated dynamically -->
           </select>
       </div>
       
       <div class="form-group">
           <label for="height">Height:</label>
-          <select id="height" name="height" required>
+          <select id="height" name="field14" required>
               <!-- Options will be populated dynamically -->
           </select>
       </div>
       
       <div class="form-group">
           <label for="family-subcaste">Family/Subcaste:</label>
-          <select id="family-subcaste" name="family-subcaste" required>
+          <select id="family-subcaste" name="field8" required>
               <!-- Options will be populated dynamically -->
           </select>
       </div>
 
           <div class="form-group">
             <label for="follow">Follow:</label>
-            <select id="follow" name="follow" multiple="multiple" style="width: 100%;">
+            <select id="follow" name="field4" multiple="multiple" style="width: 100%;">
                 <!-- Options will be populated by JavaScript -->
             </select>
         </div>
@@ -440,7 +462,7 @@ button[type="submit"]:hover {
         <h2>Marital Details</h2>
           <div class="form-group">
               <label for="marital-status">Marital Status:</label>
-              <select id="marital-status" name="marital-status" required>
+              <select id="marital-status" name="field3" required>
                   <option value="Unmarried">Please select</option>
                   <option value="Unmarried">Unmarried</option>
                   <option value="Divorced">Divorced</option>
@@ -451,15 +473,15 @@ button[type="submit"]:hover {
           <div id="marital-details" class="hidden dynamic-fields">
               <div class="form-group">
                   <label for="marital-tenure">Marital Tenure:</label>
-                  <input type="text" id="marital-tenure" name="marital-tenure">
+                  <input type="text" id="marital-tenure" name="field15">
               </div>
               <div class="form-group">
                   <label for="children">Children:</label>
-                  <input type="text" id="children" name="children">
+                  <input type="text" id="children" name="field16">
               </div>
               <div class="form-group">
                 <label for="divorce-document">Valid Divorce Document:</label>
-                <input type="file" id="divorce-document" name="divorce-document" accept="image/*,video/*,.pdf,.doc,.docx" multiple onchange="handleDocumentUpload(this)">
+                <input type="file" id="divorce-document" name="field17" accept="image/*,video/*,.pdf,.doc,.docx" multiple onchange="handleDocumentUpload(this)">
                 <div id="document-preview" class="document-preview-container" style="margin-top: 10px;">
                     <!-- Preview of the uploaded file will be displayed here -->
                 </div>
@@ -469,55 +491,55 @@ button[type="submit"]:hover {
           <h2>Professional Details</h2>
           <div class="form-group">
             <label for="education">Education:</label>
-            <select id="education" name="education" required>
+            <select id="education" name="field2" required>
                 <!-- Options will be populated by JavaScript -->
             </select>
           </div>
 
           <div class="form-group">
               <label for="profession">Profession:</label>
-              <input type="text" id="profession" name="profession">
+              <input type="text" id="profession" name="field9">
           </div>
 
           <div class="form-group">
               <label for="company">Company:</label>
-              <input type="text" id="company" name="company">
+              <input type="text" id="company" name="field18">
           </div>
 
           <div class="form-group">
               <label for="job-location">Job Location:</label>
-              <input type="text" id="job-location" name="job-location">
+              <input type="text" id="job-location" name="field19">
           </div>
 
           <div class="form-group">
               <label for="home-address">Home Address:</label>
-              <input type="text" id="home-address" name="home-address">
+              <input type="text" id="home-address" name="field7">
           </div>
 
           <h2>Family Details</h2>
           <div class="form-group">
               <label for="father-name">Father's Name:</label>
-              <input type="text" id="father-name" name="father-name">
+              <input type="text" id="father-name" name="field20">
           </div>
 
           <div class="form-group">
               <label for="father-occupation">Father's Occupation:</label>
-              <input type="text" id="father-occupation" name="father-occupation">
+              <input type="text" id="father-occupation" name="field21">
           </div>
 
           <div class="form-group">
               <label for="mother-name">Mother's Name:</label>
-              <input type="text" id="mother-name" name="mother-name">
+              <input type="text" id="mother-name" name="field22">
           </div>
 
           <div class="form-group">
               <label for="mother-occupation">Mother's Occupation:</label>
-              <input type="text" id="mother-occupation" name="mother-occupation">
+              <input type="text" id="mother-occupation" name="field23">
           </div>
 
           <div class="form-group">
               <label for="no-of-sisters">No of Sisters:</label>
-              <select id="no-of-sisters" name="no-of-sisters" required>
+              <select id="no-of-sisters" name="field24" required>
                   <option value="N/A">N/A</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -531,7 +553,7 @@ button[type="submit"]:hover {
 
           <div class="form-group">
               <label for="no-of-brothers">No of Brothers:</label>
-              <select id="no-of-brothers" name="no-of-brothers" required>
+              <select id="no-of-brothers" name="field25" required>
                   <option value="N/A">N/A</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -546,21 +568,21 @@ button[type="submit"]:hover {
         <h2>Partner Requirement</h2>
         <div class="form-group">
             <label for="partner-caste">Preferred Family/Subcaste:</label>
-            <select id="partner-caste" name="partner-caste" multiple="multiple" style="width: 100%;">
+            <select id="partner-caste" name="field26" multiple="multiple" style="width: 100%;">
                 <!-- Options will be populated by JavaScript -->
             </select>
         </div>
 
         <div class="form-group">
             <label for="partner-education">Preferred Education:</label>
-            <select id="partner-education" name="partner-education" multiple="multiple" style="width: 100%;">
+            <select id="partner-education" name="field27" multiple="multiple" style="width: 100%;">
                 <!-- Options will be populated by JavaScript -->
             </select>
         </div>
 
         <div class="form-group">
           <label for="partner-profession">Prefered Profession:</label>
-          <select id="partner-profession" name="partner-profession" required>
+          <select id="partner-profession" name="field28" required>
               <option value="Working">Please select</option>
               <option value="Job">Job</option>
               <option value="Business">Business</option>
@@ -570,52 +592,52 @@ button[type="submit"]:hover {
 
         <div class="form-group">
             <label for="preferred-age">Preferred Age:</label>
-            <input type="text" id="custom-age" name="custom-age" placeholder="Enter specific age range" style="width: 100%; margin-top: 10px;">
+            <input type="text" id="custom-age" name="field29" placeholder="Enter specific age range" style="width: 100%; margin-top: 10px;">
         </div>
 
         <div class="form-group">
             <label for="preferred-height">Preferred Height:</label>
-            <input type="text" id="custom-height" name="custom-height" placeholder="Enter specific height range" style="width: 100%; margin-top: 10px;">
+            <input type="text" id="custom-height" name="field30" placeholder="Enter specific height range" style="width: 100%; margin-top: 10px;">
         </div>
 
         <div class="form-group">
           <label for="personal-attributes">Personal Attributes:</label>
-          <select id="personal-attributes" name="personal-attributes" multiple="multiple" style="width: 100%;">
+          <select id="personal-attributes" name="field31" multiple="multiple" style="width: 100%;">
               <!-- Options will be populated by JavaScript -->
           </select>
         </div>
 
         <div class="form-group">
           <label for="partner-follow">Prefered Follow & Practice:</label>
-          <select id="partner-follow" name="partner-follow" multiple="multiple" style="width: 100%;">
+          <select id="partner-follow" name="field32" multiple="multiple" style="width: 100%;">
               <!-- Options will be populated by JavaScript -->
           </select>
         </div>
         
         <div class="form-group">
           <label for="family-type">Family Type:</label>
-          <select id="family-type" name="family-type" multiple="multiple" style="width: 100%;">
+          <select id="family-type" name="field33" multiple="multiple" style="width: 100%;">
               <!-- Options will be populated by JavaScript -->
           </select>
       </div>
 
         <div class="form-group">
           <label for="partner-location">Prefered Location:</label>
-          <select id="partner-location" name="partner-location" multiple="multiple" style="width: 100%;">
+          <select id="partner-location" name="field34" multiple="multiple" style="width: 100%;">
               <!-- Options will be populated dynamically -->
           </select>
         </div>
 
         <div class="form-group">
             <label for="religious-attributes">Religious Attributes:</label>
-            <select id="religious-attributes" name="religious-attributes" multiple="multiple" style="width: 100%;">
+            <select id="religious-attributes" name="field35" multiple="multiple" style="width: 100%;">
                 <!-- Options will be populated by JavaScript -->
             </select>
         </div>
 
         <div class="form-group">
             <label for="partner-working-status">Partner Working Status to be:</label>
-            <select id="partner-working-status" name="partner-working-status" required>
+            <select id="partner-working-status" name="field36" required>
                 <option value="Working">Please select</option>
                 <option value="Working">Working</option>
                 <option value="Non-Working">Non-Working</option>
@@ -629,7 +651,7 @@ button[type="submit"]:hover {
   
         <div class="image-preview-container" id="image-preview"></div><br>
 
-        <button type="submit" onclick="window.location.href='preview.html';">Submit</button>
+        <button type="submit" onclick="window.location.href='';">Submit</button>
       </form>
 </div>
 
@@ -761,7 +783,7 @@ button[type="submit"]:hover {
     </div>
 </section>
 
-<script>
+<!-- <script>
   // Helper functions to manage cookies
   function setCookie(name, value) {
       document.cookie = `${name}=${value}; path=/`;
@@ -905,120 +927,125 @@ button[type="submit"]:hover {
 
   // Load documents from cookies when page loads
   document.addEventListener('DOMContentLoaded', loadDocumentsFromCookies);
-</script>
+</script> -->
+
 <script>
-  // Helper functions to manage cookies
-  function setCookie(name, value) {
-      document.cookie = `${name}=${value}; path=/`;
+   // Helper functions to manage cookies
+   function setCookie(name, value) {
+      document.cookie = `${name}=${encodeURIComponent(value)}; path=/`;
   }
 
   function getCookie(name) {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
+      if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
   }
 
   function eraseCookie(name) {
       document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   }
 
-  function handleImageUpload(input) {
-      const imagePreviewContainer = document.getElementById('image-preview');
-      const files = Array.from(input.files);
-      
-      // Limit to 6 images
-      if (files.length + getImageCount() > 6) {
-          alert('You can only upload up to 6 images.');
-          return;
-      }
+  function handleImageUpload(fileInput) {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "{{Autho}}"); // Replace with actual token
 
-      files.forEach((file, index) => {
-          const fileReader = new FileReader();
-          
-          fileReader.onload = function(e) {
-              const filePreview = document.createElement('div');
-              filePreview.classList.add('image-preview');
-              
-              const img = document.createElement('img');
-              img.src = e.target.result;
-              filePreview.appendChild(img);
-              
-              const removeButton = document.createElement('button');
-              removeButton.textContent = 'Remove';
-              removeButton.classList.add('remove-button');
-              removeButton.onclick = function() {
-                  imagePreviewContainer.removeChild(filePreview);
-                  removeImageFromCookies(file.name);
-              };
-              filePreview.appendChild(removeButton);
-              
-              imagePreviewContainer.appendChild(filePreview);
-              
-              // Save to cookies
-              saveImageToCookies(file.name);
-          };
+    const formdata = new FormData();
 
-          fileReader.readAsDataURL(file);
-      });
+    // Iterate over the files from the file input
+    for (let i = 0; i < fileInput.files.length; i++) {
+        // Append each file to FormData with a unique name
+        formdata.append("file", fileInput.files[i], fileInput.files[i].name);
+    }
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow"
+    };
+
+    fetch("https://api.itstrending.in:5000/api/v1/profiles/upload_images", requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json(); // Handle JSON response
+        })
+        .then((result) => {
+            console.log(result);
+            // Extract image URLs from response and decode them
+            // Example array of image URLs from the result
+const imageUrls = result.data.images.map(url => url + "?alt=media");
+
+// Function to set a cookie with a specific name and value
+function setCookie(name, value, days = 7) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = `${name}=${value}; expires=${expires}; path=/`;
+}
+
+// Store each URL in a separate cookie
+imageUrls.forEach((url, index) => {
+    setCookie(`image${index}`, url);
+});
+
+// To confirm that the URLs have been stored, you can retrieve and log them
+const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+    const [name, value] = cookie.split('=');
+    acc[name] = value;
+    return acc;
+}, {});
+
+console.log('Stored image URLs:');
+Object.keys(cookies).forEach(key => {
+    if (key.startsWith('image')) {
+        console.log(`${key}: ${cookies[key]}`);
+    }
+});
+
+            // Store image URLs in cookies
+            imageUrls.forEach((url, index) => {
+                setCookie(`image${index}`, url);
+            });
+
+            // Update preview container with new images
+            updateImagePreview(imageUrls);
+        })
+        .catch((error) => console.error('Error:', error));
   }
 
-  function saveImageToCookies(imageName) {
-      const imageCount = getImageCount();
-      const maxImages = 6;
+  function updateImagePreview(imageUrls) {
+    const previewContainer = document.getElementById('image-preview');
+    previewContainer.innerHTML = ''; // Clear existing previews
 
-      if (imageCount < maxImages) {
-          setCookie(`image${imageCount + 1}`, imageName);
-      }
+    imageUrls.forEach((url, index) => {
+        const imgWrapper = document.createElement('div');
+        imgWrapper.classList.add('image-wrapper');
+
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = `Image ${index + 1}`;
+        img.classList.add('preview-image');
+
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.classList.add('remove-btn');
+        removeButton.onclick = () => {
+            imgWrapper.remove(); // Remove the image wrapper
+            eraseCookie(`image${index}`); // Remove image from cookies
+        };
+
+        imgWrapper.appendChild(img);
+        imgWrapper.appendChild(removeButton);
+        previewContainer.appendChild(imgWrapper);
+    });
   }
 
-  function removeImageFromCookies(imageName) {
-      // Remove specific image
-      for (let i = 1; i <= 6; i++) {
-          const cookieName = `image${i}`;
-          if (getCookie(cookieName) === imageName) {
-              eraseCookie(cookieName);
-              break;
-          }
-      }
-  }
+  // Call handleImageUpload when files are selected
+  const fileInput = document.getElementById('image-upload');
+  fileInput.addEventListener('change', () => handleImageUpload(fileInput));
 
-  function getImageCount() {
-      let count = 0;
-      for (let i = 1; i <= 6; i++) {
-          if (getCookie(`image${i}`)) count++;
-      }
-      return count;
-  }
-
-  function loadImagesFromCookies() {
-      const imagePreviewContainer = document.getElementById('image-preview');
-      for (let i = 1; i <= 6; i++) {
-          const imageName = getCookie(`image${i}`);
-          if (imageName) {
-              const filePreview = document.createElement('div');
-              filePreview.classList.add('image-preview');
-              
-              const img = document.createElement('img');
-              img.src = `path/to/images/${imageName}`; // Adjust path if necessary
-              filePreview.appendChild(img);
-              
-              const removeButton = document.createElement('button');
-              removeButton.textContent = 'Remove';
-              removeButton.classList.add('remove-button');
-              removeButton.onclick = function() {
-                  imagePreviewContainer.removeChild(filePreview);
-                  removeImageFromCookies(imageName);
-              };
-              filePreview.appendChild(removeButton);
-              
-              imagePreviewContainer.appendChild(filePreview);
-          }
-      }
-  }
-
-  // Load images from cookies when page loads
-  document.addEventListener('DOMContentLoaded', loadImagesFromCookies);
 </script>
+
 <script>
       document.getElementById('profile-status').addEventListener('change', function () {
           var onHoldReason = document.getElementById('on-hold-reason');
@@ -1265,6 +1292,7 @@ button[type="submit"]:hover {
                 ]
         });
 </script>
+
 <script>
   function setCookie(name, value, days) {
       let expires = "";
@@ -1312,5 +1340,6 @@ button[type="submit"]:hover {
       window.location.href = 'preview.html';
     }
 </script>
+
 </body>
 </html>
