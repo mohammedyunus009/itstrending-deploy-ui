@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In/Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+        }
+        .container {
+            width: 400px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form input {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form button {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .toggle-button {
+            margin-top: 10px;
+            cursor: pointer;
+            color: blue;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container" class="container">
+    <form id="sign-in-form" class="form">
+        <h2>Sign In</h2>
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Sign In</button>
+    </form>
+
+    <form id="sign-up-form" class="form hidden">
+        <h2>Sign Up</h2>
+        <input type="text" placeholder="Username" required />
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="toggle-button" id="toggle-button">
+        Don't have an account? Sign Up
+    </div>
+</div>
+
+<script>
+    const signInForm = document.getElementById("sign-in-form");
+    const signUpForm = document.getElementById("sign-up-form");
+    const toggleButton = document.getElementById("toggle-button");
+
+    // Toggle between Sign In and Sign Up forms
+    toggleButton.addEventListener("click", () => {
+        signInForm.classList.toggle("hidden");
+        signUpForm.classList.toggle("hidden");
+
+        if (signInForm.classList.contains("hidden")) {
+            toggleButton.textContent = "Already have an account? Sign In";
+        } else {
+            toggleButton.textContent = "Don't have an account? Sign Up";
+        }
+    });
+
+     // Handle form submission for sign-in
+     signInForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Simulate sign-in animation and redirect to the correct path
+        setTimeout(() => {
+            window.location.href = "button.html"; // Correct path for sign-in
+        }, 1000);
+    });
+
+    // Handle form submission for sign-up
+    signUpForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Simulate sign-up animation and redirect to the correct path
+        setTimeout(() => {
+            window.location.href = "button.html"; // Correct path for sign-up
+        }, 1000);
+    });
+</script>
+
+
+</body>
+</html>
