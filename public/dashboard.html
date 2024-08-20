@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #sidebar {
+            min-width: 250px;
+            background: #333;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        #sidebar .sidebar-header {
+            padding: 20px;
+            background: #444;
+        }
+        #sidebar ul.components {
+            padding: 20px 0;
+        }
+        #sidebar ul p {
+            color: #fff;
+            padding: 10px;
+        }
+        #sidebar ul li a {
+            padding: 10px;
+            font-size: 1.1em;
+            display: block;
+        }
+        #sidebar ul li a:hover {
+            background: #575757;
+        }
+        #content {
+            width: 100%;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .profile-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 57px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+        .profile-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .profile-card h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .profile-card p {
+            margin-bottom: 10px;
+        }
+        .profile-card .gender span,
+        .profile-card .field6 span,
+        .profile-card .field2 span,
+        .profile-card .field10 span {
+            font-weight: bold;
+        }
+        .profile-card:hover {
+            transform: scale(1.05);
+        }
+        #profileContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        /* Buttons */
+        .profile-card .btn-container {
+            display: none;
+            position: absolute;
+            bottom: 10px; /* Adjust as needed */
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 20px); /* Adjust for padding */
+            display: flex;
+            justify-content: space-between;
+            padding: 0 100px; /* Adjust for padding */
+        }
+        .profile-card .btn-container .btn {
+            padding: 10px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        .profile-card .btn-container .view-profile {
+            background-color: green;
+        }
+        .profile-card .btn-container .delete-profile {
+            background-color: red;
+        }
+        .profile-card:hover .btn-container {
+            display: flex;
+        }
+        /* Ensure the dropdown items are hidden initially */
+        .collapse {
+            display: none;
+        }
+        /* Style for active and expanded state */
+        .collapse.show {
+            display: block;
+        }
+        /* Optional: style for dropdown items */
+        #profilesSubmenu li a {
+            padding: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <h3>Admin Dashboard</h3>
+        </div>
+        <ul class="list-unstyled components">
+            <p>Admin Panel</p>
+            <li class="active">
+                <a href="#profilesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Profiles</a>
+                <ul class="collapse list-unstyled" id="profilesSubmenu">
+                    <li>
+                        <a href="#" onclick="loadAllProfiles()">View All Profiles</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="filterByGender('male')">Male</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="filterByGender('female')">Female</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0)" onclick="logout()">Logout</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <h2>Welcome to Admin Dashboard</h2>
+        <div id="profileContainer"></div>
+    </div>
+
+    <!-- jQuery first, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        let selectedGender = ''; // Initialize selectedGender
+
+        function getCookie(name) {
+            let value = `; ${document.cookie}`;
+            let parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function filterByGender(gender) {
+            selectedGender = gender;
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const token = getCookie('token'); // Get the token from cookies
+            if (!token) {
+                console.error('No token found in cookies.');
+                return;
+            }
+
+            fetch('https://api.itstrending.in:5001/api/v1/profiles/search_multiple', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token // Use the token from cookies
+                },
+                body: JSON.stringify({
+                    gender: selectedGender
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw err });
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                // Display profiles directly on the same page
+                displayProfiles(data.data.profile);
+            })
+            .catch((error) => {
+                console.error('Error:', error.message);
+                alert(`Error: ${error.message}`); // Alert the user about the error
+            });
+        }
+
+        // Function to create and display profile cards
+        function displayProfiles(profiles) {
+            if (!profiles) {
+                console.error('No profiles found.');
+                return;
+            }
+
+            const container = document.getElementById('profileContainer');
+            container.innerHTML = ''; // Clear any existing content
+            profiles.forEach(profile => {
+                const card = document.createElement('div');
+                card.className = 'profile-card';
+                card.dataset.profileId = profile.profile_id; // Store profile_id in a data attribute
+                // Extract first image URL from the comma-separated string
+                const imagesArray = profile.images ? profile.images.split(',') : [];
+                const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
+                // Create card content
+                card.innerHTML = `
+                    <img src="${firstImage}" alt="Profile Image">
+                    <h2>${profile.field1}</h2>
+                    <p class="field2"><span>DOB:</span> ${profile.field2}</p>
+                    <p class="gender"><span>Gender:</span> ${profile.gender}</p>
+                    <p class="field10"><span>State:</span> ${profile.field10}</p>
+                    <p class="field6"><span>Contact:</span> ${profile.field6}</p>
+                    <p class="profile_id">${profile.profile_id}</p>
+                    <div class="btn-container">
+                        <button class="btn view-profile">View Profile</button>
+                        <button class="btn delete-profile">Delete Profile</button>
+                    </div>
+                `;
+                // Append card to container
+                container.appendChild(card);
+            });
+        }
+
+        function loadAllProfiles() {
+            selectedGender = '';
+            applyFilters();
+        }
+
+        function logout() {
+    // Show confirmation dialog
+    const confirmation = confirm("Are you sure, do you want to logout?");
+
+    if (confirmation) {
+        // Perform logout logic if needed, such as clearing cookies or local storage
+        // For example:
+        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Example for clearing a cookie
+
+        // Redirect to login page
+        window.location.href = 'admin-login.html';
+    } else {
+        // If the user clicks "Cancel", do nothing and stay on the current page
+        console.log('Logout canceled');
+    }
+}
+    </script>
+</body>
+</html>

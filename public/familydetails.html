@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Details</title>
+    <link rel="stylesheet" href="css/matrimony/profile2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
+</head>
+<body>
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> < </div>
+        <div class="title">Family Details</div>
+    </div>
+    
+    <div class="family-details">
+        <div class="user-icon small">
+            <i class="fas fa-users"></i>
+        </div>
+        <h2>My Family details are</h2>
+
+        <div class="dropdown-container">
+            <form id="family-details-form" onsubmit="return submitForm()">
+                
+
+                <label for="father-name" style="display: block;">Father's Name :</label>
+                <input type="text" id="father-name" name="father-name" placeholder="Father's Name" required>
+                <br><br>
+
+                <label for="father-occupation" style="display: block;">Father's Occupation :</label>
+                <input type="text" id="father-occupation" name="father-occupation" placeholder="Father's Occupation" required>
+                <br><br>
+
+                <label for="mother-name" style="display: block;">Mother's Name :</label>
+                <input type="text" id="mother-name" name="mother-name" placeholder="Mother's Name" required>
+                <br><br>
+
+                <label for="mother-occupation" style="display: block;">Mother's Occupation :</label>
+                <input type="text" id="mother-occupation" name="mother-occupation" placeholder="Mother's Occupation" required>
+                <br><br>
+
+                <!-- <label for="num-brothers" style="display: block;">Number of Brothers :</label>
+                <select id="num-brothers" name="num-brothers" onchange="showBrothersDetails()">
+                    <option value="0">No Brothers :</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select><br><br>
+                <div id="brothers-details"></div>
+
+                <label for="num-sisters" style="display: block;">Number of Sisters :</label>
+                <select id="num-sisters" name="num-sisters" onchange="showSistersDetails()">
+                    <option value="0">No Sisters :</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select><br><br>
+                <div id="sisters-details"></div><br> -->
+                <input type="button" value="Next" onclick="submitForm()" id="nextButton">
+            </form>
+        </div>
+    </div>
+
+    <script>
+       function goBack() {
+    window.history.back();
+}
+
+function submitForm() {
+    // Collect form data
+    let fatherName = document.getElementById('father-name').value;
+    let fatherOccupation = document.getElementById('father-occupation').value;
+    let motherName = document.getElementById('mother-name').value;
+    let motherOccupation = document.getElementById('mother-occupation').value;
+    
+    // Set cookies with the entered values
+    setCookie('field21', fatherName, 7);
+    setCookie('field22', fatherOccupation, 7);
+    setCookie('field23', motherName, 7);
+    setCookie('field24', motherOccupation, 7);
+
+    // Redirect to the next page
+    window.location.href = "salary.html";
+    return false;
+}
+
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+$(document).ready(function() {
+    const fields = ["field19", "field20", "field21", "field22"];
+    fields.forEach(field => {
+        let value = getCookie(field);
+        if (value) {
+            $(`[name=${field}]`).val(value);
+        }
+    });
+});
+
+
+
+function checkLogin() {
+
+let token = getCookie('token');
+    if (!token) {
+        // alert("User not logged in. Please login.");
+        window.location.href = 'login.html';
+    }
+}
+
+window.onload = function() {
+    checkLogin();
+}
+
+    </script>
+</body>
+</html>

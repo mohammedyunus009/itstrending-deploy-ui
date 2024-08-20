@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payment Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PQLTG22ZFC');
+  </script>
+  <style>
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #e9ecef;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container1 {
+  max-width: 95%; /* Reduce max-width for smaller screens */
+  margin: 20px auto; /* Adjust margin for smaller screens */
+  padding: 20px; /* Adjust padding for smaller screens */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+}
+
+.text-center {
+  text-align: center;
+  margin-bottom: 20px; /* Adjust margin for smaller screens */
+}
+
+.text-center img {
+  max-width: 140px; /* Adjust logo size for smaller screens */
+  height: auto;
+  display: block;
+  margin: 0 auto 10px; /* Adjust margin for smaller screens */
+}
+
+.text-center h1, .text-center h3 {
+  font-size: 1.25em; /* Adjust font size for smaller screens */
+  color: #dc3545;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.1em; /* Adjust font size for smaller screens */
+  color: #343a40;
+  margin-bottom: 15px; /* Adjust margin for smaller screens */
+}
+
+.form-label {
+  font-weight: bold;
+  color: #495057;
+}
+
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  font-size: 1em;
+  margin-bottom: 15px; /* Adjust margin for smaller screens */
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.hidden {
+  display: none;
+}
+
+.text-danger {
+  font-size: 0.875em;
+  color: #dc3545;
+}
+
+.payment-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Space between logos */
+  margin: 10px 0;
+  flex-wrap: wrap; /* Ensure logos wrap on small screens */
+}
+
+.payment-logo {
+  max-width: 40px; /* Adjust size of logos for smaller screens */
+  height: auto;
+}
+
+.text-center p {
+  font-size: 1em;
+  color: #495057;
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .text-center h1 {
+    font-size: 1em; /* Further reduce font size for very small screens */
+  }
+
+  .text-center h3 {
+    font-size: 1em; /* Further reduce font size for very small screens */
+  }
+
+  h2 {
+    font-size: 1em; /* Further reduce font size for very small screens */
+  }
+
+  .form-control {
+    font-size: 0.9em; /* Reduce font size for form inputs on smaller screens */
+  }
+
+  .btn-primary {
+    font-size: 0.9em; /* Adjust button font size for smaller screens */
+    padding: 8px 15px; /* Adjust button padding for smaller screens */
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div id="headerPlaceholder"></div>
+
+  <div class="container1" id="form-container">
+    <div class="text-center">
+      <img src="img/matrimony/IMG_20240816_125312.jpg" alt="Scanner">
+      <h3>8884542768</h3>
+      <div class="payment-logos text-center">
+        <img src="https://uxdt.nic.in/wp-content/uploads/2020/06/BHIM_Preview.png?x38773" alt="BHIM UPI" class="payment-logo" title="BHIM UPI">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/UPI-Logo.png" alt="PhonePe" class="payment-logo" title="PhonePe">
+        <img src="https://cdn.prod.website-files.com/64199d190fc7afa82666d89c/6491bed7fce3ac043b83b2e3_phonepe.png" alt="UPI Wallet" class="payment-logo" title="UPI Wallet">
+        <img src="https://thumbs.dreamstime.com/b/google-pay-logo-editorial-illustrative-white-background-google-pay-logo-editorial-illustrative-white-background-eps-download-208329370.jpg" alt="Google Pay" class="payment-logo" title="Google Pay">
+        <img src="https://liquiddesigns.in/wp-content/uploads/2017/05/03-PaytmLogo.jpg" alt="Paytm" class="payment-logo" title="Paytm">
+      </div>
+      <h1> Kindly Gpay or phone pay subscription fees this number 8884542768</h1>
+    </div>
+  
+    <h2>Enter your details for verification :</h2>
+    <form id="info-form" method="POST">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="transaction-id" class="form-label">Transaction ID</label>
+        <input type="text" class="form-control" id="transaction-id" name="transaction_id" pattern="\d{11}" title="Please enter an 11-digit number" required>
+        <small id="transaction-id-error" class="form-text text-danger"></small>
+      </div>
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  
+  <script src="js/include.js"></script>
+  <div id="footerPlaceholder"></div>
+  
+  <script>
+    // Function to get a cookie by name
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+  
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+      let expires = '';
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = `; expires=${date.toUTCString()}`;
+      }
+      document.cookie = `${name}=${value || ''}${expires}; path=/`;
+    }
+  
+    // Autofill the name field with the value from the cookie
+    document.addEventListener('DOMContentLoaded', function() {
+      const nameFromCookie = getCookie('field5');
+      if (nameFromCookie) {
+        document.getElementById('name').value = nameFromCookie;
+      }
+    });
+  
+    document.getElementById('info-form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent the default form submission
+      const transactionId = document.getElementById('transaction-id').value;
+      const errorElement = document.getElementById('transaction-id-error');
+  
+      // Validate transaction ID
+      if (!/^\d{11}$/.test(transactionId)) {
+        errorElement.textContent = 'Transaction ID must be exactly 11 digits.';
+        return;
+      } else {
+        errorElement.textContent = '';
+      }
+  
+      // Store the transaction ID in a cookie
+      setCookie('field34', transactionId, 7); // Store for 7 days
+  
+      // Submit the form via AJAX
+      alert('Thanks for registering with us once admin approve you will receive a mail');
+      setTimeout(function() {
+        window.location.href = 'filter.html';
+      }, 2000); // 2 seconds delay
+    });
+
+
+
+      // Extract values from cookies (field1 to field50)
+        const field1 = getCookie('field1') || "";
+        const field2 = getCookie('field2') || "";
+        const field3 = getCookie('field3') || "";
+        const field4 = getCookie('field4') || "";
+        const field5 = getCookie('field5') || "";
+        const field6 = getCookie('field6') || "";
+        const field7 = getCookie('field7') || "";
+        const field8 = getCookie('field8') || "";
+        const field9 = getCookie('field9') || "";
+        const field10 = getCookie('field10') || "";
+        const field11 = getCookie('field11') || "";
+        const field12 = getCookie('field12') || "";
+        const field13 = getCookie('field13') || "";
+        const field14 = getCookie('field14') || "";
+        const field15 = getCookie('field15') || "";
+        const field16 = getCookie('field16') || "";
+        const field17 = getCookie('field17') || "";
+        const field18 = getCookie('field18') || "";
+        const field19 = getCookie('field19') || "";
+        const field20 = getCookie('field20') || "";
+        const field21 = getCookie('field21') || "";
+        const field22 = getCookie('field22') || "";
+        const field23 = getCookie('field23') || "";
+        const field24 = getCookie('field24') || "";
+        const field25 = getCookie('field25') || "";
+        const field26 = getCookie('field26') || "";
+        const field27 = getCookie('field27') || "";
+        const field28 = getCookie('field28') || "";
+        const field29 = getCookie('field29') || "";
+        const field30 = getCookie('field30') || "";
+        const field31 = getCookie('field31') || "";
+        const field32 = getCookie('field32') || "";
+        const field33 = getCookie('field33') || "";
+        const field34 = getCookie('field34') || "";
+        const field35 = getCookie('field35') || "";
+        const field36 = getCookie('field36') || "";
+        const field37 = getCookie('field37') || "";
+        const field38 = getCookie('field38') || "";
+        const field39 = getCookie('field39') || "";
+        const field40 = getCookie('field40') || "";
+        const field41 = getCookie('field41') || "";
+        const field42 = getCookie('field42') || "";
+        const field43 = getCookie('field43') || "";
+        const field44 = getCookie('field44') || "";
+        const field45 = getCookie('field45') || "";
+        const field46 = getCookie('field46') || "";
+        const field47 = getCookie('field47') || "";
+        const field48 = getCookie('field48') || "";
+        const field49 = getCookie('field49') || "";
+        const field50 = getCookie('field50') || "";
+        
+        // Extract images from cookies
+        const images = [];
+        for (let i = 0; i < 6; i++) {
+            let img = getCookie(`images${i}`);
+            if (img) images.push(img);
+        }
+        
+        // Extract authToken from cookies
+        const authToken = getCookie('token') || "";
+        
+        // Extract gender from cookies
+        const gender = getCookie('gender') || "male"; // Default to 'male' if not found
+        
+        // Construct the request body
+        const requestBody = {
+            "profile_id": "1",
+            "description": "Rajesh",
+            "gender": gender,
+            "images": images.join(','), // Convert array to comma-separated string
+            "bio": "There are many factors that contribute to a satisfying marriage/relationship such as; Love, Commitment, Trust, Time, Attention, Good Communication including Listening, Partnership, Tolerance, Patience, Openness, Honesty, Respect, Sharing, Consideration, Generosity, Willingness/Ability to Compromise, Constructive",
+            "field1": field1,
+            "field2": field2,
+            "field3": field3,
+            "field4": field4,
+            "field5": field5,
+            "field6": field6,
+            "field7": field7,
+            "field8": field8,
+            "field9": field9,
+            "field10": field10,
+            "field11": field11,
+            "field12": field12,
+            "field13": field13,
+            "field14": field14,
+            "field15": field15,
+            "field16": field16,
+            "field17": field17,
+            "field18": field18,
+            "field19": field19,
+            "field20": field20,
+            "field21": field21,
+            "field22": field22,
+            "field23": field23,
+            "field24": field24,
+            "field25": field25,
+            "field26": field26,
+            "field27": field27,
+            "field28": field28,
+            "field29": field29,
+            "field30": field30,
+            "field31": field31,
+            "field32": field32,
+            "field33": field33,
+            "field34": field34,
+            "field35": field35,
+            "field36": field36,
+            "field37": field37,
+            "field38": field38,
+            "field39": field39,
+            "field40": field40,
+            "field41": field41,
+            "field42": field42,
+            "field43": field43,
+            "field44": field44,
+            "field45": field45,
+            "field46": field46,
+            "field47": field47,
+            "field48": field48,
+            "field49": field49,
+            "field50": field50
+        };
+        
+        // Send POST request
+        fetch('https://api.itstrending.in:5001/api/v1/profiles', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': authToken // Include the authToken directly in the Authorization header
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        
+                        const express = require('express');
+                const app = express();
+                const bodyParser = require('body-parser');
+                // Middleware to parse JSON request bodies
+                app.use(bodyParser.json());
+                // CORS middleware
+                app.use((req, res, next) => {
+                  res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
+                  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+                  next();
+                });
+                // Define your API endpoints here
+                app.get('/login', (req, res) => {
+                  // Handle API logic here
+                  res.send('API response');
+                });
+                // POST endpoint for profile creation
+                app.post('/api/v1/profiles', (req, res) => {
+                  const { profile_id, description, gender, images, bio, ...fields } = req.body;
+                  // Validate request body here if needed
+                  // Simulate saving profile data (you should replace this with your actual data handling logic)
+                  console.log('Profile Data:', { profile_id, description, gender, images, bio, ...fields });
+                  // Send response
+                  res.status(200).json({ success: true, message: 'Profile data received', data: req.body });
+                });
+                // Start your server
+                const PORT = process.env.PORT || 3000;
+                app.listen(PORT, () => {
+                  console.log(`Server listening on port ${PORT}`);
+                });
+                
+  </script>
+  
+  
+</body>
+</html>
