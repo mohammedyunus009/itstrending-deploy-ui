@@ -4,27 +4,19 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+    <link href="fonts/css/solid.min.css" rel="stylesheet" />
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="css/login.css">
-  <link rel="stylesheet" href="css/matrimony/profile2.css">
-
   <title>SIGNUP&SIGNIN</title>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Bootstrap JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link href="css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PQLTG22ZFC');
-</script>
 </head>
  <style>
   *{
@@ -196,273 +188,361 @@ body{
 .form-links a:hover {
     text-decoration: underline;
 }
-
-
-/* Basic button styling */
-#signup {
-  background-color: #007bff; /* Change this to your preferred color */
-  color: white; /* Text color */
-  border: none; /* Remove border */
-  border-radius: 4px; /* Rounded corners */
-  padding: 10px 20px; /* Adjust padding as needed */
-  font-size: 16px; /* Font size */
-  cursor: pointer; /* Pointer cursor on hover */
-  display: block; /* Ensures the button is a block-level element */
-  margin: 0 auto;
-   /* Center the button horizontally */
-   text-align: center;
+/* Logo Image Styling */
+.logo-img {
+    width: 220px; /* Adjust size for desktop view */
+    height: 75px;
 }
 
-/* Add spacing below the button */
-#signup {
-  margin-top: 20px; /* Adjust the top margin as needed */
-}
-
-/* Optional: Add hover effect */
-#signup:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-}
-
-.container1 {
-  background: white;
-  width: 100%;
-  max-width: 400px;
-  padding: 20px;
-  margin: 50px auto;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.signup-form1 {
-  margin-bottom: 20px;
-}
-
-.signup-form1 h2 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.signup-form1 label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.signup-form1 input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.form-links {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.form-links a {
-  display: block;
-  color: #007bff;
-  text-decoration: none;
-  font-size: 14px;
-  margin: 5px 0;
-}
-
-.form-links a:hover {
-  text-decoration: underline;
-}
-
-#signup {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  margin-top: 20px;
-}
-
-#signup:hover {
-  background-color: #0056b3;
-}
-
-#signup-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.popup-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  animation: fadeIn 0.5s;
-}
-
-#done-button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background: orangered;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#done-button:hover {
-  background: #45a049;
-}
-.message-area {
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #fff;
-    text-align: center;
-}
-
-.message-area.success {
-    background-color: #4CAF50; /* Green */
-}
-
-.message-area.error {
-    background-color: #f44336; /* Red */
-}
-.loading-spinner {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 8px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    border-top: 8px solid #3498db;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-
-</style>
-<body>
-  <div id="headerPlaceholder"></div>
-
-  <div class="container1">
-    <!-- Message area -->
-    <div id="message-area" class="message-area"></div>
-
-    <!-- Loading spinner -->
-    <div id="loading-spinner" class="loading-spinner" style="display: none;"></div>
-
-    <form action="#" class="signup-form1" id="signupForm1">
-        <h2 class="form-heading">Signup</h2>
-        <label for="signup-firstname">First Name</label>
-        <input type="text" name="firstname" id="signup-firstname" placeholder="First Name" required>
-        
-        <label for="signup-lastname">Last Name</label>
-        <input type="text" name="lastname" id="signup-lastname" placeholder="Last Name" required>
-        
-        <label for="signup-email">Email</label>
-        <input type="email" name="email" id="signup-email" placeholder="Email" required>
-        
-        <label for="signup-password">Password</label>
-        <input type="password" name="password" id="signup-password" placeholder="Password" required>
-        
-        <label for="signup-confirm-password">Confirm Password</label>
-        <input type="password" name="confirm-password" id="signup-confirm-password" placeholder="Confirm Password" required>
-        <label for="how-i-know" style="display: block;">How do you know
-          Khurshid Imam</label>
-        <select id="how-i-know" name="how-i-know" onchange="toggleContactFields()">
-            <option value="#">Select an option</option>
-            <option value="I am from TLI Family / Samparkk">I am from TLI Family / Samparkk</option>
-            <option value="I am from his deeni circle">I am from his deeni circle</option>
-            <option value="I am his relative / acquaintances">I am his relative / acquaintances</option>
-            <option value="I know him through a common friend">I know him through a common friend</option>
-            <option value="I do not know brother Khurshid Imam">I do not know brother Khurshid Imam</option>
-        </select>
-        <div id="contact-fields" style="display: none;">
-            <label for="contact_name" style="display: block;">Referral name :</label>
-            <input type="text" id="contact_name" name="contact_name" placeholder="Name">
-            <br><br>
-            <label for="contact_phone" style="display: block;">Referral phone number :</label>
-            <input type="text" id="contact_phone" name="contact_phone" placeholder="Phone Number">
-        </div>
-        
-        <button type="submit" id="signup" onclick="storeData()">Signup</button>
-        <!-- <button type="button" id="login-toggle">Login</button> -->
-    </form>
-
-    <!-- Links for existing account and forgot password -->
-    <div class="form-links">
-        <p><a href="login.html" id="login-link">Already have an account? Login</a></p>
-        <p><a href="forgotpassword.html" id="forgot-password-link">Forgot Password?</a></p>
-    </div>
-</div>
-
-
-
-<div id="footerPlaceholder"></div>
-<script src="js/include.js"></script>
-
-    <script src="js/login.js"></script>
-    <script>
-        function toggleContactFields() {
-            let howIKnowDropdown = document.getElementById('how-i-know');
-            let contactFields = document.getElementById('contact-fields');
-            let selectedValue = howIKnowDropdown.value;
-
-            if (selectedValue === 'I am from TLI Family / Samparkk' || selectedValue === 'I am from his deeni circle' || selectedValue === 'I am his relative / acquaintances' || selectedValue === 'I know him through a common friend') {
-                contactFields.style.display = 'block';
-            } else {
-                contactFields.style.display = 'none';
-            }
-        }
-
-
-        function toggleContactFields() {
-    const selectElement = document.getElementById('how-i-know');
-    const contactFields = document.getElementById('contact-fields');
-
-    if (selectElement.value === 'I do not know brother Khurshid Imam') {
-        contactFields.style.display = 'none';
-    } else {
-        contactFields.style.display = 'block';
+@media (max-width: 768px) {
+    .logo-img {
+        max-width: 120px; /* Adjust size for mobile view */
     }
 }
+</style>
+<body>
+  <section id="top" class="bg_brown pt-2 pb-2">
+    <div class="container-xl">
+     <div class="row top_1">
+      <div class="col-md-6">
+       <div class="top_1l mt-1">
+      <ul class="mb-0 font_14">
+         <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+       </ul>
+     </div>
+      </div>
+      <div class="col-md-6">
+       <div class="top_1r text-end">
+        <ul class="mb-0">
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+       </ul>
+     </div>
+      </div>
+     </div>
+    </div>
+   </section>
 
-function storeData() {
-    const howIKnow = document.getElementById('how-i-know').value;
-    const contactName = document.getElementById('contact_name').value;
-    const contactPhone = document.getElementById('contact_phone').value;
+   <section id="header">
+    <nav class="navbar navbar-expand-md navbar-light  p-0 pt-2 pb-2" id="navbar_sticky">
+      <div class="container-xl">
+        <a class="navbar-brand p-0 me-0" href="index.html">
+				<img src="img/IMG-20240813-WA0001-removebg-preview.png" alt="ISC Logo" class="logo-img">
+			</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="
+          margin-left: 300px;
+          margin-top: -50px;
+      "></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-0 ms-auto">
+            <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Login/Register
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
+              <a class="dropdown-item" href="register-process.html">Create Profile</a>
+              <a class="dropdown-item" href="plans.html">Plans</a>
+            </div>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="filter.html">Search</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="payment.html">Payment</a>
+            </li>
+          
+            <!-- Dropdown for Event -->
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Event
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="eventDropdown">
+              <li><a class="dropdown-item" href="#">Matrimonial</a></li>
+              <li><a class="dropdown-item" href="#">Meeting</a></li>
+              <li><a class="dropdown-item" href="#">KPN</a></li>
+              <li><a class="dropdown-item" href="health.html">Health & Wellness</a></li>
+              <li><a class="dropdown-item" href="#">Marita Consulting</a></li>
+            </ul>
+            </li>
+          
+            <!-- Dropdown for Donation -->
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="donationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Donation
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="donationDropdown">
+              <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
+              <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
+              <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food Directory</a></li>
+              <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+              <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
+              <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment Business Support</a></li>
+            </ul>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Media</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <!-- <li class="nav-item">
+            <a class="nav-link" href="login.html">Sign In/Sign Up</a>
+            </li> -->
+          </ul>
+        <ul class="navbar-nav mb-0 ms-auto">
+         <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle dropdown_search nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-search"></i>
+              </a>
+              <ul class="dropdown-menu drop_2 p-3" aria-labelledby="navbarDropdown">
+                <li>
+            <div class="input-group">
+            <input type="text" class="form-control bg_light border-0 font_13" placeholder="Enter Keyword">
+            <span class="input-group-btn">
+              <button class="btn btn-primary bg_brown  p-3 px-4 border-0" type="button">
+                <i class="fa fa-search"></i> </button>
+            </span>
+        </div>
+          </li>
+              </ul>
+            </li> -->
+        <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle drop_togn nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-shopping-cart"></i>
+              </a> -->
+              <ul class="dropdown-menu drop_cart rounded-0 border-0" aria-labelledby="navbarDropdown" >
+                <li>
+                 <div class="drop_1i row">
+                  <div class="col-md-6 col-6">
+                   <div class="drop_1il"><h5 class="fs-6">2 ITEMS</h5></div>
+                  </div>
+                  <div class="col-md-6 col-6">
+                   <div class="drop_1il text-end"><h5 class="fs-6"><a href="cart.html">VIEW CART</a></h5></div>
+                  </div>
+                 </div>
+                 <div class="drop_1i1 row">
+                  <div class="col-md-6 col-6">
+                   <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Nulla Quis</a> <br> <span class="d-inline-block mt-1 font_15">1x - $89.00</span></h6></div>
+                  </div>
+                  <div class="col-md-4 col-4">
+                   <div class="drop_1i1r"><a href="#"><img src="img/52.jpg" class="w-100" alt="abc"></a></div>
+                  </div>
+                  <div class="col-md-2 col-2">
+                   <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
+                  </div>
+                 </div>
+                 <div class="drop_1i1 row">
+                  <div class="col-md-6 col-6">
+                   <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Eget Nulla</a> <br> <span class="d-inline-block mt-1 font_15">1x - $49.00</span></h6></div>
+                  </div>
+                  <div class="col-md-4 col-4">
+                   <div class="drop_1i1r"><a href="#"><img src="img/53.jpg" class="w-100" alt="abc"></a></div>
+                  </div>
+                  <div class="col-md-2 col-2">
+                   <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
+                  </div>
+                 </div>
+                 <div class="drop_1i2 row">
+                  <div class="col-md-6 col-6">
+                   <div class="drop_1il"><h5 class="fs-6">TOTAL</h5></div>
+                  </div>
+                  <div class="col-md-6 col-6">
+                   <div class="drop_1il text-end"><h5 class="fs-5">$142.00</h5></div>
+                  </div>
+                 </div>
+                 <div class="drop_1i3 text-center row">
+                  <div class="col-md-12 col-12">
+                    <ul class="mb-0">
+                   <li class="d-inline-block mx-1"><a class="button_2 px-3 pt-2 pb-2 font_14" href="#">View Order</a></li>
+                   <li class="d-inline-block mx-1"><a class="button_1 px-3 pb-2 pt-2 font_14" href="#">Checkout</a></li>
+                  </ul>
+                  </div>
+                 </div>
+                </li>
+                </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </section>
+    <div class="container1">
+        <form action="#" class="signup-form1" id="signupForm1">
+            <h2 class="form-heading">Signup</h2>
+            <label for="signup-firstname">First Name</label>
+            <input type="text" name="firstname" id="signup-firstname" placeholder="First Name" required>
+            
+            <label for="signup-lastname">Last Name</label>
+            <input type="text" name="lastname" id="signup-lastname" placeholder="Last Name" required>
+            
+            <label for="signup-email">Email</label>
+            <input type="email" name="email" id="signup-email" placeholder="Email" required>
+            
+            <label for="signup-password">Password</label>
+            <input type="password" name="password" id="signup-password" placeholder="Password" required>
+            
+            <label for="signup-confirm-password">Confirm Password</label>
+            <input type="password" name="confirm-password" id="signup-confirm-password" placeholder="Confirm Password" required>
+            
+            <button type="submit" id="signup">Signup</button>
+            <!-- <button type="button" id="login-toggle">Login</button> -->
+        </form>
 
-    // Store values in cookies
-    document.cookie = `field30=${encodeURIComponent(howIKnow)}; path=/`;
-    document.cookie = `field31=${encodeURIComponent(contactName)}; path=/`;
-    document.cookie = `field32=${encodeURIComponent(contactPhone)}; path=/`;
+        <!-- Links for existing account and forgot password -->
+        <div class="form-links">
+            <p> <a href="login.html" id="login-link">Already have an account?Login</a></p>
+            <p><a href="forgot-password.html" id="forgot-password-link">Forgot Password?</a></p>
+        </div>
 
-    // alert('Data has been stored in cookies.');
-}
+        <!-- Popup Container -->
+        <div id="signup-popup" style="display: none;">
+            <div class="popup-content">
+                <h2>Account Created Successfully!</h2>
+                <p>Your account has been created. You can now proceed to the next step.</p>
+                <button id="done-button">Done</button>
+            </div>
+        </div>
+    </div>
 
-    </script>
-    
+</div>
+  <section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
+    <div class="container-fluid" style="background-color: #5c0951;">
+      <div class="footer_m bg_light p-4">
+        <div class="footer_1 row">
+        <div class="col-md-3">
+       <div class="footer_1i">
+         <h1 class="mb-3"><a class="family_1" href="index.html"><i class="fa fa-heart me-1 col_brown"></i>  ISC <br>
+   <span class="family_2 fw-normal font_14 col_brown">Lookimg for a patner </span>
+   </a></h1>
+   <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+   <ul class="mb-0"> 
+   <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
+   <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
+   <li class="mt-3"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+   </ul>
+       </div>
+      </div>
+        <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">Social media</h5>
+        <ul class="mb-0">
+          <li><a href="#">Facebook</a></li>
+         <li class="mt-3"><a href="#">Twitter</a></li>
+         <li class="mt-3"><a href="#">Pinterest</a></li>
+         <li class="mt-3"><a href="#">Instagram</a></li>
+        </ul>
+       </div>
+      </div> 
+      
+      <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">Get TO Know US</h5>
+        <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+     
+         <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+        
+       </div>
+      </div>
+      <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">TELEGRAM</h5>
+        <div class="footer_1i1 row mx-0">
+         <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+        </div>
+        <div class="footer_1i1 row mx-0">
+         <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+        </div>
+       </div>
+      </div>
+      </div><hr class="mt-4 mb-4">
+      <div class="footer_2 row">
+        <div class="col-md-8">
+       <div class="footer_2l">
+           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+       </div>
+      </div>
+     <!-- <div class="col-md-4">
+       <div class="footer_2r text-end">
+          <ul class="text-uppercase font_13 mb-0">
+           <li class="d-inline-block"><a href="#"> Facebook</a></li>
+         <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Twitter</a></li>
+          <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+          <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Instagram</a></li>
+         </ul>
+       </div>
+      </div> -->
+      </div>
+      </div>
+     </div>
+    </div>
+   </section>
+    <script src="js/login.js"></script>
 </body>
 </html>
