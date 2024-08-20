@@ -1,0 +1,231 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  color: #ffffff;
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header .back-button {
+   /* Hide back button by default */
+  font-size: 34px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.header .back-button:hover {
+  color: #bbbbbb;
+}
+.header .title {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+/* Media Query for Mobile View */
+@media only screen and (max-width: 768px) {
+  .header .back-button {
+      display: block; /* Show back button for mobile view */
+  }
+  .user-details {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 340px;
+  margin-left: 20px;
+  height: 650px;
+}
+}
+
+.container1 {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 0px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  text-align: center;
+}
+/* CSS for dropdown adjustments */
+.form-group {
+position: relative;
+margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+select {
+width: 100%;
+padding: 10px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 5px;
+background-color: #fff;
+cursor: pointer;
+}
+
+/* Ensure dropdown options are visible within the viewport */
+@media (max-width: 768px) {
+select {
+    max-width: calc(100% - 20px); /* Adjust as needed */
+}
+}
+
+
+label {
+  font-weight: bold;
+}
+
+.required {
+  color: red;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+
+
+#nextButton {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none; /* Remove underline */
+  /* position: fixed; */
+  bottom: 0;
+  left: 0;
+  z-index: 999; /* Ensure it's above other content */
+  margin-bottom: 0px;
+}
+
+.button:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+@media (min-width: 768px) {
+  /* Adjust button positioning for larger screens if needed */
+  .button {
+      position: static;
+      width: auto;
+      margin-top: 20px; /* Example margin for larger screens */
+  }
+}
+
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  /* Adjustments for tablets and larger screens if needed */
+  .container {
+      max-width: 600px;
+      margin: 0 auto;
+  }
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.user-details {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.user-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e196e7; /* Circle color */
+  color: #fff; /* Icon color */
+  border-radius: 50%;
+  margin: 0 auto; /* Center the circle */
+}
+
+/* Sizes for the circles */
+.small {
+  width: 80px;
+  height: 80px;
+  font-size: 50px; /* Adjust icon size as needed */
+}
+
+.medium {
+  width: 100px;
+  height: 100px;
+  font-size: 50px; /* Adjust icon size as needed */
+}
+
+.large {
+  width: 150px;
+  height: 150px;
+  font-size: 100px; /* Adjust icon size as needed */
+}
+
+#education_qualification_buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Adjust the space between buttons as needed */
+}
+
+#education_qualification_buttons button {
+  flex: 1; /* Make all buttons equal width */
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #e196e7;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* #education_qualification_buttons button:hover {
+  background-color: rgb(49, 181, 204);
+} */
+
+#education_qualification_buttons button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #333;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form-group .required {
+  color: red;
+}
+
+
+.fa-regular, .far {
+  font-size: xx-large;
+}
+.fa-solid, .fas {
+  font-size: xx-large;
+}

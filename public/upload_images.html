@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Upload</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Google tag (gtag.js) -->
+     <link rel="stylesheet" href="css/matrimony/malefemale.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
+    <style>
+        /* Base Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures full viewport height */
+}
+
+header {
+    background-color: #333;
+    padding: 10px 20px;
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.header-title {
+    margin: 0;
+    font-size: 24px;
+    color: white;
+}
+/* Photo Upload Container */
+.photo-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    flex: 1; /* Takes available space */
+}
+
+/* Photo Upload Grid */
+.photo-upload-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 800px; /* Adjusted width */
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Photo Upload Box */
+.photo-upload-box {
+    position: relative;
+    width: 100%;
+    height: 150px; /* Adjusted height */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+}
+
+/* Photo Upload Button */
+.photo-upload-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+/* Photo Upload SVG Icon */
+.photo-upload-button svg {
+    width: 40px; /* Adjusted width */
+    height: 40px; /* Adjusted height */
+    fill: #007bff;
+}
+
+/* Photo Upload Label */
+.photo-upload-label {
+    margin-top: 10px;
+}
+
+/* Photo Upload Box Image */
+.photo-upload-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Processing Overlay */
+.processing-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Processing Spinner */
+.processing-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #007bff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+/* Keyframes for Spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Delete Button */
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(255, 0, 0, 0.7);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .photo-upload-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-upload-box {
+        height: 120px; /* Adjusted height */
+    }
+
+    .photo-upload-button svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .photo-upload-label span {
+        font-size: 12px;
+    }
+
+    .delete-button {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
+    }
+
+    #next-button {
+        width: 100%; /* Full width for mobile */
+    }
+}
+
+/* Button Styles */
+#next-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333; /* Updated background color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    width: 100%; /* Full width */
+    display: block; /* Ensures the button spans the full width */
+    text-align: center; /* Center text */
+    margin-top: auto; /* Pushes the button to the bottom */
+}
+
+#next-button:hover {
+    background-color: #222; /* Slightly darker on hover for better visibility */
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+    #next-button {
+        width: 100%; /* Full width for desktop */
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .photo-upload-container {
+        padding: 10px; /* Reduced padding for smaller screens */
+    }
+
+    .photo-upload-grid {
+        grid-template-columns: 1fr; /* Single column layout for mobile */
+        gap: 8px; /* Reduced gap for better fit */
+    }
+
+    .photo-upload-box {
+        height: 120px; /* Adjusted height for mobile view */
+    }
+
+    .photo-upload-button svg {
+        width: 30px; /* Adjusted width for mobile */
+        height: 30px; /* Adjusted height for mobile */
+    }
+
+    .photo-upload-label span {
+        font-size: 12px; /* Smaller font size for mobile */
+    }
+
+    .delete-button {
+        width: 20px; /* Smaller delete button for mobile */
+        height: 20px;
+        font-size: 14px; /* Adjusted font size for mobile */
+    }
+
+    #next-button {
+        padding: 10px; /* Adjusted padding for mobile */
+        font-size: 14px; /* Smaller font size for mobile */
+        width: 100%; /* Full width for mobile */
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> &lt; </div>
+        <div class="title">User Details</div>
+        <div></div>
+    </div>
+    <div class="photo-upload-container" style="margin: auto;">
+        <div class="photo-upload-grid">
+            <!-- Photo upload boxes will be dynamically added here -->
+        </div>
+        <input type="file" id="file-input" style="display: none;" accept="image/*" multiple>
+        <button id="next-button" class="btn btn-primary">Next</button>
+    </div>
+    <script>
+        const photoStorageKey = 'uploadedPhotos';
+        let uploadCounter = 0;
+        const maxPhotos = 2;
+        let uploadResponses = [];
+    
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+    
+        function createPhotoUploadBox(index) {
+            const box = document.createElement('div');
+            box.classList.add('photo-upload-box');
+            box.setAttribute('data-index', index);
+            const uploadButton = document.createElement('button');
+            uploadButton.type = 'button';
+            uploadButton.classList.add('photo-upload-button');
+            uploadButton.setAttribute('data-index', index);
+            uploadButton.innerHTML = `
+                <svg width="120px" height="120px" viewBox="0 0 1024 1024" fill-rule="evenodd">
+                    <!-- SVG Path Here -->
+                </svg>
+                <div class="photo-upload-label"><span>Add photo</span></div>
+                <div class="processing-overlay" style="display: none;">
+                    <div class="processing-spinner"></div>
+                </div>
+            `;
+            box.appendChild(uploadButton);
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('delete-button');
+            deleteButton.innerText = 'X';
+            deleteButton.addEventListener('click', function() {
+                deletePhoto(index);
+            });
+            box.appendChild(deleteButton);
+            return box;
+        }
+    
+        function handleFileUpload(event) {
+            const files = Array.from(event.target.files); // Convert FileList to Array
+            const uploadButtonContainer = document.querySelectorAll('.photo-upload-button');
+    
+            files.forEach((file, fileIndex) => {
+                const index = fileIndex; // The index of the file
+                if (index >= maxPhotos) {
+                    // alert('You can only upload up to 2 photos.');
+                    return;
+                }
+    
+                const uploadButton = uploadButtonContainer[index];
+                const processingOverlay = uploadButton.querySelector('.processing-overlay');
+                processingOverlay.style.display = 'flex';
+                while (uploadButton.firstChild) {
+                    uploadButton.removeChild(uploadButton.firstChild);
+                }
+    
+                if (file.size > 5 * 1024 * 1024) { // 5 MB
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'error-message';
+                    errorMessage.innerText = `Error: ${file.name} exceeds 5 MB limit.`;
+                    uploadButton.appendChild(errorMessage);
+                    processingOverlay.style.display = 'none';
+                    return;
+                }
+    
+                // Retrieve token from cookies
+                const token = getCookie('token'); // Make sure 'authToken' is the name of your cookie
+    
+                // Prepare API request
+                const formdata = new FormData();
+                formdata.append("file", file);
+                fetch("https://api.itstrending.in:5001/api/v1/profiles/upload_images", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": token, // Use token from cookies
+                    },
+                    body: formdata,
+                })
+                .then(response => response.json())
+                .then(result => {
+                    uploadResponses[index] = result; // Store the result based on index
+                    console.log(result); // Optional: Log each upload result immediately
+                    if (result.data && result.data.images && Array.isArray(result.data.images)) {
+                        // Store Firebase Storage URLs in cookies
+                        result.data.images.forEach((image, idx) => {
+                            // Construct URL with ?alt=media if not already present
+                            const imageUrl = image.includes('?alt=media') ? image : `${image}?alt=media`;
+                            // Store image in cookies with specific name format
+                            const cookieName = `images${uploadCounter}`;
+                            setCookie(cookieName, imageUrl, new Date(new Date().getTime() + 24*60*60*1000));
+                            uploadCounter++;
+                            if (uploadCounter >= maxPhotos) {
+                                document.getElementById('file-input').style.display = 'none'; // Hide file input if limit is reached
+                            }
+                        });
+                        // Add all images to the view
+                        result.data.images.forEach(image => {
+                            uploadButton.innerHTML += `<img src="${image.includes('?alt=media') ? image : `${image}?alt=media`}">`;
+                        });
+                    }
+                    processingOverlay.style.display = 'none';
+                })
+                .catch(error => {
+                    console.error(error);
+                    processingOverlay.style.display = 'none';
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'error-message';
+                    errorMessage.innerText = 'Upload failed. Please try again.';
+                    uploadButton.appendChild(errorMessage);
+                });
+            });
+        }
+    
+        function deletePhoto(index) {
+            // Directly proceed with deletion
+            uploadResponses[index] = null;
+            document.querySelector(`.photo-upload-box[data-index="${index}"]`).remove();
+            uploadCounter--;
+    
+            // Show the file input if there is space available
+            if (uploadCounter < maxPhotos) {
+                document.getElementById('file-input').style.display = 'none'; // Show file input if space is available
+            }
+        }
+    
+        function setCookie(name, value, expires) {
+            document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
+        }
+    
+        function initializePhotoUpload() {
+            const container = document.querySelector('.photo-upload-grid');
+            for (let i = 0; i < maxPhotos; i++) {
+                const box = createPhotoUploadBox(i);
+                box.querySelector('.photo-upload-button').addEventListener('click', function() {
+                    document.getElementById('file-input').setAttribute('data-index', i);
+                    document.getElementById('file-input').click();
+                });
+                container.appendChild(box);
+            }
+        }
+    
+        document.getElementById('file-input').addEventListener('change', handleFileUpload);
+    
+        document.getElementById('next-button').addEventListener('click', function() {
+            // Redirect to profile2.html
+            window.location.href = 'profile2.html';
+        });
+    
+        initializePhotoUpload();   
+
+const express = require('express');
+const app = express();
+const path = require('path');
+
+// CORS middleware
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+// Middleware to parse JSON request bodies
+app.use(express.json());
+
+// Middleware to serve static files (like your HTML, CSS, JS)
+app.use(express.static(path.join(__dirname, 'public'))); // Assumes static files are in the 'public' directory
+
+// Define your API endpoints here
+app.get('/login', (req, res) => {
+  // Handle API logic here
+  res.send('API response');
+});
+
+// Example POST endpoint for handling file uploads (you might need 'multer' for handling multipart/form-data)
+app.post('/api/v1/profiles/upload_images', (req, res) => {
+  // Handle file upload logic here
+  res.json({
+    status: 'success',
+    data: {
+      images: ['http://example.com/image1.jpg', 'http://example.com/image2.jpg']
+    }
+  });
+});
+
+// Start your server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+
+
+function goBack() {
+    window.history.back();
+}
+
+
+function checkLogin() {
+
+    let token = getCookie('token');
+        if (!token) {
+            alert("User not logged in. Please login.");
+            window.location.href = 'login.html';
+        }
+    }
+
+    window.onload = function() {
+        checkLogin();
+    }
+    </script>
+</body>
+</html>
