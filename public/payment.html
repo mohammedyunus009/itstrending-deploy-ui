@@ -1,81 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matrimony Payment Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <style>
-        /* body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        } */
-        .container1 {
-            text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .qr-code {
-            margin-bottom: 20px;
-        }
-        .nextbutton {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .button:disabled {
-            background-color: #ccc;
-        }
-    </style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Static Webpage</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+    <link href="fonts/css/solid.min.css" rel="stylesheet" />
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: #f9f9f9;
+    }
+    .container1 {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .hidden {
+      display: none;
+    }
+    .visible {
+      display: block;
+    }
+    .text-center img {
+      max-width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+    }
+    .text-center h1 {
+      font-size: medium;
+      color: orangered;
+    }
+     /* Logo Image Styling */
+.logo-img {
+    width: 220px; /* Adjust size for desktop view */
+    height: 75px;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        max-width: 120px; /* Adjust size for mobile view */
+    }
+}
+  </style>
 </head>
 <body>
-    <div id="headerPlaceholder"></div>
-
-<div class="container1">
-    <h1>Matrimony Payment</h1>
-    <div class="qr-code">
-        <img src="./img/matrimony/Matrimony.jpeg" alt="Dummy QR Code" style="width: 200px;"/>
+  <section id="top" class="bg_brown pt-2 pb-2">
+    <div class="container-xl">
+     <div class="row top_1">
+      <div class="col-md-6">
+       <div class="top_1l mt-1">
+      <ul class="mb-0 font_14">
+         <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+       </ul>
+     </div>
+      </div>
+      <div class="col-md-6">
+       <div class="top_1r text-end">
+        <ul class="mb-0">
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+       </ul>
+     </div>
+      </div>
+     </div>
     </div>
-    <button class="nextbutton" id="paymentDoneBtn" disabled>Pay ₹2000</button>
-    <div id="billContainer" style="display: none; margin-top: 20px;">
-        <h2>Payment Bill</h2>
-        <p>Amount: ₹2000</p>
-        <button class="nextbutton" id="viewBillBtn">Next</button>
+   </section>
+   
+   <section id="header">
+     <nav class="navbar navbar-expand-md navbar-light p-0 pt-2 pb-2" id="navbar_sticky">
+       <div class="container-xl">
+       <a class="navbar-brand p-0 me-0" href="index.html">
+				<img src="img/IMG-20240813-WA0001-removebg-preview.png" alt="ISC Logo" class="logo-img">
+			</a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-0 ms-auto">
+          <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login/Register
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
+            <a class="dropdown-item" href="register-process.html">Create Profile</a>
+            <a class="dropdown-item" href="plans.html">Plans</a>
+          </div>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="filter.html">Search</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="payment.html">Payment</a>
+          </li>
+        
+          <!-- Dropdown for Event -->
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Event
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="eventDropdown">
+            <li><a class="dropdown-item" href="#">Matrimonial</a></li>
+            <li><a class="dropdown-item" href="#">Meeting</a></li>
+            <li><a class="dropdown-item" href="#">KPN</a></li>
+            <li><a class="dropdown-item" href="health.html">Health & Wellness</a></li>
+            <li><a class="dropdown-item" href="#">Marita Consulting</a></li>
+          </ul>
+          </li>
+        
+          <!-- Dropdown for Donation -->
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="donationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Donation
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="donationDropdown">
+            <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
+            <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
+            <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food Directory</a></li>
+            <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+            <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
+            <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment Business Support</a></li>
+          </ul>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">Media</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <!-- <li class="nav-item">
+          <a class="nav-link" href="login.html">Sign In/Sign Up</a>
+          </li> -->
+        </ul>
+       </div>
+       </div>
+     </nav>
+     </section>
+  <div class="container1" id="form-container">
+    <div class="text-center">
+      <img src="img/Matrimony.jpeg" alt="Scanner">
+      <h1>Pay through this scanner</h1>
     </div>
-</div>
-<script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div>
-<script>
-    // Simulate scanning QR code and making payment
-    setTimeout(() => {
-        document.getElementById('paymentDoneBtn').disabled = false;
-    }, 5000); // Assume it takes 5 seconds to make the payment
+    <h2>Enter your details for verification :</h2>
+    <form id="info-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="cd7be852-b96a-4846-b8f5-25b88687626a">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div><br>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input type="text" class="form-control" id="phone" name="phone" required>
+      </div><br>
+      <div class="mb-3">
+        <label for="transaction-id" class="form-label">Transaction ID</label>
+        <input type="text" class="form-control" id="transaction-id" name="transaction_id" required>
+      </div><br>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div><br>
+      <div class="mb-3">
+        <label for="message" class="form-label">Message</label>
+        <textarea class="form-control" id="message" name="message" required></textarea>
+      </div><br>
+      <!-- Honeypot Spam Protection -->
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  
+  <!-- <div class="container hidden" id="payment-done-container">
+    <h2>Payment Status</h2>
+    <p>Your payment is already done. Thank you!</p>
+  </div> -->
+  
+  <section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
+    <div class="container-fluid" style="background-color: #5c0951;">
+      <div class="footer_m bg_light p-4">
+        <div class="footer_1 row">
+        <div class="col-md-3">
+       <div class="footer_1i">
+         <h1 class="mb-3"><a class="family_1" href="index.html"><i class="fa fa-heart me-1 col_brown"></i>  ISC <br>
+   <span class="family_2 fw-normal font_14 col_brown">Lookimg for a patner </span>
+   </a></h1>
+   <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+   <ul class="mb-0"> 
+   <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
+   <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
+   <li class="mt-3"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+   </ul>
+       </div>
+      </div>
+        <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">Social media</h5>
+        <ul class="mb-0">
+          <li><a href="#">Facebook</a></li>
+         <li class="mt-3"><a href="#">Twitter</a></li>
+         <li class="mt-3"><a href="#">Pinterest</a></li>
+         <li class="mt-3"><a href="#">Instagram</a></li>
+        </ul>
+       </div>
+      </div> 
+      
+      <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">Get TO Know US</h5>
+        <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+     
+         <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+        
+       </div>
+      </div>
+      <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">TELEGRAM</h5>
+        <div class="footer_1i1 row mx-0">
+         <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+        </div>
+        <div class="footer_1i1 row mx-0">
+         <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+        </div>
+       </div>
+      </div>
+      </div><hr class="mt-4 mb-4">
+      <div class="footer_2 row">
+        <div class="col-md-8">
+       <div class="footer_2l">
+           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+       </div>
+      </div>
+     <!-- <div class="col-md-4">
+       <div class="footer_2r text-end">
+          <ul class="text-uppercase font_13 mb-0">
+           <li class="d-inline-block"><a href="#"> Facebook</a></li>
+         <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Twitter</a></li>
+          <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+          <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Instagram</a></li>
+         </ul>
+       </div>
+      </div> -->
+      </div>
+      </div>
+     </div>
+    </div>
+   </section>
 
-    document.getElementById('paymentDoneBtn').addEventListener('click', function() {
-        alert('Payment Done');
-        document.getElementById('billContainer').style.display = 'block';
+  <script>
+    document.getElementById('info-form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent the default form submission
+      // Submit the form using AJAX
+      var formData = $(this).serialize();
+      $.ajax({
+        type: 'POST',
+        url: 'https://api.web3forms.com/submit',
+        data: formData,
+        success: function(response) {
+          // Redirect to button.html on successful form submission
+          window.location.href = 'button.html';
+        },
+        error: function() {
+          alert('There was an error submitting the form. Please try again.');
+        }
+      });
     });
-
-    document.getElementById('viewBillBtn').addEventListener('click', function() {
-        window.location.href = 'filter.html';
-    });
-</script>
-
+  </script>
+  
 </body>
 </html>
