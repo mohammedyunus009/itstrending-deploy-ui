@@ -3,171 +3,363 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile Search Results</title>
-  <!-- <link rel="stylesheet" href="css/matrimony/profile.css"> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Profile Display</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+  <script src="js/include.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PQLTG22ZFC');
+  </script>
   <style>
-  /* css/style.css */
-body {
-  background-color: #f8f9fa;
-  font-family: Arial, sans-serif;
-}
+    /* Add some basic styling */
+    .profile-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+    }
 
-h1 {
-  color: #343a40;
-  text-align: center;
-  margin-bottom: 20px;
-}
+    /* Profile card styling */
+    .profile-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      width: 220px; /* Adjusted width to fit additional details */
+      text-align: left;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow for better visibility */
+      background-color: #fff; /* Added background color */
+      transition: transform 0.2s; /* Added transition for hover effect */
+      cursor: pointer; /* Indicate clickable */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-.results {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+    /* Hover effect for the profile card */
+    .profile-card:hover {
+      transform: scale(1.05); /* Added hover effect */
+    }
 
-.category-item {
-  background-color: #ffffff;
-  border: 1px solid #dee2e6;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  padding: 15px;
-  width: calc(33.333% - 20px);
-  text-align: center;
-  transition: transform 0.2s ease;
-}
+    /* Profile card image styling */
+    .profile-card img {
+      width: 100%;
+      height: 150px; /* Adjusted height to better fit images */
+      object-fit: cover; /* Ensure image covers the area */
+      border-radius: 8px;
+      margin-bottom: 12px; /* Space below the image */
+    }
 
-.category-item:hover {
-  transform: translateY(-5px);
-}
+    /* Profile card title styling */
+    .profile-card h2 {
+      font-size: 18px;
+      margin: 8px 0;
+      color: #333; /* Improved text color */
+      text-align: center; /* Centered description */
+    }
 
-.category-item img {
-  max-width: 100%;
-  border-radius: 5px;
-  height: auto;
-}
+    /* Profile card details styling */
+    .profile-card p {
+      font-size: 14px;
+      color: #555;
+      margin: 4px 0; /* Adjusted margins for better spacing */
+    }
 
-.category-details {
-  margin-top: 10px;
-  text-align: left;
-}
+    /* Additional styling for bio section */
+    .profile-card .bio {
+      font-size: 12px;
+      color: #666;
+      margin-top: 8px;
+    }
 
-.category-details p {
-  margin: 5px 0;
-}
+    /* Image gallery within the profile card */
+    .profile-card .images {
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+      justify-content: center;
+      flex-wrap: wrap; /* Wrap images in the row */
+    }
 
-.category-details .description {
-  font-weight: bold;
-}
+    /* Styling for individual images in the gallery */
+    .profile-card .images img {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+    }
 
-.category-details .gender,
-.category-details .profile_id,
-.category-details .bio {
-  color: #6c757d;
-}
+    /* Gender information styling */
+    .profile-card .gender {
+      text-align: left;
+      width: 100%; /* Ensure it spans the full width */
+      color: #555; /* Improved text color */
+    }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .category-item {
-    width: calc(50% - 20px);
-  }
-}
+    .profile-card .gender span {
+      font-weight: bold; /* Bold the label */
+    }
 
-@media (max-width: 576px) {
-  .category-item {
-    width: 100%;
-  }
-}
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .profile-card {
+        width: 100%; /* Full width on smaller screens */
+      }
+    }
 
-</style>  
+    /* General styling for all fields in the profile card */
+    .profile-card p {
+      font-size: 14px;
+      color: #555;
+      margin: 4px 0; /* Adjusted margins for better spacing */
+    }
+
+    /* Styling for field labels */
+    .profile-card p span {
+      font-weight: bold; /* Bold the label */
+    }
+
+    /* Specific styling for each field if needed */
+    .profile-card .field6,
+    .profile-card .field7,
+    .profile-card .field4,
+    .profile-card .field2,
+    .profile-card .field8,
+    .profile-card .field3 {
+      text-align: left;
+      width: 100%; /* Ensure it spans the full width */
+      color: #555; /* Improved text color */
+    }
+
+    .profile-card .field5 {
+      font-weight: bold;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+
+    .back-button {
+      cursor: pointer;
+      padding: 5px 10px;
+      font-size: 24px;
+      background-color: #555;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-right: 15px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .back-button:hover {
+      background-color: #777;
+    }
+  </style>
 </head>
 <body>
   <div id="headerPlaceholder"></div>
 
-  <div class="container mt-4">
-    <h1>Profile Search Results</h1>
-    <div id="profileResults" class="results"></div>
+  <div class="header">
+    <div class="back-button" onclick="goBack()"> < </div>
+    <div class="title">All Profile</div>
   </div>
-  <script src="js/include.js"></script>
-  <div id="footerPlaceholder"></div>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="js/matrimony/scripts.js"></script>
+  <div id="profileContainer" class="profile-container"></div>
+  <div id="clickLimitModal" class="modal">
+    <div class="modal-content">
+      <p id="modalMessage"></p>
+      <button id="modalOkButton">OK</button>
+    </div>
+  </div>
+  
+  <style>
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .modal button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .modal button:hover {
+    background-color: #0056b3;
+  }
+  </style>
+  
   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const searchCriteria = JSON.parse(localStorage.getItem('searchCriteria'));
-      if (!searchCriteria) {
-        document.getElementById('profileResults').innerHTML = '<p>No search criteria found.</p>';
-        return;
-      }
+ let clickCounter = parseInt(localStorage.getItem('clickCounter')) || 0; // Initialize click counter from localStorage
+const MAX_CLICKS = 50; // Maximum number of clicks allowed
 
-      const apiUrl = 'http://35.233.133.10:5001/api/v1/profiles/search_multiple';
+// Retrieve clicked profiles from localStorage or initialize a new Set
+const clickedProfiles = new Set(JSON.parse(localStorage.getItem('clickedProfiles')) || []);
 
-      try {
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(searchCriteria)
-        });
+// Function to create and display profile cards
+function displayProfiles(profiles) {
+  const container = document.getElementById('profileContainer');
+  container.innerHTML = ''; // Clear any existing content
+  profiles.forEach(profile => {
+    const card = document.createElement('div');
+    card.className = 'profile-card';
+    card.dataset.profileId = profile.profile_id; // Store profile_id in a data attribute
+    
+    // Extract first image URL from the comma-separated string
+    const imagesArray = profile.images ? profile.images.split(',') : [];
+    const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
+    
+    // Create card content
+    card.innerHTML = `
+      <img src="${firstImage}" alt="Profile Image">
+      <p class="field5"> ${profile.field5}</p>                                             
+      <p class="field6"><span>DOB:</span> ${profile.field6}</p>
+      <p class="field7"><span>City:</span> ${profile.field7}</p>
+      <p class="field4"><span> Deeni interest:</span> ${profile.field4}</p>
+      <p class="field2"><span>Education:</span> ${profile.field2}</p>
+      <p class="field8"><span>Profession:</span> ${profile.field8}</p>
+      <p class="field3"><span>Martial status:</span> ${profile.field3}</p>
+      
+    `;
+    
+   
+    // Append card to container
+    container.appendChild(card);
+  });
+  
+  // Handle clicks on profile cards
+  document.querySelectorAll('.profile-card').forEach(card => {
+    card.addEventListener('click', handleCardClick);
+  });
+}
 
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+function handleCardClick(event) {
+  const card = event.currentTarget;
+  const profileId = card.dataset.profileId;
 
-        const data = await response.json();
-        console.log('API Response:', data); // Log the response to the console for debugging
+  if (!clickedProfiles.has(profileId)) {
+    clickedProfiles.add(profileId); // Add profileId to the set
+    clickCounter++;
+    
+    // Store updated clickCounter and clickedProfiles in localStorage
+    localStorage.setItem('clickCounter', clickCounter);
+    localStorage.setItem('clickedProfiles', JSON.stringify(Array.from(clickedProfiles)));
 
-        if (data && data.status === 'success' && data.data && data.data.profile && data.data.profile.length > 0) {
-          displayProfiles(data.data.profile);
-        } else {
-          displayNoProfilesMessage();
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        displayNoProfilesMessage();
-      }
-    });
-
-    function displayProfiles(profiles) {
-      const resultsContainer = document.getElementById('profileResults');
-      resultsContainer.innerHTML = '';
-
-      profiles.forEach(profile => {
-        const profileElement = document.createElement('div');
-        profileElement.classList.add('category-item');
-        
-        // Assuming profile.images is a comma-separated string of image URLs
-        const imageUrls = profile.images.split(',');
-        const imageUrl = imageUrls.length > 0 ? imageUrls[0] : 'default-image.jpg';
-
-        profileElement.innerHTML = `
-          <a href="#">
-            <img src="${imageUrl}" alt="Profile Image">
-          </a>
-          <div class="category-details">
-            <p class="description">Description: ${profile.description}</p>
-            <p class="gender">Gender: ${profile.gender}</p>
-            <p class="profile_id">Profile ID: ${profile.profile_id}</p>
-            <p class="bio">Bio: ${profile.bio}</p>
-          </div>
-        `;
-        resultsContainer.appendChild(profileElement);
+    if (clickCounter > MAX_CLICKS) {
+      // Show popup modal and redirect to payment2.html on "OK"
+      showModal('Please activate to continue.', function() {
+        window.location.href = 'payment2.html'; // Redirect to payment2.html
+      });
+    } else {
+      const remainingClicks = MAX_CLICKS - clickCounter;
+      // Show popup modal and then redirect to profile details page on "OK"
+      showModal(`You can view only ${remainingClicks} Profiles.`, function() {
+        window.location.href = `profile-details.html?profile_id=${profileId}`;
       });
     }
+  } else {
+    // Show popup modal if the profile has already been viewed
+    showModal('You have already viewed this profile.', function() {
+      window.location.href = `profile-details.html?profile_id=${profileId}`;
+    });
+  }
+}
 
-    function displayNoProfilesMessage() {
-      const resultsContainer = document.getElementById('profileResults');
-      resultsContainer.innerHTML = '<p>No profiles found.</p>';
+// Function to show the modal with a custom message
+function showModal(message, callback) {
+  const modal = document.getElementById('clickLimitModal');
+  const modalMessage = document.getElementById('modalMessage');
+  const modalOkButton = document.getElementById('modalOkButton');
+
+  modalMessage.textContent = message;
+  modal.style.display = 'block';
+
+  modalOkButton.onclick = function() {
+    modal.style.display = 'none';
+    if (callback) {
+      callback(); // Execute the callback function if provided
     }
-  </script>
+  };
+}
+
+// Function to get a specific cookie by name
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// Check login status based on token presence
+function checkLogin() {
+  let token = getCookie('token');
+  if (!token) {
+    window.location.href = 'login.html'; // Redirect to login page if no token
+  } else {
+    // Token is present, proceed with loading profiles
+    const data = JSON.parse(sessionStorage.getItem('profileData'));
+    if (data && data.profile) {
+      console.log('Profile array:', data.profile);
+      // Display profiles if data is available
+      if (data.profile.length > 0) {
+        displayProfiles(data.profile);
+      } else {
+        document.getElementById('profileContainer').innerHTML = '<p>No profiles found.</p>';
+      }
+    } else {
+      console.log('No profile data found in session storage.');
+      document.getElementById('profileContainer').innerHTML = '<p>No profiles found.</p>';
+    }
+  }
+}
+
+window.onload = function() {
+  checkLogin(); // Call checkLogin on page load
+}
+
+function goBack() {
+  window.history.back();
+}
+</script>
 </body>
 </html>

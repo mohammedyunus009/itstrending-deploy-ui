@@ -10,10 +10,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PQLTG22ZFC');
+    </script>
 </head>
-<body>
-    <!-- <div id="headerPlaceholder"></div> -->
-
+<body onload="checkLogin()">
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
         <div class="title"> Personal details</div>
@@ -29,185 +35,103 @@
     <h2>Personal details</h2>
     <form id="mobileForm">
         <div class="form-group">
-            <label for="phoneNumber">Phone number <span class="required">*</span></label>
+            <label for="phoneNumber">Phone number :<span class="required"></span></label>
             <input type="tel" id="phoneNumber" name="phoneNumber" required>
         </div>
         <div class="form-group">
-            <label for="nativeLanguage">Native language</label>
-            <input type="text" id="nativeLanguage" name="nativeLanguage">
+            <label for="nativeLanguage">Native State:</label>
+            <input list="nativeLanguages" id="nativeLanguage" name="nativeLanguage">
+            <datalist id="nativeLanguages">
+                <option value="Assamese">
+                <option value="Bengali">
+                <option value="Gujarati">
+                <option value="Kannada">
+                <option value="Kashmiri">
+                <option value="Konkani">
+                <option value="Malayalam">
+                <option value="Marathi">
+                <option value="Nepali">
+                <option value="Odia">
+                <option value="Punjabi">
+                <option value="Sanskrit">
+                <option value="Tamil">
+                <option value="Telugu">
+                <option value="Urdu">
+                <option value="Arabic">
+            </datalist>
         </div>
         <div class="form-group">
-            <label for="residenceLanguage">Residence language</label>
-            <input type="text" id="residenceLanguage" name="residenceLanguage">
+            <label for="residenceLanguage">Residence State:</label>
+            <input list="residenceLanguages" id="residenceLanguage" name="residenceLanguage">
+            <datalist id="residenceLanguages">
+                <option value="Assamese">
+                <option value="Bengali">
+                <option value="Gujarati">
+                <option value="Kannada">
+                <option value="Kashmiri">
+                <option value="Konkani">
+                <option value="Malayalam">
+                <option value="Marathi">
+                <option value="Nepali">
+                <option value="Odia">
+                <option value="Punjabi">
+                <option value="Sanskrit">
+                <option value="Tamil">
+                <option value="Telugu">
+                <option value="Urdu">
+                <option value="Arabic">
+            </datalist>
         </div>
-        <div class="form-group">
-            <label for="Hobbies">Hobbies</label>
-            <input type="text" id="Hobbies" name="Hobbies" required>
-        </div>
-        <div class="form-group">
-            <label for="photo">Upload a Photo</label>
-            <div id="photo-upload-boxes">
-                <!-- Photo upload boxes will be dynamically added here -->
-            </div>
-            <input type="file" id="file-input" style="display: none;" accept="image/*">
-        </div>
-        <div id="error-message" style="display: none;">Please upload at least one photo.</div>
+        <br>
+        <br>
         <input type="button" value="Next" onclick="validateForm();" id="nextButton">
-
     </form>
 
-    <!-- <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div> -->
     <script>
         function goBack() {
             window.history.back();
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const maxFileSize = 5 * 1024 * 1024; // 5 MB
-            const maxPhotos = 1;
-            const photoStorageKey = 'uploadedPhotos';
+        function setCookie(name, value, expires) {
+            document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
+        }
 
-            function createPhotoUploadBox(index) {
-                const box = document.createElement('div');
-                box.classList.add('photo-upload-box');
-                const uploadButton = document.createElement('button');
-                uploadButton.type = 'button';
-                uploadButton.classList.add('photo-upload-button');
-                uploadButton.setAttribute('data-index', index);
-                uploadButton.innerHTML = `
-                    <svg width="120px" height="120px" viewBox="0 0 1024 1024" fill-rule="evenodd">
-                        <!-- SVG Path Here -->
-                    </svg>
-                    <div class="photo-upload-label"><span>Add photo</span></div>
-                    <div class="processing-overlay" style="display: none;">
-                        <div class="processing-spinner"></div>
-                    </div>
-                `;
-                box.appendChild(uploadButton);
-                const deleteButton = document.createElement('button');
-                deleteButton.classList.add('delete-button');
-                deleteButton.innerText = 'X';
-                deleteButton.addEventListener('click', function() {
-                    deletePhoto(index);
-                });
-                box.appendChild(deleteButton);
-                return box;
-            }
-
-            function handleFileUpload(event) {
-                const files = event.target.files;
-                const index = event.target.getAttribute('data-index');
-                const uploadButton = document.querySelector(`.photo-upload-button[data-index="${index}"]`);
-                const processingOverlay = uploadButton.querySelector('.processing-overlay');
-                processingOverlay.style.display = 'flex';
-                while (uploadButton.firstChild) {
-                    uploadButton.removeChild(uploadButton.firstChild);
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";");
+            for (let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if (name === cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
                 }
-                const file = files[0]; // Handle only the first file
-                if (file.size > maxFileSize) {
-                    const errorMessage = document.createElement('div');
-                    errorMessage.className = 'error-message';
-                    errorMessage.innerText = `Error: ${file.name} exceeds 5 MB limit.`;
-                    uploadButton.appendChild(errorMessage);
-                    processingOverlay.style.display = 'none';
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    uploadButton.appendChild(img);
-                    processingOverlay.style.display = 'none';
-                    savePhotoToLocalStorage(index, e.target.result);
-                };
-                reader.readAsDataURL(file);
+            }
+            return null;
+        }
+
+        function validateForm() {
+            var phoneNumber = document.getElementById("phoneNumber").value;
+            var nativeLanguage = document.getElementById("nativeLanguage").value;
+            var residenceLanguage = document.getElementById("residenceLanguage").value;
+
+            if (phoneNumber.trim() === "") {
+                return false;
             }
 
-            function savePhotoToLocalStorage(index, dataUrl) {
-                const photos = JSON.parse(localStorage.getItem(photoStorageKey) || '[]');
-                photos[index] = dataUrl;
-                localStorage.setItem(photoStorageKey, JSON.stringify(photos));
+            setCookie("field10", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field11", nativeLanguage, new Date(new Date().getTime() + 24*60*60*1000));
+            setCookie("field13", residenceLanguage, new Date(new Date().getTime() + 24*60*60*1000));
+
+            // Redirect to the next page
+            window.location.href = "upload_images.html";
+            return true;
+        }
+
+        function checkLogin() {
+            let token = getCookie('token');
+            if (!token) {
+                // alert("User not logged in. Please login.");
+                window.location.href = 'login.html';
             }
-
-            function loadPhotosFromLocalStorage() {
-                const photos = JSON.parse(localStorage.getItem(photoStorageKey) || '[]');
-                photos.forEach((dataUrl, index) => {
-                    if (dataUrl) {
-                        const uploadButton = document.querySelector(`.photo-upload-button[data-index="${index}"]`);
-                        while (uploadButton.firstChild) {
-                            uploadButton.removeChild(uploadButton.firstChild);
-                        }
-                        const img = document.createElement('img');
-                        img.src = dataUrl;
-                        uploadButton.appendChild(img);
-                    }
-                });
-            }
-
-            function deletePhoto(index) {
-                const photos = JSON.parse(localStorage.getItem(photoStorageKey) || '[]');
-                photos[index] = null; // Remove the photo at the specified index
-                localStorage.setItem(photoStorageKey, JSON.stringify(photos));
-                const uploadButton = document.querySelector(`.photo-upload-button[data-index="${index}"]`);
-                while (uploadButton.firstChild) {
-                    uploadButton.removeChild(uploadButton.firstChild);
-                }
-                uploadButton.innerHTML = `
-                    <svg width="120px" height="120px" viewBox="0 0 1024 1024" fill-rule="evenodd">
-                        <!-- SVG Path Here -->
-                    </svg>
-                    <div class="photo-upload-label"><span>Add photo</span></div>
-                    <div class="processing-overlay" style="display: none;">
-                        <div class="processing-spinner"></div>
-                    </div>
-                `;
-            }
-
-            document.getElementById('file-input').addEventListener('change', handleFileUpload);
-            const photoUploadBoxes = document.getElementById('photo-upload-boxes');
-            for (let i = 0; i < maxPhotos; i++) {
-                const box = createPhotoUploadBox(i);
-                photoUploadBoxes.appendChild(box);
-            }
-            document.querySelectorAll('.photo-upload-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const index = this.getAttribute('data-index');
-                    const fileInput = document.getElementById('file-input');
-                    fileInput.setAttribute('data-index', index);
-                    fileInput.click();
-                });
-            });
-            loadPhotosFromLocalStorage();
-
-            function setCookie(name, value, expires) {
-                document.cookie = `${name}=${value.replace(/ /g, ' ')};expires=${expires.toUTCString()};path=/`;
-            }
-
-            function validateForm() {
-                var form = document.getElementById("mobileForm");
-                var phoneNumber = document.getElementById("phoneNumber").value;
-                var hobbies = document.getElementById("Hobbies").value;
-                var photos = JSON.parse(localStorage.getItem(photoStorageKey) || '[]');
-
-                if (phoneNumber.trim() === "" || hobbies.trim() === "" || photos.length === 0) {
-                    alert("Please fill in all required fields and upload at least one photo.");
-                    return false;
-                }
-
-                setCookie("phoneNumber", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
-                setCookie("nativeLanguage", document.getElementById("nativeLanguage").value, new Date(new Date().getTime() + 24*60*60*1000));
-                setCookie("residenceLanguage", document.getElementById("residenceLanguage").value, new Date(new Date().getTime() + 24*60*60*1000));
-                setCookie("Hobbies", hobbies, new Date(new Date().getTime() + 24*60*60*1000));
-                setCookie("photos", JSON.stringify(photos), new Date(new Date().getTime() + 24*60*60*1000));
-
-                // Redirect to the next page
-                window.location.href = "profile2.html";
-                return true;
-            }
-
-            document.getElementById("nextButton").addEventListener("click", validateForm);
-        });
+        }
     </script>
 </body>
 </html>
