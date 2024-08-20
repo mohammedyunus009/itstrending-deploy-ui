@@ -123,122 +123,6 @@
             padding: 10px;
             display: block;
         }
-        /* Styling for field labels */
-.profile-card p span {
-  font-weight: bold; /* Bold the label */
-}
-
-/* Specific styling for each field if needed */
-.profile-card .field9,
-.profile-card .field8,
-.profile-card .field4,
-.profile-card .field3,
-.profile-card .gender {
-  text-align: left;
-  width: 100%; /* Ensure it spans the full width */
-  color: #555; /* Improved text color */
-}
-.profile-card .field7 {
-  font-weight:bold ;
-}
-.panel {
-            border-radius: 10;
-            box-shadow: 0 2px 11px rgba(0,0,0,1.1);
-            margin-bottom: 20px;
-            background: #fff;
-        }
-        .panel-heading {
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-        .panel-footer {
-            padding: 10px;
-            border-top: 1px solid #ddd;
-            background-color: #f5f5f5;
-        }
-        .panel .huge {
-            font-size: 24px;
-            margin: 0;
-            font-weight: 700;
-            text-align: right;
-        }
-        .panel .text-right {
-            text-align: right;
-        }
-        .panel .fa {
-            font-size: 50px;
-        }
-        .panel a {
-            color: #333;
-            text-decoration: none;
-        }
-        .panel a:hover {
-            color: #555;
-        }
-        .panel-primary { border-color: #337ab7; }
-        .panel-primary .panel-heading { background-color: #337ab7; color: #fff; }
-        .panel-green { border-color: #5bc0de; }
-        .panel-green .panel-heading { background-color: #5bc0de; color: #fff; }
-        .panel-yellow { border-color: #f0ad4e; }
-        .panel-yellow .panel-heading { background-color: #f0ad4e; color: #fff; }
-        .panel-red { border-color: #d9534f; }
-        .panel-red .panel-heading { background-color: #d9534f; color: #fff; }
-        .pull-left { float: left; }
-        .pull-right { float: right; }
-        .clearfix::after { content: ""; display: table; clear: both; }
-
-        .row {
-    display: flex;
-    justify-content: space-between; /* Aligns items to the start and end */
-    margin-left: 0;
-    margin-right: 0; /* Ensure margins are removed */
-}
-
-.col-xs-3 {
-    /* Ensure this column starts from the left */
-    display: flex;
-    align-items: center; /* Vertically center the icon */
-}
-
-.col-xs-9 {
-    /* Ensure this column starts from the right */
-    display: flex;
-    flex-direction: column; /* Align content vertically */
-    align-items: flex-end; /* Align items to the end (right) */
-    text-align: right; /* Align text to the right */
-}
-.row2, .row3 {
-    display: flex;
-    justify-content: space-between; /* Aligns items to the start and end */
-    margin-left: 5px;
-    margin-right: 223px; /* Ensure margins are removed */
-    flex-wrap: wrap; /* Allow items to wrap if they overflow */
-}
-
-.row2 .col-lg-4, .row3 .col-lg-6 {
-    padding: 0 10px; /* Add some padding between the columns */
-    box-sizing: border-box; /* Ensure padding does not affect width */
-    flex: 1 1 auto; /* Allow columns to flex and fit */
-    margin-bottom: 20px; /* Add space below each panel */
-}
-
-.row2 .col-xs-3, .row3 .col-xs-3 {
-    display: flex;
-    align-items: center; /* Vertically center the icon */
-}
-
-.row2 .col-xs-9, .row3 .col-xs-9 {
-    display: flex;
-    flex-direction: column; /* Align content vertically */
-    align-items: flex-end; /* Align items to the end (right) */
-    text-align: right; /* Align text to the right */
-}
-
-.row2 .panel, .row3 .panel {
-    width: 100%; /* Ensure the panel takes full width of the column */
-}
-
-        
     </style>
 </head>
 <body>
@@ -247,179 +131,32 @@
             <h3>Admin Dashboard</h3>
         </div>
         <ul class="list-unstyled components">
-            <li>
-                <a href="#" onclick="loadAllProfiles()">
-                    <i class="fas fa-user-friends"></i> Dashboard
-                </a>
+            <p>Admin Panel</p>
+            <li class="active">
+                <a href="#profilesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Profiles</a>
+                <ul class="collapse list-unstyled" id="profilesSubmenu">
+                    <li>
+                        <a href="#" onclick="loadAllProfiles()">View All Profiles</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="filterByGender('male')">Male</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="filterByGender('female')">Female</a>
+                    </li>
+                </ul>
             </li>
             <li>
-                <a href="#" onclick="loadAllProfiles()">
-                    <i class="fas fa-user-friends"></i> View All Profiles
-                </a>
-            </li>
-            <li>
-                <a href="#" onclick="filterByGender('male')">
-                    <i class="fas fa-mars"></i> Male
-                </a>
-            </li>
-            <li>
-                <a href="#" onclick="filterByGender('female')">
-                    <i class="fas fa-venus"></i> Female
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
+                <a href="javascript:void(0)" onclick="logout()">Logout</a>
             </li>
         </ul>
     </div>
 
     <div id="content">
-        <h2>Users</h2>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user-plus"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-users"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">137</div>
-                                    <div>Total Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-male"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>Male Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-female"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Female Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Payment</h2>
-            <div class="row3">
-                <div class="col-lg-6 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" style="background-color: green;">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-credit-card"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">50</div>
-                                    <div>Paid Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-times-circle"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">87</div>
-                                    <div>Unpaid Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h2>Welcome to Admin Dashboard</h2>
         <div id="profileContainer"></div>
     </div>
-    
+
     <!-- jQuery first, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -427,40 +164,34 @@
 
     <script>
         let selectedGender = ''; // Initialize selectedGender
-    
+
         function getCookie(name) {
             let value = `; ${document.cookie}`;
             let parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
-    
+
         function filterByGender(gender) {
             selectedGender = gender;
             applyFilters();
         }
-    
+
         function applyFilters() {
             const token = getCookie('token'); // Get the token from cookies
             if (!token) {
                 console.error('No token found in cookies.');
                 return;
             }
-    
-            const bodyData = {
-                field48: "" // Fetch all profiles by default
-            };
-    
-            if (selectedGender) {
-                bodyData.gender = selectedGender; // Add gender filter if selected
-            }
-    
-            fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+
+            fetch('https://api.itstrending.in:5001/api/v1/profiles/search_multiple', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token // Use the token from cookies
                 },
-                body: JSON.stringify(bodyData)
+                body: JSON.stringify({
+                    gender: selectedGender
+                })
             })
             .then(response => {
                 if (!response.ok) {
@@ -478,14 +209,14 @@
                 alert(`Error: ${error.message}`); // Alert the user about the error
             });
         }
-    
+
         // Function to create and display profile cards
         function displayProfiles(profiles) {
             if (!profiles) {
                 console.error('No profiles found.');
                 return;
             }
-    
+
             const container = document.getElementById('profileContainer');
             container.innerHTML = ''; // Clear any existing content
             profiles.forEach(profile => {
@@ -498,48 +229,43 @@
                 // Create card content
                 card.innerHTML = `
                     <img src="${firstImage}" alt="Profile Image">
-                    <p class="field7"> ${decodeURIComponent(profile.field7)}</p>
-                    <p class="gender"><span>Gender: </span> ${decodeURIComponent(profile.gender)}</p>
-                    <p class="field9"><span>Revert: </span> ${decodeURIComponent(profile.field9)}</p>
-                    <p class="field8"><span>DOB: </span> ${decodeURIComponent(profile.field8)}</p>
-                    <p class="field3"><span>State: </span> ${decodeURIComponent(profile.field3)}</p>
-                    <p class="field4"><span>Education: </span> ${decodeURIComponent(profile.field4)}</p>
+                    <h2>${profile.field1}</h2>
+                    <p class="field2"><span>DOB:</span> ${profile.field2}</p>
+                    <p class="gender"><span>Gender:</span> ${profile.gender}</p>
+                    <p class="field10"><span>State:</span> ${profile.field10}</p>
+                    <p class="field6"><span>Contact:</span> ${profile.field6}</p>
+                    <p class="profile_id">${profile.profile_id}</p>
                     <div class="btn-container">
                         <button class="btn view-profile">View Profile</button>
                         <button class="btn delete-profile">Delete Profile</button>
                     </div>
                 `;
-                // Add click event listener to the "View Profile" button
-                const viewProfileBtn = card.querySelector('.view-profile');
-                viewProfileBtn.addEventListener('click', () => {
-                    window.location.href = `profile-details.html?profile_id=${encodeURIComponent(profile.profile_id)}`;
-                });
                 // Append card to container
                 container.appendChild(card);
             });
         }
-    
+
         function loadAllProfiles() {
-            selectedGender = ''; // Reset the gender filter
+            selectedGender = '';
             applyFilters();
         }
-    
+
         function logout() {
-            // Show confirmation dialog
-            const confirmation = confirm("Are you sure, do you want to logout?");
-            
-            if (confirmation) {
-                // Perform logout logic if needed, such as clearing cookies or local storage
-                // For example:
-                document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Example for clearing a cookie
-    
-                // Redirect to login page
-                window.location.href = 'admin-login.html';
-            } else {
-                // If the user clicks "Cancel", do nothing and stay on the current page
-                console.log('Logout canceled');
-            }
-        }
+    // Show confirmation dialog
+    const confirmation = confirm("Are you sure, do you want to logout?");
+
+    if (confirmation) {
+        // Perform logout logic if needed, such as clearing cookies or local storage
+        // For example:
+        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Example for clearing a cookie
+
+        // Redirect to login page
+        window.location.href = 'admin-login.html';
+    } else {
+        // If the user clicks "Cancel", do nothing and stay on the current page
+        console.log('Logout canceled');
+    }
+}
     </script>
 </body>
 </html>
