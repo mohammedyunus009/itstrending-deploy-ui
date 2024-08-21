@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/install.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- <div id="headerPlaceholder"></div> -->
+
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> < </div>
+        <div class="title">Profile</div>
+        <div></div> <!-- This empty div is to ensure proper alignment -->
+    </div>
+    
+    <section>
+        <div class="container1 mt-3">
+            <div class="row">
+                <div class="col">
+                    <label for="reportDate" class="form-control">Date</label>
+                    <input type="date" class="form-control border-black" id="reportDate">
+                </div>
+            </div>
+        </div>
+        
+        <div class="container1 mt-3">
+            <div class="row">
+                <div class="col">
+                    <label for="customerName" class="form-control">Customer name:</label>
+                    <input type="text" id="customerName" class="form-control border-black" placeholder="Enter Your Name">
+                </div>
+            </div>
+        </div>
+
+        <div class="container1 mt-3">
+            <div class="row">
+                <div class="col">
+                    <label for="customerArea" class="form-control">Area</label>
+                    <input type="text" placeholder="Enter Your Area" class="form-control border-black" id="customerArea">
+                </div>
+            </div>
+        </div>
+
+        <div class="container1">
+            <div class="row">
+                <div class="col">
+                    <label for="customerProject" class="form-control">Project</label>
+                    <input type="text" class="form-control border-black" id="customerProject" placeholder="Project Name">
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col">
+                    <label for="poNoDate" class="form-control">Po No./Date</label>
+                    <input type="date" class="form-control border-black" id="poNoDate">
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col">
+                    <label for="eqptModel" class="form-control">Eqpt Model</label>
+                    <input type="text" class="form-control border-black" id="eqptModel">
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col">
+                    <label for="eqptSlNo" class="form-control">Eqpt Sl No</label>
+                    <input type="text" class="form-control border-black" id="eqptSlNo">
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col">
+                    <label for="complainDate" class="form-control">Customer complain date</label>
+                    <input type="date" class="form-control border-black" id="complainDate">
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col">
+                    <label for="atHMR" class="form-control">AT HMR</label>
+                    <input type="text" class="form-control border-black" id="atHMR">
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col">
+                    <label for="complainClosedDate" class="form-control">Customer complain closed date</label>
+                    <input type="date" class="form-control border-black" id="complainClosedDate">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container-btn text-center">
+            <button type="button" class="btn btn-primary" onclick="redirectToNextPage()">
+                <i class="fa-solid fa-arrow-right"></i><br>
+            </button>
+        </div>
+    </section>
+
+    <!-- <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div> -->
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function redirectToNextPage() {
+            // Redirect to the next page URL
+            window.location.href = "familydetails.html"; // Replace with your actual next page URL
+        }
+    </script>
+</body>
+</html>
