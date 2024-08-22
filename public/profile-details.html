@@ -169,7 +169,7 @@
      <div class="top_1l mt-1">
     <ul class="mb-0 font_14">
        <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
-     <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+     <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmail.com</li>
      </ul>
    </div>
     </div>
@@ -471,146 +471,170 @@
       detailsCard.innerHTML = `
   <div class="detail-item">
     <span class="label">Profile Coordinator Name:</span>
-    <span>${decodeURIComponent(profile.field10)}</span>
+    <span>${profile.field10 ? decodeURIComponent(profile.field10) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Profile Status:</span>
-    <span>${decodeURIComponent(profile.field11)}</span>
+    <span>${profile.field11 ? decodeURIComponent(profile.field11) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Reason for On Hold:</span>
-    <span>${decodeURIComponent(profile.field13)}</span>
+    <span>${profile.field13 ? decodeURIComponent(profile.field13) : "N/A"}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Sl. No:</span>
+    <span>${profile.field1 ? decodeURIComponent(profile.field1) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Name:</span>
-    <span>${decodeURIComponent(profile.field5)}</span>
+    <span>${profile.field5 ? decodeURIComponent(profile.field5) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Gender:</span>
-    <span>${decodeURIComponent(profile.gender)}</span>
+    <span>${profile.gender ? decodeURIComponent(profile.gender) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Age:</span>
-    <span>${decodeURIComponent(profile.field6)}</span>
+    <span>${profile.field6 ? decodeURIComponent(profile.field6) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Height:</span>
-    <span>${decodeURIComponent(profile.field14)}</span>
+    <span>${profile.field14 ? decodeURIComponent(profile.field14) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Family/Subcaste:</span>
-    <span>${decodeURIComponent(profile.field8)}</span>
+    <span>${profile.field8 ? decodeURIComponent(profile.field8) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Follow:</span>
-    <span>${decodeURIComponent(profile.field4)}</span>
+    <span>${profile.field4 ? decodeURIComponent(profile.field4) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Marital Status:</span>
-    <span>${decodeURIComponent(profile.field3)}</span>
+    <span>${profile.field3 ? decodeURIComponent(profile.field3) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Marital Tenure:</span>
-    <span>${decodeURIComponent(profile.field15)}</span>
+    <span>${profile.field15 ? decodeURIComponent(profile.field15) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Children:</span>
-    <span>${decodeURIComponent(profile.field16)}</span>
+    <span>${profile.field16 ? decodeURIComponent(profile.field16) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Valid Divorce Document:</span>
-    <span>${decodeURIComponent(profile.field17)}</span>
+    <span>
+      ${profile.images ? 
+        `<img src="${profile.images.split(',').pop().trim()}" >` : 
+        "N/A"}
+    </span>
   </div>
- 
   <div class="detail-item">
     <span class="label">Education:</span>
-    <span>${decodeURIComponent(profile.field2)}</span>
+    <span>${profile.field2 ? decodeURIComponent(profile.field2) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Profession:</span>
-    <span>${decodeURIComponent(profile.field9)}</span>
+    <span>${profile.field9 ? decodeURIComponent(profile.field9) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Company:</span>
-    <span>${decodeURIComponent(profile.field18)}</span>
+    <span>${profile.field18 ? decodeURIComponent(profile.field18) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Job Location:</span>
-    <span>${decodeURIComponent(profile.field19)}</span>
+    <span>${profile.field19 ? decodeURIComponent(profile.field19) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Home Address:</span>
-    <span>${decodeURIComponent(profile.field7)}</span>
+    <span>${profile.field7 ? decodeURIComponent(profile.field7) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Father's Name:</span>
-    <span>${decodeURIComponent(profile.field20)}</span>
+    <span>${profile.field20 ? decodeURIComponent(profile.field20) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Father's Occupation:</span>
-    <span>${decodeURIComponent(profile.field21)}</span>
+    <span>${profile.field21 ? decodeURIComponent(profile.field21) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Mother's Name:</span>
-    <span>${decodeURIComponent(profile.field22)}</span>
+    <span>${profile.field22 ? decodeURIComponent(profile.field22) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Mother's Occupation:</span>
-    <span>${decodeURIComponent(profile.field23)}</span>
+    <span>${profile.field23 ? decodeURIComponent(profile.field23) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">No of Sisters:</span>
-    <span>${decodeURIComponent(profile.field24)}</span>
+    <span>${profile.field24 ? decodeURIComponent(profile.field24) : "N/A"}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Sister's Marital Status:</span>
+    <span>${profile.field37 ? decodeURIComponent(profile.field37) : "N/A"}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Sister's Occupation:</span>
+    <span>${profile.field38 ? decodeURIComponent(profile.field38) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">No of Brothers:</span>
-    <span>${decodeURIComponent(profile.field25)}</span>
+    <span>${profile.field25 ? decodeURIComponent(profile.field25) : "N/A"}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Brother's Marital Status:</span>
+    <span>${profile.field39 ? decodeURIComponent(profile.field39) : "N/A"}</span>
+  </div>
+  <div class="detail-item">
+    <span class="label">Brother's Occupation:</span>
+    <span>${profile.field40 ? decodeURIComponent(profile.field40) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Preferred Family/Subcaste:</span>
-    <span>${decodeURIComponent(profile.field26)}</span>
+    <span>${profile.field26 ? decodeURIComponent(profile.field26) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Preferred Education:</span>
-    <span>${decodeURIComponent(profile.field27)}</span>
+    <span>${profile.field27 ? decodeURIComponent(profile.field27) : "N/A"}</span>
   </div>
   <div class="detail-item">
-    <span class="label">Prefered Profession:</span>
-    <span>${decodeURIComponent(profile.field28)}</span>
+    <span class="label">Preferred Profession:</span>
+    <span>${profile.field28 ? decodeURIComponent(profile.field28) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Preferred Age:</span>
-    <span>${decodeURIComponent(profile.field29)}</span>
+    <span>${profile.field29 ? decodeURIComponent(profile.field29) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Preferred Height:</span>
-    <span>${decodeURIComponent(profile.field30)}</span>
+    <span>${profile.field30 ? decodeURIComponent(profile.field30) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Personal Attributes:</span>
-    <span>${decodeURIComponent(profile.field31)}</span>
+    <span>${profile.field31 ? decodeURIComponent(profile.field31) : "N/A"}</span>
   </div>
   <div class="detail-item">
-    <span class="label">Prefered Follow & Practice:</span>
-    <span>${decodeURIComponent(profile.field32)}</span>
+    <span class="label">Preferred Follow & Practice:</span>
+    <span>${profile.field32 ? decodeURIComponent(profile.field32) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Family Type:</span>
-    <span>${decodeURIComponent(profile.field33)}</span>
+    <span>${profile.field33 ? decodeURIComponent(profile.field33) : "N/A"}</span>
   </div>
   <div class="detail-item">
-    <span class="label">Prefered Location:</span>
-    <span>${decodeURIComponent(profile.field34)}</span>
+    <span class="label">Preferred Location:</span>
+    <span>${profile.field34 ? decodeURIComponent(profile.field34) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Religious Attributes:</span>
-    <span>${decodeURIComponent(profile.field35)}</span>
+    <span>${profile.field35 ? decodeURIComponent(profile.field35) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Partner Working Status to be:</span>
-    <span>${decodeURIComponent(profile.field36)}</span>
+    <span>${profile.field36 ? decodeURIComponent(profile.field36) : "N/A"}</span>
   </div>
 `;
+
 
       detailsContainer.appendChild(detailsCard);
     }

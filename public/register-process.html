@@ -220,7 +220,7 @@ button[type="submit"]:hover {
        <div class="top_1l mt-1">
       <ul class="mb-0 font_14">
          <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
-       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmail.com</li>
        </ul>
      </div>
       </div>
@@ -396,6 +396,12 @@ button[type="submit"]:hover {
       <h1>Profile Form</h1>
       <form>
           <h2>Coordinator Details</h2>
+
+          <div class="form-group">
+            <label for="serial-number">Sl. No:</label>
+            <input type="text" id="slno" name="field1" required>
+          </div>
+
           <div class="form-group">
               <label for="coordinator-name">Profile Coordinator Name:</label>
               <input type="text" id="coordinator-name" name="field10" required>
@@ -587,6 +593,8 @@ button[type="submit"]:hover {
                 <option value="Job">Job</option>
                 <option value="Business">Business</option>
                 <option value="Self-Employed">Self-Employed</option>
+                <option value="Job/Business/Any">Job/Business/Any</option>
+
             </select>
             </div>
 
@@ -1047,6 +1055,100 @@ Object.keys(cookies).forEach(key => {
 </script>
 
 <script>
+    function handleDocumentUpload(fileInput) {
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", "{{Autho}}"); // Replace with actual token
+  
+      const formdata = new FormData();
+  
+      // Iterate over the files from the file input
+      for (let i = 0; i < fileInput.files.length; i++) {
+          // Append each file to FormData with a unique name
+          formdata.append("file", fileInput.files[i], fileInput.files[i].name);
+      }
+  
+      const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: formdata,
+          redirect: "follow"
+      };
+  
+      fetch("https://api.itstrending.in:5000/api/v1/profiles/upload_images", requestOptions)
+          .then((response) => {
+              if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json(); // Handle JSON response
+          })
+          .then((result) => {
+              console.log(result);
+              // Extract document URLs from response without encoding
+              const documentUrls = result.data.images.map(url => url + "?alt=media");
+  
+              // Store each URL in a separate cookie, starting from index 6
+              documentUrls.forEach((url, index) => {
+                  document.cookie = `images${index + 6}=${url}; path=/`;
+              });
+  
+              // To confirm that the URLs have been stored, you can retrieve and log them
+              const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+                  const [name, value] = cookie.split('=');
+                  acc[name] = value;
+                  return acc;
+              }, {});
+  
+              console.log('Stored document URLs:');
+              Object.keys(cookies).forEach(key => {
+                  if (key.startsWith('images') && parseInt(key.replace('images', '')) >= 6) {
+                      console.log(`${key}: ${cookies[key]}`);
+                  }
+              });
+  
+              // Update preview container with new documents
+              updateDocumentPreview(documentUrls);
+          })
+          .catch((error) => console.error('Error:', error));
+    }
+  
+    function updateDocumentPreview(documentUrls) {
+      const previewContainer = document.getElementById('document-preview');
+      previewContainer.innerHTML = ''; // Clear existing previews
+  
+      documentUrls.forEach((url, index) => {
+          const docWrapper = document.createElement('div');
+          docWrapper.classList.add('document-wrapper');
+  
+          const docLink = document.createElement('a');
+          docLink.href = url;
+          docLink.target = "_blank";
+          docLink.textContent = `Document ${index + 6}`;
+          docLink.classList.add('preview-document');
+  
+          const removeButton = document.createElement('button');
+          removeButton.textContent = 'Remove';
+          removeButton.classList.add('remove-btn');
+          removeButton.onclick = () => {
+              docWrapper.remove(); // Remove the document wrapper
+              document.cookie = `images${index + 6}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`; // Remove document from cookies
+          };
+  
+          docWrapper.appendChild(docLink);
+          docWrapper.appendChild(removeButton);
+          previewContainer.appendChild(docWrapper);
+      });
+    }
+  
+    // Call handleDocumentUpload when files are selected
+    const documentFileInput = document.getElementById('divorce-document');
+    documentFileInput.addEventListener('change', () => handleDocumentUpload(documentFileInput));
+  
+  </script>
+  
+
+
+
+<script>
       document.getElementById('profile-status').addEventListener('change', function () {
           var onHoldReason = document.getElementById('on-hold-reason');
           onHoldReason.classList.toggle('hidden', this.value !== 'On Hold');
@@ -1058,54 +1160,48 @@ Object.keys(cookies).forEach(key => {
       });
 
       document.getElementById('no-of-sisters').addEventListener('change', function () {
-          var sistersDetails = document.getElementById('sisters-details');
-          var noOfSisters = this.value;
-          sistersDetails.innerHTML = '';
+        var sistersDetails = document.getElementById('sisters-details');
+        var noOfSisters = this.value;
+        sistersDetails.innerHTML = '';
 
-          for (var i = 1; i <= noOfSisters; i++) {
-              sistersDetails.innerHTML += `
-                  <div class="form-group">
-                      <label for="sister-${i}-marital-status">Sister ${i} Marital Status:</label>
-                      <select id="sister-${i}-marital-status" name="sister-${i}-marital-status">
-                        <option value="Please Select">Unmarried</option>  
-                        <option value="Unmarried">Unmarried</option>
-                          <option value="Divorced">Divorced</option>
-                          <option value="Widowed">Widowed</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label for="sister-${i}-occupation">Sister ${i} Occupation:</label>
-                      <input type="text" id="sister-${i}-occupation" name="sister-${i}-occupation">
-                  </div>
-              `;
-          }
-          sistersDetails.classList.remove('hidden');
-      });
+        if (noOfSisters !== 'N/A') {
+            sistersDetails.innerHTML = `
+                <div class="form-group">
+                    <label for="sister-marital-status">Sisters' Marital Status:</label>
+                    <input type="text" id="sister-marital-status" name="field37" placeholder="Enter Marital Status">
+                </div>
+                <div class="form-group">
+                    <label for="sister-occupation">Sisters' Occupation:</label>
+                    <input type="text" id="sister-occupation" name="field38" placeholder="Enter Occupation">
+                </div>
+            `;
+            sistersDetails.classList.remove('hidden');
+        } else {
+            sistersDetails.classList.add('hidden');
+        }
+    });
 
-      document.getElementById('no-of-brothers').addEventListener('change', function () {
-          var brothersDetails = document.getElementById('brothers-details');
-          var noOfBrothers = this.value;
-          brothersDetails.innerHTML = '';
+    document.getElementById('no-of-brothers').addEventListener('change', function () {
+        var brothersDetails = document.getElementById('brothers-details');
+        var noOfBrothers = this.value;
+        brothersDetails.innerHTML = '';
 
-          for (var i = 1; i <= noOfBrothers; i++) {
-              brothersDetails.innerHTML += `
-                  <div class="form-group">
-                      <label for="brother-${i}-marital-status">Brother ${i} Marital Status:</label>
-                      <select id="brother-${i}-marital-status" name="brother-${i}-marital-status">
-                        <option value="Please Select">Unmarried</option>  
-                        <option value="Unmarried">Unmarried</option>
-                          <option value="Divorced">Divorced</option>
-                          <option value="Widowed">Widowed</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label for="brother-${i}-occupation">Brother ${i} Occupation:</label>
-                      <input type="text" id="brother-${i}-occupation" name="brother-${i}-occupation">
-                  </div>
-              `;
-          }
-          brothersDetails.classList.remove('hidden');
-      });
+        if (noOfBrothers !== 'N/A') {
+            brothersDetails.innerHTML = `
+                <div class="form-group">
+                    <label for="brother-marital-status">Brothers' Marital Status:</label>
+                    <input type="text" id="brother-marital-status" name="field39" placeholder="Enter Marital Status">
+                </div>
+                <div class="form-group">
+                    <label for="brother-occupation">Brothers' Occupation:</label>
+                    <input type="text" id="brother-occupation" name="field40" placeholder="Enter Occupation">
+                </div>
+            `;
+            brothersDetails.classList.remove('hidden');
+        } else {
+            brothersDetails.classList.add('hidden');
+        }
+    });
       $(document).ready(function() {
     // Initialize the Select2 plugin for Age dropdown
     $('#age').select2({
@@ -1325,15 +1421,11 @@ function handleSubmit(event) {
 
     // Loop through all form fields and set cookies
     for (const [key, value] of formData.entries()) {
-        let existingValue = getCookie(key);
-        if (existingValue) {
-            // If the key already exists in the cookie, append the new value
-            existingValue += `, ${value}`;
-            setCookie(key, existingValue, 7);
-        } else {
-            setCookie(key, value, 7); // Store the field value in a cookie for 7 days
-        }
+        setCookie(key, value, 1); // Overwrite the cookie with the new value
     }
+
+    // Optional: Redirect to a preview page after form submission
+    redirectToPreview();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
