@@ -128,6 +128,7 @@
 
 /* Specific styling for each field if needed */
 .profile-card .field10,
+.profile-card .field1,
 .profile-card .field6,
 .profile-card .field2,
 .profile-card .field7,
@@ -191,7 +192,7 @@
      <div class="top_1l mt-1">
     <ul class="mb-0 font_14">
        <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
-     <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+     <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmail.com</li>
      </ul>
    </div>
     </div>
@@ -438,14 +439,15 @@
 card.innerHTML = `
   <img src="${firstImage}" alt="Profile Image">
   <p class="field5">${decodeURIComponent(profile.field5)}</p>
+  <p class="field1"><span>Sl. No: </span>${decodeURIComponent(profile.field1)}</p>
   <p class="gender"><span>Gender: </span>${decodeURIComponent(profile.gender)}</p>
   <p class="field10"><span>Profile Co-ordinator: </span>${decodeURIComponent(profile.field10)}</p>
   <p class="field6"><span>Age: </span>${decodeURIComponent(profile.field6)}</p>
   <p class="field7"><span>Address: </span>${decodeURIComponent(profile.field7)}</p>
   <p class="field2"><span>Education: </span>${decodeURIComponent(profile.field2)}</p>
-  <p class="profile_id"><span>ID: </span>${decodeURIComponent(profile.profile_id).slice(-3)}</p>
 `;
 
+// <p class="profile_id"><span>ID: </span>${decodeURIComponent(profile.profile_id).slice(-3)}</p>
 
         // Append card to container
         container.appendChild(card);
