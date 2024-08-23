@@ -470,6 +470,10 @@
       detailsCard.className = 'profile-details';
       detailsCard.innerHTML = `
   <div class="detail-item">
+    <span class="label">Sl. No:</span>
+    <span>${profile.field1 ? decodeURIComponent(profile.field1) : "N/A"}</span>
+  </div>
+  <div class="detail-item">
     <span class="label">Profile Coordinator Name:</span>
     <span>${profile.field10 ? decodeURIComponent(profile.field10) : "N/A"}</span>
   </div>
@@ -480,10 +484,6 @@
   <div class="detail-item">
     <span class="label">Reason for On Hold:</span>
     <span>${profile.field13 ? decodeURIComponent(profile.field13) : "N/A"}</span>
-  </div>
-  <div class="detail-item">
-    <span class="label">Sl. No:</span>
-    <span>${profile.field1 ? decodeURIComponent(profile.field1) : "N/A"}</span>
   </div>
   <div class="detail-item">
     <span class="label">Name:</span>
@@ -525,7 +525,7 @@
     <span class="label">Valid Divorce Document:</span>
     <span>
       ${profile.images ? 
-        `<img src="${profile.images.split(',').pop().trim()}" >` : 
+        "For Divorce Document Please Refer The Above Photo log" : 
         "N/A"}
     </span>
   </div>
