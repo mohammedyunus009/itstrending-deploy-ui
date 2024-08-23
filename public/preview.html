@@ -73,6 +73,7 @@
 }
 #divorce-document {
     margin-left: 230px;
+    display: inline-table;
 }
 
 /* Styles for mobile view */
@@ -99,7 +100,7 @@
        <div class="top_1l mt-1">
       <ul class="mb-0 font_14">
          <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
-       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmailcom</li>
+       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmail.com</li>
        </ul>
      </div>
       </div>
@@ -220,6 +221,10 @@
             <span id="on-hold-reason" class="left-align"></span>
           </div>
           <div class="detail-item">
+            <label>Sl. No:</label>
+            <span id="slno"></span>
+          </div>
+          <div class="detail-item">
             <label>Name:</label>
             <span id="name"></span>
           </div>
@@ -299,33 +304,25 @@
               <label>No of Sisters:</label>
               <span id="no-of-sisters"></span>
           </div>
-          <!-- <div class="detail-item">
-            <label>1st Sister marital status:</label>
-            <span id="sisters-details"></span>
+          <div class="detail-item">
+            <label>Sister's marital status:</label>
+            <span id="sister-marital-status"></span>
           </div>
           <div class="detail-item">
-            <label>1st Sisters occupation:</label>
-            <span id="sisters-details"></span>
+            <label>Sisters's occupation:</label>
+            <span id="sister-occupation"></span>
           </div>
-          <div class="detail-item">
-            <label>2nd Sister marital status:</label>
-            <span id="sisters-details"></span>
-          </div>
-          <div class="detail-item">
-            <label>2nd Sisters occupation:</label>
-            <span id="sisters-details"></span>
-          </div>
-          <div class="detail-item">
-            <label>3rd Sister marital status:</label>
-            <span id="sisters-details"></span>
-          </div>
-          <div class="detail-item">
-            <label>3rd Sisters occupation:</label>
-            <span id="sisters-details"></span>
-          </div> -->
           <div class="detail-item">
               <label>No of Brothers:</label>
               <span id="no-of-brothers"></span>
+          </div>
+          <div class="detail-item">
+            <label>Brother's marital status:</label>
+            <span id="brother-marital-status"></span>
+          </div>
+          <div class="detail-item">
+            <label>Brother's occupation:</label>
+            <span id="brother-occupation"></span>
           </div>
           <div class="detail-item">
               <label>Preferred Family/Subcaste:</label>
@@ -512,38 +509,131 @@
     <script src="js/prview.js"></script>
     <script>
       function toggleOnHoldReason() {
-          const profileStatus = document.getElementById('profile-status').innerText;
-          const onHoldReasonContainer = document.getElementById('on-hold-reason-container');
-          
-          if (profileStatus.toLowerCase() === 'on hold') {
-              onHoldReasonContainer.style.display = 'block';
-          } else {
-              onHoldReasonContainer.style.display = 'none';
-          }
-      }
-  
-      function toggleMaritalDetails() {
-          const maritalStatus = document.getElementById('marital-status').innerText;
-          const maritalTenureContainer = document.getElementById('marital-tenure-container');
-          const childrenContainer = document.getElementById('children-container');
-          const divorceDocumentContainer = document.getElementById('divorce-document-container');
-  
-          if (maritalStatus.toLowerCase() === 'divorced' || maritalStatus.toLowerCase() === 'widowed') {
-              maritalTenureContainer.style.display = 'block';
-              childrenContainer.style.display = 'block';
-              divorceDocumentContainer.style.display = 'block';
-          } else {
-              maritalTenureContainer.style.display = 'none';
-              childrenContainer.style.display = 'none';
-              divorceDocumentContainer.style.display = 'none';
-          }
-      }
-  
-      // Run the functions on page load in case the status is already set
-      document.addEventListener("DOMContentLoaded", function() {
-          toggleOnHoldReason();
-          toggleMaritalDetails();
-      });
+    const profileStatus = document.getElementById('profile-status').innerText;
+    const onHoldReasonContainer = document.getElementById('on-hold-reason-container');
+
+    if (profileStatus.toLowerCase() === 'on hold') {
+        onHoldReasonContainer.style.display = 'block';
+    } else {
+        onHoldReasonContainer.style.display = 'none';
+    }
+}
+
+function toggleMaritalDetails() {
+    const maritalStatus = document.getElementById('marital-status').innerText;
+    const maritalTenureContainer = document.getElementById('marital-tenure-container');
+    const childrenContainer = document.getElementById('children-container');
+    const divorceDocumentContainer = document.getElementById('divorce-document-container');
+
+    if (maritalStatus.toLowerCase() === 'divorced' || maritalStatus.toLowerCase() === 'widowed') {
+        maritalTenureContainer.style.display = 'block';
+        childrenContainer.style.display = 'block';
+        divorceDocumentContainer.style.display = 'block';
+    } else {
+        maritalTenureContainer.style.display = 'none';
+        childrenContainer.style.display = 'none';
+        divorceDocumentContainer.style.display = 'none';
+    }
+}
+
+function toggleSiblingDetails() {
+    const noOfSisters = document.getElementById('no-of-sisters').innerText;
+    const sistersDetails = document.getElementById('sisters-details');
+    const noOfBrothers = document.getElementById('no-of-brothers').innerText;
+    const brothersDetails = document.getElementById('brothers-details');
+
+    if (noOfSisters.toLowerCase() !== 'N/A') {
+        document.querySelectorAll('#sisters-details').forEach(function(item) {
+            item.style.display = 'block';
+        });
+    } else {
+        document.querySelectorAll('#sisters-details').forEach(function(item) {
+            item.style.display = 'none';
+        });
+    }
+
+    if (noOfBrothers.toLowerCase() !== 'N/A') {
+        document.querySelectorAll('#brothers-details').forEach(function(item) {
+            item.style.display = 'block';
+        });
+    } else {
+        document.querySelectorAll('#brothers-details').forEach(function(item) {
+            item.style.display = 'none';
+        });
+    }
+}
+
+// Run the functions on page load in case the status is already set
+document.addEventListener("DOMContentLoaded", function() {
+    toggleOnHoldReason();
+    toggleMaritalDetails();
+    toggleSiblingDetails();
+});
+
   </script>
+  <script>
+    // Function to get the value of a cookie by name, considering the full value with special characters
+    function getCookie(name) {
+        let decodedCookies = decodeURIComponent(document.cookie);
+        let cookiesArray = decodedCookies.split('; ');
+        for (let i = 0; i < cookiesArray.length; i++) {
+            let cookiePair = cookiesArray[i].split('=');
+            if (cookiePair[0] === name) {
+                // Rejoining everything after the first '=' to handle cases where '=' is part of the value
+                return cookiePair.slice(1).join('=');
+            }
+        }
+        return null;
+    }
+    
+    // Function to display divorce documents
+    function displayDivorceDocuments() {
+        const divorceDocumentContainer = document.getElementById("divorce-document");
+        const cookieNames = ["images6", "images7", "images8", "images9", "images10", "images11"];
+    
+        let documentCount = 0;
+    
+        cookieNames.forEach((cookieName, index) => {
+            const documentUrl = decodeURIComponent(getCookie(cookieName)) || null;
+    
+            if (documentUrl && documentUrl !== "null") {
+                documentCount++;
+                const documentLabel = `Document ${documentCount}`;
+                
+                if (documentUrl.endsWith(".jpg") || documentUrl.endsWith(".jpeg") || documentUrl.endsWith(".png") || documentUrl.endsWith(".gif")) {
+                    // Display as an image
+                    const imgElement = document.createElement("img");
+                    imgElement.src = documentUrl;
+                    imgElement.alt = documentLabel;
+                    imgElement.style.maxWidth = "100%";
+                    imgElement.style.height = "auto";
+                    divorceDocumentContainer.appendChild(imgElement);
+                } else {
+                    // Display as a link with red text color
+                    const linkElement = document.createElement("a");
+                    linkElement.href = documentUrl;
+                    linkElement.innerText = documentLabel;
+                    linkElement.target = "_blank";
+                    linkElement.style.color = "red";
+                    
+                    // Only append the link if the URL is valid (not "null")
+                    if (documentUrl !== "null") {
+                        divorceDocumentContainer.appendChild(linkElement);
+                    }
+                }
+                // Add a line break for better spacing
+                divorceDocumentContainer.appendChild(document.createElement("br"));
+            }
+        });
+    
+        // If no document is found, display "N/A"
+        if (documentCount === 0) {
+            divorceDocumentContainer.innerText = "N/A";
+        }
+    }
+    
+    // Call the function to display the documents when the page loads
+    displayDivorceDocuments();
+    
     </script>
 </html>
