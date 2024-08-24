@@ -631,6 +631,9 @@ form.login-form1{
                     // Extract the token
                     const token = data.data.token;
 
+                    // Store email in cookies
+                    document.cookie = `email=${encodeURIComponent(email)}; path=/`;
+
                     // Check if the email is the admin email
                     if (email === 'harshithgowda18801@gmail.com') {
                         // Set expiration time for the cookie (e.g., 1 year from now)
