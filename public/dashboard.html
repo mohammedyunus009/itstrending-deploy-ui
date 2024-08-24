@@ -129,16 +129,18 @@
 }
 
 /* Specific styling for each field if needed */
-.profile-card .field9,
-.profile-card .field8,
-.profile-card .field4,
-.profile-card .field3,
-.profile-card .gender {
+.profile-card .field10,
+.profile-card .field1,
+.profile-card .field6,
+.profile-card .field2,
+.profile-card .field7,
+.profile-card .gender,
+.profile-card .profile_id {
   text-align: left;
   width: 100%; /* Ensure it spans the full width */
   color: #555; /* Improved text color */
 }
-.profile-card .field7 {
+.profile-card .field5 {
   font-weight:bold ;
 }
 .panel {
@@ -426,12 +428,13 @@
                 // Create card content
                 card.innerHTML = `
                     <img src="${firstImage}" alt="Profile Image">
-                    <p class="field7"> ${decodeURIComponent(profile.field7)}</p>
-                    <p class="gender"><span>Gender: </span> ${decodeURIComponent(profile.gender)}</p>
-                    <p class="field9"><span>Revert: </span> ${decodeURIComponent(profile.field9)}</p>
-                    <p class="field8"><span>DOB: </span> ${decodeURIComponent(profile.field8)}</p>
-                    <p class="field3"><span>State: </span> ${decodeURIComponent(profile.field3)}</p>
-                    <p class="field4"><span>Education: </span> ${decodeURIComponent(profile.field4)}</p>
+                    <p class="field5">${decodeURIComponent(profile.field5)}</p>
+                    <p class="field1"><span>Sl. No: </span>${decodeURIComponent(profile.field1)}</p>
+                    <p class="gender"><span>Gender: </span>${decodeURIComponent(profile.gender)}</p>
+                    <p class="field10"><span>Profile Co-ordinator: </span>${decodeURIComponent(profile.field10)}</p>
+                    <p class="field6"><span>Age: </span>${decodeURIComponent(profile.field6)}</p>
+                    <p class="field7"><span>Address: </span>${decodeURIComponent(profile.field7)}</p>
+                    <p class="field2"><span>Education: </span>${decodeURIComponent(profile.field2)}</p>
                     <div class="btn-container">
                         <button class="btn view-profile">View Profile</button>
                         <button class="btn delete-profile">Delete Profile</button>
