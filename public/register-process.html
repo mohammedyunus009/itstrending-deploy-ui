@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -395,33 +396,6 @@ button[type="submit"]:hover {
 <div class="container1">
       <h1>Profile Form</h1>
       <form>
-          <h2>Coordinator Details</h2>
-
-          <div class="form-group">
-            <label for="serial-number">Sl. No:</label>
-            <input type="text" id="slno" name="field1" required>
-          </div>
-
-          <div class="form-group">
-              <label for="coordinator-name">Profile Coordinator Name:</label>
-              <input type="text" id="coordinator-name" name="field10" required>
-          </div>
-
-          <div class="form-group">
-              <label for="profile-status">Profile Status:</label>
-              <select id="profile-status" name="field11" required>
-                  <option value="Active">Please select</option>
-                  <option value="Active">Active</option>
-                  <option value="Closed">Closed</option>
-                  <option value="On Hold">On Hold</option>
-              </select>
-          </div>
-
-          <div id="on-hold-reason" class="hidden form-group">
-              <label for="on-hold-reason">Reason for On Hold:</label>
-              <input type="text" id="on-hold-reason" name="field13">
-          </div>
-
           <h2>Personal Details</h2>
           <div class="form-group">
               <label for="name">Name:</label>
@@ -438,11 +412,10 @@ button[type="submit"]:hover {
             </div>
             </div>
             <div class="form-group">
-                <label for="age">Age:</label>
-                <select id="age" name="field6" required>
-              <!-- Options will be populated dynamically -->
-                </select>
+                <label for="date">Date of Birth:</label>
+                <input id="date" name="field6" type="text" required>
             </div>
+            
       
             <div class="form-group">
                 <label for="height">Height:</label>
@@ -589,7 +562,7 @@ button[type="submit"]:hover {
             <div class="form-group">
             <label for="partner-profession">Prefered Profession:</label>
             <select id="partner-profession" name="field28" required>
-                <option value="Working">Please select</option>
+                <option value="N/A">Please select</option>
                 <option value="Job">Job</option>
                 <option value="Business">Business</option>
                 <option value="Self-Employed">Self-Employed</option>
@@ -646,7 +619,7 @@ button[type="submit"]:hover {
             <div class="form-group">
                 <label for="partner-working-status">Partner Working Status to be:</label>
                 <select id="partner-working-status" name="field36" required>
-                    <option value="Working">Please select</option>
+                    <option value="N/A">Please select</option>
                     <option value="Working">Working</option>
                     <option value="Non-Working">Non-Working</option>
                 </select>
@@ -658,6 +631,39 @@ button[type="submit"]:hover {
             </div>
   
             <div class="image-preview-container" id="image-preview"></div><br>
+
+            <h2>Office Purpose Only</h2>
+
+            <div class="form-group">
+                <label for="serial-number">ISC Sl. No:</label>
+                <input type="text" id="slno" name="field1">
+            </div>
+
+            <div class="form-group">
+                <label for="coordinator-name">ISC Coordinator Name:</label>
+                <input type="text" id="coordinator-name" name="field10">
+            </div>
+
+            <div class="form-group">
+                <label for="coordinator-number">ISC Coordinator Number:</label>
+                <input type="text" id="coordinator-number" name="field41">
+            </div>
+
+            <div class="form-group">
+                <label for="profile-status">Profile Status:</label>
+                <select id="profile-status" name="field11">
+                    <option value="Active">Please select</option>
+                    <option value="Active">Active</option>
+                    <option value="Closed">Closed</option>
+                    <option value="On Hold">On Hold</option>
+                </select>
+            </div>
+
+            <div id="on-hold-reason" class="hidden form-group">
+                <label for="on-hold-reason">Reason for On Hold:</label>
+                <input type="text" id="on-hold-reason" name="field13">
+            </div>
+
 
             <button type="submit" onclick="window.location.href='preview.html';">Submit</button>
       </form>
@@ -1143,10 +1149,18 @@ Object.keys(cookies).forEach(key => {
     const documentFileInput = document.getElementById('divorce-document');
     documentFileInput.addEventListener('change', () => handleDocumentUpload(documentFileInput));
   
-  </script>
+</script>
   
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-
+<script>
+    flatpickr("#date", {
+    dateFormat: "d-m-Y", // Format: Day-Month-Year
+    maxDate: "today", // Optional: Prevent selecting future dates
+    placeholder: "Select a date",
+});
+</script>
 
 <script>
       document.getElementById('profile-status').addEventListener('change', function () {
@@ -1220,37 +1234,36 @@ Object.keys(cookies).forEach(key => {
         ]
     }).val(null).trigger('change'); // Clear any pre-selected value
 
-    // Initialize the Select2 plugin for Height dropdown
     $('#height').select2({
     tags: true,
     placeholder: "Select or type a height",
     allowClear: true,
     data: [
-        { id: '4ft5in', text: '4 feet 5 inches' },
-        { id: '4ft6in', text: '4 feet 6 inches' },
-        { id: '4ft7in', text: '4 feet 7 inches' },
-        { id: '4ft8in', text: '4 feet 8 inches' },
-        { id: '4ft9in', text: '4 feet 9 inches' },
-        { id: '4ft10in', text: '4 feet 10 inches' },
-        { id: '4ft11in', text: '4 feet 11 inches' },
-        { id: '5ft0in', text: '5 feet 0 inches' },
-        { id: '5ft1in', text: '5 feet 1 inch' },
-        { id: '5ft2in', text: '5 feet 2 inches' },
-        { id: '5ft3in', text: '5 feet 3 inches' },
-        { id: '5ft4in', text: '5 feet 4 inches' },
-        { id: '5ft5in', text: '5 feet 5 inches' },
-        { id: '5ft6in', text: '5 feet 6 inches' },
-        { id: '5ft7in', text: '5 feet 7 inches' },
-        { id: '5ft8in', text: '5 feet 8 inches' },
-        { id: '5ft9in', text: '5 feet 9 inches' },
-        { id: '5ft10in', text: '5 feet 10 inches' },
-        { id: '5ft11in', text: '5 feet 11 inches' },
-        { id: '6ft0in', text: '6 feet 0 inches' },
-        { id: '6ft1in', text: '6 feet 1 inch' },
-        { id: '6ft2in', text: '6 feet 2 inches' },
-        { id: '6ft3in', text: '6 feet 3 inches' },
-        { id: '6ft4in', text: '6 feet 4 inches' },
-        { id: '6ft5in', text: '6 feet 5 inches' }
+        { id: '4 feet 5 inches', text: '4 feet 5 inches' },
+        { id: '4 feet 6 inches', text: '4 feet 6 inches' },
+        { id: '4 feet 7 inches', text: '4 feet 7 inches' },
+        { id: '4 feet 8 inches', text: '4 feet 8 inches' },
+        { id: '4 feet 9 inches', text: '4 feet 9 inches' },
+        { id: '4 feet 10 inches', text: '4 feet 10 inches' },
+        { id: '4 feet 11 inches', text: '4 feet 11 inches' },
+        { id: '5 feet 0 inches', text: '5 feet 0 inches' },
+        { id: '5 feet 1 inch', text: '5 feet 1 inch' },
+        { id: '5 feet 2 inches', text: '5 feet 2 inches' },
+        { id: '5 feet 3 inches', text: '5 feet 3 inches' },
+        { id: '5 feet 4 inches', text: '5 feet 4 inches' },
+        { id: '5 feet 5 inches', text: '5 feet 5 inches' },
+        { id: '5 feet 6 inches', text: '5 feet 6 inches' },
+        { id: '5 feet 7 inches', text: '5 feet 7 inches' },
+        { id: '5 feet 8 inches', text: '5 feet 8 inches' },
+        { id: '5 feet 9 inches', text: '5 feet 9 inches' },
+        { id: '5 feet 10 inches', text: '5 feet 10 inches' },
+        { id: '5 feet 11 inches', text: '5 feet 11 inches' },
+        { id: '6 feet 0 inches', text: '6 feet 0 inches' },
+        { id: '6 feet 1 inch', text: '6 feet 1 inch' },
+        { id: '6 feet 2 inches', text: '6 feet 2 inches' },
+        { id: '6 feet 3 inches', text: '6 feet 3 inches' },
+        { id: '6 feet 4 inches', text: '6 feet 4 inches' },
+        { id: '6 feet 5 inches', text: '6 feet 5 inches' }
     ]
 }).val(null).trigger('change'); // Clear any pre-selected value
 
@@ -1261,12 +1274,12 @@ Object.keys(cookies).forEach(key => {
         placeholder: "Select or type a family/subcaste",
         allowClear: true,
         data: [
-            { id: 'Syed', text: 'Syed' },
-            { id: 'Pathan/Khan', text: 'Pathan/Khan' },
-            { id: 'Sheikh', text: 'Sheikh' },
-            { id: 'Reverted Muslims', text: 'Reverted Muslims' },
-            { id: 'Maimun sait', text: 'Maimun sait' },
-            { id: 'Baig', text: 'Baig' }
+            { id: 'Syed ', text: 'Syed' },
+            { id: 'Pathan/Khan ', text: 'Pathan/Khan' },
+            { id: 'Sheikh ', text: 'Sheikh' },
+            { id: 'Reverted Muslims ', text: 'Reverted Muslims' },
+            { id: 'Maimun sait ', text: 'Maimun sait' },
+            { id: 'Baig ', text: 'Baig' }
         ]
     }).val(null).trigger('change'); // Clear any pre-selected value
 });
@@ -1276,11 +1289,11 @@ Object.keys(cookies).forEach(key => {
                 placeholder: "Select or type follow options",
                 allowClear: true,
                 data: [
-                    { id: 'dargah-fateha', text: 'Dargah Fateha' },
-                    { id: 'tabligh', text: 'Tabligh' },
-                    { id: 'jamaat-e-islam', text: 'Jamaat e Islam' },
-                    { id: 'ahle-hadees', text: 'Ahle hadees' },
-                    { id: 'moderate-practising', text: 'Moderate Practising Muslims' }
+                    { id: 'Dargah Fateha ', text: 'Dargah Fateha' },
+                    { id: 'Tabligh ', text: 'Tabligh' },
+                    { id: 'Jamaat e Islam ', text: 'Jamaat e Islam' },
+                    { id: 'Ahle hadees ', text: 'Ahle hadees' },
+                    { id: 'Moderate Practising Muslims ', text: 'Moderate Practising Muslims' }
                 ]
             });
         });
@@ -1290,11 +1303,11 @@ Object.keys(cookies).forEach(key => {
                 allowClear: true,
                 data: [
                     { id: '', text: '' },  // Empty option for placeholder
-                    { id: 'phd', text: 'PhD' },
-                    { id: 'masters', text: 'Masters' },
-                    { id: 'bachelor', text: 'Bachelor\'s Degree' },
-                    { id: 'diploma', text: 'Diploma' },
-                    { id: 'highschool', text: 'High School' }
+                    { id: 'Phd ', text: 'PhD' },
+                    { id: 'Masters ', text: 'Masters' },
+                    { id: 'Bachelors-degree ', text: 'Bachelor\'s Degree' },
+                    { id: 'Diploma ', text: 'Diploma' },
+                    { id: 'High school ', text: 'High School' }
                 ],
                 tags: true
             }).val(null).trigger('change');  // Ensure no option is selected by default
@@ -1305,51 +1318,54 @@ Object.keys(cookies).forEach(key => {
                 placeholder: "Select or type partner castes",
                 allowClear: true,
                 data: [
-                    { id: 'syed', text: 'Syed' },
-                    { id: 'pathan-khan', text: 'Pathan/Khan' },
-                    { id: 'sheikh', text: 'Sheikh' },
-                    { id: 'reverted-muslims', text: 'Reverted Muslims' },
-                    { id: 'maimun-sait', text: 'Maimun sait' },
-                    { id: 'baig', text: 'Baig' }
+                    { id: 'Syed ', text: 'Syed' },
+                    { id: 'Pathan/khan ', text: 'Pathan/Khan' },
+                    { id: 'Sheikh ', text: 'Sheikh' },
+                    { id: 'Reverted muslims ', text: 'Reverted Muslims' },
+                    { id: 'Maimun sait ', text: 'Maimun sait' },
+                    { id: 'Baig ', text: 'Baig' }
                 ]
             });
 
             $('#partner-education').select2({
-                tags: true,
-                placeholder: "Select or type partner education",
-                allowClear: true,
-                data: [
-                    { id: 'phd', text: 'PhD' },
-                    { id: 'masters', text: 'Masters' },
-                    { id: 'bachelor', text: 'Bachelor\'s Degree' },
-                    { id: 'diploma', text: 'Diploma' },
-                    { id: 'highschool', text: 'High School' }
-                    // { id: 'other', text: 'Other' }
-                ]
-            });
+            tags: true,
+            placeholder: "Select or type partner education",
+            allowClear: true,
+            data: [
+                { id: 'Educated; Working girl only ', text: 'Educated; Working girl only' },
+                { id: 'Educated; Non-working only ', text: 'Educated; Non-working only' },
+                { id: 'Educated; Working/Non-working girl ', text: 'Educated; Working/Non-working girl' },
+                { id: 'Educated; Employed only ', text: 'Educated; Employed only' },
+                { id: 'Educated; Business only ', text: 'Educated; Business only' },
+                { id: 'Educated; Employed/Business ', text: 'Educated; Employed/Business' }
+            ]
         });
+    });
         $(document).ready(function() {
             $('#partner-follow').select2({
-                tags: true,
-                placeholder: "Select or type partner follow & practice",
-                allowClear: true,
-                data: [
-                    { id: 'practice-dargah', text: 'Practice dargah & fateha only' },
-                    { id: 'flexible-jamat', text: 'Flexible any jamat; no shirk bidah' },
-                    { id: 'ahle-hadees', text: 'AhleHadees only' }
-                    // { id: 'others-practice', text: 'Others; please mention' }
-                ]
-            });
+    tags: true,
+    placeholder: "Select or type partner follow & practice",
+    allowClear: true,
+    data: [
+        { id: 'Flexible to any Jamat ', text: 'Flexible to any Jamat' },
+        { id: 'Flexible any Jamat; no shirk bidah ', text: 'Flexible any Jamat; no shirk bidah' },
+        { id: 'Practice dargah & fateha only ', text: 'Practice dargah & fateha only' },
+        { id: 'AhleHadees only ', text: 'AhleHadees only' },
+        { id: 'Tablighi only ', text: 'Tablighi only' },
+        { id: 'Jamat E Islam only ', text: 'Jamat E Islam only' }
+        // { id: 'others-practice', text: 'Others; please mention' }
+    ]
+});
 
             $('#personal-attributes').select2({
                 tags: true,
                 placeholder: "Select or type personal attributes",
                 allowClear: true,
                 data: [
-                    { id: 'fair-beautiful', text: 'Fair, beautiful & Good-looking' },
-                    { id: 'hijabi', text: 'Hijabi practising muslimah only' },
-                    { id: 'handsome', text: 'Fair, Handsome & Good-looking' },
-                    { id: 'beard', text: 'Beard practising Muslim' }
+                    { id: 'Hijabi practising muslim only ', text: 'Fair, beautiful & Good-looking' },
+                    { id: 'Hijabi-practising-muslim-only ', text: 'Hijabi practising muslim only' },
+                    { id: 'Fair, Handsome & Good-looking ', text: 'Fair, Handsome & Good-looking' },
+                    { id: 'Beard practising Muslim ', text: 'Beard practising Muslim' }
                 ]
             });
 
@@ -1358,8 +1374,9 @@ Object.keys(cookies).forEach(key => {
                 placeholder: "Select or type religious attributes",
                 allowClear: true,
                 data: [
-                    { id: 'five-pillars', text: '5 pillars practicing family' },
-                    { id: 'moderate-practising', text: 'Moderate practising family' }
+                    { id: '5 pillars practicing family ', text: '5 pillars practicing family' },
+                    { id: 'Moderate practising family ', text: 'Moderate practising family' },
+                    { id: 'Beard & Hijab practising family ', text: 'Beard & Hijab practising family' }
                 ]
             });
         });
@@ -1369,12 +1386,12 @@ Object.keys(cookies).forEach(key => {
                 placeholder: "Select or type partner location",
                 allowClear: true,
                 data: [
-                    { id: 'delhi', text: 'Delhi' },
-                    { id: 'mumbai', text: 'Mumbai' },
-                    { id: 'bengaluru', text: 'Bengaluru' },
-                    { id: 'hyderabad', text: 'Hyderabad' },
-                    { id: 'chennai', text: 'Chennai' },
-                    { id: 'kolkata', text: 'Kolkata' }
+                    { id: 'Delhi ', text: 'Delhi' },
+                    { id: 'Mumbai ', text: 'Mumbai' },
+                    { id: 'Bengaluru ', text: 'Bengaluru' },
+                    { id: 'Hyderabad ', text: 'Hyderabad' },
+                    { id: 'Chennai ', text: 'Chennai' },
+                    { id: 'Kolkata ', text: 'Kolkata' }
                     // { id: 'other', text: 'Other' }
                 ]
             });
@@ -1384,62 +1401,87 @@ Object.keys(cookies).forEach(key => {
                 placeholder: "Select or type family type",
                 allowClear: true,
                 data: [
-                    { id: 'middle-class', text: 'Middle class family' },
-                    { id: 'upper-middle-class', text: 'Upper middle class family' }
+                    { id: 'Middle class family ', text: 'Middle class family' },
+                    { id: 'Upper middle class family ', text: 'Upper middle class family' }
                     // { id: 'other', text: 'Other' }
                 ]
         });
 </script>
 
 <script>
-  function setCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
     }
-    document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
-}
-
-function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+    
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+        }
+        return null;
     }
-    return null;
-}
-
-function handleSubmit(event) {
-    event.preventDefault(); // Prevent form submission to allow cookie storage
-
-    const form = event.target;
-    const formData = new FormData(form);
-
-    // Loop through all form fields and set cookies
-    for (const [key, value] of formData.entries()) {
-        setCookie(key, value, 1); // Overwrite the cookie with the new value
+    
+    function handleSubmit(event) {
+        event.preventDefault(); // Prevent form submission to allow cookie storage
+    
+        const form = event.target;
+        const formData = new FormData(form);
+    
+        // Loop through all form fields and set cookies, replacing old values
+        formData.forEach((value, key) => {
+            setCookie(key, value, 1); // Replace old value with new value
+        });
+    
+        // Optional: Redirect to a preview page after form submission
+        redirectToPreview();
     }
-
-    // Optional: Redirect to a preview page after form submission
-    redirectToPreview();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
-    if (form) {
-        form.addEventListener('submit', handleSubmit);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', handleSubmit);
+        }
+    });
+    
+    function redirectToPreview() {
+        window.location.href = 'preview.html';
     }
-});
-
-function redirectToPreview() {
-    window.location.href = 'preview.html';
-}
-
-</script>
+    
+    function populateDropdowns() {
+        // Example: Restore values from cookies for a multi-select dropdown
+        const fields = ['follow', 'partner-caste', 'partner-education', 'personal-attributes', 'partner-follow', 'family-type', 'partner-location', 'religious-attributes'];
+        fields.forEach(fieldId => {
+            const values = getCookie(fieldId);
+            if (values) {
+                const options = values.split(',');
+                const selectElement = document.getElementById(fieldId);
+                if (selectElement) {
+                    options.forEach(optionValue => {
+                        const option = selectElement.querySelector(`option[value="${optionValue}"]`);
+                        if (option) {
+                            option.selected = true;
+                        }
+                    });
+                }
+            }
+        });
+    }
+    
+    // Populate dropdowns on page load
+    document.addEventListener('DOMContentLoaded', populateDropdowns);
+    </script>
+    
+  
+  
 
 <script>
     // Function to get a specific cookie by name

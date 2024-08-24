@@ -470,170 +470,168 @@
       detailsCard.className = 'profile-details';
       detailsCard.innerHTML = `
   <div class="detail-item">
-    <span class="label">Sl. No:</span>
-    <span>${profile.field1 ? decodeURIComponent(profile.field1) : "N/A"}</span>
+    <label class="label">Sl. No:</label>
+    <input type="text" value="${profile.field1 ? decodeURIComponent(profile.field1) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Profile Coordinator Name:</span>
-    <span>${profile.field10 ? decodeURIComponent(profile.field10) : "N/A"}</span>
+    <label class="label">Profile Coordinator Name:</label>
+    <input type="text" value="${profile.field10 ? decodeURIComponent(profile.field10) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Profile Status:</span>
-    <span>${profile.field11 ? decodeURIComponent(profile.field11) : "N/A"}</span>
+    <label class="label">Profile Status:</label>
+    <input type="text" value="${profile.field11 ? decodeURIComponent(profile.field11) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Reason for On Hold:</span>
-    <span>${profile.field13 ? decodeURIComponent(profile.field13) : "N/A"}</span>
+    <label class="label">Reason for On Hold:</label>
+    <input type="text" value="${profile.field13 ? decodeURIComponent(profile.field13) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Name:</span>
-    <span>${profile.field5 ? decodeURIComponent(profile.field5) : "N/A"}</span>
+    <label class="label">Name:</label>
+    <input type="text" value="${profile.field5 ? decodeURIComponent(profile.field5) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Gender:</span>
-    <span>${profile.gender ? decodeURIComponent(profile.gender) : "N/A"}</span>
+    <label class="label">Gender:</label>
+    <input type="text" value="${profile.gender ? decodeURIComponent(profile.gender) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Age:</span>
-    <span>${profile.field6 ? decodeURIComponent(profile.field6) : "N/A"}</span>
+    <label class="label">Age:</label>
+    <input type="text" value="${profile.field6 ? decodeURIComponent(profile.field6) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Height:</span>
-    <span>${profile.field14 ? decodeURIComponent(profile.field14) : "N/A"}</span>
+    <label class="label">Height:</label>
+    <input type="text" value="${profile.field14 ? decodeURIComponent(profile.field14) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Family/Subcaste:</span>
-    <span>${profile.field8 ? decodeURIComponent(profile.field8) : "N/A"}</span>
+    <label class="label">Family/Subcaste:</label>
+    <input type="text" value="${profile.field8 ? decodeURIComponent(profile.field8) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Follow:</span>
-    <span>${profile.field4 ? decodeURIComponent(profile.field4) : "N/A"}</span>
+    <label class="label">Follow:</label>
+    <input type="text" value="${profile.field4 ? decodeURIComponent(profile.field4) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Marital Status:</span>
-    <span>${profile.field3 ? decodeURIComponent(profile.field3) : "N/A"}</span>
+    <label class="label">Marital Status:</label>
+    <input type="text" value="${profile.field3 ? decodeURIComponent(profile.field3) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Marital Tenure:</span>
-    <span>${profile.field15 ? decodeURIComponent(profile.field15) : "N/A"}</span>
+    <label class="label">Marital Tenure:</label>
+    <input type="text" value="${profile.field15 ? decodeURIComponent(profile.field15) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Children:</span>
-    <span>${profile.field16 ? decodeURIComponent(profile.field16) : "N/A"}</span>
+    <label class="label">Children:</label>
+    <input type="text" value="${profile.field16 ? decodeURIComponent(profile.field16) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Valid Divorce Document:</span>
-    <span>
-      ${profile.images ? 
-        "For Divorce Document Please Refer The Above Photos" : 
-        "N/A"}
-    </span>
+    <label class="label">Valid Divorce Document:</label>
+    <input type="text" value="${profile.images ? 'For Divorce Document Please Refer The Above Photos' : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Education:</span>
-    <span>${profile.field2 ? decodeURIComponent(profile.field2) : "N/A"}</span>
+    <label class="label">Education:</label>
+    <input type="text" value="${profile.field2 ? decodeURIComponent(profile.field2) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Profession:</span>
-    <span>${profile.field9 ? decodeURIComponent(profile.field9) : "N/A"}</span>
+    <label class="label">Profession:</label>
+    <input type="text" value="${profile.field9 ? decodeURIComponent(profile.field9) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Company:</span>
-    <span>${profile.field18 ? decodeURIComponent(profile.field18) : "N/A"}</span>
+    <label class="label">Company:</label>
+    <input type="text" value="${profile.field18 ? decodeURIComponent(profile.field18) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Job Location:</span>
-    <span>${profile.field19 ? decodeURIComponent(profile.field19) : "N/A"}</span>
+    <label class="label">Job Location:</label>
+    <input type="text" value="${profile.field19 ? decodeURIComponent(profile.field19) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Home Address:</span>
-    <span>${profile.field7 ? decodeURIComponent(profile.field7) : "N/A"}</span>
+    <label class="label">Home Address:</label>
+    <input type="text" value="${profile.field7 ? decodeURIComponent(profile.field7) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Father's Name:</span>
-    <span>${profile.field20 ? decodeURIComponent(profile.field20) : "N/A"}</span>
+    <label class="label">Father's Name:</label>
+    <input type="text" value="${profile.field20 ? decodeURIComponent(profile.field20) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Father's Occupation:</span>
-    <span>${profile.field21 ? decodeURIComponent(profile.field21) : "N/A"}</span>
+    <label class="label">Father's Occupation:</label>
+    <input type="text" value="${profile.field21 ? decodeURIComponent(profile.field21) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Mother's Name:</span>
-    <span>${profile.field22 ? decodeURIComponent(profile.field22) : "N/A"}</span>
+    <label class="label">Mother's Name:</label>
+    <input type="text" value="${profile.field22 ? decodeURIComponent(profile.field22) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Mother's Occupation:</span>
-    <span>${profile.field23 ? decodeURIComponent(profile.field23) : "N/A"}</span>
+    <label class="label">Mother's Occupation:</label>
+    <input type="text" value="${profile.field23 ? decodeURIComponent(profile.field23) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">No of Sisters:</span>
-    <span>${profile.field24 ? decodeURIComponent(profile.field24) : "N/A"}</span>
+    <label class="label">No of Sisters:</label>
+    <input type="text" value="${profile.field24 ? decodeURIComponent(profile.field24) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Sister's Marital Status:</span>
-    <span>${profile.field37 ? decodeURIComponent(profile.field37) : "N/A"}</span>
+    <label class="label">Sister's Marital Status:</label>
+    <input type="text" value="${profile.field37 ? decodeURIComponent(profile.field37) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Sister's Occupation:</span>
-    <span>${profile.field38 ? decodeURIComponent(profile.field38) : "N/A"}</span>
+    <label class="label">Sister's Occupation:</label>
+    <input type="text" value="${profile.field38 ? decodeURIComponent(profile.field38) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">No of Brothers:</span>
-    <span>${profile.field25 ? decodeURIComponent(profile.field25) : "N/A"}</span>
+    <label class="label">No of Brothers:</label>
+    <input type="text" value="${profile.field25 ? decodeURIComponent(profile.field25) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Brother's Marital Status:</span>
-    <span>${profile.field39 ? decodeURIComponent(profile.field39) : "N/A"}</span>
+    <label class="label">Brother's Marital Status:</label>
+    <input type="text" value="${profile.field39 ? decodeURIComponent(profile.field39) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Brother's Occupation:</span>
-    <span>${profile.field40 ? decodeURIComponent(profile.field40) : "N/A"}</span>
+    <label class="label">Brother's Occupation:</label>
+    <input type="text" value="${profile.field40 ? decodeURIComponent(profile.field40) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Preferred Family/Subcaste:</span>
-    <span>${profile.field26 ? decodeURIComponent(profile.field26) : "N/A"}</span>
+    <label class="label">Preferred Family/Subcaste:</label>
+    <input type="text" value="${profile.field26 ? decodeURIComponent(profile.field26) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Preferred Education:</span>
-    <span>${profile.field27 ? decodeURIComponent(profile.field27) : "N/A"}</span>
+    <label class="label">Preferred Education:</label>
+    <input type="text" value="${profile.field27 ? decodeURIComponent(profile.field27) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Preferred Profession:</span>
-    <span>${profile.field28 ? decodeURIComponent(profile.field28) : "N/A"}</span>
+    <label class="label">Preferred Profession:</label>
+    <input type="text" value="${profile.field28 ? decodeURIComponent(profile.field28) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Preferred Age:</span>
-    <span>${profile.field29 ? decodeURIComponent(profile.field29) : "N/A"}</span>
+    <label class="label">Preferred Age:</label>
+    <input type="text" value="${profile.field29 ? decodeURIComponent(profile.field29) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Preferred Height:</span>
-    <span>${profile.field30 ? decodeURIComponent(profile.field30) : "N/A"}</span>
+    <label class="label">Preferred Height:</label>
+    <input type="text" value="${profile.field30 ? decodeURIComponent(profile.field30) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Personal Attributes:</span>
-    <span>${profile.field31 ? decodeURIComponent(profile.field31) : "N/A"}</span>
+    <label class="label">Personal Attributes:</label>
+    <input type="text" value="${profile.field31 ? decodeURIComponent(profile.field31) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Preferred Follow & Practice:</span>
-    <span>${profile.field32 ? decodeURIComponent(profile.field32) : "N/A"}</span>
+    <label class="label">Preferred Follow & Practice:</label>
+    <input type="text" value="${profile.field32 ? decodeURIComponent(profile.field32) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Family Type:</span>
-    <span>${profile.field33 ? decodeURIComponent(profile.field33) : "N/A"}</span>
+    <label class="label">Family Type:</label>
+    <input type="text" value="${profile.field33 ? decodeURIComponent(profile.field33) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Preferred Location:</span>
-    <span>${profile.field34 ? decodeURIComponent(profile.field34) : "N/A"}</span>
+    <label class="label">Preferred Location:</label>
+    <input type="text" value="${profile.field34 ? decodeURIComponent(profile.field34) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Religious Attributes:</span>
-    <span>${profile.field35 ? decodeURIComponent(profile.field35) : "N/A"}</span>
+    <label class="label">Religious Attributes:</label>
+    <input type="text" value="${profile.field35 ? decodeURIComponent(profile.field35) : 'N/A'}" readonly>
   </div>
   <div class="detail-item">
-    <span class="label">Partner Working Status to be:</span>
-    <span>${profile.field36 ? decodeURIComponent(profile.field36) : "N/A"}</span>
+    <label class="label">Partner Working Status to be:</label>
+    <input type="text" value="${profile.field36 ? decodeURIComponent(profile.field36) : 'N/A'}" readonly>
   </div>
+  <button id="saveBtn">Save Changes</button>
 `;
+
 
 
       detailsContainer.appendChild(detailsCard);

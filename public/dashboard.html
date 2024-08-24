@@ -129,16 +129,18 @@
 }
 
 /* Specific styling for each field if needed */
-.profile-card .field9,
-.profile-card .field8,
-.profile-card .field4,
-.profile-card .field3,
-.profile-card .gender {
+.profile-card .field10,
+.profile-card .field1,
+.profile-card .field6,
+.profile-card .field2,
+.profile-card .field7,
+.profile-card .gender,
+.profile-card .profile_id {
   text-align: left;
   width: 100%; /* Ensure it spans the full width */
   color: #555; /* Improved text color */
 }
-.profile-card .field7 {
+.profile-card .field5 {
   font-weight:bold ;
 }
 .panel {
@@ -238,7 +240,53 @@
     width: 100%; /* Ensure the panel takes full width of the column */
 }
 
-        
+/* General container styling */
+.filter-container {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f9f9f9; /* Light background for the filter section */
+    border: 1px solid #ddd; /* Light border for separation */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Input field styling */
+.filter-container input[type="text"] {
+    width: calc(100% - 185px); /* Full width minus button width */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Slightly rounded corners */
+    margin-right: 10px; /* Space between input and button */
+}
+
+/* Button styling */
+.filter-container button {
+    padding: 8px 15px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff; /* Bootstrap primary color or any color of your choice */
+    border: none;
+    border-radius: 4px; /* Slightly rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.filter-container button:hover {
+    background-color: #0056b3; /* Darker color for hover effect */
+}
+
+.filter-container button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.5); /* Custom focus outline */
+}
+
+/* Error message styling */
+#error-message {
+    margin-top: 10px;
+    font-size: 16px;
+    color: red; /* Red color for error messages */
+}
+
     </style>
 </head>
 <body>
@@ -247,11 +295,6 @@
             <h3>Admin Dashboard</h3>
         </div>
         <ul class="list-unstyled components">
-            <li>
-                <a href="#" onclick="loadAllProfiles()">
-                    <i class="fas fa-user-friends"></i> Dashboard
-                </a>
-            </li>
             <li>
                 <a href="#" onclick="loadAllProfiles()">
                     <i class="fas fa-user-friends"></i> View All Profiles
@@ -276,148 +319,14 @@
     </div>
 
     <div id="content">
-        <h2>Users</h2>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user-plus"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-users"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">137</div>
-                                    <div>Total Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-male"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>Male Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-female"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Female Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Payment</h2>
-            <div class="row3">
-                <div class="col-lg-6 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" style="background-color: green;">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-credit-card"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">50</div>
-                                    <div>Paid Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-times-circle"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">87</div>
-                                    <div>Unpaid Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <div class="filter-container">
+                <input type="text" id="serialNoInput" placeholder="Enter Serial No">
+                <button onclick="filterBySerialNo()">Filter by Serial No</button>
+            </div><br><br>
+            <div id="profileContainer"></div>
+            <div id="error-message" style="color: red; display: none;"></div> <!-- Error message container -->
         </div>
-        <div id="profileContainer"></div>
     </div>
     
     <!-- jQuery first, then Bootstrap JS -->
@@ -427,6 +336,7 @@
 
     <script>
         let selectedGender = ''; // Initialize selectedGender
+        let serialNo = ''; // Initialize serialNo
     
         function getCookie(name) {
             let value = `; ${document.cookie}`;
@@ -436,6 +346,11 @@
     
         function filterByGender(gender) {
             selectedGender = gender;
+            applyFilters();
+        }
+    
+        function filterBySerialNo() {
+            serialNo = document.getElementById('serialNoInput').value.trim();
             applyFilters();
         }
     
@@ -454,6 +369,10 @@
                 bodyData.gender = selectedGender; // Add gender filter if selected
             }
     
+            if (serialNo) {
+                bodyData.field1 = serialNo; // Add serial number filter if provided
+            }
+    
             fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
                 method: 'POST',
                 headers: {
@@ -469,9 +388,20 @@
                 return response.json();
             })
             .then(data => {
-                console.log(data);
-                // Display profiles directly on the same page
-                displayProfiles(data.data.profile);
+                const container = document.getElementById('profileContainer');
+                const errorMessage = document.getElementById('error-message');
+                
+                // Check if profiles exist and are an array
+                if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
+                    // Display error message if no profiles are found
+                    container.innerHTML = '';
+                    errorMessage.textContent = 'The following Sl. No. does not contain any profile, Please enter a valid Sl. No.';
+                    errorMessage.style.display = 'block';
+                } else {
+                    // Hide error message and display profiles
+                    errorMessage.style.display = 'none';
+                    displayProfiles(data.data.profile);
+                }
             })
             .catch((error) => {
                 console.error('Error:', error.message);
@@ -481,7 +411,7 @@
     
         // Function to create and display profile cards
         function displayProfiles(profiles) {
-            if (!profiles) {
+            if (!profiles || !Array.isArray(profiles)) {
                 console.error('No profiles found.');
                 return;
             }
@@ -498,12 +428,13 @@
                 // Create card content
                 card.innerHTML = `
                     <img src="${firstImage}" alt="Profile Image">
-                    <p class="field7"> ${decodeURIComponent(profile.field7)}</p>
-                    <p class="gender"><span>Gender: </span> ${decodeURIComponent(profile.gender)}</p>
-                    <p class="field9"><span>Revert: </span> ${decodeURIComponent(profile.field9)}</p>
-                    <p class="field8"><span>DOB: </span> ${decodeURIComponent(profile.field8)}</p>
-                    <p class="field3"><span>State: </span> ${decodeURIComponent(profile.field3)}</p>
-                    <p class="field4"><span>Education: </span> ${decodeURIComponent(profile.field4)}</p>
+                    <p class="field5">${decodeURIComponent(profile.field5)}</p>
+                    <p class="field1"><span>Sl. No: </span>${decodeURIComponent(profile.field1)}</p>
+                    <p class="gender"><span>Gender: </span>${decodeURIComponent(profile.gender)}</p>
+                    <p class="field10"><span>Profile Co-ordinator: </span>${decodeURIComponent(profile.field10)}</p>
+                    <p class="field6"><span>Age: </span>${decodeURIComponent(profile.field6)}</p>
+                    <p class="field7"><span>Address: </span>${decodeURIComponent(profile.field7)}</p>
+                    <p class="field2"><span>Education: </span>${decodeURIComponent(profile.field2)}</p>
                     <div class="btn-container">
                         <button class="btn view-profile">View Profile</button>
                         <button class="btn delete-profile">Delete Profile</button>
@@ -512,7 +443,7 @@
                 // Add click event listener to the "View Profile" button
                 const viewProfileBtn = card.querySelector('.view-profile');
                 viewProfileBtn.addEventListener('click', () => {
-                    window.location.href = `profile-details.html?profile_id=${encodeURIComponent(profile.profile_id)}`;
+                    window.location.href = `profile-details2.html?profile_id=${encodeURIComponent(profile.profile_id)}`;
                 });
                 // Append card to container
                 container.appendChild(card);
@@ -521,6 +452,8 @@
     
         function loadAllProfiles() {
             selectedGender = ''; // Reset the gender filter
+            serialNo = ''; // Reset the serial number filter
+            document.getElementById('serialNoInput').value = ''; // Clear the input field
             applyFilters();
         }
     
