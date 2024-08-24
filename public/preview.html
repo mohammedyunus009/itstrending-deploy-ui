@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Preview</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* General Styling */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+/* Field Labels and Inputs */
+.field {
+    margin-bottom: 15px;
+}
+
+.label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-control[readonly] {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+/* Additional Details Section */
+section h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+section .mb-2 {
+    margin-bottom: 15px;
+}
+
+section strong {
+    font-weight: bold;
+    color: #444;
+}
+
+section p {
+    margin: 0;
+    padding: 0;
+    color: #555;
+}
+
+/* Product and Additional Inputs */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+.border-black {
+    border: 1px solid #000;
+    background-color: #f9f9f9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .card-header {
+        font-size: 16px;
+    }
+
+    .form-control {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    section h3 {
+        font-size: 18px;
+    }
+
+    section strong {
+        font-size: 14px;
+    }
+
+    section p {
+        font-size: 13px;
+    }
+}
+
+
+        body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #f7f7f7;
+        background-image: linear-gradient(to right, #1E90FF, #f7f7f7);    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .nav-icons img {
+        height: 50px;
+        margin-left: 15px;
+    }
+
+    input {
+        border: 1px solid red;
+        /* Light black border */
+        border-radius: 4px;
+        /* Optional: for rounded corners */
+        padding: 5px;
+        /* Optional: to add some padding inside the input */
+    }
+
+    @media screen and (max-width: 600px) {
+        .navbar {
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .logo img {
+            height: 30px;
+        }
+
+        .nav-icons img {
+            margin-left: 8px;
+            height: 30px;
+        }
+    }
+
+    /* headr */
+    @media (max-width: 600px) {
+        .table {
+            width: 100%;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="img/comapny log2.jpg" alt="Left Logo">
+        </div>
+        <div class="nav-icons">
+            <img src="img/mms.jpg" alt="Logo 1">
+            <img src="img/EGAC.png" alt="Logo 2">
+            <img src="img/IAF.png" alt="Logo 3">
+            <img src="img/NABCB.png" alt="Logo 4">
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Left section: Toggler button for mobile view -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Center section: Logo -->
+    <div class="header-left mb-3 mb-md-0">
+      <!-- <img src="comapny log2.jpg" alt="Logo" class="img-fluid logo-img" style="max-width: 200px;"> -->
+    </div>
+
+    <!-- Right section: Navbar links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown me-2">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Pages
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
+            <li><a class="dropdown-item" href="installationform1.html">Installation Form</a></li>
+            <li><a class="dropdown-item" href="GeneralServiceForm1.html">General Service Form</a></li>
+            <!-- <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li> -->
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownReport" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Report Page
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownReport">
+            <li><a class="dropdown-item" href="installationreport.html">Installation Report</a></li>
+            <li><a class="dropdown-item" href="report2.html">General Service Report</a></li>
+            <!-- <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information Report</a></li> -->
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <header>
+        <table class="table table-bordered table-container header-table">
+            <tbody>
+                <tr>
+                    <td class="text-center"><u>INSTALLATION Preview</u></td>
+                </tr>
+            </tbody>
+        </table>
+    </header>
+
+    <h1 class="text-center">Form Data Preview</h1>
+
+    <div class="container mt-3">
+        <div class="card mb-3">
+            <div class="card-header text-center">
+                Customer Details
+            </div>
+            <div class="card-body">
+                <!-- Form Data Preview -->
+                <div class="mb-3">
+                    
+                    <div class="field">
+                        <label class="label">Customer Name:</label>
+                        <input type="text" id="customerNamePreview" class="form-control" readonly>
+                    </div>
+                   
+                    <div class="field">
+                        <label class="label">Project:</label>
+                        <input type="text" id="customerProjectPreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">P.O NO & Date:</label>
+                        <input type="text" id="poNoDatePreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Invoice Number & Date:</label>
+                        <input type="text" id="invoiceNoDatePreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Vehicle Model:</label>
+                        <input type="text" id="vehicleModelPreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Vehicle Sl No:</label>
+                        <input type="text" id="vehicleSlNoPreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Type of Equipment:</label>
+                        <input type="text" id="eqptTypePreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Equipment Sl No:</label>
+                        <input type="text" id="eqptSlNoPreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Installation HRM:</label>
+                        <input type="text" id="installationHRMPreview" class="form-control" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="label">Failure HMR:</label>
+                        <input type="text" id="failureHMRPreview" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+      
+                
+                <!-- Additional Details -->
+                <section class="mb-3">
+                    <h3>Installation Details</h3>
+                    <div class="mb-2">
+                        <strong>1) Welding of MS Parts</strong>
+                        <p id="weldingDetails"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>DCP Cylinder Mounting Bracket - 50/20:</strong>
+                        <p id="dcpCylinderMountingBracket"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Distributor Pad:</strong>
+                        <p id="distributorPad"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Nozzle Bracket:</strong>
+                        <p id="nozzleBracket"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Automatic Actuator Bracket Pad:</strong>
+                        <p id="automaticActuatorBracketPad"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Manual Actuator Bracket Pad:</strong>
+                        <p id="manualActuatorBracketPad"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Control Unit Pad:</strong>
+                        <p id="controlUnitPad"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Sensor Wire Routing Bosses 8MM:</strong>
+                        <p id="sensorWireRoutingBosses"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Fitment of DCP Cylinder - 50/25:</strong>
+                        <p id="fitmentOfDcpCylinder"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>2) Fitment of all Nozzles</strong>
+                        <p id="fitmentOfAllNozzles"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Fitment of Nozzles along with protective caps:</strong>
+                        <p id="fitmentOfNozzlesProtectiveCaps"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>3) Fitment of Nitrogen Cartridge:</strong>
+                        <p id="fitmentOfNitrogenCartridge"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Fitment of Nitrogen Cartridge along with protective caps:</strong>
+                        <p id="fitmentOfNitrogenCartridgeProtectiveCaps"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Nitrogen Cartridge inside the cabin:</strong>
+                        <p id="nitrogenCartridgeInsideCabin"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>4) Fitment of all Hoses:</strong>
+                        <p id="fitmentOfAllHoses"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>3/4"R2, 1/2"R2, 1/4"R2 Hose:</strong>
+                        <p id="hoseDetails"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>5) Electrical Connections:</strong>
+                        <p id="electricalConnections"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Sensor Wire Routing:</strong>
+                        <p id="sensorWireRouting"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Control Unit Connections including Sensor:</strong>
+                        <p id="controlUnitConnectionsSensor"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Wire, SP Adaptor, and Battery Connections:</strong>
+                        <p id="wireAdaptorBatteryConnections"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>6) Control Unit Start:</strong>
+                        <p id="controlUnitStart"></p>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Glow of Power OK LED:</strong>
+                        <p id="powerOkLed"></p>
+                    </div>
+                </section>
+
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for=" Product Details" class="form-label"> Product Details</label>
+                        <input type="text" class="form-control border-black" id="product">
+                    </div>
+
+                </div>
+
+                <!-- Additional Inputs -->
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="forUee" class="form-label">For Uee</label>
+                        <input type="text" class="form-control border-black" id="forUee">
+                    </div>
+                    <div class="form-group">
+                        <label for="forCustomer" class="form-label">For Customer</label>
+                        <input type="text" class="form-control border-black" id="forCustomer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+       // Function to get a cookie value by name
+function getCookie(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+// Function to display form data from cookies
+function displayFormData() {
+    document.getElementById('customerNamePreview').value = decodeURIComponent(getCookie('field1') || 'Not Available');
+document.getElementById('customerProjectPreview').value = decodeURIComponent(getCookie('field3') || 'Not Available');
+document.getElementById('poNoDatePreview').value = decodeURIComponent(getCookie('field4') || 'Not Available');
+document.getElementById('invoiceNoDatePreview').value = decodeURIComponent(getCookie('field9') || 'Not Available');
+document.getElementById('vehicleModelPreview').value = decodeURIComponent(getCookie('field5') || 'Not Available');
+document.getElementById('vehicleSlNoPreview').value = decodeURIComponent(getCookie('field6') || 'Not Available');
+document.getElementById('eqptTypePreview').value = decodeURIComponent(getCookie('field7') || 'Not Available');
+document.getElementById('eqptSlNoPreview').value = decodeURIComponent(getCookie('field8') || 'Not Available');
+document.getElementById('installationHRMPreview').value = decodeURIComponent(getCookie('field10') || 'Not Available');
+document.getElementById('failureHMRPreview').value = decodeURIComponent(getCookie('field11') || 'Not Available');
+
+document.getElementById('weldingDetails').textContent = decodeURIComponent(getCookie('weldingDetails') || '');
+document.getElementById('dcpCylinderMountingBracket').textContent = decodeURIComponent(getCookie('field13') || 'Not Available');
+document.getElementById('distributorPad').textContent = decodeURIComponent(getCookie('field14') || 'Not Available');
+document.getElementById('nozzleBracket').textContent = decodeURIComponent(getCookie('field15') || 'Not Available');
+document.getElementById('automaticActuatorBracketPad').textContent = decodeURIComponent(getCookie('field16') || 'Not Available');
+document.getElementById('manualActuatorBracketPad').textContent = decodeURIComponent(getCookie('field17') || 'Not Available');
+document.getElementById('controlUnitPad').textContent = decodeURIComponent(getCookie('field18') || 'Not Available');
+document.getElementById('sensorWireRoutingBosses').textContent = decodeURIComponent(getCookie('field19') || 'Not Available');
+document.getElementById('fitmentOfDcpCylinder').textContent = decodeURIComponent(getCookie('field20') || 'Not Available');
+document.getElementById('fitmentOfAllNozzles').textContent = decodeURIComponent(getCookie('fitmentOfAllNozzles') || '');
+document.getElementById('fitmentOfNozzlesProtectiveCaps').textContent = decodeURIComponent(getCookie('field21') || 'Not Available');
+document.getElementById('fitmentOfNitrogenCartridge').textContent = decodeURIComponent(getCookie('') || '');
+document.getElementById('fitmentOfNitrogenCartridgeProtectiveCaps').textContent = decodeURIComponent(getCookie('field22') || 'Not Available');
+document.getElementById('nitrogenCartridgeInsideCabin').textContent = decodeURIComponent(getCookie('field23') || 'Not Available');
+document.getElementById('fitmentOfAllHoses').textContent = decodeURIComponent(getCookie('fitmentOfAllHoses') || '');
+document.getElementById('hoseDetails').textContent = decodeURIComponent(getCookie('field24') || 'Not Available');
+document.getElementById('electricalConnections').textContent = decodeURIComponent(getCookie('') || 'Not Available');
+document.getElementById('sensorWireRouting').textContent = decodeURIComponent(getCookie('field25') || 'Not Available');
+document.getElementById('controlUnitConnectionsSensor').textContent = decodeURIComponent(getCookie('field26') || 'Not Available');
+document.getElementById('wireAdaptorBatteryConnections').textContent = decodeURIComponent(getCookie('field28') || 'Not Available');
+document.getElementById('controlUnitStart').textContent = decodeURIComponent(getCookie('controlUnitStart') || '');
+document.getElementById('powerOkLed').textContent = decodeURIComponent(getCookie('field29') || 'Not Available');
+document.getElementById('product').value = decodeURIComponent(getCookie('field32') || '');
+
+document.getElementById('forUee').value = decodeURIComponent(getCookie('field30') || '');
+document.getElementById('forCustomer').value = decodeURIComponent(getCookie('field31') || '');
+
+}
+
+// Call the function to display form data when the page loads
+window.onload = displayFormData;
+
+    </script>
+</body>
+</html>
