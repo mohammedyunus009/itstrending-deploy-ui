@@ -327,9 +327,9 @@
                   Pages
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
-                  <li><a class="dropdown-item" href="index.html">Installation Form</a></li>
-                  <li><a class="dropdown-item" href="generalService.html">General Service Form</a></li>
-                  <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li>
+                  <li><a class="dropdown-item" href="installationform1.html">Installation Form</a></li>
+                  <li><a class="dropdown-item" href="GeneralServiceForm1.html">General Service Form</a></li>
+                  <!-- <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li> -->
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -337,9 +337,9 @@
                   Report page
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownReport">
-                  <li><a class="dropdown-item" href="report.html">Installation report</a></li>
+                  <li><a class="dropdown-item" href="installationreport.html">Installation report</a></li>
                   <li><a class="dropdown-item" href="report2.html">General Service report</a></li>
-                  <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information report</a></li>
+                  <!-- <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information report</a></li> -->
                 </ul>
               </li>
             </ul>
@@ -496,9 +496,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// Function to get the value of a specific cookie by name
+function getCookie(name) {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
+// Retrieve the token from the cookie named "token"
+let token = getCookie("token");
+
+// Append the token to the headers
+
 function fetchData(reportNo) {
     const myHeaders = new Headers();
-    myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQ1NjU0NDIsImlhdCI6MTcyNDQ3OTA0MiwidXNlciI6eyJpZCI6MiwiY3JlYXRlZF9hdCI6IjIwMjQtMDgtMDhUMTE6MjM6NTAuNzgwNjUyIiwidXBkYXRlZF9hdCI6IjIwMjQtMDgtMDlUMDY6MjE6MzkuNTM4OTYxIiwiZmlyc3RuYW1lIjoieXVudXMiLCJsYXN0bmFtZSI6ImZhcm9vIiwiZW1haWwiOiJtb2hhbW1lZHl1bnVzMDA5QGdtYWlsLmNvbSIsImlzX2FkbWluIjpmYWxzZSwiaXNfYWN0aXZhdGVkIjp0cnVlfX0.LvLu9DwELFCpHCKJsy-cOBXPFdKeVn_txkurFFyS1ZQ");
+    myHeaders.append("Authorization", token);
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
