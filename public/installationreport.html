@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> <title>Report Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="style.css" rel="stylesheet">
+  <style>
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Table Container */
+.table-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Header Table */
+.header-table {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+}
+
+/* Card Styling */
+.card {
+    border: 1px solid black;
+}
+
+.card-header {
+    background-color: #333;
+    color: white;
+}
+
+/* Form Control */
+.form-control.border-black {
+    border: 1px solid black;
+}
+
+/* Status List */
+.status-list li {
+    list-style: none;
+    margin: 0.5rem 0;
+}
+
+/* Button Container */
+.container-btn {
+    margin-top: 1rem;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f7f7f7;
+    background-image: linear-gradient(to right, #1E90FF, #f7f7f7);
+}
+
+/* Logo */
+.logo img {
+    height: 50px;
+}
+
+/* Navigation Icons */
+.nav-icons img {
+    height: 50px;
+    margin-left: 15px;
+}
+
+/* Input Field */
+input {
+    border: 1px solid red; /* Light black border */
+    border-radius: 4px; /* Optional: for rounded corners */
+    padding: 5px; /* Optional: to add some padding inside the input */
+}
+
+/* Responsive Design for Small Screens */
+@media screen and (max-width: 600px) {
+    .navbar {
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .nav-icons img {
+        margin-left: 8px;
+        height: 30px;
+    }
+
+    .table {
+        width: 100%;
+    }
+}
+
+
+.section {
+    margin-bottom: 20px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.label-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    margin-right: 10px;
+    flex: 1;
+}
+
+.empty-box {
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    height: 40px;
+    width: 100px;
+    border-radius: 4px;
+}
+  </style>
+  
+  
+  
+</head>
+<body>
+<!-- Include Bootstrap CSS and JS if not already included -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="header-left mb-3 mb-md-0 text-center text-md-left">
+    <img src="comapny log2.jpg" alt="Logo" class="img-fluid logo-img" style="max-width: 200px;">
+  </div>
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown me-2">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Pages
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
+            <li><a class="dropdown-item" href="index.html">Installation Form</a></li>
+            <li><a class="dropdown-item" href="generalService.html">General Service Form</a></li>
+            <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownReport" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Report page
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownReport">
+            <li><a class="dropdown-item" href="report.html">Installation report</a></li>
+            <li><a class="dropdown-item" href="report2.html">General Service report</a></li>
+            <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information report</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="container my-5">
+  <!-- Existing Table -->
+  <table class="table table-bordered table-container">
+    <tbody>
+      <tr>
+        <td class="text-center" id="repNo">Report Number</td>
+        <td class="text-center"><u>INSTALLATION REPORT</u></td>
+        <td class="text-center">
+          <p id="reportDate">Report Date</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- New Table 1 -->
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>
+          <div class="form-col">
+            <div class="form-group">
+              <div class="form-group-content">
+                <label for="customerDetails" class="form-label">Customer Details:</label>
+                <p id="customerDetails"></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-group-content">
+                <label for="project" class="form-label">Project:</label>
+                <p id="project"></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-group-content">
+                <label for="poNoDate" class="form-label">P.O No. & Date:</label>
+                <p id="poNoDate"></p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-group-content">
+              <label for="poNoDate" class="form-label">Invoice No & Date :</label>
+              <p id="invoice"></p>
+            </div>
+          </div>
+        </div>
+        </td>
+        <td>
+          <div class="form-col">
+            <div class="form-group row">
+              <label for="vehicleModel" class="col-sm-6 col-form-label form-label">Vehicle Model:</label>
+              <div class="col-sm-6">
+                <p id="vehicleModel"></p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="vehicleSlNo" class="col-sm-6 col-form-label form-label">Vehicle SL No:</label>
+              <div class="col-sm-6">
+                <p id="vehicleSlNo"></p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="equipmentType" class="col-sm-6 col-form-label form-label">Type Of Equipment:</label>
+              <div class="col-sm-6">
+                <p id="equipmentType"></p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="installationHMR" class="col-sm-6 col-form-label form-label">Installation HMR:</label>
+              <div class="col-sm-6">
+                <p id="installationHMR"></p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="failureHMR" class="col-sm-6 col-form-label form-label">Failure HMR:</label>
+              <div class="col-sm-6">
+                <p id="failureHMR"></p>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</main>
+
+<div class="section">
+  <h2>1. Welding of MS Parts</h2>
+  <div class="content">
+      <div class="label-box">
+          <label>DCP Cylinder Mounting Bracket - 50/20</label>
+      </div>
+      <div class="empty-box" id="part1"></div>
+  </div>
+  <div class="content">
+      <div class="label-box">
+          <label>Distributor Pad</label>
+      </div>
+      <div class="empty-box" id="part2"></div>
+  </div>
+  <div class="content">
+      <div class="label-box">
+          <label>Nozzle Bracket</label>
+      </div>
+      <div class="empty-box" id="part3"></div>
+  </div>
+  <div class="content">
+      <div class="label-box">
+          <label>Automatic Actuator Bracket Pad</label>
+      </div>
+      <div class="empty-box" id="part4"></div>
+  </div>
+  <div class="content">
+      <div class="label-box">
+          <label>Manual Actuator Bracket Pad</label>
+      </div>
+      <div class="empty-box" id="part5"></div>
+  </div>
+  <div class="content">
+      <div class="label-box">
+          <label>Control Unit Pad</label>
+      </div>
+      <div class="empty-box" id="part6"></div>
+  </div>
+  <div class="content">
+      <div class="label-box">
+          <label>Sensor Wire Routing Bosses 8MM</label>
+      </div>
+      <div class="empty-box" id="part7"></div>
+  </div>
+  <div class="content">
+      <div class="label-box">
+          <label>Fitment of DCP Cylinder - 50/25</label>
+      </div>
+      <div class="empty-box" id="part8"></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>2. Fitment of all Nozzles</h2>
+  <div class="content">
+      <div class="label-box">
+          <label>Fitment of Nozzles along with protective caps</label>
+      </div>
+      <div class="empty-box" id="nozzle1"></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>3. Fitment of Nitrogen Cartridge</h2>
+  <div class="content">
+      <div class="label-box">
+          <label>Fitment of Nitrogen Cartridge along with protective caps</label>
+      </div>
+      <div class="empty-box" id="nitrogen1"></div>
+  </div>
+  <div class="content">
+      <div class="label-box">
+          <label>Nitrogen Cartridge inside the cabin</label>
+      </div>
+      <div class="empty-box" id="nitrogen2"></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>4. Fitment of all Hoses</h2>
+  <div class="content">
+      <div class="label-box">
+          <label>3/4"R2, 1/2"R2, 1/4"R2 Hose</label>
+      </div>
+      <div class="empty-box" id="hose1"></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>5. Electrical Connections</h2>
+  <div class="content">
+      <div class="label-box">
+          <label>Sensor Wire Routing</label>
+      </div>
+      <div class="empty-box" id="electrical1"></div>
+  </div>
+  <div class="content">
+      <div class="label-box">
+          <label>Control Unit Connections including Sensor</label>
+      </div>
+      <div class="empty-box" id="electrical2"></div>
+  </div>
+  <div class="content">
+      <div class="label-box">
+          <label>Wire, SP Adaptor and Battery Connections</label>
+      </div>
+      <div class="empty-box" id="electrical3"></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>6. Control Unit Start</h2>
+  <div class="content">
+      <div class="label-box">
+          <label>Glow of Power OK LED</label>
+      </div>
+      <div class="empty-box" id="control1"></div>
+  </div>
+</div>
+
+<!-- Print Button and Back Button -->
+<div class="button-container justify-content-center">
+  <button class="btn btn-secondary" id="printButton" style="margin-left: 500px;">Print</button>
+  <!-- <button class="btn btn-info" id="formButton">Back to Form</button> -->
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-dark text-white py-4">
+  <div class="container text-center">
+    <p>Singapura Garden No.35 Neelasri Nilaya Lakshmipura Main Road, Jalahalli West,</p>
+    <p>Bengaluru Urban Karnataka 560015</p>
+    <p>Email: eande.universal@gmail.com, surajsk053@gmail.com Mob:+91 9640127499 8494900615</p>
+  </div>
+</footer>
+
+<!-- Report Number Modal -->
+<div class="modal fade" id="reportNoModal" tabindex="-1" aria-labelledby="reportNoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reportNoModalLabel">Enter Report Number</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="reportNoInput" class="form-control" placeholder="Enter report number">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="reportNoSubmit">Submit</button>
+        <div id="apiResponse"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
+<!-- Custom JS -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Show the modal on page load
+    const reportNoModal = new bootstrap.Modal(document.getElementById('reportNoModal'), {
+      backdrop: 'static',
+      keyboard: false
+    });
+    reportNoModal.show();
+
+    // Add event listener for the Submit button
+    document.getElementById('reportNoSubmit').addEventListener('click', function () {
+      const reportNo = document.getElementById('reportNoInput').value;
+      if (reportNo) {
+        // Fetch data based on the report number
+        fetchData(reportNo);
+      }
+    });
+  });
+
+  function fetchData(reportNo) {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQ1NjU0NDIsImlhdCI6MTcyNDQ3OTA0MiwidXNlciI6eyJpZCI6MiwiY3JlYXRlZF9hdCI6IjIwMjQtMDgtMDhUMTE6MjM6NTAuNzgwNjUyIiwidXBkYXRlZF9hdCI6IjIwMjQtMDgtMDlUMDY6MjE6MzkuNTM4OTYxIiwiZmlyc3RuYW1lIjoieXVudXMiLCJsYXN0bmFtZSI6ImZhcm9vIiwiZW1haWwiOiJtb2hhbW1lZHl1bnVzMDA5QGdtYWlsLmNvbSIsImlzX2FkbWluIjpmYWxzZSwiaXNfYWN0aXZhdGVkIjp0cnVlfX0.LvLu9DwELFCpHCKJsy-cOBXPFdKeVn_txkurFFyS1ZQ");
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      "field2": reportNo
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    // First API call to get profile IDs
+    fetch("https://api.itstrending.in:5000/api/v1/profiles/search_multiple", requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(result => {
+        if (result && result.data && result.data.profile) {
+          const profileIds = result.data.profile.map(profile => profile.profile_id);
+          if (profileIds.length > 0) {
+            const profileId = profileIds[0]; // Use the first profile_id for the second API call
+
+            const detailsRequestOptions = {
+              method: "POST",
+              headers: myHeaders,
+              body: JSON.stringify({
+                "profile_id": profileId,
+                "email": "harshithgowda18801@gmail.com" // Adjust as needed
+              }),
+              redirect: "follow"
+            };
+
+            // Second API call to get profile details
+            fetch("https://35.233.133.10:5000/api/v1/profiles/get_profile_details", detailsRequestOptions)
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+              })
+              .then(detailsResult => {
+                if (detailsResult && detailsResult.data && detailsResult.data.profile) {
+                  const profileDetails = detailsResult.data.profile;
+
+                  // Update HTML elements with specific profile details
+                  document.getElementById('customerDetails').textContent = decodeURIComponent(profileDetails.field1) || 'N/A';
+                                document.getElementById('project').textContent = decodeURIComponent(profileDetails.field3) || 'N/A';
+                                document.getElementById('poNoDate').textContent = decodeURIComponent(profileDetails.field4) || 'N/A';
+                                document.getElementById('vehicleModel').textContent = decodeURIComponent(profileDetails.field5) || 'N/A';
+                                document.getElementById('vehicleSlNo').textContent = decodeURIComponent(profileDetails.field6) || 'N/A';
+                                document.getElementById('equipmentType').textContent = decodeURIComponent(profileDetails.field7) || 'N/A';
+                                document.getElementById('installationHMR').textContent = decodeURIComponent(profileDetails.field10) || 'N/A';
+                                document.getElementById('failureHMR').textContent = decodeURIComponent(profileDetails.field9) || 'N/A';
+                                document.getElementById('repNo').textContent = decodeURIComponent(profileDetails.field2) || 'N/A';
+                                document.getElementById('invoice').textContent = decodeURIComponent(profileDetails.field9) || 'N/A';
+
+                                document.getElementById('reportDate').textContent = decodeURIComponent(profileDetails.field29) || 'N/A';
+                                document.getElementById('part1').textContent = decodeURIComponent(profileDetails.field27) || 'N/A';
+document.getElementById('part2').textContent = decodeURIComponent(profileDetails.field13) || 'N/A';
+document.getElementById('part3').textContent = decodeURIComponent(profileDetails.field14) || 'N/A';
+document.getElementById('part4').textContent = decodeURIComponent(profileDetails.field15) || 'N/A';
+document.getElementById('part5').textContent = decodeURIComponent(profileDetails.field16) || 'N/A';
+document.getElementById('part6').textContent = decodeURIComponent(profileDetails.field17) || 'N/A';
+document.getElementById('part7').textContent = decodeURIComponent(profileDetails.field18) || 'N/A';
+document.getElementById('part8').textContent = decodeURIComponent(profileDetails.field19) || 'N/A';
+
+document.getElementById('nozzle1').textContent = decodeURIComponent(profileDetails.field20) || 'N/A';
+
+document.getElementById('nitrogen1').textContent = decodeURIComponent(profileDetails.field21) || 'N/A';
+document.getElementById('nitrogen2').textContent = decodeURIComponent(profileDetails.field22) || 'N/A';
+
+document.getElementById('hose1').textContent = decodeURIComponent(profileDetails.field23) || 'N/A';
+
+document.getElementById('electrical1').textContent = decodeURIComponent(profileDetails.field24) || 'N/A';
+document.getElementById('electrical2').textContent = decodeURIComponent(profileDetails.field25) || 'N/A';
+document.getElementById('electrical3').textContent = decodeURIComponent(profileDetails.field26) || 'N/A';
+
+document.getElementById('control1').textContent = decodeURIComponent(profileDetails.field28) || 'N/A';
+
+                  // Hide the modal after fetching data
+                  const reportNoModal = bootstrap.Modal.getInstance(document.getElementById('reportNoModal'));
+                  reportNoModal.hide();
+                } else {
+                  console.error('No profile details found');
+                }
+              })
+              .catch(error => console.error('Error fetching profile details:', error));
+          } else {
+            console.error('No profile IDs found');
+          }
+        } else {
+          console.error('No profiles found in response');
+        }
+      })
+      .catch(error => console.error('Error fetching profiles:', error));
+  }
+
+
+
+const express = require('express');
+const app = express();
+
+// CORS middleware
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
+});
+
+// Other middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Define your API endpoints here
+app.get('/api/v1/profiles/get_profile_details', (req, res) => {
+  // Your logic for GET request
+  res.json({ message: 'GET profile details endpoint' });
+});
+
+app.post('/api/v1/profiles/search_multiple', (req, res) => {
+  // Your logic for POST request
+  res.json({ message: 'POST search multiple profiles endpoint' });
+});
+
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+</script>
+
+
+  
+</body>
+</html>
