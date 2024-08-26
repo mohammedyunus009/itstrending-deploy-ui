@@ -621,7 +621,7 @@ let token = getCookie("token");
             };
 
             // Second API call to get profile details
-            fetch("https://35.233.133.10:5000/api/v1/profiles/get_profile_details", detailsRequestOptions)
+            fetch("https://api.itstrending.in:5000/api/v1/profiles/get_profile_details", detailsRequestOptions)
               .then(response => {
                 if (!response.ok) {
                   throw new Error(`HTTP error! status: ${response.status}`);
