@@ -1,0 +1,94 @@
+
+
+/* Contact Section Styling */
+#inner-headline {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pageTitle {
+    font-size: 36px;
+    color: #333;
+}
+
+.elementor-heading-title {
+    font-size: 24px;
+    color: #555;
+}
+
+.contact-form {
+    background-color: #F9F9F9;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #EEE;
+}
+
+.contact-form .form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.contact-form .form-group i {
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 8px);
+    color: #AAA;
+}
+
+.contact-form .form-control {
+    padding-left: 15px;
+    padding-right: 30px;
+    height: 44px;
+    border-radius: 5px;
+    border: 1px solid #CCC;
+}
+
+.contact-form .btn {
+    background-color: #8B4513;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+}
+
+.contact-form .btn:hover {
+    background-color: #A0522D;
+}
+
+/* Scroll to Top Button */
+.scrollup {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    width: 40px;
+    height: 40px;
+    background-color: #8B4513;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    border-radius: 50%;
+    z-index: 9999;
+}
+
+.scrollup:hover {
+    background-color: #A0522D;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .logo-img {
+        max-width: 120px;
+    }
+
+    .navbar-toggler {
+        margin-left: 0;
+    }
+
+    .top_1 ul li {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+}

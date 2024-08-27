@@ -1,0 +1,114 @@
+/*
+Template Name: Travist
+File: Layout CSS
+Author: TemplatesOnWeb
+Author URI: https://www.templateonweb.com/
+Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
+*/
+/*********************list****************/
+#list{
+padding-top:40px;
+padding-bottom:40px; 
+ }
+.list_1l1 ul{
+background:#C9A654;
+text-align:center;
+border-radius:5px;
+padding-top:20px;
+padding-bottom:20px; 
+ }
+.list_1l1 ul li{
+display:inline-block;
+padding-left:40px;
+padding-right:40px;
+color:#fff;
+font-size:22px;
+ }
+.list_1l2{
+margin-top:20px; 
+ }
+.list_1l2r p i{
+margin-right:5px; 
+ }
+.panel-success {
+border: none;
+background: #f4f4f4;
+}
+.query_r .panel-heading {
+background: #d16d10;
+color: #fff;
+padding: 20px 15px;
+}
+.query_r .panel-heading h5 {
+font-size: 18px;
+font-weight: bold;
+}
+.panel-heading span {
+margin-top: -20px;
+font-size: 15px;
+}
+.query_r .panel-body {
+font-size: 18px;
+}
+
+.blog_detail_l2{
+padding:25px 15px 30px 15px;
+box-shadow: 0 0 10px #ddd;
+margin-top:20px; 
+ }
+.blog_detail_l2i1 h4 a{
+font-size:16px; 
+ }
+.blog_detail_l2i1{
+margin-top:30px; 
+border-bottom:1px solid #ddd;
+padding-bottom:30px; 
+ }
+.list_1r2{
+background:#f4f4f4;
+padding:40px 20px;
+margin-top:20px;
+margin-bottom:20px; 
+ }
+.list_1r2 .form-control {
+border-color: #ddd;
+box-shadow: none;
+font-size: 18px;
+height: 50px;
+border-radius: 0;
+margin-top: 15px;
+}
+/*********************list_end****************/
+
+
+@media screen and (max-width : 767px){
+#list{
+text-align:center; 
+ }
+.list_1l2r {
+margin-top:10px; 
+ }
+.query_r .panel-heading h5{
+text-align:left; 
+ }
+.blog_detail_l2i1 .pull-right{
+float:none!important; 
+ }
+.blog_detail_l2i1 img{
+margin-bottom:15px; 
+ }
+.list_1r1 {
+margin-top:15px; 
+ }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+
+ }
+@media (min-width:992px) and (max-width:1200px) {
+
+  }
+@media (min-width:1201px) and (max-width:1255px) {
+
+ }
+ 
