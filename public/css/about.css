@@ -1,0 +1,79 @@
+/*
+Template Name: Travist
+File: Layout CSS
+Author: TemplatesOnWeb
+Author URI: https://www.templateonweb.com/
+Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
+*/
+/*********************about****************/
+#exp{
+padding-top:40px;
+padding-bottom:40px;
+background:#f4f4f4; 
+ }
+.exp_1ri .progress {
+margin-top: 15px;
+height: 7px;
+border-radius: 0;
+}
+.exp_1ri .progress-bar {
+background: #d16d10;
+}
+.exp_1ri {
+margin-top:20px; 
+ }
+.choose_2i2{
+border-radius:0; 
+ }
+ 
+#team_h{
+padding-top:40px;
+padding-bottom:40px;
+background:#f4f4f4;  
+ }
+.team_h1ir ul li a{
+background:#fafafa;
+ }
+.team_h1ir ul li a i{
+color:#d16d10; 
+ }
+.team_h1{
+margin-top:30px; 
+ }
+/*********************about_end****************/
+
+
+@media screen and (max-width : 767px){
+.about_h1l {
+margin-top:10px; 
+ }
+.exp_1r {
+margin-top:10px; 
+text-align:center; 
+ }
+.exp_1ri  h5{
+text-align:left;
+ }
+.team_h1ir {
+margin-bottom:15px; 
+margin-top:15px; 
+text-align:center; 
+ }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+.team_h1il  img{
+min-height:240px; 
+ }
+.team_h1ir  ul li{
+margin-bottom:5px; 
+ }
+ }
+@media (min-width:992px) and (max-width:1200px) {
+.team_h1il  img{
+min-height:240px; 
+ }
+  }
+@media (min-width:1201px) and (max-width:1255px) {
+
+ }
