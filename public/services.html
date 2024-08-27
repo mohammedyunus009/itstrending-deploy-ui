@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Atlantic Forwarders</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/list.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+	<link href="css/about.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
+	<script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="js/codebase/dhtmlxcalendar.css"/>
+	<script src="js/codebase/dhtmlxcalendar.js"></script>
+	<script>
+		var myCalendar;
+		function doOnLoad() {
+			myCalendar = new dhtmlXCalendarObject(["cal_1","cal_2", "cal_3"]);
+		}
+	</script>
+
+  </head>
+<body onLoad="doOnLoad();">
+<section id="header" class="clearfix cd-secondary-nav">
+	<nav class="navbar nav_t">
+		<div class="container">
+		    <div class="navbar-header page-scroll">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><img src="/img/logo.jpg"> Atlantic Forwarders</a>
+			</div>
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  	 <ul class="nav navbar-nav navbar-right">
+				<li><a class="m_tag" href="index.html">Home</a></li>
+				<li><a class="m_tag" href="about.html">About</a></li>
+			    <li class="dropdown">
+					<a class="m_tag active_tab" href="#" data-toggle="dropdown" role="button" aria-expanded="false">Services<span class="caret"></span>     </a>
+					<ul class="dropdown-menu drop_3" role="menu" >
+						
+					</ul>
+				</li>
+			
+				<li><a class="m_tag" href="team.html">Team</a></li>
+				<li><a class="m_tag" href="contact.html">Contact</a></li>
+			</ul>
+			    
+				 
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	
+	</section>
+	<section id="footer">
+		<div class="container">
+		 <div class="row">
+		   <div class="footer_1 clearfix">
+			<div class="col-sm-3">
+			 <div class="footer_1i clearfix">
+			  <h4 class="mgt">CONTACT INFO</h4>
+			  <h5 class="col_1"> <a href="#"><i class="fa fa-phone col_4"></i>
+	   +91 98867 70247</a></h5>
+			  <h5 class="col_1"> <a href="#"><i class="fa fa-phone col_4"></i>
+	   +91 80411 43038</a></h5>
+			  <h5 class="col_1"> <a href="mailto:atlanticshafi@gmail.com"><i class="fa fa-envelope col_4"></i>atlanticshafi@gmail.com </a></h5>
+			 </div>
+			</div>
+			
+			<div class="col-sm-3">
+			   <div class="footer_1i clearfix">
+				   <h4 class="mgt">SOCIAL NETWORK</h4>
+				   <h5 class="col_1"> <a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></h5>
+				   <h5 class="col_1"> <a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></h5>
+				   <h5 class="col_1"> <a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></h5>
+				   <h5 class="col_1"> <a href="#" class="icoGoogle" title="Google"><i class="fa fa-google-plus"></i></a></h5>
+			   </div>
+			</div>
+	   
+			<div class="col-sm-3">
+			   <div class="footer_1i clearfix">
+				   <h4 class="mgt">CONNECT WITH US</h4>
+	   
+			   </div>
+			</div>
+			
+			<div class="col-sm-3">
+			 <div class="footer_1i clearfix">
+			  <h4 class="mgt">PAY SAFELY WITH US</h4>
+			  <p class="col_2">Pay confidently with us, Our secure payment system ensures your transactions are protected with the highest levels of encryption and fraud prevention.</p>
+			 </div>
+			</div>
+		   </div><hr>
+		   <div class="footer_2 text-center clearfix">
+			<div class="col-sm-12">
+			  <p class="mgt"> © 2024 Atlantic Forwarders. All Rights Reserved | Design by HiTech Design and Products</p>
+			</div>
+		   </div>
+		 </div>
+		</div>
+	   </section>
+
+
+
+
+
+<script>
+$(document).ready(function(){
+	/*****Fixed Menu******/
+	var secondaryNav = $('.cd-secondary-nav'),
+	   secondaryNavTopPosition = secondaryNav.offset().top;
+		$(window).on('scroll', function(){
+			if($(window).scrollTop() > secondaryNavTopPosition ) {
+				secondaryNav.addClass('is-fixed');	
+			} else {
+				secondaryNav.removeClass('is-fixed');
+			}
+		});	
+		
+});
+</script>
+
+</body>
+ 
+</html>
