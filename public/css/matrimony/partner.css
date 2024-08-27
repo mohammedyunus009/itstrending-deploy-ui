@@ -35,10 +35,10 @@ body {
   }
   
   .container1 {
-    max-width: 800px;
+    max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     border-radius: 5px;
   }
   
@@ -127,7 +127,7 @@ body {
   /* Responsive adjustments */
   @media (min-width: 768px) {
     /* Adjustments for tablets and larger screens if needed */
-    .container {
+    .container1 {
         max-width: 600px;
         margin: 0 auto;
     }

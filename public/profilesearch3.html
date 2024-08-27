@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -34,8 +33,15 @@
             margin: 0 10px;
             cursor: pointer;
             margin-top: 20px;
-            background-color: skyblue;
+            background-color: white;
+            border: 1px solid skyblue;
             border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .profile-buttons button.active {
+            background-color: skyblue;
+            color: white;
         }
 
         .profile-grid {
@@ -51,142 +57,156 @@
             box-sizing: border-box;
             border: 1px solid #ccc;
             text-align: center;
-            overflow: hidden; /* Ensure content doesn't overflow */
-            max-height: 400px; /* Adjust as needed */
+            overflow: hidden;
+            max-height: 400px;
             cursor: pointer;
             position: relative;
         }
 
-        .profile-card h3 {
-            margin-top: 8px;
-        }
-
-        .profile-card p {
-            margin-bottom: 10px;
-            text-align: left;
-        }
-
         .profile-card img {
-            max-width: 100%; /* Ensure image fits within the card */
+            max-width: 100%;
             height: auto;
             display: block;
             margin: auto;
             border-radius: 5%;
         }
 
-        .profile-card p span {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .profile-card:hover .profile-popup {
-            display: block;
-        }
-
-        .profile-popup {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 100%;
-            width: 200px;
-            padding: 10px;
-            background: #fff;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            .profile-card {
-                width: 100%;
-                margin-bottom: 20px;
-            }
+        .profile-card p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     </style>
 </head>
 <body>
     <div id="headerPlaceholder"></div>
-    
     <div class="container">
         <div class="profile-buttons">
-            <button id="maleButton">Male</button>
-            <button id="femaleButton">Female</button>
+            <button id="maleButton">Male Profiles</button>
+            <button id="femaleButton">Female Profiles</button>
         </div>
-        
-        <div class="profile-grid" id="profileGrid">
-            <div class="profile-card male" onclick="redirectToPreview()">
-                <img id="profileImage" src="img/matrimony/profile-picture-smiling-successful-young-260nw-2040223583.webp" alt="profile-picture">
-                <h3 id="name"></h3>
-                <p><span>Year of Birth :</span> <span id="dob"></span></p>
-                <p><span>Revert :</span> <span id="revert"></span></p>
-                <p><span>Marital status :</span> <span id="maritalStatus"></span></p>
-                <p><span>Native Language :</span> <span id="nativeLanguage"></span></p>
-                <p><span>About me :</span> <span id="aboutMe"></span></p>
-                <p><span>Preferred alliance details :</span> <span id="preferedalliancedetail"></span></p>
-                <div class="profile-popup">
-                    <h4>Popup Preview</h4>
-                    <p><strong>Name:</strong> <span id="popupName"></span></p>
-                    <p><strong>Year of Birth:</strong> <span id="popupDob"></span></p>
-                </div>
-            </div>
-        </div>
+        <div class="profile-grid" id="profileContainer"></div>
     </div>
-
-    <div id="footerPlaceholder"></div>
     <script src="js/include.js"></script>
-
+    <div id="footerPlaceholder"></div>
     <script>
-        document.getElementById('maleButton').addEventListener('click', function() {
-            showProfiles('male');
+        let selectedGender = '';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Attach event listeners to male and female buttons
+            document.getElementById('maleButton').addEventListener('click', () => {
+                setSelectedGender('male');
+            });
+
+            document.getElementById('femaleButton').addEventListener('click', () => {
+                setSelectedGender('female');
+            });
+
+            // Check if gender is already selected from previous state
+            const urlParams = new URLSearchParams(window.location.search);
+            const genderFromUrl = urlParams.get('gender');
+            if (genderFromUrl) {
+                setSelectedGender(genderFromUrl);
+            }
         });
 
-        document.getElementById('femaleButton').addEventListener('click', function() {
-            showProfiles('female');
-        });
-
-        function showProfiles(gender) {
-            const profileCards = document.querySelectorAll('.profile-card');
-            profileCards.forEach(card => card.classList.remove('active'));
-
-            const genderProfileCards = document.querySelectorAll(`.profile-card.${gender}`);
-            genderProfileCards.forEach(card => card.classList.add('active'));
+        function setSelectedGender(gender) {
+            selectedGender = gender;
+            // Update button styling
+            document.querySelectorAll('.profile-buttons button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(`${gender}Button`).classList.add('active');
+            applyFilters();
         }
 
-        function redirectToPreview() {
-            window.location.href = 'preview2.html';
+        function getTokenFromCookies() {
+            const name = 'token=';
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) === 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return '';
         }
 
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
+        const authToken = getTokenFromCookies();
+        console.log("Auth Token:", authToken); // Log the auth token to ensure it's being retrieved
+
+        function applyFilters() {
+            if (!selectedGender) return;
+            const requestData = {
+                gender: selectedGender
+            };
+
+            console.log("Request Data:", requestData);
+
+            fetch('http://35.233.133.10:5001/api/v1/profiles/search_multiple', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => {
+                console.log("Response Status:", response.status);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("API Response Data:", data);
+                sessionStorage.setItem('profileData', JSON.stringify(data.data));
+                displayProfiles(data.data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
         }
 
-        function populateProfileCards() {
-            const profileImage = getCookie('profileImage');
-            const name = decodeURIComponent(getCookie('name'));
-            const dob = getCookie('dob');
-            const revert = getCookie('revert');
-            const maritalStatus = decodeURIComponent(getCookie('maritalStatus'));
-            const nativeLanguage = decodeURIComponent(getCookie('nativeLanguage'));
-            const aboutMe = decodeURIComponent(getCookie('aboutMe'));
-            const preferedalliancedetail = decodeURIComponent(getCookie('preferedalliancedetail'));
-
-            document.getElementById('profileImage').src = profileImage;
-            document.getElementById('name').textContent = name;
-            document.getElementById('dob').textContent = dob;
-            document.getElementById('revert').textContent = revert;
-            document.getElementById('maritalStatus').textContent = maritalStatus;
-            document.getElementById('nativeLanguage').textContent = nativeLanguage;
-            document.getElementById('aboutMe').textContent = aboutMe;
-            document.getElementById('preferedalliancedetail').textContent = preferedalliancedetail;
-
-            document.getElementById('popupName').textContent = name;
-            document.getElementById('popupDob').textContent = dob;
+        function displayProfiles(profiles) {
+            const container = document.getElementById('profileContainer');
+            container.innerHTML = '';
+            profiles.forEach(profile => {
+                const card = document.createElement('div');
+                card.className = 'profile-card';
+                card.dataset.profileId = profile.profile_id;
+                const imagesArray = profile.images ? profile.images.split(',') : [];
+                const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
+                card.innerHTML = `
+                    <img src="${firstImage}" alt="Profile Image">
+                    <h2>${profile.description}</h2>
+                    <p class="gender"><span>Gender:</span> ${profile.gender}</p>
+                    <p class="bio">${profile.bio}</p>
+                `;
+                container.appendChild(card);
+            });
+            document.querySelectorAll('.profile-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const profileId = card.dataset.profileId;
+                    window.location.href = `profile-details.html?profile_id=${profileId}`;
+                });
+            });
         }
 
-        populateProfileCards();
+        const data = JSON.parse(sessionStorage.getItem('profileData'));
+        if (data && data.profile) {
+            if (data.profile.length > 0) {
+                displayProfiles(data.profile);
+            } else {
+                document.getElementById('profileContainer').innerHTML = '<p>No profiles found.</p>';
+            }
+        } else {
+            document.getElementById('profileContainer').innerHTML = '<p>No profiles found.</p>';
+        }
     </script>
 </body>
 </html>

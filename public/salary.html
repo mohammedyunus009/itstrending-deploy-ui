@@ -12,13 +12,21 @@
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PQLTG22ZFC');
+    </script>
 </head>
 <body>
     <!-- <div id="headerPlaceholder"></div> -->
 
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
-        <div class="title">Income</div>
+        <div class="title">Education</div>
     </div>
     
     <div class="user-details">
@@ -29,36 +37,48 @@
         <h2>You are almost done!</h2>
 
         <div class="dropdown-container">
-            <form id="income-form" onsubmit="return submitForm()">
-                <label for="monthly-salary">Monthly salary range</label>
+            <form id="profile-form" onsubmit="submitForm(); return false;">
+                <div class="form-group">
+                    <label for="education_qualification" style="display: block;">Education:</label>
+                    <select id="education_qualification" name="education_qualification" onchange="toggleOtherEducationField()">
+                        <option value="" disabled selected>Select your qualification</option>
+                        <option value="high_school">High School</option>
+                        <option value="plus_two_puc">+2 / PUC</option>
+                        <option value="bachelors">Bachelors</option>
+                        <option value="masters">Masters</option>
+                        <option value="engineer_mca">Engineer / MCA</option>
+                        <option value="mbbs">MBBS</option>
+                        <option value="phd">PhD</option>
+                        <option value="others">Others</option>
+                    </select>
+                    <br><br>
+                    <!-- Additional text field for custom education qualification -->
+                    <div id="other-education-field" style="display: none;">
+                        <label for="other_education" style="display: block;">Please specify your qualification :</label>
+                        <input type="text" id="other_education" name="other_education" placeholder="Specify your qualification">
+                    </div>
+                </div>
+                <br>
+                <label for="monthly-salary" style="display: block;">Monthly salary range :</label>
                 <input type="text" id="monthly-salary" name="monthly-salary" placeholder="Monthly salary range">
                 <br><br>
 
-                <label for="professional">Professional</label>
-                <input type="text" id="professional" name="professional" placeholder="Professional">
-                <br><br>
-
-                <div class="form-group">
-                    <label for="Business">Business Type <span class="Business"></span></label>
-                    <select id="Business" name="Business" required>
-                        <option value="">Select Business Type</option>
-                        <option value="Propriteor">Propriteor</option>
-                        <option value="Partner">Partner</option>
-                        <option value="Family">Family</option>
+               <!-- Profession input -->
+               <div class="form-group">
+                    <label for="professional" style="display: block;">Profession :</label>
+                    <select id="professional" name="professional">
+                        <option value="">Select Profession</option>
+                        <option value="Salaried Employee">Salaried Employee</option>
+                        <option value="Business">Business</option>
+                        <option value="Homemaker">Homemaker</option>
+                        <option value="Working Part time">Working Part time</option>
+                        <option value="Others">Others</option>
+                        <!-- Add more profession options as needed -->
                     </select>
-                </div><br>
+                    <br><br>
+                </div>
 
-                <label for="how-i-know">How I Know Khurshid bhai</label>
-                <select id="how-i-know" required>
-                    <option value="#">How I know</option>
-                    <option value="Friend">Friend</option>
-                    <option value="Family">Family</option>
-                    <option value="Colleague">Colleague</option>
-                    <option value="Other">Other</option>
-                </select>
-                <br><br>
                 <input type="button" value="Next" onclick="submitForm()" id="nextButton">
-
             </form>
         </div>
     </div>
@@ -69,38 +89,73 @@
         function goBack() {
             window.history.back();
         }
-    
+
+        function toggleOtherEducationField() {
+            let educationDropdown = document.getElementById('education_qualification');
+            let otherEducationField = document.getElementById('other-education-field');
+            let selectedValue = educationDropdown.value;
+
+            if (selectedValue === 'others') {
+                otherEducationField.style.display = 'block';
+            } else {
+                otherEducationField.style.display = 'none';
+            }
+        }
+
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            let nameEQ = name + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
         function submitForm() {
-            // Handle form data
+            // Handle form data and store in cookies
             let monthlySalary = document.getElementById('monthly-salary').value;
             let professional = document.getElementById('professional').value;
-            let businessType = document.getElementById('Business').value;
-            let howIKnowDropdown = document.getElementById('how-i-know');
-            let howIKnow = howIKnowDropdown.options[howIKnowDropdown.selectedIndex].value;
+            let educationQualification = document.getElementById('education_qualification').value;
+            let otherEducation = document.getElementById('other_education') ? document.getElementById('other_education').value : '';
 
-            // Validate form fields
-            if (!monthlySalary.trim()) {
-                alert("Please enter your monthly salary range.");
-                return false;
-            }
-            if (!professional.trim()) {
-                alert("Please enter your profession.");
-                return false;
-            }
-            if (howIKnow === "#") {
-                alert("Please select how you know Khurshid bhai.");
-                return false;
-            }
+            // Set cookies
+            setCookie('field25', monthlySalary, 1);
+            setCookie('field8', professional, 1);
+            setCookie('field2', educationQualification, 1);
+            setCookie('field27', otherEducation, 1);
 
-            // Set cookies with the entered values
-            document.cookie = `salaryRange=${encodeURIComponent(monthlySalary)}; path=/`;
-            document.cookie = `profession=${encodeURIComponent(professional)}; path=/`;
-            document.cookie = `businessType=${encodeURIComponent(businessType)}; path=/`;
-            document.cookie = `howIKnow=${encodeURIComponent(howIKnow)}; path=/`;
+            console.log("Form submitted and data stored in cookies:");
+            console.log("Monthly Salary:", monthlySalary);
+            console.log("Profession:", professional);
+            console.log("Education Qualification:", educationQualification);
+            console.log("Other Education:", otherEducation);
 
-            // Redirect to the next page
+            // Redirect to another page after form submission
             window.location.href = 'partnerRequired.html';
-            return false; // Prevent form submission
+        }
+
+        function checkLogin() {
+            let token = getCookie('token');
+            if (!token) {
+                // alert("User not logged in. Please login.");
+                window.location.href = 'login.html';
+            }
+        }
+
+        window.onload = function() {
+            checkLogin();
         }
     </script>
 </body>
