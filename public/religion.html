@@ -12,6 +12,14 @@
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
 </head>
 <body>
     <!-- <div id="headerPlaceholder"></div> -->
@@ -54,25 +62,26 @@
             </div>
             <br>
             <div class="form-group">
-                <label for="caste">Caste<span class="required"></span></label>
+                <label for="caste">Caste :<span class="required"></span></label>
                 <select id="caste" name="caste" onchange="updateCountryDropdown()">
                     <option value="">Select Caste</option>
-                    <option value="Sunni">Sunni</option>
                     <option value="Syed">Syed</option>
-                    <option value="Pathan">Pathan</option>
+                    <option value="Pathan/Khan">Pathan/Khan</option>
                     <option value="Sheikh">Sheikh</option>
                     <option value="Reverted Muslims">Reverted Muslims</option>
+                    <option value="Maimun sait">Maimun sait</option>
+                    <option value="Baig">Baig</option>
                     <option value="other">Other</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="FOLLOW">FOLLOW <span class="required"></span></label>
+                <label for="FOLLOW">Follow :<span class="required"></span></label>
                 <select id="FOLLOW" name="FOLLOW" required>
                     <option value="">Select FOLLOW</option>
                     <option value="Dargah-Fateha">Dargah Fateha</option>
                     <option value="Tabligh">Tabligh</option>
                     <option value="Jamaat-e-Islam">Jamaat e Islam</option>
-                    <option value="Ahle">Ahle hadees</option>
+                    <option value="Ahle hadees">Ahle hadees</option>
                     <option value="Moderate">Moderate Practising Muslims</option>
                     <option value="Others">Others</option>
                 </select>
@@ -96,8 +105,8 @@
             var follow = document.getElementById('FOLLOW').value;
 
             // Set cookies with the selected values, replacing spaces with underscores
-            if (caste) document.cookie = `caste=${caste.replace(/ /g, '_')}; path=/`;
-            if (follow) document.cookie = `follow=${follow.replace(/ /g, '_')}; path=/`;
+            if (caste) document.cookie = `field1=${caste.replace(/ /g, '_')}; path=/`;
+            if (follow) document.cookie = `field2=${follow.replace(/ /g, '_')}; path=/`;
 
             // Redirect to the next page
             window.location.href = 'verfiy.html';
