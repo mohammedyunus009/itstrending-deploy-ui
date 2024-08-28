@@ -91,4 +91,8 @@
         margin-bottom: 10px;
         font-size: 14px;
     }
+
+    .contact-form {
+        width: 38rem;
+    }
 }

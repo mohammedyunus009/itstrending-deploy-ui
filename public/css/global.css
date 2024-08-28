@@ -120,6 +120,7 @@ border:none!important;
 .mgt{
 margin-top:0!important;
   }
+  
 .mgb{
 margin-bottom:0!important;
   }
@@ -192,17 +193,18 @@ position: fixed;
 left: auto;
 top: 0; 
 width:100%!important;
-background:#fff!important;
+background:#fff;
   }
 
 #header .navbar-brand{
-font-size:38px;
+font-size: 26px;
 height:auto;
 line-height:0;
 padding-top:6px;
 padding-bottom:0;
 font-weight:bold;
 color:#333;
+padding-left: 10px;
  }
 #header .navbar-brand i{
 margin-right:5px;
@@ -210,7 +212,7 @@ margin-right:5px;
 #header{
 padding-top:10px;
 padding-bottom:9px;
-background:#fff;
+background: white;
  }
 #header .m_tag{
 padding-left:20px;
@@ -410,7 +412,8 @@ margin-top:20px;
 /*********************footer****************/
 #footer{
 padding-top:40px;
-padding-bottom:40px; 
+padding-bottom:40px;
+background-color:rgb(124, 202, 233) ; 
  }
 .footer_1i h5 i{
 padding-left:10px;
@@ -429,6 +432,12 @@ background:#C9A654;
 .space_left{
 padding-left:15px; 
 } 
+
+
+
+.navbar-brand {
+  margin-left: 2rem;
+}
 .space_right{
 padding-right:15px; 
 } 
@@ -480,13 +489,19 @@ position:static;
 border:none; 
  }
 #header .m_tag{
-font-size:28px!important;
+font-size:24px!important;
 border-bottom:1px solid #eee;
-padding-top:17px!important;
+padding-top:2px!important;
 padding-bottom:17px!important;
 margin-top:0;
 border-radius:0!important;
 border-right:none;
+ }
+
+ .effect-jazz img{
+  width: 28rem;
+  height: 30rem;
+  margin-left: -2rem;
  }
 .pages ul li{
 margin-bottom:5px; 
