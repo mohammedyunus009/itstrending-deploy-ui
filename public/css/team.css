@@ -60,4 +60,13 @@
   .footer_2 .mgt {
     margin: 0; /* Ensure there's no extra margin */
   }
+
+  @media screen and (max-width : 767px){
+
+    .social-icons {
+      /* margin-left: 11rem; */
+       margin-top: 1rem;
+    }
+    
+  }
  
