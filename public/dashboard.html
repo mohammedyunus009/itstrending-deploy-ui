@@ -410,69 +410,101 @@
         }
     
         // Function to create and display profile cards
-        function displayProfiles(profiles) {
-            if (!profiles || !Array.isArray(profiles)) {
-                console.error('No profiles found.');
-                return;
-            }
-    
-            const container = document.getElementById('profileContainer');
-            container.innerHTML = ''; // Clear any existing content
-            profiles.forEach(profile => {
-                const card = document.createElement('div');
-                card.className = 'profile-card';
-                card.dataset.profileId = profile.profile_id; // Store profile_id in a data attribute
-                // Extract first image URL from the comma-separated string
-                const imagesArray = profile.images ? profile.images.split(',') : [];
-                const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
-                // Create card content
-                card.innerHTML = `
-                    <img src="${firstImage}" alt="Profile Image">
-                    <p class="field5">${decodeURIComponent(profile.field5)}</p>
-                    <p class="field1"><span>Sl. No: </span>${decodeURIComponent(profile.field1)}</p>
-                    <p class="gender"><span>Gender: </span>${decodeURIComponent(profile.gender)}</p>
-                    <p class="field10"><span>Profile Co-ordinator: </span>${decodeURIComponent(profile.field10)}</p>
-                    <p class="field6"><span>Age: </span>${decodeURIComponent(profile.field6)}</p>
-                    <p class="field7"><span>Address: </span>${decodeURIComponent(profile.field7)}</p>
-                    <p class="field2"><span>Education: </span>${decodeURIComponent(profile.field2)}</p>
-                    <div class="btn-container">
-                        <button class="btn view-profile">View Profile</button>
-                        <button class="btn delete-profile">Delete Profile</button>
-                    </div>
-                `;
-                // Add click event listener to the "View Profile" button
-                const viewProfileBtn = card.querySelector('.view-profile');
-                viewProfileBtn.addEventListener('click', () => {
-                    window.location.href = `profile-details2.html?profile_id=${encodeURIComponent(profile.profile_id)}`;
-                });
-                // Append card to container
-                container.appendChild(card);
-            });
-        }
-    
-        function loadAllProfiles() {
-            selectedGender = ''; // Reset the gender filter
-            serialNo = ''; // Reset the serial number filter
-            document.getElementById('serialNoInput').value = ''; // Clear the input field
-            applyFilters();
-        }
-    
-        function logout() {
-            // Show confirmation dialog
-            const confirmation = confirm("Are you sure, do you want to logout?");
-            
+function displayProfiles(profiles) {
+    if (!profiles || !Array.isArray(profiles)) {
+        console.error('No profiles found.');
+        return;
+    }
+
+    const container = document.getElementById('profileContainer');
+    container.innerHTML = ''; // Clear any existing content
+    profiles.forEach(profile => {
+        const card = document.createElement('div');
+        card.className = 'profile-card';
+        card.dataset.profileId = profile.profile_id; // Store profile_id in a data attribute
+
+        // Extract first image URL from the comma-separated string
+        const imagesArray = profile.images ? profile.images.split(',') : [];
+        const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
+
+        // Create card content
+        card.innerHTML = `
+            <img src="${firstImage}" alt="Profile Image">
+            <p class="field5">${decodeURIComponent(profile.field5)}</p>
+            <p class="field1"><span>Sl. No: </span>${decodeURIComponent(profile.field1)}</p>
+            <p class="gender"><span>Gender: </span>${decodeURIComponent(profile.gender)}</p>
+            <p class="field10"><span>Profile Co-ordinator: </span>${decodeURIComponent(profile.field10)}</p>
+            <p class="field6"><span>Age: </span>${decodeURIComponent(profile.field6)}</p>
+            <p class="field7"><span>Address: </span>${decodeURIComponent(profile.field7)}</p>
+            <p class="field2"><span>Education: </span>${decodeURIComponent(profile.field2)}</p>
+            <div class="btn-container">
+                <button class="btn view-profile">View Profile</button>
+                <button class="btn delete-profile">Delete Profile</button>
+            </div>
+        `;
+
+        // Add click event listener to the "View Profile" button
+        const viewProfileBtn = card.querySelector('.view-profile');
+        viewProfileBtn.addEventListener('click', () => {
+            window.location.href = `profile-details2.html?profile_id=${encodeURIComponent(profile.profile_id)}`;
+        });
+
+        // Add click event listener to the "Delete Profile" button
+        const deleteProfileBtn = card.querySelector('.delete-profile');
+        deleteProfileBtn.addEventListener('click', () => {
+            // Show confirmation dialog before deleting
+            const confirmation = confirm("Are you sure you want to delete this profile?");
             if (confirmation) {
-                // Perform logout logic if needed, such as clearing cookies or local storage
-                // For example:
-                document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Example for clearing a cookie
-    
-                // Redirect to login page
-                window.location.href = 'admin-login.html';
+                deleteProfile(profile.profile_id, card);
             } else {
-                // If the user clicks "Cancel", do nothing and stay on the current page
-                console.log('Logout canceled');
+                console.log('Delete operation canceled');
             }
-        }
+        });
+
+        // Append card to container
+        container.appendChild(card);
+    });
+}
+
+// Function to delete a profile
+function deleteProfile(profileId, cardElement) {
+    const token = getCookie('token'); // Get the token from cookies
+    if (!token) {
+        console.error('No token found in cookies.');
+        return;
+    }
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", token); // Use the token from cookies
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({ "profile_id": profileId });
+
+    const requestOptions = {
+        method: "DELETE",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    fetch("https://api.itstrending.in:5000/api/v1/profiles", requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(err => { throw new Error(err) });
+            }
+            return response.text();
+        })
+        .then(result => {
+            console.log('Profile deleted:', result);
+            // Remove the profile card from the UI
+            cardElement.remove();
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+            alert(`Error: ${error.message}`); // Alert the user about the error
+        });
+}
+
     </script>
 </body>
 </html>

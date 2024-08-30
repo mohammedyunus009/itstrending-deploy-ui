@@ -28,7 +28,7 @@ font-family: "Cormorant Garamond", serif;
  }
 h1,h2,h3,h4,h5{
 font-weight:bold; 
-color: #c7309f;
+color: white;
  }
 h6{
 font-weight:bold;
@@ -522,7 +522,7 @@ font-size:14px;
  }
 
 .shadow_box{
-box-shadow: 0px 0px 6.1px 3.9px rgb(28 31 86 / 6%);
+box-shadow: 2px 2px 18.1px 2.9px #dee2e6;
  }
 .carousel-indicators [data-bs-target] {
  background-color:#5c0951; 

@@ -56,6 +56,7 @@
       background-color: #f9f9f9;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       margin-right: 20px;
+      margin-top: 17px;
     }
     .submit-button-wrapper {
       text-align: center;
@@ -92,6 +93,54 @@
     .logo-img {
         max-width: 120px; /* Adjust size for mobile view */
     }
+}
+/* General container styling */
+.filter-container1 {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f9f9f9; /* Light background for the filter section */
+    border: 1px solid #ddd; /* Light border for separation */
+    border-radius: 5px; /* Rounded corners */
+    width: 100%;
+    margin-left: -7px;
+}
+
+/* Input field styling */
+.filter-container1 input[type="text"] {
+    width: calc(100% - 185px); /* Full width minus button width */
+    padding: 8px;
+    font-size: 16px;
+    border: 0px solid #ccc; /* Light border */
+    border-radius: 4px; /* Slightly rounded corners */
+    margin-right: 10px; /* Space between input and button */
+}
+
+/* Button styling */
+.filter-container1 button {
+    padding: 8px 15px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff; /* Bootstrap primary color or any color of your choice */
+    border: none;
+    border-radius: 4px; /* Slightly rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.filter-container1 button:hover {
+    background-color: #0056b3; /* Darker color for hover effect */
+}
+
+.filter-container1 button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 0px rgba(38, 143, 255, 0.5); /* Custom focus outline */
+}
+
+/* Error message styling */
+#error-message {
+    margin-top: 10px;
+    font-size: 16px;
+    color: red; /* Red color for error messages */
 }
 </style>
 
@@ -146,6 +195,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
             <a class="dropdown-item" href="register-process.html">Create Profile</a>
+<a class="dropdown-item" href="modifyprofile.html">Modify Profile</a>
             <a class="dropdown-item" href="plans.html">Plans</a>
           </div>
         </li>
@@ -158,15 +208,16 @@
         
           <!-- Dropdown for Event -->
           <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Event
-          </a>
+            <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Resources
+            </a>
           <ul class="dropdown-menu" aria-labelledby="eventDropdown">
-            <li><a class="dropdown-item" href="#">Matrimonial</a></li>
-            <li><a class="dropdown-item" href="#">Meeting</a></li>
-            <li><a class="dropdown-item" href="#">KPN</a></li>
-            <li><a class="dropdown-item" href="health.html">Health & Wellness</a></li>
-            <li><a class="dropdown-item" href="#">Marita Consulting</a></li>
+            <li><a class="dropdown-item" href="khajoor-pe-nikah.html">Khajoor pe Nikah(KPN)</a></li>
+            <li><a class="dropdown-item" href="islamic-matrimonial-tips.html">Marriage Tips</a></li>
+            <li><a class="dropdown-item" href="HealthWellness.html">Health & Wellness Advice</a></li>
+            <li><a class="dropdown-item" href="islamic-relationship-advice.html">Relationship Advice/Consultant</a></li>
+            <li><a class="dropdown-item" href="wedding-planning.html">Islamic wedding Planning</a></li>
+							<li><a class="dropdown-item" href="faq.html">FAQ's</a></li>
           </ul>
           </li>
         
@@ -180,13 +231,14 @@
             <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
             <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food Directory</a></li>
             <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+<li><a class="dropdown-item" href="bloodbank.html">Blood bank Directory</a></li>
             <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
-            <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment Business Support</a></li>
+            <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment/Business Support</a></li>
           </ul>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
           <a class="nav-link" href="#">Media</a>
-          </li>
+          </li> -->
           <li class="nav-item">
           <a class="nav-link" href="contact.html">Contact</a>
           </li>
@@ -203,7 +255,15 @@
   <div class="back-button" onclick="goBack()"> < </div>
   <div class="title">Filter Page</div>
 </div>
-
+<div id="content">
+  <div class="container">
+      <div class="filter-container1">
+          <input type="text" id="serialNoInput" placeholder="Enter Serial No">
+          <button onclick="filterBySerialNo()">Filter by Serial No</button>
+      </div>
+      <div id="error-message" style="color: red; display: none;"></div> <!-- Error message container -->
+  </div>
+</div>
 <div class="container-wrapper">
   <div class="container mt-4">
     <div class="list-group" id="filterButtons">
@@ -407,6 +467,62 @@
 <script src="js/matrimony/scripts.js"></script>
 
 <script>
+  function getCookie(name) {
+      let value = `; ${document.cookie}`;
+      let parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
+  function filterBySerialNo() {
+      const serialNo = document.getElementById('serialNoInput').value.trim();
+      const token = getCookie('token'); // Get the token from cookies
+      
+      if (!token) {
+          console.error('No token found in cookies.');
+          return;
+      }
+
+      const bodyData = {
+          field1: serialNo // Add serial number filter if provided
+      };
+
+      fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token // Use the token from cookies
+          },
+          body: JSON.stringify(bodyData)
+      })
+      .then(response => {
+          if (!response.ok) {
+              return response.json().then(err => { throw err });
+          }
+          return response.json();
+      })
+      .then(data => {
+          const errorMessage = document.getElementById('error-message');
+          
+          // Check if profiles exist and are an array
+          if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
+              // Display error message if no profiles are found
+              errorMessage.textContent = 'The following Sl. No. does not contain any profile, Please enter a valid Sl. No.';
+              errorMessage.style.display = 'block';
+          } else {
+              // Hide error message and redirect to profilesearch.html with serial number
+              errorMessage.style.display = 'none';
+              window.location.href = `profileSearch.html?serial_no=${encodeURIComponent(serialNo)}`;
+          }
+      })
+      .catch((error) => {
+          console.error('Error:', error.message);
+          alert(`Error: ${error.message}`); // Alert the user about the error
+      });
+  }
+</script>
+
+
+<script>
   document.addEventListener('DOMContentLoaded', () => {
     // Load saved filters and counts on page load
     loadSavedFilters();
@@ -542,7 +658,16 @@
 
     // Attach change event listeners to checkboxes
     filterSection.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-      checkbox.addEventListener('change', () => {
+      checkbox.addEventListener('change', (event) => {
+        if (filter === 'Gender') {
+          // Uncheck all other checkboxes in the Gender filter group
+          const checkboxes = filterSection.querySelectorAll('input[type="checkbox"]');
+          checkboxes.forEach(cb => {
+            if (cb !== event.target) {
+              cb.checked = false;
+            }
+          });
+        }
         updateFilterCount(filter);
       });
     });
