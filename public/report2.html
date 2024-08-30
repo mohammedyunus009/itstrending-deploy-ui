@@ -309,43 +309,126 @@
 
   }
 }
+.navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #f7f7f7;
+        background-image: linear-gradient(to right, #1E90FF, #f7f7f7);    }
+
+    .logo img {
+        height: 80px;
+    }
+
+    .nav-icons img {
+        height: 50px;
+        margin-left: 15px;
+    }
+
+    input {
+        border: 1px solid red;
+        /* Light black border */
+        border-radius: 4px;
+        /* Optional: for rounded corners */
+        padding: 5px;
+        /* Optional: to add some padding inside the input */
+    }
+
+    @media screen and (max-width: 600px) {
+        .navbar {
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-icons img {
+            margin-left: 8px;
+            height: 30px;
+        }
+    }
+
+    /* headr */
+    @media (max-width: 600px) {
+        .table {
+            width: 100%;
+        }
+    }
+
+    #form {
+  text-align: center; /* Center text horizontally */
+  vertical-align: middle; /* Center text vertically */
+  width: 100%; /* Ensure the cell takes up the full width */
+  padding: 10px; /* Optional padding */
+}
+
+.table {
+  width: 100%; /* Ensure the table takes up the full width */
+  table-layout: fixed; /* Ensures table cells expand evenly */
+}
+
+.small-input {
+    width: 100px; /* Adjust the width as needed */
+    padding: 5px; /* Adjust padding for better appearance */
+    font-size: 12px; /* Adjust font size if needed */
+  }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="header-left mb-3 mb-md-0 text-center text-md-left">
-          <img src="comapny log2.jpg" alt="Logo" class="img-fluid logo-img" style="max-width: 200px;">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="img/comapny log2.jpg" alt="Left Logo">
         </div>
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item dropdown me-2">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Pages
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
-                  <li><a class="dropdown-item" href="installationform1.html">Installation Form</a></li>
-                  <li><a class="dropdown-item" href="GeneralServiceForm1.html">General Service Form</a></li>
-                  <!-- <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li> -->
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownReport" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Report page
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownReport">
-                  <li><a class="dropdown-item" href="installationreport.html">Installation report</a></li>
-                  <li><a class="dropdown-item" href="report2.html">General Service report</a></li>
-                  <!-- <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information report</a></li> -->
-                </ul>
-              </li>
-            </ul>
-          </div>
+        <div class="nav-icons">
+            <img src="img/mms.jpg" alt="Logo 1">
+            <img src="img/EGAC.png" alt="Logo 2">
+            <img src="img/IAF.png" alt="Logo 3">
+            <img src="img/NABCB.png" alt="Logo 4">
         </div>
-      </nav>
+        </nav>
+        
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <div class="container-fluid">
+              <!-- Left section: Toggler button for mobile view -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <!-- Center section: Logo -->
+              <div class="header-left mb-3 mb-md-0">
+                <!-- <img src="comapny log2.jpg" alt="Logo" class="img-fluid logo-img" style="max-width: 200px;"> -->
+              </div>
+          
+              <!-- Right section: Navbar links -->
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item dropdown me-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Pages
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
+                      <li><a class="dropdown-item" href="installationform1.html">Installation Form</a></li>
+                      <li><a class="dropdown-item" href="GeneralServiceForm1.html">General Service Form</a></li>
+                      <!-- <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li> -->
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownReport" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Report Page
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownReport">
+                      <li><a class="dropdown-item" href="installationreport.html">Installation Report</a></li>
+                      <li><a class="dropdown-item" href="report2.html">General Service Report</a></li>
+                      <!-- <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information Report</a></li> -->
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
     <section class="full-width-main">
         <div class="table-responsive">
             <table class="table table-bordered">
@@ -514,7 +597,7 @@ function fetchData(reportNo) {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-        "field2": reportNo
+        "field33": reportNo
     });
 
     const requestOptions = {

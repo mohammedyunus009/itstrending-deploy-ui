@@ -25,7 +25,7 @@
         background-image: linear-gradient(to right, #1E90FF, #f7f7f7);    }
 
     .logo img {
-        height: 50px;
+        height: 80px;
     }
 
     .nav-icons img {
@@ -49,7 +49,7 @@
         }
 
         .logo img {
-            height: 30px;
+            height: 50px;
         }
 
         .nav-icons img {
@@ -64,6 +64,25 @@
             width: 100%;
         }
     }
+
+    #form {
+  text-align: center; /* Center text horizontally */
+  vertical-align: middle; /* Center text vertically */
+  width: 100%; /* Ensure the cell takes up the full width */
+  padding: 10px; /* Optional padding */
+}
+
+.table {
+  width: 100%; /* Ensure the table takes up the full width */
+  table-layout: fixed; /* Ensures table cells expand evenly */
+}
+
+.small-input {
+    width: 100px; /* Adjust the width as needed */
+    padding: 5px; /* Adjust padding for better appearance */
+    font-size: 12px; /* Adjust font size if needed */
+  }
+
 </style>
 <body>
     <nav class="navbar">
@@ -122,8 +141,10 @@
         <table class="table table-bordered table-container">
             <tbody>
                 <tr>
-                    <td class="text-center" id="repNo">  Looding..</td>
-                    <td class="text-center"><u>INSTALLATION FORM</u></td>
+                    <td class="text-center">
+                        <input type="text" id="repNoInput" placeholder="Enter Serial no" class="small-input" />
+                      </td>
+                                          <td class="text-center" id="form"><u>INSTALLATION FORM</u></td>
                 </tr>
             </tbody>
         </table>
@@ -230,18 +251,15 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 </script>
 <script>
-   document.addEventListener("DOMContentLoaded", function () {
-    var min = 600;
-    var max = 700;
-    var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+ document.addEventListener("DOMContentLoaded", function () {
+  var repNoInput = document.getElementById("repNoInput");
 
-    // Display the random number in the element with id "repNo"
-    var repNoElement = document.getElementById("repNo");
-    repNoElement.textContent = randomNumber;
-
-    // Store the random number in cookies using the structure you mentioned
-    document.cookie = "field2=" + encodeURIComponent(repNoElement.textContent) + "; path=/";
+  // Add an event listener to update the cookie when the value changes
+  repNoInput.addEventListener("input", function () {
+    document.cookie = "field2=" + encodeURIComponent(repNoInput.value) + "; path=/";
+  });
 });
+
 
 ;
     function storeFormData() {
