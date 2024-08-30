@@ -158,6 +158,104 @@
         max-width: 120px; /* Adjust size for mobile view */
     }
 }
+
+/* General styles for the detail items */
+.detail-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Style for labels */
+.detail-item .label {
+  font-weight: bold;
+  width: 200px; /* Adjust width as needed */
+  margin-right: 10px;
+}
+
+/* Style for the value labels */
+.detail-item label:not(.label) {
+  flex: 1;
+  margin-right: 10px;
+  color: #333;
+}
+
+/* Style for input fields */
+.detail-item input[type="text"] {
+  width: 200px; /* Adjust width as needed */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .detail-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detail-item .label {
+    width: auto;
+    margin-bottom: 5px;
+  }
+
+  .detail-item input[type="text"] {
+    width: 100%;
+  }
+}
+/* General styling for the button */
+#submitBtn {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 10px 20px; /* Add padding */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Align with other elements */
+    font-size: 16px; /* Increase font size */
+    margin: 4px 2px; /* Add margin */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+/* Button hover effect */
+#submitBtn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Center the button for desktop and mobile */
+.button-container {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 20vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+}
+
+/* Media query for mobile view */
+@media (max-width: 600px) {
+    #submitBtn {
+        width: 80%; /* Adjust button width for mobile */
+        font-size: 14px; /* Slightly smaller font size on mobile */
+
+    }
+}
+
+/* Media query for larger screens */
+@media (min-width: 601px) {
+    #submitBtn {
+        width: auto; /* Default width for larger screens */
+    }
+}
+
   </style>
 </head>
 <body>
@@ -249,9 +347,9 @@
 				  <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment Business Support</a></li>
 				</ul>
 			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#">Media</a>
-			  </li>
+			  <!-- <li class="nav-item">
+						<a class="nav-link" href="#">Media</a>
+					</li> -->
 			  <li class="nav-item">
 				<a class="nav-link" href="contact.html">Contact</a>
 			  </li>
@@ -268,6 +366,10 @@
     <div class="title">Profile Details</div>
   </div>
   <div id="profileDetails" class="profile-container"></div>
+  <div class="button-container">
+    <button id="submitBtn">Submit</button>
+</div>
+
 
   <section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
     <div class="container-fluid" style="background-color: #5c0951;">
@@ -394,7 +496,9 @@
       </div>
      </div>
     </div>
+
    </section>
+
   <script>
     // Function to get a cookie by name
     function getCookie(name) {
@@ -430,206 +534,212 @@
     }
     
     function displayProfileDetails(profile) {
-      const detailsContainer = document.getElementById('profileDetails');
-      detailsContainer.innerHTML = '';
-      const images = profile.images.split(',').map(img => img.trim().replace('{', '').replace('}', ''));
-      
-      const slideshowContainer = document.createElement('div');
-      slideshowContainer.className = 'profile-photo-container';
-      
-      const slideshow = document.createElement('div');
-      slideshow.className = 'profile-photo';
-      slideshow.style.backgroundImage = `url('${images[0]}')`;
-      slideshowContainer.appendChild(slideshow);
-      
-      const buttonsContainer = document.createElement('div');
-      buttonsContainer.className = 'slideshow-buttons';
-      const prevButton = document.createElement('button');
-      prevButton.textContent = '◀';
-      prevButton.onclick = () => showSlide(--currentSlide);
-      const nextButton = document.createElement('button');
-      nextButton.textContent = '▶';
-      nextButton.onclick = () => showSlide(++currentSlide);
-      buttonsContainer.appendChild(prevButton);
-      buttonsContainer.appendChild(nextButton);
-      slideshowContainer.appendChild(buttonsContainer);
+    const detailsContainer = document.getElementById('profileDetails');
+    detailsContainer.innerHTML = '';
+    const images = profile.images.split(',').map(img => img.trim().replace('{', '').replace('}', ''));
 
-      detailsContainer.appendChild(slideshowContainer);
-      
-      let currentSlide = 0;
-      function showSlide(index) {
+    const slideshowContainer = document.createElement('div');
+    slideshowContainer.className = 'profile-photo-container';
+    slideshowContainer.id = 'imagesContainer'; // Add an id here
+    
+    const slideshow = document.createElement('div');
+    slideshow.className = 'profile-photo';
+    slideshow.style.backgroundImage = `url('${images[0]}')`;
+    slideshowContainer.appendChild(slideshow);
+    
+    const buttonsContainer = document.createElement('div');
+    buttonsContainer.className = 'slideshow-buttons';
+    const prevButton = document.createElement('button');
+    prevButton.textContent = '◀';
+    prevButton.onclick = () => showSlide(--currentSlide);
+    const nextButton = document.createElement('button');
+    nextButton.textContent = '▶';
+    nextButton.onclick = () => showSlide(++currentSlide);
+    buttonsContainer.appendChild(prevButton);
+    buttonsContainer.appendChild(nextButton);
+    slideshowContainer.appendChild(buttonsContainer);
+
+    detailsContainer.appendChild(slideshowContainer);
+    
+    let currentSlide = 0;
+    function showSlide(index) {
         if (index >= images.length) currentSlide = 0;
         else if (index < 0) currentSlide = images.length - 1;
         else currentSlide = index;
         slideshow.style.backgroundImage = `url('${images[currentSlide]}')`;
-      }
-      
-      showSlide(currentSlide);
+    }
+    
+    showSlide(currentSlide);
+
+
 
       const detailsCard = document.createElement('div');
       detailsCard.className = 'profile-details';
       detailsCard.innerHTML = `
-  <div class="detail-item">
-    <label class="label">Sl. No:</label>
-    <input type="text" value="${profile.field1 ? decodeURIComponent(profile.field1) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Profile Coordinator Name:</label>
-    <input type="text" value="${profile.field10 ? decodeURIComponent(profile.field10) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Profile Status:</label>
-    <input type="text" value="${profile.field11 ? decodeURIComponent(profile.field11) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Reason for On Hold:</label>
-    <input type="text" value="${profile.field13 ? decodeURIComponent(profile.field13) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Name:</label>
-    <input type="text" value="${profile.field5 ? decodeURIComponent(profile.field5) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Gender:</label>
-    <input type="text" value="${profile.gender ? decodeURIComponent(profile.gender) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Age:</label>
-    <input type="text" value="${profile.field6 ? decodeURIComponent(profile.field6) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Height:</label>
-    <input type="text" value="${profile.field14 ? decodeURIComponent(profile.field14) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Family/Subcaste:</label>
-    <input type="text" value="${profile.field8 ? decodeURIComponent(profile.field8) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Follow:</label>
-    <input type="text" value="${profile.field4 ? decodeURIComponent(profile.field4) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Marital Status:</label>
-    <input type="text" value="${profile.field3 ? decodeURIComponent(profile.field3) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Marital Tenure:</label>
-    <input type="text" value="${profile.field15 ? decodeURIComponent(profile.field15) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Children:</label>
-    <input type="text" value="${profile.field16 ? decodeURIComponent(profile.field16) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Valid Divorce Document:</label>
-    <input type="text" value="${profile.images ? 'For Divorce Document Please Refer The Above Photos' : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Education:</label>
-    <input type="text" value="${profile.field2 ? decodeURIComponent(profile.field2) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Profession:</label>
-    <input type="text" value="${profile.field9 ? decodeURIComponent(profile.field9) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Company:</label>
-    <input type="text" value="${profile.field18 ? decodeURIComponent(profile.field18) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Job Location:</label>
-    <input type="text" value="${profile.field19 ? decodeURIComponent(profile.field19) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Home Address:</label>
-    <input type="text" value="${profile.field7 ? decodeURIComponent(profile.field7) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Father's Name:</label>
-    <input type="text" value="${profile.field20 ? decodeURIComponent(profile.field20) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Father's Occupation:</label>
-    <input type="text" value="${profile.field21 ? decodeURIComponent(profile.field21) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Mother's Name:</label>
-    <input type="text" value="${profile.field22 ? decodeURIComponent(profile.field22) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Mother's Occupation:</label>
-    <input type="text" value="${profile.field23 ? decodeURIComponent(profile.field23) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">No of Sisters:</label>
-    <input type="text" value="${profile.field24 ? decodeURIComponent(profile.field24) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Sister's Marital Status:</label>
-    <input type="text" value="${profile.field37 ? decodeURIComponent(profile.field37) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Sister's Occupation:</label>
-    <input type="text" value="${profile.field38 ? decodeURIComponent(profile.field38) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">No of Brothers:</label>
-    <input type="text" value="${profile.field25 ? decodeURIComponent(profile.field25) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Brother's Marital Status:</label>
-    <input type="text" value="${profile.field39 ? decodeURIComponent(profile.field39) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Brother's Occupation:</label>
-    <input type="text" value="${profile.field40 ? decodeURIComponent(profile.field40) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Preferred Family/Subcaste:</label>
-    <input type="text" value="${profile.field26 ? decodeURIComponent(profile.field26) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Preferred Education:</label>
-    <input type="text" value="${profile.field27 ? decodeURIComponent(profile.field27) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Preferred Profession:</label>
-    <input type="text" value="${profile.field28 ? decodeURIComponent(profile.field28) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Preferred Age:</label>
-    <input type="text" value="${profile.field29 ? decodeURIComponent(profile.field29) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Preferred Height:</label>
-    <input type="text" value="${profile.field30 ? decodeURIComponent(profile.field30) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Personal Attributes:</label>
-    <input type="text" value="${profile.field31 ? decodeURIComponent(profile.field31) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Preferred Follow & Practice:</label>
-    <input type="text" value="${profile.field32 ? decodeURIComponent(profile.field32) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Family Type:</label>
-    <input type="text" value="${profile.field33 ? decodeURIComponent(profile.field33) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Preferred Location:</label>
-    <input type="text" value="${profile.field34 ? decodeURIComponent(profile.field34) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Religious Attributes:</label>
-    <input type="text" value="${profile.field35 ? decodeURIComponent(profile.field35) : 'N/A'}" readonly>
-  </div>
-  <div class="detail-item">
-    <label class="label">Partner Working Status to be:</label>
-    <input type="text" value="${profile.field36 ? decodeURIComponent(profile.field36) : 'N/A'}" readonly>
-  </div>
-  <button id="saveBtn">Save Changes</button>
+<div class="detail-item">
+  <label class="label">Sl. No:</label>
+  <input type="text" id="slNoInput" value="${profile.field1 ? decodeURIComponent(profile.field1) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Profile Coordinator Name:</label>
+  <input type="text" id="profileCoordinatorNameInput" value="${profile.field10 ? decodeURIComponent(profile.field10) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Profile Status:</label>
+  <input type="text" id="profileStatusInput" value="${profile.field11 ? decodeURIComponent(profile.field11) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Reason for On Hold:</label>
+  <input type="text" id="reasonForOnHoldInput" value="${profile.field13 ? decodeURIComponent(profile.field13) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Name:</label>
+  <input type="text" id="nameInput" value="${profile.field5 ? decodeURIComponent(profile.field5) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Gender:</label>
+  <input type="text" id="genderInput" value="${profile.gender ? decodeURIComponent(profile.gender) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Age:</label>
+  <input type="text" id="ageInput" value="${profile.field6 ? decodeURIComponent(profile.field6) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Height:</label>
+  <input type="text" id="heightInput" value="${profile.field14 ? decodeURIComponent(profile.field14) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Family/Subcaste:</label>
+  <input type="text" id="familySubcasteInput" value="${profile.field8 ? decodeURIComponent(profile.field8) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Follow:</label>
+  <input type="text" id="followInput" value="${profile.field4 ? decodeURIComponent(profile.field4) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Marital Status:</label>
+  <input type="text" id="maritalStatusInput" value="${profile.field3 ? decodeURIComponent(profile.field3) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Marital Tenure:</label>
+  <input type="text" id="maritalTenureInput" value="${profile.field15 ? decodeURIComponent(profile.field15) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Children:</label>
+  <input type="text" id="childrenInput" value="${profile.field16 ? decodeURIComponent(profile.field16) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Valid Divorce Document:</label>
+  <input type="text" id="validDivorceDocumentInput" value="${profile.images ? 'For Divorce Document Please Refer The Above Photos' : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Education:</label>
+  <input type="text" id="educationInput" value="${profile.field2 ? decodeURIComponent(profile.field2) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Profession:</label>
+  <input type="text" id="professionInput" value="${profile.field9 ? decodeURIComponent(profile.field9) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Company:</label>
+  <input type="text" id="companyInput" value="${profile.field18 ? decodeURIComponent(profile.field18) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Job Location:</label>
+  <input type="text" id="jobLocationInput" value="${profile.field19 ? decodeURIComponent(profile.field19) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Home Address:</label>
+  <input type="text" id="homeAddressInput" value="${profile.field7 ? decodeURIComponent(profile.field7) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Father's Name:</label>
+  <input type="text" id="fathersNameInput" value="${profile.field20 ? decodeURIComponent(profile.field20) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Father's Occupation:</label>
+  <input type="text" id="fathersOccupationInput" value="${profile.field21 ? decodeURIComponent(profile.field21) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Mother's Name:</label>
+  <input type="text" id="mothersNameInput" value="${profile.field22 ? decodeURIComponent(profile.field22) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Mother's Occupation:</label>
+  <input type="text" id="mothersOccupationInput" value="${profile.field23 ? decodeURIComponent(profile.field23) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">No of Sisters:</label>
+  <input type="text" id="noOfSistersInput" value="${profile.field24 ? decodeURIComponent(profile.field24) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Sister's Marital Status:</label>
+  <input type="text" id="sistersMaritalStatusInput" value="${profile.field37 ? decodeURIComponent(profile.field37) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Sister's Occupation:</label>
+  <input type="text" id="sistersOccupationInput" value="${profile.field38 ? decodeURIComponent(profile.field38) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">No of Brothers:</label>
+  <input type="text" id="noOfBrothersInput" value="${profile.field25 ? decodeURIComponent(profile.field25) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Brother's Marital Status:</label>
+  <input type="text" id="brothersMaritalStatusInput" value="${profile.field39 ? decodeURIComponent(profile.field39) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Brother's Occupation:</label>
+  <input type="text" id="brothersOccupationInput" value="${profile.field40 ? decodeURIComponent(profile.field40) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Preferred Family/Subcaste:</label>
+  <input type="text" id="preferredFamilySubcasteInput" value="${profile.field26 ? decodeURIComponent(profile.field26) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Preferred Education:</label>
+  <input type="text" id="preferredEducationInput" value="${profile.field27 ? decodeURIComponent(profile.field27) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Preferred Profession:</label>
+  <input type="text" id="preferredProfessionInput" value="${profile.field28 ? decodeURIComponent(profile.field28) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Preferred Age:</label>
+  <input type="text" id="preferredAgeInput" value="${profile.field29 ? decodeURIComponent(profile.field29) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Preferred Height:</label>
+  <input type="text" id="preferredHeightInput" value="${profile.field30 ? decodeURIComponent(profile.field30) : 'N/A'}">
+</div>
+
+<div class="detail-item">
+  <label class="label">Religious Attributes:</label>
+  <input type="text" id="religiousAttributesInput" value="${profile.field35 ? decodeURIComponent(profile.field35) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Personal Attribute:</label>
+  <input type="text" id="personalAttributeInput" value="${profile.field31 ? decodeURIComponent(profile.field31) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Preferred Follow and Practice:</label>
+  <input type="text" id="preferredFollowPracticeInput" value="${profile.field32 ? decodeURIComponent(profile.field32) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Family Type:</label>
+  <input type="text" id="familyTypeInput" value="${profile.field33 ? decodeURIComponent(profile.field33) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Preferred Location:</label>
+  <input type="text" id="preferredLocationInput" value="${profile.field34 ? decodeURIComponent(profile.field34) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Partner Working Status:</label>
+  <input type="text" id="partnerWorkingStatusInput" value="${profile.field36 ? decodeURIComponent(profile.field36) : 'N/A'}">
+</div>
+
+
+
 `;
 
 
@@ -653,7 +763,156 @@
       document.getElementById('profileDetails').innerHTML = '<p>No profile ID found.</p>';
     }
 
+    function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
+
+const myHeaders = new Headers();
+const token = getCookie('token'); // Replace 'yourCookieName' with the name of your cookie
+
+if (token) {
+    myHeaders.append("Authorization", token);
+} else {
+    console.error("Token not found in cookies.");
+}
+
+myHeaders.append("Content-Type", "application/json");
+
+document.getElementById('submitBtn').addEventListener('click', function() {
+    // Fetching values from input fields
+    const slnoValue = document.getElementById('slNoInput').value;
+    const profileCoordinatorName = document.getElementById('profileCoordinatorNameInput').value;
+    const profileStatus = document.getElementById('profileStatusInput').value;
+    const reasonForOnHold = document.getElementById('reasonForOnHoldInput').value;
+    const name = document.getElementById('nameInput').value;
+    const gender = document.getElementById('genderInput').value;
+    const age = document.getElementById('ageInput').value;
+    const height = document.getElementById('heightInput').value;
+    const familySubcaste = document.getElementById('familySubcasteInput').value;
+    const follow = document.getElementById('followInput').value;
+    const maritalStatus = document.getElementById('maritalStatusInput').value;
+    const maritalTenure = document.getElementById('maritalTenureInput').value;
+    const children = document.getElementById('childrenInput').value;
+    const validDivorceDocument = document.getElementById('validDivorceDocumentInput').value;
+    const education = document.getElementById('educationInput').value;
+    const profession = document.getElementById('professionInput').value;
+    const company = document.getElementById('companyInput').value;
+    const jobLocation = document.getElementById('jobLocationInput').value;
+    const homeAddress = document.getElementById('homeAddressInput').value;
+    const fathersName = document.getElementById('fathersNameInput').value;
+    const fathersOccupation = document.getElementById('fathersOccupationInput').value;
+    const mothersName = document.getElementById('mothersNameInput').value;
+    const mothersOccupation = document.getElementById('mothersOccupationInput').value;
+    const noOfSisters = document.getElementById('noOfSistersInput').value;
+    const sistersMaritalStatus = document.getElementById('sistersMaritalStatusInput').value;
+    const sistersOccupation = document.getElementById('sistersOccupationInput').value;
+    const noOfBrothers = document.getElementById('noOfBrothersInput').value;
+    const brothersMaritalStatus = document.getElementById('brothersMaritalStatusInput').value;
+    const brothersOccupation = document.getElementById('brothersOccupationInput').value;
+    const preferredFamilySubcaste = document.getElementById('preferredFamilySubcasteInput').value;
+    const preferredEducation = document.getElementById('preferredEducationInput').value;
+    const preferredProfession = document.getElementById('preferredProfessionInput').value;
+    const preferredAge = document.getElementById('preferredAgeInput').value;
+    const preferredHeight = document.getElementById('preferredHeightInput').value;
+    const religiousAttributes = document.getElementById('religiousAttributesInput').value;
+const personalAttribute = document.getElementById('personalAttributeInput').value;
+const preferredFollowPractice = document.getElementById('preferredFollowPracticeInput').value;
+const familyType = document.getElementById('familyTypeInput').value;
+const preferredLocation = document.getElementById('preferredLocationInput').value;
+const partnerWorkingStatus = document.getElementById('partnerWorkingStatusInput').value;
+const images = document.getElementById('imagesContainer').value;
+
+const raw = JSON.stringify({
+    "profile_id": profileId, // Using the profile ID
+    "description": "",
+    "gender": gender,
+    "images": images,
+    "bio": "",
+    "field1": slnoValue,
+    "field2": education,
+    "field3": maritalStatus,
+    "field4": follow,
+    "field5": name,
+    "field6": age,
+    "field7": homeAddress,
+    "field8": familySubcaste,
+    "field9": profession,
+    "field10": profileCoordinatorName,
+    "field11": profileStatus,
+    "field12": "",
+    "field13": reasonForOnHold,
+    "field14": height,
+    "field15": maritalTenure,
+    "field16": children,
+    "field17": "",
+    "field18": company,
+    "field19": jobLocation,
+    "field20": fathersName,
+    "field21": fathersOccupation,
+    "field22": mothersName,
+    "field23": mothersOccupation,
+    "field24": noOfSisters,
+    "field25": noOfBrothers,
+    "field26": preferredFamilySubcaste,
+    "field27": preferredEducation,
+    "field28": preferredProfession,
+    "field29": preferredAge,
+    "field30": preferredHeight,
+    "field31": personalAttribute,
+    "field32": preferredFollowPractice,
+    "field33": familyType,
+    "field34": preferredLocation,
+    "field35": religiousAttributes,
+    "field36": partnerWorkingStatus,
+    "field37": sistersMaritalStatus,
+    "field38": sistersOccupation,
+    "field39": brothersMaritalStatus,
+    "field40": brothersOccupation,
+    "field41": "",
+    "field42": "",
+    "field43": "",
+    "field44": "",
+    "field45": "",
+    "field46": "",
+    "field47": "",
+    "field48": "",
+    "field49": "",
+    "field50": ""
+});
+    const requestOptions = {
+        method: "PUT",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    fetch("https://api.itstrending.in:5000/api/v1/profiles", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+
+    console.log(raw); 
+    // To see the JSON object in the console
+    console.log(profileId);
+});
+
+
+function handleSubmit() {
+            // Show the alert message
+            alert('Profile updated successfully');
+            
+            // Reload the page after the user clicks OK
+            location.reload();
+        }
+        
+        window.onload = function() {
+            // Attach the event handler to the submit button
+            const submitButton = document.getElementById('submitBtn');
+            submitButton.addEventListener('click', handleSubmit);
+        }
 
     // Import required modules
 const express = require('express');

@@ -9,7 +9,7 @@ Licence: <a href="https://www.templateonweb.com/license">Website Template Licenc
 /*********************center_h****************/
 .carousel-caption{
 background-color: rgba(0,0,0,.4)!important;
-bottom:70px;
+bottom:25px;
 left:0;
 color:#fff;
 width:40%;
@@ -31,13 +31,13 @@ bottom:20px;
 /*********************about_h****************/
 .social_tag li a{
 	border:1px solid #5c0951;
-	width: 40px;
-	height: 40px;
+	width: 90px;
+	height: 50px;
 	line-height: 40px;
 	color: #5c0951;
 	display: block;
 	text-align: center;
-	border-radius: 50%;
+	border-radius: 7%;
 	font-size: 18px;
 	transition: 0.3s;
  }
