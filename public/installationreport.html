@@ -362,7 +362,7 @@ input {
     </tbody>
   </table>
 </main>
-
+<div class="container">
 <div class="section">
   <h2>1. Welding of MS Parts</h2>
   <div class="content">
@@ -518,6 +518,7 @@ input {
     <p>Email: eande.universal@gmail.com, surajsk053@gmail.com Mob:+91 9640127499 8494900615</p>
   </div>
 </footer>
+</div>
 
 <!-- Report Number Modal -->
 <div class="modal fade" id="reportNoModal" tabindex="-1" aria-labelledby="reportNoModalLabel" aria-hidden="true">
@@ -621,7 +622,7 @@ let token = getCookie("token");
             };
 
             // Second API call to get profile details
-            fetch("https://35.233.133.10:5000/api/v1/profiles/get_profile_details", detailsRequestOptions)
+            fetch("https://api.itstrending.in:5000/api/v1/profiles/get_profile_details", detailsRequestOptions)
               .then(response => {
                 if (!response.ok) {
                   throw new Error(`HTTP error! status: ${response.status}`);
