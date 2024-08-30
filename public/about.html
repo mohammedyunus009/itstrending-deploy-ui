@@ -58,11 +58,80 @@
         max-width: 120px; /* Adjust size for mobile view */
     }
 }
+.bg-light {
+  --bs-bg-opacity: 1;
+  background-color: white !important;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #c7309f;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.info-container h3 {
+  margin-top: 0;
+  color: black; /* Ensures the title text is visible against the background */
+}
+
+.info-container p, .info-container ul {
+  color: white; /* Ensures the text is visible */
+}
+
+@media (max-width: 767.98px) {
+  .info-container {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+.text-center.mb-4.font_60 {
+  color: black;
+}
+/* Apply background color and padding to all team containers */
+.team_h1i {
+    background-color: #c7309f; /* Set background color */
+    padding: 20px; /* Add padding inside the container */
+    margin-bottom: 20px; /* Add space between containers (bottom) */
+}
+
+/* Apply padding to the image container */
+.team_h1i1 {
+    padding: 10px; /* Padding inside the image container */
+}
+
+/* Apply padding to the shadow box */
+.team_h1i2 {
+    padding: 15px; /* Padding inside the shadow box */
+	background-color: #c7309f;
+	box-shadow: 2px 2px 18.1px 2.9px black;
+}
+
+/* Ensure padding on the top and bottom of the whole section */
+.p_3 {
+    padding-top: 30px; /* Padding at the top of the section */
+    padding-bottom: 30px; /* Padding at the bottom of the section */
+}
+
+/* Ensure padding on the sides of the section */
+.container-xl {
+    padding-left: 15px; /* Padding on the left side */
+    padding-right: 15px; /* Padding on the right side */
+}
+
 	</style>
 
 </head>
 <body>
-	<section id="top" class="bg_brown pt-2 pb-2">
+
+<section id="top" class="bg_brown pt-2 pb-2">
 		<div class="container-xl">
 		 <div class="row top_1">
 		  <div class="col-md-6">
@@ -85,8 +154,9 @@
 		  </div>
 		 </div>
 		</div>
-	   </section>
-	   <section id="header">
+</section>
+
+<section id="header">
 		<nav class="navbar navbar-expand-md navbar-light p-0 pt-2 pb-2" id="navbar_sticky">
 			<div class="container-xl">
 				<a class="navbar-brand p-0 me-0" href="index.html">
@@ -110,6 +180,7 @@
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
 								<a class="dropdown-item" href="register-process.html">Create Profile</a>
+<a class="dropdown-item" href="modifyprofile.html">Modify Profile</a>
 								<a class="dropdown-item" href="plans.html">Plans</a>
 							</div>
 						</li>
@@ -121,14 +192,15 @@
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Event
+								Resources
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="eventDropdown">
-								<li><a class="dropdown-item" href="#">Matrimonial</a></li>
-								<li><a class="dropdown-item" href="#">Meeting</a></li>
-								<li><a class="dropdown-item" href="#">KPN</a></li>
-								<li><a class="dropdown-item" href="health.html">Health & Wellness</a></li>
-								<li><a class="dropdown-item" href="#">Marita Consulting</a></li>
+								<li><a class="dropdown-item" href="khajoor-pe-nikah.html">Khajoor pe Nikah(KPN)</a></li>
+								<li><a class="dropdown-item" href="islamic-matrimonial-tips.html">Marriage Tips</a></li>
+								<li><a class="dropdown-item" href="HealthWellness.html">Health & Wellness Advice</a></li>
+								<li><a class="dropdown-item" href="islamic-relationship-advice.html">Relationship Advice/Consultant</a></li>
+								<li><a class="dropdown-item" href="wedding-planning.html">Islamic wedding Planning</a></li>
+							<li><a class="dropdown-item" href="faq.html">FAQ's</a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown">
@@ -140,13 +212,14 @@
 								<li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
 								<li><a class="dropdown-item" href="Ramadanfoodkit.html">Food Directory</a></li>
 								<li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+<li><a class="dropdown-item" href="bloodbank.html">Blood bank Directory</a></li>
 								<li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
-								<li><a class="dropdown-item" href="EmploymentBusiness.html">Employment Business Support</a></li>
+								<li><a class="dropdown-item" href="EmploymentBusiness.html">Employment/Business Support</a></li>
 							</ul>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Media</a>
-						</li>
+						<!-- <li class="nav-item">
+						<a class="nav-link" href="#">Media</a>
+					</li> -->
 						<li class="nav-item">
 							<a class="nav-link" href="contact.html">Contact</a>
 						</li>
@@ -154,7 +227,91 @@
 				</div>
 			</div>
 		</nav>
-	</section>
+</section>
+
+<section id="isc_info" class="p-3 bg-light">
+  <div class="container-xl">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center mb-4 font_60">About Islamic Shaadi Centre</h2>
+      </div>
+    </div>
+    
+    <div class="row">
+      <!-- PRIMARY OBJECTIVES OF ISC -->
+      <div class="col-md-12 mb-4">
+        <div class="info-container">
+          <h3 class="font_40">Primary Objectives of ISC</h3>
+          <ul>
+            <li><strong>Finding a compatible life partner:</strong> Identifying a suitable match based on shared values, faith & compatibility.</li>
+            <li><strong>Upholding Islamic values:</strong> Ensuring the matchmaking process aligns with Islamic principles & teachings.</li>
+            <li><strong>Assisting in the search for a life partner:</strong> Providing guidance & support in finding a suitable life partner.</li>
+            <li><strong>Promoting Halal relationships:</strong> Encouraging relationships that adhere to Islamic guidelines & avoid Haram (forbidden) interactions.</li>
+            <li><strong>Strengthening family ties:</strong> Fostering strong family bonds & connections through the matchmaking process.</li>
+            <li><strong>Counseling & guidance:</strong> Offering advice & support throughout the matchmaking process.</li>
+            <li><strong>Seeking Allah's blessings:</strong> Invoking Allah's guidance & blessings in finding a suitable life partner.</li>
+          </ul>
+          <p>By achieving these objectives, Islamic Shaadi Centre aims to bring individuals together in a way that pleases Allah & leads to a happy, successful marriage.</p>
+        </div>
+      </div>
+
+      <!-- FEATURES & BENEFITS OF ISLAMIC SHAADI CENTRE -->
+      <div class="col-md-12 mb-4">
+        <div class="info-container">
+          <h3 class="font_40">Features & Benefits of Islamic Shaadi Centre</h3>
+          <h4>Features:</h4>
+          <ul>
+            <li><strong>Faith-based matching:</strong> Prioritizes shared faith and values.</li>
+            <li><strong>Data confidentiality:</strong> Maintains discretion and privacy.</li>
+            <li><strong>Data Validation:</strong> Provides data validation by coordinator based on request by client.</li>
+            <li><strong>Character assessment guidance:</strong> Evaluates moral character and personality.</li>
+            <li><strong>Family background check guidance:</strong> Consider family values and reputation.</li>
+            <li><strong>Education & career compatibility:</strong> Matches based on educational and professional goals.</li>
+            <li><strong>Chaperoned meetings:</strong> Ensures modesty and respect during interactions.</li>
+            <li><strong>Guidance from Islamic scholars:</strong> Provides expert advice & counseling.</li>
+          </ul>
+          <h4>Benefits:</h4>
+          <ul>
+            <li><strong>Successful marriages:</strong> High success rate due to careful matching.</li>
+            <li><strong>Strong foundation:</strong> Builds a solid foundation for a lifelong marriage.</li>
+            <li><strong>Halal relationships:</strong> Ensures interactions align with Islamic guidelines.</li>
+            <li><strong>Respectful interactions:</strong> Fosters modesty & respect between partners.</li>
+            <li><strong>Spiritual growth:</strong> Encourages spiritual development and growth.</li>
+            <li><strong>Increased happiness:</strong> Leads to fulfilling & happy marriages.</li>
+            <li><strong>Allah's blessings:</strong> Invokes Allah's guidance & blessings in the matchmaking process.</li>
+            <li><strong>Peace of mind:</strong> Provides reassurance & confidence in the matchmaking process.</li>
+          </ul>
+          <p>By incorporating these features and benefits, Islamic Shaadi Centre offers a unique & effective approach to finding a suitable life partner.</p>
+        </div>
+      </div>
+
+      <!-- ISC DISCLAIMER -->
+      <div class="col-md-12 mb-4">
+        <div class="info-container">
+          <h3 class="font_40">ISC Disclaimer</h3>
+          <ul>
+            <li>ISC Registration/Service charge is non-refundable.</li>
+            <li>ISC work process isn't time bound.</li>
+            <li>ISC work effort assured not result.</li>
+            <li>ISC doesn't encourage dowry practices.</li>
+            <li>ISC not responsible in background verification of profile.</li>
+            <li>ISC not responsible for data accuracy of profiles.</li>
+            <li>ISC will not guarantee successful marriage.</li>
+            <li>ISC not liable for any damages or losses arising from use of our services.</li>
+            <li>ISC reserves the right to reject or remove any profile that doesn't align with Islamic values & principles.</li>
+            <li>ISC not responsible for any interactions that occur outside of our services.</li>
+            <li>ISC provides guidance & counseling; but ultimately the decision to marry rests with individual.</li>
+            <li>ISC complies with Islamic principles & laws; ISC services are intended for Muslims seeking Halal marriage.</li>
+            <li>By using ISC services, you agree to ISC terms & conditions; also acknowledge that you have read & understood this disclaimer.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+
 <!-- <div class="center_main position-relative">
   <section id="center" class="pt-5 pb-5 center_o bg_light">
  <div class="container-xl">
@@ -337,7 +494,7 @@
     <div class="container-xl">
         <div class="row story_1 text-center mb-4">
             <div class="col-md-12">
-                <span class="col_brown icon_dove fs-2"><i class="fa fa-dove"></i></span>
+                <span class="col_brown icon_dove fs-2"><i class="fa fa-dove" style="color: #c7309f;"></i></span>
                 <h1 class="font_50">Team Member</h1>
             </div>
         </div>

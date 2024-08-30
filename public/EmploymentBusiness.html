@@ -74,6 +74,72 @@
     }
 }
   </style>
+  <style>
+    /* General styling for the content */
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+        color: #fdf3f3;
+        margin: 0;
+    }
+
+    .content {
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .content img {
+        display: block;
+        margin: 0 auto 20px;
+        border-radius: 8px;
+    }
+
+    .content h1 {
+        font-size: 2rem;
+        color: #333;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .content h2 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #c7309f;
+        padding-bottom: 5px;
+    }
+
+    .content p {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .content ul {
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+
+    .content ul li {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .content ul li strong {
+        color: #333;
+    }
+</style>
+
 </head>
 
 <body>
@@ -126,6 +192,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
                 <a class="dropdown-item" href="register-process.html">Create Profile</a>
+<a class="dropdown-item" href="modifyprofile.html">Modify Profile</a>
                 <a class="dropdown-item" href="plans.html">Plans</a>
               </div>
             </li>
@@ -139,14 +206,15 @@
               <!-- Dropdown for Event -->
               <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Event
+                Resources
               </a>
               <ul class="dropdown-menu" aria-labelledby="eventDropdown">
-                <li><a class="dropdown-item" href="#">Matrimonial</a></li>
-                <li><a class="dropdown-item" href="#">Meeting</a></li>
-                <li><a class="dropdown-item" href="#">KPN</a></li>
-                <li><a class="dropdown-item" href="health.html">Health & Wellness</a></li>
-                <li><a class="dropdown-item" href="#">Marita Consulting</a></li>
+                <li><a class="dropdown-item" href="khajoor-pe-nikah.html">Khajoor pe Nikah(KPN)</a></li>
+                <li><a class="dropdown-item" href="islamic-matrimonial-tips.html">Marriage Tips</a></li>
+                <li><a class="dropdown-item" href="HealthWellness.html">Health & Wellness Advice</a></li>
+                <li><a class="dropdown-item" href="islamic-relationship-advice.html">Relationship Advice/Consultant</a></li>
+                <li><a class="dropdown-item" href="wedding-planning.html">Islamic wedding Planning</a></li>
+							<li><a class="dropdown-item" href="faq.html">FAQ's</a></li>
               </ul>
               </li>
             
@@ -160,13 +228,14 @@
                 <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
                 <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food Directory</a></li>
                 <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+<li><a class="dropdown-item" href="bloodbank.html">Blood bank Directory</a></li>
                 <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
-                <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment Business Support</a></li>
+                <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment/Business Support</a></li>
               </ul>
               </li>
-              <li class="nav-item">
-              <a class="nav-link" href="#">Media</a>
-              </li>
+              <!-- <li class="nav-item">
+						<a class="nav-link" href="#">Media</a>
+					</li> -->
               <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact</a>
               </li>
@@ -254,46 +323,36 @@
 
 
        <div class="header">
-        <h1> Employment Business Support</h1>
+        <h1>Employment/Business Support Services</h1>
     </div>
     
     <div class="content">
-        <img src="img/Employment business support.jpeg" alt="Employment Business Support" style="height: 300px ;width: 50%;;">
+        <img src="img/Business-employment-support-2.jpeg" alt="Employment Business Support" style="height: 500px; width: 50%;">
         <h1>Enhancing Your Employment Journey</h1>
         <p>
-            Welcome to our Employment Business Support page. Our mission is to assist individuals and businesses in navigating the employment landscape effectively. Whether you're seeking to advance your career, find new job opportunities, or improve your business's recruitment strategies, we provide the resources and support to help you succeed.
+            We provide a range of services to support both individuals and businesses. Our aim is to empower individuals to improve their employment prospects and support businesses in achieving their recruitment goals.
         </p>
         <h2>Our Services</h2>
-        <p>
-            We offer a range of services tailored to meet the needs of both job seekers and businesses. Our goal is to facilitate smooth transitions and successful outcomes in the employment sector.
-        </p>
         <ul>
-            <li><strong>Career Counseling:</strong> Receive personalized advice and guidance on career planning, resume writing, interview preparation, and job search strategies. Our career counselors help you identify your strengths and match them with suitable job opportunities.</li>
-            <li><strong>Job Placement Services:</strong> Explore job placement services designed to connect you with potential employers. We work with various industries and companies to offer you the best job matches based on your skills and preferences.</li>
-            <li><strong>Business Recruitment Support:</strong> For businesses, we provide recruitment solutions to find and hire the right talent. Our services include job posting, candidate screening, and interview coordination to streamline the hiring process.</li>
-            <li><strong>Training and Development:</strong> Enhance your skills and qualifications through our training programs. We offer workshops, online courses, and certification programs to help you stay competitive in the job market.</li>
+            <li><strong>Job Training & Placement:</strong> Skills development and job placement assistance.</li>
+            <li><strong>Entrepreneurship Programs:</strong> Business training, mentorship, and resources for starting a business.</li>
+            <li><strong>Microfinance & Loans:</strong> Access to small loans and financial assistance for business or personal needs.</li>
+            <li><strong>Career Counseling & Coaching:</strong> Guidance on career paths and job search strategies.</li>
+            <li><strong>Education & Vocational Training:</strong> Access to education and training for in-demand skills.</li>
+            <li><strong>Apprenticeships & Internships:</strong> Hands-on work experience and skill development.</li>
+            <li><strong>Business Mentorship & Networking:</strong> Connection with experienced entrepreneurs and business professionals.</li>
+            <li><strong>Access to Technology and Resources:</strong> Provision of computers, internet, and other resources for business or job searching.</li>
+            <li><strong>Job Search Assistance:</strong> Help with resume building, interviewing, and job applications.</li>
+            <li><strong>Support for Self-Employment:</strong> Resources and guidance for those who want to start their own businesses.</li>
+            <li><strong>Financial Literacy & Management:</strong> Education on managing finances, saving, and budgeting.</li>
+            <li><strong>Networking Opportunities:</strong> Connection with potential employers, partners, and collaborators.</li>
         </ul>
-        <h2>Special Programs</h2>
         <p>
-            In addition to our core services, we offer specialized programs to address unique employment needs:
+            These services aim to empower individuals by providing the necessary tools, resources, and support to gain employment, start a business, or improve their economic situation.
         </p>
-        <ul>
-            <li><strong>Transition Assistance:</strong> Support for individuals transitioning between jobs or industries, including career coaching and job search strategies tailored to your specific situation.</li>
-            <li><strong>Internship and Apprenticeship Programs:</strong> Opportunities for hands-on experience and skill development through internships and apprenticeships. We partner with businesses to provide practical learning experiences.</li>
-            <li><strong>Remote Work Support:</strong> Guidance and resources for those seeking remote work opportunities or managing remote teams. Our support includes remote work best practices and technology solutions.</li>
-        </ul>
-        <h2>Resources for Job Seekers and Businesses</h2>
+        <h2>Current Projects</h2>
         <p>
-            Our resources aim to support both job seekers and businesses in their employment-related endeavors:
-        </p>
-        <p>
-            <strong>Job Seeker Resources:</strong> Access guides, templates, and tools to assist with job applications, resume building, and interview preparation. Our resources are designed to enhance your job search experience.
-        </p>
-        <p>
-            <strong>Business Resources:</strong> Utilize our resources for effective recruitment and employee management. This includes best practices for interviewing, onboarding, and employee retention.
-        </p>
-        <p>
-            For more detailed information on any of our services or to access our resources, please explore the relevant sections on our website. We are committed to supporting you every step of the way in your employment journey.
+            [Insert details about current projects here.]
         </p>
     </div>
     
@@ -428,3 +487,5 @@
          </div>
         </div>
        </section>
+</body>
+</html>

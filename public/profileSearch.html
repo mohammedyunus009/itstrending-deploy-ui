@@ -234,6 +234,7 @@
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
 					<a class="dropdown-item" href="register-process.html">Create Profile</a>
+<a class="dropdown-item" href="modifyprofile.html">Modify Profile</a>
 					<a class="dropdown-item" href="plans.html">Plans</a>
 				</div>
 			</li>
@@ -246,15 +247,16 @@
 		  
 			  <!-- Dropdown for Event -->
 			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				  Event
-				</a>
+          <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Resources
+          </a>
 				<ul class="dropdown-menu" aria-labelledby="eventDropdown">
-				  <li><a class="dropdown-item" href="#">Matrimonial</a></li>
-				  <li><a class="dropdown-item" href="#">Meeting</a></li>
-				  <li><a class="dropdown-item" href="#">KPN</a></li>
-				  <li><a class="dropdown-item" href="health.html">Health & Wellness</a></li>
-				  <li><a class="dropdown-item" href="#">Marita Consulting</a></li>
+				  <li><a class="dropdown-item" href="khajoor-pe-nikah.html">Khajoor pe Nikah(KPN)</a></li>
+				  <li><a class="dropdown-item" href="islamic-matrimonial-tips.html">Marriage Tips</a></li>
+				  <li><a class="dropdown-item" href="HealthWellness.html">Health & Wellness Advice</a></li>
+				  <li><a class="dropdown-item" href="islamic-relationship-advice.html">Relationship Advice/Consultant</a></li>
+				  <li><a class="dropdown-item" href="wedding-planning.html">Islamic wedding Planning</a></li>
+							<li><a class="dropdown-item" href="faq.html">FAQ's</a></li>
 				</ul>
 			  </li>
 		  
@@ -268,13 +270,14 @@
 				  <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
 				  <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food Directory</a></li>
 				  <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+<li><a class="dropdown-item" href="bloodbank.html">Blood bank Directory</a></li>
 				  <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
-				  <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment Business Support</a></li>
+				  <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment/Business Support</a></li>
 				</ul>
 			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#">Media</a>
-			  </li>
+			  <!-- <li class="nav-item">
+						<a class="nav-link" href="#">Media</a>
+					</li> -->
 			  <li class="nav-item">
 				<a class="nav-link" href="contact.html">Contact</a>
 			  </li>
@@ -286,6 +289,7 @@
      </div>
    </nav>
    </section>
+
   <div id="profileContainer" class="profile-container"></div>
   
 
@@ -421,6 +425,90 @@
     </div>
    </section>
   
+   <script>
+    function getCookie(name) {
+        let value = `; ${document.cookie}`;
+        let parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    function getSerialNoFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('serial_no');
+    }
+
+    function fetchProfiles(serialNo) {
+        const token = getCookie('token'); // Get the token from cookies
+        
+        if (!token) {
+            console.error('No token found in cookies.');
+            return;
+        }
+
+        fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token // Use the token from cookies
+            },
+            body: JSON.stringify({ field1: serialNo })
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => { throw err });
+            }
+            return response.json();
+        })
+        .then(data => {
+            const container = document.getElementById('profileContainer');
+            
+            if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
+                container.innerHTML = 'No profiles found for this serial number.';
+            } else {
+                displayProfiles(data.data.profile);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error.message);
+            alert(`Error: ${error.message}`); // Alert the user about the error
+        });
+    }
+
+    function displayProfiles(profiles) {
+        const container = document.getElementById('profileContainer');
+        container.innerHTML = ''; // Clear any existing content
+        profiles.forEach(profile => {
+            const card = document.createElement('div');
+            card.className = 'profile-card';
+            // Extract first image URL from the comma-separated string
+            const imagesArray = profile.images ? profile.images.split(',') : [];
+            const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
+            // Create card content
+            card.innerHTML = `
+                <img src="${firstImage}" alt="Profile Image">
+                <p class="field5">${decodeURIComponent(profile.field5)}</p>
+                <p class="field1"><span>Sl. No: </span>${decodeURIComponent(profile.field1)}</p>
+                <p class="gender"><span>Gender: </span>${decodeURIComponent(profile.gender)}</p>
+                <p class="field10"><span>Profile Co-ordinator: </span>${decodeURIComponent(profile.field10)}</p>
+                <p class="field6"><span>Age: </span>${decodeURIComponent(profile.field6)}</p>
+                <p class="field7"><span>Address: </span>${decodeURIComponent(profile.field7)}</p>
+                <p class="field2"><span>Education: </span>${decodeURIComponent(profile.field2)}</p>
+            `;
+            // Append card to container
+            container.appendChild(card);
+        });
+    }
+
+    // Fetch and display profiles based on serial_no from URL
+    const serialNo = getSerialNoFromURL();
+    if (serialNo) {
+        fetchProfiles(serialNo);
+    } else {
+        document.getElementById('profileContainer').innerHTML = 'No serial number provided.';
+    }
+</script>
+
+
   <script>
     // Function to create and display profile cards
     function displayProfiles(profiles) {
