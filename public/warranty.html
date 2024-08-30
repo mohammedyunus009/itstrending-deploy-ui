@@ -360,6 +360,18 @@
             display: none;
         }
     }
+
+    #form {
+  text-align: center; /* Center text horizontally */
+  vertical-align: middle; /* Center text vertically */
+  width: 200%; /* Ensure the cell takes up the full width */
+  padding: 10px; /* Optional padding */
+}
+
+.table {
+  width: 100%; /* Ensure the table takes up the full width */
+  table-layout: fixed; /* Ensures table cells expand evenly */
+}
     </style>
 </head>
 <body>
@@ -422,7 +434,7 @@
             <tbody>
                 <tr>
                     <td class="text-center" id="repNo">Looding..</td>
-                    <td class="text-center"><u>General Service Form</u></td>
+                    <td class="text-center" id="form"><u>Installation Warranty Card</u></td>
                     <td class="text-center"></td>
                 </tr>
             </tbody>
@@ -430,14 +442,14 @@
         </header>
         <div class="container">
             <div class="header">
-                <h1 class="">VEHICLES SAFETY DEVICES INSTALLATION WITH WARRANTY REGISTRATION FORM</h1>
+                <h1 class="">WARRANTY CARD REGISTRATION FORM</h1>
             </div>
         
             <div class="info-text">
                 In order that we may fulfill obligations of the Warranty on this Vehicle safety devices, please complete the information requested below.
             </div>
         
-            <div class="section-title"><u><b>VEHICLE OWNER INFORMATION</b></u></div>
+            <div class="section-title"><u><b>WARRANTY CARD</b></u></div>
             <form id="registration-form">
                 <div class="form-group left-column">
                     <label for="contact-person">Invoice number & date</label>

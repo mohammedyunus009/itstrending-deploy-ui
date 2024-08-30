@@ -113,6 +113,22 @@
             width: 100%;
         }
     }
+    #form {
+  text-align: center; /* Center text horizontally */
+  vertical-align: middle; /* Center text vertically */
+  width: 100%; /* Ensure the cell takes up the full width */
+  padding: 10px; /* Optional padding */
+}
+
+.table {
+  width: 100%; /* Ensure the table takes up the full width */
+  table-layout: fixed; /* Ensures table cells expand evenly */
+}
+.small-input {
+    width: 100px;
+    padding: 5px;
+    font-size: 12px;
+}
 </style>
 
 <body>
@@ -148,9 +164,9 @@
               Pages
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
-              <li><a class="dropdown-item" href="index.html">Installation Form</a></li>
-              <li><a class="dropdown-item" href="generalService.html">General Service Form</a></li>
-              <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li>
+              <li><a class="dropdown-item" href="installationform1.html">Installation Form</a></li>
+              <li><a class="dropdown-item" href="GeneralServiceForm1.html">General Service Form</a></li>
+              <!-- <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li> -->
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -158,9 +174,9 @@
               Report Page
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownReport">
-              <li><a class="dropdown-item" href="report.html">Installation Report</a></li>
+              <li><a class="dropdown-item" href="installationreport.html">Installation Report</a></li>
               <li><a class="dropdown-item" href="report2.html">General Service Report</a></li>
-              <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information Report</a></li>
+              <!-- <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information Report</a></li> -->
             </ul>
           </li>
         </ul>
@@ -171,8 +187,10 @@
 <table class="table table-bordered table-container">
     <tbody>
         <tr>
-            <td class="text-center" id="repNo">Looding..</td>
-            <td class="text-center"><u>General Service Form</u></td>
+            <td class="text-center">
+                <input type="text" id="repNoInput" placeholder="Enter Serial no" class="small-input" />
+              </td>
+            <td class="text-center" id="form"><u>General Service Form</u></td>
             <td class="text-center"></td>
         </tr>
     </tbody>
@@ -326,8 +344,9 @@ function saveFormData() {
     const atHMR1 = document.getElementById('atHMR1').value;
     const complainClosedDate = document.getElementById('complainClosedDate').value;
     const atHMR2 = document.getElementById('atHMR2').value;
+    const  repNo= document.getElementById('repNoInput').value;
 
-
+    
     setCookie('field1', reportDate, 1);
     setCookie('field2', customerName, 1);
     setCookie('field3', customerArea, 1);
@@ -339,6 +358,7 @@ function saveFormData() {
     setCookie('field8', atHMR1, 1);
     setCookie('field9', complainClosedDate, 1);
     setCookie('field11', atHMR2, 1);
+    setCookie('field33', repNo, 1);
 
     
 }

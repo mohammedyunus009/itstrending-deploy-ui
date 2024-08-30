@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code PDF Generator</title>
+    <style>
+        #qrcode {
+            width: 160px;
+            height: 160px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="qrcode"></div>
+
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+    // Define PDF creation function
+    async function createPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        // Define PDF content
+        const content = `
+            Invoice Number & Date: ${getCookie('field9') || 'Not provided'}
+            Customer Name & Details: ${getCookie('field1') || 'Not provided'}
+            Product Details: ${getCookie('field32') || 'Not provided'}
+            Vehicle Model & Quantity: ${getCookie('field5') || 'Not provided'}
+            Date of Installation: ${getCookie('field4') || 'Not provided'}
+            rep no: ${getCookie('field2') || 'Not provided'}
+            
+            Warranty Details:
+            1) One-year Warranty effective from the purchase date.
+            2) Warranty covers any manufacturing technical defects excluding breakage.
+            3) Warranty void if repairing without our consent or warranty seal is broken.
+            4) The warranty does not cover faults resulting from operation, careless handling, or not following instructions. Also, electric shock cases.
+        `;
+        
+        doc.text(content, 10, 10);
+
+        // Save the PDF to a file
+        doc.save('warranty.pdf');
+        
+        // Ideally, this should be an actual URL where the PDF is hosted
+        const pdfURL = 'https://example.com/path/to/warranty.pdf'; // Update this with the real URL
+        
+        return pdfURL;
+    }
+
+    // Generate QR Code pointing to the PDF
+    async function generateQRCode() {
+        const pdfURL = await createPDF(); // Create PDF and get URL
+
+        const qrText = pdfURL; // The QR code will link to the PDF
+
+        // Log the QR code URL to the console
+        console.log("QR Code URL: " + qrText);
+
+        // Generate the QR code
+        document.getElementById("qrcode").innerHTML = ""; // Clear previous QR code
+        new QRCode(document.getElementById("qrcode"), {
+            text: qrText, // Link to the PDF
+            width: 160,
+            height: 160,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.L // Set error correction level to Low
+        });
+    }
+
+    // Automatically generate QR code on page load
+    window.onload = generateQRCode;
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+        return ''; // Return an empty string if the cookie is not found
+    }
+</script>
+
+</body>
+</html>
