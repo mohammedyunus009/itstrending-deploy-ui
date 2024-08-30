@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+    <link href="fonts/css/solid.min.css" rel="stylesheet" />
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+    <title>FAQ</title>
+    <link rel="stylesheet" href="css/salary.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f9f9f9;
+      }
+      .header {
+          background-color: #333;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          justify-content: center;
+      }
+      .container {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 20px;
+      }
+      .content {
+          flex: 1;
+          padding: 20px;
+      }
+      .content img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: 0 auto 20px;
+      }
+      .content h1 {
+          font-size: 24px;
+          margin-bottom: 20px;
+      }
+      .content p {
+          font-size: 16px;
+          line-height: 1.5;
+          margin-bottom: 20px;
+          color: #333;
+      }
+      .footer {
+          background-color: #333;
+          color: white;
+          padding: 10px;
+          text-align: center;
+      }
+      /* Logo Image Styling */
+.logo-img {
+    width: 220px; /* Adjust size for desktop view */
+    height: 75px;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        max-width: 120px; /* Adjust size for mobile view */
+    }
+}
+  </style>
+  <style>
+    /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Header Styles */
+.header {
+    background-color: black;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* Content Styles */
+.content {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content img {
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 5px;
+}
+
+.content h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #c7309f;
+    text-align: center;
+}
+
+.content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #c7309f;
+    border-bottom: 2px solid #c7309f;
+    padding-bottom: 10px;
+}
+
+.content h3 {
+    font-size: 1.4rem;
+    color: #c7309f;
+    margin-top: 20px;
+}
+
+.content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.content li {
+    margin-bottom: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .content img {
+        width: 100%;
+    }
+
+    .content h1 {
+        font-size: 1.8rem;
+    }
+
+    .content h2 {
+        font-size: 1.6rem;
+    }
+
+    .content h3 {
+        font-size: 1.3rem;
+    }
+
+    .content p {
+        font-size: 1rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+  <section id="top" class="bg_brown pt-2 pb-2">
+    <div class="container-xl">
+     <div class="row top_1">
+      <div class="col-md-6">
+       <div class="top_1l mt-1">
+      <ul class="mb-0 font_14">
+         <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmail.com</li>
+       </ul>
+     </div>
+      </div>
+      <div class="col-md-6">
+       <div class="top_1r text-end">
+        <ul class="mb-0">
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+       </ul>
+     </div>
+      </div>
+     </div>
+    </div>
+   </section>
+       <!--header  -->
+        <section id="header">
+       <nav class="navbar navbar-expand-md navbar-light  p-0 pt-2 pb-2" id="navbar_sticky">
+         <div class="container-xl">
+           <a class="navbar-brand p-0 me-0" href="index.html">
+				<img src="img/IMG-20240813-WA0001-removebg-preview.png" alt="ISC Logo" class="logo-img">
+			</a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-0 ms-auto">
+              <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Login/Register
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
+                <a class="dropdown-item" href="register-process.html">Create Profile</a>
+<a class="dropdown-item" href="modifyprofile.html">Modify Profile</a>
+                <a class="dropdown-item" href="plans.html">Plans</a>
+              </div>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link" href="filter.html">Search</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="payment.html">Payment</a>
+              </li>
+            
+              <!-- Dropdown for Event -->
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Resources
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="eventDropdown">
+                <li><a class="dropdown-item" href="khajoor-pe-nikah.html">Khajoor pe Nikah(KPN)</a></li>
+                <li><a class="dropdown-item" href="islamic-matrimonial-tips.html">Marriage Tips</a></li>
+                <li><a class="dropdown-item" href="HealthWellness.html">Health & Wellness Advice</a></li>
+                <li><a class="dropdown-item" href="islamic-relationship-advice.html">Relationship Advice/Consultant</a></li>
+                <li><a class="dropdown-item" href="wedding-planning.html">Islamic wedding Planning</a></li>
+							<li><a class="dropdown-item" href="faq.html">FAQ's</a></li>
+              </ul>
+              </li>
+            
+              <!-- Dropdown for Donation -->
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="donationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Donation
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="donationDropdown">
+                <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
+                <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
+                <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food Directory</a></li>
+                <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+<li><a class="dropdown-item" href="bloodbank.html">Blood bank Directory</a></li>
+                <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
+                <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment/Business Support</a></li>
+              </ul>
+              </li>
+              <!-- <li class="nav-item">
+						<a class="nav-link" href="#">Media</a>
+					</li> -->
+              <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+              <!-- <li class="nav-item">
+              <a class="nav-link" href="login.html">Sign In/Sign Up</a>
+              </li> -->
+            </ul>
+             <ul class="navbar-nav mb-0 ms-auto">
+            <!-- <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle dropdown_search nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <i class="fa fa-search"></i>
+                 </a>
+                 <ul class="dropdown-menu drop_2 p-3" aria-labelledby="navbarDropdown">
+                   <li>
+                     <div class="input-group">
+                       <input type="text" class="form-control bg_light border-0 font_13" placeholder="Enter Keyword">
+                       <span class="input-group-btn">
+                           <button class="btn btn-primary bg_brown  p-3 px-4 border-0" type="button">
+                               <i class="fa fa-search"></i> </button>
+                       </span>
+               </div>
+                   </li>
+                 </ul>
+               </li> -->
+               <!-- <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle drop_togn nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <i class="fa fa-shopping-cart"></i>
+                 </a> -->
+                 <ul class="dropdown-menu drop_cart rounded-0 border-0" aria-labelledby="navbarDropdown"  >
+                               <li>
+                                <div class="drop_1i row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il"><h5 class="fs-6">2 ITEMS</h5></div>
+                                 </div>
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il text-end"><h5 class="fs-6"><a href="cart.html">VIEW CART</a></h5></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i1 row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Nulla Quis</a> <br> <span class="d-inline-block mt-1 font_15">1x - $89.00</span></h6></div>
+                                 </div>
+                                 <div class="col-md-4 col-4">
+                                  <div class="drop_1i1r"><a href="#"><img src="img/52.jpg" class="w-100" alt="abc"></a></div>
+                                 </div>
+                                 <div class="col-md-2 col-2">
+                                  <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i1 row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Eget Nulla</a> <br> <span class="d-inline-block mt-1 font_15">1x - $49.00</span></h6></div>
+                                 </div>
+                                 <div class="col-md-4 col-4">
+                                  <div class="drop_1i1r"><a href="#"><img src="img/53.jpg" class="w-100" alt="abc"></a></div>
+                                 </div>
+                                 <div class="col-md-2 col-2">
+                                  <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i2 row">
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il"><h5 class="fs-6">TOTAL</h5></div>
+                                 </div>
+                                 <div class="col-md-6 col-6">
+                                  <div class="drop_1il text-end"><h5 class="fs-5">$142.00</h5></div>
+                                 </div>
+                                </div>
+                                <div class="drop_1i3 text-center row">
+                                 <div class="col-md-12 col-12">
+                                   <ul class="mb-0">
+                                    <li class="d-inline-block mx-1"><a class="button_2 px-3 pt-2 pb-2 font_14" href="#">View Order</a></li>
+                                    <li class="d-inline-block mx-1"><a class="button_1 px-3 pb-2 pt-2 font_14" href="#">Checkout</a></li>
+                                   </ul>
+                                 </div>
+                                </div>
+                               </li>
+                             </ul>
+               </li>
+             </ul>
+           </div>
+         </div>
+       </nav>
+       </section>
+
+
+       <div class="header">
+        <h1>Frequently Asked Questions (FAQs) About Islamic Matrimonial Matchmaking</h1>
+    </div>
+    
+    <div class="content">
+        <img src="img/faqs-concept-illustration_114360-6685.avif" alt="Islamic Matrimonial Matchmaking" style="width: 50%;">
+        <h1>Answers to Common Questions About Islamic Matrimonial Matchmaking</h1>
+        <p>
+            Islamic Matrimonial matchmaking is a significant process guided by Islamic principles to help you find a compatible life partner. Below are answers to frequently asked questions to assist you in this journey.
+        </p>
+    
+        <h2>FAQs</h2>
+    
+        <h3>Q: What is Islamic Matrimonial matchmaking?</h3>
+        <p>A: Islamic Matrimonial matchmaking is the process of finding a suitable life partner in accordance with Islamic principles and values.</p>
+    
+        <h3>Q: What are the key considerations in Islamic Matrimonial matchmaking?</h3>
+        <p>A: Key considerations include Deen (faith), character, family background, education, and compatibility.</p>
+    
+        <h3>Q: What is the role of family in Islamic Matrimonial matchmaking?</h3>
+        <p>A: Family plays a significant role in introducing potential partners and providing guidance.</p>
+    
+        <h3>Q: Can I use online platforms for Islamic Matrimonial matchmaking?</h3>
+        <p>A: Yes, many online platforms cater to Islamic Matrimonial matchmaking, but ensure they align with Islamic values.</p>
+    
+        <h3>Q: What is the importance of Chaperoned meetings?</h3>
+        <p>A: Chaperoned meetings ensure modesty and respect during the matchmaking process.</p>
+    
+        <h3>Q: Can I have a secret relationship before marriage?</h3>
+        <p>A: No, secret relationships are discouraged in Islam; instead, focus on getting to know each other in a Halal manner.</p>
+    
+        <h3>Q: What is the significance of Mehr (Dowry) in Islamic Matrimonial matchmaking?</h3>
+        <p>A: Mehr is a mandatory gift from the groom to the bride, symbolizing his commitment and responsibility.</p>
+    
+        <h3>Q: Can I marry someone from a different cultural background?</h3>
+        <p>A: Yes, Islam allows intercultural marriages, but ensure compatibility and shared values.</p>
+    
+        <h3>Q: What is the role of Imam or Islamic scholar in Islamic Matrimonial matchmaking?</h3>
+        <p>A: They provide guidance, counseling, and facilitate the matchmaking process.</p>
+    
+        <p>
+            Remember, Islamic Matrimonial matchmaking prioritizes faith, values, and compatibility. May Allah guide you in finding your suitable life partner!
+        </p>
+    </div>
+    
+    
+    
+    
+	
+    
+    
+    
+    
+
+
+
+       <!-- footer -->
+       <section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
+        <div class="container-fluid" style="background-color: #5c0951;">
+          <div class="footer_m bg_light p-4">
+            <div class="footer_1 row">
+            <div class="col-md-3">
+           <div class="footer_1i">
+             <h1 class="mb-3"><a class="family_1" href="index.html"><i class="fa fa-heart me-1 col_brown"></i>  ISC <br>
+       <span class="family_2 fw-normal font_14 col_brown">Lookimg for a patner </span>
+       </a></h1>
+       <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+       <ul class="mb-0"> 
+       <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
+       <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
+       <li class="mt-3"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+       </ul>
+           </div>
+          </div>
+            <div class="col-md-3">
+           <div class="footer_1i">
+              <h5 class="mt-3 mb-4">Social media</h5>
+            <ul class="mb-0">
+              <li><a href="#">Facebook</a></li>
+             <li class="mt-3"><a href="#">Twitter</a></li>
+             <li class="mt-3"><a href="#">Pinterest</a></li>
+             <li class="mt-3"><a href="#">Instagram</a></li>
+            </ul>
+           </div>
+          </div> 
+          
+          <div class="col-md-3">
+           <div class="footer_1i">
+              <h5 class="mt-3 mb-4">Get TO Know US</h5>
+            <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+         
+             <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+            
+           </div>
+          </div>
+          <div class="col-md-3">
+           <div class="footer_1i">
+              <h5 class="mt-3 mb-4">TELEGRAM</h5>
+            <div class="footer_1i1 row mx-0">
+             <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+           <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+           <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+            </div>
+            <div class="footer_1i1 row mx-0">
+             <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+           <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+           <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+            </div>
+           </div>
+          </div>
+          </div><hr class="mt-4 mb-4">
+          <div class="footer_2 row">
+            <div class="col-md-8">
+           <div class="footer_2l">
+               <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+           </div>
+          </div>
+         <!-- <div class="col-md-4">
+           <div class="footer_2r text-end">
+              <ul class="text-uppercase font_13 mb-0">
+               <li class="d-inline-block"><a href="#"> Facebook</a></li>
+             <li class="d-inline-block mx-2 text-muted">|</li>
+              <li class="d-inline-block"><a href="#"> Twitter</a></li>
+              <li class="d-inline-block mx-2 text-muted">|</li>
+              <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+              <li class="d-inline-block mx-2 text-muted">|</li>
+              <li class="d-inline-block"><a href="#"> Instagram</a></li>
+             </ul>
+           </div>
+          </div> -->
+          </div>
+          </div>
+         </div>
+        </div>
+       </section>
+    </body>
+    </html>
