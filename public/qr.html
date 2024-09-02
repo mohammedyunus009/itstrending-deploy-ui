@@ -27,17 +27,20 @@
 </head>
 <body>
 
-<div id="downloadLink"><a id="pdfLink" href="" target="_blank"><div id="qrcode" ></div>
-</a></div>
+<div id="downloadLink">
+    <a id="pdfLink" href="" target="_blank">
+        <div id="qrcode"></div>
+    </a>
+</div>
 
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-   async function createPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    async function createPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
 
-    const content = `
+        const content = `
 Invoice Number & Date: ${getCookie('field9') || 'Not provided'}
 Customer Name & Details: ${getCookie('field1') || 'Not provided'}
 Product Details: ${getCookie('field32') || 'Not provided'}
@@ -50,19 +53,19 @@ Warranty Details:
 2) Warranty covers any manufacturing technical defects excluding breakage.
 3) Warranty void if repairing without our consent or warranty seal is broken.
 4) The warranty does not cover faults resulting from operation, careless handling, or not following instructions. Also, electric shock cases.
-    `;
+        `;
 
-    // Adding the content to the PDF, starting at position (10, 10)
-    const lineHeight = 10;
-    const lines = doc.splitTextToSize(content, 180);  // Split text into lines for fitting within the page width
-    doc.text(lines, 10, 10 + lineHeight);
+        // Adding the content to the PDF, starting at position (10, 10)
+        const lineHeight = 10;
+        const lines = doc.splitTextToSize(content, 180);  // Split text into lines for fitting within the page width
+        doc.text(lines, 10, 10 + lineHeight);
 
-    const pdfBlob = doc.output('blob');
-    const pdfUrl = URL.createObjectURL(pdfBlob);
+        const pdfBlob = doc.output('blob');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
 
-    return pdfUrl;
-}
-
+        console.log('Generated PDF URL:', pdfUrl); // Log the PDF URL for debugging
+        return pdfUrl;
+    }
 
     async function generateQRCode() {
         const pdfUrl = await createPDF();
@@ -75,7 +78,7 @@ Warranty Details:
         // Generate the QR code
         document.getElementById("qrcode").innerHTML = ""; // Clear previous QR code
         new QRCode(document.getElementById("qrcode"), {
-            text: pdfUrl, 
+            text: pdfUrl,
             width: 160,
             height: 160,
             colorDark: "#000000",
@@ -93,7 +96,7 @@ Warranty Details:
         req.send(null);
         req.onload = function() {
             var headers = req.getAllResponseHeaders().toLowerCase();
-            // console.log(headers);
+            console.log('Response Headers:', headers); // Log headers for debugging
         };
     };
 
@@ -101,10 +104,9 @@ Warranty Details:
         var value = "; " + document.cookie;
         var parts = value.split("; " + name + "=");
         if (parts.length == 2) return parts.pop().split(";").shift();
-        return ''; 
+        return '';
     }
 </script>
 
 </body>
 </html>
-
