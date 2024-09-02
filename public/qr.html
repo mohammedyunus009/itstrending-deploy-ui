@@ -53,10 +53,6 @@
         `;
         
         doc.text(content, 10, 10);
-        
-        // Add a blank page
-        doc.addPage();  // This will add a blank page to the PDF
-
         const pdfBlob = doc.output('blob');
         const pdfUrl = URL.createObjectURL(pdfBlob);
         
@@ -72,9 +68,10 @@
         document.getElementById('downloadLink').style.display = 'block';
 
         // Generate the QR code
-        document.getElementById("qrcode").innerHTML = ""; // Clear previous QR code
-        new QRCode(document.getElementById("qrcode"), {
-            text: pdfUrl, 
+        const qrcodeElement = document.getElementById("qrcode");
+        qrcodeElement.innerHTML = ""; // Clear previous QR code
+        new QRCode(qrcodeElement, {
+            text: pdfUrl,
             width: 160,
             height: 160,
             colorDark: "#000000",
