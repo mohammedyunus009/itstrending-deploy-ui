@@ -18,21 +18,25 @@
             align-items: center;
             justify-content: center;
         }
+        #downloadLink {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
 <div id="qrcode"></div>
+<div id="downloadLink"><a id="pdfLink" href="" target="_blank">Click here to view the PDF</a></div>
 
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-    // Define PDF creation function
     async function createPDF() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
         
-        // Define PDF content
         const content = `
             Invoice Number & Date: ${getCookie('field9') || 'Not provided'}
             Customer Name & Details: ${getCookie('field1') || 'Not provided'}
@@ -49,45 +53,50 @@
         `;
         
         doc.text(content, 10, 10);
-
-        // Save the PDF to a file
-        doc.save('warranty.pdf');
+        const pdfBlob = doc.output('blob');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
         
-        // Ideally, this should be an actual URL where the PDF is hosted
-        const pdfURL = 'https://example.com/path/to/warranty.pdf'; // Update this with the real URL
-        
-        return pdfURL;
+        return pdfUrl;
     }
 
-    // Generate QR Code pointing to the PDF
     async function generateQRCode() {
-        const pdfURL = await createPDF(); // Create PDF and get URL
+        const pdfUrl = await createPDF();
 
-        const qrText = pdfURL; // The QR code will link to the PDF
-
-        // Log the QR code URL to the console
-        console.log("QR Code URL: " + qrText);
+        // Display the link to download or view the PDF
+        const linkElement = document.getElementById('pdfLink');
+        linkElement.href = pdfUrl;
+        document.getElementById('downloadLink').style.display = 'block';
 
         // Generate the QR code
         document.getElementById("qrcode").innerHTML = ""; // Clear previous QR code
         new QRCode(document.getElementById("qrcode"), {
-            text: qrText, // Link to the PDF
+            text: pdfUrl, 
             width: 160,
             height: 160,
             colorDark: "#000000",
             colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.L // Set error correction level to Low
+            correctLevel: QRCode.CorrectLevel.L
         });
     }
 
-    // Automatically generate QR code on page load
-    window.onload = generateQRCode;
+    window.onload = function() {
+        generateQRCode();
+
+        // Make an XMLHttpRequest to retrieve and log headers
+        var req = new XMLHttpRequest();
+        req.open('GET', document.location, true);
+        req.send(null);
+        req.onload = function() {
+            var headers = req.getAllResponseHeaders().toLowerCase();
+            // console.log(headers);
+        };
+    };
 
     function getCookie(name) {
         var value = "; " + document.cookie;
         var parts = value.split("; " + name + "=");
         if (parts.length == 2) return parts.pop().split(";").shift();
-        return ''; // Return an empty string if the cookie is not found
+        return ''; 
     }
 </script>
 
