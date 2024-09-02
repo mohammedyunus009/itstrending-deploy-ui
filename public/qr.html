@@ -18,45 +18,90 @@
             align-items: center;
             justify-content: center;
         }
+        #downloadLink {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-<div id="qrcode">Loading QR code...</div>
+<div id="qrcode"></div>
+<div id="downloadLink"><a id="pdfLink" href="" target="_blank">Click here to view the PDF</a></div>
 
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-    async function generateQRCode() {
-        try {
-            // Replace with a known working PDF URL for testing
-            const pdfUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+    async function createPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        const content = `
+            Invoice Number & Date: ${getCookie('field9') || 'Not provided'}
+            Customer Name & Details: ${getCookie('field1') || 'Not provided'}
+            Product Details: ${getCookie('field32') || 'Not provided'}
+            Vehicle Model & Quantity: ${getCookie('field5') || 'Not provided'}
+            Date of Installation: ${getCookie('field4') || 'Not provided'}
+            rep no: ${getCookie('field2') || 'Not provided'}
             
-            if (pdfUrl) {
-                console.log("Creating QR code with URL:", pdfUrl);
-                document.getElementById("qrcode").innerHTML = ""; // Clear previous QR code
-                new QRCode(document.getElementById("qrcode"), {
-                    text: pdfUrl,
-                    width: 160,
-                    height: 160,
-                    colorDark: "#000000",
-                    colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.L
-                });
-                console.log("QR code generated successfully.");
-            } else {
-                console.error("Failed to generate PDF URL.");
-                document.getElementById("qrcode").textContent = "Error generating QR code.";
-            }
-        } catch (error) {
-            console.error("Error generating QR code:", error);
-            document.getElementById("qrcode").textContent = "Error generating QR code.";
-        }
+            Warranty Details:
+            1) One-year Warranty effective from the purchase date.
+            2) Warranty covers any manufacturing technical defects excluding breakage.
+            3) Warranty void if repairing without our consent or warranty seal is broken.
+            4) The warranty does not cover faults resulting from operation, careless handling, or not following instructions. Also, electric shock cases.
+        `;
+        
+        doc.text(content, 10, 10);
+        
+        // Add a blank page
+        doc.addPage();  // This will add a blank page to the PDF
+
+        const pdfBlob = doc.output('blob');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        
+        return pdfUrl;
+    }
+
+    async function generateQRCode() {
+        const pdfUrl = await createPDF();
+
+        // Display the link to download or view the PDF
+        const linkElement = document.getElementById('pdfLink');
+        linkElement.href = pdfUrl;
+        document.getElementById('downloadLink').style.display = 'block';
+
+        // Generate the QR code
+        document.getElementById("qrcode").innerHTML = ""; // Clear previous QR code
+        new QRCode(document.getElementById("qrcode"), {
+            text: pdfUrl, 
+            width: 160,
+            height: 160,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.L
+        });
     }
 
     window.onload = function() {
         generateQRCode();
+
+        // Make an XMLHttpRequest to retrieve and log headers
+        var req = new XMLHttpRequest();
+        req.open('GET', document.location, true);
+        req.send(null);
+        req.onload = function() {
+            var headers = req.getAllResponseHeaders().toLowerCase();
+            // console.log(headers);
+        };
     };
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+        return ''; 
+    }
 </script>
 
 </body>
