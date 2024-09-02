@@ -6,19 +6,16 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        body {
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-        #sidebar {
-            min-width: 250px;
-            background: #333;
-            color: #fff;
-            transition: all 0.3s;
-        }
-        #sidebar {
+<style>
+        /* General Styles */
+body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+#sidebar {
     min-width: 250px;
     background: #333;
     color: #fff;
@@ -27,7 +24,6 @@
 }
 
 #sidebarCollapse {
-    display: block;
     background: #333;
     color: #fff;
     border: none;
@@ -39,173 +35,197 @@
     z-index: 1100; /* Ensure button is above sidebar */
 }
 
-        #sidebar .sidebar-header {
-            padding: 20px;
-            background: #444;
-        }
-        #sidebar ul.components {
-            padding: 20px 0;
-        }
-        #sidebar ul p {
-            color: #fff;
-            padding: 10px;
-        }
-        #sidebar ul li a {
-            padding: 10px;
-            font-size: 1.1em;
-            display: block;
-        }
-        #sidebar ul li a:hover {
-            background: #575757;
-        }
-        #content {
-            width: 100%;
-            padding: 20px;
-            overflow-y: auto;
-        }
-        .profile-card {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 57px;
-            margin-bottom: 20px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transition: transform 0.3s;
-        }
-        .profile-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .profile-card h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        .profile-card p {
-            margin-bottom: 10px;
-        }
-        .profile-card .gender span,
-        .profile-card .field6 span,
-        .profile-card .field2 span,
-        .profile-card .field10 span {
-            font-weight: bold;
-        }
-        .profile-card:hover {
-            transform: scale(1.05);
-        }
-        #profileContainer {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        /* Buttons */
-        .profile-card .btn-container {
-            display: none;
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 20px);
-            display: flex;
-            justify-content: space-between;
-            padding: 0 100px;
-        }
-        .profile-card .btn-container .btn {
-            padding: 10px;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: background-color 0.3s;
-        }
-        .profile-card .btn-container .view-profile {
-            background-color: green;
-        }
-        .profile-card .btn-container .delete-profile {
-            background-color: red;
-        }
-        .profile-card:hover .btn-container {
-            display: flex;
-        }
-        /* Sidebar toggle button */
-        #sidebarCollapse {
-            display: none;
-            background: #333;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            z-index: 100;
-        }
-        /* Ensure the dropdown items are hidden initially */
-        .collapse {
-            display: none;
-        }
-        /* Style for active and expanded state */
-        .collapse.show {
-            display: block;
-        }
-        /* Optional: style for dropdown items */
-        #profilesSubmenu li a {
-            padding: 10px;
-            display: block;
-        }
-        /* Mobile view adjustments */
-        @media (max-width: 768px) {
-            #sidebar {
-                min-width: 0;
-                width: 0;
-                height: 100%;
-                position: fixed;
-                left: -250px;
-                transition: all 0.3s;
-            }
-            #sidebar.active {
-                width: 250px;
-                left: 0;
-            }
-            #content {
-                width: 100%;
-                padding: 20px;
-                overflow-y: auto;
-            }
-            #sidebarCollapse {
-                display: block;
-            }
-        }
-        @media (max-width: 768px) {
-        .filter-container {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        #serialNoInput {
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
-        
-
-        #profileContainer {
-            flex-direction: column;
-            align-items: stretch;
-        }
-    }
-    .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
-    width: 100%;
-    padding-right: 0px;
-    padding-left: 33px;
-    margin-right: auto;
-    margin-left: auto;
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #444;
 }
-    </style>
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    background: #575757;
+}
+
+#content {
+    width: 100%;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f8f9fa;
+}
+
+/* Profile Card */
+.profile-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.profile-card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.profile-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.profile-card p {
+    margin-bottom: 10px;
+}
+
+.profile-card .gender span,
+.profile-card .field6 span,
+.profile-card .field2 span,
+.profile-card .field10 span,
+.profile-card .field1 span,
+.profile-card .field7 span {
+    font-weight: bold;
+}
+.profile-card .field5 {
+    font-size: 2em; /* Adjust font size if needed */
+    margin: 0;
+    padding: 15px;
+    color: #333; /* Adjust text color */
+    font-weight:bold; /* Normal weight, adjust if needed */
+    line-height: 1.5; /* Adjust line height */
+}
+.profile-card:hover {
+    transform: scale(1.05);
+}
+
+#profileContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Buttons */
+.profile-card .btn-container {
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 20px);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.profile-card .btn-container .btn {
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.profile-card .btn-container .view-profile {
+    background-color: green;
+}
+
+.profile-card .btn-container .delete-profile {
+    background-color: red;
+}
+
+.profile-card:hover .btn-container {
+    display: flex;
+}
+
+/* Sidebar Toggle Button */
+#sidebarCollapse {
+    display: none;
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+    #sidebar {
+        min-width: 0;
+        width: 0;
+        height: 100%;
+        position: fixed;
+        left: -250px;
+        transition: all 0.3s;
+    }
+
+    #sidebar.active {
+        width: 250px;
+        left: 0;
+    }
+
+    #content {
+        padding: 20px;
+        overflow-y: auto;
+        margin-left: 0; /* Adjust for sidebar visibility */
+    }
+
+    #sidebarCollapse {
+        display: block;
+    }
+
+    #profileContainer {
+        grid-template-columns: -1fr; /* Single column layout for mobile */
+    }
+
+    /* Adjust input fields */
+    #serialNoInput {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    /* Adjust filter container */
+    .filter-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+        width: 100%;
+        padding-right: 0;
+        padding-left: 35px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+
+</style>
 </head>
 <body>
     <button id="sidebarCollapse">
@@ -270,6 +290,16 @@ document.addEventListener('click', function (event) {
     if (!sidebar.contains(event.target) && !sidebarCollapse.contains(event.target)) {
         sidebar.classList.remove('active');
     }
+});
+
+// Collapse sidebar after selecting a menu item
+document.querySelectorAll('#sidebar ul.components li a').forEach(function(menuItem) {
+    menuItem.addEventListener('click', function () {
+        var sidebar = document.getElementById('sidebar');
+        if (window.innerWidth <= 768) { // Check if in mobile view
+            sidebar.classList.remove('active');
+        }
+    });
 });
 
     </script>
@@ -350,102 +380,135 @@ document.addEventListener('click', function (event) {
             });
         }
     
-        // Function to create and display profile cards
-function displayProfiles(profiles) {
-    if (!profiles || !Array.isArray(profiles)) {
-        console.error('No profiles found.');
-        return;
-    }
-
-    const container = document.getElementById('profileContainer');
-    container.innerHTML = ''; // Clear any existing content
-    profiles.forEach(profile => {
-        const card = document.createElement('div');
-        card.className = 'profile-card';
-        card.dataset.profileId = profile.profile_id; // Store profile_id in a data attribute
-
-        // Extract first image URL from the comma-separated string
-        const imagesArray = profile.images ? profile.images.split(',') : [];
-        const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
-
-        // Create card content
-        card.innerHTML = `
-            <img src="${firstImage}" alt="Profile Image">
-            <p class="field5">${decodeURIComponent(profile.field5)}</p>
-            <p class="field1"><span>Sl. No: </span>${decodeURIComponent(profile.field1)}</p>
-            <p class="gender"><span>Gender: </span>${decodeURIComponent(profile.gender)}</p>
-            <p class="field10"><span>Profile Co-ordinator: </span>${decodeURIComponent(profile.field10)}</p>
-            <p class="field6"><span>Age: </span>${decodeURIComponent(profile.field6)}</p>
-            <p class="field7"><span>Address: </span>${decodeURIComponent(profile.field7)}</p>
-            <p class="field2"><span>Education: </span>${decodeURIComponent(profile.field2)}</p>
-            <div class="btn-container">
-                <button class="btn view-profile">View/Edit Profile</button>
-                <button class="btn delete-profile">Delete Profile</button>
-            </div>
-        `;
-
-        // Add click event listener to the "View Profile" button
-        const viewProfileBtn = card.querySelector('.view-profile');
-        viewProfileBtn.addEventListener('click', () => {
-            window.location.href = `profile-details2.html?profile_id=${encodeURIComponent(profile.profile_id)}`;
-        });
-
-        // Add click event listener to the "Delete Profile" button
-        const deleteProfileBtn = card.querySelector('.delete-profile');
-        deleteProfileBtn.addEventListener('click', () => {
-            // Show confirmation dialog before deleting
-            const confirmation = confirm("Are you sure you want to delete this profile?");
-            if (confirmation) {
-                deleteProfile(profile.profile_id, card);
-            } else {
-                console.log('Delete operation canceled');
+        function displayProfiles(profiles) {
+            if (!profiles || !Array.isArray(profiles)) {
+                console.error('No profiles found.');
+                return;
             }
-        });
+    
+            const container = document.getElementById('profileContainer');
+            container.innerHTML = ''; // Clear any existing content
+            profiles.forEach(profile => {
+                const card = document.createElement('div');
+                card.className = 'profile-card';
+                card.dataset.profileId = profile.profile_id; // Store profile_id in a data attribute
+    
+                // Extract first image URL from the comma-separated string
+                const imagesArray = profile.images ? profile.images.split(',') : [];
+                const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
+    
+                // Create card content
+                card.innerHTML = `
+                    <img src="${firstImage}" alt="Profile Image">
+                    <p class="field5">${decodeURIComponent(profile.field5)}</p>
+                    <p class="field1"><span>Sl. No: </span>${decodeURIComponent(profile.field1)}</p>
+                    <p class="gender"><span>Gender: </span>${decodeURIComponent(profile.gender)}</p>
+                    <p class="field10"><span>Profile Co-ordinator: </span>${decodeURIComponent(profile.field10)}</p>
+                    <p class="field6"><span>Age: </span>${decodeURIComponent(profile.field6)}</p>
+                    <p class="field7"><span>Address: </span>${decodeURIComponent(profile.field7)}</p>
+                    <p class="field2"><span>Education: </span>${decodeURIComponent(profile.field2)}</p>
+                    <div class="btn-container">
+                        <button class="btn view-profile">View/Edit Profile</button>
+                        <button class="btn delete-profile">Delete Profile</button>
+                    </div>
+                `;
+    
+                // Add click event listener to the "View Profile" button
+                const viewProfileBtn = card.querySelector('.view-profile');
+                viewProfileBtn.addEventListener('click', () => {
+                    window.location.href = `profile-details2.html?profile_id=${encodeURIComponent(profile.profile_id)}`;
+                });
+    
+                // Add click event listener to the "Delete Profile" button
+                const deleteProfileBtn = card.querySelector('.delete-profile');
+                deleteProfileBtn.addEventListener('click', () => {
+                    // Show confirmation dialog before deleting
+                    const confirmation = confirm("Are you sure you want to delete this profile?");
+                    if (confirmation) {
+                        deleteProfile(profile.profile_id, card);
+                    } else {
+                        console.log('Delete operation canceled');
+                    }
+                });
+    
+                // Append card to container
+                container.appendChild(card);
+            });
+        }
+    
+        function deleteProfile(profileId, cardElement) {
+            const token = getCookie('token'); // Get the token from cookies
+            if (!token) {
+                console.error('No token found in cookies.');
+                return;
+            }
+    
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", token); // Use the token from cookies
+            myHeaders.append("Content-Type", "application/json");
+    
+            const raw = JSON.stringify({ "profile_id": profileId });
+    
+            const requestOptions = {
+                method: "DELETE",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+    
+            fetch("https://api.itstrending.in:5000/api/v1/profiles", requestOptions)
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(err => { throw new Error(err) });
+                    }
+                    return response.text();
+                })
+                .then(result => {
+                    console.log('Profile deleted:', result);
+                    // Remove the profile card from the UI
+                    cardElement.remove();
+                })
+                .catch(error => {
+                    console.error('Error:', error.message);
+                    alert(`Error: ${error.message}`); // Alert the user about the error
+                });
+        }
+    
+        // Define the loadAllProfiles function
+        function loadAllProfiles() {
+            // Reset filters
+            selectedGender = '';
+            serialNo = '';
+    
+            // Call applyFilters to load all profiles
+            applyFilters();
+        }
+    
+        function logout() {
+        // Show confirmation dialog
+        const confirmation = confirm("Are you sure you want to logout?");
+        if (confirmation) {
+            // Clear the token cookie or session
+            document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Clear token cookie
+            document.cookie = 'loginDetails=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Clear additional cookies if any
 
-        // Append card to container
-        container.appendChild(card);
-    });
-}
-
-// Function to delete a profile
-function deleteProfile(profileId, cardElement) {
-    const token = getCookie('token'); // Get the token from cookies
-    if (!token) {
-        console.error('No token found in cookies.');
-        return;
+            // Redirect to login page
+            window.location.href = 'admin-login.html'; // Replace with your login page URL
+        } else {
+            console.log('Logout operation canceled');
+        }
     }
 
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", token); // Use the token from cookies
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({ "profile_id": profileId });
-
-    const requestOptions = {
-        method: "DELETE",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow"
+    // Check token on page load
+    window.onload = function() {
+        const token = getCookie('token');
+        if (!token) {
+            alert("You need to login.");
+            window.location.href = 'admin-login.html'; // Redirect to login page if no token found
+        }
     };
 
-    fetch("https://api.itstrending.in:5000/api/v1/profiles", requestOptions)
-        .then(response => {
-            if (!response.ok) {
-                return response.text().then(err => { throw new Error(err) });
-            }
-            return response.text();
-        })
-        .then(result => {
-            console.log('Profile deleted:', result);
-            // Remove the profile card from the UI
-            cardElement.remove();
-        })
-        .catch(error => {
-            console.error('Error:', error.message);
-            alert(`Error: ${error.message}`); // Alert the user about the error
-        });
-}
-
     </script>
+    
 </body>
 </html>

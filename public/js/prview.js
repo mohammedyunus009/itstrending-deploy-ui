@@ -2,9 +2,9 @@ function goBack() {
     window.history.back();
 }
 
-function continueToFilters() {
-    window.location.href = "filter.html";
-}
+// function continueToFilters() {
+//     window.location.href = "filter.html";
+// }
 
 /// Function to get a cookie value or return "N/A" if not found
 function getCookie(name) {
@@ -227,8 +227,9 @@ nextButton.addEventListener('click', function() {
     updateImage(currentIndex);
 });
 
-// Construct the request body
-const requestBody = {
+function continueToFilters() {
+    // Construct the request body
+    const requestBody = {
     "profile_id": "1",
     "description": "Rajesh",
     "gender": getCookie('gender') || "male", // Default to 'male' if not found
@@ -287,25 +288,31 @@ const requestBody = {
     "field50": getCookie('field50') || ""
 };
 
-// Log the request body to the console
-console.log(requestBody);
-
-// Send POST request
-fetch('https://api.itstrending.in:5000/api/v1/profiles', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': getCookie('token') // Include the authToken directly in the Authorization header
-    },
-    body: JSON.stringify(requestBody)
-})
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-})
-.catch((error) => {
-    console.error('Error:', error);
-});
+// Confirm before sending the POST request
+if (window.confirm("Are you sure you want to create your profile?")) {
+    // If the user clicks "Yes", send POST request
+    fetch('https://api.itstrending.in:5000/api/v1/profiles', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': getCookie('token') // Include the authToken directly in the Authorization header
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Redirect to filters page after saving the profile
+        window.location.href = "filter.html";
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+} else {
+    // If the user clicks "No", do nothing
+    console.log("Profile creation canceled.");
+}
+}
 
         const express = require('express');
 const app = express();
