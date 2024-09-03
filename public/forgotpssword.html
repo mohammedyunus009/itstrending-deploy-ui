@@ -245,7 +245,7 @@
             <button type="submit" id="submit">Submit</button>
             <div class="form-links">
                 <a href="signup.html" id="create-account">Create Account</a>
-                <a href="login.html" id="forgot-password">Login</a>
+                <a href="index.html" id="forgot-password">Login</a>
             </div>
         </form>
     </div>
@@ -284,7 +284,7 @@
         redirect: "follow"
     };
 
-    fetch("https://api.itstrending.in:5000/api/v1/auth/reset-password", requestOptions)
+    fetch("https://api2.itstrending.in/api/v1/auth/reset-password", requestOptions)
         .then((response) => {
             if (response.ok) {
                 return response.text();

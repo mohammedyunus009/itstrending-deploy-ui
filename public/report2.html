@@ -488,10 +488,10 @@
                         <label for="customerComplainClosedDate">Customer Complain Closed Date:</label>
                         <input type="text" id="customerComplainClosedDate" readonly>
                     </div>
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="atHmr2">AT HMR:</label>
                         <input type="text" id="atHmr2" readonly>
-                    </div> -->
+                    </div>
                 </form>
             </section>
         </div>
@@ -554,7 +554,7 @@
 });
 
 document.getElementById('formButton').addEventListener('click', function() {
-    window.location.href = 'generalService.html';
+    window.location.href = 'GeneralServiceForm1.html';
 });
 
 function printPage() {
@@ -608,7 +608,7 @@ function fetchData(reportNo) {
     };
 
     // First API call to get profile IDs
-    fetch("https://api.itstrending.in:5000/api/v1/profiles/search_multiple", requestOptions)
+    fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", requestOptions)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -626,13 +626,13 @@ function fetchData(reportNo) {
                         headers: myHeaders,
                         body: JSON.stringify({
                             "profile_id": profileId,
-                            "email": "harshithgowda18801@gmail.com" // Adjust as needed
+                            "email": "rajeshvraj555@gmail.com" // Adjust as needed
                         }),
                         redirect: "follow"
                     };
 
                     // Second API call to get profile details
-                    fetch("https://35.233.133.10:5000/api/v1/profiles/get_profile_details", detailsRequestOptions)
+                    fetch("https://api2.itstrending.in/api/v1/profiles/get_profile_details", detailsRequestOptions)
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -642,24 +642,26 @@ function fetchData(reportNo) {
                         .then(detailsResult => {
                             if (detailsResult && detailsResult.data && detailsResult.data.profile) {
                                 const profileDetails = detailsResult.data.profile;
+                                document.getElementById('repNo').textContent = decodeURIComponent(profileDetails.field33) || 'N/A';
+                                document.getElementById('reportDate').textContent = decodeURIComponent(profileDetails.field1) || 'N/A';
 
                                 // Update HTML elements with specific profile details
-                                document.getElementById('className').value = decodeURIComponent(profileDetails.field30) || 'N/A';
-                                document.getElementById('area').value = decodeURIComponent(profileDetails.field31) || 'N/A';
-                                document.getElementById('project').value = decodeURIComponent(profileDetails.field32) || 'N/A';
-                                document.getElementById('poNoDate').value = decodeURIComponent(profileDetails.field33) || 'N/A';
-                                document.getElementById('eqptModel').value = decodeURIComponent(profileDetails.field34) || 'N/A';
-                                document.getElementById('eqptSiNo').value = decodeURIComponent(profileDetails.field35) || 'N/A';
+                                document.getElementById('className').value = decodeURIComponent(profileDetails.field2) || 'N/A';
+                                document.getElementById('area').value = decodeURIComponent(profileDetails.field3) || 'N/A';
+                                document.getElementById('project').value = decodeURIComponent(profileDetails.field4) || 'N/A';
+                                document.getElementById('poNoDate').value = decodeURIComponent(profileDetails.field5) || 'N/A';
+                                document.getElementById('eqptModel').value = decodeURIComponent(profileDetails.field6) || 'N/A';
+                                document.getElementById('eqptSiNo').value = decodeURIComponent(profileDetails.field7) || 'N/A';
                                 // document.getElementById('systemCondition').value = decodeURIComponent(profileDetails.field36) || 'N/A';
-                                document.getElementById('customerComplainDate').value = decodeURIComponent(profileDetails.field29) || 'N/A';
-                                document.getElementById('atHmr1').value = decodeURIComponent(profileDetails.field37) || 'N/A';
-                                document.getElementById('customerComplainClosedDate').value = decodeURIComponent(profileDetails.field38) || 'N/A';
-                                // document.getElementById('atHmr2').value = decodeURIComponent(profileDetails.field11) || 'N/A';
+                                document.getElementById('customerComplainDate').value = decodeURIComponent(profileDetails.field34) || 'N/A';
+                                document.getElementById('atHmr1').value = decodeURIComponent(profileDetails.field8) || 'N/A';
+                                document.getElementById('customerComplainClosedDate').value = decodeURIComponent(profileDetails.field9) || 'N/A';
+                                document.getElementById('atHmr2').value = decodeURIComponent(profileDetails.field11) || 'N/A';
 
-                                document.getElementById('symptoms').value = decodeURIComponent(profileDetails.field39) || 'N/A';
+                                document.getElementById('symptoms').value = decodeURIComponent(profileDetails.field13) || 'N/A';
                                 // document.getElementById('systemStatus').value = decodeURIComponent(profileDetails.field13) || 'N/A';
-                                document.getElementById('forUee').value = decodeURIComponent(profileDetails.field41) || 'N/A';
-                                document.getElementById('forCustomer').value = decodeURIComponent(profileDetails.field42) || 'N/A';
+                                document.getElementById('forUee').value = decodeURIComponent(profileDetails.field30) || 'N/A';
+                                document.getElementById('forCustomer').value = decodeURIComponent(profileDetails.field31) || 'N/A';
 
                                 // Hide the modal after fetching data
                                 const reportNoModal = bootstrap.Modal.getInstance(document.getElementById('reportNoModal'));
@@ -668,6 +670,8 @@ function fetchData(reportNo) {
                                 console.error('No profile details found');
                             }
                         })
+
+                        
                         .catch(error => console.error('Error fetching profile details:', error));
                 } else {
                     console.error('No profile IDs found');
