@@ -156,7 +156,7 @@
     
                 <div class="row">
                     <div class="col text-center">
-                        <button type="button" class="btn btn-primary" onclick="saveDataAndRedirect()">Submit</button>
+                        <button type="button" class="btn btn-primary" onclick="saveDataAndRedirect()">Next</button>
                     </div>
                 </div>
             </div>
@@ -213,60 +213,10 @@
             }
 
             // Redirect to the next page
-            window.location.href = 'report2.html';
+            window.location.href = 'preview2.html';
         }
     </script>
-      <script>
-        // Function to get cookie value by name
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
-
-        // Function to save data and redirect
-        function saveDataAndRedirect() {
-            // Retrieve the token from cookies
-            const authToken = getCookie('token'); // Replace 'token' with the actual cookie name
-
-            // Retrieving values for fields from cookies
-            const fields = {};
-            for (let i = 1; i <= 50; i++) {
-                fields[`field${i}`] = getCookie(`field${i}`) || ""; // Retrieve field from cookie or set as empty string
-            }
-
-            // Preparing the request body with cookie values
-            const raw = JSON.stringify({
-                "profile_id": "1",
-                "description": "want a Rashmika",
-                "gender": "",
-                "images": "1.jpg,2.jpg,3.jpg",
-                "bio": "fghfgh",
-                ...fields, // Spread the fields object to include field1 to field50
-            });
-
-            const myHeaders = new Headers();
-            myHeaders.append("Authorization", authToken); // Use the token from cookies
-            myHeaders.append("Content-Type", "application/json");
-
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow"
-            };
-
-            // Correcting the URL by removing the extra "https://"
-            fetch("https://api.itstrending.in:5000/api/v1/profiles", requestOptions)
-                .then((response) => response.text())
-                .then((result) => {
-                    console.log(result);
-                    // Redirect to another page after successful request (optional)
-                    window.location.href = "https://example.com/next-page"; // Replace with your actual redirect URL
-                })
-                .catch((error) => console.error('Fetch error:', error));
-        }
-    </script>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

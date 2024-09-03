@@ -598,7 +598,7 @@ let token = getCookie("token");
     };
 
     // First API call to get profile IDs
-    fetch("https://api.itstrending.in:5000/api/v1/profiles/search_multiple", requestOptions)
+    fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -611,18 +611,48 @@ let token = getCookie("token");
           if (profileIds.length > 0) {
             const profileId = profileIds[0]; // Use the first profile_id for the second API call
 
+// Function to retrieve a cookie value by name
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// Function to decode URL-encoded or Base64-encoded email
+function decodeEmail(encodedEmail) {
+    try {
+        // Assuming the email is URL-encoded
+        let decodedEmail = decodeURIComponent(encodedEmail);
+
+        // If Base64-encoded, decode it
+        if (decodedEmail.includes('@')) {
+            return decodedEmail;
+        } else {
+            return atob(decodedEmail);
+        }
+    } catch (e) {
+        console.error('Failed to decode email:', e);
+        return 'default@example.com'; // Fallback email
+    }
+}
+const encodedEmail = getCookie('email');
+const email = decodeEmail(encodedEmail);
+
+            
             const detailsRequestOptions = {
               method: "POST",
               headers: myHeaders,
               body: JSON.stringify({
                 "profile_id": profileId,
-                "email": "harshithgowda18801@gmail.com" // Adjust as needed
+                "email": email // Adjust as needed
               }),
               redirect: "follow"
             };
+            console.log(email);
+
 
             // Second API call to get profile details
-            fetch("https://api.itstrending.in:5000/api/v1/profiles/get_profile_details", detailsRequestOptions)
+            fetch("https://api2.itstrending.in/api/v1/profiles/get_profile_details", detailsRequestOptions)
               .then(response => {
                 if (!response.ok) {
                   throw new Error(`HTTP error! status: ${response.status}`);

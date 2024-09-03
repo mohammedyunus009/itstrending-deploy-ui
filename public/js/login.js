@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 redirect: "follow"
             };
         
-            fetch("https://api.itstrending.in:5000/api/v1/auth/signup", requestOptions)
+            fetch("https://api2.itstrending.in/api/v1/auth/signup", requestOptions)
                 .then(response => {
                     if (!response.ok) {
                         return response.json().then(errorData => {
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loadingContainer.style.display = 'flex';
     
         try {
-            const response = await fetch('https://api.itstrending.in:5000/api/v1/auth/login', {
+            const response = await fetch('https://api2.itstrending.in/api/v1/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
