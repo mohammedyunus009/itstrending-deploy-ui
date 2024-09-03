@@ -289,7 +289,10 @@
      </div>
    </nav>
    </section>
-
+   <div class="header">
+    <div class="back-button" onclick="goBack()"> &lt; </div>
+    <div class="title">Profiles</div>
+</div>
   <div id="profileContainer" class="profile-container"></div>
   
 
@@ -424,7 +427,11 @@
      </div>
     </div>
    </section>
-  
+   <script>
+    function goBack() {
+        window.location.href = "filter.html";
+    }
+</script>
    <script>
     function getCookie(name) {
         let value = `; ${document.cookie}`;
