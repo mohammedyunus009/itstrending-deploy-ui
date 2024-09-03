@@ -13,20 +13,20 @@ document.addEventListener('DOMContentLoaded', function () {
   if (signupForm) {
     signupForm.addEventListener('submit', function (event) {
       event.preventDefault();
-
+  
       const email = document.getElementById('signup-email').value;
       const firstname = document.getElementById('signup-firstname').value;
       const lastname = document.getElementById('signup-lastname').value;
       const password = document.getElementById('signup-password').value;
-
+  
       const formData = {
         email: email,
         firstname: firstname,
         lastname: lastname,
         password: password
       };
-
-      fetch('http://35.233.133.10:5001/api/v1/auth/signup', {
+  
+      fetch('https://api.itstrending.in:5001/api/v1/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,6 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(data => {
         console.log('Success:', data);
+  
+        // Store email in cookies
+        document.cookie = `email=${encodeURIComponent(email)}; path=/`;
+  
         alert('Signup successful!');
         signupForm.reset();
       })
@@ -54,33 +58,44 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     console.error('signupForm1 element not found');
   }
-
+  
   const signInForm = document.getElementById('loginForm1');
+  const successPopup = document.getElementById('successPopup');
+  const doneButton = document.getElementById('doneButton');
+  
   signInForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-
+  
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-
+  
     try {
-      const response = await fetch('http://35.233.133.10:5001/api/v1/auth/login', {
+      const response = await fetch('https://api.itstrending.in:5001/api/v1/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
-        console.log('Login successful:', data);
-        alert('Login successful!');
-
-        const token = data.token;
-        setCookie('authToken', token, 7);
-
-        window.location.href = 'profiile.html'; // Redirect to profile.html on successful login
+        // Extract the token
+        const token = data.data.token;
+  
+        // Set expiration time for the cookie (e.g., 1 year from now)
+        const expirationTime = new Date();
+        expirationTime.setFullYear(expirationTime.getFullYear() + 1);
+  
+        // Store the token in a cookie with expiration time
+        document.cookie = `token=${token}; path=/; Secure; SameSite=Strict; expires=${expirationTime.toUTCString()}`;
+        
+        // Store email in cookies
+        document.cookie = `email=${decodeURIComponent(email)}; path=/; Secure; SameSite=Strict; expires=${expirationTime.toUTCString()}`;
+  
+        // Show the success popup
+        successPopup.style.display = 'flex';
       } else {
         console.log('Login failed:', data.message);
         alert('Login failed. Please check your credentials.');
@@ -90,16 +105,12 @@ document.addEventListener('DOMContentLoaded', function () {
       alert('An error occurred during login. Please try again later.');
     }
   });
-
-  function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-  }
+  
+  doneButton.addEventListener('click', () => {
+    // Redirect to button.html on "Done" button click
+    window.location.href = 'payment2.html';
+  });
+  
 
   const forgotPasswordLink = document.getElementById('forgotPasswordLink');
   const forgotPasswordModal = document.getElementById('forgotPasswordModal');
@@ -125,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const email = document.getElementById('forgot-email').value;
 
     try {
-      const response = await fetch('http://35.233.133.10:5000/api/v1/auth/reset-password', {
+      const response = await fetch('https://35.233.133.10:5000/api/v1/auth/reset-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

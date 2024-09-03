@@ -13,13 +13,94 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQLTG22ZFC');
+</script>
+    <style>
+        .form-group {
+  position: relative;
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[list] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px; /* Ensure text size is consistent with other inputs */
+}
+
+datalist {
+  display: none; /* Hide datalist if it's not used */
+}
+
+input[list] {
+  font-size: 16px; /* Ensure font size is consistent */
+}
+
+/* Ensure consistent styling across all input elements */
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+@media (max-width: 600px) {
+           
+            .title {
+                margin: 10px 0;
+            }
+
+            .container1 {
+                padding: 10px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .user-icon {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 15px;
+            }
+
+            .user-icon i {
+                font-size: 20px;
+            }
+
+            .title {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- <div id="headerPlaceholder"></div> -->
 
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
-        <div class="title">Marital Status</div>
+        <div class="title">Personal Details</div>
         <div></div> <!-- This empty div is to ensure proper alignment -->
     </div>
     
@@ -34,23 +115,23 @@
         <!-- <div class="user-icon large">
             <i class="fa-regular fa-user"></i>
         </div> -->
-    <h2>Marital Status</h2>
+    <h2>Personal Details</h2>
     <div class="container1">
         
         <form onsubmit="return validateForm()">
             <div class="form-group">
-                <label for="marital_status">Marital Status </label>
-                <select id="marital_status" name="marital_status" onchange="showChildrenDropdown()">
+                <label for="marital_status">Marital Status :</label>
+                <select id="marital_status" name="marital_status">
                     <option value="">Select Marital Status</option>
-                    <option value="Never Married">Never Married</option>
+                    <option value="Single">Single</option>
                     <option value="Divorced">Divorced</option>
-                    <option value="Widowed">Widowed</option>
+                    <option value=" Widower"> Widower</option>
+                    <option value=" Widow"> Widow</option>
                     <option value="Awaiting Divorce">Awaiting Divorce</option>
-                    <option value="Annulled">Annulled</option>
                 </select>
             </div>
-            <div class="form-group" id="children_dropdown" style="display: none;">
-                <label for="children">Children</label>
+            <!-- <div class="form-group" id="children_dropdown" style="display: none;">
+                <label for="children">Children :</label>
                 <select id="children" name="children">
                     <option value="">Select Number of Children</option>
                     <option value="1">1</option>
@@ -59,31 +140,76 @@
                     <option value="4">4</option>
                     <option value="5+">5 or more</option>
                 </select>
-            </div>
+            </div> -->
         
-            <div class="form-group" id="heightGroup">
-                <label for="height">Height</label>
-                <input type="text" id="height" name="height">
-            </div>
-
-            <div class="form-group" id="weightGroup">
-                <label for="weight">Weight</label>
-                <input type="text" id="weight" name="weight">
-            </div>
-            
-            <div class="form-group" id="aboutmeGroup">
-                <label for="aboutme">About Me</label>
-                <textarea id="aboutme" name="aboutme"></textarea>
+            <div class="form-group">
+                <label for="height">Height :</label>
+                <input list="heights" id="height" name="height">
+                <datalist id="heights">
+                    <!-- <option value="4'0" >
+                    <option value="4'1" >
+                    <option value="4'2" >
+                    <option value="4'3" >
+                    <option value="4'4" > -->
+                    <option value="4'5" >
+                    <option value="4'6" >
+                    <option value="4'7" >
+                    <option value="4'8" >
+                    <option value="4'9" >
+                    <option value="4'10" >
+                    <option value="4'11" >
+                    <option value="5'0" >
+                    <option value="5'1" >
+                    <option value="5'2" >
+                    <option value="5'3" >
+                    <option value="5'4" >
+                    <option value="5'5" >
+                    <option value="5'6" >
+                    <option value="5'7" >
+                    <option value="5'8" >
+                    <option value="5'9" >
+                    <option value="5'10" >
+                    <option value="5'11" >
+                    <option value="6'0" >
+                    <option value="6'1" >
+                    <option value="6'2" >
+                    <option value="6'3" >
+                    <option value="6'4" >
+                    <option value="6'5" >
+                    <option value="6'6" >
+                </datalist>
             </div>
 
             <div class="form-group">
-                <label for="about_family">About Family </label>
-                <textarea id="about_family" name="about_family" rows="5"></textarea>
+                <label for="weight">Weight :</label>
+                <input list="weights" id="weight" name="weight">
+                <datalist id="weights">
+                    <option value="40 kg" >
+                    <option value="45 kg" >
+                    <option value="50 kg" >
+                    <option value="55 kg" >
+                    <option value="60 kg" >
+                    <option value="65 kg" >
+                    <option value="70 kg" >
+                    <option value="75 kg" >
+                    <option value="80 kg" >
+                    <option value="85 kg" >
+                    <option value="90 kg" >
+                    <option value="95 kg" >
+                    <option value="100 kg" >
+                </datalist>
             </div>
-            <div class="form-group" id="preferedalliancedetails">
-                <label for="aboutme">Prefered Alliance details</label>
-                <textarea id="preferedalliancedetail" name="preferedalliancedetail"></textarea>
+            
+            <div class="form-group" id="aboutmeGroup">
+                <label for="aboutme">About Me :</label>
+                <textarea id="aboutme" name="aboutme" style="width: 100%; height: 200px;"></textarea>
             </div>
+            
+            <div class="form-group">
+                <label for="about_family">About Family :</label>
+                <textarea id="about_family" name="about_family" rows="5" style="width: 100%;"></textarea>
+            </div>
+            
             <input type="button" value="Next" onclick="submitForm()" id="nextButton">
 
         </form>
@@ -93,29 +219,25 @@
     <script>
         function validateForm() {
             var maritalStatus = document.getElementById('marital_status').value;
-            var children = document.getElementById('children').value;
+            // var children = document.getElementById('children').value;
             var height = document.getElementById('height').value;
             var weight = document.getElementById('weight').value;
             var aboutme = document.getElementById('aboutme').value;
             var aboutFamily = document.getElementById('about_family').value;
-            var preferedalliancedetail = document.getElementById('preferedalliancedetail').value;
-
     
             // Perform validation checks if needed
             if (!maritalStatus) {
-                alert("Please select a marital status.");
+                // alert("Please select a marital status.");
                 return false;
             }
     
             // Set cookies with the selected values
-            document.cookie = `maritalStatus=${encodeURIComponent(maritalStatus)};`;
-            document.cookie = `children=${encodeURIComponent(children)};`;
-            document.cookie = `height=${encodeURIComponent(height)};`;
-            document.cookie = `weight=${encodeURIComponent(weight)};`;
-            document.cookie = `aboutMe=${encodeURIComponent(aboutme)};`;
-            document.cookie = `aboutFamily=${encodeURIComponent(aboutFamily)}; path=/`;
-            document.cookie = `preferedalliancedetail=${encodeURIComponent(preferedalliancedetail)}; path=/`;
-
+            document.cookie = `field3=${encodeURIComponent(maritalStatus)};`;
+            // document.cookie = `field16=${encodeURIComponent(children)};`;
+            document.cookie = `field17=${encodeURIComponent(height)};`;
+            document.cookie = `field18=${encodeURIComponent(weight)};`;
+            document.cookie = `field19=${encodeURIComponent(aboutme)};`;
+            document.cookie = `field20=${encodeURIComponent(aboutFamily)}; path=/`;
     
             return true; // Allow form submission
         }
@@ -136,18 +258,47 @@
     </script>
     
     <script>
-        function showChildrenDropdown() {
-            var maritalStatus = document.getElementById("marital_status").value;
-            var childrenDropdown = document.getElementById("children_dropdown");
+      function getCookie(name) {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
 
-            // Reset dropdown on change
-            childrenDropdown.style.display = "none";
+function checkLogin() {
+    let token = getCookie('token'); // Use the correct cookie name
+    // console.log("Token from cookie:", token); // Debugging: Check if token is retrieved
 
-            // Show dropdown if selected marital status requires it
-            if (maritalStatus === "Divorced" || maritalStatus === "Widowed" || maritalStatus === "Annulled") {
-                childrenDropdown.style.display = "block";
-            }
-        }
+    if (!token) {
+        // alert("User not logged in. Please login.");
+        window.location.href = 'login.html';
+    }
+}
+
+window.onload = function() {
+    checkLogin();
+}
+
+
+// function showChildrenDropdown() {
+//     var maritalStatus = document.getElementById("marital_status").value.trim(); // Trim any extra spaces
+//     var childrenDropdown = document.getElementById("children_dropdown");
+
+//     // Reset dropdown on change
+//     childrenDropdown.style.display = "none";
+
+//     // Show dropdown if selected marital status requires it
+//     var statusesRequiringChildrenDropdown = [
+//         "Divorced",
+//         "Widower",
+//         "Widow",
+//         "Awaiting Divorce"
+//     ];
+
+//     if (statusesRequiringChildrenDropdown.includes(maritalStatus)) {
+//         childrenDropdown.style.display = "block";
+//     }
+// }
+
 
         function goBack() {
             window.history.back();

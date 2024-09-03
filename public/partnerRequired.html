@@ -11,79 +11,117 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
     <script>
-        function validateForm(event) {
-            event.preventDefault(); // Prevent form submission
-
-            var height = document.getElementById('height').value;
-            var weight = document.getElementById('weight').value;
-            var caste = document.getElementById('Caste').value;
-            var education = document.getElementById('Education').value;
-            var occupation = document.getElementById('Occupation').value;
-            var follow = document.getElementById('FOLLOW').value;
-            
-            var personalCheckboxes = document.querySelectorAll('input[name="Personal"]:checked');
-            var personalValues = Array.from(personalCheckboxes).map(cb => cb.value);
-
-            // Validate each field
-            if (!height.trim()) {
-                alert("Please enter height.");
-                return false;
-            }
-            if (!weight.trim()) {
-                alert("Please enter weight.");
-                return false; 
-            }
-            if (!caste) {
-                alert("Please select a caste.");
-                return false;
-            }
-            if (!education.trim()) {
-                alert("Please enter education.");
-                return false;
-            }
-            if (!occupation.trim()) {
-                alert("Please enter occupation.");
-                return false;
-            }
-            if (!follow) {
-                alert("Please select a follow option.");
-                return false;
-            }
-            if (personalValues.length === 0) {
-                alert("Please select personal attributes.");
-                return false;
-            }
-
-            // Set cookies
-            document.cookie = `partner_height=${encodeURIComponent(height)}; path=/`;
-            document.cookie = `partner_weight=${encodeURIComponent(weight)}; path=/`;
-            document.cookie = `partner_caste=${encodeURIComponent(caste)}; path=/`;
-            document.cookie = `partner_education=${encodeURIComponent(education)}; path=/`;
-            document.cookie = `partner_occupation=${encodeURIComponent(occupation)}; path=/`;
-            document.cookie = `partner_follow=${encodeURIComponent(follow)}; path=/`;
-            document.cookie = `partner_personal_attribute=${encodeURIComponent(personalValues.join(', '))}; path=/`;
-
-            // Redirect to the next page
-            window.location.href = 'preview.html';
-            return false; // Prevent form submission to stay on the same page
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PQLTG22ZFC');
+    </script>
+    <style>
+        /* CSS for the Revert Section */
+        #revert2 {
+            margin: 20px 0; /* Space around the section */
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Center items vertically */
         }
 
-        function goBack() {
+        #revert2 input[type="radio"] {
+            margin-right: 10px; /* Space between radio button and label */
+        }
+
+        #revert2 label {
+            margin-right: 20px; /* Space between labels */
+            font-size: 16px; /* Font size for labels */
+            color: #333; /* Dark grey color for labels */
+            cursor: pointer; /* Pointer cursor for labels */
+        }
+
+        #revert2 input[type="radio"]:checked + label {
+            color: #007bff; /* Highlight color for selected radio button */
+            font-weight: bold; /* Bold text for selected option */
+        }
+
+        input[type=radio], input[type=checkbox] {
+            margin: 0px 9px 0px;
+            margin-top: 1px \9;
+            line-height: normal;
+        }
+    </style>
+    <script>
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+
+      function validateForm(event) {
+        console.log('validateForm called'); // Add this to confirm function call
+        event.preventDefault(); // Prevent default form submission
+
+        var revert2 = document.querySelector('input[name="revert2"]:checked');
+        var partnerRequirement = document.getElementById('partnerRequirement').value.trim();
+
+        // Store values in cookies (if they exist)
+        if (revert2) {
+            setCookie('field28', revert2.value, 7);
+        }
+        if (partnerRequirement) {
+            setCookie('field29', partnerRequirement, 7);
+        }
+
+        // Redirect to the next page
+        window.location.href = 'preview.html';
+        return false; // Prevent form submission
+      }
+
+      // Function to get a cookie by name
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+      }
+
+
+function goBack() {
             window.history.back();
         }
+
+      function checkLogin() {
+        let token = getCookie('token');
+        if (!token) {
+            // alert("User not logged in. Please login.");
+            window.location.href = 'login.html';
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        // Extract values from cookies and populate the form
+        const revert2Value = getCookie('revert2');
+        if (revert2Value) {
+            document.querySelector(`input[name="revert2"][value="${revert2Value}"]`).checked = true;
+        }
+        const partnerRequirementValue = getCookie('partnerRequirement');
+        if (partnerRequirementValue) {
+            document.getElementById('partnerRequirement').value = partnerRequirementValue;
+        }
+
+        // Check login status
+        checkLogin();
+      });
     </script>
 </head>
 <body>
-    <!-- <div id="headerPlaceholder"></div> -->
-
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
         <div class="title">Partner Requirement</div>
         <div></div> <!-- This empty div is to ensure proper alignment -->
     </div>
-    
     <div class="user-details">
         <!-- Choose one of the sizes below by changing the class name -->
         <div class="user-icon small">
@@ -95,79 +133,27 @@
         <!-- <div class="user-icon large">
             <i class="fa-regular fa-user"></i>
         </div> -->
-
         <div class="container1">
             <h2>Partner Requirement</h2>
-            
             <form id="maritalForm" onsubmit="validateForm(event)">
                 <div class="form-group">
-                    <label for="height">Height <span class="required"></span></label>
-                    <input type="text" id="height" name="height" required>
-                </div>
-                <div class="form-group">
-                    <label for="weight">Weight <span class="required"></span></label>
-                    <input type="text" id="weight" name="weight" required>
-                </div>
-                <div class="form-group">
-                    <label for="Caste">Caste <span class="required"></span></label>
-                    <select id="Caste" name="Caste" required>
-                        <option value="">Select Caste</option>
-                        <option value="Syed">Syed</option>
-                        <option value="Shaik">Shaik</option>
-                        <option value="Shariff">Shariff</option>
-                        <option value="Khan">Khan/Pathan</option>
-                        <option value="Baig">Baig</option>
-                        <option value="Others">Others</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="Education">Education <span class="required"></span></label>
-                    <textarea id="Education" name="Education" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="Occupation">Occupation <span class="required"></span></label>
-                    <textarea id="Occupation" name="Occupation" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="FOLLOW">FOLLOW <span class="required"></span></label>
-                    <select id="FOLLOW" name="FOLLOW" required>
-                        <option value="">Select FOLLOW</option>
-                        <option value="Hanafi">Hanafi</option>
-                        <option value="Shafi">Shafi</option>
-                        <option value="Hanbali">Hanbali</option>
-                        <option value="Maliki">Maliki</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="Personal">Personal Attributes <span class="required"></span></label>
-                    <div id="Personal">
-                        <label>
-                            <input type="checkbox" name="Personal" value="Fair"> Fair
-                        </label>
-                        <label>
-                            <input type="checkbox" name="Personal" value="Beautiful"> Beautiful
-                        </label>
-                        <label>
-                            <input type="checkbox" name="Personal" value="Deender"> Deender
-                        </label>
-                        <label>
-                            <input type="checkbox" name="Personal" value="Practising"> Practising
-                        </label>
-                        <label>
-                            <input type="checkbox" name="Personal" value="Namaz"> Namaz
-                        </label>
-                        <label>
-                            <input type="checkbox" name="Personal" value="Hijabi"> Hijabi
-                        </label>
+                    <label for="revert2">Revert? </label>
+                    <div id="revert2">
+                        <input type="radio" id="revert2Yes" name="revert2" value="Yes" required> 
+                        <label for="revert2Yes">Yes</label>
+                        <input type="radio" id="revert2No" name="revert2" value="No"> 
+                        <label for="revert2No">No</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="button" id="nextButton" form="maritalForm">NEXT</button>
+                    <label for="partnerRequirement">Partner Requirement <span class="required"></span></label>
+                    <textarea id="partnerRequirement" name="partnerRequirement" required></textarea>
                 </div>
+                <button type="submit" class="button" id="nextButton">NEXT</button>
             </form>
         </div>
     </div>
-
-    <!-- <div id="footerPlaceholder"></div> -->
+    <br>
 </body>
 </html>
+
