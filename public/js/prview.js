@@ -71,6 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("father-occupation").innerText = decodeURIComponent(getCookie("field21")) || "N/A";
     document.getElementById("mother-name").innerText = decodeURIComponent(getCookie("field22")) || "N/A";
     document.getElementById("mother-occupation").innerText = decodeURIComponent(getCookie("field23")) || "N/A";
+    document.getElementById("family-contact-number").innerText = decodeURIComponent(getCookie("field42")) || "N/A";
+
     document.getElementById("no-of-sisters").innerText = decodeURIComponent(getCookie("field24")) || "N/A";
     document.getElementById("sister-marital-status").innerText = decodeURIComponent(getCookie("field37")) || "N/A";
     document.getElementById('sister-occupation').textContent = decodeURIComponent(getCookie('field38')) || "N/A";
