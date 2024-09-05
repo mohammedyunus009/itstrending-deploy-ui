@@ -622,3 +622,9 @@ min-height:560px;
 .footer_1i .social-icon:hover {
   transform: scale(1.1);
 }
+
+@media (max-width: 414px) {
+  .spec_1i {
+      width: 34rem;
+  }
+}
