@@ -216,6 +216,7 @@ button[type="submit"]:hover {
     font-weight: bold;
     color: #c7309f;
 }
+
 </style>
   </head>
 <body>
@@ -405,12 +406,13 @@ button[type="submit"]:hover {
       <h1>Profile Form</h1>
       <form>
           <h2>Personal Details</h2>
-          <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="text" id="name" name="field5" >
+          <div class="form-group" style="display: flex;">
+            <label for="name" style="margin-right: 10px;">Name:</label>
+            <input type="text" id="name" name="field5">
           </div>
+        
 
-          <div class="form-group">
+          <div class="form-group" style="display: flex;">
             <label>Gender:</label>
             <div class="gender-options">
                 <input type="radio" id="male" name="gender" value="male">
@@ -419,35 +421,35 @@ button[type="submit"]:hover {
                 <label for="female">Female</label>
             </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display: flex;">
                 <label for="date">Date of Birth:</label>
                 <input id="date" name="field6" type="text" >
             </div>
             
       
-            <div class="form-group">
-                <label for="height">Height:</label>
+            <div class="form-group" style="display: flex;">
+                <label for="height" style="margin-right: 10px;">Height:</label>
                 <select id="height" name="field14" >
                     <!-- Options will be populated dynamically -->
                 </select>
             </div>
             
-            <div class="form-group">
-                <label for="family-subcaste">Family/Subcaste:</label>
+            <div class="form-group" style="display: flex;">
+                <label for="family-subcaste" style="margin-right: 10px;">Family/Subcaste:</label>
                 <select id="family-subcaste" name="field8" >
                     <!-- Options will be populated dynamically -->
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="follow">Follow:</label>
+            <div class="form-group" style="display: flex;">
+                <label for="follow" style="margin-right: 10px;">Follow:</label>
                     <select id="follow" name="field4" multiple="multiple" style="width: 100%;">
                 <!-- Options will be populated by JavaScript -->
                     </select>
             </div>
 
             <h2>Marital Details</h2>
-            <div class="form-group">
+            <div class="form-group" style="display: flex;">
               <label for="marital-status">Marital Status:</label>
               <select id="marital-status" name="field3" required>
                   <option value="N/A">Please select</option>
@@ -458,12 +460,12 @@ button[type="submit"]:hover {
             </div>
 
             <div id="marital-details" class="hidden dynamic-fields">
-              <div class="form-group">
+              <div class="form-group" style="display: flex;">
                   <label for="marital-tenure">Marital Tenure:</label>
                   <input type="text" id="marital-tenure" name="field15">
               </div>
-              <div class="form-group">
-                  <label for="children">Children:</label>
+              <div class="form-group" style="display: flex;">
+                  <label for="children" style="margin-right: 10px;">Children:</label>
                   <input type="text" id="children" name="field16">
               </div>
               <div class="form-group">
@@ -476,60 +478,55 @@ button[type="submit"]:hover {
           </div>
 
           <h2>Professional Details</h2>
-          <div class="form-group">
-            <label for="education">Education:</label>
+          <div class="form-group" style="display: flex;">
+            <label for="education" style="margin-right: 10px;">Education:</label>
             <select id="education" name="field2" >
                 <!-- Options will be populated by JavaScript -->
             </select>
           </div>
 
-          <div class="form-group">
-              <label for="profession">Profession:</label>
+          <div class="form-group" style="display: flex;">
+              <label for="profession" style="margin-right: 10px;">Profession:</label>
               <input type="text" id="profession" name="field9">
           </div>
 
-          <div class="form-group">
-              <label for="company">Company:</label>
+          <div class="form-group" style="display: flex;">
+              <label for="company" style="margin-right: 10px;">Company:</label>
               <input type="text" id="company" name="field18">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" style="display: flex;">
               <label for="job-location">Job Location:</label>
               <input type="text" id="job-location" name="field19">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" style="display: flex;">
               <label for="home-address">Home Address:</label>
               <input type="text" id="home-address" name="field7">
           </div>
 
           <h2>Family Details</h2>
-          <div class="form-group">
+          <div class="form-group" style="display: flex;">
               <label for="father-name">Father's Name:</label>
               <input type="text" id="father-name" name="field20">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" style="display: flex;">
               <label for="father-occupation">Father's Occupation:</label>
               <input type="text" id="father-occupation" name="field21">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" style="display: flex;">
               <label for="mother-name">Mother's Name:</label>
               <input type="text" id="mother-name" name="field22">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" style="display: flex;">
               <label for="mother-occupation">Mother's Occupation:</label>
               <input type="text" id="mother-occupation" name="field23">
           </div>
-          <div class="form-group">
-            <label for="family-contact-number">Family Contact Number:</label>
-            <input type="text" id="family-contact-number" name="field42" >
-        </div>
-        
 
-          <div class="form-group">
+          <div class="form-group" style="display: flex;">
               <label for="no-of-sisters">No of Sisters:</label>
               <select id="no-of-sisters" name="field24" >
                   <option value="N/A">N/A</option>
@@ -543,7 +540,7 @@ button[type="submit"]:hover {
               <!-- Sister details will be dynamically added here -->
           </div>
 
-          <div class="form-group">
+          <div class="form-group" style="display: flex;">
               <label for="no-of-brothers">No of Brothers:</label>
               <select id="no-of-brothers" name="field25" >
                   <option value="N/A">N/A</option>
@@ -558,22 +555,22 @@ button[type="submit"]:hover {
           </div>
 
             <h2>Partner Requirement</h2>
-            <div class="form-group">
-                <label for="partner-caste">Preferred Family/Subcaste:</label>
+            <div class="form-group" style="display: flex;">
+                <label for="partner-caste" style="margin-right: 10px;">Family/Subcaste:</label>
                 <select id="partner-caste" name="field26" multiple="multiple" style="width: 100%;">
                 <!-- Options will be populated by JavaScript -->
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="partner-education">Preferred Education:</label>
+            <div class="form-group" style="display: flex;">
+                <label for="partner-education" style="margin-right: 10px;">Education:</label>
                 <select id="partner-education" name="field27" multiple="multiple" style="width: 100%;">
                     <!-- Options will be populated by JavaScript -->
                 </select>
             </div>
 
-            <div class="form-group">
-            <label for="partner-profession">Prefered Profession:</label>
+            <div class="form-group" style="display: flex;">
+            <label for="partner-profession" style="margin-right: 10px;">Profession:</label>
             <select id="partner-profession" name="field28" >
                 <option value="N/A">Please select</option>
                 <option value="Job">Job</option>
@@ -584,59 +581,59 @@ button[type="submit"]:hover {
             </select>
             </div>
 
-            <div class="form-group">
-                <label for="preferred-age">Preferred Age:</label>
+            <div class="form-group" style="display: flex;">
+                <label for="preferred-age" style="margin-right: 10px;">Age:</label>
                 <input type="text" id="custom-age" name="field29" placeholder="Enter specific age range" style="width: 100%; margin-top: 10px;">
             </div>
 
-            <div class="form-group">
-                <label for="preferred-height">Preferred Height:</label>
+            <div class="form-group" style="display: flex;">
+                <label for="preferred-height" style="margin-right: 10px;">Height:</label>
                 <input type="text" id="custom-height" name="field30" placeholder="Enter specific height range" style="width: 100%; margin-top: 10px;">
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display: flex;">
             <label for="personal-attributes">Personal Attributes:</label>
             <select id="personal-attributes" name="field31" multiple="multiple" style="width: 100%;">
                 <!-- Options will be populated by JavaScript -->
             </select>
             </div>
 
-            <div class="form-group">
-            <label for="partner-follow">Prefered Follow & Practice:</label>
+            <div class="form-group" style="display: flex;">
+            <label for="partner-follow">Follow & Practice:</label>
             <select id="partner-follow" name="field32" multiple="multiple" style="width: 100%;">
                 <!-- Options will be populated by JavaScript -->
             </select>
             </div>
             
-            <div class="form-group">
+            <div class="form-group" style="display: flex;">
             <label for="family-type">Family Type:</label>
             <select id="family-type" name="field33" multiple="multiple" style="width: 100%;">
                 <!-- Options will be populated by JavaScript -->
             </select>
             </div>
 
-            <div class="form-group">
-            <label for="partner-location">Prefered Location:</label>
+            <div class="form-group" style="display: flex;">
+            <label for="partner-location" style="margin-right: 10px;">Location:</label>
             <select id="partner-location" name="field34" multiple="multiple" style="width: 100%;">
                 <!-- Options will be populated dynamically -->
             </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display: flex;">
                 <label for="religious-attributes">Religious Attributes:</label>
                 <select id="religious-attributes" name="field35" multiple="multiple" style="width: 100%;">
                     <!-- Options will be populated by JavaScript -->
                 </select>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group" style="display: flex;">
                 <label for="partner-working-status">Partner Working Status to be:</label>
                 <select id="partner-working-status" name="field36" >
                     <option value="N/A">Please select</option>
                     <option value="Working">Working</option>
                     <option value="Non-Working">Non-Working</option>
                 </select>
-            </div>
+            </div> -->
 
             <div class="form-group">
             <label for="image-upload">Upload Images:</label>
@@ -647,22 +644,22 @@ button[type="submit"]:hover {
 
             <h2>Office Purpose Only</h2>
 
-            <div class="form-group">
+            <div class="form-group" style="display: flex;">
                 <label for="serial-number">ISC Sl. No:</label>
                 <input type="text" id="slno" name="field1">
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display: flex;">
                 <label for="coordinator-name">ISC Coordinator Name:</label>
                 <input type="text" id="coordinator-name" name="field10">
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display: flex;">
                 <label for="coordinator-number">ISC Coordinator Number:</label>
                 <input type="text" id="coordinator-number" name="field41">
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display: flex;">
                 <label for="profile-status">Profile Status:</label>
                 <select id="profile-status" name="field11">
                     <option value="N/A">Please select</option>
@@ -958,21 +955,22 @@ button[type="submit"]:hover {
 
 <script>
    // Helper functions to manage cookies
-   function setCookie(name, value) {
-      document.cookie = `${name}=${encodeURIComponent(value)}; path=/`;
-  }
+function setCookie(name, value, hours = 1) {
+    const expires = new Date(Date.now() + hours * 60 * 60 * 1000).toUTCString(); // Set cookie expiration to 1 hour
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+}
 
-  function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
-  }
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
+}
 
-  function eraseCookie(name) {
-      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-  }
+function eraseCookie(name) {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
 
-  function handleImageUpload(fileInput) {
+function handleImageUpload(fileInput) {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", "{{Autho}}"); // Replace with actual token
 
@@ -980,7 +978,6 @@ button[type="submit"]:hover {
 
     // Iterate over the files from the file input
     for (let i = 0; i < fileInput.files.length; i++) {
-        // Append each file to FormData with a unique name
         formdata.append("file", fileInput.files[i], fileInput.files[i].name);
     }
 
@@ -1001,46 +998,34 @@ button[type="submit"]:hover {
         .then((result) => {
             console.log(result);
             // Extract image URLs from response and decode them
-            // Example array of image URLs from the result
-const imagesUrls = result.data.images.map(url => url + "?alt=media");
+            const imagesUrls = result.data.images.map(url => url + "?alt=media");
 
-// Function to set a cookie with a specific name and value
-function setCookie(name, value, days = 7) {
-    const expires = new Date(Date.now() + days * 864e5).toUTCString();
-    document.cookie = `${name}=${value}; expires=${expires}; path=/`;
-}
-
-// Store each URL in a separate cookie
-imagesUrls.forEach((url, index) => {
-    setCookie(`images${index}`, url);
-});
-
-// To confirm that the URLs have been stored, you can retrieve and log them
-const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
-    const [name, value] = cookie.split('=');
-    acc[name] = value;
-    return acc;
-}, {});
-
-console.log('Stored images URLs:');
-Object.keys(cookies).forEach(key => {
-    if (key.startsWith('images')) {
-        console.log(`${key}: ${cookies[key]}`);
-    }
-});
-
-            // Store image URLs in cookies
+            // Store each URL in a separate cookie, set to expire in 1 hour
             imagesUrls.forEach((url, index) => {
-                setCookie(`images${index}`, url);
+                setCookie(`images${index}`, url, 1); // Cookie expires after 1 hour
+            });
+
+            // To confirm that the URLs have been stored, you can retrieve and log them
+            const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+                const [name, value] = cookie.split('=');
+                acc[name] = value;
+                return acc;
+            }, {});
+
+            console.log('Stored images URLs:');
+            Object.keys(cookies).forEach(key => {
+                if (key.startsWith('images')) {
+                    console.log(`${key}: ${cookies[key]}`);
+                }
             });
 
             // Update preview container with new images
             updateImagePreview(imagesUrls);
         })
         .catch((error) => console.error('Error:', error));
-  }
+}
 
-  function updateImagePreview(imagesUrls) {
+function updateImagePreview(imagesUrls) {
     const previewContainer = document.getElementById('image-preview');
     previewContainer.innerHTML = ''; // Clear existing previews
 
@@ -1065,102 +1050,112 @@ Object.keys(cookies).forEach(key => {
         imgWrapper.appendChild(removeButton);
         previewContainer.appendChild(imgWrapper);
     });
-  }
+}
 
-  // Call handleImageUpload when files are selected
-  const fileInput = document.getElementById('image-upload');
-  fileInput.addEventListener('change', () => handleImageUpload(fileInput));
+// Call handleImageUpload when files are selected
+const fileInput = document.getElementById('image-upload');
+fileInput.addEventListener('change', () => handleImageUpload(fileInput));
+
 
 </script>
 
 <script>
-    function handleDocumentUpload(fileInput) {
-      const myHeaders = new Headers();
-      myHeaders.append("Authorization", "{{Autho}}"); // Replace with actual token
-  
-      const formdata = new FormData();
-  
-      // Iterate over the files from the file input
-      for (let i = 0; i < fileInput.files.length; i++) {
-          // Append each file to FormData with a unique name
-          formdata.append("file", fileInput.files[i], fileInput.files[i].name);
-      }
-  
-      const requestOptions = {
-          method: "POST",
-          headers: myHeaders,
-          body: formdata,
-          redirect: "follow"
-      };
-  
-      fetch("https://api.itstrending.in:5000/api/v1/profiles/upload_images", requestOptions)
-          .then((response) => {
-              if (!response.ok) {
-                  throw new Error(`HTTP error! Status: ${response.status}`);
-              }
-              return response.json(); // Handle JSON response
-          })
-          .then((result) => {
-              console.log(result);
-              // Extract document URLs from response without encoding
-              const documentUrls = result.data.images.map(url => url + "?alt=media");
-  
-              // Store each URL in a separate cookie, starting from index 6
-              documentUrls.forEach((url, index) => {
-                  document.cookie = `images${index + 6}=${url}; path=/`;
-              });
-  
-              // To confirm that the URLs have been stored, you can retrieve and log them
-              const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
-                  const [name, value] = cookie.split('=');
-                  acc[name] = value;
-                  return acc;
-              }, {});
-  
-              console.log('Stored document URLs:');
-              Object.keys(cookies).forEach(key => {
-                  if (key.startsWith('images') && parseInt(key.replace('images', '')) >= 6) {
-                      console.log(`${key}: ${cookies[key]}`);
-                  }
-              });
-  
-              // Update preview container with new documents
-              updateDocumentPreview(documentUrls);
-          })
-          .catch((error) => console.error('Error:', error));
+    function setCookie(name, value, hours = 1) {
+    const expires = new Date(Date.now() + hours * 60 * 60 * 1000).toUTCString(); // Set cookie expiration to 1 hour
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+}
+
+function eraseCookie(name) {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+
+function handleDocumentUpload(fileInput) {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "{{Autho}}"); // Replace with actual token
+
+    const formdata = new FormData();
+
+    // Iterate over the files from the file input
+    for (let i = 0; i < fileInput.files.length; i++) {
+        formdata.append("file", fileInput.files[i], fileInput.files[i].name);
     }
-  
-    function updateDocumentPreview(documentUrls) {
-      const previewContainer = document.getElementById('document-preview');
-      previewContainer.innerHTML = ''; // Clear existing previews
-  
-      documentUrls.forEach((url, index) => {
-          const docWrapper = document.createElement('div');
-          docWrapper.classList.add('document-wrapper');
-  
-          const docLink = document.createElement('a');
-          docLink.href = url;
-          docLink.target = "_blank";
-          docLink.textContent = `Document ${index + 6}`;
-          docLink.classList.add('preview-document');
-  
-          const removeButton = document.createElement('button');
-          removeButton.textContent = 'Remove';
-          removeButton.classList.add('remove-btn');
-          removeButton.onclick = () => {
-              docWrapper.remove(); // Remove the document wrapper
-              document.cookie = `images${index + 6}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`; // Remove document from cookies
-          };
-  
-          docWrapper.appendChild(docLink);
-          docWrapper.appendChild(removeButton);
-          previewContainer.appendChild(docWrapper);
-      });
-    }
-  
-    // Call handleDocumentUpload when files are selected
-    const documentFileInput = document.getElementById('divorce-document');
-    documentFileInput.addEventListener('change', () => handleDocumentUpload(documentFileInput));
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow"
+    };
+
+    fetch("https://api.itstrending.in:5000/api/v1/profiles/upload_images", requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json(); // Handle JSON response
+        })
+        .then((result) => {
+            console.log(result);
+            // Extract document URLs from response
+            const documentUrls = result.data.images.map(url => url + "?alt=media");
+
+            // Store each URL in a separate cookie, starting from index 6
+            documentUrls.forEach((url, index) => {
+                setCookie(`images${index + 6}`, url, 1); // Cookie expires after 1 hour
+            });
+
+            // To confirm that the URLs have been stored, you can retrieve and log them
+            const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+                const [name, value] = cookie.split('=');
+                acc[name] = value;
+                return acc;
+            }, {});
+
+            console.log('Stored document URLs:');
+            Object.keys(cookies).forEach(key => {
+                if (key.startsWith('images') && parseInt(key.replace('images', '')) >= 6) {
+                    console.log(`${key}: ${cookies[key]}`);
+                }
+            });
+
+            // Update preview container with new documents
+            updateDocumentPreview(documentUrls);
+        })
+        .catch((error) => console.error('Error:', error));
+}
+
+function updateDocumentPreview(documentUrls) {
+    const previewContainer = document.getElementById('document-preview');
+    previewContainer.innerHTML = ''; // Clear existing previews
+
+    documentUrls.forEach((url, index) => {
+        const docWrapper = document.createElement('div');
+        docWrapper.classList.add('document-wrapper');
+
+        const docLink = document.createElement('a');
+        docLink.href = url;
+        docLink.target = "_blank";
+        docLink.textContent = `Document ${index + 6}`;
+        docLink.classList.add('preview-document');
+
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.classList.add('remove-btn');
+        removeButton.onclick = () => {
+            docWrapper.remove(); // Remove the document wrapper
+            eraseCookie(`images${index + 6}`); // Remove document from cookies
+        };
+
+        docWrapper.appendChild(docLink);
+        docWrapper.appendChild(removeButton);
+        previewContainer.appendChild(docWrapper);
+    });
+}
+
+// Call handleDocumentUpload when files are selected
+const documentFileInput = document.getElementById('divorce-document');
+documentFileInput.addEventListener('change', () => handleDocumentUpload(documentFileInput));
+
   
 </script>
   
@@ -1193,11 +1188,11 @@ Object.keys(cookies).forEach(key => {
 
         if (noOfSisters !== 'N/A') {
             sistersDetails.innerHTML = `
-                <div class="form-group">
+                <div class="form-group" style="display: flex;">
                     <label for="sister-marital-status">Sisters' Marital Status:</label>
                     <input type="text" id="sister-marital-status" name="field37" placeholder="Enter Marital Status">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display: flex;">
                     <label for="sister-occupation">Sisters' Occupation:</label>
                     <input type="text" id="sister-occupation" name="field38" placeholder="Enter Occupation">
                 </div>
@@ -1215,11 +1210,11 @@ Object.keys(cookies).forEach(key => {
 
         if (noOfBrothers !== 'N/A') {
             brothersDetails.innerHTML = `
-                <div class="form-group">
+                <div class="form-group" style="display: flex;">
                     <label for="brother-marital-status">Brothers' Marital Status:</label>
                     <input type="text" id="brother-marital-status" name="field39" placeholder="Enter Marital Status">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display: flex;">
                     <label for="brother-occupation">Brothers' Occupation:</label>
                     <input type="text" id="brother-occupation" name="field40" placeholder="Enter Occupation">
                 </div>
@@ -1422,9 +1417,9 @@ Object.keys(cookies).forEach(key => {
 </script>
 
 <script>
-    function setCookie(name, value, days) {
+    function setCookie(name, value, hours) {
     const d = new Date();
-    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+    d.setTime(d.getTime() + (hours * 60 * 60 * 1000)); // Set expiration time to specified hours
     const expires = "expires=" + d.toUTCString();
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
@@ -1454,16 +1449,15 @@ function saveFormDataToCookies() {
     formData.forEach((value, key) => {
         if (key === 'image-upload[]') {
             // Handle image uploads separately if needed
-            // For this example, we skip saving file data in cookies
             return;
         }
 
         if (form.elements[key].type === 'select-multiple') {
             // Handle multiple selections
             const selectedValues = Array.from(form.elements[key].selectedOptions).map(option => option.value).join(',');
-            setCookie(key, selectedValues, 7);
+            setCookie(key, selectedValues, 1); // Set cookie expiration to 1 hour
         } else {
-            setCookie(key, value, 7);
+            setCookie(key, value, 1); // Set cookie expiration to 1 hour
         }
     });
 }
@@ -1536,6 +1530,7 @@ function checkAuthorization() {
 window.onload = checkAuthorization;
 
 </script>
+
 <script>
     function goBack() {
         window.location.href = "button.html";
