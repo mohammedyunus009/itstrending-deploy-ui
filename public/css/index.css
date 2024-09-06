@@ -125,7 +125,7 @@ font-size:14px;
 display:none;
 }
 .center_home .font_60{
-font-size:20px;
+font-size:32px;
 }
 .center_home  .button{
 padding:10px 15px;
@@ -185,7 +185,7 @@ bottom:50px;
 min-height:800px; 
  }
 .center_home .font_60{
-font-size:29px;
+font-size:36px;
 }
 .about_hm2 img{
 width:100px;
@@ -274,22 +274,5 @@ height:130px;
 }
  }
 
- .carousel-caption {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 20px; /* Adjust as needed */
-    text-align: left; /* Align text to the left */
-}
-h1, h2, h3, h4, h5 {
-    font-weight: bold;
-    color: black;
-    font-family: serif;
 
-}
 
- .font_60 {
-    font-size: 24px;
-    font-family: serif;
-}
