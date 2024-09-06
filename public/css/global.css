@@ -538,6 +538,11 @@ width:100%;
 padding-left:20px;
 padding-right:20px;
  }
+
+ #header .navbar-brand {
+  font-size: 20px;
+  margin-left: 1px;
+ }
 .font_80{
 font-size:60px; 
  }
