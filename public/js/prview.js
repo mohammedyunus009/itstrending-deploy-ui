@@ -47,47 +47,48 @@ function createSiblingFields(containerId, numberOfSiblings, siblingType) {
 
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch the data from cookies, decode it, and set it to the respective fields
-    document.getElementById("coordinator-name").innerText = decodeURIComponent(getCookie("field10")) || "N/A";
-    document.getElementById("coordinator-number").innerText = decodeURIComponent(getCookie("field41")) || "N/A";
-    document.getElementById("profile-status").innerText = decodeURIComponent(getCookie("field11")) || "N/A";
-    document.getElementById("on-hold-reason").innerText = decodeURIComponent(getCookie("field13")) || "N/A";
-    document.getElementById("slno").innerText = decodeURIComponent(getCookie("field1")) || "N/A";
-    document.getElementById("name").innerText = decodeURIComponent(getCookie("field5")) || "N/A";
-    document.getElementById("gender").innerText = decodeURIComponent(getCookie("gender")) || "N/A";
-    document.getElementById("age").innerText = decodeURIComponent(getCookie("field6")) || "N/A";
-    document.getElementById("height").innerText = decodeURIComponent(getCookie("field14")) || "N/A";
-    document.getElementById("family-subcaste").innerText = decodeURIComponent(getCookie("field8")) || "N/A";
-    document.getElementById("follow").innerText = decodeURIComponent(getCookie("field4")) || "N/A";
-    document.getElementById("marital-status").innerText = decodeURIComponent(getCookie("field3")) || "N/A";
-    document.getElementById("marital-tenure").innerText = decodeURIComponent(getCookie("field15")) || "N/A";
-    document.getElementById("children").innerText = decodeURIComponent(getCookie("field16")) || "N/A";
+    document.getElementById("coordinator-name").innerText = decodeURIComponent(getCookie("field10"));
+    document.getElementById("coordinator-number").innerText = decodeURIComponent(getCookie("field41"));
+    document.getElementById("profile-status").innerText = decodeURIComponent(getCookie("field11"));
+    document.getElementById("on-hold-reason").innerText = decodeURIComponent(getCookie("field13"));
+    document.getElementById("slno").innerText = decodeURIComponent(getCookie("field1"));
+    document.getElementById("name").innerText = decodeURIComponent(getCookie("field5"));
+    document.getElementById("gender").innerText = decodeURIComponent(getCookie("gender"));
+    document.getElementById("age").innerText = decodeURIComponent(getCookie("field6"));
+    document.getElementById("height").innerText = decodeURIComponent(getCookie("field14"));
+    document.getElementById("family-subcaste").innerText = decodeURIComponent(getCookie("field8"));
+    document.getElementById("follow").innerText = decodeURIComponent(getCookie("field4"));
+    document.getElementById("marital-status").innerText = decodeURIComponent(getCookie("field3"));
+    document.getElementById("marital-tenure").innerText = decodeURIComponent(getCookie("field15"));
+    document.getElementById("children").innerText = decodeURIComponent(getCookie("field16"));
     // document.getElementById("divorce-document").innerText = decodeURIComponent(getCookie("field17")) || "N/A";
-    document.getElementById("education").innerText = decodeURIComponent(getCookie("field2")) || "N/A";
-    document.getElementById("profession").innerText = decodeURIComponent(getCookie("field9")) || "N/A";
-    document.getElementById("company").innerText = decodeURIComponent(getCookie("field18")) || "N/A";
-    document.getElementById("job-location").innerText = decodeURIComponent(getCookie("field19")) || "N/A";
-    document.getElementById("home-address").innerText = decodeURIComponent(getCookie("field7")) || "N/A";
-    document.getElementById("father-name").innerText = decodeURIComponent(getCookie("field20")) || "N/A";
-    document.getElementById("father-occupation").innerText = decodeURIComponent(getCookie("field21")) || "N/A";
-    document.getElementById("mother-name").innerText = decodeURIComponent(getCookie("field22")) || "N/A";
-    document.getElementById("mother-occupation").innerText = decodeURIComponent(getCookie("field23")) || "N/A";
-    document.getElementById("no-of-sisters").innerText = decodeURIComponent(getCookie("field24")) || "N/A";
-    document.getElementById("sister-marital-status").innerText = decodeURIComponent(getCookie("field37")) || "N/A";
-    document.getElementById('sister-occupation').textContent = decodeURIComponent(getCookie('field38')) || "N/A";
-    document.getElementById('no-of-brothers').textContent = decodeURIComponent(getCookie('field25')) || "N/A";
-    document.getElementById('brother-marital-status').textContent = decodeURIComponent(getCookie('field39')) || "N/A";
-    document.getElementById('brother-occupation').textContent = decodeURIComponent(getCookie('field40')) || "N/A";
-    document.getElementById('partner-caste').textContent = decodeURIComponent(getCookie('field26')) || "N/A";
-    document.getElementById("partner-education").innerText = decodeURIComponent(getCookie("field27")) || "N/A";
-    document.getElementById("partner-profession").innerText = decodeURIComponent(getCookie("field28")) || "N/A";
-    document.getElementById("custom-age").innerText = decodeURIComponent(getCookie("field29")) || "N/A";
-    document.getElementById("custom-height").innerText = decodeURIComponent(getCookie("field30")) || "N/A";
-    document.getElementById("personal-attributes").innerText = decodeURIComponent(getCookie("field31")) || "N/A";
-    document.getElementById("partner-follow").innerText = decodeURIComponent(getCookie("field32")) || "N/A";
-    document.getElementById("family-type").innerText = decodeURIComponent(getCookie("field33")) || "N/A";
-    document.getElementById("partner-location").innerText = decodeURIComponent(getCookie("field34")) || "N/A";
-    document.getElementById("religious-attributes").innerText = decodeURIComponent(getCookie("field35")) || "N/A";
-    document.getElementById("partner-working-status").innerText = decodeURIComponent(getCookie("field36")) || "N/A";
+    document.getElementById("education").innerText = decodeURIComponent(getCookie("field2"));
+    document.getElementById("profession").innerText = decodeURIComponent(getCookie("field9"));
+    document.getElementById("company").innerText = decodeURIComponent(getCookie("field18"));
+    document.getElementById("job-location").innerText = decodeURIComponent(getCookie("field19"));
+    document.getElementById("home-address").innerText = decodeURIComponent(getCookie("field7"));
+    document.getElementById("father-name").innerText = decodeURIComponent(getCookie("field20"));
+    document.getElementById("father-occupation").innerText = decodeURIComponent(getCookie("field21"));
+    document.getElementById("mother-name").innerText = decodeURIComponent(getCookie("field22"));
+    document.getElementById("mother-occupation").innerText = decodeURIComponent(getCookie("field23"));
+    document.getElementById("family-contact-number").innerText = decodeURIComponent(getCookie("field42"));
+    document.getElementById("no-of-sisters").innerText = decodeURIComponent(getCookie("field24"));
+    document.getElementById("sister-marital-status").innerText = decodeURIComponent(getCookie("field37"));
+    document.getElementById('sister-occupation').textContent = decodeURIComponent(getCookie('field38'));
+    document.getElementById('no-of-brothers').textContent = decodeURIComponent(getCookie('field25'));
+    document.getElementById('brother-marital-status').textContent = decodeURIComponent(getCookie('field39'));
+    document.getElementById('brother-occupation').textContent = decodeURIComponent(getCookie('field40'));
+    document.getElementById('partner-caste').textContent = decodeURIComponent(getCookie('field26'));
+    document.getElementById("partner-education").innerText = decodeURIComponent(getCookie("field27"));
+    document.getElementById("partner-profession").innerText = decodeURIComponent(getCookie("field28"));
+    document.getElementById("custom-age").innerText = decodeURIComponent(getCookie("field29"));
+    document.getElementById("custom-height").innerText = decodeURIComponent(getCookie("field30"));
+    document.getElementById("personal-attributes").innerText = decodeURIComponent(getCookie("field31"));
+    document.getElementById("partner-follow").innerText = decodeURIComponent(getCookie("field32"));
+    document.getElementById("family-type").innerText = decodeURIComponent(getCookie("field33"));
+    document.getElementById("partner-location").innerText = decodeURIComponent(getCookie("field34"));
+    document.getElementById("religious-attributes").innerText = decodeURIComponent(getCookie("field35"));
+    document.getElementById("partner-working-status").innerText = decodeURIComponent(getCookie("field36"));
 
     if (numBrothers > 0) {
         showBrothersDetails(numBrothers);
@@ -302,6 +303,9 @@ if (window.confirm("Are you sure you want to create your profile?")) {
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        // After successful submission, clear all cookies except "email" and "token"
+        clearCookiesExcept(['email', 'token']);
+
         // Redirect to filters page after saving the profile
         window.location.href = "filter.html";
     })
@@ -312,6 +316,20 @@ if (window.confirm("Are you sure you want to create your profile?")) {
     // If the user clicks "No", do nothing
     console.log("Profile creation canceled.");
 }
+}
+
+// Function to clear all cookies except the ones specified in the `exceptions` array
+function clearCookiesExcept(exceptions) {
+const cookies = document.cookie.split(";");
+
+cookies.forEach(cookie => {
+    const cookieName = cookie.split("=")[0].trim();
+
+    // Clear the cookie if it's not in the exceptions array
+    if (!exceptions.includes(cookieName)) {
+        document.cookie = cookieName + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+});
 }
 
         const express = require('express');
