@@ -1,0 +1,244 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    color: #ffffff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header .back-button {
+     /* Hide back button by default */
+    font-size: 34px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.header .back-button:hover {
+    color: #bbbbbb;
+}
+.header .title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+/* Media Query for Mobile View */
+@media only screen and (max-width: 768px) {
+    .header .back-button {
+        display: block; /* Show back button for mobile view */
+    }
+}
+
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    color: #ffffff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .back-button {
+    /* Hide back button by default */
+    font-size: 34px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    display: none; /* Hidden by default */
+}
+
+.header .back-button:hover {
+    color: #bbbbbb;
+}
+
+.header .title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Profile Styles */
+#profilePhoto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+/* Default styles for desktop view */
+#profilePhoto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 100%;
+    width: 500px; /* Fixed width for desktop */
+    height: 350px; /* Fixed height for desktop */
+    overflow: hidden;
+    background-color: #f0f0f0;
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+
+.navButton {
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#prevButton {
+    left: 10px;
+}
+
+#nextButton {
+    right: 10px;
+}
+.navButton {
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#prevButton {
+    left: 10px;
+}
+
+#nextButton {
+    right: 10px;
+}
+
+.profile-container {
+    max-width: 950px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+.profile-details h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.detail-item label {
+    font-weight: bold;
+    color: #333;
+}
+
+.detail-item span {
+    color: #666;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 10px;
+    }
+
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .detail-item label {
+        margin-bottom: 5px;
+    }
+
+    .detail-item span {
+        font-size: 14px;
+    }
+
+    .footer button {
+        width: 100%;
+        padding: 15px;
+    }
+
+    #profilePhoto {
+        flex-direction: column;
+    }
+
+    .header .back-button {
+        display: block; /* Show back button for mobile view */
+    }
+}
+
+@media (min-width: 769px) {
+    #profilePhoto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navButton {
+        padding: 15px;
+    }
+}
+
+
+
+
+.resizable-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    background: #333;
+    cursor: se-resize;
+}

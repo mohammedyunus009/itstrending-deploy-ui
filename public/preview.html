@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/matrimony/prview.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+  
+</head>
+<body>
+    <!-- <div id="headerPlaceholder"></div> -->
+
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> < </div>
+        <div class="title">Profile</div>
+    </div>
+
+    <div class="profile-container">
+
+        <div id="profilePhoto" class="resizeable">
+            <button id="prevButton" class="navButton">◀</button>
+            <button id="nextButton" class="navButton">▶</button>
+        </div>
+        <div class="profile-details">
+            <h2>Marriage Profile</h2>
+            <div class="detail-item">
+                <label>Name:</label>
+                <span id="name"></span>
+            </div>
+            <div class="detail-item">
+                <label>Date of Birth:</label>
+                <span id="dob"></span>
+            </div>
+            <div class="detail-item">
+                <label>Revert:</label>
+                <span id="revert"></span>
+            </div>
+            <div class="detail-item">
+                <label>Gender:</label>
+                <span id="gender"></span>
+            </div>
+            <div class="detail-item" style="display: none;">
+                <label>Caste:</label>
+                <span id="caste"></span>
+            </div>
+            <div class="detail-item">
+                <label>Deeni Interest:</label>
+                <span id="follow"></span>
+            </div>
+            
+            <div class="detail-item">
+                <label>Phone Number:</label>
+                <span id="phoneNumber"></span>
+            </div>
+            <div class="detail-item">
+                <label>Native Language:</label>
+                <span id="nativeLanguage"></span>
+            </div>
+            <div class="detail-item">
+                <label>Residence Language:</label>
+                <span id="residenceLanguage"></span>
+            </div>
+            <!-- <div class="detail-item">
+                <label>Hobbies:</label>
+                <span id="Hobbies"></span>
+            </div> -->
+            <div class="detail-item">
+                <label>Country:</label>
+                <span id="country"></span>
+            </div>
+            <div class="detail-item">
+                <label>State:</label>
+                <span id="state"></span>
+            </div>
+            <div class="detail-item">
+                <label>City:</label>
+                <span id="city"></span>
+            </div>
+            <div class="detail-item">
+                <label>Address:</label>
+                <span id="address"></span>
+            </div>
+            <div class="detail-item">
+                <label>Marital Status:</label>
+                <span id="maritalStatus"></span>
+            </div>
+            <div class="detail-item" id="children_dropdown">
+                <label>Children:</label>
+                <span id="children"></span>
+            </div>
+            <div class="detail-item">
+                <label>Height:</label>
+                <span id="height"></span>
+            </div>
+            <div class="detail-item">
+                <label>Weight:</label>
+                <span id="weight"></span>
+            </div>
+            <div class="detail-item">
+                <label>About Me:</label>
+                <span id="aboutMe"></span>
+            </div>
+            <div class="detail-item">
+                <label>About Family:</label>
+                <span id="aboutFamily"></span>
+            </div>
+            <!-- <div class="detail-item">
+                <label>Prefered Alliance details:</label>
+                <span id="preferedalliancedetail"></span>
+            </div> -->
+            <!-- <div class="detail-item">
+                <label>Family Type:</label>
+                <span id="familyType"></span>
+            </div> -->
+            <div class="detail-item">
+                <label>Father Name:</label>
+                <span id="fatherName"></span>
+            </div>
+            <div class="detail-item">
+                <label>Father Occupation:</label>
+                <span id="fatherOccupation"></span>
+            </div>
+            <div class="detail-item">
+                <label>Mother Name:</label>
+                <span id="motherName"></span>
+            </div>
+            <div class="detail-item">
+                <label>Mother Occupation:</label>
+                <span id="motherOccupation"></span>
+            </div>
+            <!-- <div class="detail-item">
+                <label>Number of Brothers:</label>
+                <span id="numberOfBrothers"></span>
+            </div>
+            <div id="brothersDetailsContainer"></div>
+            <div class="detail-item">
+                <label>Number of Sisters:</label>
+                <span id="numberOfSisters"></span>
+            </div>
+            <div id="sistersDetailsContainer"></div> -->
+            <div class="detail-item">
+                <label>Education Qualification:</label>
+                <span id="education"></span>
+            </div>
+            <div class="detail-item">
+                <label>Monthly Salary Range:</label>
+                <span id="salaryRange"></span>
+            </div>
+            <div class="detail-item">
+                <label>Profession:</label>
+                <span id="profession"></span>
+            </div>
+            <!-- <div class="detail-item">
+                <label>Business Type:</label>
+                <span id="businessType"></span>
+            </div> -->
+            <div class="detail-item">
+                <label>How I Know Kurshid Bhai:</label>
+                <span id="howIKnow"></span>
+            </div>
+            <div class="detail-item">
+                <label>Referal Name:</label>
+                <span id="contactName"></span>
+            </div>
+            <div class="detail-item">
+                <label>Referal Number:</label>
+                <span id="contactPhone"></span>
+            </div>
+            <div class="detail-item">
+                <label>Partner Revert:</label>
+                <span id="revert2"></span>
+            </div>
+            <div class="detail-item">
+                <label>Partner Requirement:</label>
+                <span id="partnerRequirement"></span>
+            </div>
+            <div class="footer">
+                <button onclick="continueToFilters()" style="
+                    width: 100%;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    background-color: #333;
+                    color: white;
+                ">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div> -->
+    <!-- <script src="js/matrimony/prview.js"></script> -->
+
+
+    <script>
+      
+        
+        function continueToFilters() {
+            window.location.href = "payment2.html";
+        }
+        
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";");
+            for (let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if (name == cookiePair[0].trim()) {
+                    let value = decodeURIComponent(cookiePair[1]);
+                    return value ? value : "";
+                }
+            }
+            return "";
+        }
+        
+        // Function to create sibling fields
+        function createSiblingFields(containerId, numberOfSiblings, siblingType) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+        
+            for (let i = 1; i <= numberOfSiblings; i++) {
+                const siblingContainer = document.createElement('div');
+                siblingContainer.className = 'sibling-details';
+        
+                const siblingOccupation = document.createElement('div');
+                siblingOccupation.className = 'detail-item';
+                siblingOccupation.innerHTML = `<label>${siblingType} ${i} Occupation:</label><span id="${siblingType.toLowerCase()}${i}Occupation"></span>`;
+                siblingContainer.appendChild(siblingOccupation);
+        
+                const siblingMaritalStatus = document.createElement('div');
+                siblingMaritalStatus.className = 'detail-item';
+                siblingMaritalStatus.innerHTML = `<label>${siblingType} ${i} Marital Status:</label><span id="${siblingType.toLowerCase()}${i}MaritalStatus"></span>`;
+                siblingContainer.appendChild(siblingMaritalStatus);
+        
+                container.appendChild(siblingContainer);
+            }
+        }
+        
+        document.addEventListener("DOMContentLoaded", function () {
+    // Fetch the data from cookies and set it to the respective fields
+    document.getElementById("name").innerText = decodeURIComponent(getCookie("field33") || '');
+    document.getElementById("dob").innerText = decodeURIComponent(getCookie("field6") || '');
+    document.getElementById("revert").innerText = decodeURIComponent(getCookie("field9") || '');
+    document.getElementById("gender").innerText = decodeURIComponent(getCookie("gender") || '');
+    // document.getElementById("caste").innerText = decodeURIComponent(getCookie("field1") || '');
+    document.getElementById("follow").innerText = decodeURIComponent(getCookie("field4") || '');
+    document.getElementById("phoneNumber").innerText = decodeURIComponent(getCookie("field10") || '');
+    document.getElementById("nativeLanguage").innerText = decodeURIComponent(getCookie("field11") || '');
+    document.getElementById("residenceLanguage").innerText = decodeURIComponent(getCookie("field13") || '');
+    document.getElementById("country").innerText = decodeURIComponent(getCookie("field14") || '');
+    document.getElementById("state").innerText = decodeURIComponent(getCookie("field1") || '');
+    document.getElementById("city").innerText = decodeURIComponent(getCookie("field7") || '');
+    document.getElementById("address").innerText = decodeURIComponent(getCookie("field15") || '');
+    document.getElementById("maritalStatus").innerText = decodeURIComponent(getCookie("field3") || '');
+    const childrenValue = decodeURIComponent(getCookie("field16") || '');
+    document.getElementById("children").innerText = childrenValue;
+    
+    if (childrenValue === '__' || childrenValue.trim() === '') {
+        document.getElementById("children_dropdown").style.display = 'none';
+    }
+
+    document.getElementById("height").innerText = decodeURIComponent(getCookie("field17") || '');
+    document.getElementById("weight").innerText = decodeURIComponent(getCookie("field18") || '');
+    document.getElementById("aboutMe").innerText = decodeURIComponent(getCookie("field19") || '');
+    document.getElementById("aboutFamily").innerText = decodeURIComponent(getCookie("field20") || '');
+    document.getElementById("fatherName").innerText = decodeURIComponent(getCookie("field21") || '');
+    document.getElementById("fatherOccupation").innerText = decodeURIComponent(getCookie("field22") || '');
+    document.getElementById("motherName").innerText = decodeURIComponent(getCookie("field23") || '');
+    document.getElementById("motherOccupation").innerText = decodeURIComponent(getCookie("field24") || '');
+    
+    // Uncomment these if the fields are present in the DOM
+    // document.getElementById('numberOfBrothers').textContent = decodeURIComponent(getCookie('field23') || '');
+    // document.getElementById('numberOfSisters').textContent = decodeURIComponent(getCookie('field24') || '');
+    
+    document.getElementById("education").innerText = decodeURIComponent(getCookie("field2") || '');
+    document.getElementById("salaryRange").innerText = decodeURIComponent(getCookie("field25") || '');
+    document.getElementById("profession").innerText = decodeURIComponent(getCookie("field8") || '');
+    // document.getElementById("businessType").innerText = decodeURIComponent(getCookie("field4") || '');
+    document.getElementById("howIKnow").innerText = decodeURIComponent(getCookie("field30") || '');
+    document.getElementById("contactName").innerText = decodeURIComponent(getCookie("field31") || '');
+    document.getElementById("contactPhone").innerText = decodeURIComponent(getCookie("field32") || '');
+    document.getElementById("revert2").innerText = decodeURIComponent(getCookie("field28") || '');
+    document.getElementById("partnerRequirement").innerText = decodeURIComponent(getCookie("field29") || '');
+    
+    // if (numBrothers > 0) {
+    //     showBrothersDetails(numBrothers);
+    // }
+    
+    // if (numSisters > 0) {
+    //     showSistersDetails(numSisters);
+    // }
+    
+    // Show children detail section if the marital status indicates there are children
+    const maritalStatus = getCookie("maritalStatus");
+    if (maritalStatus && maritalStatus.toLowerCase() === 'married' && getCookie("children")) {
+        document.getElementById("childrenDetail").style.display = 'block';
+    }
+    
+    // Create fields for brothers and sisters details
+    createSiblingFields('brothersDetailsContainer', getCookie('numberOfBrothers'), 'Brother');
+    createSiblingFields('sistersDetailsContainer', getCookie('numberOfSisters'), 'Sister');
+});
+
+        
+        
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     // Function to get a cookie by name
+        //     function getCookie(name) {
+        //         const value = `; ${document.cookie}`;
+        //         const parts = value.split(`; ${name}=`);
+        //         if (parts.length === 2) return parts.pop().split(';').shift();
+        //     }
+        
+        //     // Get the image URL from the cookies
+        //     const imageUrl = getCookie('images0'); // Adjust the cookie name as needed
+        
+        //     // Set the background image of the profilePhoto div
+        //     if (imageUrl) {
+        //         const profilePhotoDiv = document.getElementById('profilePhoto');
+        //         profilePhotoDiv.style.backgroundImage = `url('${imageUrl}')`;
+        //     }
+        // });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+    // Function to get a cookie by name
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // Function to get image URLs from cookies
+    function getImageUrls() {
+        const urls = [];
+        for (let i = 0; i <= 5; i++) {
+            const url = getCookie(`images${i}`);
+            if (url) {
+                urls.push(url);
+            }
+        }
+        return urls;
+    }
+
+    // Function to update the background image
+    function updateImage(index) {
+        if (imageUrls.length > 0) {
+            profilePhotoDiv.style.backgroundImage = `url('${imageUrls[index]}')`;
+        }
+    }
+
+    // Initialize variables
+    const profilePhotoDiv = document.getElementById('profilePhoto');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    const imageUrls = getImageUrls();
+    let currentIndex = 0;
+
+    // Set initial image
+    updateImage(currentIndex);
+
+    // Event listeners for navigation buttons
+    prevButton.addEventListener('click', function() {
+        currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+        updateImage(currentIndex);
+    });
+
+    nextButton.addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % imageUrls.length;
+        updateImage(currentIndex);
+    });
+
+    // Check if the view is desktop
+    function isDesktop() {
+        return window.innerWidth >= 768; // Adjust the breakpoint as needed
+    }
+
+    // Adding scroll functionality for desktop view
+    function addScrollFunctionality() {
+        profilePhotoDiv.addEventListener('wheel', function(event) {
+            if (event.deltaY > 0) {
+                // Scroll down (move to next image)
+                currentIndex = (currentIndex + 1) % imageUrls.length;
+            } else {
+                // Scroll up (move to previous image)
+                currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+            }
+            updateImage(currentIndex);
+            event.preventDefault(); // Prevent default scroll behavior
+        });
+    }
+
+    // Adding resize functionality for desktop view
+    function addResizeFunctionality() {
+        const resizableHandle = document.createElement('div');
+        resizableHandle.className = 'resizable-handle';
+        profilePhotoDiv.appendChild(resizableHandle);
+
+        resizableHandle.addEventListener('mousedown', initResize);
+
+        function initResize(e) {
+            document.addEventListener('mousemove', resize);
+            document.addEventListener('mouseup', stopResize);
+            e.preventDefault();
+        }
+
+        function resize(e) {
+            profilePhotoDiv.style.width = (e.clientX - profilePhotoDiv.offsetLeft) + 'px';
+            profilePhotoDiv.style.height = (e.clientY - profilePhotoDiv.offsetTop) + 'px';
+        }
+
+        function stopResize() {
+            document.removeEventListener('mousemove', resize);
+            document.removeEventListener('mouseup', stopResize);
+        }
+    }
+
+    // Apply desktop functionalities if in desktop view
+    if (isDesktop()) {
+        addScrollFunctionality();
+        addResizeFunctionality();
+    }
+
+    // Adjust functionality on window resize
+    window.addEventListener('resize', function() {
+        if (isDesktop()) {
+            addScrollFunctionality();
+            addResizeFunctionality();
+        }
+    });
+});
+
+
+        </script>
+</body>
+</html>
