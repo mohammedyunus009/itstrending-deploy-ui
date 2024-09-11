@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/matrimony/prview.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .profile-container {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .profile-container {
+                width: 60%;
+                margin: 0 auto;
+                border: 1px solid #ccc;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- <div id="headerPlaceholder"></div> -->
+
+    <div class="header">
+        <div class="back-button" onclick="goBack()"> < </div>
+        <div class="title">Profile</div>
+    </div>
+
+    <div class="profile-container">
+<div id="profilePhoto" class="resizeable">
+    <button id="prevButton" class="navButton">◀</button>
+    <button id="nextButton" class="navButton">▶</button>
+</div>
+
+        <div class="profile-details">
+            <h2>Marriage Profile</h2>
+            <div class="detail-item">
+                <label>Name:</label>
+                <span id="name"></span>
+            </div>
+            <div class="detail-item">
+                <label>Date of Birth:</label>
+                <span id="dob"></span>
+            </div>
+            <div class="detail-item">
+                <label>Gender:</label>
+                <span id="gender"></span>
+            </div>
+            <div class="detail-item">
+                <label>Caste:</label>
+                <span id="caste"></span>
+            </div>
+            <div class="detail-item">
+                <label>Follow:</label>
+                <span id="follow"></span>
+            </div>
+            <div class="detail-item">
+                <label>Phone Number:</label>
+                <span id="phoneNumber"></span>
+            </div>
+            <div class="detail-item">
+                <label>Native Language:</label>
+                <span id="nativeLanguage"></span>
+            </div>
+            <div class="detail-item">
+                <label>Residence Language:</label>
+                <span id="residenceLanguage"></span>
+            </div>
+            <!-- <div class="detail-item">
+                <label>Hobbies:</label>
+                <span id="Hobbies"></span>
+            </div> -->
+            <div class="detail-item">
+                <label>Country:</label>
+                <span id="country"></span>
+            </div>
+            <div class="detail-item">
+                <label>State:</label>
+                <span id="state"></span>
+            </div>
+            <div class="detail-item">
+                <label>City:</label>
+                <span id="city"></span>
+            </div>
+            <div class="detail-item">
+                <label>Address:</label>
+                <span id="address"></span>
+            </div>
+            <div class="detail-item">
+                <label>Marital Status:</label>
+                <span id="maritalStatus"></span>
+            </div>
+            <div class="detail-item" id="childrenDetail" style="display: none;">
+                <label>Children:</label>
+                <span id="children"></span>
+            </div>
+            <div class="detail-item">
+                <label>Height:</label>
+                <span id="height"></span>
+            </div>
+            <div class="detail-item">
+                <label>Weight:</label>
+                <span id="weight"></span>
+            </div>
+            <div class="detail-item">
+                <label>About Me:</label>
+                <span id="aboutMe"></span>
+            </div>
+            <div class="detail-item">
+                <label>About Family:</label>
+                <span id="aboutFamily"></span>
+            </div>
+            <!-- <div class="detail-item">
+                <label>Prefered Alliance details:</label>
+                <span id="preferedalliancedetail"></span>
+            </div> -->
+            <!-- <div class="detail-item">
+                <label>Family Type:</label>
+                <span id="familyType"></span>
+            </div> -->
+            <div class="detail-item">
+                <label>Father Name:</label>
+                <span id="fatherName"></span>
+            </div>
+            <div class="detail-item">
+                <label>Father Occupation:</label>
+                <span id="fatherOccupation"></span>
+            </div>
+            <div class="detail-item">
+                <label>Mother Name:</label>
+                <span id="motherName"></span>
+            </div>
+            <div class="detail-item">
+                <label>Mother Occupation:</label>
+                <span id="motherOccupation"></span>
+            </div>
+            <div class="detail-item">
+                <label>Number of Brothers:</label>
+                <span id="numberOfBrothers"></span>
+            </div>
+            <div id="brothersDetailsContainer"></div>
+            <div class="detail-item">
+                <label>Number of Sisters:</label>
+                <span id="numberOfSisters"></span>
+            </div>
+            <div id="sistersDetailsContainer"></div>
+            <div class="detail-item">
+                <label>Education Qualification:</label>
+                <span id="education"></span>
+            </div>
+            <div class="detail-item">
+                <label>Revert:</label>
+                <span id="revert"></span>
+            </div>
+            <div class="detail-item">
+                <label>Monthly Salary Range:</label>
+                <span id="salaryRange"></span>
+            </div>
+            <div class="detail-item">
+                <label>Profession:</label>
+                <span id="profession"></span>
+            </div>
+            <div class="detail-item">
+                <label>Business Type:</label>
+                <span id="businessType"></span>
+            </div>
+            <div class="detail-item">
+                <label>How I Know Kurshid Bhai:</label>
+                <span id="howIKnow"></span>
+            </div>
+            <!-- <div class="detail-item">
+                <label>Partner Height to be:</label>
+                <span id="partner_height"></span>
+            </div>
+            <div class="detail-item">
+                <label>Partner Weight to be:</label>
+                <span id="partner_weight"></span>
+            </div>
+            <div class="detail-item">
+                <label>Partner Caste to be:</label>
+                <span id="partner_caste"></span>
+            </div>
+            <div class="detail-item">
+                <label>Partner Education to be:</label>
+                <span id="partner_education"></span>
+            </div>
+            <div class="detail-item">
+                <label>Partner Occupation to be:</label>
+                <span id="partner_occupation"></span>
+            </div>
+            <div class="detail-item">
+                <label>Partner Follow to be:</label>
+                <span id="partner_follow"></span>
+            </div>
+            <div class="detail-item">
+                <label>Partner Personal Attribute to be:</label>
+                <span id="partner_personal_attribute"></span>
+            </div> -->
+            <div class="footer">
+                <button onclick="continueToFilters()" style="
+                    width: 100%;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    background-color: #333;
+                    color: white;
+                ">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- <script src="js/include.js"></script>
+    <div id="footerPlaceholder"></div> -->
+    <!-- <script src="js/matrimony/prview.js"></script> -->
+
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        
+        function continueToFilters() {
+            window.location.href = "filter.html";
+        }
+        
+        // Function to get a cookie value or return "N/A" if not found
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";");
+            for (let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if (name == cookiePair[0].trim()) {
+                    let value = decodeURIComponent(cookiePair[1]);
+                    return value ? value : "N/A";
+                }
+            }
+            return "N/A";
+        }
+        
+        // Function to create sibling fields
+        function createSiblingFields(containerId, numberOfSiblings, siblingType) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+        
+            for (let i = 1; i <= numberOfSiblings; i++) {
+                const siblingContainer = document.createElement('div');
+                siblingContainer.className = 'sibling-details';
+        
+                const siblingOccupation = document.createElement('div');
+                siblingOccupation.className = 'detail-item';
+                siblingOccupation.innerHTML = `<label>${siblingType} ${i} Occupation:</label><span id="${siblingType.toLowerCase()}${i}Occupation"></span>`;
+                siblingContainer.appendChild(siblingOccupation);
+        
+                const siblingMaritalStatus = document.createElement('div');
+                siblingMaritalStatus.className = 'detail-item';
+                siblingMaritalStatus.innerHTML = `<label>${siblingType} ${i} Marital Status:</label><span id="${siblingType.toLowerCase()}${i}MaritalStatus"></span>`;
+                siblingContainer.appendChild(siblingMaritalStatus);
+        
+                container.appendChild(siblingContainer);
+            }
+        }
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch the data from cookies and set it to the respective fields
+            document.getElementById("name").innerText = getCookie("field1");
+            document.getElementById("dob").innerText = getCookie("field2");
+            document.getElementById("gender").innerText = getCookie("gender");
+            document.getElementById("caste").innerText = getCookie("field3");
+            document.getElementById("follow").innerText = getCookie("field4");
+            document.getElementById("phoneNumber").innerText = getCookie("field5");
+            document.getElementById("nativeLanguage").innerText = getCookie("field6");
+            document.getElementById("residenceLanguage").innerText = getCookie("field7");
+            document.getElementById("Hobbies").innerText = getCookie("fileld8");
+            document.getElementById("country").innerText = getCookie("field9");
+            document.getElementById("state").innerText = getCookie("field10");
+            document.getElementById("city").innerText = getCookie("field11");
+            document.getElementById("address").innerText = getCookie("field12");
+            document.getElementById("maritalStatus").innerText = getCookie("field13");
+            document.getElementById("children").innerText = getCookie("field14");
+            document.getElementById("height").innerText = getCookie("field15");
+            document.getElementById("weight").innerText = getCookie("field16");
+            document.getElementById("aboutMe").innerText = getCookie("field17");
+            document.getElementById("aboutFamily").innerText = getCookie("field18");
+            document.getElementById("familyType").innerText = getCookie("field19");
+            document.getElementById("fatherName").innerText = getCookie("field20");
+            document.getElementById("fatherOccupation").innerText = getCookie("field21");
+            document.getElementById("motherName").innerText = getCookie("field22");
+            document.getElementById("motherOccupation").innerText = getCookie("field23");
+        
+            document.getElementById('numberOfBrothers').textContent = getCookie('field24');
+            document.getElementById('numberOfSisters').textContent = getCookie('field25');
+        
+            document.getElementById("education").innerText = getCookie("field30");
+            document.getElementById("revert").innerText = getCookie("field31");
+            document.getElementById("salaryRange").innerText = getCookie("field32");
+            document.getElementById("profession").innerText = getCookie("field33");
+            document.getElementById("businessType").innerText = getCookie("field34");
+            document.getElementById("howIKnow").innerText = getCookie("field35");
+            document.getElementById("partner_height").innerText = getCookie("field36");
+            document.getElementById("partner_weight").innerText = getCookie("field37");
+            document.getElementById("partner_caste").innerText = getCookie("field38");
+            document.getElementById("partner_education").innerText = getCookie("field39");
+            document.getElementById("partner_occupation").innerText = getCookie("field40");
+            document.getElementById("partner_follow").innerText = getCookie("field41");
+            document.getElementById("partner_personal_attribute").innerText = getCookie("field42");
+        
+            if (numBrothers > 0) {
+                showBrothersDetails(numBrothers);
+            }
+        
+            if (numSisters > 0) {
+                showSistersDetails(numSisters);
+            }
+        
+            // Show children detail section if the marital status indicates there are children
+            const maritalStatus = getCookie("maritalStatus");
+            if (maritalStatus && maritalStatus.toLowerCase() === 'married' && getCookie("children")) {
+                document.getElementById("childrenDetail").style.display = 'block';
+            }
+            // Create fields for brothers and sisters details
+        createSiblingFields('brothersDetailsContainer', getCookie('numberOfBrothers'), 'Brother');
+        createSiblingFields('sistersDetailsContainer', getCookie('numberOfSisters'), 'Sister');
+        });
+        
+        
+        
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     // Function to get a cookie by name
+        //     function getCookie(name) {
+        //         const value = `; ${document.cookie}`;
+        //         const parts = value.split(`; ${name}=`);
+        //         if (parts.length === 2) return parts.pop().split(';').shift();
+        //     }
+        
+        //     // Get the image URL from the cookies
+        //     const imageUrl = getCookie('images0'); // Adjust the cookie name as needed
+        
+        //     // Set the background image of the profilePhoto div
+        //     if (imageUrl) {
+        //         const profilePhotoDiv = document.getElementById('profilePhoto');
+        //         profilePhotoDiv.style.backgroundImage = `url('${imageUrl}')`;
+        //     }
+        // });
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to get a cookie by name
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+        
+            // Function to get image URLs from cookies
+            function getImageUrls() {
+                const urls = [];
+                for (let i = 0; i <= 5; i++) {
+                    const url = getCookie(`images${i}`);
+                    if (url) {
+                        urls.push(url);
+                    }
+                }
+                return urls;
+            }
+        
+            // Function to update the background image
+            function updateImage(index) {
+                if (imageUrls.length > 0) {
+                    profilePhotoDiv.style.backgroundImage = `url('${imageUrls[index]}')`;
+                }
+            }
+        
+            // Initialize variables
+            const profilePhotoDiv = document.getElementById('profilePhoto');
+            const prevButton = document.getElementById('prevButton');
+            const nextButton = document.getElementById('nextButton');
+            const imageUrls = getImageUrls();
+            let currentIndex = 0;
+        
+            // Set initial image
+            updateImage(currentIndex);
+        
+            // Event listeners for navigation buttons
+            prevButton.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+                updateImage(currentIndex);
+            });
+        
+            nextButton.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % imageUrls.length;
+                updateImage(currentIndex);
+            });
+        });
+        
+        // Function to get a cookie value by name
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+        
+        // Extract values from cookies (field1 to field50)
+        const field1 = getCookie('field1') || "";
+        const field2 = getCookie('field2') || "";
+        const field3 = getCookie('field3') || "";
+        const field4 = getCookie('field4') || "";
+        const field5 = getCookie('field5') || "";
+        const field6 = getCookie('field6') || "";
+        const field7 = getCookie('field7') || "";
+        const field8 = getCookie('field8') || "";
+        const field9 = getCookie('field9') || "";
+        const field10 = getCookie('field10') || "";
+        const field11 = getCookie('field11') || "";
+        const field12 = getCookie('field12') || "";
+        const field13 = getCookie('field13') || "";
+        const field14 = getCookie('field14') || "";
+        const field15 = getCookie('field15') || "";
+        const field16 = getCookie('field16') || "";
+        const field17 = getCookie('field17') || "";
+        const field18 = getCookie('field18') || "";
+        const field19 = getCookie('field19') || "";
+        const field20 = getCookie('field20') || "";
+        const field21 = getCookie('field21') || "";
+        const field22 = getCookie('field22') || "";
+        const field23 = getCookie('field23') || "";
+        const field24 = getCookie('field24') || "";
+        const field25 = getCookie('field25') || "";
+        const field26 = getCookie('field26') || "";
+        const field27 = getCookie('field27') || "";
+        const field28 = getCookie('field28') || "";
+        const field29 = getCookie('field29') || "";
+        const field30 = getCookie('field30') || "";
+        const field31 = getCookie('field31') || "";
+        const field32 = getCookie('field32') || "";
+        const field33 = getCookie('field33') || "";
+        const field34 = getCookie('field34') || "";
+        const field35 = getCookie('field35') || "";
+        const field36 = getCookie('field36') || "";
+        const field37 = getCookie('field37') || "";
+        const field38 = getCookie('field38') || "";
+        const field39 = getCookie('field39') || "";
+        const field40 = getCookie('field40') || "";
+        const field41 = getCookie('field41') || "";
+        const field42 = getCookie('field42') || "";
+        const field43 = getCookie('field43') || "";
+        const field44 = getCookie('field44') || "";
+        const field45 = getCookie('field45') || "";
+        const field46 = getCookie('field46') || "";
+        const field47 = getCookie('field47') || "";
+        const field48 = getCookie('field48') || "";
+        const field49 = getCookie('field49') || "";
+        const field50 = getCookie('field50') || "";
+        
+        // Extract images from cookies
+        const images = [];
+        for (let i = 0; i < 6; i++) {
+            let img = getCookie(`images${i}`);
+            if (img) images.push(img);
+        }
+        
+        // Extract authToken from cookies
+        const authToken = getCookie('token') || "";
+        
+        // Extract gender from cookies
+        const gender = getCookie('gender') || "male"; // Default to 'male' if not found
+        
+        // Construct the request body
+        const requestBody = {
+            "profile_id": "1",
+            "description": "Rajesh",
+            "gender": gender,
+            "images": images.join(','), // Convert array to comma-separated string
+            "bio": "There are many factors that contribute to a satisfying marriage/relationship such as; Love, Commitment, Trust, Time, Attention, Good Communication including Listening, Partnership, Tolerance, Patience, Openness, Honesty, Respect, Sharing, Consideration, Generosity, Willingness/Ability to Compromise, Constructive",
+            "field1": field1,
+            "field2": field2,
+            "field3": field3,
+            "field4": field4,
+            "field5": field5,
+            "field6": field6,
+            "field7": field7,
+            "field8": field8,
+            "field9": field9,
+            "field10": field10,
+            "field11": field11,
+            "field12": field12,
+            "field13": field13,
+            "field14": field14,
+            "field15": field15,
+            "field16": field16,
+            "field17": field17,
+            "field18": field18,
+            "field19": field19,
+            "field20": field20,
+            "field21": field21,
+            "field22": field22,
+            "field23": field23,
+            "field24": field24,
+            "field25": field25,
+            "field26": field26,
+            "field27": field27,
+            "field28": field28,
+            "field29": field29,
+            "field30": field30,
+            "field31": field31,
+            "field32": field32,
+            "field33": field33,
+            "field34": field34,
+            "field35": field35,
+            "field36": field36,
+            "field37": field37,
+            "field38": field38,
+            "field39": field39,
+            "field40": field40,
+            "field41": field41,
+            "field42": field42,
+            "field43": field43,
+            "field44": field44,
+            "field45": field45,
+            "field46": field46,
+            "field47": field47,
+            "field48": field48,
+            "field49": field49,
+            "field50": field50
+        };
+        
+        // Send POST request
+        fetch('https://api.itstrending.in:5001/api/v1/profiles', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': authToken // Include the authToken directly in the Authorization header
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        
+                        const express = require('express');
+                const app = express();
+                const bodyParser = require('body-parser');
+                // Middleware to parse JSON request bodies
+                app.use(bodyParser.json());
+                // CORS middleware
+                app.use((req, res, next) => {
+                  res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
+                  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+                  next();
+                });
+                // Define your API endpoints here
+                app.get('/login', (req, res) => {
+                  // Handle API logic here
+                  res.send('API response');
+                });
+                // POST endpoint for profile creation
+                app.post('/api/v1/profiles', (req, res) => {
+                  const { profile_id, description, gender, images, bio, ...fields } = req.body;
+                  // Validate request body here if needed
+                  // Simulate saving profile data (you should replace this with your actual data handling logic)
+                  console.log('Profile Data:', { profile_id, description, gender, images, bio, ...fields });
+                  // Send response
+                  res.status(200).json({ success: true, message: 'Profile data received', data: req.body });
+                });
+                // Start your server
+                const PORT = process.env.PORT || 3000;
+                app.listen(PORT, () => {
+                  console.log(`Server listening on port ${PORT}`);
+                });
+                
+        </script>
+</body>
+</html>
