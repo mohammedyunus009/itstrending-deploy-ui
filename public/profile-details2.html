@@ -532,21 +532,25 @@
         })
         .catch(error => console.error('Error fetching profile details:', error));
     }
-    
     function displayProfileDetails(profile) {
     const detailsContainer = document.getElementById('profileDetails');
     detailsContainer.innerHTML = '';
+
+    // Split and clean the image URLs
     const images = profile.images.split(',').map(img => img.trim().replace('{', '').replace('}', ''));
 
+    // Create the slideshow container
     const slideshowContainer = document.createElement('div');
     slideshowContainer.className = 'profile-photo-container';
     slideshowContainer.id = 'imagesContainer'; // Add an id here
     
+    // Create the slideshow element
     const slideshow = document.createElement('div');
     slideshow.className = 'profile-photo';
     slideshow.style.backgroundImage = `url('${images[0]}')`;
     slideshowContainer.appendChild(slideshow);
     
+    // Create navigation buttons
     const buttonsContainer = document.createElement('div');
     buttonsContainer.className = 'slideshow-buttons';
     const prevButton = document.createElement('button');
@@ -561,6 +565,7 @@
 
     detailsContainer.appendChild(slideshowContainer);
     
+    // Function to show a specific slide
     let currentSlide = 0;
     function showSlide(index) {
         if (index >= images.length) currentSlide = 0;
@@ -570,6 +575,86 @@
     }
     
     showSlide(currentSlide);
+
+// Function to set a cookie
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + ";" + expires + ";path=/";
+}
+
+// Create and add the "Add Images" button
+const addButton = document.createElement('button');
+addButton.textContent = 'Add Images';
+addButton.className = 'add-images-button'; // Optional class for styling
+addButton.style.display = 'block'; // Ensure it's displayed as a block element
+addButton.style.margin = '20px auto'; // Center the button horizontally
+addButton.style.padding = '10px 20px'; // Add padding
+addButton.style.fontSize = '16px'; // Set font size
+addButton.style.cursor = 'pointer'; // Change cursor to pointer on hover
+addButton.style.backgroundColor = 'green'; // Set background color to green
+addButton.style.color = 'white'; // Set text color to white for better contrast
+addButton.style.border = 'none'; // Remove default border
+addButton.style.borderRadius = '5px'; // Optional: Add rounded corners
+
+// Create file input element
+const fileInput = document.createElement('input');
+fileInput.type = 'file';
+fileInput.multiple = true; // Allow multiple files
+fileInput.style.display = 'none'; // Hide the file input element
+
+let imageUrls = []; // Array to store image URLs
+
+// Add event listener to handle file selection and upload
+fileInput.addEventListener('change', (event) => {
+    const files = event.target.files;
+    if (files.length > 0) {
+        // Prepare form data for upload
+        const formdata = new FormData();
+        for (let i = 0; i < files.length; i++) {
+            formdata.append('file', files[i]);
+        }
+
+        // Prepare headers and request options
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", "{{Autho}}"); // Replace with actual token
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: formdata,
+            redirect: "follow"
+        };
+
+        // Upload files
+        fetch("https://api.itstrending.in:5000/api/v1/profiles/upload_images", requestOptions)
+            .then(response => response.json()) // Parse response as JSON
+            .then(result => {
+                // Extract and store image URLs with ?alt=media appended
+                if (result.data && result.data.images) {
+                    imageUrls = result.data.images.map(url => `${url}?alt=media`);
+                    console.log(imageUrls.join(', '));
+
+                    // Store image URLs in cookies
+                    setCookie('imageUrls', imageUrls.join(','), 7); // Store for 7 days
+                }
+            })
+            .catch(error => console.error('Error uploading images:', error));
+    }
+});
+
+// Show file input dialog when button is clicked
+addButton.onclick = () => {
+    fileInput.click(); // Trigger the file input dialog
+};
+
+detailsContainer.appendChild(addButton);
+detailsContainer.appendChild(fileInput); // Append file input to the container
+
 
 
 
@@ -780,7 +865,14 @@ if (token) {
 }
 
 myHeaders.append("Content-Type", "application/json");
+// Function to get the value of a cookie by name
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
+// Add event listener for the submit button
 document.getElementById('submitBtn').addEventListener('click', function() {
     // Fetching values from input fields
     const slnoValue = document.getElementById('slNoInput').value;
@@ -789,7 +881,7 @@ document.getElementById('submitBtn').addEventListener('click', function() {
     const reasonForOnHold = document.getElementById('reasonForOnHoldInput').value;
     const name = document.getElementById('nameInput').value;
     const gender = document.getElementById('genderInput').value;
-    const age = document.getElementById('ageInput').value;
+    const yearOfBirth = document.getElementById('yearOfBirthInput').value;
     const height = document.getElementById('heightInput').value;
     const familySubcaste = document.getElementById('familySubcasteInput').value;
     const follow = document.getElementById('followInput').value;
@@ -818,70 +910,80 @@ document.getElementById('submitBtn').addEventListener('click', function() {
     const preferredAge = document.getElementById('preferredAgeInput').value;
     const preferredHeight = document.getElementById('preferredHeightInput').value;
     const religiousAttributes = document.getElementById('religiousAttributesInput').value;
-const personalAttribute = document.getElementById('personalAttributeInput').value;
-const preferredFollowPractice = document.getElementById('preferredFollowPracticeInput').value;
-const familyType = document.getElementById('familyTypeInput').value;
-const preferredLocation = document.getElementById('preferredLocationInput').value;
-const partnerWorkingStatus = document.getElementById('partnerWorkingStatusInput').value;
-const images = document.getElementById('imagesContainer').value;
+    const personalAttribute = document.getElementById('personalAttributeInput').value;
+    const preferredFollowPractice = document.getElementById('preferredFollowPracticeInput').value;
+    const familyType = document.getElementById('familyTypeInput').value;
+    const preferredLocation = document.getElementById('preferredLocationInput').value;
+    const partnerWorkingStatus = document.getElementById('partnerWorkingStatusInput').value;
 
-const raw = JSON.stringify({
-    "profile_id": profileId, // Using the profile ID
-    "description": "",
-    "gender": gender,
-    "images": images,
-    "bio": "",
-    "field1": slnoValue,
-    "field2": education,
-    "field3": maritalStatus,
-    "field4": follow,
-    "field5": name,
-    "field6": age,
-    "field7": homeAddress,
-    "field8": familySubcaste,
-    "field9": profession,
-    "field10": profileCoordinatorName,
-    "field11": profileStatus,
-    "field12": "",
-    "field13": reasonForOnHold,
-    "field14": height,
-    "field15": maritalTenure,
-    "field16": children,
-    "field17": "",
-    "field18": company,
-    "field19": jobLocation,
-    "field20": fathersName,
-    "field21": fathersOccupation,
-    "field22": mothersName,
-    "field23": mothersOccupation,
-    "field24": noOfSisters,
-    "field25": noOfBrothers,
-    "field26": preferredFamilySubcaste,
-    "field27": preferredEducation,
-    "field28": preferredProfession,
-    "field29": preferredAge,
-    "field30": preferredHeight,
-    "field31": personalAttribute,
-    "field32": preferredFollowPractice,
-    "field33": familyType,
-    "field34": preferredLocation,
-    "field35": religiousAttributes,
-    "field36": partnerWorkingStatus,
-    "field37": sistersMaritalStatus,
-    "field38": sistersOccupation,
-    "field39": brothersMaritalStatus,
-    "field40": brothersOccupation,
-    "field41": "",
-    "field42": "",
-    "field43": "",
-    "field44": "",
-    "field45": "",
-    "field46": "",
-    "field47": "",
-    "field48": "",
-    "field49": "",
-    "field50": ""
-});
+    // Get current value of images
+    const currentImages = document.getElementById('imagesContainer').value;
+
+    // Get image URLs from cookies
+    const cookieImages = getCookie('imageUrls');
+
+    // Set images field: append URLs from cookies if available, otherwise keep the current value
+    const images = cookieImages ? cookieImages.split(',').join(',') : currentImages;
+
+    const raw = JSON.stringify({
+        "profile_id": profileId, // Using the profile ID
+        "description": "",
+        "gender": gender,
+        "images": images,
+        "bio": "",
+        "field1": slnoValue,
+        "field2": education,
+        "field3": maritalStatus,
+        "field4": follow,
+        "field5": name,
+        "field6": yearOfBirth,
+        "field7": homeAddress,
+        "field8": familySubcaste,
+        "field9": profession,
+        "field10": profileCoordinatorName,
+        "field11": profileStatus,
+        "field12": "",
+        "field13": reasonForOnHold,
+        "field14": height,
+        "field15": maritalTenure,
+        "field16": children,
+        "field17": "",
+        "field18": company,
+        "field19": jobLocation,
+        "field20": fathersName,
+        "field21": fathersOccupation,
+        "field22": mothersName,
+        "field23": mothersOccupation,
+        "field24": noOfSisters,
+        "field25": noOfBrothers,
+        "field26": preferredFamilySubcaste,
+        "field27": preferredEducation,
+        "field28": preferredProfession,
+        "field29": preferredAge,
+        "field30": preferredHeight,
+        "field31": personalAttribute,
+        "field32": preferredFollowPractice,
+        "field33": familyType,
+        "field34": preferredLocation,
+        "field35": religiousAttributes,
+        "field36": partnerWorkingStatus,
+        "field37": sistersMaritalStatus,
+        "field38": sistersOccupation,
+        "field39": brothersMaritalStatus,
+        "field40": brothersOccupation,
+        "field41": "",
+        "field42": "",
+        "field43": "",
+        "field44": "",
+        "field45": "",
+        "field46": "",
+        "field47": "",
+        "field48": "",
+        "field49": "",
+        "field50": ""
+    });
+
+    // Prepare request options
     const requestOptions = {
         method: "PUT",
         headers: myHeaders,
@@ -889,6 +991,7 @@ const raw = JSON.stringify({
         redirect: "follow"
     };
 
+    // Make the API request
     fetch("https://api.itstrending.in:5000/api/v1/profiles", requestOptions)
         .then((response) => response.text())
         .then((result) => console.log(result))
@@ -898,6 +1001,7 @@ const raw = JSON.stringify({
     // To see the JSON object in the console
     console.log(profileId);
 });
+
 
 
 function handleSubmit() {
