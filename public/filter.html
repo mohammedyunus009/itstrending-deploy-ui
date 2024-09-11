@@ -323,7 +323,7 @@
 </div>
 <br>
 <br>
-
+<div id="errorMessage" style="color: red; display: none; text-align: center;"></div>
 
 <div class="submit-button-wrapper">
   <button class="Submit" id="submitButton">
@@ -884,6 +884,28 @@ console.log(`Server running on port ${PORT}`);
   function goBack() {
       window.location.href = "register-process.html";
   }
+</script>
+<script>
+  document.getElementById("submitButton").addEventListener("click", function(event) {
+    // Get all selected filters by checking if any filter checkboxes are selected
+    const selectedFilters = document.querySelectorAll('input[type="checkbox"]:checked');
+    
+    // Get the error message div
+    const errorMessageDiv = document.getElementById("errorMessage");
+    
+    // Check if the count of selected filters is less than or equal to zero
+    if (selectedFilters.length === 0) {
+        // Prevent form submission or default action
+        event.preventDefault();
+
+        // Display error message on the page
+        errorMessageDiv.textContent = "Please select any one of the filters to see the profile.";
+        errorMessageDiv.style.display = "block";
+    } else {
+        // Hide the error message if filters are selected
+        errorMessageDiv.style.display = "none";
+    }
+});
 </script>
 </body>
 </html>
