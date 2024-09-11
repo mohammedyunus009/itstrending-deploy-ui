@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("slno").innerText = decodeURIComponent(getCookie("field1"));
     document.getElementById("name").innerText = decodeURIComponent(getCookie("field5"));
     document.getElementById("gender").innerText = decodeURIComponent(getCookie("gender"));
-    document.getElementById("age").innerText = decodeURIComponent(getCookie("field6"));
+    document.getElementById("yearOfBirth").innerText = decodeURIComponent(getCookie("field6"));
     document.getElementById("height").innerText = decodeURIComponent(getCookie("field14"));
     document.getElementById("family-subcaste").innerText = decodeURIComponent(getCookie("field8"));
     document.getElementById("follow").innerText = decodeURIComponent(getCookie("field4"));
