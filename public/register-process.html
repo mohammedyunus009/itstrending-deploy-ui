@@ -528,10 +528,14 @@ button[type="submit"]:hover {
                 <label for="female">Female</label>
             </div>
             </div>
+
             <div class="form-group" style="display: flex;">
-                <label for="date">Date of Birth:</label>
-                <input id="date" name="field6" type="text" >
+                <label for="yearOfBirth">Year of Birth:</label>
+                <select id="yearOfBirth" name="field6">
+                  <option value="">Select year of birth</option>
+                </select>
             </div>
+            
             
       
             <div class="form-group" style="display: flex;">
@@ -1272,20 +1276,22 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
 
   
 </script>
-  
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
-    flatpickr("#date", {
-        dateFormat: "Y", // Display only the year
-        mode: "single", // Single date mode
-        yearPicker: true, // Use year picker mode
-        minDate: "1900-01-01", // Optional: Minimum year selectable
-        maxDate: "today", // Prevent selecting future years
-        placeholder: "Select year of birth"
-    });
-</script>
+    const yearDropdown = document.getElementById('yearOfBirth');
+    const currentYear = new Date().getFullYear();
+    const startYear = 1900; // Change this to your desired start year
+
+    for (let year = currentYear; year >= startYear; year--) {
+      const option = document.createElement('option');
+      option.value = year;
+      option.text = year;
+      yearDropdown.appendChild(option);
+    }
+  </script>
 
 <script>
       document.getElementById('profile-status').addEventListener('change', function () {
@@ -1608,10 +1614,8 @@ window.onload = function() {
 }
 
 
-    </script>
+</script>
     
-  
-  
 
 <script>
     // Function to get a specific cookie by name
