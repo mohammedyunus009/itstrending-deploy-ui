@@ -81,7 +81,7 @@ body {
 
 .gender-options {
     display: flex;
-    gap:5px; /* Space between radio buttons */
+    gap:0px; /* Space between radio buttons */
     align-items: center; /* Align items vertically in the center */
 }
 
@@ -113,7 +113,7 @@ button[type="submit"]:hover {
       border: 1px solid #ccc;
       padding: 8px;
       margin-bottom: 10px;
-      width: 100%;
+      width: 65%;
     }
 
     /* Border color when the field is focused */
@@ -216,6 +216,113 @@ button[type="submit"]:hover {
     font-weight: bold;
     color: #c7309f;
 }
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .logo-img {
+        max-width: 120px; /* Adjust size for mobile view */
+        height: auto; /* Maintain aspect ratio */
+    }
+    
+    .header {
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .back-button {
+        display: block;
+        margin: 0 auto;
+        font-size: 18px;
+    }
+    
+    .title {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .container1 {
+        padding: 15px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .gender-options {
+        flex-direction: row; /* Stack radio buttons vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .gender-options label {
+        margin-right: 0; /* Remove space between options */
+        margin-bottom: 10px; /* Add space below each option */
+    }
+    
+    button[type="submit"] {
+        padding: 12px; /* Increase padding for better touch targets */
+        font-size: 14px; /* Adjust font size */
+    }
+    
+    .image-preview-container,
+    .document-preview-container {
+        flex-direction: column; /* Stack previews vertically */
+        align-items: center; /* Center align previews */
+    }
+    
+    .image-preview,
+    .document-preview {
+        flex: 1 1 100%; /* Full width for previews */
+        max-width: 100%; /* Ensure previews do not exceed container width */
+    }
+    
+    .image-wrapper,
+    .document-preview {
+        margin: 10px 0; /* Adjust margin for vertical stacking */
+    }
+    
+    .preview-image {
+        max-width: 100px; /* Ensure images fit within preview container */
+        max-height: 100px;
+    }
+    
+    .remove-btn {
+        top: 0;
+        right: 0;
+        padding: 5px;
+    }
+    
+    h1, h2, h3, h4, h5 {
+        font-size: 20px; /* Adjust font size for headings */
+    }
+}
+/* CSS for form styling */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group input[type="file"] {
+    width: 65%;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+.hidden {
+    display: none;
+}
+
+/* For better layout and spacing */
+.container1 {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
 
 </style>
   </head>
@@ -303,7 +410,7 @@ button[type="submit"]:hover {
               <ul class="dropdown-menu" aria-labelledby="donationDropdown">
                 <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
                 <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
-                <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food Directory</a></li>
+                <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food/Ration Distribution</a></li>
                 <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
 <li><a class="dropdown-item" href="bloodbank.html">Blood bank Directory</a></li>
                 <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
@@ -435,7 +542,7 @@ button[type="submit"]:hover {
             </div>
             
             <div class="form-group" style="display: flex;">
-                <label for="family-subcaste" style="margin-right: 10px;">Family/Subcaste:</label>
+                <label for="family-subcaste" style="margin-right: 10px;">Family or Subcaste:</label>
                 <select id="family-subcaste" name="field8" >
                     <!-- Options will be populated dynamically -->
                 </select>
@@ -443,7 +550,7 @@ button[type="submit"]:hover {
 
             <div class="form-group" style="display: flex;">
                 <label for="follow" style="margin-right: 10px;">Follow:</label>
-                    <select id="follow" name="field4" multiple="multiple" style="width: 100%;">
+                    <select id="follow" name="field4" multiple="multiple" style="width: 65%;">
                 <!-- Options will be populated by JavaScript -->
                     </select>
             </div>
@@ -452,7 +559,7 @@ button[type="submit"]:hover {
             <div class="form-group" style="display: flex;">
               <label for="marital-status">Marital Status:</label>
               <select id="marital-status" name="field3" required>
-                  <option value="N/A">Please select</option>
+                  <option value=".">Please select</option>
                   <option value="Unmarried">Unmarried</option>
                   <option value="Divorced">Divorced</option>
                   <option value="Widowed">Widowed</option>
@@ -527,9 +634,14 @@ button[type="submit"]:hover {
           </div>
 
           <div class="form-group" style="display: flex;">
+            <label for="family-contact-number">Family Contact Number:</label>
+            <input type="text" id="family-contact-number" name="field42" >
+          </div>
+
+          <div class="form-group" style="display: flex;">
               <label for="no-of-sisters">No of Sisters:</label>
               <select id="no-of-sisters" name="field24" >
-                  <option value="N/A">N/A</option>
+                  <option value="">N/A</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -543,7 +655,7 @@ button[type="submit"]:hover {
           <div class="form-group" style="display: flex;">
               <label for="no-of-brothers">No of Brothers:</label>
               <select id="no-of-brothers" name="field25" >
-                  <option value="N/A">N/A</option>
+                  <option value="">N/A</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -556,15 +668,15 @@ button[type="submit"]:hover {
 
             <h2>Partner Requirement</h2>
             <div class="form-group" style="display: flex;">
-                <label for="partner-caste" style="margin-right: 10px;">Family/Subcaste:</label>
-                <select id="partner-caste" name="field26" multiple="multiple" style="width: 100%;">
+                <label for="partner-caste" style="margin-right: 10px;">Family or Subcaste:</label>
+                <select id="partner-caste" name="field26" multiple="multiple" style="width: 65%;">
                 <!-- Options will be populated by JavaScript -->
                 </select>
             </div>
 
             <div class="form-group" style="display: flex;">
                 <label for="partner-education" style="margin-right: 10px;">Education:</label>
-                <select id="partner-education" name="field27" multiple="multiple" style="width: 100%;">
+                <select id="partner-education" name="field27" multiple="multiple" style="width: 65%;">
                     <!-- Options will be populated by JavaScript -->
                 </select>
             </div>
@@ -572,56 +684,58 @@ button[type="submit"]:hover {
             <div class="form-group" style="display: flex;">
             <label for="partner-profession" style="margin-right: 10px;">Profession:</label>
             <select id="partner-profession" name="field28" >
-                <option value="N/A">Please select</option>
+                <option value="">Please select</option>
                 <option value="Job">Job</option>
                 <option value="Business">Business</option>
                 <option value="Self-Employed">Self-Employed</option>
                 <option value="Job/Business/Any">Job/Business/Any</option>
-
+                <option value="Working">Working</option>
+                <option value="Non-working">Non-working</option>
+                <option value="Working/Non-working">Working/Non-working</option>
             </select>
             </div>
 
             <div class="form-group" style="display: flex;">
                 <label for="preferred-age" style="margin-right: 10px;">Age:</label>
-                <input type="text" id="custom-age" name="field29" placeholder="Enter specific age range" style="width: 100%; margin-top: 10px;">
+                <input type="text" id="custom-age" name="field29" placeholder="Enter specific age range" style="width: 65%; margin-top: 10px;">
             </div>
 
             <div class="form-group" style="display: flex;">
                 <label for="preferred-height" style="margin-right: 10px;">Height:</label>
-                <input type="text" id="custom-height" name="field30" placeholder="Enter specific height range" style="width: 100%; margin-top: 10px;">
+                <input type="text" id="custom-height" name="field30" placeholder="Enter specific height range" style="width: 65%; margin-top: 10px;">
             </div>
 
             <div class="form-group" style="display: flex;">
             <label for="personal-attributes">Personal Attributes:</label>
-            <select id="personal-attributes" name="field31" multiple="multiple" style="width: 100%;">
+            <select id="personal-attributes" name="field31" multiple="multiple" style="width: 65%;">
                 <!-- Options will be populated by JavaScript -->
             </select>
             </div>
 
             <div class="form-group" style="display: flex;">
             <label for="partner-follow">Follow & Practice:</label>
-            <select id="partner-follow" name="field32" multiple="multiple" style="width: 100%;">
+            <select id="partner-follow" name="field32" multiple="multiple" style="width: 65%;">
                 <!-- Options will be populated by JavaScript -->
             </select>
             </div>
             
             <div class="form-group" style="display: flex;">
             <label for="family-type">Family Type:</label>
-            <select id="family-type" name="field33" multiple="multiple" style="width: 100%;">
+            <select id="family-type" name="field33" multiple="multiple" style="width: 65%;">
                 <!-- Options will be populated by JavaScript -->
             </select>
             </div>
 
             <div class="form-group" style="display: flex;">
             <label for="partner-location" style="margin-right: 10px;">Location:</label>
-            <select id="partner-location" name="field34" multiple="multiple" style="width: 100%;">
+            <select id="partner-location" name="field34" multiple="multiple" style="width: 65%;">
                 <!-- Options will be populated dynamically -->
             </select>
             </div>
 
             <div class="form-group" style="display: flex;">
                 <label for="religious-attributes">Religious Attributes:</label>
-                <select id="religious-attributes" name="field35" multiple="multiple" style="width: 100%;">
+                <select id="religious-attributes" name="field35" multiple="multiple" style="width: 65%;">
                     <!-- Options will be populated by JavaScript -->
                 </select>
             </div>
@@ -662,7 +776,7 @@ button[type="submit"]:hover {
             <div class="form-group" style="display: flex;">
                 <label for="profile-status">Profile Status:</label>
                 <select id="profile-status" name="field11">
-                    <option value="N/A">Please select</option>
+                    <option value="">Please select</option>
                     <option value="Active">Active</option>
                     <option value="Closed">Closed</option>
                     <option value="On Hold">On Hold</option>
@@ -693,7 +807,7 @@ button[type="submit"]:hover {
    <ul class="mb-0"> 
    <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
    <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
-   <li class="mt-3"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+   <li class="mt-3" style="color: white;"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
    </ul>
        </div>
       </div>
@@ -1164,10 +1278,13 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
 
 <script>
     flatpickr("#date", {
-    dateFormat: "d-m-Y", // Format: Day-Month-Year
-    maxDate: "today", // Optional: Prevent selecting future dates
-    placeholder: "Select a date",
-});
+        dateFormat: "Y", // Display only the year
+        mode: "single", // Single date mode
+        yearPicker: true, // Use year picker mode
+        minDate: "1900-01-01", // Optional: Minimum year selectable
+        maxDate: "today", // Prevent selecting future years
+        placeholder: "Select year of birth"
+    });
 </script>
 
 <script>
@@ -1340,12 +1457,12 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
             placeholder: "Select or type partner education",
             allowClear: true,
             data: [
-                { id: 'Educated; Working girl only ', text: 'Educated; Working girl only' },
-                { id: 'Educated; Non-working only ', text: 'Educated; Non-working only' },
-                { id: 'Educated; Working/Non-working girl ', text: 'Educated; Working/Non-working girl' },
-                { id: 'Educated; Employed only ', text: 'Educated; Employed only' },
-                { id: 'Educated; Business only ', text: 'Educated; Business only' },
-                { id: 'Educated; Employed/Business ', text: 'Educated; Employed/Business' }
+                { id: 'Educated-Working girl only ', text: 'Educated; Working girl only' },
+                { id: 'Educated-Non-working only ', text: 'Educated; Non-working only' },
+                { id: 'Educated-Working/Non-working girl ', text: 'Educated; Working/Non-working girl' },
+                { id: 'Educated-Employed only ', text: 'Educated; Employed only' },
+                { id: 'Educated-Business only ', text: 'Educated; Business only' },
+                { id: 'Educated-Employed/Business ', text: 'Educated; Employed/Business' }
             ]
         });
     });
@@ -1356,7 +1473,7 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
     allowClear: true,
     data: [
         { id: 'Flexible to any Jamat ', text: 'Flexible to any Jamat' },
-        { id: 'Flexible any Jamat; no shirk bidah ', text: 'Flexible any Jamat; no shirk bidah' },
+        { id: 'Flexible any Jamat no shirk bidah ', text: 'Flexible any Jamat; no shirk bidah' },
         { id: 'Practice dargah & fateha only ', text: 'Practice dargah & fateha only' },
         { id: 'AhleHadees only ', text: 'AhleHadees only' },
         { id: 'Tablighi only ', text: 'Tablighi only' },
@@ -1370,7 +1487,7 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
                 placeholder: "Select or type personal attributes",
                 allowClear: true,
                 data: [
-                    { id: 'Hijabi practising muslim only ', text: 'Fair, beautiful & Good-looking' },
+                    { id: 'Fair, beautiful & Good-looking ', text: 'Fair, beautiful & Good-looking' },
                     { id: 'Hijabi-practising-muslim-only ', text: 'Hijabi practising muslim only' },
                     { id: 'Fair, Handsome & Good-looking ', text: 'Fair, Handsome & Good-looking' },
                     { id: 'Beard practising Muslim ', text: 'Beard practising Muslim' }
