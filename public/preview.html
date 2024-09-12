@@ -10,6 +10,7 @@
 
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -190,23 +191,15 @@
         }
 
         #qrcode {
-            width: 160px;
-            height: 160px;
-            margin: 20px auto;
-            padding: 10px;
-            border: 2px solid #333;
-            border-radius: 10px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #downloadLink {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-        }
+    margin-left: 0; /* or any other default value */
+  }
+
+  /* Mobile view styling */
+  @media (max-width: 767px) { /* You can adjust the max-width value as needed */
+    #qrcode {
+      margin-left: 15px; /* Adjust the margin as needed */
+    }
+  }
 
     </style>
 </head>
@@ -522,11 +515,8 @@
     </div>
 </nav>
 
-<div id="downloadLink">
-    <a id="pdfLink" href="" target="_blank">
-        <div id="qrcode"></div>
-    </a>
-</div>
+<div id="qrcode"></div>
+
 <div class="button-container">
   <button id="printButton" onclick="window.print()">Print</button>
 </div>
@@ -548,13 +538,13 @@ function getCookie(name) {
 // Function to display form data from cookies
 function displayFormData() {
     document.getElementById('customerNamePreview').value = decodeURIComponent(getCookie('field1') || 'Not Available');
-    document.getElementById('customerProjectPreview').value = decodeURIComponent(getCookie('field3') || 'Not Available');
+    document.getElementById('customerProjectPreview').value = decodeURIComponent(getCookie('field32') || 'Not Available');
     document.getElementById('poNoDatePreview').value = decodeURIComponent(getCookie('field4') || 'Not Available');
     document.getElementById('invoiceNoDatePreview').value = decodeURIComponent(getCookie('field9') || 'Not Available');
     document.getElementById('vehicleModelPreview').value = decodeURIComponent(getCookie('field5') || 'Not Available');
     document.getElementById('vehicleSlNoPreview').value = decodeURIComponent(getCookie('field6') || 'Not Available');
     document.getElementById('eqptTypePreview').value = decodeURIComponent(getCookie('field7') || 'Not Available');
-    document.getElementById('eqptSlNoPreview').value = decodeURIComponent(getCookie('field8') || 'Not Available');
+    document.getElementById('eqptSlNoPreview').value = decodeURIComponent(getCookie('field43') || 'Not Available');
     document.getElementById('installationHRMPreview').value = decodeURIComponent(getCookie('field10') || 'Not Available');
     document.getElementById('failureHMRPreview').value = decodeURIComponent(getCookie('field11') || 'Not Available');
 
@@ -575,7 +565,7 @@ function displayFormData() {
     document.getElementById('wireAdaptorBatteryConnections').textContent = decodeURIComponent(getCookie('field28') || 'Not Available');
     document.getElementById('controlUnitStart').textContent = decodeURIComponent(getCookie('controlUnitStart') || '');
     document.getElementById('powerOkLed').textContent = decodeURIComponent(getCookie('field29') || 'Not Available');
-    document.getElementById('product').value = decodeURIComponent(getCookie('field32') || '');
+    document.getElementById('product').value = decodeURIComponent(getCookie('field8') || '');
 
     document.getElementById('forUee').value = decodeURIComponent(getCookie('field30') || '');
     document.getElementById('forCustomer').value = decodeURIComponent(getCookie('field31') || '');
@@ -595,210 +585,139 @@ function getCookie(name) {
 // Get the value from the cookie and set it as the text content of the <td>
 document.getElementById('repNo').textContent = decodeURIComponent(getCookie('field2') || '');
 
- function getCookie(name) {
+
+    function getCookie(name) {
         var value = "; " + document.cookie;
         var parts = value.split("; " + name + "=");
         if (parts.length == 2) return parts.pop().split(";").shift();
-        return ''; // Return an empty string if the cookie is not found
+        return '';
     }
 
-    async function createPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
 
-        // Temporarily display images for PDF generation
-        const images = document.querySelectorAll('.logo img, .nav-icons img');
-        images.forEach(img => img.style.display = 'block');
-
-        // Define styles
-        const margin = 20;
-        const pageWidth = doc.internal.pageSize.width;
-        const pageHeight = doc.internal.pageSize.height;
-        const lineHeight = 10;
-
-        // Define fonts and sizes
-        doc.setFont('Arial', 'normal');
-        doc.setFontSize(16);
-        doc.setTextColor(85, 85, 85); // Dark grey color for text
-
-        // Header with logo images
-        const logo1 = getBase64Image(document.getElementById('logo1'));
-        const logo2 = getBase64Image(document.getElementById('logo2'));
-        const logo3 = getBase64Image(document.getElementById('logo3'));
-        const logo4 = getBase64Image(document.getElementById('logo4'));
-        const logo5 = getBase64Image(document.getElementById('logo5'));
-
-        // Define image sizes and positions
-        const imageWidth = 30; // Width of the images in PDF
-        const imageHeight = 15; // Height of the images in PDF
-        const imagePadding = 10; // Padding between images
-
-        // Add navbar with images
-        let xOffset = 10; // Starting x position
-        const yPosition = 10; // y position for images
-
-        doc.addImage(logo1, 'JPEG', xOffset, yPosition, imageWidth, imageHeight);
-        xOffset += imageWidth + imagePadding;
-        doc.addImage(logo2, 'JPEG', xOffset, yPosition, imageWidth, imageHeight);
-        xOffset += imageWidth + imagePadding;
-        doc.addImage(logo3, 'JPEG', xOffset, yPosition, imageWidth, imageHeight);
-        xOffset += imageWidth + imagePadding;
-        doc.addImage(logo4, 'JPEG', xOffset, yPosition, imageWidth, imageHeight);
-        xOffset += imageWidth + imagePadding;
-        doc.addImage(logo5, 'JPEG', xOffset, yPosition, imageWidth, imageHeight);
-
-        // Add content
-        doc.setFontSize(14);
-        doc.setTextColor(0, 0, 0); // Black color for content text
-
-        const content = `
-Invoice Number & Date: ${getCookie('field9') || 'Not provided'}
-Customer Name & Details: ${getCookie('field1') || 'Not provided'}
-Product Details: ${getCookie('field32') || 'Not provided'}
-Vehicle Model & Quantity: ${getCookie('field5') || 'Not provided'}
-Date of Installation: ${getCookie('field4') || 'Not provided'}
-Rep No: ${getCookie('field2') || 'Not provided'}
-
-Warranty Details:
-1) One-year Warranty effective from the purchase date.
-2) Warranty covers any manufacturing technical defects excluding breakage.
-3) Warranty void if repairing without our consent or warranty seal is broken.
-4) The warranty does not cover faults resulting from operation, careless handling, or not following instructions. Also, electric shock cases.
-    `;
-
-        const lines = doc.splitTextToSize(content, pageWidth - 2 * margin);
-        let lineIndex = 0;
-
-        while (lineIndex < lines.length) {
-            // Add page content
-            const currentPageLines = lines.slice(lineIndex, lineIndex + Math.floor((pageHeight - 2 * margin) / lineHeight));
-            doc.text(currentPageLines, margin, margin + lineHeight);
-
-            // Check if more pages are needed
-            if (lineIndex + Math.floor((pageHeight - 2 * margin) / lineHeight) < lines.length) {
-                doc.addPage();
-            }
-            lineIndex += Math.floor((pageHeight - 2 * margin) / lineHeight);
-        }
-
-        const pdfBlob = doc.output('blob');
-        const pdfUrl = URL.createObjectURL(pdfBlob);
-
-        // Hide images again after PDF generation
-        images.forEach(img => img.style.display = 'none');
-
-        console.log('Generated PDF URL:', pdfUrl);
-        return pdfUrl;
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+        return '';
     }
 
-    function getBase64Image(imgElement) {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = imgElement.naturalWidth;
-        canvas.height = imgElement.naturalHeight;
-        ctx.drawImage(imgElement, 0, 0);
-        return canvas.toDataURL('image/jpeg');
+// Function to set a cookie
+function setCookie(name, value, days) {
+      const d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + d.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
     }
 
-    async function generateQRCode() {
-        const pdfUrl = await createPDF();
-
-        // Display the link to download or view the PDF
-        const linkElement = document.getElementById('pdfLink');
-        linkElement.href = pdfUrl;
-        document.getElementById('downloadLink').style.display = 'block';
-
-        // Generate the QR code
-        document.getElementById("qrcode").innerHTML = "";
-        new QRCode(document.getElementById("qrcode"), {
-            text: pdfUrl,
-            width: 160,
-            height: 160,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.L
-        });
+    // Function to get a cookie value by name
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    window.onload = function() {
-        generateQRCode();
+    // Generate unique ID (you can use a more complex method for production)
+    function generateUniqueID() {
+      return 'id-' + Math.random().toString(36).substr(2, 9);
+    }
 
-        // Make an XMLHttpRequest to retrieve and log headers
-        var req = new XMLHttpRequest();
-        req.open('GET', document.location, true);
-        req.send(null);
-        req.onload = function() {
-            var headers = req.getAllResponseHeaders().toLowerCase();
-            console.log('Response Headers:', headers);
-        };
+    // Generate a URL with the profile page and unique ID as a parameter
+    function generateQRCodeURL(uniqueID) {
+      return `https://universal.itstrending.in/profile.html`;
+    }
+
+    // Generate the unique ID
+    const uniqueID = generateUniqueID();
+    // Generate the URL with the unique ID
+    const qrCodeURL = generateQRCodeURL(uniqueID);
+
+    // Generate the QR code with the URL
+    new QRCode(document.getElementById("qrcode"), qrCodeURL);
+
+    // Store the unique ID in cookies for 7 days
+    setCookie("field3", uniqueID, 7);
+
+    console.log("QR Code URL stored in cookies:", qrCodeURL);
+
+    // Retrieve the stored unique ID from cookies
+    const storedUniqueID = getCookie('field3');
+
+    // Retrieve the token from cookies
+    const authToken = getCookie('token'); // Replace 'token' with the actual cookie name
+
+    // Retrieving values for fields from cookies
+    const fields = {};
+    for (let i = 1; i <= 43; i++) {
+      fields[`field${i}`] = getCookie(`field${i}`) || ""; // Retrieve field from cookie or set as empty string
+    }
+
+    // Preparing the request body with cookie values
+    const raw = JSON.stringify({
+      "profile_id": "1",
+      "description": "",
+      "gender": "",
+      "images": "",
+      "bio": "",
+      ...fields, // Spread the fields object to include field1 to field40
+      "field44": "",
+      "field45": "",
+      "field46": "",
+      "field47": "",
+      "field48": "",
+      "field49": "",
+      "field50": ""
+    });
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", authToken); // Use the token from cookies
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
     };
 
-    function getCookie(name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
-        return '';
+    // Correcting the URL by removing the extra "https://"
+    fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error('Fetch error:', error));
+
+    if (storedUniqueID) {
+      console.log("Unique ID from cookies: ", storedUniqueID);
+
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjYyMDU0ODEsImlhdCI6MTcyNjExOTA4MSwidXNlciI6eyJpZCI6MywiY3JlYXRlZF9hdCI6IjIwMjQtMDktMDNUMTA6Mjc6NDYuNzg5ODA3IiwidXBkYXRlZF9hdCI6IjIwMjQtMDktMDNUMTA6MzM6NDUuMTMyMjE4IiwiZmlyc3RuYW1lIjoiUmFqZXNoIiwibGFzdG5hbWUiOiJ2IiwiZW1haWwiOiJyYWplc2h2cmFqNTU1QGdtYWlsLmNvbSIsImlzX2FkbWluIjpmYWxzZSwiaXNfYWN0aXZhdGVkIjp0cnVlfX0.kflI-tMoZaEojV2YZ6utRDyX96_iwfLvuJx_ZaPlkLs");
+      myHeaders.append("Content-Type", "application/json");
+
+      const raw = JSON.stringify({ "field3": storedUniqueID });
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+      };
+
+      fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log("API Search Result: ", result);
+
+          // Extract the profile data
+          const profile = result.data.profile[0];
+
+          // Store profile data in localStorage
+          localStorage.setItem('profileData', JSON.stringify(profile));
+
+          // No immediate redirect here
+        })
+        .catch(error => console.error("Fetch error:", error));
+    } else {
+      console.log("No unique ID found in cookies.");
     }
-
-
-    function getCookie(name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
-        return '';
-    }
-
-// Function to get cookie value by name
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
-// Retrieve the token from cookies
-const authToken = getCookie('token'); // Replace 'authToken' with the actual cookie name
-
-// Retrieving values for fields from cookies
-const fields = {};
-for (let i = 1; i <= 42; i++) {
-  fields[`field${i}`] = getCookie(`field${i}`) || ""; // Retrieve field from cookie or set as empty string
-}
-
-// Preparing the request body with cookie values
-const raw = JSON.stringify({
-  "profile_id": "1",
-  "description": "",
-  "gender": "",
-  "images": "",
-  "bio": "",
-  ...fields, // Spread the fields object to include field1 to field40
-  "field43": "",
-  "field44": "",
-  "field45": "",
-  "field46": "",
-  "field47": "",
-  "field48": "",
-  "field49": "",
-  "field50": ""
-});
-
-const myHeaders = new Headers();
-myHeaders.append("Authorization", authToken); // Use the token from cookies
-myHeaders.append("Content-Type", "application/json");
-
-const requestOptions = {
-  method: "POST",
-  headers: myHeaders,
-  body: raw,
-  redirect: "follow"
-};
-
-// Correcting the URL by removing the extra "https://"
-fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
-  .then((response) => response.text())
-  .then((result) => console.log(result))
-  .catch((error) => console.error('Fetch error:', error));
-
 
 
 </script>
