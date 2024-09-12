@@ -522,9 +522,9 @@ button[type="submit"]:hover {
           <div class="form-group" style="display: flex;">
             <label>Gender:</label>
             <div class="gender-options">
-                <input type="radio" id="male" name="gender" value="male">
+                <input type="radio" id="male" name="gender" value="Male">
                 <label for="male">Male</label>
-                <input type="radio" id="female" name="gender" value="female">
+                <input type="radio" id="female" name="gender" value="Female">
                 <label for="female">Female</label>
             </div>
             </div>
@@ -532,12 +532,10 @@ button[type="submit"]:hover {
             <div class="form-group" style="display: flex;">
                 <label for="yearOfBirth">Year of Birth:</label>
                 <select id="yearOfBirth" name="field6">
-                  <option value="">Select year of birth</option>
+                    <option value="">Select year of birth</option>
                 </select>
             </div>
             
-            
-      
             <div class="form-group" style="display: flex;">
                 <label for="height" style="margin-right: 10px;">Height:</label>
                 <select id="height" name="field14" >
@@ -563,7 +561,7 @@ button[type="submit"]:hover {
             <div class="form-group" style="display: flex;">
               <label for="marital-status">Marital Status:</label>
               <select id="marital-status" name="field3" required>
-                  <option value=".">Please select</option>
+                  <!-- <option value="">Please select</option> -->
                   <option value="Unmarried">Unmarried</option>
                   <option value="Divorced">Divorced</option>
                   <option value="Widowed">Widowed</option>
@@ -638,11 +636,6 @@ button[type="submit"]:hover {
           </div>
 
           <div class="form-group" style="display: flex;">
-            <label for="family-contact-number">Family Contact Number:</label>
-            <input type="text" id="family-contact-number" name="field42" >
-          </div>
-
-          <div class="form-group" style="display: flex;">
               <label for="no-of-sisters">No of Sisters:</label>
               <select id="no-of-sisters" name="field24" >
                   <option value="">N/A</option>
@@ -668,6 +661,11 @@ button[type="submit"]:hover {
 
           <div id="brothers-details" class="hidden dynamic-fields">
               <!-- Brother details will be dynamically added here -->
+          </div>
+
+          <div class="form-group" style="display: flex;">
+            <label for="family-contact-number">Family Contact Number:</label>
+            <input type="text" id="family-contact-number" name="field42" >
           </div>
 
             <h2>Partner Requirement</h2>
@@ -1284,14 +1282,59 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
     const yearDropdown = document.getElementById('yearOfBirth');
     const currentYear = new Date().getFullYear();
     const startYear = 1900; // Change this to your desired start year
+    const cookieName = 'filed6';
 
+    // Populate the dropdown with years and corresponding ages
     for (let year = currentYear; year >= startYear; year--) {
-      const option = document.createElement('option');
-      option.value = year;
-      option.text = year;
-      yearDropdown.appendChild(option);
+        const option = document.createElement('option');
+        const age = currentYear - year;
+        option.value = year;
+        option.text = `${year}, ${age} years old`;
+        yearDropdown.appendChild(option);
     }
-  </script>
+
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = name + "=" + (value || "") + ";" + expires + ";path=/";
+    }
+
+    // Function to get a cookie value
+    function getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    // Set the cookie if a year is selected
+    yearDropdown.addEventListener('change', function() {
+        const selectedYear = this.value;
+        if (selectedYear) {
+            const age = currentYear - selectedYear;
+            setCookie(cookieName, `${selectedYear}, ${age} years old`, 7); // Save cookie for 7 days
+        }
+    });
+
+    // Pre-select the year and age based on the cookie value
+    window.addEventListener('load', function() {
+        const savedData = getCookie(cookieName);
+        if (savedData) {
+            const [savedYear, savedAge] = savedData.split(', ');
+            yearDropdown.value = savedYear;
+            // Update the text of the selected option to show age
+            if (yearDropdown.options[yearDropdown.selectedIndex]) {
+                yearDropdown.options[yearDropdown.selectedIndex].text = `${savedYear}, ${savedAge}`;
+            }
+        }
+    });
+</script>
 
 <script>
       document.getElementById('profile-status').addEventListener('change', function () {
