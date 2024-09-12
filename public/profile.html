@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Data</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    #profile {
+      display: none;
+    }
+
+    #generatePdf {
+      display: inline-block;
+      padding: 12px 20px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #1E90FF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      margin: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    #generatePdf:hover {
+      background-color: #4682B4;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div id="profile"></div>
+  <button id="generatePdf">Generate PDF</button>
+
+  <script>
+    const { jsPDF } = window.jspdf;
+
+    // Retrieve the profile data from localStorage
+    const profileData = JSON.parse(localStorage.getItem('profileData'));
+
+    // Function to generate PDF
+    function generatePDF() {
+  const doc = new jsPDF();
+
+  // Function to add the header
+  function addHeader(doc) {
+    doc.setFillColor(30, 144, 255); // #1E90FF
+    doc.rect(0, 0, 210, 30, 'F'); // Fill header background
+    
+    // Add logo
+    doc.addImage('img/comapny log2.jpg', 'JPEG', 10, 5, 40, 20);
+
+    // Add navigation icons
+    const icons = ['img/mms.jpg', 'img/EGAC.png', 'img/IAF.png', 'img/NABCB.png'];
+    const iconSize = 10;
+    let x = 130;
+    icons.forEach(icon => {
+      doc.addImage(icon, 'JPEG', x, 5, iconSize, iconSize);
+      x += iconSize + 5;
+    });
+
+    // Add text in the center
+    doc.setFontSize(14);
+    doc.setTextColor(255, 255, 255);
+    doc.text('Profile Report', 105, 20, { align: 'center' });
+  }
+
+  // Call the addHeader function
+//   addHeader(doc);
+
+  // Move content below the header
+  let y = 35; // Start content position below the header
+
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text('WARRANTY CARD REGISTRATION FORM', 105, y, { align: 'center' });
+
+  // Info text
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "normal");
+  y += 10; // Move down for next text
+  doc.text('In order that we may fulfill obligations of the Warranty on this Vehicle safety devices,', 105, y, { align: 'center' });
+  doc.text('please complete the information requested below.', 105, y + 5, { align: 'center' });
+
+  // Warranty Card Section
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "bold");
+  y += 15; // Move down for section title
+  doc.text('WARRANTY CARD', 105, y, { align: 'center' });
+
+  // Adding form fields with labels and values
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "bold");
+  y += 15; // Move down for fields
+
+  // Invoice number & Date
+  doc.text('Invoice number & Date:', 10, y);
+  doc.setFont("helvetica", "normal");
+  doc.text(profileData?.field9 || '', 70, y);
+
+  // Customer Name & Details
+  doc.setFont("helvetica", "bold");
+  y += 10;
+  doc.text('Customer Name & Details:', 10, y);
+  doc.setFont("helvetica", "normal");
+  doc.text(profileData?.field1 || '', 70, y);
+
+  // Product Details
+  doc.setFont("helvetica", "bold");
+  y += 10;
+  doc.text('Product Details:', 10, y);
+  doc.setFont("helvetica", "normal");
+  doc.text(profileData?.field8 || '', 70, y);
+
+  // Vehicle Model & Quantity
+  doc.setFont("helvetica", "bold");
+  y += 10;
+  doc.text('Vehicle Model & Quantity:', 10, y);
+  doc.setFont("helvetica", "normal");
+  doc.text(profileData?.field5 || '', 70, y);
+
+  // Date of Installation
+  doc.setFont("helvetica", "bold");
+  y += 10;
+  doc.text('Date of Installation:', 10, y);
+  doc.setFont("helvetica", "normal");
+  doc.text(profileData?.field4 || '', 70, y);
+
+  // Warranty terms (numbered list)
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "bold");
+  y += 20;
+  doc.text('1) One-year Warranty effects from the purchase date.', 10, y);
+  doc.text('2) Warranty covers any manufacturing technical defects excluding breakage.', 10, y + 10);
+  doc.text('3) Warranty void if repairing without our consent or warranty seal is broken.', 10, y + 20);
+  doc.text('4) The warranty does not cover faults resulting from operation careless handling or not following instructions.', 10, y + 30);
+  doc.text('   Also, electric shock cases.', 10, y + 40);
+
+  // Save the PDF
+  doc.save('warranty_card.pdf');
+}
+    // Add event listener to button
+    document.getElementById('generatePdf').addEventListener('click', generatePDF);
+  </script>
+</body>
+</html>
