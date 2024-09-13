@@ -3,331 +3,735 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="css/matrimony/prview.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <title>Report Details</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
+
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .profile-container {
+        .container {
+            background-color: #f0f0f0;
             padding: 20px;
-            box-sizing: border-box;
         }
-        
-        @media (min-width: 768px) {
-            .profile-container {
-                width: 60%;
-                margin: 0 auto;
-                border: 1px solid #ccc;
-                padding: 20px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                border-radius: 10px;
+        .form-col {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .content {
+            margin-bottom: 10px;
+        }
+        .label-box {
+            font-weight: bold;
+        }
+        .empty-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 50px;
+            background-color: #fff;
+        }
+        .form-control[readonly] {
+            background-color: #e9ecef;
+        }
+        body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #f7f7f7;
+        background-image: linear-gradient(to right, #1E90FF, #f7f7f7);    }
+
+    .logo img {
+        height: 80px;
+    }
+
+    .nav-icons img {
+        height: 50px;
+        margin-left: 15px;
+    }
+
+    input {
+        border: 1px solid red;
+        /* Light black border */
+        border-radius: 4px;
+        /* Optional: for rounded corners */
+        padding: 5px;
+        /* Optional: to add some padding inside the input */
+    }
+
+    @media screen and (max-width: 600px) {
+        .navbar {
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-icons img {
+            margin-left: 8px;
+            height: 30px;
+        }
+    }
+
+    /* headr */
+    @media (max-width: 600px) {
+        .table {
+            width: 100%;
+        }
+    }
+     /* Print Styles */
+     @media print {
+            .navbar-toggler, #printButton {
+                display: none;
             }
         }
+
+        /* Button Container */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        #printButton {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #printButton {
+                margin: 10px 0;
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            /* background-image: linear-gradient(to right, #1E90FF, #f7f7f7); */
+        }
+
+        .logo img,
+        .nav-icons img {
+            display: none; /* Hide images on the page */
+        }
+
+        input {
+            border: 1px solid red;
+            border-radius: 4px;
+            padding: 5px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .navbar {
+                justify-content: space-between;
+                padding: 10px;
+            }
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+        }
+
+        .logo img,
+        .nav-icons img {
+            display: none; /* Hide images on the page */
+        }
+
+        input {
+            border: 1px solid red;
+            border-radius: 4px;
+            padding: 5px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .navbar {
+                justify-content: space-between;
+                padding: 10px;
+            }
+        }
+
+        #qrcode {
+    margin-left: 0; /* or any other default value */
+  }
+
+  /* Mobile view styling */
+  @media (max-width: 767px) { /* You can adjust the max-width value as needed */
+    #qrcode {
+      margin-left: 15px; /* Adjust the margin as needed */
+    }
+  }
+
     </style>
 </head>
 <body>
-    <!-- <div id="headerPlaceholder"></div> -->
-
-    <div class="header">
-        <div class="back-button" onclick="goBack()"> < </div>
-        <div class="title">Profile</div>
+  <nav class="navbar">
+    <div class="logo">
+        <img src="img/comapny log2.jpg" alt="Left Logo">
     </div>
+    <div class="nav-icons">
+        <img src="img/mms.jpg" alt="Logo 1">
+        <img src="img/EGAC.png" alt="Logo 2">
+        <img src="img/IAF.png" alt="Logo 3">
+        <img src="img/NABCB.png" alt="Logo 4">
+    </div>
+</nav>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+<div class="container-fluid">
+<!-- Left section: Toggler button for mobile view -->
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-    <div class="profile-container">
-        <div id="profilePhoto" class="resizeable" style="background-image: url('https://w0.peakpx.com/wallpaper/262/146/HD-wallpaper-virat-and-anushka-anushka-couple-kohli-love-sharma-virat.jpg');"></div>
-        <div class="profile-details">
-            <h2>Marriage Profile</h2>
-            <div class="detail-item">
-                <label>Name:</label>
-                <span id="name"></span>
-            </div>
-            <div class="detail-item">
-                <label>Date of Birth:</label>
-                <span id="dob"></span>
-            </div>
-            <div class="detail-item">
-                <label>Gender:</label>
-                <span id="gender"></span>
-            </div>
-            <div class="detail-item">
-                <label>Caste:</label>
-                <span id="caste"></span>
-            </div>
-            <div class="detail-item">
-                <label>Follow:</label>
-                <span id="follow"></span>
-            </div>
-            <div class="detail-item">
-                <label>Phone Number:</label>
-                <span id="phoneNumber"></span>
-            </div>
-            <div class="detail-item">
-                <label>Native Language:</label>
-                <span id="nativeLanguage"></span>
-            </div>
-            <div class="detail-item">
-                <label>Residence Language:</label>
-                <span id="residenceLanguage"></span>
-            </div>
-            <div class="detail-item">
-                <label>Hobbies:</label>
-                <span id="Hobbies"></span>
-            </div>
-            <div class="detail-item">
-                <label>Country:</label>
-                <span id="country"></span>
-            </div>
-            <div class="detail-item">
-                <label>State:</label>
-                <span id="state"></span>
-            </div>
-            <div class="detail-item">
-                <label>City:</label>
-                <span id="city"></span>
-            </div>
-            <div class="detail-item">
-                <label>Address:</label>
-                <span id="address"></span>
-            </div>
-            <div class="detail-item">
-                <label>Marital Status:</label>
-                <span id="maritalStatus"></span>
-            </div>
-            <div class="detail-item" id="childrenDetail" style="display: none;">
-                <label>Children:</label>
-                <span id="children"></span>
-            </div>
-            <div class="detail-item">
-                <label>Height:</label>
-                <span id="height"></span>
-            </div>
-            <div class="detail-item">
-                <label>Weight:</label>
-                <span id="weight"></span>
-            </div>
-            <div class="detail-item">
-                <label>About Me:</label>
-                <span id="aboutMe"></span>
-            </div>
-            <div class="detail-item">
-                <label>About Family:</label>
-                <span id="aboutFamily"></span>
-            </div>
-            <div class="detail-item">
-                <label>Prefered Alliance details:</label>
-                <span id="preferedalliancedetail"></span>
-            </div>
-            <div class="detail-item">
-                <label>Family Type:</label>
-                <span id="familyType"></span>
-            </div>
-            <div class="detail-item">
-                <label>Father Name:</label>
-                <span id="fatherName"></span>
-            </div>
-            <div class="detail-item">
-                <label>Father Occupation:</label>
-                <span id="fatherOccupation"></span>
-            </div>
-            <div class="detail-item">
-                <label>Mother Name:</label>
-                <span id="motherName"></span>
-            </div>
-            <div class="detail-item">
-                <label>Mother Occupation:</label>
-                <span id="motherOccupation"></span>
-            </div>
-            <div class="detail-item">
-                <label>Number of Brothers:</label>
-                <span id="numBrothers"></span>
-            </div>
-            <div id="brothersDetailsContainer"></div>
-            <div class="detail-item">
-                <label>Number of Sisters:</label>
-                <span id="numSisters"></span>
-            </div>
-            <div id="sisters-details"></div>
-            <div class="detail-item">
-                <label>Education Qualification:</label>
-                <span id="education"></span>
-            </div>
-            <div class="detail-item">
-                <label>Revert:</label>
-                <span id="revert"></span>
-            </div>
-            <div class="detail-item">
-                <label>Monthly Salary Range:</label>
-                <span id="salaryRange"></span>
-            </div>
-            <div class="detail-item">
-                <label>Profession:</label>
-                <span id="profession"></span>
-            </div>
-            <div class="detail-item">
-                <label>Business Type:</label>
-                <span id="businessType"></span>
-            </div>
-            <div class="detail-item">
-                <label>How I Know Kurshid Bhai:</label>
-                <span id="howIKnow"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Height to be:</label>
-                <span id="partner_height"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Weight to be:</label>
-                <span id="partner_weight"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Caste to be:</label>
-                <span id="partner_caste"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Education to be:</label>
-                <span id="partner_education"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Occupation to be:</label>
-                <span id="partner_occupation"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Follow to be:</label>
-                <span id="partner_follow"></span>
-            </div>
-            <div class="detail-item">
-                <label>Partner Personal Attribute to be:</label>
-                <span id="partner_personal_attribute"></span>
-            </div>
-            <div class="footer">
-                <button onclick="continueToFilters()" style="
-                    width: 100%;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    background-color: #333;
-                    color: white;
-                ">Continue</button>
-            </div>
+<!-- Center section: Logo -->
+<div class="header-left mb-3 mb-md-0">
+  <!-- <img src="comapny log2.jpg" alt="Logo" class="img-fluid logo-img" style="max-width: 200px;"> -->
+</div>
+
+<!-- Right section: Navbar links -->
+<div class="collapse navbar-collapse" id="navbarNav">
+  <ul class="navbar-nav ms-auto">
+    <li class="nav-item dropdown me-2">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Pages
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
+        <li><a class="dropdown-item" href="installationform1.html">Installation Form</a></li>
+        <li><a class="dropdown-item" href="GeneralServiceForm1.html">General Service Form</a></li>
+        <!-- <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li> -->
+      </ul>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownReport" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Report Page
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdownReport">
+        <li><a class="dropdown-item" href="installationreport.html">Installation Report</a></li>
+        <li><a class="dropdown-item" href="report2.html">General Service Report</a></li>
+        <!-- <li><a class="dropdown-item" href="vechicalOwner.html">Vehicle Owner Information Report</a></li> -->
+      </ul>
+    </li>
+  </ul>
+</div>
+</div>
+</nav>
+
+
+
+
+
+<!-- Main Content -->
+<main class="container my-5">
+    <!-- Existing Table -->
+    <table class="table table-bordered table-container">
+        <tbody>
+            <tr>
+              <td class="text-center" id="repNo"> </td>
+              <td class="text-center"><u>INSTALLATION REPORT</u></td>
+                <td class="text-center">
+                    <p id="reportDate">Report Date</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- New Table 1 -->
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <div class="form-group-content">
+                                <label for="customerNamePreview" class="form-label">Customer Name:</label>
+                                <input type="text" class="form-control" id="customerNamePreview" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group-content">
+                                <label for="customerProjectPreview" class="form-label">Project:</label>
+                                <input type="text" class="form-control" id="customerProjectPreview" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group-content">
+                                <label for="poNoDatePreview" class="form-label">P.O No. & Date:</label>
+                                <input type="text" class="form-control" id="poNoDatePreview" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group-content">
+                                <label for="invoiceNoDatePreview" class="form-label">Invoice No & Date :</label>
+                                <input type="text" class="form-control" id="invoiceNoDatePreview" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-col">
+                        <div class="form-group row">
+                            <label for="vehicleModelPreview" class="col-sm-6 col-form-label form-label">Vehicle Model:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="vehicleModelPreview" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vehicleSlNoPreview" class="col-sm-6 col-form-label form-label">Vehicle SL No:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="vehicleSlNoPreview" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="eqptTypePreview" class="col-sm-6 col-form-label form-label">Type Of Equipment:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="eqptTypePreview" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="eqptSlNoPreview" class="col-sm-6 col-form-label form-label">Equipment SL No:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="eqptSlNoPreview" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="installationHRMPreview" class="col-sm-6 col-form-label form-label">Installation HMR:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="installationHRMPreview" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="failureHMRPreview" class="col-sm-6 col-form-label form-label">Failure HMR:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="failureHMRPreview" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+
+<div class="container">
+   
+
+<div class="section">
+    <h2>1. Welding of MS Parts</h2>
+    <div class="content">
+        <div class="label-box">
+            <label>DCP Cylinder Mounting Bracket - 50/20</label>
+        </div>
+        <div class="empty-box" id="dcpCylinderMountingBracket"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Distributor Pad</label>
+        </div>
+        <div class="empty-box" id="distributorPad"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Nozzle Bracket</label>
+        </div>
+        <div class="empty-box" id="nozzleBracket"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Automatic Actuator Bracket Pad</label>
+        </div>
+        <div class="empty-box" id="automaticActuatorBracketPad"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Manual Actuator Bracket Pad</label>
+        </div>
+        <div class="empty-box" id="manualActuatorBracketPad"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Control Unit Pad</label>
+        </div>
+        <div class="empty-box" id="controlUnitPad"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Sensor Wire Routing Bosses 8MM</label>
+        </div>
+        <div class="empty-box" id="sensorWireRoutingBosses"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Fitment of DCP Cylinder - 50/25</label>
+        </div>
+        <div class="empty-box" id="fitmentOfDcpCylinder"></div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>2. Fitment of all Nozzles</h2>
+    <div class="content">
+        <div class="label-box">
+            <label>Fitment of Nozzles along with protective caps</label>
+        </div>
+        <div class="empty-box" id="fitmentOfNozzlesProtectiveCaps"></div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>3. Fitment of Nitrogen Cartridge</h2>
+    <div class="content">
+        <div class="label-box">
+            <label>Fitment of Nitrogen Cartridge along with protective caps</label>
+        </div>
+        <div class="empty-box" id="fitmentOfNitrogenCartridgeProtectiveCaps"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Nitrogen Cartridge inside the cabin</label>
+        </div>
+        <div class="empty-box" id="nitrogenCartridgeInsideCabin"></div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>4. Fitment of all Hoses</h2>
+    <div class="content">
+        <div class="label-box">
+            <label>3/4"R2, 1/2"R2, 1/4"R2 Hose</label>
+        </div>
+        <div class="empty-box" id="hoseDetails"></div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>5. Electrical Connections</h2>
+    <div class="content">
+        <div class="label-box">
+            <label>Sensor Wire Routing</label>
+        </div>
+        <div class="empty-box" id="sensorWireRouting"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Control Unit Connections Sensor</label>
+        </div>
+        <div class="empty-box" id="controlUnitConnectionsSensor"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Wire Adaptor Battery Connections</label>
+        </div>
+        <div class="empty-box" id="wireAdaptorBatteryConnections"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Control Unit Start</label>
+        </div>
+        <div class="empty-box" id="controlUnitStart"></div>
+    </div>
+    <div class="content">
+        <div class="label-box">
+            <label>Power OK LED</label>
+        </div>
+        <div class="empty-box" id="powerOkLed"></div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>6. Product Details</h2>
+    <div class="content">
+        <div class="label-box">
+            <label>Product Details</label>
+        </div>
+        <input type="text" class="form-control" id="product" readonly>
+    </div>
+</div>
+
+<div class="section">
+    <h2>7. Additional Information</h2>
+    <div class="form-group row">
+        <label for="forUee" class="col-sm-6 col-form-label form-label">For UEE:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="forUee" readonly>
         </div>
     </div>
+    <div class="form-group row">
+        <label for="forCustomer" class="col-sm-6 col-form-label form-label">For Customer:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="forCustomer" readonly>
+        </div>
+    </div>
+</div>
 
-    
+<nav class="">
+    <div class="logo">
+        <img src="img/comapny log2.jpg" alt="Left Logo" id="logo1">
+    </div>
+    <div class="nav-icons">
+        <img src="img/mms.jpg" alt="Logo 1" id="logo2">
+        <img src="img/EGAC.png" alt="Logo 2" id="logo3">
+        <img src="img/IAF.png" alt="Logo 3" id="logo4">
+        <img src="img/NABCB.png" alt="Logo 4" id="logo5">
+    </div>
+</nav>
 
-    <!-- <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div> -->
-    <!-- <script src="js/matrimony/prview.js"></script> -->
-</body>
-</html>
+<div id="qrcode"></div>
+
+<div class="button-container">
+  <button id="printButton" onclick="window.print()">Print</button>
+</div>
+</div>
+<!-- Include Bootstrap JavaScript and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-function goBack() {
-    window.history.back();
-}
-
-function continueToFilters() {
-    window.location.href = "profilesearch3.html";
-}
-
-// Function to get a cookie value or return "N/A" if not found
+// Function to get a cookie by its name
 function getCookie(name) {
-    let cookieArr = document.cookie.split(";");
-    for (let i = 0; i < cookieArr.length; i++) {
-        let cookiePair = cookieArr[i].split("=");
-        if (name == cookiePair[0].trim()) {
-            let value = decodeURIComponent(cookiePair[1]);
-            return value ? value : "N/A";
-        }
-    }
-    return "N/A";
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
 }
 
-// Function to create sibling fields
-function createSiblingFields(containerId, numberOfSiblings, siblingType) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
+// Function to display form data from cookies
+function displayFormData() {
+    document.getElementById('customerNamePreview').value = decodeURIComponent(getCookie('field1') || 'Not Available');
+    document.getElementById('customerProjectPreview').value = decodeURIComponent(getCookie('field32') || 'Not Available');
+    document.getElementById('poNoDatePreview').value = decodeURIComponent(getCookie('field4') || 'Not Available');
+    document.getElementById('invoiceNoDatePreview').value = decodeURIComponent(getCookie('field9') || 'Not Available');
+    document.getElementById('vehicleModelPreview').value = decodeURIComponent(getCookie('field5') || 'Not Available');
+    document.getElementById('vehicleSlNoPreview').value = decodeURIComponent(getCookie('field6') || 'Not Available');
+    document.getElementById('eqptTypePreview').value = decodeURIComponent(getCookie('field7') || 'Not Available');
+    document.getElementById('eqptSlNoPreview').value = decodeURIComponent(getCookie('field43') || 'Not Available');
+    document.getElementById('installationHRMPreview').value = decodeURIComponent(getCookie('field10') || 'Not Available');
+    document.getElementById('failureHMRPreview').value = decodeURIComponent(getCookie('field11') || 'Not Available');
 
-    for (let i = 1; i <= numberOfSiblings; i++) {
-        const siblingContainer = document.createElement('div');
-        siblingContainer.className = 'sibling-details';
+    document.getElementById('dcpCylinderMountingBracket').textContent = decodeURIComponent(getCookie('field13') || 'Not Available');
+    document.getElementById('distributorPad').textContent = decodeURIComponent(getCookie('field14') || 'Not Available');
+    document.getElementById('nozzleBracket').textContent = decodeURIComponent(getCookie('field15') || 'Not Available');
+    document.getElementById('automaticActuatorBracketPad').textContent = decodeURIComponent(getCookie('field16') || 'Not Available');
+    document.getElementById('manualActuatorBracketPad').textContent = decodeURIComponent(getCookie('field17') || 'Not Available');
+    document.getElementById('controlUnitPad').textContent = decodeURIComponent(getCookie('field18') || 'Not Available');
+    document.getElementById('sensorWireRoutingBosses').textContent = decodeURIComponent(getCookie('field20') || 'Not Available');
+    document.getElementById('fitmentOfDcpCylinder').textContent = decodeURIComponent(getCookie('field20') || 'Not Available');
+    document.getElementById('fitmentOfNozzlesProtectiveCaps').textContent = decodeURIComponent(getCookie('field21') || 'Not Available');
+    document.getElementById('fitmentOfNitrogenCartridgeProtectiveCaps').textContent = decodeURIComponent(getCookie('field22') || 'Not Available');
+    document.getElementById('nitrogenCartridgeInsideCabin').textContent = decodeURIComponent(getCookie('field23') || 'Not Available');
+    document.getElementById('hoseDetails').textContent = decodeURIComponent(getCookie('field25') || 'Not Available');
+    document.getElementById('sensorWireRouting').textContent = decodeURIComponent(getCookie('field25') || 'Not Available');
+    document.getElementById('controlUnitConnectionsSensor').textContent = decodeURIComponent(getCookie('field26') || 'Not Available');
+    document.getElementById('wireAdaptorBatteryConnections').textContent = decodeURIComponent(getCookie('field28') || 'Not Available');
+    document.getElementById('controlUnitStart').textContent = decodeURIComponent(getCookie('field27') || '');
+    document.getElementById('powerOkLed').textContent = decodeURIComponent(getCookie('field29') || 'Not Available');
+    document.getElementById('product').value = decodeURIComponent(getCookie('field8') || '');
 
-        const siblingOccupation = document.createElement('div');
-        siblingOccupation.className = 'detail-item';
-        siblingOccupation.innerHTML = `<label>${siblingType} ${i} Occupation:</label><span id="${siblingType.toLowerCase()}${i}Occupation"></span>`;
-        siblingContainer.appendChild(siblingOccupation);
-
-        const siblingMaritalStatus = document.createElement('div');
-        siblingMaritalStatus.className = 'detail-item';
-        siblingMaritalStatus.innerHTML = `<label>${siblingType} ${i} Marital Status:</label><span id="${siblingType.toLowerCase()}${i}MaritalStatus"></span>`;
-        siblingContainer.appendChild(siblingMaritalStatus);
-
-        container.appendChild(siblingContainer);
-    }
+    document.getElementById('forUee').value = decodeURIComponent(getCookie('field30') || '');
+    document.getElementById('forCustomer').value = decodeURIComponent(getCookie('field31') || '');
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Fetch the data from cookies and set it to the respective fields
-    document.getElementById("name").innerText = getCookie("name");
-    document.getElementById("dob").innerText = getCookie("dob");
-    document.getElementById("gender").innerText = getCookie("gender");
-    document.getElementById("caste").innerText = getCookie("caste");
-    document.getElementById("follow").innerText = getCookie("follow");
-    document.getElementById("phoneNumber").innerText = getCookie("phoneNumber");
-    document.getElementById("nativeLanguage").innerText = getCookie("nativeLanguage");
-    document.getElementById("residenceLanguage").innerText = getCookie("residenceLanguage");
-    document.getElementById("Hobbies").innerText = getCookie("Hobbies");
-    document.getElementById("country").innerText = getCookie("country");
-    document.getElementById("state").innerText = getCookie("state");
-    document.getElementById("city").innerText = getCookie("city");
-    document.getElementById("address").innerText = getCookie("address");
-    document.getElementById("maritalStatus").innerText = getCookie("maritalStatus");
-    document.getElementById("children").innerText = getCookie("children");
-    document.getElementById("height").innerText = getCookie("height");
-    document.getElementById("weight").innerText = getCookie("weight");
-    document.getElementById("aboutMe").innerText = getCookie("aboutMe");
-    document.getElementById("aboutFamily").innerText = getCookie("aboutFamily");
-    document.getElementById("preferedalliancedetail").innerText = getCookie("preferedalliancedetail");
-    document.getElementById("familyType").innerText = getCookie("familyType");
-    document.getElementById("fatherName").innerText = getCookie("fatherName");
-    document.getElementById("fatherOccupation").innerText = getCookie("fatherOccupation");
-    document.getElementById("motherName").innerText = getCookie("motherName");
-    document.getElementById("motherOccupation").innerText = getCookie("motherOccupation");
+// Call the function to display form data when the page loads
+document.addEventListener('DOMContentLoaded', displayFormData);
 
-    document.getElementById('numBrothers').textContent = getCookie('numBrothers');
-    document.getElementById('numSisters').textContent = getCookie('numSisters');
 
-    document.getElementById("education").innerText = getCookie("education");
-    document.getElementById("revert").innerText = getCookie("revert");
-    document.getElementById("salaryRange").innerText = getCookie("salaryRange");
-    document.getElementById("profession").innerText = getCookie("profession");
-    document.getElementById("businessType").innerText = getCookie("businessType");
-    document.getElementById("howIKnow").innerText = getCookie("howIKnow");
-    document.getElementById("partner_height").innerText = getCookie("partner_height");
-    document.getElementById("partner_weight").innerText = getCookie("partner_weight");
-    document.getElementById("partner_caste").innerText = getCookie("partner_caste");
-    document.getElementById("partner_education").innerText = getCookie("partner_education");
-    document.getElementById("partner_occupation").innerText = getCookie("partner_occupation");
-    document.getElementById("partner_follow").innerText = getCookie("partner_follow");
-    document.getElementById("partner_personal_attribute").innerText = getCookie("partner_personal_attribute");
+// Function to get a cookie by name
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
-    if (numBrothers > 0) {
-        showBrothersDetails(numBrothers);
+// Get the value from the cookie and set it as the text content of the <td>
+document.getElementById('repNo').textContent = decodeURIComponent(getCookie('field2') || '');
+
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+        return '';
     }
 
-    if (numSisters > 0) {
-        showSistersDetails(numSisters);
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+        return '';
     }
 
-    // Show children detail section if the marital status indicates there are children
-    const maritalStatus = getCookie("maritalStatus");
-    if (maritalStatus && maritalStatus.toLowerCase() === 'married' && getCookie("children")) {
-        document.getElementById("childrenDetail").style.display = 'block';
+// Function to set a cookie
+function setCookie(name, value, days) {
+      const d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + d.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
     }
-    // Create fields for brothers and sisters details
-createSiblingFields('brothersDetailsContainer', getCookie('numberOfBrothers'), 'Brother');
-createSiblingFields('sistersDetailsContainer', getCookie('numberOfSisters'), 'Sister');
-});
+
+    // Function to get a cookie value by name
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // Generate unique ID (you can use a more complex method for production)
+    function generateUniqueID() {
+      return 'id-' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Generate a URL with the profile page and unique ID as a parameter
+    function generateQRCodeURL(uniqueID) {
+      return `https://universal.itstrending.in/profile.html`;
+    }
+
+    // Generate the unique ID
+    const uniqueID = generateUniqueID();
+    // Generate the URL with the unique ID
+    const qrCodeURL = generateQRCodeURL(uniqueID);
+
+    // Generate the QR code with the URL
+    new QRCode(document.getElementById("qrcode"), qrCodeURL);
+
+    // Store the unique ID in cookies for 7 days
+    setCookie("field3", uniqueID, 7);
+
+    console.log("QR Code URL stored in cookies:", qrCodeURL);
+
+    // Retrieve the stored unique ID from cookies
+    const storedUniqueID = getCookie('field3');
+
+    // Retrieve the token from cookies
+    const authToken = getCookie('token'); // Replace 'token' with the actual cookie name
+
+    // Retrieving values for fields from cookies
+    const fields = {};
+    for (let i = 1; i <= 43; i++) {
+      fields[`field${i}`] = getCookie(`field${i}`) || ""; // Retrieve field from cookie or set as empty string
+    }
+
+    // Preparing the request body with cookie values
+    const raw = JSON.stringify({
+      "profile_id": "1",
+      "description": "",
+      "gender": "",
+      "images": "",
+      "bio": "",
+      ...fields, // Spread the fields object to include field1 to field40
+      "field44": "",
+      "field45": "",
+      "field46": "",
+      "field47": "",
+      "field48": "",
+      "field49": "",
+      "field50": ""
+    });
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", authToken); // Use the token from cookies
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    // Correcting the URL by removing the extra "https://"
+    fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error('Fetch error:', error));
+
+    if (storedUniqueID) {
+      console.log("Unique ID from cookies: ", storedUniqueID);
+      function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return null;
+}
+
+// Retrieve the token from the cookies
+const token = getCookie('token'); // Replace 'authToken' with the actual name of your cookie
+
+
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", token); // Append the token
+      myHeaders.append("Content-Type", "application/json");
+
+      const raw = JSON.stringify({ "field3": storedUniqueID });
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+      };
+
+      fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log("API Search Result: ", result);
+
+          // Extract the profile data
+          const profile = result.data.profile[0];
+
+          // Store profile data in localStorage
+          localStorage.setItem('profileData', JSON.stringify(profile));
+
+          // No immediate redirect here
+        })
+        .catch(error => console.error("Fetch error:", error));
+    } else {
+      console.log("No unique ID found in cookies.");
+    }
+
+
 </script>
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>

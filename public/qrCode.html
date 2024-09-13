@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code with ID</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <script>
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+      const d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + d.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+
+    // Function to get a cookie value by name
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // Generate unique ID (you can use a more complex method for production)
+    function generateUniqueID() {
+      return 'id-' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Generate a URL with the profile page and unique ID as a parameter
+    function generateQRCodeURL(uniqueID) {
+      return `https://universal.itstrending.in/profile.html`;
+    }
+
+    // Generate the unique ID
+    const uniqueID = generateUniqueID();
+    // Generate the URL with the unique ID
+    const qrCodeURL = generateQRCodeURL(uniqueID);
+
+    // Generate the QR code with the URL
+    new QRCode(document.getElementById("qrcode"), qrCodeURL);
+
+    // Store the unique ID in cookies for 7 days
+    setCookie("field3", uniqueID, 7);
+
+    console.log("QR Code URL stored in cookies:", qrCodeURL);
+
+    // Retrieve the stored unique ID from cookies
+    const storedUniqueID = getCookie('field3');
+
+    // Retrieve the token from cookies
+    const authToken = getCookie('token'); // Replace 'token' with the actual cookie name
+
+    // Retrieving values for fields from cookies
+    const fields = {};
+    for (let i = 1; i <= 43; i++) {
+      fields[`field${i}`] = getCookie(`field${i}`) || ""; // Retrieve field from cookie or set as empty string
+    }
+
+    // Preparing the request body with cookie values
+    const raw = JSON.stringify({
+      "profile_id": "1",
+      "description": "",
+      "gender": "",
+      "images": "",
+      "bio": "",
+      ...fields, // Spread the fields object to include field1 to field40
+      "field44": "",
+      "field45": "",
+      "field46": "",
+      "field47": "",
+      "field48": "",
+      "field49": "",
+      "field50": ""
+    });
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", authToken); // Use the token from cookies
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    // Correcting the URL by removing the extra "https://"
+    fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error('Fetch error:', error));
+
+    if (storedUniqueID) {
+      console.log("Unique ID from cookies: ", storedUniqueID);
+
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjYyMDU0ODEsImlhdCI6MTcyNjExOTA4MSwidXNlciI6eyJpZCI6MywiY3JlYXRlZF9hdCI6IjIwMjQtMDktMDNUMTA6Mjc6NDYuNzg5ODA3IiwidXBkYXRlZF9hdCI6IjIwMjQtMDktMDNUMTA6MzM6NDUuMTMyMjE4IiwiZmlyc3RuYW1lIjoiUmFqZXNoIiwibGFzdG5hbWUiOiJ2IiwiZW1haWwiOiJyYWplc2h2cmFqNTU1QGdtYWlsLmNvbSIsImlzX2FkbWluIjpmYWxzZSwiaXNfYWN0aXZhdGVkIjp0cnVlfX0.kflI-tMoZaEojV2YZ6utRDyX96_iwfLvuJx_ZaPlkLs");
+      myHeaders.append("Content-Type", "application/json");
+
+      const raw = JSON.stringify({ "field3": storedUniqueID });
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+      };
+
+      fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log("API Search Result: ", result);
+
+          // Extract the profile data
+          const profile = result.data.profile[0];
+
+          // Store profile data in localStorage
+          localStorage.setItem('profileData', JSON.stringify(profile));
+
+          // No immediate redirect here
+        })
+        .catch(error => console.error("Fetch error:", error));
+    } else {
+      console.log("No unique ID found in cookies.");
+    }
+
+  </script>
+</body>
+</html>
