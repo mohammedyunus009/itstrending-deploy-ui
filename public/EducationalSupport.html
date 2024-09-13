@@ -41,12 +41,12 @@
           flex: 1;
           padding: 20px;
       }
-      .content img {
+      /* .content img {
           max-width: 100%;
           height: auto;
           display: block;
           margin: 0 auto 20px;
-      }
+      } */
       .content h1 {
           font-size: 24px;
           margin-bottom: 20px;
@@ -138,11 +138,29 @@
     .content ul li strong {
         color: #333;
     }
+    /* Default desktop view */
+.content img {
+    width: 50%;
+    height: 500px;
+}
+
+/* Mobile view (screens smaller than 768px) */
+@media (max-width: 768px) {
+    .content img {
+        width: 100%; /* Make the image take up the full width */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .header h1 {
+        font-size: 1.4rem;
+        color: white;
+        margin: 0;
+    }
+}
 </style>
 </head>
 
 <body>
-  <section id="top" class="bg_brown pt-2 pb-2">
+<section id="top" class="bg_brown pt-2 pb-2">
     <div class="container-xl">
      <div class="row top_1">
       <div class="col-md-6">
@@ -165,198 +183,193 @@
       </div>
      </div>
     </div>
-   </section>
-       <!--header  -->
-        <section id="header">
-       <nav class="navbar navbar-expand-md navbar-light  p-0 pt-2 pb-2" id="navbar_sticky">
-         <div class="container-xl">
-           <a class="navbar-brand p-0 me-0" href="index.html">
-				<img src="img/IMG-20240813-WA0001-removebg-preview.png" alt="ISC Logo" class="logo-img">
-			</a>
-           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-             <span class="navbar-toggler-icon"></span>
-           </button>
-           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-0 ms-auto">
-              <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-              </li>
-              <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Login/Register
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
-                <a class="dropdown-item" href="register-process.html">Create Profile</a>
+</section>
+
+<!--header  -->
+<section id="header">
+<nav class="navbar navbar-expand-md navbar-light  p-0 pt-2 pb-2" id="navbar_sticky">
+  <div class="container-xl">
+    <a class="navbar-brand p-0 me-0" href="index.html">
+  <img src="img/IMG-20240813-WA0001-removebg-preview.png" alt="ISC Logo" class="logo-img">
+</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-0 ms-auto">
+        <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Login/Register
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
+          <a class="dropdown-item" href="register-process.html">Create Profile</a>
 <a class="dropdown-item" href="modifyprofile.html">Modify Profile</a>
-                <a class="dropdown-item" href="plans.html">Plans</a>
-              </div>
-            </li>
-              <li class="nav-item">
-              <a class="nav-link" href="filter.html">Search</a>
-              </li>
-              <li class="nav-item">
-              <a class="nav-link" href="payment.html">Payment</a>
-              </li>
-            
-              <!-- Dropdown for Event -->
-              <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Resources
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="eventDropdown">
-                <li><a class="dropdown-item" href="khajoor-pe-nikah.html">Khajoor pe Nikah(KPN)</a></li>
-                <li><a class="dropdown-item" href="islamic-matrimonial-tips.html">Marriage Tips</a></li>
-                <li><a class="dropdown-item" href="HealthWellness.html">Health & Wellness Advice</a></li>
-                <li><a class="dropdown-item" href="islamic-relationship-advice.html">Relationship Advice/Consultant</a></li>
-                <li><a class="dropdown-item" href="wedding-planning.html">Islamic wedding Planning</a></li>
-							<li><a class="dropdown-item" href="faq.html">FAQ's</a></li>
-              </ul>
-              </li>
-            
-              <!-- Dropdown for Donation -->
-              <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="donationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Donation
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="donationDropdown">
-                <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
-                <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
-                <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food/Ration Distribution</a></li>
-                <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
-<li><a class="dropdown-item" href="bloodbank.html">Blood bank Directory</a></li>
-                <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
-                <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment/Business Support</a></li>
-              </ul>
-              </li>
-              <!-- <li class="nav-item">
-						<a class="nav-link" href="#">Media</a>
-					</li> -->
-              <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-              </li>
-              <!-- <li class="nav-item">
-              <a class="nav-link" href="login.html">Sign In/Sign Up</a>
-              </li> -->
-            </ul>
-             <ul class="navbar-nav mb-0 ms-auto">
-            <!-- <li class="nav-item dropdown">
-                 <a class="nav-link dropdown-toggle dropdown_search nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                   <i class="fa fa-search"></i>
-                 </a>
-                 <ul class="dropdown-menu drop_2 p-3" aria-labelledby="navbarDropdown">
-                   <li>
-                     <div class="input-group">
-                       <input type="text" class="form-control bg_light border-0 font_13" placeholder="Enter Keyword">
-                       <span class="input-group-btn">
-                           <button class="btn btn-primary bg_brown  p-3 px-4 border-0" type="button">
-                               <i class="fa fa-search"></i> </button>
-                       </span>
-               </div>
-                   </li>
-                 </ul>
-               </li> -->
-               <!-- <li class="nav-item dropdown">
-                 <a class="nav-link dropdown-toggle drop_togn nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                   <i class="fa fa-shopping-cart"></i>
-                 </a> -->
-                 <ul class="dropdown-menu drop_cart rounded-0 border-0" aria-labelledby="navbarDropdown"  >
-                               <li>
-                                <div class="drop_1i row">
-                                 <div class="col-md-6 col-6">
-                                  <div class="drop_1il"><h5 class="fs-6">2 ITEMS</h5></div>
-                                 </div>
-                                 <div class="col-md-6 col-6">
-                                  <div class="drop_1il text-end"><h5 class="fs-6"><a href="cart.html">VIEW CART</a></h5></div>
-                                 </div>
-                                </div>
-                                <div class="drop_1i1 row">
-                                 <div class="col-md-6 col-6">
-                                  <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Nulla Quis</a> <br> <span class="d-inline-block mt-1 font_15">1x - $89.00</span></h6></div>
-                                 </div>
-                                 <div class="col-md-4 col-4">
-                                  <div class="drop_1i1r"><a href="#"><img src="img/52.jpg" class="w-100" alt="abc"></a></div>
-                                 </div>
-                                 <div class="col-md-2 col-2">
-                                  <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
-                                 </div>
-                                </div>
-                                <div class="drop_1i1 row">
-                                 <div class="col-md-6 col-6">
-                                  <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Eget Nulla</a> <br> <span class="d-inline-block mt-1 font_15">1x - $49.00</span></h6></div>
-                                 </div>
-                                 <div class="col-md-4 col-4">
-                                  <div class="drop_1i1r"><a href="#"><img src="img/53.jpg" class="w-100" alt="abc"></a></div>
-                                 </div>
-                                 <div class="col-md-2 col-2">
-                                  <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
-                                 </div>
-                                </div>
-                                <div class="drop_1i2 row">
-                                 <div class="col-md-6 col-6">
-                                  <div class="drop_1il"><h5 class="fs-6">TOTAL</h5></div>
-                                 </div>
-                                 <div class="col-md-6 col-6">
-                                  <div class="drop_1il text-end"><h5 class="fs-5">$142.00</h5></div>
-                                 </div>
-                                </div>
-                                <div class="drop_1i3 text-center row">
-                                 <div class="col-md-12 col-12">
-                                   <ul class="mb-0">
-                                    <li class="d-inline-block mx-1"><a class="button_2 px-3 pt-2 pb-2 font_14" href="#">View Order</a></li>
-                                    <li class="d-inline-block mx-1"><a class="button_1 px-3 pb-2 pt-2 font_14" href="#">Checkout</a></li>
-                                   </ul>
-                                 </div>
-                                </div>
-                               </li>
-                             </ul>
-               </li>
-             </ul>
-           </div>
-         </div>
-       </nav>
-       </section>
-
-
-       <div class="header">
-        <h1>ISC Education Support Program</h1>
-    </div>
-    
-    <div class="content">
-        <img src="img/Education-support-2.jpeg" alt="Educational Support" style="width: 50%; height: 500px;">
-        <h1>Empowering Your Educational Journey</h1>
-        <p>
-            The ISC Education Support Program aims to provide resources and assistance to individuals, especially from underprivileged backgrounds, to help them access and succeed in education. Our mission is to bridge educational gaps and support learners in achieving their academic and career goals.
-        </p>
-        <h2>Our Services</h2>
-        <p>
-            We offer a variety of services tailored to support individuals at different stages of their educational journey:
-        </p>
-        <ul>
-            <li><strong>Tutoring & Mentoring:</strong> Personalized one-on-one support to improve academic performance.</li>
-            <li><strong>Literacy Programs:</strong> Basic literacy skills development for both adults and children.</li>
-            <li><strong>Vocational Training:</strong> Skills development programs aimed at employment and entrepreneurship.</li>
-            <li><strong>Career Guidance & Counseling:</strong> Assistance in exploring career options and creating actionable plans.</li>
-            <li><strong>Study Skills & Time Management:</strong> Techniques and strategies for effective learning and productivity.</li>
-            <li><strong>Online Resources & Courses:</strong> Access to a variety of educational content and online learning platforms.</li>
-            <li><strong>Education Advocacy:</strong> Support for navigating educational systems and policies.</li>
-            <li><strong>Community Engagement & Outreach:</strong> Building partnerships with local organizations and stakeholders to enhance educational opportunities.</li>
-            <li><strong>Psychological Support & Counseling:</strong> Addressing mental health and well-being concerns related to education.</li>
+          <a class="dropdown-item" href="plans.html">Plans</a>
+        </div>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="filter.html">Search</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="payment.html">Payment</a>
+        </li>
+      
+        <!-- Dropdown for Event -->
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Resources
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="eventDropdown">
+          <li><a class="dropdown-item" href="khajoor-pe-nikah.html">Khajoor pe Nikah(KPN)</a></li>
+          <li><a class="dropdown-item" href="islamic-matrimonial-tips.html">Marriage Tips</a></li>
+          <li><a class="dropdown-item" href="HealthWellness.html">Health & Wellness Advice</a></li>
+          <li><a class="dropdown-item" href="islamic-relationship-advice.html">Relationship Advice/Consultant</a></li>
+          <li><a class="dropdown-item" href="wedding-planning.html">Islamic wedding Planning</a></li>
+        <li><a class="dropdown-item" href="faq.html">FAQ's</a></li>
         </ul>
-        <h2>Current Project</h2>
-        <a href="ISC Free Computer & Tutorial Centre.html" style="display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">ISC Free Computer & Tutorial Centre</a>
-
+        </li>
+      
+        <!-- Dropdown for Donation -->
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="donationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Donation
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="donationDropdown">
+          <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
+          <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
+          <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food/Ration Distribution</a></li>
+          <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+<li><a class="dropdown-item" href="bloodbank.html">Blood bank Directory</a></li>
+          <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
+          <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment/Business Support</a></li>
+        </ul>
+        </li>
+        <!-- <li class="nav-item">
+      <a class="nav-link" href="#">Media</a>
+    </li> -->
+        <li class="nav-item">
+        <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+        <!-- <li class="nav-item">
+        <a class="nav-link" href="login.html">Sign In/Sign Up</a>
+        </li> -->
+      </ul>
+      <ul class="navbar-nav mb-0 ms-auto">
+      <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle dropdown_search nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-search"></i>
+          </a>
+          <ul class="dropdown-menu drop_2 p-3" aria-labelledby="navbarDropdown">
+            <li>
+              <div class="input-group">
+                <input type="text" class="form-control bg_light border-0 font_13" placeholder="Enter Keyword">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary bg_brown  p-3 px-4 border-0" type="button">
+                        <i class="fa fa-search"></i> </button>
+                </span>
+        </div>
+            </li>
+          </ul>
+        </li> -->
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle drop_togn nav_hide fs-5 lh-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-shopping-cart"></i>
+          </a> -->
+          <ul class="dropdown-menu drop_cart rounded-0 border-0" aria-labelledby="navbarDropdown"  >
+                        <li>
+                          <div class="drop_1i row">
+                          <div class="col-md-6 col-6">
+                            <div class="drop_1il"><h5 class="fs-6">2 ITEMS</h5></div>
+                          </div>
+                          <div class="col-md-6 col-6">
+                            <div class="drop_1il text-end"><h5 class="fs-6"><a href="cart.html">VIEW CART</a></h5></div>
+                          </div>
+                          </div>
+                          <div class="drop_1i1 row">
+                          <div class="col-md-6 col-6">
+                            <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Nulla Quis</a> <br> <span class="d-inline-block mt-1 font_15">1x - $89.00</span></h6></div>
+                          </div>
+                          <div class="col-md-4 col-4">
+                            <div class="drop_1i1r"><a href="#"><img src="img/52.jpg" class="w-100" alt="abc"></a></div>
+                          </div>
+                          <div class="col-md-2 col-2">
+                            <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
+                          </div>
+                          </div>
+                          <div class="drop_1i1 row">
+                          <div class="col-md-6 col-6">
+                            <div class="drop_1i1l"><h6 class="fs-6"><a href="#">Eget Nulla</a> <br> <span class="d-inline-block mt-1 font_15">1x - $49.00</span></h6></div>
+                          </div>
+                          <div class="col-md-4 col-4">
+                            <div class="drop_1i1r"><a href="#"><img src="img/53.jpg" class="w-100" alt="abc"></a></div>
+                          </div>
+                          <div class="col-md-2 col-2">
+                            <div class="drop_1i1l text-end"><h6> <span><i class="fa fa-trash"></i></span></h6></div>
+                          </div>
+                          </div>
+                          <div class="drop_1i2 row">
+                          <div class="col-md-6 col-6">
+                            <div class="drop_1il"><h5 class="fs-6">TOTAL</h5></div>
+                          </div>
+                          <div class="col-md-6 col-6">
+                            <div class="drop_1il text-end"><h5 class="fs-5">$142.00</h5></div>
+                          </div>
+                          </div>
+                          <div class="drop_1i3 text-center row">
+                          <div class="col-md-12 col-12">
+                            <ul class="mb-0">
+                              <li class="d-inline-block mx-1"><a class="button_2 px-3 pt-2 pb-2 font_14" href="#">View Order</a></li>
+                              <li class="d-inline-block mx-1"><a class="button_1 px-3 pb-2 pt-2 font_14" href="#">Checkout</a></li>
+                            </ul>
+                          </div>
+                          </div>
+                        </li>
+                      </ul>
+        </li>
+      </ul>
     </div>
+  </div>
+</nav>
+</section>
+
+<div class="header">
+  <h1>ISC Education Support Program</h1>
+</div>
     
-    
+<div class="content">
+  <img src="img/Education-support-2.jpeg" alt="Educational Support" >
+  <h1>Empowering Your Educational Journey</h1>
+  <p>
+      The ISC Education Support Program aims to provide resources and assistance to individuals, especially from underprivileged backgrounds, to help them access and succeed in education. Our mission is to bridge educational gaps and support learners in achieving their academic and career goals.
+  </p>
+  <h2>Our Services</h2>
+  <p>
+      We offer a variety of services tailored to support individuals at different stages of their educational journey:
+  </p>
+  <ul>
+      <li><strong>Tutoring & Mentoring:</strong> Personalized one-on-one support to improve academic performance.</li>
+      <li><strong>Literacy Programs:</strong> Basic literacy skills development for both adults and children.</li>
+      <li><strong>Vocational Training:</strong> Skills development programs aimed at employment and entrepreneurship.</li>
+      <li><strong>Career Guidance & Counseling:</strong> Assistance in exploring career options and creating actionable plans.</li>
+      <li><strong>Study Skills & Time Management:</strong> Techniques and strategies for effective learning and productivity.</li>
+      <li><strong>Online Resources & Courses:</strong> Access to a variety of educational content and online learning platforms.</li>
+      <li><strong>Education Advocacy:</strong> Support for navigating educational systems and policies.</li>
+      <li><strong>Community Engagement & Outreach:</strong> Building partnerships with local organizations and stakeholders to enhance educational opportunities.</li>
+      <li><strong>Psychological Support & Counseling:</strong> Addressing mental health and well-being concerns related to education.</li>
+  </ul>
+  <h2>Current Project</h2>
+  <a href="ISC Free Computer & Tutorial Centre.html" style="display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">ISC Free Computer & Tutorial Centre</a>
+</div>
 
-
-
-       <!-- footer -->
-       <section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
+<!-- footer -->
+<section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
         <div class="container-fluid" style="background-color: #5c0951;">
           <div class="footer_m bg_light p-4">
             <div class="footer_1 row">
@@ -481,6 +494,6 @@
           </div>
          </div>
         </div>
-       </section>
-      </body>
-      </html>
+</section>
+</body>
+</html>
