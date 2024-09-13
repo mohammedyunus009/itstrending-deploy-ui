@@ -138,6 +138,24 @@
     .content ul li strong {
         color: #333;
     }
+    /* Default desktop view */
+.content img {
+    width: 50%;
+    height: 500px;
+}
+
+/* Mobile view (screens smaller than 768px) */
+@media (max-width: 768px) {
+    .content img {
+        width: 100%; /* Make the image take up the full width */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .header h1 {
+        font-size: 1.2rem;
+        color: white;
+        margin: 0;
+    }
+}
 </style>
 
 </head>
@@ -327,7 +345,7 @@
     </div>
     
     <div class="content">
-        <img src="img/Business-employment-support-2.jpeg" alt="Employment Business Support" style="height: 500px; width: 50%;">
+        <img src="img/Business-employment-support-2.jpeg" alt="Employment Business Support" >
         <h1>Enhancing Your Employment Journey</h1>
         <p>
             We provide a range of services to support both individuals and businesses. Our aim is to empower individuals to improve their employment prospects and support businesses in achieving their recruitment goals.
