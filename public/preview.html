@@ -554,16 +554,16 @@ function displayFormData() {
     document.getElementById('automaticActuatorBracketPad').textContent = decodeURIComponent(getCookie('field16') || 'Not Available');
     document.getElementById('manualActuatorBracketPad').textContent = decodeURIComponent(getCookie('field17') || 'Not Available');
     document.getElementById('controlUnitPad').textContent = decodeURIComponent(getCookie('field18') || 'Not Available');
-    document.getElementById('sensorWireRoutingBosses').textContent = decodeURIComponent(getCookie('field19') || 'Not Available');
+    document.getElementById('sensorWireRoutingBosses').textContent = decodeURIComponent(getCookie('field20') || 'Not Available');
     document.getElementById('fitmentOfDcpCylinder').textContent = decodeURIComponent(getCookie('field20') || 'Not Available');
     document.getElementById('fitmentOfNozzlesProtectiveCaps').textContent = decodeURIComponent(getCookie('field21') || 'Not Available');
     document.getElementById('fitmentOfNitrogenCartridgeProtectiveCaps').textContent = decodeURIComponent(getCookie('field22') || 'Not Available');
     document.getElementById('nitrogenCartridgeInsideCabin').textContent = decodeURIComponent(getCookie('field23') || 'Not Available');
-    document.getElementById('hoseDetails').textContent = decodeURIComponent(getCookie('field24') || 'Not Available');
+    document.getElementById('hoseDetails').textContent = decodeURIComponent(getCookie('field25') || 'Not Available');
     document.getElementById('sensorWireRouting').textContent = decodeURIComponent(getCookie('field25') || 'Not Available');
     document.getElementById('controlUnitConnectionsSensor').textContent = decodeURIComponent(getCookie('field26') || 'Not Available');
     document.getElementById('wireAdaptorBatteryConnections').textContent = decodeURIComponent(getCookie('field28') || 'Not Available');
-    document.getElementById('controlUnitStart').textContent = decodeURIComponent(getCookie('controlUnitStart') || '');
+    document.getElementById('controlUnitStart').textContent = decodeURIComponent(getCookie('field27') || '');
     document.getElementById('powerOkLed').textContent = decodeURIComponent(getCookie('field29') || 'Not Available');
     document.getElementById('product').value = decodeURIComponent(getCookie('field8') || '');
 
@@ -687,9 +687,19 @@ function setCookie(name, value, days) {
 
     if (storedUniqueID) {
       console.log("Unique ID from cookies: ", storedUniqueID);
+      function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return null;
+}
+
+// Retrieve the token from the cookies
+const token = getCookie('token'); // Replace 'authToken' with the actual name of your cookie
+
 
       const myHeaders = new Headers();
-      myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjYyMDU0ODEsImlhdCI6MTcyNjExOTA4MSwidXNlciI6eyJpZCI6MywiY3JlYXRlZF9hdCI6IjIwMjQtMDktMDNUMTA6Mjc6NDYuNzg5ODA3IiwidXBkYXRlZF9hdCI6IjIwMjQtMDktMDNUMTA6MzM6NDUuMTMyMjE4IiwiZmlyc3RuYW1lIjoiUmFqZXNoIiwibGFzdG5hbWUiOiJ2IiwiZW1haWwiOiJyYWplc2h2cmFqNTU1QGdtYWlsLmNvbSIsImlzX2FkbWluIjpmYWxzZSwiaXNfYWN0aXZhdGVkIjp0cnVlfX0.kflI-tMoZaEojV2YZ6utRDyX96_iwfLvuJx_ZaPlkLs");
+      myHeaders.append("Authorization", token); // Append the token
       myHeaders.append("Content-Type", "application/json");
 
       const raw = JSON.stringify({ "field3": storedUniqueID });
