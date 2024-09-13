@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code PDF Generator</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            /* background-image: linear-gradient(to right, #1E90FF, #f7f7f7); */
+        }
+
+        .logo img,
+        .nav-icons img {
+            display: none; /* Hide images on the page */
+        }
+
+        input {
+            border: 1px solid red;
+            border-radius: 4px;
+            padding: 5px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .navbar {
+                justify-content: space-between;
+                padding: 10px;
+            }
+        }
+
+        #qrcode {
+            width: 160px;
+            height: 160px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #downloadLink {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="img/comapny log2.jpg" alt="Left Logo" id="logo1">
+        </div>
+        <div class="nav-icons">
+            <img src="img/mms.jpg" alt="Logo 1" id="logo2">
+            <img src="img/EGAC.png" alt="Logo 2" id="logo3">
+            <img src="img/IAF.png" alt="Logo 3" id="logo4">
+            <img src="img/NABCB.png" alt="Logo 4" id="logo5">
+        </div>
+    </nav>
+
+    <div id="downloadLink">
+        <a id="pdfLink" href="" target="_blank">
+            <div id="qrcode"></div>
+        </a>
+    </div>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      async function createPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Temporarily display images for PDF generation
+        const images = document.querySelectorAll('.logo img, .nav-icons img');
+        images.forEach(img => img.style.display = 'block');
+
+        // Define styles
+        const margin = 20;
+        const pageWidth = doc.internal.pageSize.width;
+        const pageHeight = doc.internal.pageSize.height;
+        const lineHeight = 10;
+
+        // Define fonts and sizes
+        doc.setFont('Arial', 'normal');
+        doc.setFontSize(16);
+        doc.setTextColor(85, 85, 85); // Dark grey color for text
+
+        // Header with logo images
+        const logo1 = getBase64Image(document.getElementById('logo1'));
+        const logo2 = getBase64Image(document.getElementById('logo2'));
+        const logo3 = getBase64Image(document.getElementById('logo3'));
+        const logo4 = getBase64Image(document.getElementById('logo4'));
+        const logo5 = getBase64Image(document.getElementById('logo5'));
+
+        // Define image sizes and positions
+        const imageWidth = 30; // Width of the images in PDF
+        const imageHeight = 15; // Height of the images in PDF
+        const imagePadding = 10; // Padding between images
+
+        // Add navbar with images
+        let xOffset = 10; // Starting x position
+        const yPosition = 10; // y position for images
+
+        doc.addImage(logo1, 'JPEG', xOffset, yPosition, imageWidth, imageHeight);
+        xOffset += imageWidth + imagePadding;
+        doc.addImage(logo2, 'JPEG', xOffset, yPosition, imageWidth, imageHeight);
+        xOffset += imageWidth + imagePadding;
+        doc.addImage(logo3, 'JPEG', xOffset, yPosition, imageWidth, imageHeight);
+        xOffset += imageWidth + imagePadding;
+        doc.addImage(logo4, 'JPEG', xOffset, yPosition, imageWidth, imageHeight);
+        xOffset += imageWidth + imagePadding;
+        doc.addImage(logo5, 'JPEG', xOffset, yPosition, imageWidth, imageHeight);
+
+        // Add content
+        doc.setFontSize(14);
+        doc.setTextColor(0, 0, 0); // Black color for content text
+
+        const content = `
+Invoice Number & Date: ${getCookie('field9') || 'Not provided'}
+Customer Name & Details: ${getCookie('field1') || 'Not provided'}
+Product Details: ${getCookie('field32') || 'Not provided'}
+Vehicle Model & Quantity: ${getCookie('field5') || 'Not provided'}
+Date of Installation: ${getCookie('field4') || 'Not provided'}
+Rep No: ${getCookie('field2') || 'Not provided'}
+
+Warranty Details:
+1) One-year Warranty effective from the purchase date.
+2) Warranty covers any manufacturing technical defects excluding breakage.
+3) Warranty void if repairing without our consent or warranty seal is broken.
+4) The warranty does not cover faults resulting from operation, careless handling, or not following instructions. Also, electric shock cases.
+    `;
+
+        const lines = doc.splitTextToSize(content, pageWidth - 2 * margin);
+        let lineIndex = 0;
+
+        while (lineIndex < lines.length) {
+            // Add page content
+            const currentPageLines = lines.slice(lineIndex, lineIndex + Math.floor((pageHeight - 2 * margin) / lineHeight));
+            doc.text(currentPageLines, margin, margin + lineHeight);
+
+            // Check if more pages are needed
+            if (lineIndex + Math.floor((pageHeight - 2 * margin) / lineHeight) < lines.length) {
+                doc.addPage();
+            }
+            lineIndex += Math.floor((pageHeight - 2 * margin) / lineHeight);
+        }
+
+        const pdfBlob = doc.output('blob');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+
+        // Hide images again after PDF generation
+        images.forEach(img => img.style.display = 'none');
+
+        console.log('Generated PDF URL:', pdfUrl);
+        return pdfUrl;
+    }
+
+    function getBase64Image(imgElement) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = imgElement.naturalWidth;
+        canvas.height = imgElement.naturalHeight;
+        ctx.drawImage(imgElement, 0, 0);
+        return canvas.toDataURL('image/jpeg');
+    }
+
+    async function generateQRCode() {
+        const pdfUrl = await createPDF();
+
+        // Display the link to download or view the PDF
+        const linkElement = document.getElementById('pdfLink');
+        linkElement.href = pdfUrl;
+        document.getElementById('downloadLink').style.display = 'block';
+
+        // Generate the QR code
+        document.getElementById("qrcode").innerHTML = "";
+        new QRCode(document.getElementById("qrcode"), {
+            text: pdfUrl,
+            width: 160,
+            height: 160,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.L
+        });
+    }
+
+    window.onload = function() {
+        generateQRCode();
+
+        // Make an XMLHttpRequest to retrieve and log headers
+        var req = new XMLHttpRequest();
+        req.open('GET', document.location, true);
+        req.send(null);
+        req.onload = function() {
+            var headers = req.getAllResponseHeaders().toLowerCase();
+            console.log('Response Headers:', headers);
+        };
+    };
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+        return '';
+    }
+
+
+    
+    </script>
+</body>
+</html>
