@@ -47,11 +47,13 @@
         .content h1 {
             font-size: 24px;
             margin-bottom: 20px;
+            color: black;
         }
         .content p {
             font-size: 16px;
             line-height: 1.5;
             margin-bottom: 20px;
+            color: black;
         }
         .footer {
             background-color: #333;
@@ -74,6 +76,23 @@ h1 {
     font-weight: bold;
     color: white;
     font-family: serif;
+}
+/* Default desktop view */
+.content img {
+    width: 50%;
+    height: 500px;
+}
+/* Mobile view (screens smaller than 768px) */
+@media (max-width: 768px) {
+    .content img {
+        width: 100%; /* Make the image take up the full width */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .header h1 {
+        font-size: 1.4rem;
+        color: white;
+        margin: 0;
+    }
 }
     </style>
 </head>

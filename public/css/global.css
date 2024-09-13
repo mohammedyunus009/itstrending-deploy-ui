@@ -181,13 +181,13 @@ font-size:13px;
 font-size:15px; 
  }
 .font_60{
-font-size:60px; 
+font-size:40px; 
  }
 .font_80{
 font-size:80px; 
  }
 .font_50{
-font-size:50px; 
+font-size:40px; 
  }
 
 .line {
@@ -928,10 +928,10 @@ text-align:center!important;
 text-align:left!important; 
  }
 .font_60{
-font-size:45px; 
+font-size:25px; 
  }
 .font_50{
-font-size:36px; 
+font-size:30px; 
  }
 #top{
 display:none; 

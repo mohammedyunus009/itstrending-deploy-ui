@@ -19,87 +19,99 @@
     <link rel="stylesheet" href="css/salary.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-     
       /* Logo Image Styling */
-.logo-img {
-    width: 220px; /* Adjust size for desktop view */
-    height: 75px;
-}
-
-@media (max-width: 768px) {
-    .logo-img {
-        max-width: 120px; /* Adjust size for mobile view */
-    }
-}
-
-.main-container {
-        display: flex;
-        flex-direction: row; /* Changed to row to display containers side by side */
-        gap: 20px;
-        width: 100%;
-        max-width: 1200px;
-        padding: 20px;
-    }
-
-    .plan-container {
-        background-color: #c7309f;
-        color: white;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s, box-shadow 0.3s;
-        flex: 1; /* Make both containers equally wide */
-    }
-
-    .plan-container h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: white;
-    border-bottom: 2px solid white;
-    display: inline-block;
-    padding-bottom: 5px;
-    text-rendering: geometricPrecision; /* Add this line */
-    -webkit-font-smoothing: antialiased; /* Add this line */
-}
-
-
-    .plan-container ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .plan-container ul li {
-        font-size: 18px;
-        padding: 10px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .plan-container ul li:last-child {
-        border-bottom: none;
-    }
-
-    .plan-container:hover, .plan-container:active {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    .payment-button {
-        display: block;
-        margin-top: 10px;
-        padding: 10px 20px;
-        background-color: #333;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-    }
-
-    .payment-button:hover {
-        background-color: #555;
-    }
-  </style>
+      .logo-img {
+          width: 220px; /* Adjust size for desktop view */
+          height: 75px;
+      }
+      
+      @media (max-width: 768px) {
+          .logo-img {
+              max-width: 120px; /* Adjust size for mobile view */
+          }
+      }
+      
+      .main-container {
+          display: flex;
+          flex-direction: row; /* For desktop view: side by side */
+          gap: 20px;
+          width: 100%;
+          max-width: 1200px;
+          padding: 20px;
+      }
+      
+      /* Plan container styling */
+      .plan-container {
+          background-color: #c7309f;
+          color: white;
+          border-radius: 10px;
+          padding: 20px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s, box-shadow 0.3s;
+          flex: 1; /* Make both containers equally wide */
+      }
+      
+      .plan-container h2 {
+          font-size: 20px;
+          margin-bottom: 15px;
+          color: white;
+          border-bottom: 2px solid white;
+          display: inline-block;
+          padding-bottom: 5px;
+          text-rendering: geometricPrecision;
+          -webkit-font-smoothing: antialiased;
+      }
+      
+      .plan-container ul {
+          list-style: none;
+          padding: 0;
+      }
+      
+      .plan-container ul li {
+          font-size: 18px;
+          padding: 10px 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      
+      .plan-container ul li:last-child {
+          border-bottom: none;
+      }
+      
+      .plan-container:hover, .plan-container:active {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      
+      .payment-button {
+          display: block;
+          margin-top: 10px;
+          padding: 10px 20px;
+          background-color: #333;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          text-align: center;
+          text-decoration: none;
+          font-size: 16px;
+      }
+      
+      .payment-button:hover {
+          background-color: #555;
+      }
+      
+      /* Mobile view */
+      @media (max-width: 768px) {
+          .main-container {
+              flex-direction: column; /* Stack containers vertically */
+              gap: 10px; /* Reduce gap between containers */
+          }
+      
+          .plan-container {
+              width: 100%; /* Full width in mobile view */
+          }
+      }
+      </style>
 </head>
 
 <body>

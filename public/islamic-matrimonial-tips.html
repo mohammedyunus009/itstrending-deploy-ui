@@ -138,6 +138,23 @@
     .content ul li strong {
         color: #333;
     }
+    /* Default desktop view */
+.content img {
+    width: 50%;
+    height: 500px;
+}
+    /* Mobile view (screens smaller than 768px) */
+@media (max-width: 768px) {
+    .content img {
+        width: 100%; /* Make the image take up the full width */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .header h1 {
+        font-size: 1.4rem;
+        color: white;
+        margin: 0;
+    }
+}
 </style>
 </head>
 
@@ -326,7 +343,7 @@
     </div>
     
     <div class="content">
-        <img src="img/Islamic-Matrimonial-Tips.jpg" alt="Islamic Matrimonial Tips" style="width: 50%;">
+        <img src="img/Islamic-Matrimonial-Tips.jpg" alt="Islamic Matrimonial Tips" >
         <h1>Guidance for a Blessed Marriage</h1>
         <p>
             Following Islamic principles in marriage is essential for a harmonious and blessed union. Below are some key tips and guidelines to help you navigate the different stages of marriage, from selecting a partner to nurturing a loving and respectful relationship.
