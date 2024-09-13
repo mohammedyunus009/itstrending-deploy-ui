@@ -138,6 +138,23 @@
     .content ul li strong {
         color: #333;
     }
+    /* Default desktop view */
+.content img {
+    width: 50%;
+    height: 500px;
+}
+    /* Mobile view (screens smaller than 768px) */
+@media (max-width: 768px) {
+    .content img {
+        width: 100%; /* Make the image take up the full width */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .header h1 {
+        font-size: 1.4rem;
+        color: white;
+        margin: 0;
+    }
+}
 </style>
 </head>
 
@@ -326,7 +343,7 @@
     </div>
     
     <div class="content">
-        <img src="img/kpn.png" alt="Khajoor Pe Nikah" style="width: 50%;">
+        <img src="img/kpn.png" alt="Khajoor Pe Nikah" >
         <h1>Embracing Simplicity in Nikah</h1>
         <p>
             Khajoor Pe Nikah is an initiative by ISC to simplify the nikah process without the need for costly function halls, decorations, and large gatherings. This approach aims to please Allah SWT and set an example for the Muslim community by keeping the nikah ceremony as simple as possible.

@@ -138,6 +138,24 @@
     .content ul li strong {
         color: #333;
     }
+    /* Default desktop view */
+.content img {
+    width: 50%;
+    height: 500px;
+}
+
+/* Mobile view (screens smaller than 768px) */
+@media (max-width: 768px) {
+    .content img {
+        width: 100%; /* Make the image take up the full width */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .header h1 {
+        font-size: 1.4rem;
+        color: white;
+        margin: 0;
+    }
+}
 </style>
 </head>
 
@@ -332,7 +350,7 @@
     </div>
     
     <div class="content">
-        <img src="img/medical-support-2.jpeg" alt="Medical Support" style="height: 500px; width: 50%;">
+        <img src="img/medical-support-2.jpeg" alt="Medical Support" >
         <h1>Comprehensive Medical Assistance</h1>
         <p>
             We are dedicated to providing essential medical support to underserved communities. Our services aim to improve access to healthcare, offer support in managing health conditions, and promote overall well-being.
