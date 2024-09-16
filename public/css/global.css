@@ -13,10 +13,10 @@ color:black;
 ul{
 list-style:none;
 padding:0;
-font-size:15px;
+font-size:14px;
  }
 p{
-font-size:15px;
+font-size:14px;
 line-height:1.8em; 
 color: white;
  }
@@ -928,10 +928,10 @@ text-align:center!important;
 text-align:left!important; 
  }
 .font_60{
-font-size:25px; 
+font-size:24px; 
  }
 .font_50{
-font-size:30px; 
+font-size:24px; 
  }
 #top{
 display:none; 
