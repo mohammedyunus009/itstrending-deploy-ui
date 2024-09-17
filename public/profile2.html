@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="css/matrimony/profile2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PQLTG22ZFC');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQLTG22ZFC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PQLTG22ZFC');
+    </script>
+    <style>
+        /* Add custom styles if needed */
+    </style>
 </head>
 <body>
     <div class="header">
@@ -33,46 +33,38 @@
         </div>
         <h1>Address</h1>
 
-    
         <div class="user-details">
             <div class="dropdown-container">
                 <form id="car-form">
                     <div class="form-group" id="countryGroup">
                         <label for="country" style="display: block;">Country :<span class="required"></span></label>
-                        <input type="text" id="country" name="country" value="India" readonly>
+                        <select id="country" name="country" onchange="updateStates()" required>
+                            <option value="#">Select Country</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="Canada">Canada</option>
+                            <option value="China">China</option>
+                            <option value="France">France</option>
+                            <option value="Germany">Germany</option>
+                            <option value="India">India</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Mexico">Mexico</option>
+                            <option value="New Zealand">New Zealand</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="South Korea">South Korea</option>
+                            <option value="Spain">Spain</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="United States">United States</option>
+                            <!-- Add more countries as needed -->
+                        </select>
                     </div>
+                    
                     <label for="state-dropdown" style="display: block;">Select State :</label>
                     <select id="state-dropdown" onchange="updateCities()" required>
                         <option value="#">Select State</option>
-                        <option value="Andhra Pradesh">Andhra Pradesh</option>
-                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                        <option value="Assam">Assam</option>
-                        <option value="Bihar">Bihar</option>
-                        <option value="Chhattisgarh">Chhattisgarh</option>
-                        <option value="Goa">Goa</option>
-                        <option value="Gujarat">Gujarat</option>
-                        <option value="Haryana">Haryana</option>
-                        <option value="Himachal Pradesh">Himachal Pradesh</option>
-                        <option value="Jharkhand">Jharkhand</option>
-                        <option value="Karnataka">Karnataka</option>
-                        <option value="Kerala">Kerala</option>
-                        <option value="Madhya Pradesh">Madhya Pradesh</option>
-                        <option value="Maharashtra">Maharashtra</option>
-                        <option value="Manipur">Manipur</option>
-                        <option value="Meghalaya">Meghalaya</option>
-                        <option value="Mizoram">Mizoram</option>
-                        <option value="Nagaland">Nagaland</option>
-                        <option value="Odisha">Odisha</option>
-                        <option value="Punjab">Punjab</option>
-                        <option value="Rajasthan">Rajasthan</option>
-                        <option value="Sikkim">Sikkim</option>
-                        <option value="Tamil Nadu">Tamil Nadu</option>
-                        <option value="Telangana">Telangana</option>
-                        <option value="Tripura">Tripura</option>
-                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-                        <option value="Uttarakhand">Uttarakhand</option>
-                        <option value="West Bengal">West Bengal</option>
                     </select>
+                    
                     <br><br>
                     <label for="city-input" style="display: block;">City :</label>
                     <select id="city-dropdown" name="city-dropdown" required>
@@ -131,127 +123,232 @@
             window.location.href = 'Profile3.html';
         }
 
-        function updateCities() {
+        function updateStates() {
+            let country = document.getElementById('country').value;
             let stateDropdown = document.getElementById('state-dropdown');
             let cityDropdown = document.getElementById('city-dropdown');
-            let selectedState = stateDropdown.options[stateDropdown.selectedIndex].value;
             
-            const cityOptions = {
+            // Clear previous options
+            stateDropdown.innerHTML = '<option value="#">Select State</option>';
+            cityDropdown.innerHTML = '<option value="#">Select City</option>';
+
+            const statesAndCities = {
+                "Australia": ["New South Wales", "Queensland", "South Australia", "Tasmania", "Victoria", "Western Australia"],
+                "Brazil": ["Acre", "Alagoas", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"],
+                "Canada": ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"],
+                "China": ["Beijing", "Chongqing", "Fujian", "Gansu", "Guangdong", "Guangxi", "Guizhou", "Hainan", "Hebei", "Heilongjiang", "Henan", "Hubei", "Hunan", "Jiangsu", "Jiangxi", "Jilin", "Liaoning", "Ningxia", "Qinghai", "Shaanxi", "Shandong", "Shanghai", "Shanxi", "Sichuan", "Taiwan", "Tianjin", "Xinjiang", "Xizang", "Yunnan", "Zhejiang"],
+                "France": ["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"],
+                "Germany": ["Baden-Württemberg", "Bavaria", "Berlin", "Brandenburg", "Bremen", "Hamburg", "Hesse", "Lower Saxony", "Mecklenburg-Vorpommern", "North Rhine-Westphalia", "Rhineland-Palatinate", "Saarland", "Saxony", "Saxony-Anhalt", "Schleswig-Holstein", "Thuringia"],
+                "India": ["Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"],
+                "Italy": ["Abruzzo", "Basilicata", "Calabria", "Campania", "Emilia-Romagna", "Lazio", "Liguria", "Lombardy", "Marche", "Molise", "Piedmont", "Apulia", "Sardinia", "Sicily", "Tuscany", "Trentino-Alto Adige", "Umbria", "Valle d'Aosta", "Veneto"],
+                "Japan": ["Aichi", "Akita", "Aomori", "Chiba", "Ehime", "Fukui", "Fukuoka", "Fukushima", "Gifu", "Gunma", "Hiroshima", "Hokkaido", "Hyogo", "Ibaraki", "Ishikawa", "Ishikawa", "Kagawa", "Kagoshima", "Kanagawa", "Kochi", "Kumamoto", "Kyoto", "Mie", "Miyagi", "Miyazaki", "Nagano", "Nagasaki", "Nagasaki", "Nara", "Niigata", "Oita", "Okayama", "Okinawa", "Osaka", "Saga", "Shiga", "Shimane", "Shizuoka", "Tochigi", "Tokushima", "Tokyo", "Tottori", "Toyama", "Wakayama", "Yamagata", "Yamaguchi", "Yamanashi"],
+                "Mexico": ["Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Mexico State", "Mexico City", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"],
+                "New Zealand": ["Auckland", "Bay of Plenty", "Canterbury", "Gisborne", "Hawke's Bay", "Manawatu-Wanganui", "Marlborough", "Nelson", "Northland", "Otago", "Southland", "Taranaki", "Waikato", "Wellington"],
+                "South Africa": ["Eastern Cape", "Free State", "Gauteng", "KwaZulu-Natal", "Limpopo", "Mpumalanga", "North West", "Northern Cape", "Western Cape"],
+                "South Korea": ["Seoul", "Busan", "Incheon", "Daegu", "Daejeon", "Gwangju", "Ulsan", "Gyeonggi-do", "Gangwon-do", "Chungcheongbuk-do", "Chungcheongnam-do", "Jeollabuk-do", "Jeollanam-do", "Gyeongsangbuk-do", "Gyeongsangnam-do", "Jeju-do"],
+                "Spain": ["Andalusia", "Aragon", "Asturias", "Balearic Islands", "Basque Country", "Canary Islands", "Cantabria", "Castile and León", "Castile-La Mancha", "Catalonia", "Extremadura", "Galicia", "La Rioja", "Madrid", "Murcia", "Navarre", "Valencia"],
+                "United Kingdom": ["England", "Scotland", "Wales", "Northern Ireland"],
+                "United States": ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
+            };
+
+            let states = statesAndCities[country] || [];
+            states.forEach(state => {
+                let option = document.createElement("option");
+                option.value = state;
+                option.text = state;
+                stateDropdown.appendChild(option);
+            });
+        }
+
+        function updateCities() {
+            let state = document.getElementById('state-dropdown').value;
+            let cityDropdown = document.getElementById('city-dropdown');
+            
+            // Clear previous options
+            cityDropdown.innerHTML = '<option value="#">Select City</option>';
+
+            // Define cities for states (just examples, add more as needed)
+            const cities = {
+    // Australia
+    "New South Wales": ["Sydney", "Newcastle", "Wollongong", "Central Coast", "Coffs Harbour"],
+    "Queensland": ["Brisbane", "Gold Coast", "Cairns", "Townsville", "Sunshine Coast"],
+    "South Australia": ["Adelaide", "Mount Gambier", "Whyalla", "Port Augusta", "Port Lincoln"],
+    "Tasmania": ["Hobart", "Launceston", "Burnie", "Devonport", "Kingston"],
+    "Victoria": ["Melbourne", "Geelong", "Ballarat", "Bendigo", "Wodonga"],
+    "Western Australia": ["Perth", "Mandurah", "Bunbury", "Geraldton", "Kalgoorlie"],
+    
+    // Brazil
+    "São Paulo": ["São Paulo", "Campinas", "Santos", "Sorocaba", "São Bernardo do Campo"],
+    "Rio de Janeiro": ["Rio de Janeiro", "Niterói", "Nova Iguaçu", "Duque de Caxias", "Volta Redonda"],
+    "Minas Gerais": ["Belo Horizonte", "Uberlândia", "Contagem", "Juiz de Fora", "Montes Claros"],
+    "Bahia": ["Salvador", "Feira de Santana", "Vitória da Conquista", "Camaçari", "Itabuna"],
+    
+    // Canada
+    "Ontario": ["Toronto", "Ottawa", "Hamilton", "London", "Windsor"],
+    "British Columbia": ["Vancouver", "Victoria", "Richmond", "Surrey", "Burnaby"],
+    "Quebec": ["Montreal", "Quebec City", "Laval", "Gatineau", "Sherbrooke"],
+    "Alberta": ["Calgary", "Edmonton", "Red Deer", "Lethbridge", "Medicine Hat"],
+    
+    // China
+    "Beijing": ["Beijing"],
+    "Shanghai": ["Shanghai"],
+    "Guangdong": ["Guangzhou", "Shenzhen", "Dongguan", "Foshan", "Zhuhai"],
+    "Jiangsu": ["Nanjing", "Suzhou", "Wuxi", "Xuzhou", "Changzhou"],
+    
+    // France
+    "Île-de-France": ["Paris", "Versailles", "Boulogne-Billancourt", "Saint-Denis", "Créteil"],
+    "Provence-Alpes-Côte d'Azur": ["Marseille", "Nice", "Toulon", "Aix-en-Provence", "Avignon"],
+    "Auvergne-Rhône-Alpes": ["Lyon", "Grenoble", "Saint-Étienne", "Clermont-Ferrand", "Valence"],
+    
+    // Germany
+    "Bavaria": ["Munich", "Nuremberg", "Augsburg", "Regensburg", "Würzburg"],
+    "Berlin": ["Berlin"],
+    "North Rhine-Westphalia": ["Cologne", "Düsseldorf", "Dortmund", "Essen", "Bonn"],
+    "Hesse": ["Frankfurt", "Wiesbaden", "Kassel", "Darmstadt", "Offenbach"],
+    
+    // India
     "Andhra Pradesh": [
-        "Visakhapatnam", "Vijayawada", "Guntur", "Krishna", "Chittoor", "Kakinada", "West Godavari", "East Godavari", "Srikakulam", "Prakasam", "Y.S.R."
+        "Chittoor", "East Godavari", "Guntur", "Kakinada", "Krishna", "Prakasam", "Srikakulam", "Visakhapatnam", "Vijayawada", "West Godavari", "Y.S.R."
     ],
     "Arunachal Pradesh": [
-        "Itanagar", "Tawang", "Papum Pare", "West Kameng", "East Kameng", "Lower Subansiri", "Upper Subansiri", "Kurung Kumey", "Kra Daadi", "Lohit", "Namsai", "Changlang", "Longding", "Siang", "Upper Siang", "Lower Siang"
+        "Changlang", "East Kameng", "Itanagar", "Kra Daadi", "Kurung Kumey", "Lohit", "Longding", "Lower Siang", "Lower Subansiri", "Namsai", "Papum Pare", "Siang", "Tawang", "Upper Siang", "Upper Subansiri", "West Kameng"
     ],
     "Assam": [
-        "Guwahati", "Dibrugarh", "Kokrajhar", "Jorhat", "Nagaon", "Karimganj", "Barpeta", "Bongaigaon", "Golaghat", "Dhemaji", "Lakhimpur", "Hailakandi", "Cachar", "Sivasagar", "Tinsukia", "Dhubri", "Sonitpur", "Nalbari", "Kamrup"
+        "Barpeta", "Bongaigaon", "Cachar", "Dhemaji", "Dhubri", "Dibrugarh", "Goalpara", "Golaghat", "Guwahati", "Hailakandi", "Jorhat", "Kamrup", "Karimganj", "Kokrajhar", "Lakhimpur", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "Tinsukia"
     ],
     "Bihar": [
-        "Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Darbhanga", "Purnia", "Sasaram", "Arrah", "Nalanda", "Munger", "Kishanganj", "Vaishali", "Siwan", "Samastipur", "Jahanabad", "Buxar", "Sitamarhi", "Kaimur", "Katihar", "Supaul"
+        "Arrah", "Bhagalpur", "Buxar", "Darbhanga", "Dehri", "Gaya", "Jahanabad", "Kaimur", "Katihar", "Kishanganj", "Muzaffarpur", "Munger", "Nalanda", "Patna", "Purnia", "Sasaram", "Sitamarhi", "Siwan", "Supaul", "Vaishali"
     ],
     "Chhattisgarh": [
-        "Raipur", "Bilaspur", "Durg", "Jagdalpur", "Korba", "Rajnandgaon", "Ambikapur", "Jashpur", "Surguja", "Kondagaon", "Bastar", "Dantewada", "Kabirdham", "Gaurela-Pendra-Marwahi", "Mungeli", "Balod", "Baloda Bazar", "Rajnandgaon", "Gariaband"
+        "Ambikapur", "Balod", "Baloda Bazar", "Bastar", "Bilaspur", "Dantewada", "Durg", "Gariaband", "Jagdalpur", "Jashpur", "Kabirdham", "Kondagaon", "Korba", "Mungeli", "Raipur", "Rajnandgaon", "Surguja"
     ],
     "Goa": [
-        "Panaji", "Margao", "Vasco da Gama", "Mapusa", "Ponda", "Cortalim", "Cuncolim", "Quepem", "Sanguem", "Canacona", "Bicholim", "Sattari"
+        "Bicholim", "Canacona", "Cortalim", "Cuncolim", "Mapusa", "Margao", "Panaji", "Ponda", "Quepem", "Sanguem", "Sattari", "Vasco da Gama"
     ],
     "Gujarat": [
-        "Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Junagadh", "Gandhinagar", "Anand", "Patan", "Mehsana", "Narmada", "Porbandar", "Sabarkantha", "Kutch", "Banaskantha", "Dang", "Navsari", "Dahod", "Girsomnath"
+        "Ahmedabad", "Anand", "Banaskantha", "Bhavnagar", "Dahod", "Dang", "Gandhinagar", "Girsomnath", "Junagadh", "Kutch", "Mehsana", "Narmada", "Navsari", "Patan", "Porbandar", "Rajkot", "Sabarkantha", "Surat", "Vadodara"
     ],
     "Haryana": [
-        "Gurgaon", "Faridabad", "Hisar", "Karnal", "Ambala", "Yamunanagar", "Rohtak", "Jind", "Sirsa", "Panchkula", "Bhiwani", "Mahendragarh", "Kurukshetra", "Fatehabad", "Palwal", "Sonipat", "Kaithal"
+        "Ambala", "Bhiwani", "Faridabad", "Fatehabad", "Gurgaon", "Hisar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Palwal", "Panchkula", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"
     ],
     "Himachal Pradesh": [
-        "Shimla", "Manali", "Dharamshala", "Kullu", "Mandi", "Hamirpur", "Una", "Solan", "Bilaspur", "Chamba", "Kangra", "Lahaul and Spiti", "Sirmaur"
+        "Bilaspur", "Chamba", "Dharamshala", "Hamirpur", "Kangra", "Kullu", "Lahaul and Spiti", "Mandi", "Manali", "Shimla", "Solan", "Sirmaur", "Una"
     ],
     "Jharkhand": [
-        "Ranchi", "Jamshedpur", "Dhanbad", "Bokaro", "Giridih", "Hazaribagh", "Deoghar", "Chaibasa", "Dumka", "Pakur", "Godda", "Koderma", "Latehar", "Palamu", "Saraikela-Kharsawan"
+        "Bokaro", "Chaibasa", "Dhanbad", "Deoghar", "Dumka", "Giridih", "Godda", "Hazaribagh", "Jamshedpur", "Koderma", "Latehar", "Pakur", "Palamu", "Ranchi", "Saraikela-Kharsawan"
     ],
     "Karnataka": [
-        "Bangalore", "Mangalore", "Mysore", "Hubli", "Dharwad", "Bellary", "Tumkur", "Raichur", "Bagalkot", "Gulbarga", "Kolar", "Chikkamagalur", "Kodagu", "Udupi", "Dakshina Kannada", "Chitradurga", "Hassan", "Bijapur"
+        "Bagalkot", "Bangalore", "Bellary", "Bijapur", "Chikkamagalur", "Chitradurga", "Dakshina Kannada", "Dharwad", "Gulbarga", "Hassan", "Hubli", "Kodagu", "Kolar", "Mangalore", "Mysore", "Raichur", "Tumkur", "Udupi", 
+        "Mysore", "Hubli", "Dharwad", "Belgaum" // Additional cities
     ],
     "Kerala": [
-        "Thiruvananthapuram", "Kochi", "Kollam", "Alappuzha", "Pathanamthitta", "Kottayam", "Idukki", "Ernakulam", "Thrissur", "Malappuram", "Kozhikode", "Wayanad", "Kannur", "Kasargod"
+        "Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasargod", "Kochi", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Pathanamthitta", "Thiruvananthapuram", "Thrissur", "Wayanad"
     ],
     "Madhya Pradesh": [
-        "Bhopal", "Indore", "Jabalpur", "Ujjain", "Gwalior", "Sagar", "Ratlam", "Satna", "Khandwa", "Dewas", "Chhindwara", "Mandsaur", "Rewa", "Shivpuri", "Khargone", "Harda", "Balaghat", "Sehore"
+        "Balaghat", "Bhopal", "Chhindwara", "Dewas", "Gwalior", "Harda", "Indore", "Jabalpur", "Khandwa", "Khargone", "Mandsaur", "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Shivpuri", "Ujjain"
     ],
     "Maharashtra": [
-        "Mumbai", "Pune", "Nagpur", "Aurangabad", "Nashik", "Thane", "Solapur", "Kolhapur", "Jalgaon", "Akola", "Amravati", "Satara", "Beed", "Osmanabad", "Ratnagiri", "Sindhudurg", "Latur", "Nanded"
+        "Akola", "Amravati", "Aurangabad", "Beed", "Chandrapur", "Jalgaon", "Kolhapur", "Latur", "Mumbai", "Nagpur", "Nanded", "Nashik", "Osmanabad", "Pune", "Ratnagiri", "Satara", "Sindhudurg", "Solapur", "Thane" // Additional cities
     ],
     "Manipur": [
-        "Imphal", "Thoubal", "Bishnupur", "Churachandpur", "Senapati", "Ukhrul", "Tamenglong", "Jiribam", "Kangpokpi", "Kakching"
+        "Bishnupur", "Churachandpur", "Imphal", "Jiribam", "Kakching", "Kangpokpi", "Senapati", "Tamenglong", "Thoubal", "Ukhrul"
     ],
     "Meghalaya": [
-        "Shillong", "Tura", "Jowai", "Berlapara", "Nongstoin", "Williamnagar", "Mairang", "Baghmara", "Rongram", "Khliehriat"
+        "Baghmara", "Berlapara", "Jowai", "Khliehriat", "Mairang", "Nongstoin", "Rongram", "Shillong", "Tura", "Williamnagar"
     ],
     "Mizoram": [
-        "Aizawl", "Lunglei", "Saiha", "Champhai", "Kolasib", "Mamit", "Serchhip", "Hnahthial", "Lawngtlai"
+        "Aizawl", "Champhai", "Hnahthial", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saiha", "Serchhip"
     ],
     "Nagaland": [
-        "Kohima", "Dimapur", "Mokokchung", "Tuensang", "Wokha", "Phek", "Zunheboto", "Longleng", "Kiphire", "Mon"
+        "Dimapur", "Kiphire", "Kohima", "Longleng", "Mon", "Mokokchung", "Phek", "Tuensang", "Wokha", "Zunheboto"
     ],
     "Odisha": [
-        "Bhubaneswar", "Cuttack", "Berhampur", "Sambalpur", "Rourkela", "Balasore", "Jeypore", "Bargarh", "Angul", "Dhenkanal", "Khurda", "Ganjam", "Gajapati", "Nabarangpur", "Kendrapara"
+        "Angul", "Balasore", "Bargarh", "Berhampur", "Bhubaneswar", "Cuttack", "Dhenkanal", "Gajapati", "Ganjam", "Jeypore", "Kendrapara", "Khurda", "Nabarangpur", "Rourkela", "Sambalpur"
     ],
     "Punjab": [
-        "Chandigarh", "Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Mohali", "Bathinda", "Hoshiarpur", "Moga", "Rupnagar", "Faridkot", "Fatehgarh Sahib", "Sangrur", "Kapurthala", "Tarn Taran"
+        "Amritsar", "Bathinda", "Chandigarh", "Faridkot", "Fatehgarh Sahib", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Moga", "Mohali", "Patiala", "Rupnagar", "Sangrur", "Tarn Taran"
     ],
     "Rajasthan": [
-        "Jaipur", "Udaipur", "Jodhpur", "Kota", "Bikaner", "Ajmer", "Alwar", "Sikar", "Bhilwara", "Pali", "Nagaur", "Barmer", "Dungarpur", "Chittorgarh", "Hanumangarh", "Jhunjhunu", "Sirohi", "Jaisalmer", "Jalore"
+        "Ajmer", "Alwar", "Barmer", "Bhilwara", "Bikaner", "Chittorgarh", "Dungarpur", "Hanumangarh", "Jaipur", "Jaisalmer", "Jalore", "Jhunjhunu", "Jodhpur", "Kota", "Nagaur", "Pali", "Sikar", "Sirohi", "Udaipur"
     ],
     "Sikkim": [
-        "Gangtok", "Namchi", "Gyalshing", "Mangan", "Pelling"
+        "Gangtok", "Gyalshing", "Mangan", "Namchi", "Pelling"
     ],
     "Tamil Nadu": [
-        "Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Tirunelveli", "Dindigul", "Vellore", "Kancheepuram", "Cuddalore", "Kanyakumari", "Karur", "Thanjavur", "Ramanathapuram", "Virudhunagar", "Tiruppur", "Nagapattinam", "Perambalur"
+        "Chennai", "Coimbatore", "Cuddalore", "Dindigul", "Kancheepuram", "Kanyakumari", "Karur", "Madurai", "Nagapattinam", "Perambalur", "Ramanathapuram", "Salem", "Thanjavur", "Tiruchirappalli", "Tirunelveli", "Tiruppur", "Vellore", "Virudhunagar",
+        "Madurai", "Tiruchirappalli", "Salem" // Additional cities
     ],
     "Telangana": [
-        "Hyderabad", "Warangal", "Nizamabad", "Khammam", "Karimnagar", "Mahabubnagar", "Adilabad", "Medak", "Nalgonda", "Jogulamba Gadwal", "Jayashankar Bhupalapally"
+        "Adilabad", "Hyderabad", "Jayashankar Bhupalapally", "Jogulamba Gadwal", "Karimnagar", "Khammam", "Mahabubnagar", "Medak", "Nalgonda", "Warangal"
     ],
     "Tripura": [
-        "Agartala", "Udaipur", "Khowai", "Dharmanagar", "Belonia", "Sepahijala", "Gomati", "South Tripura", "Dhalai", "North Tripura"
+        "Agartala", "Dharmanagar", "Kailasahar", "Udaipur"
     ],
     "Uttar Pradesh": [
-        "Lucknow", "Kanpur", "Agra", "Varanasi", "Allahabad", "Meerut", "Bareilly", "Jhansi", "Aligarh", "Gorakhpur", "Moradabad", "Muzaffarnagar", "Rampur", "Shahjahanpur", "Azamgarh", "Fatehpur", "Etawah", "Sitapur"
+        "Agra", "Aligarh", "Allahabad", "Ambedkar Nagar", "Azamgarh", "Bareilly", "Basti", "Bijnor", "Bulandshahr", "Deoria", "Etawah", "Farrukhabad", "Fatehpur", "Ghaziabad", "Gorakhpur", "Hapur", "Hardoi", "Kanpur", "Lucknow", "Mathura", "Meerut", "Moradabad", "Muzaffarnagar", "Prayagraj", "Raebareli", "Rampur", "Saharanpur", "Sant Kabir Nagar", "Shahjahanpur", "Unnao"
     ],
     "Uttarakhand": [
-        "Dehradun", "Haridwar", "Nainital", "Udham Singh Nagar", "Pauri Garhwal", "Tehri Garhwal", "Chamoli", "Rudraprayag", "Bageshwar", "Almora", "Pithoragarh", "Uttarkashi"
+        "Dehradun", "Haridwar", "Nainital", "Pauri", "Rudraprayag", "Tehri", "Udham Singh Nagar", "Uttarkashi"
     ],
     "West Bengal": [
-        "Kolkata", "Howrah", "Darjeeling", "Siliguri", "Asansol", "Durgapur", "Kharagpur", "Medinipur", "Burdwan", "Murarai", "Bankura", "Jalpaiguri", "Cooch Behar", "Malda", "Purulia", "Hooghly", "North 24 Parganas", "South 24 Parganas"
-    ]
+        "Asansol", "Bardhaman", "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Kolkata", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Medinipur", "Purba Medinipur", "Purulia", "South 24 Parganas"
+    ],
+    // Italy
+    "Lazio": ["Rome", "Latina", "Frosinone", "Viterbo", "Rieti"],
+    "Lombardy": ["Milan", "Bergamo", "Brescia", "Monza", "Como"],
+    "Campania": ["Naples", "Salerno", "Caserta", "Avellino", "Benevento"],
+    
+    // Japan
+    "Tokyo": ["Tokyo"],
+    "Osaka": ["Osaka", "Kobe", "Kyoto", "Sakai", "Himeji"],
+    "Aichi": ["Nagoya", "Toyota", "Seto", "Okazaki", "Ichinomiya"],
+    
+    // Mexico
+    "Mexico City": ["Mexico City"],
+    "Jalisco": ["Guadalajara", "Puerto Vallarta", "Tlaquepaque", "Zapopan", "Tlajomulco"],
+    "Nuevo León": ["Monterrey", "San Nicolás", "Santa Catarina", "Apodaca", "Garza García"],
+    
+    // New Zealand
+    "Auckland": ["Auckland", "Manukau", "North Shore", "Waitakere"],
+    "Wellington": ["Wellington", "Lower Hutt", "Upper Hutt", "Porirua"],
+    
+    // South Africa
+    "Gauteng": ["Johannesburg", "Pretoria", "Ekurhuleni", "Midrand", "Sandton"],
+    "Western Cape": ["Cape Town", "Stellenbosch", "George", "Paternoster", "Knysna"],
+    
+    // South Korea
+    "Seoul": ["Seoul"],
+    "Busan": ["Busan"],
+    "Incheon": ["Incheon"],
+    "Daegu": ["Daegu"],
+    
+    // Spain
+    "Madrid": ["Madrid"],
+    "Catalonia": ["Barcelona", "Girona", "Lleida", "Tarragona"],
+    "Andalusia": ["Seville", "Malaga", "Granada", "Córdoba", "Jerez de la Frontera"],
+    
+    // United Kingdom
+    "England": ["London", "Manchester", "Birmingham", "Liverpool", "Newcastle"],
+    "Scotland": ["Edinburgh", "Glasgow", "Aberdeen", "Dundee", "Perth"],
+    "Wales": ["Cardiff", "Swansea", "Newport", "Wrexham", "Aberystwyth"],
+    "Northern Ireland": ["Belfast", "Derry", "Lisburn", "Armagh", "Newry"],
+    
+    // United States
+    "California": ["Los Angeles", "San Francisco", "San Diego", "San Jose", "Sacramento"],
+    "New York": ["New York City", "Buffalo", "Rochester", "Syracuse", "Albany"],
+    "Texas": ["Houston", "Dallas", "Austin", "San Antonio", "El Paso"],
+    "Florida": ["Miami", "Orlando", "Tampa", "Jacksonville", "Fort Lauderdale"]
 };
 
 
-
-            // Clear the city dropdown
-            cityDropdown.innerHTML = '<option value="#">Select City</option>';
-            
-            if (selectedState in cityOptions) {
-                cityOptions[selectedState].forEach(function(city) {
-                    let option = document.createElement('option');
-                    option.value = city;
-                    option.textContent = city;
-                    cityDropdown.appendChild(option);
-                });
-            }
+            let citiesList = cities[state] || [];
+            citiesList.forEach(city => {
+                let option = document.createElement("option");
+                option.value = city;
+                option.text = city;
+                cityDropdown.appendChild(option);
+            });
         }
-
-
-
-        function checkLogin() {
-
-let token = getCookie('token');
-    if (!token) {
-        // alert("User not logged in. Please login.");
-        window.location.href = 'login.html';
-    }
-}
-
-window.onload = function() {
-    checkLogin();
-}
     </script>
 </body>
 </html>

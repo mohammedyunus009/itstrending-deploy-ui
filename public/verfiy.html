@@ -61,6 +61,7 @@
                 <option value="Arabic">
             </datalist>
         </div>
+    
         <div class="form-group">
             <label for="residenceLanguage">Residence State Language:</label>
             <input list="residenceLanguages" id="residenceLanguage" name="residenceLanguage" required>
@@ -119,7 +120,10 @@
             }
 
 
-            setCookie("field10", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
+            
+
+
+            setCookie("field33", phoneNumber, new Date(new Date().getTime() + 24*60*60*1000));
             setCookie("field11", nativeLanguage, new Date(new Date().getTime() + 24*60*60*1000));
             setCookie("field13", residenceLanguage, new Date(new Date().getTime() + 24*60*60*1000));
 
@@ -135,6 +139,28 @@
                 window.location.href = 'login.html';
             }
         }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle input change events
+            function handleInputChange(event) {
+                const input = event.target;
+                const datalist = document.querySelector(`#${input.getAttribute('list')}`);
+                const options = Array.from(datalist.options).map(option => option.value.toLowerCase());
+
+                input.addEventListener('change', function() {
+                    const value = input.value.trim().toLowerCase();
+                    if (options.includes(value)) {
+                        // If the value matches a datalist option, clear the input value
+                        input.value = '';
+                    }
+                });
+            }
+
+            // Apply to both input fields
+            handleInputChange({target: document.getElementById('nativeLanguage')});
+            handleInputChange({target: document.getElementById('residenceLanguage')});
+        });
     </script>
 </body>
 </html>

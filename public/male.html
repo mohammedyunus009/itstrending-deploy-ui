@@ -184,6 +184,14 @@
                         <input type="checkbox" id="jamat_e_islami" name="FOLLOW" value="Jamat-e-Islami">
                         <label for="jamat_e_islami">Jamat-e-Islami</label>
                     </div>
+                    <div>
+                        <input type="checkbox" id="non_moderate_strict" name="FOLLOW" value="Non Moderate Strict">
+                        <label for="Level_of_parcticing_non_moderate_strict">Level of practicing (Non Moderate, Strict)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="maslak_inclination" name="FOLLOW" value="Maslak/Inclination">
+                        <label for="maslak_inclination">Maslak/Inclination (Jih, Tableeghi, etc.)</label>
+                    </div>
                     <!-- <div>
                         <input type="checkbox" id="others" name="FOLLOW" value="Others">
                         <label for="others">Others</label>
@@ -194,76 +202,124 @@
             <input type="button" value="Next" onclick="submitForm()" id="nextButton">
         </form>
     </div>
-
     <script>
-  function goBack() {
-    window.history.back();
-  }
+        function goBack() {
+          window.history.back();
+        }
+      
+        function getCookie(name) {
+          let nameEQ = name + "=";
+          let ca = document.cookie.split(';');
+          for (let i = 0; i < ca.length; i++) {
+              let c = ca[i];
+              while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+              if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+          }
+          return null;
+        }
+      
+        function setCookie(name, value, days) {
+          var expires = "";
+          if (days) {
+              var date = new Date();
+              date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+              expires = "; expires=" + date.toUTCString();
+          }
+          document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+      
+        function checkLogin() {
+          let token = getCookie('token');
+          if (!token) {
+              alert("You are not logged in, please login.");
+              window.location.href = 'login.html';
+          }
+        }
+      
+        function calculateAge(dob) {
+            let today = new Date();
+            let birthDate = new Date(dob);
+            let age = today.getFullYear() - birthDate.getFullYear();
+            let monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+        }
+      
+        function validateDate() {
+            let dob = document.getElementById('dob').value;
+            let date = new Date(dob);
+            let today = new Date();
+      
+            if (isNaN(date.getTime())) {
+                alert("Please enter a valid date.");
+                return false;
+            }
+      
+            if (calculateAge(dob) < 18) {
+                alert("You must be at least 18 years old.");
+                return false;
+            }
+      
+            if (date > today) {
+                alert("The date of birth cannot be in the future.");
+                return false;
+            }
+      
+            return true;
+        }
+      
+        function submitForm() {
+    var name = document.getElementById('name').value.trim();
+    var dob = document.getElementById('dob').value.trim();
+    var gender = document.querySelector('input[name="gender"]:checked');
 
-  function getCookie(name) {
-      let nameEQ = name + "=";
-      let ca = document.cookie.split(';');
-      for (let i = 0; i < ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-      }
-      return null;
-  }
+    var nameRegex = /^[A-Za-z\s\.]+$/;
 
-  function setCookie(name, value, days) {
-      var expires = "";
-      if (days) {
-          var date = new Date();
-          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-          expires = "; expires=" + date.toUTCString();
-      }
-      document.cookie = name + "=" + (value || "") + expires + "; path=/";
-  }
+    if (!name || !dob || !gender) {
+        alert('Please fill in all required fields.');
+        return;
+    }
 
-  function checkLogin() {
-      let token = getCookie('token');
-      if (!token) {
-          window.location.href = 'login.html';
-      }
-  }
+    if (!nameRegex.test(name)) {
+        alert('Name can only contain alphabets, space, and dot.');
+        return;
+    }
 
-  function submitForm() {
-      // Validate the form fields
-      var name = document.getElementById('name').value.trim();
-      var dob = document.getElementById('dob').value.trim();
-      var gender = document.querySelector('input[name="gender"]:checked');
+    if (!validateDate()) {
+        return;
+    }
 
-      if (!name || !dob || !gender) {
-          // alert('Please fill in all required fields.');
-          return;
-      }
+    // Store values in cookies
+    setCookie('field33', name, 7);
+    setCookie('field6', dob, 7);
+    setCookie('gender', gender.value, 7);
 
-      // Store values in cookies
-      setCookie('field33', name, 7);
-      setCookie('field6', dob, 7);
-      setCookie('gender', gender.value, 7);
+    var revert = document.querySelector('input[name="revert"]:checked');
+    if (revert) {
+        setCookie('field9', revert.value, 7);
+    }
 
-      // Optionally handle revert field if present
-      var revert = document.querySelector('input[name="revert"]:checked');
-      if (revert) {
-          setCookie('field9', revert.value, 7);
-      }
+    var followCheckboxes = document.querySelectorAll('#FOLLOW input[type="checkbox"]:checked');
+    var followValues = Array.from(followCheckboxes).map(cb => cb.value).join(',');
+    setCookie('field4', followValues, 7);
 
-      // Handle FOLLOW checkboxes
-      var followCheckboxes = document.querySelectorAll('#FOLLOW input[type="checkbox"]:checked');
-      var followValues = Array.from(followCheckboxes).map(cb => cb.value).join('||');
-      setCookie('field4', followValues, 7);
+    window.location.href = "verfiy.html";
+}
 
-      // Redirect to the next page
-      window.location.href = "verfiy.html"; // Change this URL to your actual next page
-  }
-
-  window.onload = function() {
-      checkLogin();
-  }
-
-
-    </script>
-</body>
+        window.onload = function() {
+            checkLogin();
+      
+            // Disable date editing on mobile (fix for mobile issue)
+            let dobInput = document.getElementById('dob');
+            if (window.innerWidth <= 768) {
+                dobInput.setAttribute('readonly', true);
+                dobInput.addEventListener('click', function() {
+                    dobInput.removeAttribute('readonly');
+                });
+            }
+        }
+      </script>
+      </body>
 </html>
