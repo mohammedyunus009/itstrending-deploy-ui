@@ -361,6 +361,23 @@ body{
     100% { transform: rotate(360deg); }
 }
 
+.password-instructions {
+    list-style-type: none;
+    padding: 0;
+}
+
+.password-instructions li {
+    color: red;
+    font-size: 12px;
+}
+
+.password-instructions .valid {
+    color: green;
+}
+
+.password-instructions .invalid {
+    color: red;
+}
 
 </style>
 <body>
@@ -387,6 +404,14 @@ body{
         <label for="signup-password">Password</label>
         <input type="password" name="password" id="signup-password" placeholder="Password" required>
         
+        <ul id="password-instructions" class="password-instructions">
+          <li id="length" class="invalid">At least 8 characters long</li>
+          <li id="uppercase" class="invalid">At least one uppercase letter</li>
+          <li id="lowercase" class="invalid">At least one lowercase letter</li>
+          <li id="number" class="invalid">At least one number</li>
+          <li id="special" class="invalid">At least one special character</li>
+        </ul>
+
         <label for="signup-confirm-password">Confirm Password</label>
         <input type="password" name="confirm-password" id="signup-confirm-password" placeholder="Confirm Password" required>
         <label for="how-i-know" style="display: block;">How do you know
@@ -428,6 +453,7 @@ body{
       function toggleContactFields() {
         const selectElement = document.getElementById('how-i-know');
         const contactFields = document.getElementById('contact-fields');
+        const signupButton = document.getElementById('signup');
         const selectedValue = selectElement.value;
     
         // Define options for which the contact fields should be hidden
@@ -439,18 +465,35 @@ body{
         ];
     
         if (optionsToHide.includes(selectedValue)) {
-            // Hide the fields and reset their values
-            contactFields.style.display = 'none';
-            document.getElementById('contact_name').value = '';
-            document.getElementById('contact_phone').value = '';
+          // Hide the contact fields and reset their values
+          contactFields.style.display = 'none';
+          document.getElementById('contact_name').value = '';
+          document.getElementById('contact_phone').value = '';
+    
+          // Hide the signup button if the last option is selected
+          if (selectedValue === 'I do not know brother Khurshid Imam') {
+            signupButton.style.display = 'none';
+          } else {
+            // Ensure the signup button is visible for other options
+            signupButton.style.display = 'block';
+          }
         } else if (selectedValue === 'I know him through a common friend') {
-            // Show the fields
-            contactFields.style.display = 'block';
+          // Show the contact fields and make sure the signup button is visible
+          contactFields.style.display = 'block';
+          signupButton.style.display = 'block';
         }
       }
     
-      function storeData() {
+      function storeData(event) {
         const howIKnow = document.getElementById('how-i-know').value;
+    
+        // Prevent form submission if the selected value is 'I do not know brother Khurshid Imam'
+        if (howIKnow === 'I do not know brother Khurshid Imam') {
+          event.preventDefault();
+          alert('Please select an option that allows you to provide additional information.');
+          return;
+        }
+    
         const contactName = document.getElementById('contact_name').value;
         const contactPhone = document.getElementById('contact_phone').value;
     
@@ -462,7 +505,45 @@ body{
         // Optionally show a success message or alert
         // alert('Data has been stored in cookies.');
       }
+    
+      document.getElementById('signupForm1').addEventListener('submit', storeData);
+      document.getElementById('signup-password').addEventListener('input', validatePassword);
+
+function validatePassword() {
+    const password = document.getElementById('signup-password').value;
+    
+    // Regular expressions to check password conditions
+    const lengthRegex = /.{8,}/;
+    const uppercaseRegex = /[A-Z]/;
+    const lowercaseRegex = /[a-z]/;
+    const numberRegex = /[0-9]/;
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    
+    // Check if password meets each condition and update the corresponding list item
+    toggleValidity('length', lengthRegex.test(password));
+    toggleValidity('uppercase', uppercaseRegex.test(password));
+    toggleValidity('lowercase', lowercaseRegex.test(password));
+    toggleValidity('number', numberRegex.test(password));
+    toggleValidity('special', specialCharRegex.test(password));
+    
+    // Enable signup button only if all conditions are met
+    const allValid = document.querySelectorAll('.password-instructions .valid').length === 5;
+    document.getElementById('signup').disabled = !allValid;
+}
+
+function toggleValidity(elementId, isValid) {
+    const element = document.getElementById(elementId);
+    if (isValid) {
+        element.classList.remove('invalid');
+        element.classList.add('valid');
+    } else {
+        element.classList.remove('valid');
+        element.classList.add('invalid');
+    }
+}
+
     </script>
+    
     
     
 </body>

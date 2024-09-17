@@ -199,7 +199,7 @@
   <div class="modal-content">
     <p>Please contact admin for approval.</p>
     <button id="contactAdminBtn">OK</button>
-  </div>
+</div>
 </div>
   <style>
   /* Modal styles */
@@ -293,11 +293,13 @@ function displayProfiles(profiles) {
     // Extract first image URL from the comma-separated string
     const imagesArray = profile.images ? profile.images.split(',') : [];
     const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
-    
+   
     // Create card content
+    // <img src="${firstImage}" alt="Profile Image">
+
     card.innerHTML = `
-      <img src="${firstImage}" alt="Profile Image">
-                                                   
+<p class="field10"><span>Name:</span> <strong>${profile.field10}</strong></p>
+                                  
       <p class="field6"><span>DOB:</span> ${profile.field6}</p>
       <p class="field7"><span>City:</span> ${profile.field7}</p>
       <p class="field4"><span> Deeni interest:</span> ${profile.field4}</p>
@@ -418,7 +420,6 @@ function goBack() {
 }
 
 
-
 document.addEventListener("DOMContentLoaded", function() {
     var contactAdminBtn = document.getElementById("contactAdminBtn");
 
@@ -472,13 +473,11 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(result => {
                 console.log("Request successful, result:", result);
-                // Show success alert
-                document.querySelector(".alert-success").style.display = "block";
-
                 // Hide the modal
                 document.getElementById("noProfilesModal").style.display = "none";
                 
-                // Optionally, show a popup or perform other actions
+                // Redirect to the filter page
+                window.location.href = 'filter.html';
             })
             .catch(error => {
                 console.error('Error occurred:', error);

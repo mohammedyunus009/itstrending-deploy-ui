@@ -243,13 +243,13 @@
         
         document.addEventListener("DOMContentLoaded", function () {
     // Fetch the data from cookies and set it to the respective fields
-    document.getElementById("name").innerText = decodeURIComponent(getCookie("field33") || '');
+    document.getElementById("name").innerText = decodeURIComponent(getCookie("field10") || '');
     document.getElementById("dob").innerText = decodeURIComponent(getCookie("field6") || '');
     document.getElementById("revert").innerText = decodeURIComponent(getCookie("field9") || '');
     document.getElementById("gender").innerText = decodeURIComponent(getCookie("gender") || '');
     // document.getElementById("caste").innerText = decodeURIComponent(getCookie("field1") || '');
     document.getElementById("follow").innerText = decodeURIComponent(getCookie("field4") || '');
-    document.getElementById("phoneNumber").innerText = decodeURIComponent(getCookie("field10") || '');
+    document.getElementById("phoneNumber").innerText = decodeURIComponent(getCookie("field33") || '');
     document.getElementById("nativeLanguage").innerText = decodeURIComponent(getCookie("field11") || '');
     document.getElementById("residenceLanguage").innerText = decodeURIComponent(getCookie("field13") || '');
     document.getElementById("country").innerText = decodeURIComponent(getCookie("field14") || '');
@@ -362,6 +362,20 @@
 
     // Set initial image
     updateImage(currentIndex);
+
+    // Function to toggle button visibility
+    function toggleButtons() {
+        if (imageUrls.length > 1) {
+            prevButton.style.display = 'block';
+            nextButton.style.display = 'block';
+        } else {
+            prevButton.style.display = 'none';
+            nextButton.style.display = 'none';
+        }
+    }
+
+    // Initialize button visibility
+    toggleButtons();
 
     // Event listeners for navigation buttons
     prevButton.addEventListener('click', function() {

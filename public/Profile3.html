@@ -130,73 +130,59 @@ textarea {
                     <option value="Awaiting Divorce">Awaiting Divorce</option>
                 </select>
             </div>
-            <!-- <div class="form-group" id="children_dropdown" style="display: none;">
-                <label for="children">Children :</label>
-                <select id="children" name="children">
-                    <option value="">Select Number of Children</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5+">5 or more</option>
-                </select>
-            </div> -->
+         
         
             <div class="form-group">
                 <label for="height">Height :</label>
-                <input list="heights" id="height" name="height">
+                <input list="heights" id="height" name="height" oninput="clearValue(this)">
                 <datalist id="heights">
-                    <!-- <option value="4'0" >
-                    <option value="4'1" >
-                    <option value="4'2" >
-                    <option value="4'3" >
-                    <option value="4'4" > -->
-                    <option value="4'5" >
-                    <option value="4'6" >
-                    <option value="4'7" >
-                    <option value="4'8" >
-                    <option value="4'9" >
-                    <option value="4'10" >
-                    <option value="4'11" >
-                    <option value="5'0" >
-                    <option value="5'1" >
-                    <option value="5'2" >
-                    <option value="5'3" >
-                    <option value="5'4" >
-                    <option value="5'5" >
-                    <option value="5'6" >
-                    <option value="5'7" >
-                    <option value="5'8" >
-                    <option value="5'9" >
-                    <option value="5'10" >
-                    <option value="5'11" >
-                    <option value="6'0" >
-                    <option value="6'1" >
-                    <option value="6'2" >
-                    <option value="6'3" >
-                    <option value="6'4" >
-                    <option value="6'5" >
-                    <option value="6'6" >
+                    <option value="4'5">
+                    <option value="4'6">
+                    <option value="4'7">
+                    <option value="4'8">
+                    <option value="4'9">
+                    <option value="4'10">
+                    <option value="4'11">
+                    <option value="5'0">
+                    <option value="5'1">
+                    <option value="5'2">
+                    <option value="5'3">
+                    <option value="5'4">
+                    <option value="5'5">
+                    <option value="5'6">
+                    <option value="5'7">
+                    <option value="5'8">
+                    <option value="5'9">
+                    <option value="5'10">
+                    <option value="5'11">
+                    <option value="6'0">
+                    <option value="6'1">
+                    <option value="6'2">
+                    <option value="6'3">
+                    <option value="6'4">
+                    <option value="6'5">
+                    <option value="6'6">
                 </datalist>
             </div>
-
+        
+            <!-- Weight -->
             <div class="form-group">
                 <label for="weight">Weight :</label>
-                <input list="weights" id="weight" name="weight">
+                <input list="weights" id="weight" name="weight" oninput="clearValue(this)">
                 <datalist id="weights">
-                    <option value="40 kg" >
-                    <option value="45 kg" >
-                    <option value="50 kg" >
-                    <option value="55 kg" >
-                    <option value="60 kg" >
-                    <option value="65 kg" >
-                    <option value="70 kg" >
-                    <option value="75 kg" >
-                    <option value="80 kg" >
-                    <option value="85 kg" >
-                    <option value="90 kg" >
-                    <option value="95 kg" >
-                    <option value="100 kg" >
+                    <option value="40 kg">
+                    <option value="45 kg">
+                    <option value="50 kg">
+                    <option value="55 kg">
+                    <option value="60 kg">
+                    <option value="65 kg">
+                    <option value="70 kg">
+                    <option value="75 kg">
+                    <option value="80 kg">
+                    <option value="85 kg">
+                    <option value="90 kg">
+                    <option value="95 kg">
+                    <option value="100 kg">
                 </datalist>
             </div>
             
@@ -278,26 +264,16 @@ window.onload = function() {
     checkLogin();
 }
 
-
-// function showChildrenDropdown() {
-//     var maritalStatus = document.getElementById("marital_status").value.trim(); // Trim any extra spaces
-//     var childrenDropdown = document.getElementById("children_dropdown");
-
-//     // Reset dropdown on change
-//     childrenDropdown.style.display = "none";
-
-//     // Show dropdown if selected marital status requires it
-//     var statusesRequiringChildrenDropdown = [
-//         "Divorced",
-//         "Widower",
-//         "Widow",
-//         "Awaiting Divorce"
-//     ];
-
-//     if (statusesRequiringChildrenDropdown.includes(maritalStatus)) {
-//         childrenDropdown.style.display = "block";
-//     }
-// }
+function clearValue(inputElement) {
+        if (inputElement.value !== "") {
+            inputElement.addEventListener('keydown', function (event) {
+                // If a key is pressed and the text is not cleared, clear it first
+                if (event.key !== "Backspace" && event.key !== "Delete") {
+                    inputElement.value = ""; // Clears the existing value from datalist
+                }
+            }, { once: true }); // This ensures the listener runs only once, and clears the value the first time user types
+        }
+    }
 
 
         function goBack() {
