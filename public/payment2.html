@@ -146,11 +146,11 @@ h2 {
 
   <div class="container1" id="form-container">
     <div class="text-center">
-      <img src="img/matrimony/IMG_20240816_125312.jpg" alt="Scanner">
+      <img src="img/cropped_image.png" alt="Scanner">
       <h3>8884542768</h3>
       <div class="payment-logos text-center">
-        <img src="https://uxdt.nic.in/wp-content/uploads/2020/06/BHIM_Preview.png?x38773" alt="BHIM UPI" class="payment-logo" title="BHIM UPI">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/UPI-Logo.png" alt="PhonePe" class="payment-logo" title="PhonePe">
+        <!-- <img src="img/bhim.png" alt="BHIM UPI" class="payment-logo" title="BHIM UPI"> -->
+        <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/UPI-Logo.png" alt="PhonePe" class="payment-logo" title="PhonePe"> -->
         <img src="https://cdn.prod.website-files.com/64199d190fc7afa82666d89c/6491bed7fce3ac043b83b2e3_phonepe.png" alt="UPI Wallet" class="payment-logo" title="UPI Wallet">
         <img src="https://thumbs.dreamstime.com/b/google-pay-logo-editorial-illustrative-white-background-google-pay-logo-editorial-illustrative-white-background-eps-download-208329370.jpg" alt="Google Pay" class="payment-logo" title="Google Pay">
         <img src="https://liquiddesigns.in/wp-content/uploads/2017/05/03-PaytmLogo.jpg" alt="Paytm" class="payment-logo" title="Paytm">
@@ -166,68 +166,57 @@ h2 {
       </div>
       <div class="mb-3">
         <label for="transaction-id" class="form-label">Transaction ID</label>
-        <input type="text" class="form-control" id="transaction-id" name="transaction_id" pattern="\d{11}" title="Please enter an 11-digit number" required>
+        <input type="text" class="form-control" id="transaction-id" name="transaction_id" required>
         <small id="transaction-id-error" class="form-text text-danger"></small>
       </div>
+      
       <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    
   </div>
   
   <script src="js/include.js"></script>
   <div id="footerPlaceholder"></div>
   
   <script>
-    // Function to get a cookie by name
-    function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-  
-    // Function to set a cookie
-    function setCookie(name, value, days) {
-      let expires = '';
-      if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = `; expires=${date.toUTCString()}`;
-      }
-      document.cookie = `${name}=${value || ''}${expires}; path=/`;
-    }
-  
-    // Autofill the name field with the value from the cookie
-    document.addEventListener('DOMContentLoaded', function() {
-      const nameFromCookie = getCookie('field33');
-      if (nameFromCookie) {
-        document.getElementById('name').value = nameFromCookie;
-      }
-    });
-  
-    document.getElementById('info-form').addEventListener('submit', function(e) {
-      e.preventDefault(); // Prevent the default form submission
-      const transactionId = document.getElementById('transaction-id').value;
-      const errorElement = document.getElementById('transaction-id-error');
-  
-      // Validate transaction ID
-      if (!/^\d{11}$/.test(transactionId)) {
-        errorElement.textContent = 'Transaction ID must be exactly 11 digits.';
-        return;
-      } else {
-        errorElement.textContent = '';
-      }
-  
-      // Store the transaction ID in a cookie
-      setCookie('field34', transactionId, 7); // Store for 7 days
-  
-      // Submit the form via AJAX
-      alert('Thanks for registering with us once admin approve you will receive a mail');
-      setTimeout(function() {
-        window.location.href = 'filter.html';
-      }, 2000); // 2 seconds delay
-    });
+   // Function to get a cookie by name
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
+// Function to set a cookie
+function setCookie(name, value, days) {
+  let expires = '';
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = `; expires=${date.toUTCString()}`;
+  }
+  document.cookie = `${name}=${value || ''}${expires}; path=/`;
+}
 
+// Autofill the name field with the value from the cookie
+document.addEventListener('DOMContentLoaded', function() {
+  const nameFromCookie = getCookie('field10');
+  if (nameFromCookie) {
+    document.getElementById('name').value = nameFromCookie;
+  }
+});
+
+document.getElementById('info-form').addEventListener('submit', function(e) {
+  e.preventDefault(); // Prevent the default form submission
+  
+  const transactionId = document.getElementById('transaction-id').value;
+  const errorElement = document.getElementById('transaction-id-error');
+
+  // Remove validation for transaction ID
+  // (Error handling code for validation is also removed)
+
+  // Store the transaction ID in a cookie
+  setCookie('field34', transactionId, 7); // Store for 7 days
 
       // Extract values from cookies (field1 to field50)
         const field1 = getCookie('field1') || "";
@@ -292,15 +281,15 @@ h2 {
         const authToken = getCookie('token') || "";
         
         // Extract gender from cookies
-        const gender = getCookie('gender') || "male"; // Default to 'male' if not found
+        const gender = getCookie('gender') || ""; // Default to 'male' if not found
         
         // Construct the request body
         const requestBody = {
-            "profile_id": "1",
-            "description": "Rajesh",
+            "profile_id": "",
+            "description": "",
             "gender": gender,
             "images": images.join(','), // Convert array to comma-separated string
-            "bio": "There are many factors that contribute to a satisfying marriage/relationship such as; Love, Commitment, Trust, Time, Attention, Good Communication including Listening, Partnership, Tolerance, Patience, Openness, Honesty, Respect, Sharing, Consideration, Generosity, Willingness/Ability to Compromise, Constructive",
+            "bio": "",
             "field1": field1,
             "field2": field2,
             "field3": field3,
@@ -353,23 +342,27 @@ h2 {
             "field50": field50
         };
         
-        // Send POST request
-        fetch('https://api.itstrending.in:5001/api/v1/profiles', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': authToken // Include the authToken directly in the Authorization header
-            },
-            body: JSON.stringify(requestBody)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-        
+          // Send POST request
+    fetch('https://api.itstrending.in:5001/api/v1/profiles', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': authToken // Include the authToken directly in the Authorization header
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        alert('Thanks for registering with us once admin approve you will receive a mail');
+        setTimeout(function() {
+            window.location.href = 'filter.html';
+        }, 2000); // 2 seconds delay
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
                         const express = require('express');
                 const app = express();
                 const bodyParser = require('body-parser');
@@ -401,8 +394,59 @@ h2 {
                   console.log(`Server listening on port ${PORT}`);
                 });
                 
+
+                
   </script>
   
-  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('info-form');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const name = document.getElementById('name').value;
+    const transactionId = document.getElementById('transaction-id').value;
+
+    // Remove validation for transaction ID
+    // (Error handling code for validation is also removed)
+
+    // Prepare the data for the API request
+    const formData = {
+      name: name,
+      phoneNumber: '', // Provide the phone number if available
+      email: '', // Provide the email if available
+      message: transactionId // Set transaction ID as the message
+    };
+
+    // Send the data to the API
+    fetch('https://api.itstrending.in/submitForm', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(result => {
+      console.log('Request successful, result:', result);
+      // Handle successful submission, e.g., redirect or show a success message
+      // window.location.href = 'filter.html'; // Redirect to the filter page
+    })
+    .catch(error => {
+      console.error('Error occurred:', error);
+      // Handle error, e.g., show an error message
+      document.getElementById('transaction-id-error').textContent = 'Submission failed. Please try again.';
+    });
+  });
+});
+
+    </script>
+    
 </body>
 </html>

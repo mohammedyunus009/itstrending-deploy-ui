@@ -60,7 +60,6 @@ body {
     font-size: 34px;
     cursor: pointer;
     transition: color 0.3s ease;
-    display: none; /* Hidden by default */
 }
 
 .header .back-button:hover {
@@ -93,7 +92,7 @@ body {
     overflow: hidden;
     background-color: #f0f0f0;
     background-size: cover;
-    background-position: center;
+    background-position: top;
 }
 
 
