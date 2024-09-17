@@ -267,156 +267,190 @@ header {
         <button id="next-button" class="btn btn-primary">Next</button>
     </div>
     <script>
-        const photoStorageKey = 'uploadedPhotos';
-        let uploadCounter = 0;
-        const maxPhotos = 2;
-        let uploadResponses = [];
-    
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
-    
-        function createPhotoUploadBox(index) {
-            const box = document.createElement('div');
-            box.classList.add('photo-upload-box');
-            box.setAttribute('data-index', index);
-            const uploadButton = document.createElement('button');
-            uploadButton.type = 'button';
-            uploadButton.classList.add('photo-upload-button');
-            uploadButton.setAttribute('data-index', index);
-            uploadButton.innerHTML = `
-                <svg width="120px" height="120px" viewBox="0 0 1024 1024" fill-rule="evenodd">
-                    <!-- SVG Path Here -->
-                </svg>
-                <div class="photo-upload-label"><span>Add photo</span></div>
-                <div class="processing-overlay" style="display: none;">
-                    <div class="processing-spinner"></div>
-                </div>
-            `;
-            box.appendChild(uploadButton);
-            const deleteButton = document.createElement('button');
-            deleteButton.classList.add('delete-button');
-            deleteButton.innerText = 'X';
-            deleteButton.addEventListener('click', function() {
-                deletePhoto(index);
+      const photoStorageKey = 'uploadedPhotos';
+let uploadCounter = 0;
+const maxPhotos = 2;
+let uploadResponses = [];
+
+// Allowed file types and maximum size
+const allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
+const maxFileSizeMB = 5; // Maximum file size in megabytes
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function setCookie(name, value, expires) {
+    document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
+}
+
+function deleteCookie(name) {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+}
+
+function createPhotoUploadBox(index) {
+    const box = document.createElement('div');
+    box.classList.add('photo-upload-box');
+    box.setAttribute('data-index', index);
+
+    const uploadButton = document.createElement('button');
+    uploadButton.type = 'button';
+    uploadButton.classList.add('photo-upload-button');
+    uploadButton.setAttribute('data-index', index);
+    uploadButton.innerHTML = `
+        <svg width="120px" height="120px" viewBox="0 0 1024 1024" fill-rule="evenodd">
+            <!-- SVG Path Here -->
+        </svg>
+        <div class="photo-upload-label"><span>Add photo</span></div>
+        <div class="processing-overlay" style="display: none;">
+            <div class="processing-spinner"></div>
+        </div>
+        <div class="upload-info">
+            <p>Allowed file types: ${allowedFileTypes.join(', ')}</p>
+            <p>Maximum file size: ${maxFileSizeMB} MB</p>
+        </div>
+    `;
+    box.appendChild(uploadButton);
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('delete-button');
+    deleteButton.innerText = 'X';
+    deleteButton.addEventListener('click', function() {
+        deletePhoto(index);
+    });
+    box.appendChild(deleteButton);
+
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = allowedFileTypes.join(', '); // Restrict file types
+    fileInput.style.display = 'none'; // Hide file input
+    fileInput.addEventListener('change', function(event) {
+        handleFileUpload(event.target.files[0], index);
+    });
+    box.appendChild(fileInput);
+
+    uploadButton.addEventListener('click', function() {
+        fileInput.click(); // Trigger file input click
+    });
+
+    return box;
+}
+
+function handleFileUpload(file, index) {
+    if (!file) return;
+
+    // Check file type
+    if (!allowedFileTypes.includes(file.type)) {
+        alert(`Invalid file type. Only ${allowedFileTypes.join(', ')} are allowed.`);
+        return;
+    }
+
+    // Check file size
+    if (file.size > maxFileSizeMB * 1024 * 1024) { // Convert MB to bytes
+        alert(`File is too large. Maximum size is ${maxFileSizeMB} MB.`);
+        return;
+    }
+
+    // Process the file upload
+    const uploadButtonContainer = document.querySelectorAll('.photo-upload-button');
+    const uploadButton = uploadButtonContainer[index];
+    const processingOverlay = uploadButton.querySelector('.processing-overlay');
+    processingOverlay.style.display = 'flex';
+    while (uploadButton.firstChild) {
+        uploadButton.removeChild(uploadButton.firstChild);
+    }
+
+    // Retrieve token from cookies
+    const token = getCookie('token'); // Make sure 'authToken' is the name of your cookie
+
+    // Prepare API request
+    const formdata = new FormData();
+    formdata.append("file", file);
+    fetch("https://api.itstrending.in:5001/api/v1/profiles/upload_images", {
+        method: "POST",
+        headers: {
+            "Authorization": token, // Use token from cookies
+        },
+        body: formdata,
+    })
+    .then(response => response.json())
+    .then(result => {
+        uploadResponses[index] = result; // Store the result based on index
+        console.log(result); // Optional: Log each upload result immediately
+        if (result.data && result.data.images && Array.isArray(result.data.images)) {
+            // Store Firebase Storage URLs in cookies
+            result.data.images.forEach((image, idx) => {
+                // Construct URL with ?alt=media if not already present
+                const imageUrl = image.includes('?alt=media') ? image : `${image}?alt=media`;
+                // Store image in cookies with specific name format
+                const cookieName = `images${uploadCounter}`;
+                setCookie(cookieName, imageUrl, new Date(new Date().getTime() + 24*60*60*1000));
+                uploadCounter++;
+                if (uploadCounter >= maxPhotos) {
+                    document.getElementById('file-input').style.display = 'none'; // Hide file input if limit is reached
+                }
             });
-            box.appendChild(deleteButton);
-            return box;
-        }
-    
-        function handleFileUpload(event) {
-            const files = Array.from(event.target.files); // Convert FileList to Array
-            const uploadButtonContainer = document.querySelectorAll('.photo-upload-button');
-    
-            files.forEach((file, fileIndex) => {
-                const index = fileIndex; // The index of the file
-                if (index >= maxPhotos) {
-                    // alert('You can only upload up to 2 photos.');
-                    return;
-                }
-    
-                const uploadButton = uploadButtonContainer[index];
-                const processingOverlay = uploadButton.querySelector('.processing-overlay');
-                processingOverlay.style.display = 'flex';
-                while (uploadButton.firstChild) {
-                    uploadButton.removeChild(uploadButton.firstChild);
-                }
-    
-                if (file.size > 5 * 1024 * 1024) { // 5 MB
-                    const errorMessage = document.createElement('div');
-                    errorMessage.className = 'error-message';
-                    errorMessage.innerText = `Error: ${file.name} exceeds 5 MB limit.`;
-                    uploadButton.appendChild(errorMessage);
-                    processingOverlay.style.display = 'none';
-                    return;
-                }
-    
-                // Retrieve token from cookies
-                const token = getCookie('token'); // Make sure 'authToken' is the name of your cookie
-    
-                // Prepare API request
-                const formdata = new FormData();
-                formdata.append("file", file);
-                fetch("https://api.itstrending.in:5001/api/v1/profiles/upload_images", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": token, // Use token from cookies
-                    },
-                    body: formdata,
-                })
-                .then(response => response.json())
-                .then(result => {
-                    uploadResponses[index] = result; // Store the result based on index
-                    console.log(result); // Optional: Log each upload result immediately
-                    if (result.data && result.data.images && Array.isArray(result.data.images)) {
-                        // Store Firebase Storage URLs in cookies
-                        result.data.images.forEach((image, idx) => {
-                            // Construct URL with ?alt=media if not already present
-                            const imageUrl = image.includes('?alt=media') ? image : `${image}?alt=media`;
-                            // Store image in cookies with specific name format
-                            const cookieName = `images${uploadCounter}`;
-                            setCookie(cookieName, imageUrl, new Date(new Date().getTime() + 24*60*60*1000));
-                            uploadCounter++;
-                            if (uploadCounter >= maxPhotos) {
-                                document.getElementById('file-input').style.display = 'none'; // Hide file input if limit is reached
-                            }
-                        });
-                        // Add all images to the view
-                        result.data.images.forEach(image => {
-                            uploadButton.innerHTML += `<img src="${image.includes('?alt=media') ? image : `${image}?alt=media`}">`;
-                        });
-                    }
-                    processingOverlay.style.display = 'none';
-                })
-                .catch(error => {
-                    console.error(error);
-                    processingOverlay.style.display = 'none';
-                    const errorMessage = document.createElement('div');
-                    errorMessage.className = 'error-message';
-                    errorMessage.innerText = 'Upload failed. Please try again.';
-                    uploadButton.appendChild(errorMessage);
-                });
+            // Add all images to the view
+            result.data.images.forEach(image => {
+                uploadButton.innerHTML += `<img src="${image.includes('?alt=media') ? image : `${image}?alt=media`}">`;
             });
         }
-    
-        function deletePhoto(index) {
-            // Directly proceed with deletion
-            uploadResponses[index] = null;
-            document.querySelector(`.photo-upload-box[data-index="${index}"]`).remove();
-            uploadCounter--;
-    
-            // Show the file input if there is space available
-            if (uploadCounter < maxPhotos) {
-                document.getElementById('file-input').style.display = 'none'; // Show file input if space is available
-            }
+        processingOverlay.style.display = 'none';
+    })
+    .catch(error => {
+        console.error(error);
+        processingOverlay.style.display = 'none';
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'error-message';
+        errorMessage.innerText = 'Upload failed. Please try again.';
+        uploadButton.appendChild(errorMessage);
+    });
+}
+
+function deletePhoto(index) {
+    const box = document.querySelector(`.photo-upload-box[data-index="${index}"]`);
+    const images = box.querySelectorAll('img');
+    if (images.length > 0) {
+        const imageUrl = images[0].src; // Get the URL of the first image in the box
+        // Remove image URL from cookies
+        const cookieName = `images${index}`;
+        deleteCookie(cookieName);
+
+        // Remove the image from the box
+        images[0].remove();
+        
+        // Update the `uploadResponses` and `uploadCounter`
+        uploadResponses[index] = null;
+        uploadCounter--;
+
+        // Show the file input if there is space available
+        if (uploadCounter < maxPhotos) {
+            document.getElementById('file-input').style.display = 'block'; // Show file input if space is available
         }
-    
-        function setCookie(name, value, expires) {
-            document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
-        }
-    
-        function initializePhotoUpload() {
-            const container = document.querySelector('.photo-upload-grid');
-            for (let i = 0; i < maxPhotos; i++) {
-                const box = createPhotoUploadBox(i);
-                box.querySelector('.photo-upload-button').addEventListener('click', function() {
-                    document.getElementById('file-input').setAttribute('data-index', i);
-                    document.getElementById('file-input').click();
-                });
-                container.appendChild(box);
-            }
-        }
-    
-        document.getElementById('file-input').addEventListener('change', handleFileUpload);
-    
-        document.getElementById('next-button').addEventListener('click', function() {
-            // Redirect to profile2.html
-            window.location.href = 'profile2.html';
-        });
-    
-        initializePhotoUpload();   
+    }
+}
+
+function initializePhotoUpload() {
+    const container = document.querySelector('.photo-upload-grid');
+    for (let i = 0; i < maxPhotos; i++) {
+        const box = createPhotoUploadBox(i);
+        container.appendChild(box);
+    }
+}
+
+document.getElementById('file-input').addEventListener('change', function(event) {
+    handleFileUpload(event);
+});
+
+document.getElementById('next-button').addEventListener('click', function() {
+    // Redirect to profile2.html
+    window.location.href = 'profile2.html';
+});
+
+initializePhotoUpload();
+  
 
 const express = require('express');
 const app = express();

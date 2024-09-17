@@ -22,15 +22,12 @@
     </script>
 </head>
 <body>
-    <!-- <div id="headerPlaceholder"></div> -->
-
     <div class="header">
         <div class="back-button" onclick="goBack()"> < </div>
         <div class="title">Education</div>
     </div>
     
     <div class="user-details">
-        <!-- Choose one of the sizes below by changing the class name -->
         <div class="user-icon small">
             <i class="fa-solid fa-briefcase"></i>
         </div>
@@ -60,10 +57,13 @@
                 </div>
                 <br>
                 <label for="monthly-salary" style="display: block;">Monthly salary range :</label>
-                <input type="text" id="monthly-salary" name="monthly-salary" placeholder="Monthly salary range">
-                <br><br>
+<div style="position: relative;">
+    <span style="position: absolute; left: 10px; top: 40%; transform: translateY(-50%); font-size: 16px;">₹</span>
+    <input type="text" id="monthly-salary" name="monthly-salary" placeholder="Monthly salary range" 
+           style="padding-left: 25px; width: 100%;">
+</div>
+  <br><br>
 
-               <!-- Profession input -->
                <div class="form-group">
                     <label for="professional" style="display: block;">Profession :</label>
                     <select id="professional" name="professional">
@@ -73,7 +73,6 @@
                         <option value="Homemaker">Homemaker</option>
                         <option value="Working Part time">Working Part time</option>
                         <option value="Others">Others</option>
-                        <!-- Add more profession options as needed -->
                     </select>
                     <br><br>
                 </div>
@@ -82,8 +81,6 @@
             </form>
         </div>
     </div>
-    <!-- <script src="js/include.js"></script>
-    <div id="footerPlaceholder"></div> -->
 
     <script>
         function goBack() {
@@ -124,23 +121,25 @@
         }
 
         function submitForm() {
-            // Handle form data and store in cookies
             let monthlySalary = document.getElementById('monthly-salary').value;
             let professional = document.getElementById('professional').value;
             let educationQualification = document.getElementById('education_qualification').value;
-            let otherEducation = document.getElementById('other_education') ? document.getElementById('other_education').value : '';
+            let otherEducation = document.getElementById('other_education').value;
+
+            // If "Others" is selected, replace education qualification with user input
+            if (educationQualification === 'others' && otherEducation) {
+                educationQualification = otherEducation;
+            }
 
             // Set cookies
             setCookie('field25', monthlySalary, 1);
             setCookie('field8', professional, 1);
             setCookie('field2', educationQualification, 1);
-            setCookie('field27', otherEducation, 1);
 
             console.log("Form submitted and data stored in cookies:");
             console.log("Monthly Salary:", monthlySalary);
             console.log("Profession:", professional);
             console.log("Education Qualification:", educationQualification);
-            console.log("Other Education:", otherEducation);
 
             // Redirect to another page after form submission
             window.location.href = 'partnerRequired.html';
@@ -149,7 +148,6 @@
         function checkLogin() {
             let token = getCookie('token');
             if (!token) {
-                // alert("User not logged in. Please login.");
                 window.location.href = 'login.html';
             }
         }

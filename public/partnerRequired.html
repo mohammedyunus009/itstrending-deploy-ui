@@ -95,7 +95,6 @@ function goBack() {
       function checkLogin() {
         let token = getCookie('token');
         if (!token) {
-            // alert("User not logged in. Please login.");
             window.location.href = 'login.html';
         }
       }
@@ -143,6 +142,8 @@ function goBack() {
                         <label for="revert2Yes">Yes</label>
                         <input type="radio" id="revert2No" name="revert2" value="No"> 
                         <label for="revert2No">No</label>
+                        <input type="radio" id="revert2Both" name="revert2" value="Both"> 
+                        <label for="revert2Both">Both</label> <!-- Added 'Both' option -->
                     </div>
                 </div>
                 <div class="form-group">
@@ -156,4 +157,3 @@ function goBack() {
     <br>
 </body>
 </html>
-
