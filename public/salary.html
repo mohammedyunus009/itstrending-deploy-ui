@@ -56,17 +56,9 @@
                     </div>
                 </div>
                 <br>
-                <label for="monthly-salary" style="display: block;">Monthly salary range :</label>
-<div style="position: relative;">
-    <span style="position: absolute; left: 10px; top: 40%; transform: translateY(-50%); font-size: 16px;">₹</span>
-    <input type="text" id="monthly-salary" name="monthly-salary" placeholder="Monthly salary range" 
-           style="padding-left: 25px; width: 100%;">
-</div>
-  <br><br>
-
-               <div class="form-group">
+                <div class="form-group">
                     <label for="professional" style="display: block;">Profession :</label>
-                    <select id="professional" name="professional">
+                    <select id="professional" name="professional" onchange="handleProfessionChange()">
                         <option value="">Select Profession</option>
                         <option value="Salaried Employee">Salaried Employee</option>
                         <option value="Business">Business</option>
@@ -76,7 +68,27 @@
                     </select>
                     <br><br>
                 </div>
-
+                  <!-- Business Specify Text Box -->
+                  <div id="business-specify-container" style="display:none;">
+                    <label for="business-specify" style="display: block;">Specify your business :</label>
+                    <input type="text" id="business-specify" name="business-specify" placeholder="Specify your business" 
+                           style="width: 100%;">
+                    <br><br>
+                </div>
+                
+                <!-- Monthly Salary Range -->
+                <div id="monthly-salary-container" style="display:none;">
+                    <label for="monthly-salary" style="display: block;">Monthly salary range :</label>
+                    <div style="position: relative;">
+                        <span style="position: absolute; left: 10px; top: 40%; transform: translateY(-50%); font-size: 16px;">₹</span>
+                        <input type="text" id="monthly-salary" name="monthly-salary" placeholder="Monthly salary range" 
+                               style="padding-left: 25px; width: 100%;">
+                    </div>
+                    <br><br>
+                </div>
+                
+              
+                
                 <input type="button" value="Next" onclick="submitForm()" id="nextButton">
             </form>
         </div>
@@ -155,6 +167,29 @@
         window.onload = function() {
             checkLogin();
         }
+
+        function handleProfessionChange() {
+    var profession = document.getElementById("professional").value;
+    var monthlySalaryContainer = document.getElementById("monthly-salary-container");
+    var businessSpecifyContainer = document.getElementById("business-specify-container");
+
+    // Hide all fields initially
+    monthlySalaryContainer.style.display = 'none';
+    businessSpecifyContainer.style.display = 'none';
+
+    if (profession === 'Salaried Employee' || profession === 'Working Part time') {
+        // Show Monthly Salary for Salaried Employee and Working Part time
+        monthlySalaryContainer.style.display = 'block';
+    } else if (profession === 'Business') {
+        // Show both Monthly Salary and Business Specify input for Business
+        businessSpecifyContainer.style.display = 'block';
+        monthlySalaryContainer.style.display = 'block';
+      
+    } else if (profession === 'Homemaker') {
+        // No need to show any fields for Homemaker
+        monthlySalaryContainer.style.display = 'none';
+    }
+}
     </script>
 </body>
 </html>
