@@ -226,6 +226,36 @@
     z-index: 1; /* Ensure the icon appears above the input field */
 }
 
+.popup-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: relative;
+    margin: 15% auto;
+    padding: 20px;
+    background-color: #fff;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000;
+}
 
 </style>
 
@@ -241,6 +271,15 @@
         <div class="spinner"></div>
         <p>Loading...</p>
     </div>
+
+    <!-- Popup modal -->
+<div id="popupModal" class="popup-modal" style="display: none;">
+  <div class="modal-content">
+      <span id="closeModal" class="close-button">&times;</span>
+      <p id="modalMessage"></p>
+  </div>
+</div>
+
     
     <form action="#" class="login-form1" id="loginForm1">
       <h2 class="form-heading">Login</h2>
