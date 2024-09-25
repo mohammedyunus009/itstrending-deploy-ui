@@ -101,8 +101,11 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Matrimony <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2393"><a href="male.html">Register</a></li>
-                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-252"><a href="login.html">Sign in</a></li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-252"><a href="login.html">Login</a></li>
                                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2392"><a href="filter.html">Search</a></li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-logout">
+                                    <a href="#" onclick="logout()">Logout</a>
+                                </li>
                                 <!-- <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-250"><a href="admin-login.html">Admin Panel</a></li> -->
                             </ul>
                         </li> 
@@ -140,5 +143,17 @@
         });
     });
 </script>
+<script>
+    function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+            // Delete cookies by setting expiration date to the past
+            document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    
+            // Optionally redirect to the login page or another page after logout
+            window.location.href = "login.html"; // Redirect to login page
+        }
+    }
+    </script>
 </body>
 </html>
