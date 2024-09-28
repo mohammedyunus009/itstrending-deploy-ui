@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/i.css" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-item left">
+            <img src="img/Screenshot from 2024-09-27 11-50-56.png" alt="Logo" class="logo">
+        </div>
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+    
+    <div class="installation-form">
+        <h2>Add Clients</h2>
+        <div class="underline"></div>
+        <label for="serial-number"><strong>Serial Number: </strong></label>
+        <input type="text" id="serial-number" name="serial-number" placeholder="Enter Serial Number" required oninput="setCookie('field1', this.value)">
+    </div>
+    
+    <header class="sub-navbar">
+        <div class="navbar-item left">
+            <h3 style="margin: 0; color:#00bfa6 ;">PM and Invoice Schedule Form</h3>
+        </div>
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+         
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="customer-name"><strong>Customer Name: </strong></label>
+            <input type="text" id="customer-name" name="customer-name" placeholder="Enter Customer Name" required oninput="setCookie('field2', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label for="place"><strong>Place: </strong></label>
+            <select id="place" name="place" required class="styled-select" onchange="setCookie('field3', this.value)">
+                <option value="">Select Place</option>
+                <option value="bangalore">Bangalore</option>
+                <option value="mumbai">Mumbai</option>
+                <option value="delhi">Delhi</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="phone"><strong>Phone: </strong></label>
+            <input type="text" id="phone" name="phone" placeholder="Enter Phone Number" required oninput="setCookie('field4', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label for="region"><strong>Region: </strong></label>
+            <select id="region" name="region" required class="styled-select" onchange="setCookie('field5', this.value)">
+                <option value="">Select Region</option>
+                <option value="north">North</option>
+                <option value="south">South</option>
+                <option value="east">East</option>
+                <option value="west">West</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="chl"><strong>CHL: </strong></label>
+            <input type="text" id="chl" name="chl" placeholder="Enter CHL" required oninput="setCookie('field6', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label for="pac"><strong>PAC: </strong></label>
+            <input type="text" id="pac" name="pac" placeholder="Enter PAC" required oninput="setCookie('field7', this.value)">
+        </div>
+    </div>
+
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="s-ac"><strong>S. A/c: </strong></label>
+            <input type="text" id="s-ac" name="s-ac" placeholder="Enter S. A/c" required oninput="setCookie('field8', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label for="total"><strong>Total: </strong></label>
+            <input type="text" id="total" name="total" placeholder="Enter Total" required oninput="setCookie('field9', this.value)">
+        </div>
+    </div>
+
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="po-no"><strong>PO No.: </strong></label>
+            <input type="text" id="po-no" name="po-no" placeholder="Enter PO Number" required oninput="setCookie('field10', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label for="po-value"><strong>PO Value: </strong></label>
+            <input type="text" id="po-value" name="po-value" placeholder="Enter PO Value" required oninput="setCookie('field11', this.value)">
+        </div>
+    </div>
+
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="type-of-call"><strong>Type of Call: </strong></label>
+            <input type="text" id="type-of-call" name="type-of-call" placeholder="Enter Type of Call" required oninput="setCookie('field13', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label for="contract-period"><strong>Contract Period: </strong></label>
+            <input type="date" id="contract-period" name="contract-period" required class="styled-input" onchange="setCookie('field14', this.value)">
+        </div>
+    </div>
+        
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="visits"><strong>Visits: </strong></label>
+            <input type="number" id="visits" name="visits" placeholder="Enter Visits" required oninput="setCookie('field15', this.value)" min="1" max="6">
+        </div>
+
+        <div class="form-group">
+            <label for="po-document"><strong>PO Document: </strong></label>
+            <input type="file" id="po-document" name="po-document" accept="image/*" multiple required>
+        </div>
+    
+        <!-- Popup for Image Preview -->
+        <div id="preview-popup" class="popup">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <div class="popup-content" id="popup-content"></div>
+        </div>
+    
+    </div>
+
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="file-no"><strong>File No.: </strong></label>
+            <input type="text" id="file-no" name="file-no" placeholder="Enter File No." required oninput="setCookie('field16', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label for="service-engineer"><strong>Service Engineer: </strong></label>
+            <input type="text" id="service-engineer" name="service-engineer" placeholder="Enter Service Engineer" required oninput="setCookie('field17', this.value)">
+        </div>
+    </div>
+
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="expiration-date"><strong>Expiration Date: </strong></label>
+            <input type="date" id="expiration-date" name="expiration-date" required class="styled-input" onchange="setCookie('field18', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label for="po-payment-terms"><strong>PO Payment Terms: </strong></label>
+            <input type="text" id="po-payment-terms" name="po-payment-terms" placeholder="Enter PO Payment Terms" required oninput="setCookie('field19', this.value)">
+        </div>
+    </div>
+
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="comments"><strong>Comments: </strong></label>
+            <textarea id="comments" name="comments" placeholder="Enter Comments" required class="styled-textarea" oninput="setCookie('field20', this.value)"></textarea>
+        </div>
+    </div>
+
+    <button class="next-button" onclick="handleNext()">Next</button>
+
+    <script>
+    function handleNext() {
+            const visits = parseInt(document.getElementById('visits').value);
+            const contractDate = document.getElementById('contract-period').value;
+
+            if (visits && contractDate) {
+                let contractStartDate = new Date(contractDate);
+                let currentDate = new Date();
+                
+                // Calculate contract end date by adding (visits - 1) * 3 months
+                let contractEndDate = new Date(contractStartDate);
+                contractEndDate.setMonth(contractEndDate.getMonth() + (visits - 1) * 3);
+                
+                // Format dates for display
+                let formattedContractStartDate = contractStartDate.toLocaleDateString('en-US');
+                let formattedCurrentDate = currentDate.toLocaleDateString('en-US');
+                let formattedContractEndDate = contractEndDate.toLocaleDateString('en-US');
+
+                // Display the alert with the calculated values
+                alert(`Current Date: ${formattedCurrentDate}\nVisits: ${visits}\nContract Start Date: ${formattedContractStartDate}\nContract End Date: ${formattedContractEndDate}`);
+            } else {
+                alert('Please enter both the contract period date and the number of visits.');
+            }
+        }
+
+        function setCookie(name, value) {
+            document.cookie = name + "=" + value + "; path=/";
+        }
+
+
+        let modifiedImageUrls = []; // Array to store modified image URLs
+
+document.getElementById('po-document').addEventListener('change', function (event) {
+    const files = event.target.files;
+    const popupContent = document.getElementById('popup-content');
+
+    // Clear previous content
+    popupContent.innerHTML = '';
+
+    // Show popup
+    const popup = document.getElementById('preview-popup');
+    popup.style.display = 'flex';
+
+    // Loop through the files and create image elements
+    for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.maxWidth = '100px'; // Set max width for preview images
+            img.style.margin = '5px'; // Add some margin
+            popupContent.appendChild(img);
+
+            // Send the image to the API
+            uploadImage(file);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Function to close the popup
+function closePopup() {
+    const popup = document.getElementById('preview-popup');
+    popup.style.display = 'none';
+}
+
+// Function to upload images to the API
+function uploadImage(file) {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "{{Autho}}"); // Replace {{Autho}} with your actual authorization token
+
+    const formdata = new FormData();
+    formdata.append("file", file, file.name); // Use the actual file name
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow"
+    };
+
+    fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json(); // Parse JSON response
+        })
+        .then((result) => {
+            console.log(result); // Log the entire result for debugging
+            if (result.status === "success" && result.data && result.data.images) {
+                // Extract the image URLs, modify them, and store in the array
+                result.data.images.forEach(imageUrl => {
+                    console.log(imageUrl); // Log the raw image URL
+                    const modifiedImageUrl = imageUrl + "?alt=media"; // Append ?alt=media
+                    modifiedImageUrls.push(modifiedImageUrl); // Store the modified URL in the array
+                });
+
+                // Join the modified image URLs into a string and store in cookies
+                const imageUrlsString = modifiedImageUrls.join(','); // Join without brackets
+                document.cookie = `imageUrls=${imageUrlsString}; path=/`; // Store in cookies
+
+                // Log the string for verification
+                console.log("Stored in cookies:", imageUrlsString);
+            }
+        })
+        .catch((error) => console.error('Error uploading image:', error));
+}
+
+        
+
+    </script>
+</body>
+</html>
