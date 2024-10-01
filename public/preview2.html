@@ -7,646 +7,534 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"><title>General Service Report</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .logo-img {
-            max-width: 150px;
-            height: auto;
-        }
-        .partner-img {
-            max-width: 100px;
-            height: auto;
-        }
-        .header-left p {
-            margin: 0;
-            font-size: 14px;
-        }
-        .table-container {
-            overflow-x: auto;
-        }
-        .datauee {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .datauee p {
-            margin: 0;
-        }
-        .datauee input {
-            margin-left: 10px;
-        }
-        .container {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            gap: 0;
-        }
-        .left-side, .right-side {
-            width: 50%;
-            box-sizing: border-box;
-        }
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-            .left-side, .right-side {
-                width: 100%;
-            }
-            .logo-img {
-                max-width: 120px;
-            }
-            .partner-img {
-                max-width: 80px;
-            }
-            .header-left, .header-right {
-                text-align: center;
-            }
-            .header-right {
-                margin-top: 10px;
-            }
-            .part-details-section {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .part-details-section .right {
-                margin-left: 0;
-                text-align: center;
-            }
-        }
-        .form-section {
-            padding: 20px;
-            background-color: #f9f9f9;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 14px;
-        }
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .form-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .form-group label {
-            margin-bottom: 0;
-            font-weight: bold;
-            flex: 1;
-            text-align: left;
-        }
-        .form-group input {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            flex: 2;
-        }
-        .checklist-section {
-            padding: 20px;
-            background-color: #f9f9f9;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 10px;
-        }
-        .checklist-table {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-        .checklist-col {
-            flex: 1;
-            padding: 0 10px;
-        }
-        .checklist-col input {
-            width: 100%;
-            margin-bottom: 10px;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 10px;
-        }
-        .separator-line {
-            border-top: 2px solid #333;
-            margin: 20px 0;
-        }
         
-        .part-details-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 0 auto;
-            max-width: 800px; /* Adjust as needed */
-            padding: 0 20px; /* Optional: Add padding if necessary */
-        }
-    
-        .part-details-section .left, .part-details-section .right {
-            flex: 1;
-        }
-    
-        .part-details-section .left {
-            text-align: left;
-            margin-right: 50px; /* Adjust as needed */
-        }
-    
-        .part-details-section .right {
-            text-align: right;
-        }
-    
-        .details-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .details-table th, .details-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        /* Styling for the part-details-section */
-        .part-details-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 0 auto;
-            max-width: 800px; /* Adjust as needed */
-            padding: 0 20px; /* Optional: Add padding if necessary */
-            background-color: #f9f9f9;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 14px;
-        }
-    
-        .part-details-section .left {
-            flex: 1;
-            text-align: left;
-            font-weight: bold;
-        }
-    
-        .part-details-section .right {
-            flex: 1;
-            text-align: right;
-            font-weight: bold;
-        }
-    
-        /* Styling for the part-details-table */
-        .part-details-table {
-            padding: 20px;
-            background-color: #f9f9f9;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 14px;
-        }
-    
-        .details-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-    
-        .details-table th, .details-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-    
-        .details-table th {
-            background-color: #333;
-            color: #fff;
-            font-weight: bold;
-        }
-    
-        .details-table input {
-            width: 100%;
-            padding: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-    
-        @media (max-width: 768px) {
-            .part-details-section {
-                flex-direction: column;
-                text-align: center;
-            }
-    
-            .part-details-section .left, .part-details-section .right {
-                margin-bottom: 10px;
-                text-align: center;
-            }
-        }
-        /* Styling for the form-group container */
-        .mb-3 {
-            margin: 0 auto;
-            max-width: 1250px; /* Adjust as needed for your layout */
-        }
-    
-        /* Styling for the form label */
-        .form-label {
-            display: block;
-            margin-bottom: 10px; /* Adjust the space between the label and textarea */
-            font-weight: bold;
-        }
-    
-        /* Styling for the textarea */
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid black; /* Solid black border */
-            border-radius: 5px;
-            box-sizing: border-box; /* Ensures padding and border are included in the width */
-        }
-    
-        input[type="text"] {
-            border: 1px solid #000; /* Light black border color */
-        }
-    
-        @media (max-width: 768px) {
-            .mb-3 {
-                max-width: 100%; /* Adjust for smaller screens */
-                padding: 0 10px; /* Optional: Add padding for smaller screens */
-            }
-        }
-        input[type="text"] {
-    border: 1px solid #000; /* Light black border color */
-    height:  30px;
-}
-@media print {
-    .button-container {
-        display: none;
-    }
-}
-.header-left, .header-right {
-  flex: 1;
+/* Form Title and Underline */
+.form-title {
+    text-align: left;
+    color: #002d50;
 }
 
-.header-right {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.underline {
+    width: 200px;
+    height: 1px;
+    background-color: #00bfa6;
+    margin: 5px 0 10px;
 }
 
-.header-left img, .header-right img {
-  margin-top: 10px;
-  width: 300px;
+/* Sub-header Styling */
+.sub-navbar {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    background-color: #002d50;
+    border-bottom: 2px solid #00bfa6;
+    position: relative;
+    z-index: 999;
 }
 
-.navbar-nav .dropdown-menu {
-  text-align: center;
+.sub-navbar .navbar-item.left {
+    flex: 0 0 94%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
 }
 
-.navbar {
-  width: 100%;
+/* Customer Details Form Section */
+.installation-form1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto; /* Center on desktop */
+    max-width: 1000px;
+    padding: 20px;
+    border-radius: 5px;
 }
 
-.navbar-toggler {
-  margin-left: auto;
+.installation-form1 label {
+    margin-right: 15px;
+    font-weight: bold;
 }
 
+.installation-form1 input[type="text"] {
+    padding: 10px;
+    border: 2px solid #00bfa6;
+    border-radius: 4px;
+    width: 300px; /* Fixed width for input boxes */
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+/* Flexbox layout for desktop */
+.installation-form1 .form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Right section for Project Field */
+.project-field {
+    margin-left: auto;
+}
+
+/* Flexbox adjustments for mobile */
 @media (max-width: 768px) {
-  .header-left, .header-right {
-    justify-content: left;
-
-    width: 500px;
-  }
-}
-@media (max-width: 767px) {
-  .navbar {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  
-  .navbar-brand {
-    margin-right: auto; /* Ensures the logo stays on the left */
-  }
-
-  .navbar-toggler {
-    margin-left: 100px; /* Ensures the toggler stays on the right */
-    margin-top: 0px;
-  }
-
-  .navbar-collapse {
-    text-align: left; /* Aligns the collapsed menu to the right */
-  }
-
-  .navbar-nav {
-    width: 100%; /* Makes sure the nav items fill the available space */
-    justify-content: flex-end; /* Aligns nav items to the right */
-  }
-}
-
-    .logo-img {
-      max-width: 150px;
-      height: auto;
-    }
-
-    .partner-img {
-      max-width: 100px;
-      height: auto;
-    }
-
-    .header, .footer {
-      padding: 1rem;
-    }
-
-    .dropdown-menu {
-      min-width: 200px;
-    }
-
-    .form-control {
-      max-width: 100%;
-    }
-
-    @media (max-width: 768px) {
-      .form-col {
-        margin-bottom: 1rem;
-      }
-      
-      .header, .footer {
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .logo-img, .partner-img {
-        max-width: 100px;
-      }
-
-      .dropdown-menu {
-        width: 100%;
-     
-      }
-    }
-    .header-left, .header-right {
-  flex: 1;
-}
-
-.header-right {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.header-left img {
-  margin-right: 150px;
-}
-
-.navbar-nav .dropdown-menu {
-  text-align: center;
-}
-
-.navbar {
-  width: 100%;
-}
-
-.navbar-toggler {
-  margin-left: auto;
-  margin-top: -100px;
-}
-
-@media (max-width: 768px) {
-  .header-left, .header-right {
-    justify-content: center;
-  }
-}
-.form-control {
-      border: 1px solid black;
-    }
-    #navbarNav{
-    margin-right: 200px;
-  }
-
-  body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
-
-    .navbar {
-        display: flex;
-        justify-content: space-between;
+    .installation-form1 {
+        flex-direction: column; /* Stack fields vertically on mobile */
+        justify-content: center;
         align-items: center;
-        padding: 10px 20px;
-        background-color: #f7f7f7;
-        background-image: linear-gradient(to right, #1E90FF, #f7f7f7);    }
-
-    .logo img {
-        height: 50px;
     }
 
-    .nav-icons img {
-        height: 50px;
-        margin-left: 15px;
+    .installation-form1 .form-group {
+        width: 100%; /* Full width on mobile */
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column; /* Align label and input vertically */
     }
 
-    input {
-        border: 1px solid red;
-        /* Light black border */
-        border-radius: 4px;
-        /* Optional: for rounded corners */
-        padding: 5px;
-        /* Optional: to add some padding inside the input */
+    .installation-form1 input[type="text"] {
+        width: 100%; /* Full width on mobile */
+        max-width: 100%; /* Ensure it doesn’t exceed 100% width */
     }
+}
 
-    @media screen and (max-width: 600px) {
-        .navbar {
-            justify-content: space-between;
-            padding: 10px;
+#date {
+    padding: 5px;
+    border: 2px solid #00bfa6;
+    border-radius: 3px;
+}
+.next-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #00bfa6; /* Button color */
+            color: white; /* Text color */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none; /* Remove underline */
         }
 
-        .logo img {
-            height: 30px;
+        .next-button:hover {
+            background-color: #008f87; /* Darker shade on hover */
         }
+        .installation-form1 .form-group {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensure full width */
+}
 
-        .nav-icons img {
-            margin-left: 8px;
-            height: 30px;
-        }
+.installation-form1 label {
+    margin-right: 15px; /* Space between label and input */
+    width: 150px; /* Fixed width for labels */
+    font-weight: bold;
+}
+
+.installation-form1 input[type="text"] {
+    padding: 10px;
+    border: 2px solid #00bfa6;
+    border-radius: 4px;
+    width: calc(100% - 165px); /* Adjust for label width and margin */
+    box-sizing: border-box;
+}
+/* Flexbox adjustments for mobile */
+@media (max-width: 768px) {
+    .installation-form1 {
+        flex-direction: column; /* Stack fields vertically on mobile */
+        align-items: flex-start; /* Align items to start */
     }
 
-    /* headr */
-    @media (max-width: 600px) {
-        .table {
-            width: 100%;
-        }
+    .installation-form1 .form-group {
+        width: 100%; /* Full width on mobile */
+        margin-bottom: 10px; /* Space between fields */
+        display: flex;
+        flex-direction: column; /* Align label and input vertically */
     }
+
+    .installation-form1 label {
+        margin-bottom: 5px; /* Space between label and input */
+        width: auto; /* Allow label width to adjust */
+    }
+
+    .installation-form1 input[type="text"] {
+        width: 100%; /* Full width on mobile */
+        max-width: 100%; /* Ensure it doesn’t exceed 100% width */
+    }
+}
+
+
+
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 54px; /* Prevent content from being hidden under the fixed navbar */
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    background-color: #002d50; /* Main dark blue background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    --bs-navbar-padding-x: 0;
+    --bs-navbar-padding-y: 0.0rem;
+}
+
+/* Left section with 90% width */
+.navbar-item.left {
+    flex: 0 0 94%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.navbar-item.left .logo {
+    width: 200px;
+    margin-right: 15px;
+}
+
+.company-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.company-info img {
+    margin-left: 10px;
+    width: 30px;
+}
+
+/* Middle and Right sections with 5% width */
+.navbar-item.middle,
+.navbar-item.right {
+    flex: 0 0 3%;
+    height: 100%;
+}
+
+.navbar-item.middle {
+    background-color: #005b66;
+}
+
+.navbar-item.right {
+    background-color: #00bfa6;
+}
+
+.installation-form {
+        max-width: 400px; /* Maintain a max width */
+        margin: 20px; /* Adjust margin to only have space at the top and sides */
+        padding: 20px;
+        border-radius: 5px;
+        position: relative;
+        float: left; /* Aligns the form to the left */
+    }
+
+.installation-form label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #002d50;
+}
+
+.installation-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #00bfa6;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Adjustments for Mobile View */
+@media (max-width: 768px) {
+    .installation-form {
+        width: 90%; /* Full width on smaller screens */
+        margin: 20px auto; /* Center form */
+        padding: 20px;
+    }
+}
+.company-info img {
+    width: 30px; /* Set a fixed width */
+    height: 30px; /* Set a fixed height */
+     /* Maintain aspect ratio inside the box */
+    margin: 5px; /* Add some space between images */
+}
+/* Center the table on the screen */
+.details-table {
+    margin: 0 auto; /* Center table horizontally */
+    border-collapse: collapse; /* Collapse borders */
+}
+
+/* Style for the table input boxes */
+.details-table input[type="text"] {
+    border: 2px solid #00bfa6; /* Set border color */
+    border-radius: 4px; /* Optional: add rounded corners */
+    padding: 5px; /* Optional: add some padding */
+    width: 100%; /* Make input fill the cell */
+    box-sizing: border-box; /* Include padding in the width */
+}
+
+/* Style for the Product Details textarea */
+#symptoms {
+    border: 2px solid #00bfa6; /* Set border color */
+    border-radius: 4px; /* Optional: add rounded corners */
+    padding: 5px; /* Optional: add some padding */
+    width: 100%; /* Make textarea fill the container */
+    box-sizing: border-box; /* Include padding in the width */
+}
+
+/* Style for the Status Of System select */
+#systemStatus {
+    border: 2px solid #00bfa6; /* Set border color */
+    border-radius: 4px; /* Optional: add rounded corners */
+    padding: 5px; /* Optional: add some padding */
+    width: 100%; /* Make select fill the container */
+    box-sizing: border-box; /* Include padding in the width */
+}
+
+/* Style for the For UEE and For Customer input fields */
+#forUee,
+#forCustomer {
+    border: 2px solid #00bfa6; /* Set border color */
+    border-radius: 4px; /* Optional: add rounded corners */
+    padding: 5px; /* Optional: add some padding */
+    width: 100%; /* Make input fill the container */
+    box-sizing: border-box; /* Include padding in the width */
+}
+
+/* Style for the button */
+.button-container .btn {
+    background-color: #00bfa6; /* Button color */
+    color: white; /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Optional: add rounded corners */
+    padding: 10px 20px; /* Add padding */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+/* Button hover effect */
+.button-container .btn:hover {
+    background-color: #009a8d; /* Darken button on hover */
+}
+/* Style for the installation form section */
+.installation-form {
+    margin: 20px auto; /* Center section on the screen */
+    max-width: 600px; /* Optional: set a max width */
+}
+
+/* Style for the form group */
+.form-group {
+    margin-bottom: 20px; /* Space between form groups */
+}
+
+/* Style for the label */
+.form-group label {
+    display: block; /* Make label take full width */
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+/* Style for the Rep No div */
+#repNo {
+    border: 2px solid #00bfa6; /* Set border color */
+    border-radius: 4px; /* Optional: add rounded corners */
+    padding: 5px; /* Optional: add some padding */
+    background-color: #f9f9f9; /* Optional: light background color */
+    width: 100%; /* Make div fill the container */
+    box-sizing: border-box; /* Include padding in the width */
+}
+
+/* Style for the date input */
+#num {
+    border: 2px solid #00bfa6; /* Set border color */
+    border-radius: 4px; /* Optional: add rounded corners */
+    padding: 5px; /* Optional: add some padding */
+    width: 100%; /* Make input fill the container */
+    box-sizing: border-box; /* Include padding in the width */
+}
+
     </style>
     
 </head>
 <body>
   
       
-    <nav class="navbar">
-        <div class="logo">
-            <img src="img/comapny log2.jpg" alt="Left Logo">
+    <header class="navbar">
+        <div class="navbar-item left">
+            <img src="comapny log2.jpg" alt="Logo" class="logo">
+            <div class="company-info">
+                <img src="img/mms.jpg" alt="Additional Image 1">
+                <img src="img/EGAC.png" alt="Additional Image 2">
+                <img src="img/IAF.png" alt="Additional Image 2">
+                <img src="img/NABCB.png" alt="Additional Image 2">
+            </div>
         </div>
-        <div class="nav-icons">
-            <img src="img/mms.jpg" alt="Logo 1">
-            <img src="img/EGAC.png" alt="Logo 2">
-            <img src="img/IAF.png" alt="Logo 3">
-            <img src="img/NABCB.png" alt="Logo 4">
+        
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+    <header class="sub-navbar">
+        <div class="navbar-item left">
+            <a href="GeneralServiceForm1.html" style="text-decoration: none;">
+                <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px;">General service Form</h3>
+            </a>
+            <br>
+            <a href="report2.html" style="text-decoration: none;">
+                <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px; margin-left: 100px;">General service report</h3>
+            </a>
         </div>
-    </nav>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-  <div class="container-fluid">
-    <!-- Left section: Toggler button for mobile view -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Center section: Logo -->
-    <div class="header-left mb-3 mb-md-0">
-      <!-- <img src="comapny log2.jpg" alt="Logo" class="img-fluid logo-img" style="max-width: 200px;"> -->
-    </div>
-
-    <!-- Right section: Navbar links -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item dropdown me-2">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Pages
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
-            <li><a class="dropdown-item" href="installationform1.html">Installation Form</a></li>
-            <li><a class="dropdown-item" href="GeneralServiceForm1.html">General Service Form</a></li>
-            <!-- <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li> -->
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownReport" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Report Page
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownReport">
-            <li><a class="dropdown-item" href="installationreport.html">Installation Report</a></li>
-            <li><a class="dropdown-item" href="report2.html">General Service Report</a></li>
-            <!-- <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information Report</a></li> -->
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-  
+        
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
       
-    <section class="full-width-main">
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="text-center" id="repNo">Loading...</td>
-                        <td class="text-center"><u>GENERAL SERVICE FORM</u></td>
-                        <td class="text-center">
-                            <input type="date" class="form-control" id="num">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-    <section class="container">
-        <div class="left-side">
-            <section class="form-section">
-                <form class="form-container">
-                    <div class="form-group">
-                        <label for="className">Customer Name:</label>
-                        <input type="text" id="className" placeholder="Enter your name">
-                    </div>
-                    <div class="form-group">
-                        <label for="area">Area:</label>
-                        <input type="text" id="area" placeholder="Enter your area">
-                    </div>
-                    <div class="form-group">
-                        <label for="project">Project:</label>
-                        <input type="text" id="project" placeholder="Enter your project">
-                    </div>
-                    <div class="form-group">
-                        <label for="poNoDate">Po No./Date:</label>
-                        <input type="text" id="poNoDate" placeholder="Enter Po No./Date">
-                    </div>
-                    <div class="form-group">
-                        <label for="eqptModel">Eqpt Model:</label>
-                        <input type="text" id="eqptModel" placeholder="Enter Equipment Model">
-                    </div>
-                    <div class="form-group">
-                        <label for="eqptSiNo">Eqpt SI.No:</label>
-                        <input type="text" id="eqptSiNo" placeholder="Enter Equipment SI No">
-                    </div>
-                    <!-- <div class="form-group">
-                        <label for="systemCondition">System Working Condition:</label>
-                        <input type="text" id="systemCondition" placeholder="Enter System Working Condition">
-                    </div> -->
-                    <div class="form-group">
-                        <label for="customerComplainDate">Customer Complain Date:</label>
-                        <input type="text" id="customerComplainDate" placeholder="Enter Customer Complain Date">
-                    </div>
-                    <div class="form-group">
-                        <label for="atHmr1">AT HMR:</label>
-                        <input type="text" id="atHmr1" placeholder="Enter AT HMR">
-                    </div>
-                    <div class="form-group">
-                        <label for="customerComplainClosedDate">Customer Complain Closed Date:</label>
-                        <input type="text" id="customerComplainClosedDate" placeholder="Enter Customer Complain Closed Date">
-                    </div>
-                    <div class="form-group">
-                        <label for="atHmr2">AT HMR:</label>
-                        <input type="text" id="atHmr2" placeholder="Enter AT HMR">
-                    </div>
-                </form>
-            </section>
-        </div>
-     
-    </section>
-    <br>
-    <br>
-   <section class="part-details-section">
-        <div class="left">Failed Part Details</div>
-        <div class="right">ACTION</div>
-    </section>
-    <section class="part-details-table">
-        <table class="details-table">
-            <thead>
-                <tr>
-                    <th>Sl No</th>
-                    <th>Uee Part No</th>
-                    <th>Description</th>
-                    <th>Qlt</th>
-                    <th>Repair/Reject/To Be Replaced</th>
-                </tr>
-            </thead>
-            <tbody id="table-body">
-                <tr>
-                    <td><input type="text" value="1" readonly></td>
-                    <td><input type="text" placeholder="Part001"></td>
-                    <td><input type="text" placeholder="Part Description"></td>
-                    <td><input type="text" placeholder="Good"></td>
-                    <td><input type="text" placeholder="To Be Replaced"></td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-    <div class="mb-3">
-        <label for="symptoms" class="form-label">Product Details:</label>
-        <textarea class="form-control" id="symptoms" rows="3"></textarea>
+<section class="installation-form">
+    <div class="form-group">
+        <label for="repNo"><strong>Rep No: </strong></label>
+        <div id="repNo" class="form-control">Loading...</div>
     </div>
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="systemStatus" class="form-label">Status Of System:</label>
-            <select class="form-select" id="systemStatus">
-                <option selected>Under Warranty</option>
-                <option>Out of Warranty</option>
-            </select>
-        </div>
+
+    <div class="form-group">
+        <label for="general-service-form"><u>GENERAL SERVICE FORM</u></label>
+        <input type="date" class="form-control" id="num">
     </div>
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="forUee" class="form-label">For UEE:</label>
-            <input type="text" class="form-control" id="forUee">
-        </div>
-        <div class="col-md-6">
-            <label for="forCustomer" class="form-label">For Customer:</label>
-            <input type="text" class="form-control" id="forCustomer">
-        </div>
+</section>
+
+<header class="sub-navbar">
+    <div class="navbar-item left">
+        <h3 style="margin: 0; color: #00bfa6;">CUSTOMER DETAILS</h3>
     </div>
-    <div class="button-container text-center mb-4">
-        <!-- <button class="btn btn-primary" id="saveButton">Save</button> -->
-        <button class="btn btn-secondary" id="printButton">Print</button>
-        <!-- <button class="btn btn-info" id="getReportButton">Get Report</button> -->
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+</header>
+
+
+<section class="installation-form1">
+    <div class="form-group">
+        <label for="className"><strong>Customer Name: </strong></label>
+        <input type="text" id="className" placeholder="Enter your name" required>
     </div>
+    <div class="form-group">
+        <label for="area"><strong>Area: </strong></label>
+        <input type="text" id="area" placeholder="Enter your area" required>
+    </div>
+</section>
+
+<section class="installation-form1">
+    <div class="form-group">
+        <label for="project"><strong>Project: </strong></label>
+        <input type="text" id="project" placeholder="Enter your project" required>
+    </div>
+    <div class="form-group">
+        <label for="poNoDate"><strong>PO No./Date: </strong></label>
+        <input type="text" id="poNoDate" placeholder="Enter Po No./Date" required>
+    </div>
+</section>
+
+<section class="installation-form1">
+    <div class="form-group">
+        <label for="eqptModel"><strong>Eqpt Model: </strong></label>
+        <input type="text" id="eqptModel" placeholder="Enter Equipment Model" required>
+    </div>
+    <div class="form-group">
+        <label for="eqptSiNo"><strong>Eqpt SI.No: </strong></label>
+        <input type="text" id="eqptSiNo" placeholder="Enter Equipment SI No" required>
+    </div>
+</section>
+
+<section class="installation-form1">
+    <div class="form-group">
+        <label for="customerComplainDate"><strong>Customer Complain Date: </strong></label>
+        <input type="text" id="customerComplainDate" placeholder="Enter Customer Complain Date" required>
+    </div>
+    <div class="form-group">
+        <label for="atHmr1"><strong>AT HMR: </strong></label>
+        <input type="text" id="atHmr1" placeholder="Enter AT HMR" required>
+    </div>
+</section>
+
+<section class="installation-form1">
+    <div class="form-group">
+        <label for="customerComplainClosedDate"><strong>Customer Complain Closed Date: </strong></label>
+        <input type="text" id="customerComplainClosedDate" placeholder="Enter Customer Complain Closed Date" required>
+    </div>
+    <div class="form-group">
+        <label for="atHmr2"><strong>AT HMR: </strong></label>
+        <input type="text" id="atHmr2" placeholder="Enter AT HMR" required>
+    </div>
+</section>
+
+<div class="section">
+    <header class="sub-navbar">
+        <div class="navbar-item left">
+            <h3 style="margin: 0; color: #00bfa6;">Failed Part Details</h3>
+        </div>
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+    <table class="details-table">
+        <thead>
+            <tr>
+                <th>Sl No</th>
+                <th>Uee Part No</th>
+                <th>Description</th>
+                <th>Qlt</th>
+                <th>Repair/Reject/To Be Replaced</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <tr>
+                <td><input type="text" value="1" readonly></td>
+                <td><input type="text" placeholder="Part001"></td>
+                <td><input type="text" placeholder="Part Description"></td>
+                <td><input type="text" placeholder="Good"></td>
+                <td><input type="text" placeholder="To Be Replaced"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="mb-3" style="padding: 40px;">
+    <label for="symptoms" class="form-label"><strong>Product Details: </strong></label>
+    <textarea class="form-control" id="symptoms" rows="3"></textarea>
+</div>
+
+<div class="row mb-3"style="padding: 40px;">
+    <div class="col-md-6">
+        <label for="systemStatus" class="form-label"><strong>Status Of System: </strong></label>
+        <select class="form-select" id="systemStatus">
+            <option selected>Under Warranty</option>
+            <option>Out of Warranty</option>
+        </select>
+    </div>
+</div>
+
+<div class="row mb-3"style="padding: 40px;">
+    <div class="col-md-6">
+        <label for="forUee" class="form-label"><strong>For UEE: </strong></label>
+        <input type="text" class="form-control" id="forUee" required>
+    </div>
+    <div class="col-md-6">
+        <label for="forCustomer" class="form-label"><strong>For Customer: </strong></label>
+        <input type="text" class="form-control" id="forCustomer" required>
+    </div>
+</div>
+
+<div class="button-container text-center mb-4">
+    <button class="btn btn-secondary" id="nextButton">Next</button>
+</div>
+
+
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-        // Function to get a cookie by its name
+      // Function to get a cookie by its name
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -656,42 +544,28 @@ function getCookie(name) {
 
 // Function to display form data from cookies
 function displayFormData() {
-    document.getElementById('num').value = decodeURIComponent(getCookie('field1') || 'Not Available');
-        document.getElementById('repNo').textContent = decodeURIComponent(getCookie('field33') || 'Not Available');
+    document.getElementById('num').value = decodeURIComponent(getCookie('field2') || 'Not Available');
+    document.getElementById('repNo').textContent = decodeURIComponent(getCookie('field1') || 'Not Available');
 
-    document.getElementById('className').value = decodeURIComponent(getCookie('field2') || 'Not Available');
-    document.getElementById('area').value = decodeURIComponent(getCookie('field3') || 'Not Available');
-    document.getElementById('project').value = decodeURIComponent(getCookie('field4') || 'Not Available');
-    document.getElementById('poNoDate').value = decodeURIComponent(getCookie('field5') || 'Not Available');
-    document.getElementById('eqptModel').value = decodeURIComponent(getCookie('field6') || 'Not Available');
-    document.getElementById('eqptSiNo').value = decodeURIComponent(getCookie('field7') || 'Not Available');
-    // document.getElementById('systemCondition').value = decodeURIComponent(getCookie('field7') || 'Not Available');
-    document.getElementById('customerComplainDate').value = decodeURIComponent(getCookie('field34') || 'Not Available');
-    document.getElementById('atHmr1').value = decodeURIComponent(getCookie('field8') || 'Not Available');
-    document.getElementById('customerComplainClosedDate').value = decodeURIComponent(getCookie('field9') || 'Not Available');
-    document.getElementById('atHmr2').value = decodeURIComponent(getCookie('field11') || 'Not Available');
-    
+    document.getElementById('className').value = decodeURIComponent(getCookie('field3') || 'Not Available');
+    document.getElementById('area').value = decodeURIComponent(getCookie('field4') || 'Not Available');
+    document.getElementById('project').value = decodeURIComponent(getCookie('field5') || 'Not Available');
+    document.getElementById('poNoDate').value = decodeURIComponent(getCookie('field6') || 'Not Available');
+    document.getElementById('eqptModel').value = decodeURIComponent(getCookie('field7') || 'Not Available');
+    document.getElementById('eqptSiNo').value = decodeURIComponent(getCookie('field8') || 'Not Available');
+    document.getElementById('customerComplainDate').value = decodeURIComponent(getCookie('field9') || 'Not Available');
+    document.getElementById('atHmr1').value = decodeURIComponent(getCookie('field10') || 'Not Available');
+    document.getElementById('customerComplainClosedDate').value = decodeURIComponent(getCookie('field11') || 'Not Available');
+    document.getElementById('atHmr2').value = decodeURIComponent(getCookie('field13') || 'Not Available');
 
-
-  
-
-    document.getElementById('symptoms').value = decodeURIComponent(getCookie('field13') || '');
-    document.getElementById('systemStatus').value = decodeURIComponent(getCookie('field13') || 'Under Warranty');
+    document.getElementById('symptoms').value = decodeURIComponent(getCookie('field33') || '');
+    // document.getElementById('systemStatus').value = decodeURIComponent(getCookie('field13') || 'Under Warranty');
     document.getElementById('forUee').value = decodeURIComponent(getCookie('field30') || '');
     document.getElementById('forCustomer').value = decodeURIComponent(getCookie('field31') || '');
-}https://api2.itstrending.in
+}
 
 // Call the function to display form data when the page loads
 document.addEventListener('DOMContentLoaded', displayFormData);
-
-
-// Function to get a cookie by its name
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null;
-}
 
 // Function to display part details from cookies
 function displayPartDetails() {
@@ -705,59 +579,32 @@ function displayPartDetails() {
         { start: 14, end: 17 },
         { start: 18, end: 21 },
         { start: 22, end: 25 },
-        { start: 26, end: 29 }
+        { start: 26, end: 29 },
     ];
 
-    // Loop through each field range to create table rows
     fieldRanges.forEach((range, index) => {
-        const ueePartNo = decodeURIComponent(getCookie(`field${range.start}`) || 'Part001');
-        const description = decodeURIComponent(getCookie(`field${range.start + 1}`) || 'Part Description');
-        const qlt = decodeURIComponent(getCookie(`field${range.start + 2}`) || 'Good');
-        const repairRejectReplace = decodeURIComponent(getCookie(`field${range.start + 3}`) || 'To Be Replaced');
-        
-        // Create a new row
-        const row = document.createElement('tr');
-        row.innerHTML = `
+        const partDetails = [
+            decodeURIComponent(getCookie(`field${range.start}`) || ''),
+            decodeURIComponent(getCookie(`field${range.start + 1}`) || ''),
+            decodeURIComponent(getCookie(`field${range.start + 2}`) || ''),
+            decodeURIComponent(getCookie(`field${range.end}`) || ''),
+            decodeURIComponent(getCookie(`field${range.end + 1}`) || ''),
+        ];
+
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
             <td><input type="text" value="${index + 1}" readonly></td>
-            <td><input type="text" value="${ueePartNo}" readonly></td>
-            <td><input type="text" value="${description}" readonly></td>
-            <td><input type="text" value="${qlt}" readonly></td>
-            <td><input type="text" value="${repairRejectReplace}" readonly></td>
+            <td><input type="text" value="${partDetails[0]}" placeholder="Part No"></td>
+            <td><input type="text" value="${partDetails[1]}" placeholder="Description"></td>
+            <td><input type="text" value="${partDetails[2]}" placeholder="Quantity"></td>
+            <td><input type="text" value="${partDetails[3]}" placeholder="Repair/Reject"></td>
         `;
-        tableBody.appendChild(row);
+        tableBody.appendChild(newRow);
     });
 }
 
 // Call the function to display part details when the page loads
 document.addEventListener('DOMContentLoaded', displayPartDetails);
-
-
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('printButton').addEventListener('click', function() {
-            const printButton = document.getElementById('printButton');
-            const backToFormButton = document.getElementById('backToFormButton'); // Ensure this button exists
-
-            if (printButton) {
-                printButton.style.display = 'none';
-            }
-            if (backToFormButton) {
-                backToFormButton.style.display = 'none';
-            }
-
-            window.print();
-
-            setTimeout(function() {
-                if (printButton) {
-                    printButton.style.display = 'inline-block';
-                }
-                if (backToFormButton) {
-                    backToFormButton.style.display = 'inline-block';
-                }
-            }, 1000); // Adjust delay as needed
-        });
-    });
 
 
 // Function to get cookie value by name
@@ -810,6 +657,14 @@ fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error('Fetch error:', error));
+
+
+
+  // Event listener for the Next button
+document.getElementById('nextButton').addEventListener('click', function() {
+    // Redirect to the next page (e.g., "nextPage.html")
+    window.location.href = 'report2.html'; // Change 'nextPage.html' to your desired URL
+});
 
     </script>
     

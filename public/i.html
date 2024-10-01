@@ -22,21 +22,6 @@
         <div class="navbar-item middle"></div>
         <div class="navbar-item right"></div>
     </header>
-     <!-- New Sub-header resembling the Navbar -->
-     <header class="sub-navbar">
-        <div class="navbar-item left">
-            <a href="GeneralServiceForm1.html" style="text-decoration: none;">
-                <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px;">General service Form</h3>
-            </a>
-            <br>
-            <a href="report2.html" style="text-decoration: none;">
-                <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px; margin-left: 100px;">General service report</h3>
-            </a>
-        </div>
-        
-        <div class="navbar-item middle"></div>
-        <div class="navbar-item right"></div>
-    </header>
     
     <div class="installation-form">
         <h2>Installation Form</h2>
@@ -191,6 +176,61 @@
         // Redirect to the next form/page
         window.location.href = 'installationform2.html';
     }
+
+
+
+// Function to get cookie value by name
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// Retrieve the token from cookies
+const authToken = getCookie('token'); // Replace 'authToken' with the actual cookie name
+
+// Retrieving values for fields from cookies
+const fields = {};
+for (let i = 1; i <= 42; i++) {
+  fields[`field${i}`] = getCookie(`field${i}`) || ""; // Retrieve field from cookie or set as empty string
+}
+
+// Preparing the request body with cookie values
+const raw = JSON.stringify({
+  "profile_id": "1",
+  "description": "",
+  "gender": "",
+  "images": "",
+  "bio": "",
+  ...fields, // Spread the fields object to include field1 to field40
+  "field43": "",
+  "field44": "",
+  "field45": "",
+  "field46": "",
+  "field47": "",
+  "field48": "",
+  "field49": "",
+  "field50": ""
+});
+
+const myHeaders = new Headers();
+myHeaders.append("Authorization", authToken); // Use the token from cookies
+myHeaders.append("Content-Type", "application/json");
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+// Correcting the URL by removing the extra "https://"
+fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error('Fetch error:', error));
+
+
      </script>
     
     

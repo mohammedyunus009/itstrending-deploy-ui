@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
                     // Redirect to login page after 5 seconds
                     setTimeout(() => {
-                        window.location.href = 'login.html';
+                        window.location.href = 'index.html';
                     }, 5000); // 5 seconds delay
                 })
                 .catch(error => {
