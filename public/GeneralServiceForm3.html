@@ -10,27 +10,87 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 <style>
-        body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
+      
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 100px; /* Prevent content from being hidden under the fixed navbar */
+}
 
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        background-color: #f7f7f7;
-        background-image: linear-gradient(to right, #1E90FF, #f7f7f7);    }
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    background-color: #002d50; /* Main dark blue background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    --bs-navbar-padding-x: 0;
+    --bs-navbar-padding-y: 0.0rem;
+}
 
-    .logo img {
-        height: 50px;
-    }
+/* Left section with 90% width */
+.navbar-item.left {
+    flex: 0 0 94%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
 
-    .nav-icons img {
-        height: 50px;
-        margin-left: 15px;
-    }
+.navbar-item.left .logo {
+    width: 200px;
+    margin-right: 15px;
+}
+
+.company-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.company-info img {
+    margin-left: 10px;
+    width: 30px;
+}
+
+/* Middle and Right sections with 5% width */
+.navbar-item.middle,
+.navbar-item.right {
+    flex: 0 0 3%;
+    height: 100%;
+}
+
+.navbar-item.middle {
+    background-color: #005b66;
+}
+
+.navbar-item.right {
+    background-color: #00bfa6;
+}
+/* Sub-header Styling */
+.sub-navbar {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    background-color: #002d50;
+    border-bottom: 2px solid #00bfa6;
+    position: relative;
+    z-index: 999;
+}
+
+.sub-navbar .navbar-item.left {
+    flex: 0 0 94%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
 
     input {
         border: 1px solid red;
@@ -41,21 +101,7 @@
         /* Optional: to add some padding inside the input */
     }
 
-    @media screen and (max-width: 600px) {
-        .navbar {
-            justify-content: space-between;
-            padding: 10px;
-        }
-
-        .logo img {
-            height: 30px;
-        }
-
-        .nav-icons img {
-            margin-left: 8px;
-            height: 30px;
-        }
-    }
+   
 
     /* headr */
     @media (max-width: 600px) {
@@ -63,66 +109,135 @@
             width: 100%;
         }
     }
+    /* General Card Styling */
+.card {
+    border: 1px solid black; /* Dark border to match the card */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 20px; /* Add space below the card */
+}
+
+.card-body {
+    padding: 15px; /* Padding inside the card */
+    border: 2px solid #00bfa6; /* Dark border to match the card */
+
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 20px; /* Space between form groups */
+}
+
+/* Form Label Styling */
+.form-control.border-black {
+    color: black; /* Match the label color to the card */
+    font-weight: bold; /* Make the text bold */
+    border: 2px solid #00bfa6; /* Add a black border around inputs */
+    border-radius:px; /* Rounded input edges */
+    padding: 10px; /* Padding inside the input box */
+}
+
+/* Input Field Styling */
+input.form-control {
+    width: 100%; /* Full width input */
+    padding: 8px 10px; /* Internal padding for input fields */
+    border: 2px solid #000; /* Add a black border */
+    border-radius: 5px; /* Rounded input edges */
+    box-sizing: border-box; /* Ensure padding doesn't affect total width */
+}
+
+/* Card Header Styling */
+.card-header {
+    background-color: #f8f9fa; /* Light background for the header */
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Button Styling */
+.submit-button {
+    background-color: #00bfa6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    display: block;
+    width: 100%; /* Full width button */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.submit-button:hover {
+    background-color: #008f7e; /* Darker shade on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-group {
+        margin-bottom: 15px; /* Less space between form groups on mobile */
+    }
+
+    input.form-control {
+        padding: 6px 8px; /* Reduce padding on mobile */
+    }
+
+    .submit-button {
+        font-size: 14px; /* Slightly smaller button text on mobile */
+    }
+}
+
+.h3, h3 {
+    font-size: 1.17rem;
+}
+
 </style>
 
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <img src="img/comapny log2.jpg" alt="Left Logo">
-        </div>
-        <div class="nav-icons">
-            <img src="img/mms.jpg" alt="Logo 1">
-            <img src="img/EGAC.png" alt="Logo 2">
-            <img src="img/IAF.png" alt="Logo 3">
-            <img src="img/NABCB.png" alt="Logo 4">
-        </div>
-        </nav>
-        
-        <nav class="navbar navbar-expand-md navbar-light bg-light">
-            <div class="container-fluid">
-              <!-- Left section: Toggler button for mobile view -->
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-          
-              <!-- Center section: Logo -->
-              <div class="header-left mb-3 mb-md-0">
-                <!-- <img src="comapny log2.jpg" alt="Logo" class="img-fluid logo-img" style="max-width: 200px;"> -->
-              </div>
-          
-              <!-- Right section: Navbar links -->
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                  <li class="nav-item dropdown me-2">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Pages
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
-                      <li><a class="dropdown-item" href="installationform1.html">Installation Form</a></li>
-                      <li><a class="dropdown-item" href="GeneralServiceForm1.html">General Service Form</a></li>
-                      <!-- <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li> -->
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownReport" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Report Page
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownReport">
-                      <li><a class="dropdown-item" href="installationreport.html">Installation Report</a></li>
-                      <li><a class="dropdown-item" href="report2.html">General Service Report</a></li>
-                      <!-- <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information Report</a></li> -->
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+    <header class="navbar">
+        <div class="navbar-item left">
+            <img src="comapny log2.jpg" alt="Logo" class="logo">
+            <div class="company-info">
+                <img src="img/mms.jpg" alt="Additional Image 1">
+                <img src="img/EGAC.png" alt="Additional Image 2">
+                <img src="img/IAF.png" alt="Additional Image 3">
+                <img src="img/NABCB.png" alt="Additional Image 4">
             </div>
-          </nav>
-    <section>
-        <div class="container mt-3">
+        </div>
+        
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+  <!-- New Sub-header resembling the Navbar -->
+  <header class="sub-navbar">
+    <div class="navbar-item left">
+        <a href="installationform1.html" style="text-decoration: none;">
+            <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px;">Installation form </h3>
+        </a>
+        <br>
+        <a href="installationreport.html" style="text-decoration: none;">
+            <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px; margin-left: 100px;">Installation report</h3>
+        </a>
+    </div>
+    
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+</header>
+ <!-- New Sub-header resembling the Navbar -->
+ <header class="sub-navbar">
+    <div class="navbar-item left">
+        <h3 style="margin: 0; color:#00bfa6 ;">Failed Parts Details</h3>
+    </div>
+    
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+</header>
+
+
+
+
             <div class="card border-dark">
-                <div class="card-header text-center bg-dark text-white">
-                    Failed Parts Details
-                </div>
+                
                 <div class="card-body" id="inputContainer">
                     <div class="form-group">
                         <label class="form-control border-black">Uee Part No</label>
@@ -142,7 +257,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+       
     </section>
 
     <br>
@@ -150,7 +265,7 @@
     <section>
         <div class="text-center mt-3">
             <button type="button" class="btn btn-primary" onclick="redirectToNextPage()">
-                <i class="fa-solid fa-arrow-right"></i><br>
+                Next<br>
             </button>
         </div>
     </section>

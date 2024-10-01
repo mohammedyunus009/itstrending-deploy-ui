@@ -1,375 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Navbar</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <title>Document</title>
+    <link href="css/i.css" rel="stylesheet">
+  <style>
+    /* Container for the Button */
+.container-btn {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    margin-top: 20px; /* Adds space above the button */
+}
 
+/* Button Styling */
+.btn-primary {
+    background-color: #00bfa6; /* Custom background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Button padding */
+    font-size: 16px; /* Button text size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.btn-primary:hover {
+    background-color: #008f7e; /* Darker shade on hover */
+}
+
+/* Full width button on mobile */
+@media (max-width: 768px) {
+    .btn-primary {
+        width: 100%; /* Full width for mobile */
+    }
+}
+
+  </style>
 </head>
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
-
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        background-color:#1E90FF;
-    }
-
-    .logo img {
-        height: 50px;
-    }
-
-    .nav-icons img {
-        height: 50px;
-        margin-left: 15px;
-    }
-
-    input {
-        border: 1px solid red;
-        /* Light black border */
-        border-radius: 4px;
-        /* Optional: for rounded corners */
-        padding: 5px;
-        /* Optional: to add some padding inside the input */
-    }
-
-    @media screen and (max-width: 600px) {
-        .navbar {
-            justify-content: space-between;
-            padding: 10px;
-        }
-
-        .logo img {
-            height: 30px;
-        }
-
-        .nav-icons img {
-            margin-left: 8px;
-            height: 30px;
-        }
-    }
-
-    /* headr */
-    @media (max-width: 600px) {
-        .table {
-            width: 100%;
-        }
-    }
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        background-color: #f7f7f7;
-        background-image: linear-gradient(to right, #1E90FF, #f7f7f7);    }
-
-    .logo img {
-        height: 50px;
-    }
-
-    .nav-icons img {
-        height: 50px;
-        margin-left: 15px;
-    }
-
-    input {
-        border: 1px solid black;
-        /* Light black border */
-        border-radius: 4px;
-        /* Optional: for rounded corners */
-        padding: 5px;
-        /* Optional: to add some padding inside the input */
-    }
-
-    @media screen and (max-width: 600px) {
-        .navbar {
-            justify-content: space-between;
-            padding: 10px;
-        }
-
-        .logo img {
-            height: 30px;
-        }
-
-        .nav-icons img {
-            margin-left: 8px;
-            height: 30px;
-        }
-    }
-
-    /* headr */
-    @media (max-width: 600px) {
-        .table {
-            width: 100%;
-        }
-    }
-    #form {
-  text-align: center; /* Center text horizontally */
-  vertical-align: middle; /* Center text vertically */
-  width: 100%; /* Ensure the cell takes up the full width */
-  padding: 10px; /* Optional padding */
-}
-
-.table {
-  width: 100%; /* Ensure the table takes up the full width */
-  table-layout: fixed; /* Ensures table cells expand evenly */
-}
-.small-input {
-    width: 100px;
-    padding: 5px;
-    font-size: 12px;
-}
-</style>
-
 <body>
-<nav class="navbar">
-<div class="logo">
-    <img src="img/comapny log2.jpg" alt="Left Logo">
-</div>
-<div class="nav-icons">
-    <img src="img/mms.jpg" alt="Logo 1">
-    <img src="img/EGAC.png" alt="Logo 2">
-    <img src="img/IAF.png" alt="Logo 3">
-    <img src="img/NABCB.png" alt="Logo 4">
-</div>
-</nav>
-
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="container-fluid">
-      <!-- Left section: Toggler button for mobile view -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <!-- Center section: Logo -->
-      <div class="header-left mb-3 mb-md-0">
-        <!-- <img src="comapny log2.jpg" alt="Logo" class="img-fluid logo-img" style="max-width: 200px;"> -->
-      </div>
-  
-      <!-- Right section: Navbar links -->
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item dropdown me-2">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Pages
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
-              <li><a class="dropdown-item" href="installationform1.html">Installation Form</a></li>
-              <li><a class="dropdown-item" href="GeneralServiceForm1.html">General Service Form</a></li>
-              <!-- <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li> -->
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownReport" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Report Page
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownReport">
-              <li><a class="dropdown-item" href="installationreport.html">Installation Report</a></li>
-              <li><a class="dropdown-item" href="report2.html">General Service Report</a></li>
-              <!-- <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information Report</a></li> -->
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-<header>
-<table class="table table-bordered table-container">
-    <tbody>
-        <tr>
-            <td class="text-center">
-                <input type="text" id="repNoInput" placeholder="Enter Serial no" class="small-input" />
-              </td>
-            <td class="text-center" id="form"><u>General Service Form</u></td>
-            <td class="text-center"></td>
-        </tr>
-    </tbody>
-</table>
-</header>
-<section>
-    <div class="container mt-3">
-        <div class="card border-dark">
-            <div class="card-header text-center bg-dark text-white">
-                Customer Details
-            </div>
-            <div class="card-body">
-                <!-- Date -->
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="reportDate" class="form-label">Date</label>
-                        <input type="date" class="form-control border-black" id="reportDate">
-                    </div>
-                </div>
-
-                <!-- Customer Name -->
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="customerName" class="form-label">Customer Name</label>
-                        <input type="text" id="customerName" class="form-control border-black" placeholder="Enter Your Name">
-                    </div>
-                </div>
-
-                <!-- Area -->
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="customerArea" class="form-label">Area</label>
-                        <input type="text" class="form-control border-black" id="customerArea" >
-                    </div>
-                </div>
-
-                <!-- Project -->
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="customerProject" class="form-label">Project</label>
-                        <input type="text" class="form-control border-black" id="customerProject">
-                    </div>
-                </div>
-
-                <!-- PO NO/Date -->
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="poNoDate" class="form-label">PO No./Date</label>
-                        <input type="text" class="form-control border-black" id="poNoDate">
-                    </div>
-                </div>
-
-                <!-- Eqpt Model -->
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="eqptModel" class="form-label">Eqpt Model</label>
-                        <input type="text" class="form-control border-black" id="eqptModel">
-                    </div>
-                </div>
-
-                <!-- Eqpt Sl No -->
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="eqptSlNo" class="form-label">Eqpt Sl No</label>
-                        <input type="text" class="form-control border-black" id="eqptSlNo">
-                    </div>
-                </div>
-
-                <!-- Customer Complain Date -->
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="complainDate" class="form-label">Customer Complain Date</label>
-                        <input type="date" class="form-control border-black" id="complainDate">
-                    </div>
-                </div>
-
-                <!-- AT HMR -->
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="atHMR" class="form-label">AT HMR</label>
-                        <input type="text" class="form-control border-black" id="atHMR1">
-                    </div>
-                </div>
-
-                <!-- Customer Complain Closed Date -->
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="complainClosedDate" class="form-label">Customer Complain Closed Date</label>
-                        <input type="date" class="form-control border-black" id="complainClosedDate">
-                    </div>
-                </div>
-
-                <!-- AT HMR (Duplicate) -->
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="atHMR" class="form-label">AT HMR Closed</label>
-                        <input type="text" class="form-control border-black" id="atHMR2">
-                    </div>
-                </div>
-                <div class="container-btn text-center">
-                    <button type="button" class="btn btn-primary" onclick="redirectToNextPage()">
-                        <i class="fa-solid fa-arrow-right"></i> Next
-                    </button>
-                </div>
+    <header class="navbar">
+        <div class="navbar-item left">
+            <img src="comapny log2.jpg" alt="Logo" class="logo">
+            <div class="company-info">
+                <img src="img/mms.jpg" alt="Additional Image 1">
+                <img src="img/EGAC.png" alt="Additional Image 2">
+                <img src="img/IAF.png" alt="Additional Image 2">
+                <img src="img/NABCB.png" alt="Additional Image 2">
             </div>
         </div>
-    </div></button>
-</section>
+        
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+      <!-- New Sub-header resembling the Navbar -->
+      <header class="sub-navbar">
+        <div class="navbar-item left">
+            <a href="installationform1.html" style="text-decoration: none;">
+                <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px;">Installation Form</h3>
+            </a>
+            <br>
+            <a href="installationreport.html" style="text-decoration: none;">
+                <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px; margin-left: 100px;">Installation report</h3>
+            </a>
+        </div>
+        
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+    <div class="installation-form">
+        <h2>General Service Form</h2>
+        <div class="underline"></div>
+        <label for="serial-number"><strong>Serial Number: </strong></label>
+        <input type="text" id="serial-number" name="serial-number" placeholder="Enter Serial Number" required>
+    </div>
+    
+    <!-- New Sub-header resembling the Navbar -->
+    <header class="sub-navbar">
+        <div class="navbar-item left">
+            <h3 style="margin: 0; color:#00bfa6 ;">Customer Details</h3>
+        </div>
+        
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+         
+    <div class="installation-form1">
+        <!-- Customer Details Field -->
+        <div class="form-group">
+            <label for="reportDate"><strong>Date : </strong></label>
+            <input type="text" id="reportDate" name="customer-details" placeholder="DD/MM/YYYY" required>
+        </div>
+    
+        
+        <div class="form-group project-field">
+            <label for="customerName"><strong>Customer Name: </strong></label>
+            <input type="text" id="customerName" placeholder="Enter Your Name">
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        
+        <div class="form-group">
+            <label for="customerArea"><strong>Customer Area: </strong></label>
+            <input type="text" id="customerArea" >
+        </div>
+    
+        <div class="form-group">
+            <label for="customerProject"><strong>Project: </strong></label>
+            <input type="text" id="customerProject">
+        </div>
+    </div>
+    
+   
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="poNoDate"><strong>PO No./Date: </strong></label>
+            <input type="text" id="poNoDate">
+        </div>
+    
+        <div class="form-group">
+            <label for="eqptModel"><strong>Eqpt Model: </strong></label>
+            <input type="text" id="eqptModel">
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="eqptSlNo"><strong>Eqpt Sl No: </strong></label>
+            <input type="text" id="eqptSlNo">
+        </div>
+
+        <div class="form-group">
+            <label for="complainDate"><strong>Customer Complain Date: </strong></label>
+            <input type="text" id="complainDate" placeholder="dd/mm/yyyy" >
+        </div>
+    </div>
 
 
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="complainDescription"><strong>AT HMR: </strong></label>
+            <input type="text" id="complainDescription" rows="3" placeholder="Describe the complaint here">
+        </div>
+    
+        <div class="form-group">
+            <label for="serviceTaken"><strong>Customer Complain Closed Date: </strong></label>
+            <input type="text" id="serviceTaken">
+        </div>
+   
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="technicianName"><strong>AT HMR Closed: </strong></label>
+            <input type="text" id="technicianname">
+        </div>
+    </div>
+    
+     <!-- Submit Button -->
+     <div class="container-btn text-center">
+        <button type="submit" class="btn btn-primary">Next</button>
+     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <script>
-     document.addEventListener("DOMContentLoaded", function () {
-    var min = 600;
-    var max = 700;
-    var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    // Display the random number in the element with id "repNo"
-    var repNoElement = document.getElementById("repNo");
-    repNoElement.textContent = randomNumber;
-
-    // Store the random number in cookies using the structure you mentioned
-    document.cookie = "field10=" + encodeURIComponent(repNoElement.textContent) + "; path=/";
-});
-
-;
-
-function setCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-        let date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
+     <script>
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
 
-function saveFormData() {
-    const reportDate = document.getElementById('reportDate').value;
-    const customerName = document.getElementById('customerName').value;
-    const customerArea = document.getElementById('customerArea').value;
-    const customerProject = document.getElementById('customerProject').value;
-    const poNoDate = document.getElementById('poNoDate').value;
-    const eqptModel = document.getElementById('eqptModel').value;
-    const eqptSlNo = document.getElementById('eqptSlNo').value;
-    const complainDate = document.getElementById('complainDate').value;
-    const atHMR1 = document.getElementById('atHMR1').value;
-    const complainClosedDate = document.getElementById('complainClosedDate').value;
-    const atHMR2 = document.getElementById('atHMR2').value;
-    const  repNo= document.getElementById('repNoInput').value;
+    // Function to get the value of a cookie
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
 
+    // Function to store form data into cookies when the form is submitted
+    document.querySelector(".container-btn button").addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent form submission
+        
+        // Get form data
+        const serialNumber = document.getElementById("serial-number").value;
+        const reportDate = document.getElementById("reportDate").value;
+        const customerName = document.getElementById("customerName").value;
+        const customerArea = document.getElementById("customerArea").value;
+        const customerProject = document.getElementById("customerProject").value;
+        const poNoDate = document.getElementById("poNoDate").value;
+        const eqptModel = document.getElementById("eqptModel").value;
+        const eqptSlNo = document.getElementById("eqptSlNo").value;
+        const complainDate = document.getElementById("complainDate").value;
+        const complainDescription = document.getElementById("complainDescription").value;
+        const serviceTaken = document.getElementById("serviceTaken").value;
+        const technicianName = document.getElementById("technicianname").value;
+
+        // Store each field value into cookies
+        setCookie("field1", serialNumber, 7);
+        setCookie("field2", reportDate, 7);
+        setCookie("field3", customerName, 7);
+        setCookie("field4", customerArea, 7);
+        setCookie("field5", customerProject, 7);
+        setCookie("field6", poNoDate, 7);
+        setCookie("field7", eqptModel, 7);
+        setCookie("field8", eqptSlNo, 7);
+        setCookie("field9", complainDate, 7);
+        setCookie("field10", complainDescription, 7);
+        setCookie("field11", serviceTaken, 7);
+        setCookie("field13", technicianName, 7);
+
+        // Redirect to the next page or perform any additional action
+        window.location.href = "GeneralServiceForm2.html";  // Redirect after storing cookies
+    });
+</script>
+
+   
     
-    setCookie('field1', reportDate, 1);
-    setCookie('field2', customerName, 1);
-    setCookie('field3', customerArea, 1);
-    setCookie('field4', customerProject, 1);
-    setCookie('field5', poNoDate, 1);
-    setCookie('field6', eqptModel, 1);
-    setCookie('field7', eqptSlNo, 1);
-    setCookie('field34', complainDate, 1);
-    setCookie('field8', atHMR1, 1);
-    setCookie('field9', complainClosedDate, 1);
-    setCookie('field11', atHMR2, 1);
-    setCookie('field33', repNo, 1);
-
     
-}
 
-function redirectToNextPage() {
-    saveFormData();
-    window.location.href = 'GeneralServiceForm2.html';
-}
-
-
-    </script>
 </body>
-
 </html>
