@@ -34,7 +34,7 @@
     const profileDataRaw = localStorage.getItem('profileData');
     const profileData = profileDataRaw ? JSON.parse(decodeURIComponent(profileDataRaw)) : null;
 
-    // Function to generate PDF
+    // Function to generate and download the PDF
     function generatePDF() {
       const doc = new jsPDF();
 
@@ -106,12 +106,18 @@
       doc.text('4) The warranty does not cover faults resulting from operation careless handling or not following instructions.', 10, y + 30);
       doc.text('   Also, electric shock cases.', 10, y + 40);
 
-      // Save the PDF
+      // Automatically trigger PDF download
       doc.save('warranty_card.pdf');
     }
 
-    // Generate PDF directly when the page loads
-    window.onload = generatePDF;
+    // Wait for the DOM to load before generating the PDF
+    window.addEventListener('DOMContentLoaded', (event) => {
+      if (profileData) {
+        generatePDF();
+      } else {
+        alert('No profile data available to generate PDF.');
+      }
+    });
   </script>
 </body>
 </html>

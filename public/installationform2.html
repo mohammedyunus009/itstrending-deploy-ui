@@ -1,314 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSTALLATION FORM</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
-</head>
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
+    <title>Document</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 30px; /* Prevent content from being hidden under the fixed navbar */
+        }
 
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        background-color: #f7f7f7;
-        background-image: linear-gradient(to right, #1E90FF, #f7f7f7);    }
-
-    .logo img {
-        height: 50px;
-    }
-
-    .nav-icons img {
-        height: 50px;
-        margin-left: 15px;
-    }
-
-    input {
-        border: 1px solid red;
-        /* Light black border */
-        border-radius: 4px;
-        /* Optional: for rounded corners */
-        padding: 5px;
-        /* Optional: to add some padding inside the input */
-    }
-
-    @media screen and (max-width: 600px) {
+        /* Navbar Styling */
         .navbar {
-            justify-content: space-between;
-            padding: 10px;
-        }
-
-        .logo img {
-            height: 30px;
-        }
-
-        .nav-icons img {
-            margin-left: 8px;
-            height: 30px;
-        }
-    }
-
-    /* headr */
-    @media (max-width: 600px) {
-        .table {
+            display: flex;
             width: 100%;
+            height: 100px;
+            align-items: center;
+            background-color: #002d50; /* Main dark blue background */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
-    }
 
-    .card-header {
-            background-color: #f8f9fa;
+        /* Left section with 90% width */
+        .navbar-item.left {
+            flex: 0 0 94%;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
         }
-        .header-text {
-            font-size: 1.25rem;
+
+        .navbar-item.left .logo {
+            width: 200px;
+            margin-right: 15px;
         }
-        .result {
-            font-size: 1.5rem;
-            font-weight: bold;
+
+        .company-info {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-grow: 1;
+        }
+
+        .company-info img {
+            margin-left: 10px;
+            width: 30px;
+            height: 30px; /* Maintain aspect ratio inside the box */
+        }
+
+        /* Middle and Right sections with 5% width */
+        .navbar-item.middle,
+        .navbar-item.right {
+            flex: 0 0 3%;
+            height: 100%;
+        }
+
+        .navbar-item.middle {
+            background-color: #005b66;
+        }
+
+        .navbar-item.right {
+            background-color: #00bfa6;
+        }
+
+        /* Sub-header Styling */
+        .sub-navbar {
+            display: flex;
+            width: 100%;
+            height: 60px;
+            align-items: center;
+            background-color: #002d50;
+            border-bottom: 2px solid #00bfa6;
+            position: relative;
+            z-index: 999;
+            margin-top: 70px; /* Adjust the value as needed */
+        }
+
+        .sub-navbar .navbar-item.left {
+            flex: 0 0 94%;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+        }
+
+        /* Checkbox Styling */
+        .status-checkbox {
+            width: 20px; /* Set a width for checkboxes */
+            height: 20px; /* Set a height for checkboxes */
+            margin-right: 5px; /* Space between checkbox and label */
+            accent-color: #00bfa6; /* Change checkbox color on check (for modern browsers) */
+        }
+
+      /* Label Styling */
+.form-label {
+    color: black; /* Match the label color to the header color */
+    font-weight: bold; /* Make the text bold */
+}
+
+        /* Card Body Styling */
+        .card-body {
+            padding: 15px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .col-md-6 {
+            flex: 0 0 48%; /* Adjust width to allow space between columns */
+        }
+
+           /* Button Styling */
+        .submit-button {
+            background-color: #00bfa6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
             margin-top: 20px;
+            display: block;
+            width: 100%; /* Full width button */
         }
-</style>
+
+        .submit-button:hover {
+            background-color: #008f7e; /* Darker shade on hover */
+        }
+        
+    </style>
+</head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <img src="img/comapny log2.jpg" alt="Left Logo">
+   
+<header class="navbar">
+    <div class="navbar-item left">
+        <img src="comapny log2.jpg" alt="Logo" class="logo">
+        <div class="company-info">
+            <img src="img/mms.jpg" alt="Additional Image 1">
+            <img src="img/EGAC.png" alt="Additional Image 2">
+            <img src="img/IAF.png" alt="Additional Image 3">
+            <img src="img/NABCB.png" alt="Additional Image 4">
         </div>
-        <div class="nav-icons">
-            <img src="img/mms.jpg" alt="Logo 1">
-            <img src="img/EGAC.png" alt="Logo 2">
-            <img src="img/IAF.png" alt="Logo 3">
-            <img src="img/NABCB.png" alt="Logo 4">
-        </div>
-    </nav>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-  <div class="container-fluid">
-    <!-- Left section: Toggler button for mobile view -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Center section: Logo -->
-    <div class="header-left mb-3 mb-md-0">
-      <!-- <img src="comapny log2.jpg" alt="Logo" class="img-fluid logo-img" style="max-width: 200px;"> -->
     </div>
-
-    <!-- Right section: Navbar links -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item dropdown me-2">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Pages
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
-            <li><a class="dropdown-item" href="installationform1.html">Installation Form</a></li>
-            <li><a class="dropdown-item" href="GeneralServiceForm1.html">General Service Form</a></li>
-            <!-- <li><a class="dropdown-item" href="vehicleOwner.html">Vehicle Owner Information Form</a></li> -->
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownReport" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Report Page
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownReport">
-            <li><a class="dropdown-item" href="installationreport.html">Installation Report</a></li>
-            <li><a class="dropdown-item" href="report2.html">General Service Report</a></li>
-            <!-- <li><a class="dropdown-item" href="report3.html">Vehicle Owner Information Report</a></li> -->
-          </ul>
-        </li>
-      </ul>
+    
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+</header>
+  <!-- New Sub-header resembling the Navbar -->
+  <header class="sub-navbar">
+    <div class="navbar-item left">
+        <a href="GeneralServiceForm1.html" style="text-decoration: none;">
+            <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px;">General service Form</h3>
+        </a>
+        <br>
+        <a href="report2.html" style="text-decoration: none;">
+            <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px;     margin-left: 100px;">General service report</h3>
+        </a>
     </div>
-  </div>
-</nav>
-<div class="container mt-3">
-    <div class="card border-dark">
-        <!-- Welding of MS Parts Section -->
-        <div class="card-header">
-            <ul class="list-unstyled mb-0">
-                <li class="d-flex align-items-center">
-                    <li>
-                        <span class="header-text"><b>1. Welding of MS Parts</b></span>
-                    </li>
-                </li>
-            </ul>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="welding1" class="form-label">1) DCP Cylinder Mounting Bracket - 50/20</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field13" value="OK"> Ok
-                    <input type="checkbox" class="status-checkbox" name="field13" value="Not OK"> Not Ok
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="welding2" class="form-label">2) Distributor Pad</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field14" value="OK"> Ok
-                    <input type="checkbox" class="status-checkbox" name="field14" value="Not OK"> Not Ok
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="welding3" class="form-label">3) Nozzle Bracket</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field15" value="OK">  Ok
-                    <input type="checkbox" class="status-checkbox" name="field15" value="Not OK"> Not Ok
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="welding4" class="form-label">4) Automatic Actuator Bracket Pad</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field16" value="OK">  Ok
-                    <input type="checkbox" class="status-checkbox" name="field16" value="Not OK"> Not Ok
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="welding5" class="form-label">5) Manual Actuator Bracket Pad</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field17" value="OK">  Ok
-                    <input type="checkbox" class="status-checkbox" name="field17" value="Not OK"> Not Ok
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="welding6" class="form-label">6) Control Unit Pad</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field18" value="OK">  Ok
-                    <input type="checkbox" class="status-checkbox" name="field18" value="Not OK"> Not Ok
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="welding7" class="form-label">7) Sensor Wire Routing Bosses 8MM</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field19" value="OK">  Ok
-                    <input type="checkbox" class="status-checkbox" name="field19" value="Not OK"> Not Ok
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="welding8" class="form-label">8) Fitment of DCP Cylinder - 50/25</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field20" value="OK">  Ok
-                    <input type="checkbox" class="status-checkbox" name="field20" value="Not OK"> Not Ok
-                </div>
-            </div>
-        </div>
+    
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+</header>
+<!-- New Sub-header resembling the Navbar -->
+<header class="sub-navbar">
+    <div class="navbar-item left">
+        <h3 style="margin: 0; color:#00bfa6;">1. Welding of MS Parts</h3>
+    </div>
+    
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+</header>
 
-        <!-- Fitment of all Nozzles Section -->
-        <div class="card-header">
-            <ul class="list-unstyled mb-0">
-                <li class="d-flex align-items-center">
-                    <li>
-                        <span class="header-text"><b>2. Fitment of all Nozzles</b></span>
-                    </li>
-                </li>
-            </ul>
+<div class="card-body">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="welding1" class="form-label">1) DCP Cylinder Mounting Bracket - 50/20</label>
         </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="nozzle1" class="form-label">1) Fitment of Nozzles along with protective caps</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field21" value="OK">  Ok
-                    <input type="checkbox" class="status-checkbox" name="field21" value="Not OK"> Not Ok
-                </div>
-            </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field13" value="OK"> Ok
+            <input type="checkbox" class="status-checkbox" name="field13" value="Not OK"> Not Ok
         </div>
-
-        <!-- Fitment of Nitrogen Cartridge Section -->
-        <div class="card-header">
-            <ul class="list-unstyled mb-0">
-                <li class="d-flex align-items-center">
-                    <li>
-                        <span class="header-text"><b>3. Fitment of Nitrogen Cartridge</b></span>
-                    </li>
-                </li>
-            </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="welding2" class="form-label">2) Distributor Pad</label>
         </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="nitrogen1" class="form-label">1) Fitment of Nitrogen Cartridge along with protective caps</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field22" value="OK">  Ok
-                    <input type="checkbox" class="status-checkbox" name="field22" value="Not OK"> Not Ok
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="nitrogen2" class="form-label">2) Nitrogen Cartridge inside the cabin</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field23" value="OK">  Ok
-                    <input type="checkbox" class="status-checkbox" name="field23" value="Not OK"> Not Ok
-                </div>
-            </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field14" value="OK"> Ok
+            <input type="checkbox" class="status-checkbox" name="field14" value="Not OK"> Not Ok
         </div>
-
-        <!-- Fitment of all Hoses Section -->
-        <div class="card-header">
-            <ul class="list-unstyled mb-0">
-                <li class="d-flex align-items-center">
-                    <li>
-                        <span class="header-text"><b>4. Fitment of all Hoses</b></span>
-                    </li>
-                </li>
-            </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="welding3" class="form-label">3) Nozzle Bracket</label>
         </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="hose1" class="form-label">1) 3/4"R2, 1/2"R2, 1/4"R2 Hose</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="checkbox" class="status-checkbox" name="field24" value="OK">  Ok
-                    <input type="checkbox" class="status-checkbox" name="field24" value="Not OK"> Not Ok
-                </div>
-            </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field15" value="OK"> Ok
+            <input type="checkbox" class="status-checkbox" name="field15" value="Not OK"> Not Ok
         </div>
-<!-- Sensor Wire Routing Section -->
-<div class="card-header">
-    <ul class="list-unstyled mb-0">
-        <li class="d-flex align-items-center">
-            <li>
-                <span class="header-text"><b>5.Electrical Connections</b></span>
-            </li>
-        </li>
-    </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="welding4" class="form-label">4) Automatic Actuator Bracket Pad</label>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field16" value="OK"> Ok
+            <input type="checkbox" class="status-checkbox" name="field16" value="Not OK"> Not Ok
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="welding5" class="form-label">5) Manual Actuator Bracket Pad</label>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field17" value="OK"> Ok
+            <input type="checkbox" class="status-checkbox" name="field17" value="Not OK"> Not Ok
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="welding6" class="form-label">6) Control Unit Pad</label>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field18" value="OK"> Ok
+            <input type="checkbox" class="status-checkbox" name="field18" value="Not OK"> Not Ok
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="welding7" class="form-label">7) Sensor Wire Routing Bosses 8MM</label>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field19" value="OK"> Ok
+            <input type="checkbox" class="status-checkbox" name="field19" value="Not OK"> Not Ok
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="welding8" class="form-label">8) Fitment of DCP Cylinder - 50/25</label>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field20" value="OK"> Ok
+            <input type="checkbox" class="status-checkbox" name="field20" value="Not OK"> Not Ok
+        </div>
+    </div>
 </div>
+
+<!-- New Sub-header resembling the Navbar -->
+<header class="sub-navbar">
+    <div class="navbar-item left">
+        <h3 style="margin: 0; color:#00bfa6;">2. Fitment of all Nozzles</h3>
+    </div>
+    
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+    
+</header>
+<div class="card-body">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="nozzle1" class="form-label">1) Fitment of Nozzles along with protective caps</label>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field21" value="OK">  Ok
+            <input type="checkbox" class="status-checkbox" name="field21" value="Not OK"> Not Ok
+        </div>
+    </div>
+</div>
+
+
+<!-- New Sub-header resembling the Navbar -->
+<header class="sub-navbar">
+    <div class="navbar-item left">
+        <h3 style="margin: 0; color:#00bfa6;">3. Fitment of Nitrogen Cartridge</h3>
+    </div>
+    
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+    
+</header>
+<div class="card-body">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="nitrogen1" class="form-label">1) Fitment of Nitrogen Cartridge along with protective caps</label>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field22" value="OK">  Ok
+            <input type="checkbox" class="status-checkbox" name="field22" value="Not OK"> Not Ok
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="nitrogen2" class="form-label">2) Nitrogen Cartridge inside the cabin</label>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field23" value="OK">  Ok
+            <input type="checkbox" class="status-checkbox" name="field23" value="Not OK"> Not Ok
+        </div>
+    </div>
+</div>
+
+
+<!-- New Sub-header resembling the Navbar -->
+<header class="sub-navbar">
+    <div class="navbar-item left">
+        <h3 style="margin: 0; color:#00bfa6;">4. Fitment of all Hoses</h3>
+    </div>
+    
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+    
+</header>
+<div class="card-body">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="hose1" class="form-label">1) 3/4"R2, 1/2"R2, 1/4"R2 Hose</label>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="checkbox" class="status-checkbox" name="field24" value="OK">  Ok
+            <input type="checkbox" class="status-checkbox" name="field24" value="Not OK"> Not Ok
+        </div>
+    </div>
+</div>
+
+<!-- New Sub-header resembling the Navbar -->
+<header class="sub-navbar">
+    <div class="navbar-item left">
+        <h3 style="margin: 0; color:#00bfa6;">5.Electrical Connections</h3>
+    </div>
+    
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+    
+</header>
+
 <div class="card-body">
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="sensor1" class="form-label">1) Sensor Wire Routing</label>
         </div>
         <div class="col-md-6 mb-3">
-            <input type="checkbox" class="status-checkbox" name="field26" value="OK">  Ok
-            <input type="checkbox" class="status-checkbox" name="field26" value="Not OK"> Not Ok
+            <input type="checkbox" class="status-checkbox" name="field25" value="OK">  Ok
+            <input type="checkbox" class="status-checkbox" name="field25" value="Not OK"> Not Ok
         </div>
     </div>
 
@@ -320,8 +358,8 @@
             <label for="sensor1" class="form-label">1) Control Unit Connections including Sensor</label>
         </div>
         <div class="col-md-6 mb-3">
-            <input type="checkbox" class="status-checkbox" name="field27" value="OK">  Ok
-            <input type="checkbox" class="status-checkbox" name="field27" value="Not OK"> Not Ok
+            <input type="checkbox" class="status-checkbox" name="field26" value="OK">  Ok
+            <input type="checkbox" class="status-checkbox" name="field26" value="Not OK"> Not Ok
         </div>
     </div>
 
@@ -331,139 +369,147 @@
             <label for="sensor2" class="form-label">2) Wire, SP Adaptor, and Battery Connections</label>
         </div>
         <div class="col-md-6 mb-3">
-            <input type="checkbox" class="status-checkbox" name="field28" value="OK">  Ok
-            <input type="checkbox" class="status-checkbox" name="field28" value="Not OK"> Not Ok
+            <input type="checkbox" class="status-checkbox" name="field27" value="OK">  Ok
+            <input type="checkbox" class="status-checkbox" name="field27" value="Not OK"> Not Ok
         </div>
     </div>
 </div>
-
-<!-- Control Unit Start Section -->
-<div class="card-header">
-    <ul class="list-unstyled mb-0">
-        <li class="d-flex align-items-center">
-            <li>
-                <span class="header-text"><b>6. Control Unit Start</b></span>
-            </li>
-        </li>
-    </ul>
 </div>
+
+
+<!-- New Sub-header resembling the Navbar -->
+<header class="sub-navbar">
+    <div class="navbar-item left">
+        <h3 style="margin: 0; color:#00bfa6;">6. Control Unit Start</h3>
+    </div>
+    
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+    
+</header>
+
+
 <div class="card-body">
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="control1" class="form-label">1) Glow of Power OK LED:</label>
         </div>
         <div class="col-md-6 mb-3">
-            <input type="checkbox" class="status-checkbox" name="field29" value="OK">  Ok
-            <input type="checkbox" class="status-checkbox" name="field29" value="Not OK"> Not Ok
+            <input type="checkbox" class="status-checkbox" name="field28" value="OK">  Ok
+            <input type="checkbox" class="status-checkbox" name="field28" value="Not OK"> Not Ok
         </div>
+
     </div>
+    <div id="result" class="result"></div>
+
+    <button class="submit-button">Next</button>
+
 </div>
-<div id="result" class="result"></div>
+</div>
 
-<!-- <button class="btn btn-primary mt-3" onclick="evaluateSelection()">Check Results</button> -->
 
-        </div>
+<script>
+    // Select all checkboxes with the class 'status-checkbox'
+const checkboxes = document.querySelectorAll('.status-checkbox');
 
-    </div>
-    </div>
-            <div class="card-footer text-center">
-                <button type="button" class="btn btn-primary" onclick="submitForm();">
-                    <i class="fa-solid fa-arrow-right"></i> Next
-                </button>
-            </div>
-
-        </div>
-    </div>
-    
-    <script>
-        function setCookie(name, value, days) {
-            let expires = "";
-            if (days) {
-                const date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        // Function to get a cookie
-        function getCookie(name) {
-            const nameEQ = name + "=";
-            const ca = document.cookie.split(';');
-            for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
-        function evaluateSelection() {
-    let checkboxes = document.querySelectorAll('.status-checkbox');
-    let hasNotOk = false;
-
-    // Iterate over all checkboxes to determine their state
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked && checkbox.value === 'Not OK') {
-            hasNotOk = true;
+// Add event listeners to each checkbox
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        // If this checkbox is checked
+        if (this.checked) {
+            // Find all checkboxes with the same name
+            const group = document.getElementsByName(this.name);
+            group.forEach(item => {
+                // Uncheck all other checkboxes in the group
+                if (item !== this) {
+                    item.checked = false;
+                }
+            });
         }
     });
-
-    // Determine result
-    let resultText = hasNotOk ? 'Faults in the System' : 'Working in Normal Conditions';
-    let resultColor = hasNotOk ? 'red' : 'green';
-
-    // Display result in the result div
-    let resultDiv = document.getElementById('result');
-    resultDiv.textContent = resultText;
-    resultDiv.style.color = resultColor;
-
-    // Store result in cookies
-    setCookie('field8', resultText, 1); // Store for 1 day
-}
-
-// Function to set a cookie
-function setCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-        let date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
-
-// Attach event listeners to checkboxes
-document.querySelectorAll('.status-checkbox').forEach(checkbox => {
-    checkbox.addEventListener('input', evaluateSelection);
 });
 
 
-        // Handle single checkbox selection
-        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
-                let name = this.name;
-                document.querySelectorAll(`input[name="${name}"]`).forEach(otherCheckbox => {
-                    if (otherCheckbox !== this && otherCheckbox.checked) {
-                        otherCheckbox.checked = false;
-                    }
-                });
+ // Function to set a cookie
+ function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
 
-                // Store selected values in cookies
-                if (this.checked) {
-                    document.cookie = `${this.name}=${this.value}; path=/`;
-                } else {
-                    document.cookie = `${this.name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-                }
-            });
+    // Function to get a cookie
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    // Function to evaluate the selection of checkboxes
+    function evaluateSelection() {
+        let checkboxes = document.querySelectorAll('.status-checkbox');
+        let hasNotOk = false;
+
+        // Iterate over all checkboxes to determine their state
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked && checkbox.value === 'Not OK') {
+                hasNotOk = true;
+            }
         });
 
-        // Example function to redirect after form submission
-        function submitForm() {
-            // Perform any validation or processing needed here
-            window.location.href = 'installationform3.html'; // Redirect to the next page
-        }
-    </script>
-</body>
+        // Determine result
+        let resultText = hasNotOk ? 'Faults in the System' : 'Working in Normal Conditions';
+        let resultColor = hasNotOk ? 'red' : 'green';
 
+        // Display result in the result div
+        let resultDiv = document.getElementById('result');
+        resultDiv.textContent = resultText;
+        resultDiv.style.color = resultColor;
+
+        // Store result in cookies
+        setCookie('field29', resultText, 1); // Store for 1 day
+    }
+
+    // Attach event listeners to checkboxes
+    document.querySelectorAll('.status-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('input', evaluateSelection);
+    });
+
+    // Handle single checkbox selection and store in cookies
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            let name = this.name;
+            document.querySelectorAll(`input[name="${name}"]`).forEach(otherCheckbox => {
+                if (otherCheckbox !== this && otherCheckbox.checked) {
+                    otherCheckbox.checked = false; // Uncheck other checkboxes
+                }
+            });
+
+            // Store selected values in cookies
+            if (this.checked) {
+                setCookie(this.name, this.value, 1); // Store checked value
+            } else {
+                setCookie(this.name, '', -1); // Expire the cookie if unchecked
+            }
+        });
+    });
+
+    // Function to handle form submission and redirect
+    function submitForm() {
+        // Perform any validation or processing needed here
+        window.location.href = 'installationform3.html'; // Redirect to the next page
+    }
+
+    // Attach event listener to the submit button
+    document.querySelector('.submit-button').addEventListener('click', submitForm);
+</script>
+</body>
 </html>
