@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Service Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            border: 1px solid #000;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4 {
+            text-align: center;
+        }
+
+        .report-table, .checklist-table, .failed-parts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .report-table td, .checklist-table th, .checklist-table td, .failed-parts-table th, .failed-parts-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .checklist-table th {
+            background-color: #f2f2f2;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .warranty-status {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .for-user {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        /* Use flexbox to arrange the tables side by side */
+        .table-wrapper {
+            display: flex;
+            /* justify-content: space-between; */
+        }
+
+        .report-table {
+            width: 48%; /* Adjust width to allow space for both tables */
+        }
+        .checklist-table{
+            width:52%;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>UNIVERSAL</h1>
+        <h2>ELECTRICALS & ELECTRONICS</h2>
+        <h3>GENERAL SERVICE REPORT</h3>
+
+        <div class="table-wrapper">
+            <table class="report-table">
+                <tr>
+                    <td><strong>Rep. No.:</strong></td>
+                    <td><input type="text" id="repNo"  readonly></td>
+                    <!-- <td><strong>DATE:</strong></td>
+                    <td><input type="text" placeholder="DD/MM/YYYY"></td> -->
+                </tr>
+                <tr>
+                    <td><strong>Customer Name:</strong></td>
+                    <td><input type="text" id="customerName" placeholder="Customer Name"></td>
+                </tr>
+                <tr>
+                    <td><strong>Area:</strong></td>
+                    <td><input type="text" id="area" placeholder="Area"></td>
+                </tr>
+                <tr>
+                    <td><strong>Project:</strong></td>
+                    <td><input type="text" id="project" placeholder="Project"></td>
+                </tr>
+                <tr>
+                    <td><strong>P.O. No. / Date:</strong></td>
+                    <td><input type="text" id="poNo" placeholder="P.O. No."></td>
+                </tr>
+                <tr>
+                    <td><strong>Equip Model:</strong></td>
+                    <td><input type="text" id="equipModel" placeholder="Equip Model"></td>
+                </tr>
+                <tr>
+                    <td><strong>Eqpt. Sl. No.:</strong></td>
+                    <td><input type="text" id="eqptSlNo" placeholder="Eqpt. Sl. No."></td>
+                </tr>
+                    <td><strong>SYSTEM WORKING CONDITION:</strong></td>
+                <tr>
+                    <td><strong>Customer Complain Date:</strong></td>
+                    <td><input type="text" id="complainDate" placeholder="Customer Complain Date"></td>
+                </tr>
+                <tr>
+                    <td><strong>AT HMR:</strong></td>
+                    <td><input type="text" id="atHmr1" placeholder="AT HMR"></td>
+                </tr>
+                <tr>
+                    <td><strong>Customer Complain Closed Date:</strong></td>
+                    <td><input type="text" id="complainClosedDate" placeholder="Customer Complain Closed Date"></td>
+                </tr>
+                <tr>
+                    <td><strong>AT HMR:</strong></td>
+                    <td><input type="text" id="atHmr2" placeholder="AT HMR"></td>
+                </tr>
+            </table>
+    
+            <table class="checklist-table">
+                <tr>
+                    <td><strong>DATE:</strong></td>
+                    <td><input type="text" id="checklistDate" placeholder="DD/MM/YYYY"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><h4>Component Status Checklist</h4></td>
+                </tr>
+                <tr>
+                    <th>UEE Parts</th>
+                    <th>Condition</th>
+                </tr>
+                <tr>
+                    <td>1) Dcp Cylinder & Main Valve</td>
+                    <td id="field15-value">get cookies(field15)</td>
+                </tr>
+                                <tr><td>2) Nitrogen Cartridge (16-18 Cu.in)</td><td></td></tr>
+                <tr><td>3) Automatic & Manual Actuator</td><td></td></tr>
+                <tr><td>4) Manual Operate Actuator</td><td></td></tr>
+                <tr><td>5) Main Valve Pneumatic Actuator</td><td></td></tr>
+                <tr><td>6) Vent Check</td><td></td></tr>
+                <tr><td>7) Non Return Valve</td><td></td></tr>
+                <tr><td>8) Nozzle 1/2</td><td></td></tr>
+                <tr><td>9) Nozzle 1/4</td><td></td></tr>
+                <tr><td>10) Control Unit</td><td></td></tr>
+                <tr><td>11) Main Harness</td><td></td></tr>
+                <tr><td>12) Sp Adaptor</td><td></td></tr>
+                <tr><td>13) Fire Sensor Wire per</td><td></td></tr>
+                <tr><td>14) Hose Kit</td><td></td></tr>
+                <tr><td>15) M5 Part</td><td></td></tr>
+            </table>
+        </div>
+    
+        <h4>Failed Part Details:</h4>
+        <table class="failed-parts-table">
+            <tr>
+                <th>SI No</th>
+                <th>Uee Part No.</th>
+                <th>Description</th>
+                <th>Qty.</th>
+                <th>Repair/Reject/To Be Replaced</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    
+        <h4>SYMPTOMS:</h4>
+        <textarea id="symptoms" rows="4" placeholder="Enter symptoms here..."></textarea>
+    
+        <div class="warranty-status">
+            <strong>Status Of System:</strong>
+            <label><input type="radio" name="warranty" value="under" checked> Under Warranty</label>
+            <label><input type="radio" name="warranty" value="out"> Out of Warranty</label>
+        </div>
+    
+        <div class="for-user">
+            <p>For Uee:</p>
+            <p>For Customer:</p>
+        </div>
+    
+        <script>
+            // Function to get a cookie by name
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+
+        
+            // Pre-fill input fields with data from cookies
+            document.getElementById('customerName').value = getCookie('field2') || '';
+            document.getElementById('area').value = getCookie('field3') || '';
+            document.getElementById('project').value = getCookie('field4') || '';
+            document.getElementById('poNo').value = getCookie('field5') || '';
+            document.getElementById('equipModel').value = getCookie('field6') || '';
+            document.getElementById('eqptSlNo').value = getCookie('field7') || '';
+            document.getElementById('complainDate').value = getCookie('field8') || '';
+            document.getElementById('atHmr1').value = getCookie('field9') || '';
+            document.getElementById('complainClosedDate').value = getCookie('field10') || '';
+            document.getElementById('atHmr2').value = getCookie('field11') || '';
+            document.getElementById('checklistDate').value = getCookie('checklistDate') || '';
+            document.getElementById('symptoms').value = getCookie('symptoms') || '';
+            
+            // If warranty status is stored in cookies
+            const warrantyStatus = getCookie('warranty');
+            if (warrantyStatus) {
+                document.querySelector(`input[name="warranty"][value="${warrantyStatus}"]`).checked = true;
+            }
+
+
+
+        // Function to get a cookie by name
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        // Set the input values from cookies
+        window.onload = function() {
+            const repNo = getCookie('field1');
+            const checklistDate = getCookie('field8');
+
+            if (repNo) {
+                document.getElementById('repNo').value = repNo;
+            }
+
+            if (checklistDate) {
+                document.getElementById('checklistDate').value = checklistDate;
+            }
+        };
+
+        // Function to get the value of a specific cookie by name
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// Get the value of the cookie named 'field15'
+const field15Value = getCookie('field15');
+
+// Insert the cookie value into the table cell
+document.getElementById('field15-value').textContent = field15Value ? field15Value : 'Cookie not found';
+
+        </script>
+    
+</body>
+</html>

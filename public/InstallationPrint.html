@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Report</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    border: 1px solid #000;
+    padding: 20px;
+}
+
+h1, h2, h3, h4 {
+    text-align: center;
+}
+
+.report-table, .checklist-table, .failed-parts-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.report-table td, .checklist-table th, .checklist-table td, .failed-parts-table th, .failed-parts-table td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+
+.checklist-table th {
+    background-color: #f2f2f2;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.warranty-status {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.for-user {
+    margin-top: 20px;
+    text-align: left;
+}
+ 
+
+ .customer-details, .procedure-section, .remarks, .footer-section {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #000;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+.footer-line {
+    border: none; /* Remove default border */
+    height: 1px; /* Height of the line */
+    background-color: #000; /* Line color */
+    margin: 20px 0; /* Space above and below the line */
+}
+footer {
+    text-align: center; /* Center the text in the footer */
+    margin-top: 20px; /* Add margin to the top of the footer */
+}
+.navbar {
+    display: flex;                    /* Use flexbox to align items in a row */
+    justify-content: space-between;   /* Space between left and right items */
+    align-items: center;              /* Vertically center items */
+    padding: 10px;                    /* Add some padding */
+}
+
+.navbar-item.left {
+    display: flex;                    /* Flexbox for the left item */
+    align-items: center;              /* Vertically center the logo */
+}
+
+.logo {
+    height: 50px;                     /* Set height for the company logo */
+    margin-right: 300px;               /* Space between logo and company info */
+}
+
+.navbar-item.right {
+    margin-left: auto;                /* Push this section to the right */
+}
+
+.company-info {
+    display: flex;                    /* Flexbox for additional images */
+}
+
+.company-info img {
+    height: 30px;                     /* Set a smaller height for additional images */
+    margin-left: 10px;                /* Space between additional images */
+}
+.remarks-display {
+    background-color: #f9f9f9; /* Light background for visibility */
+    padding: 10px;
+    border: 1px solid #ccc; /* Border for distinction */
+    margin-bottom: 10px; /* Spacing between the display and textarea */
+}
+
+.remarks-display p {
+    margin: 0; /* Remove default margin */
+}
+
+.remarks-input {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for better input experience */
+    font-size: 14px; /* Font size */
+    border: 1px solid #ccc; /* Border for the textarea */
+    border-radius: 4px; /* Rounded corners */
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+       
+
+        <header class="navbar">
+        <div class="navbar-item left">
+            <img src="comapny log2.jpg" alt="Logo" class="logo">
+            <div class="company-info">
+                <img src="img/mms.jpg" alt="Additional Image 1">
+                <img src="img/EGAC.png" alt="Additional Image 2">
+                <img src="img/IAF.png" alt="Additional Image 2">
+                <img src="img/NABCB.png" alt="Additional Image 2">
+            </div>
+        </div>
+        
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+        <h3>INSTALLATION REPORT</h3>
+
+
+        <table class="report-table">
+            <tr>
+                <td><strong>Rep. No.:</strong></td>
+                <td><input type="text"  readonly></td>
+                <td><strong>DATE:</strong></td>
+                <td><input type="text" placeholder="DD/MM/YYYY"></td>
+            </tr>
+            <tr>
+                <td><strong>Customer Details:</strong></td>
+                <td><input type="text" placeholder="Customer Details"></td>
+                <td><strong>Vehicle Model:</strong></td>
+                <td><input type="text" placeholder="Vehicle Model"></td>
+                </tr>
+                <tr>
+                <td><strong>Project:</strong></td>
+                <td><input type="text" placeholder="Project"></td>
+                <td><strong>Vehicle Sl No:</strong></td>
+                <td><input type="text" placeholder="Vehicle Sl No."></td>
+            </tr>
+            <tr>
+                <td><strong>P.O. No. / Date:</strong></td>
+                <td><input type="text" placeholder="P.O. No."></td>
+                <td><strong>Type of Equipment:</strong></td>
+                <td><input type="text" placeholder="Type of Equipment"></td>
+            </tr>
+           
+           
+            <tr>
+                <td><strong>Installation HMR:</strong></td>
+                <td><input type="text" placeholder="Installation HMR"></td>
+                <td><strong>Failure HMR:</strong></td>
+                <td><input type="text" placeholder="Failure HMR"></td>
+            </tr>
+           
+        </table>
+
+ <section class="procedure-section">
+            <h3>PROCEDURE</h3>
+            <table>
+                
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Welding of MS Parts</td>
+                        <td>
+                            Dcp Cylinder Mounting Bracket - 50/25: <span id="dcpCylinderMountingBracket"></span><hr>
+                            Distributor Pad: <span id="distributorPad"></span><hr>
+                            Nozzle Bracket: <span id="nozzleBracket"></span><hr>
+                            Automatic Actuator Bracket Pad: <span id="automaticActuatorBracketPad"></span><hr>
+                            Manual Actuator Bracket Pad: <span id="manualActuatorBracketPad"></span><hr>
+                            Control Unit Pad: <span id="controlUnitPad"></span><hr>
+                            Sensor wire routing Bosses 8MM: <span id="sensorWireRoutingBosses"></span><hr>
+                            Fitment of DCP cylinder-50/25: <span id="fitmentOfDCPCylinder"></span>
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Fitment of all Nozzles</td>
+                        <td>
+                            Fitment of Nozzles along with protective caps: <span id="fitmentOfNozzles" style="display:inline-block;"></span>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Fitment of Nitrogen Cartridge</td>
+                        <td>
+                            Nitrogen Cartridge inside the cabin: <span id="nitrogenCartridgeInside" style="display:inline-block;"></span><hr>
+                            Nitrogen Cartridge outside the cabin: <span id="nitrogenCartridgeOutside" style="display:inline-block;"></span>
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Fitment of all Hose</td>
+                        <td>
+                            3/4"R2, 1/2"R2, 1/4"R2 hose: <span id="hoseSizes" style="display:inline-block;"></span>
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Electrical Connections</td>
+                        <td>
+                            Sensor Wire Routing: <span id="sensorWireRouting" style="display:inline-block;"></span><hr>
+                            Control Unit Connections including Sensor: <span id="controlUnitConnections" style="display:inline-block;"></span><hr>
+                            Wire, SP Adaptor, and Battery connections: <span id="batteryConnections" style="display:inline-block;"></span>
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Control Unit Start</td>
+                        <td>
+                            Glow of Power OK LED: <span id="powerOKLED" style="display:inline-block;"></span>
+                        </td>                       
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <h4>Remarks:</h4>
+        <div class="remarks-display">
+            <p>
+                <strong>• The automatic fire detection and suppression system has been successfully installed.</strong><br>
+                <strong>• Continue regular inspections to keep everything in good condition and catch any future issues early.</strong><br>
+                <strong>• Regular maintenance and testing are recommended to ensure continued optimal performance.</strong>
+            </p>
+        </div>
+        
+        
+
+        <div class="for-user">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            For Uee: <span id="uee-value"></span>
+                        </th>
+                        <th>For Customer: <span id="customer-value"></span></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        
+        
+        <!-- Line above footer -->
+        <hr class="footer-line">
+        
+        <footer>
+            <p>Singapura Garden No.35, Neelarsi Nilaya, Lakshmipura Main Road, Jalahalli West,<br>
+               Bengaluru, Karnataka 560015</p>
+               <p>Email: eande.universal@gmail.com, surajsk053@gmail.com | Mob: +91 940127499, 8494900615</p>
+
+        </footer>
+
+        <script>
+            // Function to get a cookie by name
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+            
+            // Function to populate the form fields
+            function populateForm() {
+                document.querySelector('input[readonly]').value = getCookie('field1') || '';
+                document.querySelector('input[placeholder="DD/MM/YYYY"]').value = getCookie('field5') || '';
+                document.querySelector('input[placeholder="Customer Details"]').value = getCookie('field2') || '';
+                document.querySelector('input[placeholder="Vehicle Model"]').value = getCookie('field8') || '';
+                document.querySelector('input[placeholder="Project"]').value = getCookie('field3') || '';
+                document.querySelector('input[placeholder="Vehicle Sl No."]').value = getCookie('field9') || '';
+                }
+
+            // Call the function on page load
+            window.onload = populateForm;
+            </script>
+             <script>
+                // Function to get cookie value by name
+                function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();
+                    return null;
+                }
+        
+                // Function to populate form fields
+                function populateForm() {
+                    // Check and populate each field
+                    const poNo = getCookie('field4') || '';
+                    console.log("P.O. No. Cookie:", poNo); // Debugging line
+                    
+                    document.querySelector('input[placeholder="P.O. No."]').value = poNo;
+                    document.querySelector('input[placeholder="Type of Equipment"]').value = getCookie('field10') || '';
+                    document.querySelector('input[placeholder="Installation HMR"]').value = getCookie('field13') || '';
+                    document.querySelector('input[placeholder="Failure HMR"]').value = getCookie('field14') || '';
+                }
+        
+                // Call populateForm when the DOM is fully loaded
+                document.addEventListener('DOMContentLoaded', populateForm);
+                
+
+// Function to get cookie value by name
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// Set the values from cookies to the respective spans
+document.getElementById('dcpCylinderMountingBracket').innerText = getCookie('field15') || 'N/A';
+document.getElementById('distributorPad').innerText = getCookie('field16') || 'N/A';
+document.getElementById('nozzleBracket').innerText = getCookie('field17') || 'N/A';
+document.getElementById('automaticActuatorBracketPad').innerText = getCookie('field18') || 'N/A';
+document.getElementById('manualActuatorBracketPad').innerText = getCookie('field19') || 'N/A';
+document.getElementById('controlUnitPad').innerText = getCookie('field20') || 'N/A';
+document.getElementById('sensorWireRoutingBosses').innerText = getCookie('field21') || 'N/A';
+document.getElementById('fitmentOfDCPCylinder').innerText = getCookie('field22') || 'N/A';
+
+document.getElementById('fitmentOfNozzles').innerText = getCookie('field23') || 'N/A';
+document.getElementById('nitrogenCartridgeInside').innerText = getCookie('field24') || 'N/A';
+document.getElementById('nitrogenCartridgeOutside').innerText = getCookie('field25') || 'N/A';
+document.getElementById('hoseSizes').innerText = getCookie('field26') || 'N/A';
+document.getElementById('sensorWireRouting').innerText = getCookie('field27') || 'N/A';
+document.getElementById('controlUnitConnections').innerText = getCookie('field28') || 'N/A';
+document.getElementById('batteryConnections').innerText = getCookie('field29') || 'N/A';
+document.getElementById('powerOKLED').innerText = getCookie('field30') || 'N/A';
+
+
+
+// Function to get cookie value by name
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// Get the value of the cookie named 'profile_id' (for Uee) and 'customer_id' (for Customer)
+const ueeValue = getCookie('field31'); // Replace with your actual cookie name for Uee
+const customerValue = getCookie('field32'); // Replace with your actual cookie name for Customer
+
+// Display the cookie values in the table header
+document.getElementById('uee-value').textContent = ueeValue ? ueeValue : 'No value set';
+document.getElementById('customer-value').textContent = customerValue ? customerValue : 'No value set';
+
+
+            </script>
+        
+</body>
+</html>
