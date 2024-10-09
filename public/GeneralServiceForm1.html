@@ -5,75 +5,419 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="css/i.css" rel="stylesheet">
-  <style>
-    /* Container for the Button */
-.container-btn {
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+ /* Label Styling */
+.form-label {
+    color: black; /* Match the label color to the header color */
+    font-weight: bold; /* Make the text bold */
+}
+
+/* Card Body Styling */
+.card-body {
+    padding: 15px;
+}
+
+.row {
     display: flex;
-    justify-content: center; /* Centers the button horizontally */
-    margin-top: 20px; /* Adds space above the button */
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.col-md-6 {
+    flex: 0 0 48%; /* Adjust width to allow space between columns */
 }
 
 /* Button Styling */
-.btn-primary {
-    background-color: #00bfa6; /* Custom background color */
-    color: white; /* Button text color */
-    border: none; /* Remove border */
-    padding: 10px 20px; /* Button padding */
-    font-size: 16px; /* Button text size */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth background color transition */
+.submit-button {
+    background-color: #00bfa6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    display: block;
+    width: 100%; /* Full width button */
 }
 
-.btn-primary:hover {
+.submit-button:hover {
     background-color: #008f7e; /* Darker shade on hover */
 }
 
-/* Full width button on mobile */
-@media (max-width: 768px) {
-    .btn-primary {
-        width: 100%; /* Full width for mobile */
+/* Checkbox Styling */
+.status-checkbox {
+    width: 20px; /* Set a width for checkboxes */
+    height: 20px; /* Set a height for checkboxes */
+    margin-right: 5px; /* Space between checkbox and label */
+    accent-color: #00bfa6; /* Change checkbox color on check (for modern browsers) */
+}
+
+/* Container Styling */
+.container {
+    max-width: 1200px;  /* Adjust the max-width as needed */
+    margin: 20px auto;  /* Centers the container and adds vertical spacing */
+    padding: 20px;       /* Adds padding inside the container */
+    background-color: #f8f9fa;  /* Light background color */
+    border: 1px solid #dee2e6;  /* Light border color */
+    border-radius: 5px;  /* Slightly rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Adds a subtle shadow */
+    overflow: hidden;     /* Prevents overflow from child elements */
+}
+
+/* Remarks Container Styling */
+.remarks-container {
+    margin-top: 20px; /* Space above the container */
+    padding: 15px; /* Space inside the container */
+    background-color: #f9f9f9; /* Light gray background */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+.remarks-container ul {
+    list-style-type: disc; /* Disc style for bullet points */
+    padding-left: 20px; /* Indentation for the list */
+    color: black; /* Black text color */
+    font-weight: bold; /* Bold text */
+}
+
+.remarks-container li {
+    margin-bottom: 10px; /* Space between list items */
+}
+
+/* Input Container Styling */
+.input-container {
+    margin-top: 20px; /* Space above the input container */
+}
+
+/* Input Label Styling */
+.input-label {
+    display: block; /* Stack label above input */
+    margin-bottom: 5px; /* Space below label */
+    color: #333; /* Darker text color for the label */
+    font-weight: bold; /* Bold label text */
+    text-align: center; /* Center the label text */
+}
+
+/* Input Box Styling */
+.input-box {
+    width: 85%; /* Set width to 85% for medium-sized input boxes */
+    max-width: 400px; /* Maximum width of the input box */
+    padding: 10px; /* Padding inside input boxes */
+    margin-bottom: 15px; /* Space below each input box */
+    border: 2px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+    display: block; /* Make sure input boxes are displayed as block elements */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+    border-color: #00bfa6;
+}
+
+.input-box:focus {
+    border-color: #00bfa6; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Button Container Styling */
+.button-container {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 10px; /* Space between buttons */
+}
+
+.btn {
+    background-color: #00bfa6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px; /* Optional: Space between buttons */
+}
+
+.btn:hover {
+    background-color: #008f8a; /* Darker shade on hover */
+}
+
+
+
+
+
+/* Sub-header Styling */
+.sub-navbar {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    background-color: #002d50;
+    border-bottom: 2px solid #00bfa6;
+    position: relative;
+    z-index: 999;
+}
+
+/* Adding some padding for content to be visible below the header */
+.content {
+    padding-top: 80px; /* Push content below the fixed header */
+}
+
+/* Sidebar styles */
+.sidebar {
+    height: 100%; /* Full height */
+    width: 0; /* Hidden by default */
+    position: fixed; /* Sidebar is fixed but below the header */
+    z-index: 1002; /* Below the header but above the content */
+    top: 100px; /* Place it just below the fixed header */
+    left: 0;
+    background-color: #002d50; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* Smooth transition */
+    padding-top: 20px;
+}
+
+/* Open/close sidebar button */
+.navbar-item.left .open-btn {
+    cursor: pointer;
+    font-size: 40px;
+    color: white; /* Menu button color */
+    padding-right:50px;
+
+}
+
+/* Vertical links in sidebar */
+.sidebar .navbar-nav {
+    flex-direction: column; /* Stack links vertically */
+    margin: 0; /* Reset margin */
+}
+
+.sidebar .nav-item {
+    width: 100%; /* Full width for each item */
+}
+
+.sidebar .nav-link {
+    color: #fff; /* Link color */
+    padding: 10px 15px; /* Padding for links */
+}
+
+.sidebar .nav-link:hover {
+    background-color: #575757; /* Hover effect */
+}
+
+/* Background overlay styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    z-index: 997; /* Below sidebar but above content */
+    display: none; /* Hidden by default */
+}
+
+/* Installation Form Styling */
+.installation-form {
+    margin: 20px; /* Add margin around the installation form */
+}
+
+.installation-form h2 {
+    color: black; /* Header color for the installation form */
+    font-weight: bold;
+}
+
+.installation-form .underline {
+    height: 2px; /* Underline height */
+    width: 100%; /* Underline width */
+    background-color: #00bfa6; /* Underline color */
+    margin: 10px auto; /* Center the underline */
+}
+
+.installation-form input[type="text"] {
+    width: 100%; /* Full width for text input */
+    padding: 10px; /* Padding inside the input */
+    border: 2px solid #00bfa6; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+}
+
+.installation-form input[type="text"]:focus {
+    border-color: #008f7e; /* Darker shade on focus */
+    outline: none; /* Remove default outline */
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+button {
+    margin-right: 5px;
+    padding: 5px 10px;
+}
+
+
+.addBtn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 20px;        /* Add some padding */
+}
+
+.deleteBtn {
+    background-color: #f44336; /* Red */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 20px;        /* Add some padding */
+}
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* Desktop View */
+@media screen and (min-width: 600px) {
+    table {
+        table-layout: auto;
+    }
+    th, td {
+        display: table-cell;
     }
 }
 
-  </style>
+/* Mobile View */
+@media screen and (max-width: 600px) {
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    thead {
+        display: none; /* Hide table headers */
+    }
+    tr {
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        text-align: left;
+    }
+    td::before {
+        content: attr(data-label);
+        flex: 1;
+        font-weight: bold;
+        padding-right: 10px;
+    }
+    td input, td select {
+        flex: 2;
+        margin-left: 0px;
+    }
+}
+
+    </style>
+  
 </head>
 <body>
     <header class="navbar">
         <div class="navbar-item left">
+            <span class="open-btn" onclick="toggleSidebar()">&#9776; </span>
+
             <img src="comapny log2.jpg" alt="Logo" class="logo">
-            <div class="company-info">
+            <!-- <div class="company-info">
                 <img src="img/mms.jpg" alt="Additional Image 1">
                 <img src="img/EGAC.png" alt="Additional Image 2">
                 <img src="img/IAF.png" alt="Additional Image 2">
                 <img src="img/NABCB.png" alt="Additional Image 2">
-            </div>
+            </div> -->
         </div>
         
         <div class="navbar-item middle"></div>
         <div class="navbar-item right"></div>
     </header>
-      <!-- New Sub-header resembling the Navbar -->
-      <header class="sub-navbar">
-        <div class="navbar-item left">
-            <a href="installationform1.html" style="text-decoration: none;">
-                <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px;">Installation Form</h3>
-            </a>
-            <br>
-            <a href="installationreport.html" style="text-decoration: none;">
-                <h3 style="margin: 0; color: #00bfa6; margin-bottom: 10px; margin-left: 100px;">Installation report</h3>
-            </a>
+     
+
+    <!-- Background Overlay -->
+    <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Sidebar below the header -->
+    <div id="mySidebar" class="sidebar">
+        <!-- Sidebar vertical links -->
+        <div class="p-2">
+            <h5 class="text-light">Forms</h5> <!-- Color for the header (light color) -->
+<a class="nav-link" href="installationform1.html" style="color: #008f7e; font-weight: bold;">Installation Form</a> <!-- Blue color for the links -->
+<a class="nav-link" href="GeneralServiceForm1.html" style="color: #008f7e; font-weight: bold;">General Service Form</a>
+
+
+            <h5 class="text-light">Reports</h5>
+            <a class="nav-link" href="installation_report.html" style="color: #008f7e; font-weight: bold;">Installation Report</a>
+            <a class="nav-link" href="Genearlservice_report.html" style="color: #008f7e; font-weight: bold;">General Service Report</a>
+<!-- 
+            <h5 class="text-light">Updation</h5>
+            <a class="nav-link" href="installationreport.html" style="color: #008f7e; font-weight: bold;">Installation Updation</a>
+            <a class="nav-link" href="report2.html" style="color: #008f7e; font-weight: bold;"> General Service Updation</a>
+        -->
+       
         </div>
-        
-        <div class="navbar-item middle"></div>
-        <div class="navbar-item right"></div>
-    </header>
+    </div>
+
+    <script>
+        /* Function to toggle the sidebar and overlay */
+        function toggleSidebar() {
+            const sidebar = document.getElementById("mySidebar");
+            const overlay = document.getElementById("overlay");
+            if (sidebar.style.width === "250px") {
+                sidebar.style.width = "0"; // Close sidebar
+                overlay.style.display = "none"; // Hide overlay
+                document.body.style.overflow = ""; // Enable body scrolling
+            } else {
+                sidebar.style.width = "250px"; // Open sidebar
+                overlay.style.display = "block"; // Show overlay
+                document.body.style.overflow = "hidden"; // Disable body scrolling
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <div class="installation-form">
-        <h2>General Service Form</h2>
+        <h2>General service Form</h2>
         <div class="underline"></div>
         <label for="serial-number"><strong>Serial Number: </strong></label>
-        <input type="text" id="serial-number" name="serial-number" placeholder="Enter Serial Number" required>
+        <input type="text" id="serial-number" name="serial-number" placeholder="Enter Serial Number" required 
+               oninput="this.value = this.value.replace(/[^0-9]/g, '')">
     </div>
+    
     
     <!-- New Sub-header resembling the Navbar -->
     <header class="sub-navbar">
@@ -84,153 +428,901 @@
         <div class="navbar-item middle"></div>
         <div class="navbar-item right"></div>
     </header>
-         
+    
     <div class="installation-form1">
-        <!-- Customer Details Field -->
+        <!-- Date Field -->
         <div class="form-group">
-            <label for="reportDate"><strong>Date : </strong></label>
-            <input type="text" id="reportDate" name="customer-details" placeholder="DD/MM/YYYY" required>
+            <label for="reportDate"><strong>Date: </strong></label>
+            <input type="date" id="reportDate" name="reportDate" required>
         </div>
     
-        
-        <div class="form-group project-field">
+        <!-- Customer Name Field (Alphabets and spaces only) -->
+        <div class="form-group">
             <label for="customerName"><strong>Customer Name: </strong></label>
-            <input type="text" id="customerName" placeholder="Enter Your Name">
+            <input type="text" id="customerName" name="customerName" placeholder="Enter Your Name" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
         </div>
     </div>
     
     <div class="installation-form1">
-        
+        <!-- Customer Area Field (Alphabets and spaces only) -->
         <div class="form-group">
             <label for="customerArea"><strong>Customer Area: </strong></label>
-            <input type="text" id="customerArea" >
+            <input type="text" id="customerArea" name="customerArea" placeholder="Enter Customer Area" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
         </div>
     
+        <!-- Project Field (Alphabets and spaces only) -->
         <div class="form-group">
             <label for="customerProject"><strong>Project: </strong></label>
-            <input type="text" id="customerProject">
+            <input type="text" id="customerProject" name="customerProject" placeholder="Enter Project Name" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
         </div>
     </div>
     
-   
     <div class="installation-form1">
+        <!-- PO No./Date Field (Allow numbers, alphabets, and slashes) -->
         <div class="form-group">
             <label for="poNoDate"><strong>PO No./Date: </strong></label>
-            <input type="text" id="poNoDate">
+            <input type="text" id="poNoDate" name="poNoDate" placeholder="Enter PO No./Date" required oninput="this.value = this.value.replace(/[^a-zA-Z0-9\/]/g, '')">
         </div>
     
+        <!-- Eqpt Model Field (Allow numbers and alphabets) -->
         <div class="form-group">
             <label for="eqptModel"><strong>Eqpt Model: </strong></label>
-            <input type="text" id="eqptModel">
+            <input type="text" id="eqptModel" name="eqptModel" placeholder="Enter Equipment Model" required oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')">
         </div>
     </div>
     
     <div class="installation-form1">
+        <!-- Eqpt Sl No Field (Allow numbers and alphabets) -->
         <div class="form-group">
             <label for="eqptSlNo"><strong>Eqpt Sl No: </strong></label>
-            <input type="text" id="eqptSlNo">
+            <input type="text" id="eqptSlNo" name="eqptSlNo" placeholder="Enter Equipment Serial Number" required oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')">
         </div>
-
+    
+        <!-- Customer Complain Date Field -->
         <div class="form-group">
             <label for="complainDate"><strong>Customer Complain Date: </strong></label>
-            <input type="text" id="complainDate" placeholder="dd/mm/yyyy" >
+            <input type="date" id="complainDate" name="complainDate" required>
         </div>
     </div>
-
-
+    
     <div class="installation-form1">
+        <!-- AT HMR Field (Alphabets and spaces only) -->
         <div class="form-group">
             <label for="complainDescription"><strong>AT HMR: </strong></label>
-            <input type="text" id="complainDescription" rows="3" placeholder="Describe the complaint here">
+            <input type="text" id="complainDescription" name="complainDescription" placeholder="Describe the complaint here" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
         </div>
     
+        <!-- Customer Complain Closed Date Field -->
         <div class="form-group">
             <label for="serviceTaken"><strong>Customer Complain Closed Date: </strong></label>
-            <input type="text" id="serviceTaken">
+            <input type="date" id="serviceTaken" name="serviceTaken" required>
         </div>
-   
     </div>
     
     <div class="installation-form1">
+        <!-- AT HMR Closed Field (Alphabets and spaces only) -->
         <div class="form-group">
             <label for="technicianName"><strong>AT HMR Closed: </strong></label>
-            <input type="text" id="technicianname">
+            <input type="text" id="technicianName" name="technicianName" placeholder="Enter Technician Name" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
         </div>
     </div>
     
-     <!-- Submit Button -->
-     <div class="container-btn text-center">
-        <button type="submit" class="btn btn-primary">Next</button>
-     </div>
+    
 
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-
-     <script>
-    // Function to set a cookie
-    function setCookie(name, value, days) {
-        let expires = "";
-        if (days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/";
-    }
-
-    // Function to get the value of a cookie
-    function getCookie(name) {
-        const nameEQ = name + "=";
-        const ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
-
-    // Function to store form data into cookies when the form is submitted
-    document.querySelector(".container-btn button").addEventListener("click", function (e) {
-        e.preventDefault(); // Prevent form submission
+    <header class="sub-navbar">
+        <div class="navbar-item left">
+            <h3 style="margin: 0; color:#00bfa6;">Component Status Checklist</h3>
+        </div>
         
-        // Get form data
-        const serialNumber = document.getElementById("serial-number").value;
-        const reportDate = document.getElementById("reportDate").value;
-        const customerName = document.getElementById("customerName").value;
-        const customerArea = document.getElementById("customerArea").value;
-        const customerProject = document.getElementById("customerProject").value;
-        const poNoDate = document.getElementById("poNoDate").value;
-        const eqptModel = document.getElementById("eqptModel").value;
-        const eqptSlNo = document.getElementById("eqptSlNo").value;
-        const complainDate = document.getElementById("complainDate").value;
-        const complainDescription = document.getElementById("complainDescription").value;
-        const serviceTaken = document.getElementById("serviceTaken").value;
-        const technicianName = document.getElementById("technicianname").value;
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+    
+    <div class="container">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="dcp-cylinder" class="form-label">1) DCP Cylinder & Main Valve</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field13" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field13" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nitrogen-cartridge" class="form-label">2) Nitrogen Cartridge (16-18 Cu.in)</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field14" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field14" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="auto-manual-actuator" class="form-label">3) Automatic & Manual Actuator</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field15" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field16" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="manual-operate-actuator" class="form-label">4) Manual Operate Actuator</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field17" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field17" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="main-valve-actuator" class="form-label">5) Main Valve Pneumatic Actuator</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field18" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field19" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="vent-check" class="form-label">6) Vent Check</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field20" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field20" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="non-return-valve" class="form-label">7) Non Return Valve</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field21" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field21" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nozzle-1-2" class="form-label">8) Nozzle 1/2</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field22" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field22" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nozzle-1-4" class="form-label">9) Nozzle 1/4</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field23" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field23" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="control-unit" class="form-label">10) Control Unit</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field24" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field24" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="main-harness" class="form-label">11) Main Harness</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field25" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field26" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="sp-adaptor" class="form-label">12) SP Adaptor</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field27" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field27" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="fire-sensor-wire" class="form-label">13) Fire Sensor Wire</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field28" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field28" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="hose-kit" class="form-label">14) Hose Kit</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field29" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field29" value="Damage"> Damage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="ms-part" class="form-label">15) MS Part</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="checkbox" class="status-checkbox" name="field30" value="Good Condition"> Good Condition
+                    <input type="checkbox" class="status-checkbox" name="field30" value="Damage"> Damage
+                </div>
+            </div>
+<div id="statusResult" style="font-size: 20px; font-weight: bold;"></div>
 
-        // Store each field value into cookies
-        setCookie("field1", serialNumber, 7);
-        setCookie("field2", reportDate, 7);
-        setCookie("field3", customerName, 7);
-        setCookie("field4", customerArea, 7);
-        setCookie("field5", customerProject, 7);
-        setCookie("field6", poNoDate, 7);
-        setCookie("field7", eqptModel, 7);
-        setCookie("field8", eqptSlNo, 7);
-        setCookie("field9", complainDate, 7);
-        setCookie("field10", complainDescription, 7);
-        setCookie("field11", serviceTaken, 7);
-        setCookie("field13", technicianName, 7);
+        </div>
+    </div>
+    
+    <header class="sub-navbar">
+        <div class="navbar-item left">
+            <h3 style="margin: 0; color:#00bfa6;">Failed Parts Details</h3>
+        </div>
+        
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
 
-        // Redirect to the next page or perform any additional action
-        window.location.href = "GeneralServiceForm2.html";  // Redirect after storing cookies
-    });
-</script>
+    <table id="partsTable">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>slno</th>
+                <th>Uee Part No</th>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Repair/Reject/To Be Replaced</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <button class="deleteBtn"><i class="fas fa-trash"></i></button>
+                    <button class="addBtn">+</button>
+                </td>
+                <td data-label="slno">1</td>
+                <td data-label="Uee Part No"><input type="text" placeholder="Enter Part No"></td>
+                <td data-label="Description"><input type="text" placeholder="Enter Description"></td>
+                <td data-label="Qty"><input type="number" placeholder="Enter Qty" min="1"></td>
+                <td data-label="Repair/Reject/To Be Replaced">
+                    <select>
+                        <option value="Repair">Repair</option>
+                        <option value="Reject">Reject</option>
+                        <option value="To Be Replaced">To Be Replaced</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+<br>
 
    
+     <!-- New Sub-header resembling the Navbar -->
+     <header class="sub-navbar">
+        <div class="navbar-item left">
+            <h3 style="margin: 0; color:#00bfa6;">Status Of System</h3>
+        </div>
+        
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+    <div class="container">
+        <div class="card-body">
+            <!-- Warranty Section -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="warranty" class="form-label">Warranty Status</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="radio" id="underWarranty" name="warranty" value="Under Warranty" required>
+                    <label for="underWarranty">Under Warranty</label>
+                    <br>
+                    <input type="radio" id="outOfWarranty" name="warranty" value="Out of Warranty">
+                    <label for="outOfWarranty">Out of Warranty</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="installation-form1">
+        <!-- Installation HRM Field -->
+        <div class="form-group">
+            <label for="installation-hrm" class="label-uee"><strong>For UEE:</strong></label>
+            <input type="text" id="installation-hrm" name="installation-hrm" placeholder="" required>
+        </div>
+    
+        <!-- Failure HMR Field -->
+        <div class="form-group">
+            <label for="failure-hmr" class="label-customer"><strong>For Customer:</strong></label>
+            <input type="text" id="failure-hmr" name="failure-hmr" placeholder="" required>
+        </div>
+    </div>
     
     
 
+   
+    <div class="error-container" id="error-container" style="color: red;"></div> <!-- Error message container -->
+    <div class="button-container">
+        <button type="submit" class="submit-button" onclick="validateForm(event)">Submit</button>
+    </div>
+
+<!-- Popup Modal -->
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <div class="circle">
+            <img src="img/printer.png" alt="Printer" class="printer-image">
+        </div>
+        <div class="modal-buttons">
+            <button id="print-btn" onclick="printFromIframe()">Print</button>
+            <button id="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- Iframe to display content -->
+<iframe id="printFrame" src="General_service_print.html" style="display:none;"></iframe>
+
+
+       <script>
+      function showError(message) {
+    const errorContainer = document.getElementById('error-container');
+    
+    // Create a new error message element
+    const errorMessage = document.createElement('span');
+    errorMessage.innerText = message;
+    errorMessage.style.marginRight = '10px'; // Add space between messages
+
+    // Append the new error message to the container
+    errorContainer.appendChild(errorMessage);
+}
+
+// Function to get cookie values
+function getCookieValue(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return "";
+}
+
+// Validation function
+function validateForm() {
+    let isValid = true; // Flag to track overall form validity
+    const errorContainer = document.getElementById('error-container');
+    errorContainer.innerHTML = ''; // Clear previous error messages
+
+    // Serial Number (only numbers)
+    const serialNumber = document.getElementById('serial-number');
+    if (!/^[0-9]+$/.test(serialNumber.value)) {
+        serialNumber.classList.add('invalid');
+        showError('Serial number must be numeric.');
+        isValid = false;
+    } else {
+        serialNumber.classList.remove('invalid');
+    }
+
+    // Customer Name (only alphabets)
+    const customerName = document.getElementById('customerName');
+    if (!/^[a-zA-Z\s]+$/.test(customerName.value)) {
+        customerName.classList.add('invalid');
+        showError('Customer name must contain only alphabets.');
+        isValid = false;
+    } else {
+        customerName.classList.remove('invalid');
+    }
+
+    // Customer Area (only alphabets)
+    const customerArea = document.getElementById('customerArea');
+    if (!/^[a-zA-Z\s]+$/.test(customerArea.value)) {
+        customerArea.classList.add('invalid');
+        showError('Customer area must contain only alphabets.');
+        isValid = false;
+    } else {
+        customerArea.classList.remove('invalid');
+    }
+
+    // Project (only alphabets)
+    const customerProject = document.getElementById('customerProject');
+    if (!/^[a-zA-Z\s]+$/.test(customerProject.value)) {
+        customerProject.classList.add('invalid');
+        showError('Project must contain only alphabets.');
+        isValid = false;
+    } else {
+        customerProject.classList.remove('invalid');
+    }
+
+    // PO No./Date (alphanumeric with slashes)
+    const poNoDate = document.getElementById('poNoDate');
+    if (!/^[a-zA-Z0-9\/]+$/.test(poNoDate.value)) {
+        poNoDate.classList.add('invalid');
+        showError('PO No./Date must be alphanumeric.');
+        isValid = false;
+    } else {
+        poNoDate.classList.remove('invalid');
+    }
+
+    // Eqpt Model (alphanumeric)
+    const eqptModel = document.getElementById('eqptModel');
+    if (!/^[a-zA-Z0-9]+$/.test(eqptModel.value)) {
+        eqptModel.classList.add('invalid');
+        showError('Equipment model must be alphanumeric.');
+        isValid = false;
+    } else {
+        eqptModel.classList.remove('invalid');
+    }
+
+    // Eqpt Sl No (alphanumeric)
+    const eqptSlNo = document.getElementById('eqptSlNo');
+    if (!/^[a-zA-Z0-9]+$/.test(eqptSlNo.value)) {
+        eqptSlNo.classList.add('invalid');
+        showError('Equipment serial number must be alphanumeric.');
+        isValid = false;
+    } else {
+        eqptSlNo.classList.remove('invalid');
+    }
+
+    // Customer Complain Date (dd/mm/yyyy)
+    const complainDate = document.getElementById('complainDate');
+    const complainDateValue = new Date(complainDate.value);
+    if (isNaN(complainDateValue)) {
+        complainDate.classList.add('invalid');
+        showError('Customer complain date must be a valid date.');
+        isValid = false;
+    } else {
+        complainDate.classList.remove('invalid');
+    }
+
+    // AT HMR (only alphabets)
+    const complainDescription = document.getElementById('complainDescription');
+    if (!/^[a-zA-Z\s]+$/.test(complainDescription.value)) {
+        complainDescription.classList.add('invalid');
+        showError('AT HMR must contain only alphabets.');
+        isValid = false;
+    } else {
+        complainDescription.classList.remove('invalid');
+    }
+
+    // Customer Complain Closed Date (dd/mm/yyyy)
+    const serviceTaken = document.getElementById('serviceTaken');
+    const serviceTakenValue = new Date(serviceTaken.value);
+    if (isNaN(serviceTakenValue)) {
+        serviceTaken.classList.add('invalid');
+        showError('Customer complain closed date must be a valid date.');
+        isValid = false;
+    } else {
+        serviceTaken.classList.remove('invalid');
+    }
+
+    // Technician Name (only alphabets)
+    const technicianName = document.getElementById('technicianName');
+    if (!/^[a-zA-Z\s]+$/.test(technicianName.value)) {
+        technicianName.classList.add('invalid');
+        showError('AT HMR Closed must contain only alphabets.');
+        isValid = false;
+    } else {
+        technicianName.classList.remove('invalid');
+    }
+
+    // Only submit the form if valid
+    if (isValid) {
+        // Store data in cookies
+        document.cookie = `field1=${serialNumber.value}; path=/;`;
+        document.cookie = `field2=${customerName.value}; path=/;`;
+        document.cookie = `field3=${customerArea.value}; path=/;`;
+        document.cookie = `field4=${customerProject.value}; path=/;`;
+        document.cookie = `field5=${poNoDate.value}; path=/;`;
+        document.cookie = `field6=${eqptModel.value}; path=/;`;
+        document.cookie = `field7=${eqptSlNo.value}; path=/;`;
+        document.cookie = `field8=${complainDate.value}; path=/;`;
+        document.cookie = `field9=${complainDescription.value}; path=/;`;
+        document.cookie = `field10=${serviceTaken.value}; path=/;`;
+        document.cookie = `field11=${technicianName.value}; path=/;`;
+
+        // Prepare headers for the request
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", getCookieValue("token")); // Change this if your token cookie is named differently
+        myHeaders.append("Content-Type", "application/json");
+
+        // Prepare the payload with cookie values for fields 1 to 40
+        const raw = JSON.stringify({
+            "profile_id": getCookieValue("profile_id") || "", // Default to empty if cookie doesn't exist
+            "description": getCookieValue("description") || "", // Default description
+            "gender": getCookieValue("gender") || "", // Default gender
+            "images": getCookieValue("images") || "", // Default images
+            "bio": getCookieValue("bio") || "", // Default bio
+            "field1": getCookieValue("field1") || "",
+            "field2": getCookieValue("field2") || "",
+            "field3": getCookieValue("field3") || "",
+            "field4": getCookieValue("field4") || "",
+            "field5": getCookieValue("field5") || "",
+            "field6": getCookieValue("field6") || "",
+            "field7": getCookieValue("field7") || "",
+            "field8": getCookieValue("field8") || "",
+            "field9": getCookieValue("field9") || "",
+            "field10": getCookieValue("field10") || "",
+            "field11": getCookieValue("field11") || "",
+            "field12": getCookieValue("field12") || "",
+            "field13": getCookieValue("field13") || "",
+            "field14": getCookieValue("field14") || "",
+            "field15": getCookieValue("field15") || "",
+            "field16": getCookieValue("field16") || "",
+            "field17": getCookieValue("field17") || "",
+            "field18": getCookieValue("field18") || "",
+            "field19": getCookieValue("field19") || "",
+            "field20": getCookieValue("field20") || "",
+            "field21": getCookieValue("field21") || "",
+            "field22": getCookieValue("field22") || "",
+            "field23": getCookieValue("field23") || "",
+            "field24": getCookieValue("field24") || "",
+            "field25": getCookieValue("field25") || "",
+            "field26": getCookieValue("field26") || "",
+            "field27": getCookieValue("field27") || "",
+            "field28": getCookieValue("field28") || "",
+            "field29": getCookieValue("field29") || "",
+            "field30": getCookieValue("field30") || "",
+            "field31": getCookieValue("field31") || "",
+            "field32": getCookieValue("field32") || "",
+            "field33": getCookieValue("field33") || "",
+            "field34": getCookieValue("field34") || "",
+            "field35": getCookieValue("field35") || "",
+            "field36": getCookieValue("field36") || "",
+            "field37": getCookieValue("field37") || "",
+            "field38": getCookieValue("field38") || "",
+            "field39": getCookieValue("field39") || "",
+            "field40": getCookieValue("field40") || "",
+            "field41": getCookieValue("field41") || "",
+            "field42": getCookieValue("field42") || "",
+            "field43": getCookieValue("field43") || "",
+           "field44": getCookieValue("field44") || "",
+
+           "field45": getCookieValue("field45") || "",
+
+           "field46": getCookieValue("field46") || "",
+
+           "field47": getCookieValue("field47") || "",
+
+           "field48": getCookieValue("field48") || "",
+
+           "field49": getCookieValue("field49") || "",
+
+            "field50": getCookieValue("field50") || ""
+
+        });
+
+        // Send request to the API
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(result => {
+    console.log(result); // Log the result to the console
+    showModal(); // Show the success modal
+    // Handle success, maybe redirect or show a success message
+})
+.catch(error => {
+    console.error('Error:', error); // Log any error
+    alert('Form submission failed. Please try again.'); // Show error alert
+    // Handle error, maybe show an error message
+});
+
+// Function to show the modal
+function showModal() {
+    document.getElementById('successModal').style.display = 'block';
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('successModal').style.display = 'none';
+}
+
+// Function to print the installation page (implement this function as needed)
+function printInstallationPage() {
+    window.print();
+}
+
+
+        // Optionally, reset the form
+        document.getElementById("yourFormId").reset(); // Replace "yourFormId" with the actual form ID
+    }
+}
+
+     
+
+
+
+       </script>
+    <script>
+     document.getElementById('partsTable').addEventListener('click', function(event) {
+    if (event.target.classList.contains('deleteBtn')) {
+        const row = event.target.closest('tr');
+        
+        // Remove the corresponding cookies
+        const slno = row.querySelector('td:nth-child(2)').innerText; // Get the serial number
+        document.cookie = `field${32 + slno - 1}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`; // Clear the corresponding cookies
+        document.cookie = `field${36 + slno - 1}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = `field${40 + slno - 1}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = `field${44 + slno - 1}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+
+        row.parentNode.removeChild(row);
+    } else if (event.target.classList.contains('addBtn')) {
+        const tableBody = document.getElementById('partsTable').getElementsByTagName('tbody')[0];
+        const newRow = tableBody.insertRow(tableBody.rows.length); // Insert at the end of the table
+
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+        const cell4 = newRow.insertCell(3);
+        const cell5 = newRow.insertCell(4);
+        const cell6 = newRow.insertCell(5);
+
+        cell1.innerHTML = '<button class="deleteBtn"><i class="fas fa-trash"></i> </button><button class="addBtn">+</button>'; // Delete and Add button
+        cell2.setAttribute('data-label', 'slno');
+        cell2.innerHTML = tableBody.rows.length; // Auto increment serial number
+        cell3.setAttribute('data-label', 'Uee Part No');
+        cell3.innerHTML = '<input type="text" placeholder="Enter Part No">'; // Editable part number
+        cell4.setAttribute('data-label', 'Description');
+        cell4.innerHTML = '<input type="text" placeholder="Enter Description">'; // Editable description
+        cell5.setAttribute('data-label', 'Qty');
+        cell5.innerHTML = '<input type="number" placeholder="Enter Qty" min="1">'; // Editable quantity
+        cell6.setAttribute('data-label', 'Repair/Reject/To Be Replaced');
+        cell6.innerHTML = `<select>
+                               <option value="Repair">Repair</option>
+                               <option value="Reject">Reject</option>
+                               <option value="To Be Replaced">To Be Replaced</option>
+                           </select>`; // Editable status (dropdown)
+
+        // Automatically store the new input fields into cookies
+        newRow.querySelector('input[type="text"]').addEventListener('input', function() {
+            const partNo = this.value;
+            const index = tableBody.rows.length - 1; // Get the last row index
+            document.cookie = `field${32 + index}=${partNo}; path=/`;
+        });
+
+        newRow.querySelector('input[type="text"]').addEventListener('input', function() {
+            const description = this.value;
+            const index = tableBody.rows.length - 1; // Get the last row index
+            document.cookie = `field${36 + index}=${description}; path=/`;
+        });
+
+        newRow.querySelector('input[type="number"]').addEventListener('input', function() {
+            const qty = this.value;
+            const index = tableBody.rows.length - 1; // Get the last row index
+            document.cookie = `field${40 + index}=${qty}; path=/`;
+        });
+
+        newRow.querySelector('select').addEventListener('change', function() {
+            const status = this.value;
+            const index = tableBody.rows.length - 1; // Get the last row index
+            document.cookie = `field${44 + index}=${status}; path=/`;
+        });
+    }
+});
+
+// Automatically store existing input values in cookies
+document.querySelectorAll('#partsTable tbody tr').forEach((row, index) => {
+    const partNoInput = row.querySelector('td:nth-child(3) input');
+    const descriptionInput = row.querySelector('td:nth-child(4) input');
+    const qtyInput = row.querySelector('td:nth-child(5) input');
+    const statusSelect = row.querySelector('td:nth-child(6) select');
+
+    // Set event listeners to store values in cookies
+    partNoInput.addEventListener('input', function() {
+        document.cookie = `field${32 + index}=${this.value}; path=/`;
+    });
+    
+    descriptionInput.addEventListener('input', function() {
+        document.cookie = `field${36 + index}=${this.value}; path=/`;
+    });
+
+    qtyInput.addEventListener('input', function() {
+        document.cookie = `field${40 + index}=${this.value}; path=/`;
+    });
+
+    statusSelect.addEventListener('change', function() {
+        document.cookie = `field${44 + index}=${this.value}; path=/`;
+    });
+});
+    </script>
+<script>
+// Function to set a cookie
+// Set a cookie
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+// Get a cookie value
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+// Function to validate that at least one checkbox is checked in each group
+function validateCheckboxGroup(checkboxes) {
+    return Array.from(checkboxes).some(checkbox => checkbox.checked);
+}
+
+// Store selected checkbox values in cookies
+function storeCheckboxValues() {
+    const checkboxes = document.querySelectorAll('.status-checkbox');
+    const selectedValues = {};
+
+    // Iterate over checkboxes and check the status
+    checkboxes.forEach(checkbox => {
+        const name = checkbox.name;
+
+        // Check if the checkbox is checked
+        if (checkbox.checked) {
+            selectedValues[name] = checkbox.value;
+        } else if (!selectedValues[name]) {
+            selectedValues[name] = 'Good Condition'; // Default if unchecked
+        }
+    });
+
+    // Store each name's selected values as a cookie
+    for (const name in selectedValues) {
+        setCookie(name, selectedValues[name], 7); // Store for 7 days
+    }
+
+    // Check overall status
+    checkStatus();
+}
+
+// Check the status of checkboxes and update result
+function checkStatus() {
+    const checkboxes = document.querySelectorAll('.status-checkbox');
+    let anyDamage = false;
+
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.checked && checkbox.value === 'Damage') {
+            anyDamage = true;
+        }
+    });
+
+    // Determine result
+    const result = anyDamage ? 'Damage' : 'Good';
+    const statusResult = document.getElementById('statusResult');
+
+    // Update the status display
+    statusResult.textContent = result;
+    statusResult.style.color = anyDamage ? 'red' : 'green';
+
+    // Store the result in cookies
+    setCookie('overallStatus', result, 7); // Store for 7 days
+}
+
+// Add event listeners to checkboxes
+document.querySelectorAll('.status-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+        const groupCheckboxes = document.querySelectorAll(`input[name="${checkbox.name}"]`);
+        if (!validateCheckboxGroup(groupCheckboxes)) {
+            alert(`Please select at least one option for ${checkbox.name}.`);
+            checkbox.checked = true; // Keep the checkbox checked if none are selected
+        } else {
+            storeCheckboxValues(); // Call to store values if valid
+        }
+    });
+});
+
+// Load values from cookies on page load (if needed)
+window.onload = function() {
+    const checkboxes = document.querySelectorAll('.status-checkbox');
+
+    checkboxes.forEach(checkbox => {
+        const cookieValue = getCookie(checkbox.name);
+        if (cookieValue) {
+            checkbox.checked = (cookieValue === checkbox.value);
+        }
+    });
+
+    // Initial check to set status on page load
+    checkStatus();
+};
+
+
+// Function to close the modal
+function closeModal() {
+    const modal = document.getElementById("successModal");
+    modal.style.display = "none"; // Hide the modal
+}
+
+// Function to print from the iframe
+function printFromIframe() {
+    const iframe = document.getElementById("printFrame");
+    
+    // Wait until the iframe content is loaded
+    iframe.onload = function() {
+        // Access the iframe's contentWindow and call the print method
+        iframe.contentWindow.print();
+    };
+    
+    // Ensure the iframe source is loaded before printing
+    iframe.src = 'General_service_print.html';
+    
+    // Optionally hide the modal after printing
+    closeModal();
+}
+
+// To show the modal (if needed)
+function showModal() {
+    const modal = document.getElementById("successModal");
+    modal.style.display = "block"; // Show the modal
+}
+
+
+
+
+
+
+
+// Function to store the selected warranty status in cookies
+function storeWarrantyStatus() {
+    const selectedWarranty = document.querySelector('input[name="warranty"]:checked');
+    if (selectedWarranty) {
+        setCookie('field31', selectedWarranty.value, 7); // Store for 7 days
+    }
+}
+
+// Add event listeners to radio buttons
+document.querySelectorAll('input[name="warranty"]').forEach(radio => {
+    radio.addEventListener('change', storeWarrantyStatus);
+});
+
+// Load warranty status from cookies on page load
+window.onload = function() {
+    const warrantyStatus = getCookie('warrantyStatus');
+    if (warrantyStatus) {
+        const radio = document.querySelector(`input[name="warranty"][value="${warrantyStatus}"]`);
+        if (radio) {
+            radio.checked = true;
+        }
+    }
+};
+
+// Function to set a cookie
+function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+}
+
+// Add event listeners to input fields
+document.getElementById('installation-hrm').addEventListener('input', function() {
+    setCookie('field48', this.value, 7); // Store for 7 days
+});
+
+document.getElementById('failure-hmr').addEventListener('input', function() {
+    setCookie('field49', this.value, 7); // Store for 7 days
+});
+
+
+
+
+
+</script>
 </body>
 </html>
