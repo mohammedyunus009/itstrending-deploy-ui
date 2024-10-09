@@ -156,13 +156,28 @@
 }
 
 
+*{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  body, html{
+    width:100%;
+    height:100%;
+    font-size:16px;
+  }
+
+
 
 /* General Styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    padding-top: 100px; /* Prevent content from being hidden under the fixed navbar */
+    padding-top: 0px; /* Prevent content from being hidden under the fixed navbar */
 }
 
 /* Navbar Styling */
@@ -176,6 +191,8 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
+    --bs-navbar-padding-x: 0;
+    --bs-navbar-padding-y: 0.0rem;
 }
 
 /* Left section with 90% width */
@@ -284,6 +301,33 @@ body {
     flex-direction: row;
     align-items: center;
     margin-bottom: 10px;
+}/* Date Picker Styling */
+.installation-form1 input[type="date"], 
+.installation-form1 input[type="text"] {
+    padding: 10px;
+    border: 2px solid #00bfa6;
+    border-radius: 4px;
+    width: 300px;
+    max-width: 300px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+/* Flexbox layout for form groups */
+.installation-form1 .form-group {
+    display: flex;
+    flex-direction: column; /* Stack label, input, and error message vertically */
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+/* Styling for error message */
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+    min-height: 16px; /* Ensures a fixed height for error message, even if empty */
 }
 
 /* Responsive adjustments */
@@ -306,4 +350,145 @@ body {
         width: 100%;
         max-width: 100%;
     }
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .installation-form1 {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .installation-form1 .form-group {
+        width: 100%;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .installation-form1 input[type="date"], 
+    .installation-form1 input[type="text"] {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+.submit-button {
+    background-color: #00bfa6; /* Match your navbar item color */
+    color: #ffffff; /* White text color */
+    padding: 10px 15px; /* Padding for the button */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+    width: auto; /* Set width to auto for smaller size */
+    margin: 10px auto; /* Center the button */
+    display: block; /* Makes margin auto work */
+}
+
+.submit-button:hover {
+    background-color: #009b91; /* Darker shade on hover */
+}
+
+.submit-button:disabled {
+    background-color: #b0e0de; /* Light color when disabled */
+    cursor: not-allowed; /* Not-allowed cursor for disabled state */
+}
+
+/* Optional: Center the button container */
+.button-container {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center content */
+    margin-top: 20px; /* Space above the container */
+}
+
+.submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+
+/* Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 50%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background with opacity */
+    display: flex; /* Use flex to center the content */
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease; /* Smooth transition */
+  }
+  
+  .modal-content {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb); /* Gradient background */
+    padding: 30px;
+    text-align: center;
+    border-radius: 15px; /* More rounded corners */
+    position: relative;
+    width: 350px; /* Wider modal */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  }
+  
+  .circle {
+    width: 120px; /* Larger circle */
+    height: 120px;
+    border-radius: 50%;
+    background-color: #fff; /* White background for the circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .printer-image {
+    width: 60px; /* Slightly larger printer image */
+    height: 60px;
+  }
+  
+  .modal-buttons {
+    margin-top: 20px;
+  }
+  
+  .modal-buttons button {
+    padding: 12px 25px; /* Increased padding for better touch targets */
+    margin: 10px;
+    border: none;
+    border-radius: 8px; /* Slightly larger border radius */
+    background-color: #28a745; /* Green background for buttons */
+    color: white;
+    cursor: pointer;
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+  }
+  
+  .modal-buttons button:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+
+
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: -300px; /* Start off-screen */
+    background-color: #4caf50; /* Green */
+    color: white;
+    padding: 16px;
+    border-radius: 5px;
+    transition: right 0.5s ease; /* Animation for sliding in */
+    z-index: 1000;
+}
+
+.notification.fade-out {
+    right: -300px; /* Slide out to the right */
 }
