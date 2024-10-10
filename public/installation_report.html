@@ -963,7 +963,7 @@ function printInstallationReport() {
 // Function to generate QR code
 function generateQRCode(profileDetails) {
     // Construct the URL with encoded parameters
-    const inputText = `https://universal.itstrending.in/installationform1.html/warranty.html?serial=${encodeURIComponent(profileDetails.field1)}&customer=${encodeURIComponent(profileDetails.field2)}&project=${encodeURIComponent(profileDetails.field3)}&pno=${encodeURIComponent(profileDetails.field4)}&invoice_number=${encodeURIComponent(profileDetails.field6)}&invoice_date=${encodeURIComponent(profileDetails.field7)}&vehicle_model=${encodeURIComponent(profileDetails.field8)}&vehicle_sl_no=${encodeURIComponent(profileDetails.field9)}&equipment_type=${encodeURIComponent(profileDetails.field10)}`;
+    const inputText = `https://universal.itstrending.in/warranty.html?serial=${encodeURIComponent(profileDetails.field1)}&customer=${encodeURIComponent(profileDetails.field2)}&project=${encodeURIComponent(profileDetails.field3)}&pno=${encodeURIComponent(profileDetails.field4)}&invoice_number=${encodeURIComponent(profileDetails.field6)}&invoice_date=${encodeURIComponent(profileDetails.field7)}&vehicle_model=${encodeURIComponent(profileDetails.field8)}&vehicle_sl_no=${encodeURIComponent(profileDetails.field9)}&equipment_type=${encodeURIComponent(profileDetails.field10)}`;
 
     // Log the URL for debugging purposes
     console.log("QR Code URL:", inputText);
