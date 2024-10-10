@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Updation Page</title>
+    <link href="css/i3.css" rel="stylesheet">
+    <style>
+/* Basic styles for the container */
+.installation-form {
+            position: relative; /* Position relative for dropdown */
+            max-width: 380px;
+            margin: 20px auto;
+            display: flex;
+            gap: 15px;
+        }
+        /* Mobile view adjustments */
+@media (max-width: 600px) {
+    .installation-form {
+        max-width: 100%;  /* Full width on mobile */
+        margin: 10px;     /* Reduce margin on mobile */
+        padding: 15px;    /* Adjust padding for mobile */
+        display: block;
+    }
+}
+
+        /* Style for the suggestions dropdown */
+        #suggestions-list {
+    border: 0px solid #ccc;
+    border-top: none;
+    max-height: 62px;
+    overflow-y: auto;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: white;
+    z-index: 1000;
+    width: 50%;
+    margin-left: 153px;
+    margin-top: 100px;
+}
+
+        /* Style for each suggestion */
+        #suggestions-list li {
+            padding: 10px; /* Add some padding */
+            cursor: pointer; /* Change cursor to pointer */
+        }
+
+        /* Highlight suggestions on hover */
+        #suggestions-list li:hover {
+            background-color: #f0f0f0; /* Highlight on hover */
+        }
+        /* Navbar links */
+    .navbar-links {
+            display: flex;
+            list-style-type: none;
+            gap: 22px; /* Adds space between each menu item */
+        }
+
+        
+
+        .navbar-links a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 11px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column; /* Stack items vertically */
+                gap: 0px;
+            }
+            .navbar-item.left {
+    flex: 0 0 66%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+            .navbar-links li {
+                margin-bottom: 0px; /* Optional, adds space between menu items in mobile view */
+                margin-right: 0px;
+            }
+        }
+        /* Overlay for Popup */
+    #popupOverlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-item left">
+            <img src="img/Screenshot from 2024-09-27 11-50-56.png" alt="Logo" class="logo">
+        </div>
+        <div>
+          <!-- <button class="menu-btn" onclick="toggleMenu()">☰</button> -->
+            <ul class="navbar-links">
+                <li><a href="index.html">Login</a></li>
+                <li><a href="Add_client.html">Add Client</a></li>
+                <li><a href="#">Update Client</a></li>
+                <li><a href="search.html">Search</a></li>
+            </ul>
+        </div>
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+    <br><br>
+    <header class="sub-navbar">
+        <div class="navbar-item left" style="display: flex; justify-content: center; align-items: center;">
+            <h3 style="margin: 0; color:#00bfa6 ;">Search</h3>
+        </div>
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+    <div class="installation-form">
+        <div class="form-group">
+            <label for="customer-name"><strong>Customer Name: </strong></label>
+            <input type="text" id="customer-name" name="customer-name" placeholder="Enter Customer Name" required oninput="filterCustomers()">
+            <ul id="suggestions-list"></ul> <!-- Suggestions will be displayed here -->
+        </div>
+        <div class="form-group">
+            <label for="po-no"><strong>PO No.: </strong></label>
+            <input type="text" id="po-no" name="po-no" placeholder="Enter PO Number">
+        </div>
+    
+        <div class="form-group">
+            <label for="contract-period"><strong>PO Date: </strong></label>
+            <input type="date" id="contract-period" name="contract-period" class="styled-input">
+        </div>
+        <button class="next-button" onclick="handleSearch()">Search</button>
+    </div>
+    
+    
+    <header class="sub-navbar">
+        <div class="navbar-item left" style="display: flex; justify-content: center; align-items: center;">
+            <h3 style="margin: 0; color:#00bfa6 ;">Customer Data</h3>
+        </div>
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+         
+    <div id="search-results"></div> 
+    <!-- Popup Message -->
+<div id="popupMessage" style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #333; color: white; padding: 20px; border-radius: 8px; z-index: 1000;">
+    <span id="popupText"></span>
+    <button onclick="saveProfileDetails(); closePopup();" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">OK</button>
+    <button onclick="closePopup()" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Close</button>
+</div>
+<!-- Popup Modal HTML -->
+<div id="statusPopup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); padding:20px; background-color:#fff; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000;">
+    <span id="popupMessage" style="font-size:16px;"></span><br><br>
+    <button onclick="closePopup()" style="padding:10px; background-color:#333; color:white; border:none;">OK</button>
+</div>
+
+<!-- Modal Overlay -->
+<div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); z-index: 999;"></div>
+    <br>
+    
+    
+<script>
+        // Function to get a specific cookie by name
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        // Retrieve the token from cookies
+        const token = getCookie('token');
+
+                const myHeaders = new Headers();
+                myHeaders.append("Authorization", `${token}`); // Use token from cookies
+                myHeaders.append("Content-Type", "application/json");
+
+        let customerNames = []; // Array to hold customer names
+
+        // Fetch customer names from the API
+        fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", {
+            method: "POST",
+            headers: myHeaders,
+            body: JSON.stringify({ "field48": "" }),
+            redirect: "follow"
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                // Extract profiles from the result
+                const profiles = result.data.profile;
+
+                // Populate the customerNames array with descriptions (names)
+                customerNames = profiles.map(profile => profile.field2);
+            })
+            .catch((error) => console.error('Error:', error));
+
+        // Function to filter and display customer names in the dropdown
+        function filterCustomers() {
+            const input = document.getElementById("customer-name");
+            const filter = input.value.toLowerCase();
+            const suggestionsList = document.getElementById("suggestions-list");
+
+            // Clear previous suggestions
+            suggestionsList.innerHTML = "";
+
+            // If there's no input, return
+            if (!filter) return;
+
+            // Filter customer names based on the input
+            const filteredNames = customerNames.filter(name => name.toLowerCase().includes(filter));
+
+            // Populate the suggestions list with filtered names
+            filteredNames.forEach(name => {
+                const li = document.createElement("li");
+                li.textContent = name; // Set the text content of the list item
+                li.onclick = () => {
+                    input.value = name; // Set the input value to the selected name
+                    suggestionsList.innerHTML = ""; // Clear suggestions after selection
+                    fetchCustomerData(name); // Fetch customer data for the selected name
+                };
+                suggestionsList.appendChild(li); // Append the list item to the suggestions list
+            });
+        }
+
+        // Function to fetch customer data based on the entered name
+        function fetchCustomerData(customerName) {
+            const raw = JSON.stringify({
+                "field2": customerName // Use the entered name in the request body
+            });
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+
+            fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    // Handle the fetched customer data
+                    console.log('Fetched customer data:', result);
+
+                    // Extract the profile_id from the response
+                    const profileId = result.data.profile[0].profile_id;
+                    console.log('Profile ID:', profileId);
+
+                    // Retrieve the email from cookies
+                    const email = decodeURIComponent(getCookie('email') || '');
+                    console.log('Email from cookies:', email);
+
+                    // Send the profile_id and email to the second API
+                    fetchProfileDetails(profileId, email);
+                })
+                .catch(error => console.error('Error fetching customer data:', error));
+        }
+
+        // Function to send the profile_id and email to the API
+        function fetchProfileDetails(profileId, email) {
+            const raw = JSON.stringify({
+                "profile_id": profileId,
+                "email": email
+            });
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+
+            fetch("https://api2.itstrending.in/api/v1/profiles/get_profile_details", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    // Log the result in the console
+                    console.log('Profile details fetched:', result);
+                })
+                .catch(error => console.error('Error fetching profile details:', error));
+        }
+
+        // Function to get a cookie by name
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+</script>
+
+<script>
+        // Global variable to store current profile ID
+        let currentProfileId = null;
+
+        // Function to get a value from cookies
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";");
+            for (let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if (name === cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+
+        // Function to handle search
+        function handleSearch() {
+            // Get input values
+            const customerName = document.getElementById('customer-name').value;
+            const poNumber = document.getElementById('po-no').value;
+            const poDate = document.getElementById('contract-period').value;
+
+            // Ensure at least one search input is provided
+            if (!customerName && !poNumber && !poDate) {
+                console.error('At least one search field must be entered.');
+                alert('Please enter at least one search criterion.');
+                return;
+            }
+
+            // Get the token from cookies
+            const token = getCookie('token');
+            if (!token) {
+                console.error('Token not found in cookies.');
+                alert('Authentication token not found. Please log in.');
+                return;
+            }
+
+            // Set headers for the first API request
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", token);
+            myHeaders.append("Content-Type", "application/json");
+
+            // Create the search request body
+            const requestBody = {};
+            if (customerName) requestBody["field2"] = customerName;
+            if (poNumber) requestBody["field3"] = poNumber;
+            if (poDate) requestBody["field4"] = poDate;
+
+            // Log the request body
+            console.log('Search Request Body:', JSON.stringify(requestBody));
+
+            // Make the search API request
+            fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", {
+                method: "POST",
+                headers: myHeaders,
+                body: JSON.stringify(requestBody),
+                redirect: "follow"
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Search Result:', result);
+
+                    // Extract profile_id from the result
+                    if (result && result.data && result.data.profile && result.data.profile.length > 0) {
+                        const profileId = result.data.profile[0].profile_id;
+                        console.log('Profile ID:', profileId);
+                        currentProfileId = profileId; // Store globally
+
+                        // Get email from cookies
+                        const email = getCookie('email');
+                        if (!email) {
+                            console.error('Email not found in cookies.');
+                            alert('Email not found. Please ensure you are logged in.');
+                            return;
+                        }
+                        console.log('Email:', email);
+
+                        // Call the second API to get profile details
+                        getProfileDetails(profileId, email, token);
+                    } else {
+                        console.error('No profile found in the search result.');
+                        alert('No profiles found matching the search criteria.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching search data:', error);
+                    alert('An error occurred while searching. Please try again.');
+                });
+        }
+
+        // Function to get full profile details
+        function getProfileDetails(profileId, email, token) {
+            // Set headers for the second API request
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", token);
+            myHeaders.append("Content-Type", "application/json");
+
+            // Create the request body for getting profile details
+            const requestBody = {
+                "profile_id": profileId,
+                "email": email
+            };
+
+            // Log the request details
+            console.log('Profile Details Request Body:', JSON.stringify(requestBody));
+
+            // Make the API request to get full profile details
+            fetch("https://api2.itstrending.in/api/v1/profiles/get_profile_details", {
+                method: "POST",
+                headers: myHeaders,
+                body: JSON.stringify(requestBody),
+                redirect: "follow"
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Full Profile Details:', result);
+
+                    // Displaying the profile details on the webpage
+                    const profile = result.data.profile;
+                    if (profile) {
+                        displayProfileDetails(profile);
+                    } else {
+                        console.error('Profile details not found in the response.');
+                        alert('Profile details not found.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching profile details:', error);
+                    alert('An error occurred while fetching profile details.');
+                });
+        }
+
+        // Function to display profile details on the page with editable fields
+        function displayProfileDetails(profile) {
+            const searchResultsDiv = document.getElementById('search-results');
+
+            // Clear previous results
+            searchResultsDiv.innerHTML = '';
+
+            // Create and append profile detail elements with editable fields
+            const profileHTML = `
+                <div id="color-legend" style="margin-top: 20px; padding: 10px; border: 0px solid #ccc; width: fit-content;">
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 20px; height: 20px; background-color: red; margin-right: 10px; border: 1px solid #000;"></div>
+                        <span>On Hold - The particular month's PM Schedule is on hold.</span>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 20px; height: 20px; background-color: green; margin-right: 10px; border: 1px solid #000;"></div>
+                        <span>Completed - The particular month's PM Schedule is completed.</span>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <div style="width: 20px; height: 20px; background-color: yellow; margin-right: 10px; border: 1px solid #000;"></div>
+                        <span>Pending - The particular month's PM Schedule is pending.</span>
+                    </div>
+                </div>
+                <!-- PM Schedules Section -->
+                <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
+                                PM Schedules:
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
+                                <div id="pm-schedules" style="margin-top: 8px;"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Documents Section -->
+                <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
+                                Documents:
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 8px;">
+                                <div id="imagePreview">
+                                    ${profile.images.split(',').map(img => `
+                                        <img src="${img.trim()}" alt="Profile Image" style="width: 100%; height: auto; margin: 4px; border-radius: 4px;">
+                                    `).join(' ')}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 8px;">
+                                <input type="file" id="imageUploader" accept="image/*" style="margin-top: 8px;" multiple />
+                                <button type="button" onclick="addImage()">Add Images</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <form id="profile-form">
+                    <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;" class="editable-table">
+                        <thead>
+                            <tr>
+                                <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
+                                    Profile Details
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Sl. No:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field1" value="${profile.field1}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Customer Name:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field2" value="${profile.field2}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Number:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field3" value="${profile.field3}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Date:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="date" id="field4" value="${profile.field4.split('T')[0]}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Place:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field5" value="${profile.field5}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Phone Number:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field6" value="${profile.field6}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Region:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field7" value="${profile.field7}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>CHL No:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field8" value="${profile.field8}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>CHL Quantity:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field9" value="${profile.field9}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PAC No:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field10" value="${profile.field10}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PAC Quantity:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field11" value="${profile.field11}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>S. A/c:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field24" value="${profile.field24}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Total Quantity:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field13" value="${profile.field13}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Value:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field14" value="${profile.field14}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Type of Call:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field15" value="${profile.field15}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Contract Period From:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="date" id="field16" value="${profile.field16.split('T')[0]}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Contract Period To:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="date" id="field17" value="${profile.field17.split('T')[0]}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Total Visits:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="number" id="field18" value="${profile.field18}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>File No:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field19" value="${profile.field19}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Service Engineer:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field20" value="${profile.field20}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Expiration Date:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="date" id="field21" value="${profile.field21.split('T')[0]}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Payment Terms:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field22" value="${profile.field22}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Comments:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field23" value="${profile.field23}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Recent submissions:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field29" value="${profile.field29}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PM Data:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field30" rows="5" style="width: 100%;">${profile.field30}</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Documents:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="images" rows="3" style="width: 100%;">${profile.images}</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Profile ID:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <input type="text" id="profile_id" value="${profile.profile_id}" readonly />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Created At:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <input type="text" id="created_at" value="${new Date(profile.created_at).toLocaleString()}" readonly />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Recent Update List:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field30" rows="5" style="width: 100%;">${profile.field29}</textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Save Button -->
+                    <button type="button" 
+                        class="save-button" 
+                        onclick="saveProfileDetails()" 
+                        style="background-color: #4CAF50; /* Green background */ 
+                            color: white; /* White text */
+                            padding: 10px 20px; /* Padding for size */
+                            border: none; /* No border */
+                            border-radius: 4px; /* Rounded corners */
+                            cursor: pointer; /* Pointer cursor on hover */
+                            text-align: center; /* Center the text */
+                            display: block; /* Make it a block element */
+                            margin: 0 auto; /* Center horizontally */
+                            font-size: 16px; /* Font size */
+                            width: fit-content; /* Adjust width based on content */
+                            transition: background-color 0.3s; /* Smooth transition for background color */
+                        "
+                        onmouseover="this.style.backgroundColor='#45a049'" /* Darker green on hover */
+                        onmouseout="this.style.backgroundColor='#4CAF50'">
+                    Update Profile
+                </button>
+                </form>
+            `;
+
+            searchResultsDiv.innerHTML = profileHTML;
+
+            // Generate PM Schedules
+            generatePMSchedules(profile.field16, profile.field17, profile.field18);
+        }
+
+        
+    // Static array to hold the status of each month
+let monthStatuses = [];
+
+// Function to generate PM Schedules
+function generatePMSchedules(contractFrom, contractTo, totalVisits) {
+    const startDate = new Date(contractFrom);
+    const endDate = new Date(contractTo);
+    const pmSchedulesDiv = document.getElementById('pm-schedules');
+
+    // Calculate total months between the two dates
+    const totalMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
+
+    // Calculate visits per month
+    const visitsPerMonth = Math.ceil(totalVisits / totalMonths);
+
+    // Create a calendar representation
+    let calendarHTML = `<div style="display: flex; flex-wrap: wrap; margin: -8px;">`;
+
+    for (let month = 0; month <= totalMonths; month++) {
+        const currentMonth = new Date(startDate.getFullYear(), startDate.getMonth() + month);
+        const monthName = currentMonth.toLocaleString('default', { month: 'long' });
+        const year = currentMonth.getFullYear();
+
+        // Initialize status for each month in the array
+        monthStatuses[month] = { month: `${monthName} ${year}`, status: 'pending' };
+
+        // Each month will have its own ID for easy selection
+        const monthId = `month-${month}`;
+
+        calendarHTML += `
+            <div id="${monthId}" style="border: 1px solid #ccc; padding: 16px; margin: 8px; width: 120px; text-align: center; background-color: yellow;">
+                <strong>${monthName} ${year}</strong><br />
+                <div>Visits: ${visitsPerMonth}</div>
+                <button type="button" onclick="updateStatus('${monthId}', ${month}, 'onhold')">On Hold</button>
+                <button type="button" onclick="updateStatus('${monthId}', ${month}, 'completed')">Completed</button>
+            </div>
+        `;
+    }
+    calendarHTML += `</div>`;
+
+    pmSchedulesDiv.innerHTML = calendarHTML;
+
+    // Restore the previous statuses if they exist
+    restoreStatuses();
+}
+
+// Function to update the status and change background color
+function updateStatus(monthId, monthIndex, status) {
+    const monthDiv = document.getElementById(monthId);
+
+    if (status === 'onhold') {
+        monthDiv.style.backgroundColor = 'red';
+        monthStatuses[monthIndex].status = 'onhold'; // Update status in the array
+        showPopup("Month status updated to 'On Hold'");
+    } else if (status === 'completed') {
+        monthDiv.style.backgroundColor = 'green';
+        monthStatuses[monthIndex].status = 'completed'; // Update status in the array
+        showPopup("Month status updated to 'Completed'");
+    } else if (status === 'pending') {
+        monthDiv.style.backgroundColor = 'yellow';
+        monthStatuses[monthIndex].status = 'pending'; // Update status in the array
+        showPopup("Month status updated to 'Pending'");
+    }
+
+    // Update the field30 textarea with the updated statuses
+    updateField30();
+}
+
+// Function to update the field30 textarea with the new data
+function updateField30() {
+    const statusJSON = JSON.stringify(monthStatuses);
+    document.getElementById('field30').value = statusJSON;
+}
+
+// Function to restore the saved statuses from the field30 textarea
+function restoreStatuses() {
+    const field30Value = document.getElementById('field30').value;
+    
+    // Parse the JSON data from field30
+    let savedStatuses = [];
+    try {
+        savedStatuses = JSON.parse(field30Value);
+    } catch (e) {
+        console.error('Error parsing field30:', e);
+        return;
+    }
+
+    // Restore the background colors based on saved statuses
+    savedStatuses.forEach((monthStatus, index) => {
+        const monthId = `month-${index}`;
+        const monthDiv = document.getElementById(monthId);
+        if (!monthDiv) return; // Skip if no div is found
+
+        // Update the monthStatuses array
+        monthStatuses[index] = monthStatus;
+
+        // Apply the background color based on the status
+        if (monthStatus.status === 'onhold') {
+            monthDiv.style.backgroundColor = 'red';
+        } else if (monthStatus.status === 'completed') {
+            monthDiv.style.backgroundColor = 'green';
+        } else if (monthStatus.status === 'pending') {
+            monthDiv.style.backgroundColor = 'yellow';
+        }
+    });
+}
+
+// Function to show the popup message
+function showPopup(message) {
+    const popup = document.getElementById('statusPopup');
+    const overlay = document.getElementById('modalOverlay');
+    document.getElementById('popupMessage').innerText = message;
+
+    // Show the popup and overlay
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
+// Function to close the popup
+function closePopup() {
+    const popup = document.getElementById('statusPopup');
+    const overlay = document.getElementById('modalOverlay');
+
+    // Hide the popup and overlay
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+}
+
+        // Function to save profile details (Edit and Save functionality)
+        function saveProfileDetails() {
+            if (!currentProfileId) {
+                console.error('No profile selected to save.');
+                alert('No profile selected to save.');
+                return;
+            }
+
+            // Get the token from cookies
+            const token = getCookie('token');
+            if (!token) {
+                console.error('Token not found in cookies.');
+                alert('Authentication token not found. Please log in.');
+                return;
+            }
+
+            // Collect updated data from input fields
+            const updatedProfile = {
+                "profile_id": document.getElementById('profile_id').value,
+                "images": document.getElementById('images').value.trim(),
+                "field1": document.getElementById('field1').value,
+                "field2": document.getElementById('field2').value,
+                "field3": document.getElementById('field3').value,
+                "field4": document.getElementById('field4').value,
+                "field5": document.getElementById('field5').value,
+                "field6": document.getElementById('field6').value,
+                "field7": document.getElementById('field7').value,
+                "field8": document.getElementById('field8').value,
+                "field9": document.getElementById('field9').value,
+                "field10": document.getElementById('field10').value,
+                "field11": document.getElementById('field11').value,
+                "field12": "", // Assuming field12 is not editable; adjust as needed
+                "field13": document.getElementById('field13').value,
+                "field14": document.getElementById('field14').value,
+                "field15": document.getElementById('field15').value,
+                "field16": document.getElementById('field16').value,
+                "field17": document.getElementById('field17').value,
+                "field18": document.getElementById('field18').value,
+                "field19": document.getElementById('field19').value,
+                "field20": document.getElementById('field20').value,
+                "field21": document.getElementById('field21').value,
+                "field22": document.getElementById('field22').value,
+                "field23": document.getElementById('field23').value,
+                "field24": document.getElementById('field24').value,
+                "field25": "", // Assuming fields 25-50 are not editable; adjust as needed
+                "field26": "",
+                "field27": "",
+                "field28": "",
+                "field29": "",
+                "field30": document.getElementById('field30').value, // Retrieve field30 from cookies
+                "field31": "",
+                "field32": "",
+                "field33": "",
+                "field34": "",
+                "field35": "",
+                "field36": "",
+                "field37": "",
+                "field38": "",
+                "field39": "",
+                "field40": "",
+                "field41": "",
+                "field42": "",
+                "field43": "",
+                "field44": "",
+                "field45": "",
+                "field46": "",
+                "field47": "",
+                "field48": "",
+                "field49": "",
+                "field50": "" // Assuming field50 is not editable; adjust as needed
+            };
+
+            // Set headers for the PUT API request
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", token);
+            myHeaders.append("Content-Type", "application/json");
+
+            // Log the updated profile data
+            console.log('Updated Profile Data:', JSON.stringify(updatedProfile));
+
+            // Send the PUT request to update profile details
+            fetch("https://api2.itstrending.in/api/v1/profiles", {
+                method: "PUT",
+                headers: myHeaders,
+                body: JSON.stringify(updatedProfile),
+                redirect: "follow"
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Profile Updated:', result);
+                // if (result.success) {
+                //     alert('Profile updated successfully!');
+                // } else {
+                //     alert('Profile updated successfully!.');
+                // }
+            })
+            .catch(error => {
+                console.error('Error updating profile:', error);
+                alert('An error occurred while updating the profile.');
+            });
+        }
+
+        // Helper function to retrieve field30 from cookies
+        function getField30FromCookies() {
+            const savedStatuses = readFromCookies();
+            return savedStatuses ? JSON.stringify(savedStatuses) : "";
+        }
+    </script>
+    <script>
+        function showPopup(message) {
+            const popupText = document.getElementById('popupText');
+            const popupMessage = document.getElementById('popupMessage');
+            
+            popupText.innerText = message;
+            popupMessage.style.display = 'block';
+        
+            // Automatically hide the popup after 30 seconds
+            setTimeout(closePopup, 30000);
+        }
+        
+        function closePopup() {
+            const popupMessage = document.getElementById('popupMessage');
+            popupMessage.style.display = 'none';
+        }
+        
+        function addImage() {
+            const fileInput = document.getElementById('imageUploader');
+            const files = fileInput.files;
+        
+            if (files.length === 0) {
+                showPopup('No files selected.');
+                return;
+            }
+        
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", token); // Replace with your actual token
+        
+            const formdata = new FormData();
+        
+            // Loop through the selected files and append each to the FormData
+            for (let i = 0; i < files.length; i++) {
+                formdata.append("file", files[i], files[i].name);
+            }
+        
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: formdata,
+                redirect: "follow"
+            };
+        
+            fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json(); // Get response as JSON
+                })
+                .then((result) => {
+                    console.log('API Response:', result);
+                    // Extract the image URLs from the API response
+                    const imageUrls = result.data.images.map(url => url + '?alt=media'); // Append ?alt=media
+        
+                    // Get the current images from the textarea
+                    const imagesTextArea = document.getElementById('images');
+                    const existingImages = imagesTextArea.value;
+        
+                    // Append the new URLs to the textarea
+                    imagesTextArea.value = existingImages ? `${existingImages}, ${imageUrls.join(', ')}` : imageUrls.join(', ');
+        
+                    // Display the newly uploaded images in the preview section
+                    const imagePreviewDiv = document.getElementById('imagePreview');
+                    imageUrls.forEach(newImageUrl => {
+                        const newImageElement = document.createElement('img');
+                        newImageElement.src = newImageUrl; // Set the source to the new image URL
+                        newImageElement.alt = "Profile Image";
+                        newImageElement.style = "width: 100%; height: auto; margin: 4px; border-radius: 4px;";
+                        imagePreviewDiv.appendChild(newImageElement); // Append the new image to the preview section
+                    });
+        
+                    showPopup('Images uploaded successfully, Are you sure you want to update your profile?');
+                })
+                .catch((error) => {
+                    console.error('Error uploading images:', error);
+                    showPopup('Image upload failed. Please try again.');
+                });
+        }
+        </script>
+    <script>
+        // Function to check for required cookies
+        function checkLoginStatus() {
+            // Get cookies
+            const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+                const [name, value] = cookie.split('=');
+                acc[name] = value;
+                return acc;
+            }, {});
+
+            // Check for email and token cookies
+            const email = cookies['email'];
+            const token = cookies['token'];
+
+            if (!email || !token) {
+                alert("You have not been logged in. Please log in.");
+                window.location.href = 'index.html'; // Redirect to index.html
+            }
+        }
+
+        // Call the function to check login status on page load
+        checkLoginStatus();
+    </script>
+</body>
+</html>

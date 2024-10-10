@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Customer</title>
+    <link href="css/i.css" rel="stylesheet">
+    <style>
+        /* Navbar links */
+    .navbar-links {
+            display: flex;
+            list-style-type: none;
+            gap: 22px; /* Adds space between each menu item */
+        }
+
+        
+
+        .navbar-links a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 11px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column; /* Stack items vertically */
+                gap: 0px;
+            }
+            .navbar-item.left {
+    flex: 0 0 68%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+            .navbar-links li {
+                margin-bottom: 0px; /* Optional, adds space between menu items in mobile view */
+                margin-right: 0px;
+            }
+        }
+        .error-message {
+        color: red;
+        font-size: 12px;
+        padding-left: 10px;
+    }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-item left">
+            <img src="img/Screenshot from 2024-09-27 11-50-56.png" alt="Logo" class="logo">
+        </div>
+        <div>
+          <!-- <button class="menu-btn" onclick="toggleMenu()">☰</button> -->
+            <ul class="navbar-links">
+                <li><a href="index.html">Login</a></li>
+                <li><a href="Add_client.html">Add Client</a></li>
+                <li><a href="#">Update Client</a></li>
+                <li><a href="search.html">Search</a></li>
+            </ul>
+        </div>
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+    <br>
+    <!-- <div class="installation-form">
+        <h2>Add Clients</h2>
+        <div class="underline"></div>
+        <label for="serial-number"><strong>Serial Number: </strong></label>
+        <input type="text" id="serial-number" name="serial-number" placeholder="Enter Serial Number" required oninput="setCookie('field1', this.value)">
+    </div> -->
+    <br>
+    <header class="sub-navbar">
+        <div class="navbar-item left" style="display: flex; justify-content: center; align-items: center;">
+            <h3 style="margin: 0; color:#00bfa6 ;">PM and Invoice Schedule Form</h3>
+        </div>
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+         
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="customer-name"><strong>Customer Name: </strong></label>
+            <input type="text" id="customer-name" name="customer-name" placeholder="Enter Customer Name" required oninput="setCookie('field2', this.value); validateCustomerName()">
+            <div id="customer-name-error" class="error-message"></div>
+        </div>
+    
+        <div class="form-group">
+            <label for="place"><strong>Place: </strong></label>
+            <select id="place" name="place" required class="styled-select" onchange="setCookie('field5', this.value)">
+                <option value="">Select Place</option>
+                <option value="bangalore">Bangalore</option>
+                <option value="mumbai">Mumbai</option>
+                <option value="delhi">Delhi</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="phone"><strong>Phone: </strong></label>
+            <input type="text" id="phone" name="phone" placeholder="Enter Phone Number" required oninput="setCookie('field6', this.value); validatePhone()">
+            <div id="phone-error" class="error-message"></div>
+        </div>
+    
+        <div class="form-group">
+            <label for="region"><strong>Region: </strong></label>
+            <select id="region" name="region" required class="styled-select" onchange="setCookie('field7', this.value)">
+                <option value="">Select Region</option>
+                <option value="north">North</option>
+                <option value="south">South</option>
+                <option value="east">East</option>
+                <option value="west">West</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="chl"><strong>CHL: </strong></label>
+            <input type="text" id="chl" name="chl" placeholder="Enter CHL" required oninput="setCookie('field8', this.value); validateChl()">
+            <div id="chl-error" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="chl-quantity"><strong>CHL Quantity: </strong></label>
+            <input type="number" id="chl-quantity" name="chl-quantity" placeholder="Enter CHL Quantity" required oninput="setCookie('field9', this.value); calculateTotal()">
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="pac"><strong>PAC: </strong></label>
+            <input type="text" id="pac" name="pac" placeholder="Enter PAC" required oninput="setCookie('field10', this.value); validatePac()">
+            <div id="pac-error" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="pac-quantity"><strong>PAC Quantity: </strong></label>
+            <input type="number" id="pac-quantity" name="pac-quantity" placeholder="Enter PAC Quantity" required oninput="setCookie('field11', this.value); calculateTotal()">
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="s-ac"><strong>S. A/c: </strong></label>
+            <input type="text" id="s-ac" name="s-ac" placeholder="Enter S. A/c" required oninput="setCookie('field24', this.value); validateAccount()">
+            <div id="s-ac-error" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="total"><strong>Total: </strong></label>
+            <input type="text" id="total" name="total" placeholder="Total" required readonly oninput="setCookie('field13', this.value)">
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="po-no"><strong>PO No.: </strong></label>
+            <input type="text" id="po-no" name="po-no" placeholder="Enter PO Number" required oninput="setCookie('field3', this.value); validatePoNo()">
+            <div id="po-no-error" class="error-message"></div>
+        </div>
+    
+        <div class="form-group">
+            <label for="po-value"><strong>PO Value: </strong></label>
+            <input type="text" id="po-value" name="po-value" placeholder="Enter PO Value" required oninput="setCookie('field14', this.value); validatePoValue()">
+            <div id="po-value-error" class="error-message"></div>
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="type-of-call"><strong>Type of Call: </strong></label>
+            <input type="text" id="type-of-call" name="type-of-call" placeholder="Enter Type of Call" required oninput="setCookie('field15', this.value); validateTypeOfCall()">
+            <div id="type-of-call-error" class="error-message"></div>
+        </div>
+    
+        <div class="form-group">
+            <label for="contract-period"><strong>PO Date: </strong></label>
+            <input type="date" id="contract-period" name="contract-period" required class="styled-input" onchange="setCookie('field4', this.value)">
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="contract-period-from"><strong>Contract Period From: </strong></label>
+            <input type="date" id="contract-period-from" name="contract-period-from" required class="styled-input" onchange="setCookie('field16', this.value)">
+        </div>
+    
+        <div class="form-group">
+            <label for="contract-period-to"><strong>Contract Period To: </strong></label>
+            <input type="date" id="contract-period-to" name="contract-period-to" required class="styled-input" onchange="setCookie('field17', this.value)">
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="visits"><strong>Visits: </strong></label>
+            <input type="number" id="visits" name="visits" placeholder="Enter Visits" required oninput="setCookie('field18', this.value)" min="1" max="6">
+            <div id="visits-error" class="error-message"></div>
+        </div>
+    
+        <div class="form-group">
+            <label for="po-document"><strong>PO Document: </strong></label>
+            <input type="file" id="po-document" name="po-document" accept="image/*" multiple required>
+        </div>
+        <div id="total-image-count">Total docs:<span id="image-count-display">0</span></div>
+        <button id="preview-images-button" style="margin-left: 10px; background-color: #00bfa6; color: white; border-radius: 5px; padding: 2px; border-color: #00bfa6;">Preview docs</button>
+
+        <!-- Popup for Image Preview -->
+        <div id="preview-popup" class="popup">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <div class="popup-content" id="popup-content"></div>
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="file-no"><strong>File No.: </strong></label>
+            <input type="text" id="file-no" name="file-no" placeholder="Enter File No." required oninput="setCookie('field22', this.value); validateFileNo()">
+            <div id="file-no-error" class="error-message"></div>
+        </div>
+    
+        <div class="form-group">
+            <label for="service-engineer"><strong>Service Engineer: </strong></label>
+            <input type="text" id="service-engineer" name="service-engineer" placeholder="Enter Service Engineer" required oninput="setCookie('field19', this.value); validateServiceEngineer()">
+            <div id="service-engineer-error" class="error-message"></div>
+        </div>
+    </div>
+
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="payment_status"><strong>Payment Status: </strong></label>
+            <select id="payment_status" name="payment_status" required class="styled-select" onchange="setCookie('field1', this.value)">
+                <option value="">Please Select</option>
+                <option value="Received">Received</option>
+                <option value="Not Received">Not Received</option>
+                <option value="On Hold">On Hold</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="expiration-date"><strong>Expiration Date: </strong></label>
+            <input type="date" id="expiration-date" name="expiration-date" required class="styled-input" onchange="setCookie('field21', this.value)">
+        </div>
+    </div>
+
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="po-payment-terms"><strong>PO Payment Terms: </strong></label>
+            <input type="text" id="po-payment-terms" name="po-payment-terms" placeholder="Enter PO Payment Terms" required oninput="setCookie('field20', this.value); validatePaymentTerms()">
+            <div id="payment-terms-error" class="error-message"></div>
+        </div>
+    
+        <div class="form-group">
+            <label for="comments"><strong>Comments: </strong></label>
+            <textarea id="comments" name="comments" placeholder="Enter Comments" required class="styled-textarea" oninput="setCookie('field23', this.value)"></textarea>
+        </div>
+    </div>
+
+    <button class="next-button" onclick="handleNext()">Next</button>
+    <br>
+    <script>
+        // Function to check for required cookies
+        function checkLoginStatus() {
+            // Get cookies
+            const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+                const [name, value] = cookie.split('=');
+                acc[name] = value;
+                return acc;
+            }, {});
+
+            // Check for email and token cookies
+            const email = cookies['email'];
+            const token = cookies['token'];
+
+            if (!email || !token) {
+                alert("You have not been logged in. Please log in.");
+                window.location.href = 'index.html'; // Redirect to index.html
+            }
+        }
+
+        // Call the function to check login status on page load
+        checkLoginStatus();
+    </script>
+    <script>
+        // function setCookie(name, value) {
+        //     document.cookie = `${name}=${value}; path=/`;
+        // }
+    
+        function validateCustomerName() {
+            const nameField = document.getElementById('customer-name');
+            const nameError = document.getElementById('customer-name-error');
+            const nameValue = nameField.value.trim();
+    
+            if (nameValue.length < 5 || nameValue.length > 30) {
+                nameError.textContent = 'Customer name must be between 5 and 30 characters.';
+            } else if (!/^[a-zA-Z\s]*$/.test(nameValue)) {
+                nameError.textContent = 'Customer name must only contain letters and spaces.';
+            } else {
+                nameError.textContent = '';
+            }
+        }
+    
+        function validatePhone() {
+            const phoneField = document.getElementById('phone');
+            const phoneError = document.getElementById('phone-error');
+            const phoneValue = phoneField.value.trim();
+    
+            if (!/^\d{10}$/.test(phoneValue)) {
+                phoneError.textContent = 'Phone number must be exactly 10 digits.';
+            } else {
+                phoneError.textContent = '';
+            }
+        }
+    
+        function validateChl() {
+            const chlField = document.getElementById('chl');
+            const chlError = document.getElementById('chl-error');
+            const chlValue = chlField.value.trim();
+    
+            if (chlValue.length < 3 || chlValue.length > 10) {
+                chlError.textContent = 'CHL must be between 3 and 10 characters.';
+            } else {
+                chlError.textContent = '';
+            }
+        }
+    
+        function validatePac() {
+            const pacField = document.getElementById('pac');
+            const pacError = document.getElementById('pac-error');
+            const pacValue = pacField.value.trim();
+    
+            if (pacValue.length < 3 || pacValue.length > 10) {
+                pacError.textContent = 'PAC must be between 3 and 10 characters.';
+            } else {
+                pacError.textContent = '';
+            }
+        }
+    
+        function validateAccount() {
+            const accountField = document.getElementById('s-ac');
+            const accountError = document.getElementById('s-ac-error');
+            const accountValue = accountField.value.trim();
+    
+            if (accountValue.length < 5 || accountValue.length > 20) {
+                accountError.textContent = 'S. A/c must be between 5 and 20 characters.';
+            } else {
+                accountError.textContent = '';
+            }
+        }
+    
+        function validatePoNo() {
+            const poField = document.getElementById('po-no');
+            const poError = document.getElementById('po-no-error');
+            const poValue = poField.value.trim();
+    
+            if (poValue.length < 5 || poValue.length > 15) {
+                poError.textContent = 'PO No. must be between 5 and 15 characters.';
+            } else {
+                poError.textContent = '';
+            }
+        }
+    
+        function validatePoValue() {
+            const poValueField = document.getElementById('po-value');
+            const poValueError = document.getElementById('po-value-error');
+            const poValue = poValueField.value.trim();
+    
+            if (!/^\d+(\.\d{1,2})?$/.test(poValue)) {
+                poValueError.textContent = 'PO Value must be a valid decimal number.';
+            } else {
+                poValueError.textContent = '';
+            }
+        }
+    
+        function validateTypeOfCall() {
+            const callField = document.getElementById('type-of-call');
+            const callError = document.getElementById('type-of-call-error');
+            const callValue = callField.value.trim();
+    
+            if (callValue.length < 3 || callValue.length > 20) {
+                callError.textContent = 'Type of Call must be between 3 and 20 characters.';
+            } else {
+                callError.textContent = '';
+            }
+        }
+    
+        function validateVisits() {
+            const visitsField = document.getElementById('visits');
+            const visitsError = document.getElementById('visits-error');
+            const visitsValue = visitsField.value;
+    
+            if (visitsValue < 1 || visitsValue > 6) {
+                visitsError.textContent = 'Visits must be between 1 and 6.';
+            } else {
+                visitsError.textContent = '';
+            }
+        }
+    
+        function validateFileNo() {
+            const fileNoField = document.getElementById('file-no');
+            const fileNoError = document.getElementById('file-no-error');
+            const fileNoValue = fileNoField.value.trim();
+    
+            if (fileNoValue.length < 3 || fileNoValue.length > 15) {
+                fileNoError.textContent = 'File No. must be between 3 and 15 characters.';
+            } else {
+                fileNoError.textContent = '';
+            }
+        }
+    
+        function validateServiceEngineer() {
+            const engineerField = document.getElementById('service-engineer');
+            const engineerError = document.getElementById('service-engineer-error');
+            const engineerValue = engineerField.value.trim();
+    
+            if (engineerValue.length < 3 || engineerValue.length > 20) {
+                engineerError.textContent = 'Service Engineer must be between 3 and 20 characters.';
+            } else {
+                engineerError.textContent = '';
+            }
+        }
+    
+        function validatePaymentTerms() {
+            const paymentField = document.getElementById('po-payment-terms');
+            const paymentError = document.getElementById('payment-terms-error');
+            const paymentValue = paymentField.value.trim();
+    
+            if (paymentValue.length < 5 || paymentValue.length > 30) {
+                paymentError.textContent = 'Payment terms must be between 5 and 30 characters.';
+            } else {
+                paymentError.textContent = '';
+            }
+        }
+    
+        function validateComments() {
+            const commentsField = document.getElementById('comments');
+            const commentsError = document.getElementById('comments-error');
+            const commentsValue = commentsField.value.trim();
+    
+            if (commentsValue.length > 200) {
+                commentsError.textContent = 'Comments must be less than 200 characters.';
+            } else {
+                commentsError.textContent = '';
+            }
+        }
+    
+        function handleNext() {
+            // Check for validation errors
+            validateCustomerName();
+            validatePhone();
+            validateChl();
+            validatePac();
+            validateAccount();
+            validatePoNo();
+            validatePoValue();
+            validateTypeOfCall();
+            validateVisits();
+            validateFileNo();
+            validateServiceEngineer();
+            validatePaymentTerms();
+            validateComments();
+    
+            // Check for any error messages
+            const errorMessages = document.querySelectorAll('.error-message');
+            for (let i = 0; i < errorMessages.length; i++) {
+                if (errorMessages[i].textContent) {
+                    alert("Please fix the errors in the form before proceeding.");
+                    return;
+                }
+            }
+    
+            // Proceed to the next step if no errors
+            alert("Form is valid. Proceeding to the next step...");
+        }
+    
+        // ... remaining code for cookie handling and file preview
+    </script>
+    <script>
+        function calculateTotal() {
+            // Get values from quantity inputs
+            const chlQuantity = parseFloat(document.getElementById('chl-quantity').value) || 0;
+            const pacQuantity = parseFloat(document.getElementById('pac-quantity').value) || 0;
+    
+            // Calculate total
+            const total = chlQuantity + pacQuantity;
+    
+            // Update the Total input
+            document.getElementById('total').value = total;
+    
+            // Optionally store the total in a cookie
+            setCookie('field13', total);
+        }
+    
+        function setCookie(name, value) {
+            document.cookie = name + "=" + value + "; path=/";
+        }
+    </script>
+    <script>
+        function handleNext() {
+                const visits = parseInt(document.getElementById('visits').value);
+                const contractDate = document.getElementById('contract-period').value;
+    
+                if (visits && contractDate) {
+                    let contractStartDate = new Date(contractDate);
+                    let currentDate = new Date();
+                    
+                    // Calculate contract end date by adding (visits - 1) * 3 months
+                    let contractEndDate = new Date(contractStartDate);
+                    contractEndDate.setMonth(contractEndDate.getMonth() + (visits - 1) * 3);
+                    
+                    // Format dates for display
+                    let formattedContractStartDate = contractStartDate.toLocaleDateString('en-US');
+                    let formattedCurrentDate = currentDate.toLocaleDateString('en-US');
+                    let formattedContractEndDate = contractEndDate.toLocaleDateString('en-US');
+    
+                    // Display the alert with the calculated values
+                    alert(`Current Date: ${formattedCurrentDate}\nVisits: ${visits}\nContract Start Date: ${formattedContractStartDate}\nContract End Date: ${formattedContractEndDate}`);
+                } else {
+                    alert('Please enter both the contract period date and the number of visits.');
+                }
+            }
+    
+            function setCookie(name, value) {
+                document.cookie = name + "=" + value + "; path=/";
+            }
+    
+    
+            let modifiedImageUrls = []; // Array to store modified image URLs
+let imageCount = 0; // Counter for the total number of images
+
+document.getElementById('po-document').addEventListener('change', function (event) {
+    const files = event.target.files;
+    const popupContent = document.getElementById('popup-content');
+
+    // Clear previous content
+    popupContent.innerHTML = '';
+
+    // Loop through the files and create image elements
+    for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.maxWidth = '100px'; // Set max width for preview images
+            img.style.margin = '5px'; // Add some margin
+            popupContent.appendChild(img);
+
+            // Send the image to the API
+            uploadImage(file);
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // Update the image count based on the array and newly added images
+    imageCount = modifiedImageUrls.length + files.length; // Total count includes previously uploaded images and new uploads
+
+    // Update the image count display
+    updateImageCountDisplay(); // Call function to update the count display
+});
+
+// Function to close the popup
+function closePopup() {
+    const popup = document.getElementById('preview-popup');
+    popup.style.display = 'none';
+}
+
+// Function to open the popup and display all uploaded images
+function openImagePreview() {
+    const popupContent = document.getElementById('popup-content');
+
+    // Clear previous content
+    popupContent.innerHTML = '';
+
+    // Loop through modified image URLs and create image elements
+    modifiedImageUrls.forEach(url => {
+        const img = document.createElement('img');
+        img.src = url; // Use the modified URL from the array
+        img.style.maxWidth = '80%'; // Set max width for better visibility
+        img.style.maxHeight = '80%'; // Set max height for better visibility
+        img.style.margin = '5px'; // Add some margin
+        img.style.objectFit = 'contain'; // Ensure image fits well within the dimensions
+        popupContent.appendChild(img);
+    });
+
+    // Show popup
+    const popup = document.getElementById('preview-popup');
+    popup.style.display = 'flex';
+}
+
+// Event listener for preview button
+document.getElementById('preview-images-button').addEventListener('click', openImagePreview);
+
+// Function to upload images to the API
+function uploadImage(file) {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mjg1MzcwNDYsImlhdCI6MTcyODQ1MDY0NiwidXNlciI6eyJpZCI6NSwiY3JlYXRlZF9hdCI6IjIwMjQtMTAtMDNUMDc6MDg6MjQuOTc1MTE0IiwidXBkYXRlZF9hdCI6bnVsbCwiZmlyc3RuYW1lIjoiSGFyc2hpdGgiLCJsYXN0bmFtZSI6Ik4iLCJlbWFpbCI6ImhhcnNoaXRoZ293ZGExODgwMUBnbWFpbC5jb20iLCJpc19hZG1pbiI6ZmFsc2UsImlzX2FjdGl2YXRlZCI6ZmFsc2V9fQ.6zahZQPxWjNxuYdWhxVXIfUgy3zjA2ZR97KXcHi9aEc"); // Replace {{Autho}} with your actual authorization token
+
+    const formdata = new FormData();
+    formdata.append("file", file, file.name); // Use the actual file name
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow"
+    };
+
+    fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json(); // Parse JSON response
+        })
+        .then((result) => {
+            console.log(result); // Log the entire result for debugging
+            if (result.status === "success" && result.data && result.data.images) {
+                // Extract the image URLs, modify them, and store in the array
+                result.data.images.forEach(imageUrl => {
+                    console.log(imageUrl); // Log the raw image URL
+                    const modifiedImageUrl = imageUrl + "?alt=media"; // Append ?alt=media
+                    modifiedImageUrls.push(modifiedImageUrl); // Store the modified URL in the array
+                });
+
+                // Join the modified image URLs into a string and store in cookies
+                const imageUrlsString = modifiedImageUrls.join(','); // Join without brackets
+                document.cookie = `imageUrls=${imageUrlsString}; path=/`; // Store in cookies
+
+                // Log the string for verification
+                console.log("Stored in cookies:", imageUrlsString);
+                
+                // Update image count after successful upload
+                updateImageCountDisplay(); // Call function to update the count display
+            }
+        })
+        .catch((error) => console.error('Error uploading image:', error));
+}
+
+// Function to update the image count display
+function updateImageCountDisplay() {
+    const countDisplayElement = document.getElementById('image-count-display');
+    countDisplayElement.textContent = imageCount; // Update the displayed count
+}
+
+    
+            
+    
+    
+      // Function to get a cookie value by name
+      function getCookieValue(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+    
+            function handleNext() {
+                // Retrieve the token from the cookies
+                const token = getCookieValue("token") || ""; // Default to empty string if not found
+    
+                // Prepare headers
+                const myHeaders = new Headers();
+                myHeaders.append("Authorization", token); // Use the token from cookies
+                myHeaders.append("Content-Type", "application/json");
+    
+                // Retrieve values from cookies for fields 1 to 15
+                const field1 = getCookieValue("field1") || "";
+                const field2 = getCookieValue("field2") || "";
+                const field3 = getCookieValue("field3") || "";
+                const field4 = getCookieValue("field4") || "";
+                const field5 = getCookieValue("field5") || "";
+                const field6 = getCookieValue("field6") || "";
+                const field7 = getCookieValue("field7") || "";
+                const field8 = getCookieValue("field8") || "";
+                const field9 = getCookieValue("field9") || "";
+                const field10 = getCookieValue("field10") || "";
+                const field11 = getCookieValue("field11") || "";
+                const field12 = getCookieValue("field12") || "";
+                const field13 = getCookieValue("field13") || "";
+                const field14 = getCookieValue("field14") || "";
+                const field15 = getCookieValue("field15") || "";
+                const field16 = getCookieValue("field16") || "";
+    
+                const field17 = getCookieValue("field17") || "";
+    
+                const field18 = getCookieValue("field18") || "";
+    
+                const field19 = getCookieValue("field19") || "";
+    
+                const field20 = getCookieValue("field20") || "";
+                const field21 = getCookieValue("field21") || "";
+
+                const field22 = getCookieValue("field22") || "";
+                const field23 = getCookieValue("field23") || "";
+                const field24 = getCookieValue("field24") || "";
+
+
+
+                const images = getCookieValue("imageUrls") || ""; // Assuming 'imageUrls' contains comma-separated image URLs
+    
+    
+    
+                // Prepare the raw body for the request
+                const raw = JSON.stringify({
+                    "profile_id": "",
+                    "description": "",
+                    "gender": "",
+                    "images": images, // Use the retrieved image URLs
+                    "bio": "",
+                    "field1": field1,
+                    "field2": field2,
+                    "field3": field3,
+                    "field4": field4,
+                    "field5": field5,
+                    "field6": field6,
+                    "field7": field7,
+                    "field8": field8,
+                    "field9": field9,
+                    "field10": field10,
+                    "field11": field11,
+                    "field12": field12,
+                    "field13": field13,
+                    "field14": field14,
+                    "field15": field15,
+                    "field16": field16,
+                    "field17": field17,
+                    "field18": field18,
+                    "field19": field19,
+                    "field20": field20,
+                    "field21": field21,
+                    "field22": field22,
+                    "field23": field23,
+                    "field24": field24,
+                    "field25": "",
+                    "field26": "",
+                    "field27": "",
+                    "field28": "",
+                    "field29": "",
+                    "field30": "",
+                    "field31": "",
+                    "field32": "",
+                    "field33": "",
+                    "field34": "",
+                    "field35": "",
+                    "field36": "",
+                    "field37": "",
+                    "field38": "",
+                    "field39": "",
+                    "field40": "",
+                    "field41": "",
+                    "field42": "",
+                    "field43": "",
+                    "field44": "",
+                    "field45": "",
+                    "field46": "",
+                    "field47": "",
+                    "field48": "",
+                    "field49": "",
+                    "field50": ""
+                });
+    
+                // Request options
+const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+};
+
+// Send the request
+fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
+    .then((response) => {
+        if (response.ok) {
+            // Display success message
+            alert("Form submitted successfully!");
+        } else {
+            // Display error message for failed submission
+            alert("Form not submitted due to an error.");
+        }
+        return response.text();
+    })
+    .then((result) => console.log(result))
+    .catch((error) => {
+        // Display error message for network or other issues
+        alert("An error occurred while submitting the form.");
+        console.error(error);
+    });
+            }
+        </script>
+</body>
+</html>

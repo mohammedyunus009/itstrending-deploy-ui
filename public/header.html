@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer_Updation</title>
+    <link href="css/header.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-item left">
+            <img src="img/Screenshot from 2024-09-27 11-50-56.png" alt="Logo" class="logo">
+        </div>
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+    
+    <header class="sub-navbar">
+        <div class="navbar-item left">
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+            <div class="menu-content" id="menuContent">
+                <a href="Add_client.html">Add Client</a>
+                <span>|</span>
+                <a href="customer_updation.html">Customer Updation</a>
+                <span>|</span>
+                <a href="search.html">Search</a>
+            </div>
+            <a href="Add_client.html" class="desktop-link">Add Client</a>
+            <span class="desktop-link">|</span>
+            <a href="customer_updation.html" class="desktop-link">Customer Updation</a>
+            <span class="desktop-link">|</span>
+            <a href="search.html" class="desktop-link">Search</a>
+        </div>
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+
+    
+    <script>
+        function toggleMenu() {
+    const menuContent = document.getElementById('menuContent');
+    menuContent.classList.toggle('active');
+}
+
+    </script>
+    
+</body>
+</html>
