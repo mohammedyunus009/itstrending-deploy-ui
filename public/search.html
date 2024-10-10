@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Updation Page</title>
+    <title>Search and Updation Page</title>
     <link href="css/i3.css" rel="stylesheet">
     <style>
 /* Basic styles for the container */
 .installation-form {
             position: relative; /* Position relative for dropdown */
-            max-width: 400px;
+            max-width: 380px;
             margin: 20px auto;
-            /* display: flex;
-            gap: 110px; */
+            display: flex;
+            gap: 15px;
         }
         /* Mobile view adjustments */
 @media (max-width: 600px) {
@@ -20,25 +20,26 @@
         max-width: 100%;  /* Full width on mobile */
         margin: 10px;     /* Reduce margin on mobile */
         padding: 15px;    /* Adjust padding for mobile */
+        display: block;
     }
 }
 
         /* Style for the suggestions dropdown */
         #suggestions-list {
-            border: 0px solid #ccc;
-            border-top: none;
-            max-height: 125px;
-            overflow-y: auto;
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            position: absolute;
-            background-color: white;
-            z-index: 1000;
-            width: 62%;
-            margin-left: 360px;
-            margin-top: 0px;
-        }
+    border: 0px solid #ccc;
+    border-top: none;
+    max-height: 62px;
+    overflow-y: auto;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: white;
+    z-index: 1000;
+    width: 50%;
+    margin-left: 153px;
+    margin-top: 100px;
+}
 
         /* Style for each suggestion */
         #suggestions-list li {
@@ -153,8 +154,17 @@
     <!-- Popup Message -->
 <div id="popupMessage" style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #333; color: white; padding: 20px; border-radius: 8px; z-index: 1000;">
     <span id="popupText"></span>
+    <button onclick="saveProfileDetails(); closePopup();" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">OK</button>
     <button onclick="closePopup()" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Close</button>
 </div>
+<!-- Popup Modal HTML -->
+<div id="statusPopup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); padding:20px; background-color:#fff; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000;">
+    <span id="popupMessage" style="font-size:16px;"></span><br><br>
+    <button onclick="closePopup()" style="padding:10px; background-color:#333; color:white; border:none;">OK</button>
+</div>
+
+<!-- Modal Overlay -->
+<div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); z-index: 999;"></div>
     <br>
     
     
@@ -284,7 +294,6 @@
         }
 
 </script>
-
 
 <script>
         // Global variable to store current profile ID
@@ -590,6 +599,10 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field23" value="${profile.field23}" /></td>
                             </tr>
                             <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Recent submissions:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field29" value="${profile.field29}" /></td>
+                            </tr>
+                            <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>PM Data:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
                                     <textarea id="field30" rows="5" style="width: 100%;">${profile.field30}</textarea>
@@ -613,30 +626,36 @@
                                     <input type="text" id="created_at" value="${new Date(profile.created_at).toLocaleString()}" readonly />
                                 </td>
                             </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Recent Update List:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field30" rows="5" style="width: 100%;">${profile.field29}</textarea>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 
                     <!-- Save Button -->
                     <button type="button" 
-        class="save-button" 
-        onclick="saveProfileDetails()" 
-        style="background-color: #4CAF50; /* Green background */ 
-               color: white; /* White text */
-               padding: 10px 20px; /* Padding for size */
-               border: none; /* No border */
-               border-radius: 4px; /* Rounded corners */
-               cursor: pointer; /* Pointer cursor on hover */
-               text-align: center; /* Center the text */
-               display: block; /* Make it a block element */
-               margin: 0 auto; /* Center horizontally */
-               font-size: 16px; /* Font size */
-               width: fit-content; /* Adjust width based on content */
-               transition: background-color 0.3s; /* Smooth transition for background color */
-        "
-        onmouseover="this.style.backgroundColor='#45a049'" /* Darker green on hover */
-        onmouseout="this.style.backgroundColor='#4CAF50'">
-    Update Profile
-</button>
+                        class="save-button" 
+                        onclick="saveProfileDetails()" 
+                        style="background-color: #4CAF50; /* Green background */ 
+                            color: white; /* White text */
+                            padding: 10px 20px; /* Padding for size */
+                            border: none; /* No border */
+                            border-radius: 4px; /* Rounded corners */
+                            cursor: pointer; /* Pointer cursor on hover */
+                            text-align: center; /* Center the text */
+                            display: block; /* Make it a block element */
+                            margin: 0 auto; /* Center horizontally */
+                            font-size: 16px; /* Font size */
+                            width: fit-content; /* Adjust width based on content */
+                            transition: background-color 0.3s; /* Smooth transition for background color */
+                        "
+                        onmouseover="this.style.backgroundColor='#45a049'" /* Darker green on hover */
+                        onmouseout="this.style.backgroundColor='#4CAF50'">
+                    Update Profile
+                </button>
                 </form>
             `;
 
@@ -648,7 +667,7 @@
 
         
     // Static array to hold the status of each month
-    let monthStatuses = [];
+let monthStatuses = [];
 
 // Function to generate PM Schedules
 function generatePMSchedules(contractFrom, contractTo, totalVisits) {
@@ -700,12 +719,15 @@ function updateStatus(monthId, monthIndex, status) {
     if (status === 'onhold') {
         monthDiv.style.backgroundColor = 'red';
         monthStatuses[monthIndex].status = 'onhold'; // Update status in the array
+        showPopup("Month status updated to 'On Hold'");
     } else if (status === 'completed') {
         monthDiv.style.backgroundColor = 'green';
         monthStatuses[monthIndex].status = 'completed'; // Update status in the array
+        showPopup("Month status updated to 'Completed'");
     } else if (status === 'pending') {
         monthDiv.style.backgroundColor = 'yellow';
         monthStatuses[monthIndex].status = 'pending'; // Update status in the array
+        showPopup("Month status updated to 'Pending'");
     }
 
     // Update the field30 textarea with the updated statuses
@@ -749,6 +771,27 @@ function restoreStatuses() {
             monthDiv.style.backgroundColor = 'yellow';
         }
     });
+}
+
+// Function to show the popup message
+function showPopup(message) {
+    const popup = document.getElementById('statusPopup');
+    const overlay = document.getElementById('modalOverlay');
+    document.getElementById('popupMessage').innerText = message;
+
+    // Show the popup and overlay
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
+// Function to close the popup
+function closePopup() {
+    const popup = document.getElementById('statusPopup');
+    const overlay = document.getElementById('modalOverlay');
+
+    // Hide the popup and overlay
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
 }
 
         // Function to save profile details (Edit and Save functionality)
@@ -841,11 +884,11 @@ function restoreStatuses() {
             .then(response => response.json())
             .then(result => {
                 console.log('Profile Updated:', result);
-                if (result.success) {
-                    alert('Profile updated successfully!');
-                } else {
-                    alert('Profile updated successfully!.');
-                }
+                // if (result.success) {
+                //     alert('Profile updated successfully!');
+                // } else {
+                //     alert('Profile updated successfully!.');
+                // }
             })
             .catch(error => {
                 console.error('Error updating profile:', error);
@@ -867,8 +910,8 @@ function restoreStatuses() {
             popupText.innerText = message;
             popupMessage.style.display = 'block';
         
-            // Automatically hide the popup after 3 seconds
-            setTimeout(closePopup, 3000);
+            // Automatically hide the popup after 30 seconds
+            setTimeout(closePopup, 30000);
         }
         
         function closePopup() {
@@ -931,7 +974,7 @@ function restoreStatuses() {
                         imagePreviewDiv.appendChild(newImageElement); // Append the new image to the preview section
                     });
         
-                    showPopup('Images uploaded successfully!');
+                    showPopup('Images uploaded successfully, Are you sure you want to update your profile?');
                 })
                 .catch((error) => {
                     console.error('Error uploading images:', error);
