@@ -1,0 +1,159 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  body, html{
+    width:100%;
+    height:100%;
+    font-size:16px;
+  }
+
+  body{
+    background: white;
+  }
+
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 100px; /* Prevent content from being hidden under the fixed navbar */
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    background-color: #002d50; /* Main dark blue background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Left section with 90% width */
+.navbar-item.left {
+    flex: 0 0 94%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.navbar-item.left .logo {
+    width: 102px;
+    margin-right: 15px;
+}
+
+.company-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.company-info img {
+    margin-left: 10px;
+    width: 30px;
+}
+
+/* Middle and Right sections with 5% width */
+.navbar-item.middle,
+.navbar-item.right {
+    flex: 0 0 3%;
+    height: 100%;
+}
+
+.navbar-item.middle {
+    background-color: #005b66;
+}
+
+.navbar-item.right {
+    background-color: #00bfa6;
+}
+
+
+/* Sub-header Styling */
+.sub-navbar {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    background-color: #002d50;
+    border-bottom: 2px solid #00bfa6;
+    position: relative;
+    z-index: 999;
+}
+
+.sub-navbar .navbar-item.left {
+    flex: 0 0 94%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+
+
+/* Add this to your existing CSS */
+.menu-button {
+    background: none;
+    border: none;
+    color: #00bfa6;
+    font-size: 24px;
+    cursor: pointer;
+    display: none; /* Hide the button by default */
+}
+
+/* Menu content hidden by default */
+.menu-content {
+    display: none; /* Hide menu items by default */
+    flex-direction: column; /* Stack items vertically */
+}
+
+/* Menu items styling */
+.menu-content a {
+    color: #00bfa6;
+    text-decoration: none;
+    padding: 10px 0;
+}
+
+/* Media Query for Mobile View */
+@media (max-width: 768px) {
+    .menu-button {
+        display: block; /* Show menu button on mobile */
+    }
+
+    .navbar-item.left {
+        display: flex;
+        justify-content: space-between; /* Space between menu button and links */
+    }
+
+    .menu-content {
+        display: none; /* Ensure menu is hidden initially */
+        background-color: #002d50; /* Match navbar background */
+        position: absolute; /* Position it relative to the navbar */
+        top: 60px; /* Below the navbar */
+        left: 0;
+        width: 100%; /* Full width */
+        z-index: 1000; /* Ensure it's on top */
+    }
+
+    /* Show menu when active */
+    .menu-content.active {
+        display: flex; /* Show menu when active */
+    }
+
+    /* Hide desktop links on mobile */
+    .desktop-link {
+        display: none;
+    }
+
+    .sub-navbar {
+        flex-direction: column; /* Stack navbar items vertically */
+    }
+}
