@@ -197,7 +197,7 @@ body {
 
 /* Left section with 90% width */
 .navbar-item.left {
-    flex: 0 0 62%;
+    flex: 0 0 72%;
     display: flex;
     align-items: center;
     padding-left: 15px;
@@ -419,7 +419,7 @@ input[type="file"] {
 @media (max-width: 768px) {
     input[type="file"],
     .form-group {
-        width: 100%; /* Full width on mobile */
+        width: 70%; /* Full width on mobile */
     }
 
     .form-group label {
