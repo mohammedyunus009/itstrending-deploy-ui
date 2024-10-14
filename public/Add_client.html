@@ -30,7 +30,7 @@
                 gap: 0px;
             }
             .navbar-item.left {
-    flex: 0 0 68%;
+    flex: 0 1 88%;
     display: flex;
     align-items: center;
     padding-left: 15px;
@@ -45,6 +45,36 @@
         font-size: 12px;
         padding-left: 10px;
     }
+    .menu-btn {
+    display: none;
+    font-size: 30px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 45px;
+        left: 100px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-links.show {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+        margin-bottom: 50px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -53,11 +83,11 @@
             <img src="img/Screenshot from 2024-09-27 11-50-56.png" alt="Logo" class="logo">
         </div>
         <div>
-          <!-- <button class="menu-btn" onclick="toggleMenu()">☰</button> -->
+          <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="navbar-links">
                 <li><a href="index.html">Login</a></li>
                 <li><a href="Add_client.html">Add Client</a></li>
-                <li><a href="#">Update Client</a></li>
+                <!-- <li><a href="#">Update Client</a></li> -->
                 <li><a href="search.html">Search</a></li>
             </ul>
         </div>
@@ -258,8 +288,14 @@
         </div>
     </div>
 
-    <button class="next-button" onclick="handleNext()">Next</button>
+    <button class="next-button" onclick="handleNext()">Submit</button>
     <br>
+    <script>
+        function toggleMenu() {
+        const navbarLinks = document.querySelector('.navbar-links');
+        navbarLinks.classList.toggle('show');
+    }
+    </script>
     <script>
         // Function to check for required cookies
         function checkLoginStatus() {

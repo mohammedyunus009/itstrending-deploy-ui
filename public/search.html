@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search and Updation Page</title>
+    <title>Customer Updation Page</title>
     <link href="css/i3.css" rel="stylesheet">
     <style>
 /* Basic styles for the container */
@@ -24,11 +24,10 @@
     }
 }
 
-        /* Style for the suggestions dropdown */
-        #suggestions-list {
-    border: 0px solid #ccc;
-    border-top: none;
-    max-height: 62px;
+        /* Base styles for suggestions dropdown */
+#suggestions-list {
+    border: 0px solid #ccc; /* Use solid border */
+    max-height: 150px; /* Set a reasonable max height */
     overflow-y: auto;
     list-style-type: none;
     padding: 0;
@@ -36,21 +35,42 @@
     position: absolute;
     background-color: white;
     z-index: 1000;
-    width: 50%;
-    margin-left: 153px;
-    margin-top: 100px;
+    width: calc(52% - 20px); /* Match input box width */
+    top: 59%; /* Position directly below the input */
+    left: 180px; /* Align with left side of the input */
 }
 
-        /* Style for each suggestion */
-        #suggestions-list li {
-            padding: 10px; /* Add some padding */
-            cursor: pointer; /* Change cursor to pointer */
-        }
+/* Style for each suggestion */
+#suggestions-list li {
+    padding: 10px; /* Add padding */
+    cursor: pointer; /* Change cursor to pointer */
+}
 
-        /* Highlight suggestions on hover */
-        #suggestions-list li:hover {
-            background-color: #f0f0f0; /* Highlight on hover */
-        }
+/* Highlight suggestions on hover */
+#suggestions-list li:hover {
+    background-color: #f0f0f0; /* Highlight on hover */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 600px) {
+    #suggestions-list {
+        width: calc(100% - 2px); /* Maintain full width for mobile */
+        left: 0; /* Align with left side of the input */
+        max-height: 120px; /* Adjust max height for mobile */
+        top: 100%;
+    }
+
+    #customer-name {
+        width: 100%; /* Ensure the input takes full width on mobile */
+    }
+
+    .form-group {
+        position: relative; /* Ensure suggestions list positions correctly */
+        margin-bottom: 15px; /* Add space between form groups */
+        display: block;
+    }
+}
+
         /* Navbar links */
     .navbar-links {
             display: flex;
@@ -75,7 +95,7 @@
                 gap: 0px;
             }
             .navbar-item.left {
-    flex: 0 0 66%;
+    flex: 0 1 88%;
     display: flex;
     align-items: center;
     padding-left: 15px;
@@ -96,6 +116,38 @@
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 999;
     }
+    
+
+.menu-btn {
+    display: none;
+    font-size: 30px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 45px;
+        left: 100px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-links.show {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+        margin-bottom: 50px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -104,11 +156,11 @@
             <img src="img/Screenshot from 2024-09-27 11-50-56.png" alt="Logo" class="logo">
         </div>
         <div>
-          <!-- <button class="menu-btn" onclick="toggleMenu()">☰</button> -->
+          <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="navbar-links">
                 <li><a href="index.html">Login</a></li>
                 <li><a href="Add_client.html">Add Client</a></li>
-                <li><a href="#">Update Client</a></li>
+                <!-- <li><a href="#">Update Client</a></li> -->
                 <li><a href="search.html">Search</a></li>
             </ul>
         </div>
@@ -154,8 +206,8 @@
     <!-- Popup Message -->
 <div id="popupMessage" style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #333; color: white; padding: 20px; border-radius: 8px; z-index: 1000;">
     <span id="popupText"></span>
-    <button onclick="saveProfileDetails(); closePopup();" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">OK</button>
-    <button onclick="closePopup()" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Close</button>
+    <button onclick="saveProfileDetails(); closePopup();" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Yes</button>
+    <button onclick="closePopup()" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">No</button>
 </div>
 <!-- Popup Modal HTML -->
 <div id="statusPopup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); padding:20px; background-color:#fff; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000;">
@@ -167,7 +219,13 @@
 <div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); z-index: 999;"></div>
     <br>
     
-    
+<script>
+    function toggleMenu() {
+    const navbarLinks = document.querySelector('.navbar-links');
+    navbarLinks.classList.toggle('show');
+}
+
+</script>    
 <script>
         // Function to get a specific cookie by name
         function getCookie(name) {
@@ -437,17 +495,17 @@
 
             // Create and append profile detail elements with editable fields
             const profileHTML = `
-                <div id="color-legend" style="margin-top: 20px; padding: 10px; border: 0px solid #ccc; width: fit-content;">
-                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <div style="width: 20px; height: 20px; background-color: red; margin-right: 10px; border: 1px solid #000;"></div>
+                <div id="color-legend">
+                    <div class="color-legend-item">
+                        <div class="color-box" style="background-color: red;"></div>
                         <span>On Hold - The particular month's PM Schedule is on hold.</span>
                     </div>
-                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <div style="width: 20px; height: 20px; background-color: green; margin-right: 10px; border: 1px solid #000;"></div>
+                    <div class="color-legend-item">
+                        <div class="color-box" style="background-color: green;"></div>
                         <span>Completed - The particular month's PM Schedule is completed.</span>
                     </div>
-                    <div style="display: flex; align-items: center;">
-                        <div style="width: 20px; height: 20px; background-color: yellow; margin-right: 10px; border: 1px solid #000;"></div>
+                    <div class="color-legend-item">
+                        <div class="color-box" style="background-color: yellow;"></div>
                         <span>Pending - The particular month's PM Schedule is pending.</span>
                     </div>
                 </div>
@@ -595,14 +653,6 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field22" value="${profile.field22}" /></td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Comments:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field23" value="${profile.field23}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Recent submissions:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field29" value="${profile.field29}" /></td>
-                            </tr>
-                            <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>PM Data:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
                                     <textarea id="field30" rows="5" style="width: 100%;">${profile.field30}</textarea>
@@ -621,15 +671,19 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Created At:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Last updated at:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
                                     <input type="text" id="created_at" value="${new Date(profile.created_at).toLocaleString()}" readonly />
                                 </td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Recent Update List:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Submissions list:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field29" value="${profile.field29}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Comments:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
-                                    <textarea id="field30" rows="5" style="width: 100%;">${profile.field29}</textarea>
+                                    <textarea id="field23" rows="4" style="width: 100%;">${profile.field23}</textarea>
                                 </td>
                             </tr>
                         </tbody>
@@ -656,6 +710,62 @@
                         onmouseout="this.style.backgroundColor='#4CAF50'">
                     Update Profile
                 </button>
+                <style>
+                    /* Style for the color legend container */
+                    #color-legend {
+                        margin: 20px auto; /* Center container horizontally */
+                        padding: 10px;
+                        border: 1px solid #ccc; /* Optional border for visibility */
+                        max-width: 600px; /* Set a max width for larger screens */
+                        width: fit-content; /* Ensure width fits content */
+                        display: flex; /* Use flexbox for alignment */
+                        flex-direction: column; /* Stack items vertically */
+                    }
+
+                    /* Style for each color legend item */
+                    .color-legend-item {
+                        display: flex; /* Use flexbox for layout */
+                        align-items: center; /* Align items vertically */
+                        margin-bottom: 8px; /* Space between items */
+                    }
+
+                    /* Style for color boxes */
+                    .color-box {
+                        width: 20px; /* Box width */
+                        height: 20px; /* Box height */
+                        margin-right: 10px; /* Space between box and text */
+                        border: 1px solid #000; /* Border around color box */
+                    }
+                    @media (max-width: 600px) {
+                        #color-legend {
+                            padding: 10px; /* Adjust padding if needed */
+                            width: 90%; /* Ensure it takes more width on mobile */
+                            margin: 20px auto; /* Center container */
+                        }
+
+                        .color-legend-item {
+                            justify-content: center; /* Center items on mobile */
+                            text-align: center; /* Center text */
+                        }
+
+                        .color-box {
+                            width: 15px; /* Smaller box for mobile */
+                            height: 15px; /* Smaller box for mobile */
+                        }
+                    }
+                    /* Style for the button */
+                    button[type="button"] {
+                        background-color: #333; /* Dark background */
+                        color: white; /* White text */
+                        border: none; /* Remove border */
+                        padding: 4px 10px; /* Add padding for button */
+                        border-radius: 4px; /* Rounded corners */
+                        cursor: pointer; /* Pointer cursor for button */
+                        font-size: 14px; /* Adjust font size */
+                        margin-top: 8px; /* Add margin on top */
+                        transition: background-color 0.3s ease; /* Smooth transition on hover */
+                    }
+                </style>
                 </form>
             `;
 
@@ -682,7 +792,7 @@ function generatePMSchedules(contractFrom, contractTo, totalVisits) {
     const visitsPerMonth = Math.ceil(totalVisits / totalMonths);
 
     // Create a calendar representation
-    let calendarHTML = `<div style="display: flex; flex-wrap: wrap; margin: -8px;">`;
+    let calendarHTML = `<div style="display: flex; flex-wrap: wrap; margin: -8px; justify-content: center;">`;
 
     for (let month = 0; month <= totalMonths; month++) {
         const currentMonth = new Date(startDate.getFullYear(), startDate.getMonth() + month);
@@ -719,15 +829,15 @@ function updateStatus(monthId, monthIndex, status) {
     if (status === 'onhold') {
         monthDiv.style.backgroundColor = 'red';
         monthStatuses[monthIndex].status = 'onhold'; // Update status in the array
-        showPopup("Month status updated to 'On Hold'");
+        showPopup("The selected month status updated to 'On Hold' do you want to update the status");
     } else if (status === 'completed') {
         monthDiv.style.backgroundColor = 'green';
         monthStatuses[monthIndex].status = 'completed'; // Update status in the array
-        showPopup("Month status updated to 'Completed'");
+        showPopup("The selected month status updated to 'Completed' do you want to update the status");
     } else if (status === 'pending') {
         monthDiv.style.backgroundColor = 'yellow';
         monthStatuses[monthIndex].status = 'pending'; // Update status in the array
-        showPopup("Month status updated to 'Pending'");
+        showPopup("The selected month status updated to 'Pending' do you want to update the status");
     }
 
     // Update the field30 textarea with the updated statuses

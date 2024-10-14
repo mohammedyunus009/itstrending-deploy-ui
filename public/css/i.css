@@ -196,7 +196,7 @@ body {
 
 /* Left section with 90% width */
 .navbar-item.left {
-    flex: 0 0 62%;
+    flex: 0 0 72%;
     display: flex;
     align-items: center;
     padding-left: 15px;
