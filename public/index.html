@@ -68,7 +68,7 @@ body {
 
 /* Left section with 90% width */
 .navbar-item.left {
-    flex: 0 0 62%;
+    flex: 0 0 72%;
     display: flex;
     align-items: center;
     padding-left: 15px;
@@ -303,7 +303,7 @@ input[type="password"] {
                 gap: 0px;
             }
             .navbar-item.left {
-    flex: 0 0 62%;
+    flex: 0 0 88%;
     display: flex;
     align-items: center;
     padding-left: 15px;
@@ -313,6 +313,36 @@ input[type="password"] {
                 margin-right: 0px;
             }
         }
+        .menu-btn {
+    display: none;
+    font-size: 30px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 45px;
+        left: 100px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-links.show {
+        display: flex;
+        margin-top: -10px;
+    }
+
+    .menu-btn {
+        display: block;
+        margin-bottom: 50px;
+    }
+}
 </style>
 
 <body>
@@ -322,11 +352,11 @@ input[type="password"] {
         <img src="img/Screenshot from 2024-09-27 11-50-56.png" alt="Logo" class="logo">
     </div>
     <div>
-      <!-- <button class="menu-btn" onclick="toggleMenu()">☰</button> -->
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <ul class="navbar-links">
             <li><a href="index.html">Login</a></li>
             <li><a href="Add_client.html">Add Client</a></li>
-            <li><a href="#">Update Client</a></li>
+            <!-- <li><a href="#">Update Client</a></li> -->
             <li><a href="search.html">Search</a></li>
         </ul>
     </div>
@@ -368,10 +398,11 @@ input[type="password"] {
 
 <script>
   function toggleMenu() {
-      const navbarLinks = document.querySelector('.navbar-links');
-      navbarLinks.classList.toggle('active');
-  }
-</script>
+  const navbarLinks = document.querySelector('.navbar-links');
+  navbarLinks.classList.toggle('show');
+}
+
+</script> 
 <script>
       // Toggle password visibility for the Password field
       const togglePassword = document.querySelector("#togglePassword");
