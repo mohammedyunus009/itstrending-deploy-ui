@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>General Service </title>
     <link href="css/i.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="img/icon.png" type="image/x-icon">
 
     <style>
  /* Label Styling */
@@ -345,6 +346,68 @@ input[type="text"], input[type="number"], select {
         margin-left: 0px;
     }
 }
+/* CSS for animation */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%); /* Start from the left of the screen */
+        opacity: 0; /* Initially invisible */
+    }
+    to {
+        transform: translateX(0); /* End at original position */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1; /* Start fully visible */
+    }
+    to {
+        opacity: 0; /* Fade out to invisible */
+    }
+}
+
+#statusResult {
+    position: fixed; /* Position it fixed so it stays in place */
+    top: 20px; /* Adjust as necessary */
+    left: 20px; /* Adjust as necessary */
+    z-index: 1000; /* Ensure it appears above other elements */
+    transition: opacity 1s ease; /* Smooth transition for opacity */
+}
+
+/* Classes for different status messages */
+.good {
+    color: green;
+}
+
+.damage {
+    color: red;
+}
+.status-message {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -100px; /* Initially hidden below the screen */
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    opacity: 0; /* Initially invisible */
+    visibility: hidden; /* Initially hidden */
+    transition: bottom 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+    z-index: 9999;
+}
+
+.status-message.success {
+    background-color: green;
+}
+
+.status-message.error {
+    background-color: red;
+}
+
+
+
 
     </style>
   
@@ -383,11 +446,11 @@ input[type="text"], input[type="number"], select {
             <h5 class="text-light">Reports</h5>
             <a class="nav-link" href="installation_report.html" style="color: #008f7e; font-weight: bold;">Installation Report</a>
             <a class="nav-link" href="Genearlservice_report.html" style="color: #008f7e; font-weight: bold;">General Service Report</a>
-<!-- 
+
             <h5 class="text-light">Updation</h5>
-            <a class="nav-link" href="installationreport.html" style="color: #008f7e; font-weight: bold;">Installation Updation</a>
-            <a class="nav-link" href="report2.html" style="color: #008f7e; font-weight: bold;"> General Service Updation</a>
-        -->
+            <a class="nav-link" href="insatallation_updation.html" style="color: #008f7e; font-weight: bold;">Installation Updation</a>
+            <a class="nav-link" href="General_service_updation.html" style="color: #008f7e; font-weight: bold;"> General Service Updation</a>
+       
        
         </div>
     </div>
@@ -411,20 +474,19 @@ input[type="text"], input[type="number"], select {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <div class="installation-form">
-        <h2>General service Form</h2>
+        <h2>General Service Form</h2>
         <div class="underline"></div>
         <label for="serial-number"><strong>Serial Number: </strong></label>
         <input type="text" id="serial-number" name="serial-number" placeholder="Enter Serial Number" required 
                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+        <div id="serial-number-error" class="error-message"></div>
     </div>
-    
     
     <!-- New Sub-header resembling the Navbar -->
     <header class="sub-navbar">
         <div class="navbar-item left">
-            <h3 style="margin: 0; color:#00bfa6 ;">Customer Details</h3>
+            <h3 style="margin: 0; color:#00bfa6;">Customer Details</h3>
         </div>
-        
         <div class="navbar-item middle"></div>
         <div class="navbar-item right"></div>
     </header>
@@ -434,12 +496,14 @@ input[type="text"], input[type="number"], select {
         <div class="form-group">
             <label for="reportDate"><strong>Date: </strong></label>
             <input type="date" id="reportDate" name="reportDate" required>
+            <div id="reportDate-error" class="error-message"></div>
         </div>
     
         <!-- Customer Name Field (Alphabets and spaces only) -->
         <div class="form-group">
             <label for="customerName"><strong>Customer Name: </strong></label>
             <input type="text" id="customerName" name="customerName" placeholder="Enter Your Name" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+            <div id="customerName-error" class="error-message"></div>
         </div>
     </div>
     
@@ -448,12 +512,14 @@ input[type="text"], input[type="number"], select {
         <div class="form-group">
             <label for="customerArea"><strong>Customer Area: </strong></label>
             <input type="text" id="customerArea" name="customerArea" placeholder="Enter Customer Area" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+            <div id="customerArea-error" class="error-message"></div>
         </div>
     
         <!-- Project Field (Alphabets and spaces only) -->
         <div class="form-group">
             <label for="customerProject"><strong>Project: </strong></label>
             <input type="text" id="customerProject" name="customerProject" placeholder="Enter Project Name" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+            <div id="customerProject-error" class="error-message"></div>
         </div>
     </div>
     
@@ -462,12 +528,14 @@ input[type="text"], input[type="number"], select {
         <div class="form-group">
             <label for="poNoDate"><strong>PO No./Date: </strong></label>
             <input type="text" id="poNoDate" name="poNoDate" placeholder="Enter PO No./Date" required oninput="this.value = this.value.replace(/[^a-zA-Z0-9\/]/g, '')">
+            <div id="poNoDate-error" class="error-message"></div>
         </div>
     
         <!-- Eqpt Model Field (Allow numbers and alphabets) -->
         <div class="form-group">
             <label for="eqptModel"><strong>Eqpt Model: </strong></label>
             <input type="text" id="eqptModel" name="eqptModel" placeholder="Enter Equipment Model" required oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')">
+            <div id="eqptModel-error" class="error-message"></div>
         </div>
     </div>
     
@@ -476,12 +544,14 @@ input[type="text"], input[type="number"], select {
         <div class="form-group">
             <label for="eqptSlNo"><strong>Eqpt Sl No: </strong></label>
             <input type="text" id="eqptSlNo" name="eqptSlNo" placeholder="Enter Equipment Serial Number" required oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')">
+            <div id="eqptSlNo-error" class="error-message"></div>
         </div>
     
         <!-- Customer Complain Date Field -->
         <div class="form-group">
             <label for="complainDate"><strong>Customer Complain Date: </strong></label>
             <input type="date" id="complainDate" name="complainDate" required>
+            <div id="complainDate-error" class="error-message"></div>
         </div>
     </div>
     
@@ -490,12 +560,14 @@ input[type="text"], input[type="number"], select {
         <div class="form-group">
             <label for="complainDescription"><strong>AT HMR: </strong></label>
             <input type="text" id="complainDescription" name="complainDescription" placeholder="Describe the complaint here" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+            <div id="complainDescription-error" class="error-message"></div>
         </div>
     
         <!-- Customer Complain Closed Date Field -->
         <div class="form-group">
             <label for="serviceTaken"><strong>Customer Complain Closed Date: </strong></label>
             <input type="date" id="serviceTaken" name="serviceTaken" required>
+            <div id="serviceTaken-error" class="error-message"></div>
         </div>
     </div>
     
@@ -504,9 +576,9 @@ input[type="text"], input[type="number"], select {
         <div class="form-group">
             <label for="technicianName"><strong>AT HMR Closed: </strong></label>
             <input type="text" id="technicianName" name="technicianName" placeholder="Enter Technician Name" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+            <div id="technicianName-error" class="error-message"></div>
         </div>
     </div>
-    
     
 
     <header class="sub-navbar">
@@ -616,7 +688,7 @@ input[type="text"], input[type="number"], select {
                 </div>
                 <div class="col-md-6 mb-3">
                     <input type="checkbox" class="status-checkbox" name="field25" value="Good Condition"> Good Condition
-                    <input type="checkbox" class="status-checkbox" name="field26" value="Damage"> Damage
+                    <input type="checkbox" class="status-checkbox" name="field25" value="Damage"> Damage
                 </div>
             </div>
             <div class="row">
@@ -737,412 +809,554 @@ input[type="text"], input[type="number"], select {
         <div class="form-group">
             <label for="installation-hrm" class="label-uee"><strong>For UEE:</strong></label>
             <input type="text" id="installation-hrm" name="installation-hrm" placeholder="" required>
+            <div id="installation-hrm-error" class="error-message"></div> <!-- Error message element -->
         </div>
     
         <!-- Failure HMR Field -->
         <div class="form-group">
             <label for="failure-hmr" class="label-customer"><strong>For Customer:</strong></label>
             <input type="text" id="failure-hmr" name="failure-hmr" placeholder="" required>
+            <div id="failure-hmr-error" class="error-message"></div> <!-- Error message element -->
         </div>
     </div>
+    
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <img src="img/printer.png" alt="Printer Logo" class="printer-logo">
+            <h2>Welcome!</h2>
+            <p>Please choose an option:</p>
+            <button id="printBtn">Print</button>
+            <button id="reportBtn">Report</button> <!-- Changed to Report -->
+        </div>
+    </div>
+    
+    <!-- Hidden iframe for printing -->
+    <iframe id="printFrame" style="display:none;"></iframe>
+    
+    
     
     
 
    
-    <div class="error-container" id="error-container" style="color: red;"></div> <!-- Error message container -->
-    <div class="button-container">
-        <button type="submit" class="submit-button" onclick="validateForm(event)">Submit</button>
-    </div>
+    <div id="statusMessage" class="status-message"></div>
+    <button type="button"class="submit-button"  onclick="validateForm()">Submit</button>
 
-<!-- Popup Modal -->
-<div id="successModal" class="modal">
-    <div class="modal-content">
-        <div class="circle">
-            <img src="img/printer.png" alt="Printer" class="printer-image">
-        </div>
-        <div class="modal-buttons">
-            <button id="print-btn" onclick="printFromIframe()">Print</button>
-            <button id="close-btn" onclick="closeModal()">Close</button>
-        </div>
-    </div>
-</div>
+
 
 <!-- Iframe to display content -->
 <iframe id="printFrame" src="General_service_print.html" style="display:none;"></iframe>
 
 
-       <script>
-      function showError(message) {
-    const errorContainer = document.getElementById('error-container');
-    
-    // Create a new error message element
-    const errorMessage = document.createElement('span');
-    errorMessage.innerText = message;
-    errorMessage.style.marginRight = '10px'; // Add space between messages
-
-    // Append the new error message to the container
-    errorContainer.appendChild(errorMessage);
+<script>
+    // Function to set a cookie
+function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
 }
 
-// Function to get cookie values
+// Function to validate serial number
+function validateSerialNumber() {
+    const serialNumberInput = document.getElementById("serial-number");
+    const errorMessage = document.getElementById("serial-number-error");
+    const value = serialNumberInput.value;
+
+    // Check if the value is numeric
+    if (!/^\d+$/.test(value)) {
+        errorMessage.textContent = "Serial Number must be numeric.";
+        serialNumberInput.classList.add("invalid");
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        serialNumberInput.classList.remove("invalid");
+        setCookie("field1", value, 7); // Store value in cookie as field1
+    }
+}
+
+// Function to validate text input (alphabets and spaces)
+function validateTextInput(inputId, errorId, cookieField) {
+    const input = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+    const value = input.value;
+
+    // Check if the value contains only alphabets and spaces
+    if (!/^[A-Za-z\s]+$/.test(value)) {
+        errorMessage.textContent = "This field must contain alphabets only.";
+        input.classList.add("invalid");
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        input.classList.remove("invalid");
+        setCookie(cookieField, value, 7); // Store value in cookie
+    }
+}
+
+// Function to validate alphanumeric input (numbers and letters)
+function validateAlphanumericInput(inputId, errorId, cookieField) {
+    const input = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+    const value = input.value;
+
+    // Check if the value contains only alphanumeric characters
+    if (!/^[A-Za-z0-9\/]+$/.test(value)) {
+        errorMessage.textContent = "This field must contain alphanumeric characters only.";
+        input.classList.add("invalid");
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        input.classList.remove("invalid");
+        setCookie(cookieField, value, 7); // Store value in cookie
+    }
+}
+
+// Function to validate date format
+function validateDate(inputId, errorId, cookieField) {
+    const dateInput = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+    const value = dateInput.value;
+
+    // Check if the date is valid (non-empty)
+    if (!value) {
+        errorMessage.textContent = "Date cannot be empty.";
+        dateInput.classList.add("invalid");
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        dateInput.classList.remove("invalid");
+        setCookie(cookieField, value, 7); // Store value in cookie
+    }
+}
+
+// Event listeners for validation
+document.getElementById("serial-number").addEventListener("input", validateSerialNumber);
+document.getElementById("customerName").addEventListener("input", () => validateTextInput("customerName", "customerName-error", "field2"));
+document.getElementById("customerArea").addEventListener("input", () => validateTextInput("customerArea", "customerArea-error", "field3"));
+document.getElementById("customerProject").addEventListener("input", () => validateTextInput("customerProject", "customerProject-error", "field4"));
+document.getElementById("poNoDate").addEventListener("input", () => validateAlphanumericInput("poNoDate", "poNoDate-error", "field5"));
+document.getElementById("eqptModel").addEventListener("input", () => validateAlphanumericInput("eqptModel", "eqptModel-error", "field6"));
+document.getElementById("eqptSlNo").addEventListener("input", () => validateAlphanumericInput("eqptSlNo", "eqptSlNo-error", "field7"));
+document.getElementById("complainDate").addEventListener("input", () => validateDate("complainDate", "complainDate-error", "field8"));
+document.getElementById("complainDescription").addEventListener("input", () => validateTextInput("complainDescription", "complainDescription-error", "field9"));
+document.getElementById("serviceTaken").addEventListener("input", () => validateDate("serviceTaken", "serviceTaken-error", "field10"));
+document.getElementById("technicianName").addEventListener("input", () => validateTextInput("technicianName", "technicianName-error", "field11"));
+function validateForm() {
+    let allChecked = true;
+    let anyDamage = false; // Flag to check if there's any "Damage" selected
+    const sections = [
+        { name: 'field13', label: 'DCP Cylinder & Main Valve' },
+        { name: 'field14', label: 'Nitrogen Cartridge (16-18 Cu.in)' },
+        { name: 'field15', label: 'Automatic & Manual Actuator' },
+        { name: 'field17', label: 'Manual Operate Actuator' },
+        { name: 'field18', label: 'Main Valve Pneumatic Actuator' },
+        { name: 'field20', label: 'Vent Check' },
+        { name: 'field21', label: 'Non Return Valve' },
+        { name: 'field22', label: 'Nozzle 1/2' },
+        { name: 'field23', label: 'Nozzle 1/4' },
+        { name: 'field24', label: 'Control Unit' },
+        { name: 'field25', label: 'Main Harness' },
+        { name: 'field27', label: 'SP Adaptor' },
+        { name: 'field28', label: 'Fire Sensor Wire' },
+        { name: 'field29', label: 'Hose Kit' },
+        { name: 'field30', label: 'MS Part' },
+    ];
+
+    // Clear previous errors
+    clearErrors();
+
+    // Iterate through each section to check the status of the checkboxes
+    sections.forEach(section => {
+        const checkboxes = document.querySelectorAll(`input[name="${section.name}"]`);
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        const isDamage = Array.from(checkboxes).some(checkbox => checkbox.checked && checkbox.value === 'Damage'); // Check for "Damage"
+
+        if (!isChecked) {
+            allChecked = false;
+            showError(section.name);
+        }
+
+        if (isDamage) {
+            anyDamage = true; // Set damage flag if "Damage" is selected
+        }
+    });
+
+    const resultMessage = document.getElementById("statusResult");
+    if (anyDamage) {
+        displayValidationMessage("Damage!", "damage");
+    } else if (allChecked) {
+        displayValidationMessage("Good Condition!", "good");
+    }
+
+    // Store checkbox values in cookies
+    storeCheckboxValues(sections);
+
+    // Always execute the API request if at least one checkbox is checked
+    if (allChecked) {
+        // Execute animation before submitting the form
+        resultMessage.style.opacity = '1'; // Make the message visible
+        resultMessage.style.transform = 'translateY(0)'; // Move it to the original position
+        submitForm(); // Execute the API request
+    } else {
+        resultMessage.classList.remove("show");
+    }
+}
+
+// Function to ensure only one checkbox can be selected per section
+function restrictSingleSelection() {
+    const sections = [
+        'field13', 'field14', 'field15', 'field17', 'field18',
+        'field20', 'field21', 'field22', 'field23', 'field24',
+        'field25', 'field27', 'field28', 'field29', 'field30'
+    ];
+
+    sections.forEach(fieldName => {
+        const checkboxes = document.querySelectorAll(`input[name="${fieldName}"]`);
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                    // Uncheck all other checkboxes in the same group
+                    checkboxes.forEach(otherCheckbox => {
+                        if (otherCheckbox !== checkbox) {
+                            otherCheckbox.checked = false;
+                        }
+                    });
+                }
+            });
+        });
+    });
+}
+
+// Call the function to restrict single selection
+restrictSingleSelection();
+
+function showError(fieldName) {
+    const checkboxes = document.querySelectorAll(`input[name="${fieldName}"]`);
+    const label = checkboxes[0].closest('.row').querySelector('label');
+    if (label) {
+        label.style.color = 'red'; // Change the label color to red to indicate an error
+    }
+}
+
+function clearErrors() {
+    const labels = document.querySelectorAll('.form-label');
+    labels.forEach(label => {
+        label.style.color = ''; // Reset the label color to default
+    });
+}
+
+function displayValidationMessage(message, type) {
+    const resultMessage = document.getElementById("statusResult");
+    resultMessage.innerText = message;
+
+    // Reset the classes and styles before applying new ones
+    resultMessage.classList.remove("good", "damage", "fade-out"); // Remove previous types
+    resultMessage.classList.add(type); // Add the new type class
+    resultMessage.style.animation = "slideIn 0.5s forwards"; // Slide in from the left
+
+    // Store the message in cookies
+    document.cookie = `field16=${type}; path=/; max-age=3600`; // Store for 1 hour
+
+    // After a delay, apply fade-out animation
+    setTimeout(() => {
+        resultMessage.style.animation = "fadeOut 1s forwards"; // Fade out
+        setTimeout(() => {
+            resultMessage.classList.remove("show"); // Hide the message after fade out
+        }, 1000); // Delay to match the fade-out duration
+    }, 3000); // Display the message for 3 seconds before fading out
+}
+
+function storeCheckboxValues(sections) {
+    sections.forEach(section => {
+        const checkboxes = document.querySelectorAll(`input[name="${section.name}"]`);
+        const checkedValues = Array.from(checkboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value)
+            .join(',');
+
+        // Store the checked values in cookies
+        document.cookie = `${section.name}=${checkedValues}; path=/; max-age=3600`; // Store for 1 hour
+    });
+}
+
+// Function to get the value of a cookie by its name
 function getCookieValue(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
-    return "";
+    return null; // Return null if the cookie is not found
 }
-
-// Validation function
-function validateForm() {
-    let isValid = true; // Flag to track overall form validity
-    const errorContainer = document.getElementById('error-container');
-    errorContainer.innerHTML = ''; // Clear previous error messages
-
-    // Serial Number (only numbers)
-    const serialNumber = document.getElementById('serial-number');
-    if (!/^[0-9]+$/.test(serialNumber.value)) {
-        serialNumber.classList.add('invalid');
-        showError('Serial number must be numeric.');
-        isValid = false;
-    } else {
-        serialNumber.classList.remove('invalid');
-    }
-
-    // Customer Name (only alphabets)
-    const customerName = document.getElementById('customerName');
-    if (!/^[a-zA-Z\s]+$/.test(customerName.value)) {
-        customerName.classList.add('invalid');
-        showError('Customer name must contain only alphabets.');
-        isValid = false;
-    } else {
-        customerName.classList.remove('invalid');
-    }
-
-    // Customer Area (only alphabets)
-    const customerArea = document.getElementById('customerArea');
-    if (!/^[a-zA-Z\s]+$/.test(customerArea.value)) {
-        customerArea.classList.add('invalid');
-        showError('Customer area must contain only alphabets.');
-        isValid = false;
-    } else {
-        customerArea.classList.remove('invalid');
-    }
-
-    // Project (only alphabets)
-    const customerProject = document.getElementById('customerProject');
-    if (!/^[a-zA-Z\s]+$/.test(customerProject.value)) {
-        customerProject.classList.add('invalid');
-        showError('Project must contain only alphabets.');
-        isValid = false;
-    } else {
-        customerProject.classList.remove('invalid');
-    }
-
-    // PO No./Date (alphanumeric with slashes)
-    const poNoDate = document.getElementById('poNoDate');
-    if (!/^[a-zA-Z0-9\/]+$/.test(poNoDate.value)) {
-        poNoDate.classList.add('invalid');
-        showError('PO No./Date must be alphanumeric.');
-        isValid = false;
-    } else {
-        poNoDate.classList.remove('invalid');
-    }
-
-    // Eqpt Model (alphanumeric)
-    const eqptModel = document.getElementById('eqptModel');
-    if (!/^[a-zA-Z0-9]+$/.test(eqptModel.value)) {
-        eqptModel.classList.add('invalid');
-        showError('Equipment model must be alphanumeric.');
-        isValid = false;
-    } else {
-        eqptModel.classList.remove('invalid');
-    }
-
-    // Eqpt Sl No (alphanumeric)
-    const eqptSlNo = document.getElementById('eqptSlNo');
-    if (!/^[a-zA-Z0-9]+$/.test(eqptSlNo.value)) {
-        eqptSlNo.classList.add('invalid');
-        showError('Equipment serial number must be alphanumeric.');
-        isValid = false;
-    } else {
-        eqptSlNo.classList.remove('invalid');
-    }
-
-    // Customer Complain Date (dd/mm/yyyy)
-    const complainDate = document.getElementById('complainDate');
-    const complainDateValue = new Date(complainDate.value);
-    if (isNaN(complainDateValue)) {
-        complainDate.classList.add('invalid');
-        showError('Customer complain date must be a valid date.');
-        isValid = false;
-    } else {
-        complainDate.classList.remove('invalid');
-    }
-
-    // AT HMR (only alphabets)
-    const complainDescription = document.getElementById('complainDescription');
-    if (!/^[a-zA-Z\s]+$/.test(complainDescription.value)) {
-        complainDescription.classList.add('invalid');
-        showError('AT HMR must contain only alphabets.');
-        isValid = false;
-    } else {
-        complainDescription.classList.remove('invalid');
-    }
-
-    // Customer Complain Closed Date (dd/mm/yyyy)
-    const serviceTaken = document.getElementById('serviceTaken');
-    const serviceTakenValue = new Date(serviceTaken.value);
-    if (isNaN(serviceTakenValue)) {
-        serviceTaken.classList.add('invalid');
-        showError('Customer complain closed date must be a valid date.');
-        isValid = false;
-    } else {
-        serviceTaken.classList.remove('invalid');
-    }
-
-    // Technician Name (only alphabets)
-    const technicianName = document.getElementById('technicianName');
-    if (!/^[a-zA-Z\s]+$/.test(technicianName.value)) {
-        technicianName.classList.add('invalid');
-        showError('AT HMR Closed must contain only alphabets.');
-        isValid = false;
-    } else {
-        technicianName.classList.remove('invalid');
-    }
-
-    // Only submit the form if valid
-    if (isValid) {
-        // Store data in cookies
-        document.cookie = `field1=${serialNumber.value}; path=/;`;
-        document.cookie = `field2=${customerName.value}; path=/;`;
-        document.cookie = `field3=${customerArea.value}; path=/;`;
-        document.cookie = `field4=${customerProject.value}; path=/;`;
-        document.cookie = `field5=${poNoDate.value}; path=/;`;
-        document.cookie = `field6=${eqptModel.value}; path=/;`;
-        document.cookie = `field7=${eqptSlNo.value}; path=/;`;
-        document.cookie = `field8=${complainDate.value}; path=/;`;
-        document.cookie = `field9=${complainDescription.value}; path=/;`;
-        document.cookie = `field10=${serviceTaken.value}; path=/;`;
-        document.cookie = `field11=${technicianName.value}; path=/;`;
-
-        // Prepare headers for the request
-        const myHeaders = new Headers();
-        myHeaders.append("Authorization", getCookieValue("token")); // Change this if your token cookie is named differently
-        myHeaders.append("Content-Type", "application/json");
-
-        // Prepare the payload with cookie values for fields 1 to 40
-        const raw = JSON.stringify({
-            "profile_id": getCookieValue("profile_id") || "", // Default to empty if cookie doesn't exist
-            "description": getCookieValue("description") || "", // Default description
-            "gender": getCookieValue("gender") || "", // Default gender
-            "images": getCookieValue("images") || "", // Default images
-            "bio": getCookieValue("bio") || "", // Default bio
-            "field1": getCookieValue("field1") || "",
-            "field2": getCookieValue("field2") || "",
-            "field3": getCookieValue("field3") || "",
-            "field4": getCookieValue("field4") || "",
-            "field5": getCookieValue("field5") || "",
-            "field6": getCookieValue("field6") || "",
-            "field7": getCookieValue("field7") || "",
-            "field8": getCookieValue("field8") || "",
-            "field9": getCookieValue("field9") || "",
-            "field10": getCookieValue("field10") || "",
-            "field11": getCookieValue("field11") || "",
-            "field12": getCookieValue("field12") || "",
-            "field13": getCookieValue("field13") || "",
-            "field14": getCookieValue("field14") || "",
-            "field15": getCookieValue("field15") || "",
-            "field16": getCookieValue("field16") || "",
-            "field17": getCookieValue("field17") || "",
-            "field18": getCookieValue("field18") || "",
-            "field19": getCookieValue("field19") || "",
-            "field20": getCookieValue("field20") || "",
-            "field21": getCookieValue("field21") || "",
-            "field22": getCookieValue("field22") || "",
-            "field23": getCookieValue("field23") || "",
-            "field24": getCookieValue("field24") || "",
-            "field25": getCookieValue("field25") || "",
-            "field26": getCookieValue("field26") || "",
-            "field27": getCookieValue("field27") || "",
-            "field28": getCookieValue("field28") || "",
-            "field29": getCookieValue("field29") || "",
-            "field30": getCookieValue("field30") || "",
-            "field31": getCookieValue("field31") || "",
-            "field32": getCookieValue("field32") || "",
-            "field33": getCookieValue("field33") || "",
-            "field34": getCookieValue("field34") || "",
-            "field35": getCookieValue("field35") || "",
-            "field36": getCookieValue("field36") || "",
-            "field37": getCookieValue("field37") || "",
-            "field38": getCookieValue("field38") || "",
-            "field39": getCookieValue("field39") || "",
-            "field40": getCookieValue("field40") || "",
-            "field41": getCookieValue("field41") || "",
-            "field42": getCookieValue("field42") || "",
-            "field43": getCookieValue("field43") || "",
-           "field44": getCookieValue("field44") || "",
-
-           "field45": getCookieValue("field45") || "",
-
-           "field46": getCookieValue("field46") || "",
-
-           "field47": getCookieValue("field47") || "",
-
-           "field48": getCookieValue("field48") || "",
-
-           "field49": getCookieValue("field49") || "",
-
-            "field50": getCookieValue("field50") || ""
-
-        });
-
-        // Send request to the API
-        const requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-
-        fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(result => {
-    console.log(result); // Log the result to the console
-    showModal(); // Show the success modal
-    // Handle success, maybe redirect or show a success message
-})
-.catch(error => {
-    console.error('Error:', error); // Log any error
-    alert('Form submission failed. Please try again.'); // Show error alert
-    // Handle error, maybe show an error message
-});
-
-// Function to show the modal
-function showModal() {
-    document.getElementById('successModal').style.display = 'block';
-}
-
-// Function to close the modal
-function closeModal() {
-    document.getElementById('successModal').style.display = 'none';
-}
-
-// Function to print the installation page (implement this function as needed)
-function printInstallationPage() {
-    window.print();
-}
-
-
-        // Optionally, reset the form
-        document.getElementById("yourFormId").reset(); // Replace "yourFormId" with the actual form ID
-    }
-}
-
-     
-
-
-
-       </script>
-    <script>
-     document.getElementById('partsTable').addEventListener('click', function(event) {
-    if (event.target.classList.contains('deleteBtn')) {
-        const row = event.target.closest('tr');
-        
-        // Remove the corresponding cookies
-        const slno = row.querySelector('td:nth-child(2)').innerText; // Get the serial number
-        document.cookie = `field${32 + slno - 1}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`; // Clear the corresponding cookies
-        document.cookie = `field${36 + slno - 1}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-        document.cookie = `field${40 + slno - 1}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-        document.cookie = `field${44 + slno - 1}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-
-        row.parentNode.removeChild(row);
-    } else if (event.target.classList.contains('addBtn')) {
-        const tableBody = document.getElementById('partsTable').getElementsByTagName('tbody')[0];
-        const newRow = tableBody.insertRow(tableBody.rows.length); // Insert at the end of the table
-
-        const cell1 = newRow.insertCell(0);
-        const cell2 = newRow.insertCell(1);
-        const cell3 = newRow.insertCell(2);
-        const cell4 = newRow.insertCell(3);
-        const cell5 = newRow.insertCell(4);
-        const cell6 = newRow.insertCell(5);
-
-        cell1.innerHTML = '<button class="deleteBtn"><i class="fas fa-trash"></i> </button><button class="addBtn">+</button>'; // Delete and Add button
-        cell2.setAttribute('data-label', 'slno');
-        cell2.innerHTML = tableBody.rows.length; // Auto increment serial number
-        cell3.setAttribute('data-label', 'Uee Part No');
-        cell3.innerHTML = '<input type="text" placeholder="Enter Part No">'; // Editable part number
-        cell4.setAttribute('data-label', 'Description');
-        cell4.innerHTML = '<input type="text" placeholder="Enter Description">'; // Editable description
-        cell5.setAttribute('data-label', 'Qty');
-        cell5.innerHTML = '<input type="number" placeholder="Enter Qty" min="1">'; // Editable quantity
-        cell6.setAttribute('data-label', 'Repair/Reject/To Be Replaced');
-        cell6.innerHTML = `<select>
-                               <option value="Repair">Repair</option>
-                               <option value="Reject">Reject</option>
-                               <option value="To Be Replaced">To Be Replaced</option>
-                           </select>`; // Editable status (dropdown)
-
-        // Automatically store the new input fields into cookies
-        newRow.querySelector('input[type="text"]').addEventListener('input', function() {
-            const partNo = this.value;
-            const index = tableBody.rows.length - 1; // Get the last row index
-            document.cookie = `field${32 + index}=${partNo}; path=/`;
-        });
-
-        newRow.querySelector('input[type="text"]').addEventListener('input', function() {
-            const description = this.value;
-            const index = tableBody.rows.length - 1; // Get the last row index
-            document.cookie = `field${36 + index}=${description}; path=/`;
-        });
-
-        newRow.querySelector('input[type="number"]').addEventListener('input', function() {
-            const qty = this.value;
-            const index = tableBody.rows.length - 1; // Get the last row index
-            document.cookie = `field${40 + index}=${qty}; path=/`;
-        });
-
-        newRow.querySelector('select').addEventListener('change', function() {
-            const status = this.value;
-            const index = tableBody.rows.length - 1; // Get the last row index
-            document.cookie = `field${44 + index}=${status}; path=/`;
-        });
-    }
-});
-
-// Automatically store existing input values in cookies
-document.querySelectorAll('#partsTable tbody tr').forEach((row, index) => {
-    const partNoInput = row.querySelector('td:nth-child(3) input');
-    const descriptionInput = row.querySelector('td:nth-child(4) input');
-    const qtyInput = row.querySelector('td:nth-child(5) input');
-    const statusSelect = row.querySelector('td:nth-child(6) select');
-
-    // Set event listeners to store values in cookies
-    partNoInput.addEventListener('input', function() {
-        document.cookie = `field${32 + index}=${this.value}; path=/`;
-    });
+// Create a message box for notifications
+const statusMessage = document.createElement('div');
+statusMessage.id = 'statusMessage';
+document.body.appendChild(statusMessage);
+function displayNotification(message, type) {
+    const statusMessage = document.getElementById('statusMessage');
     
-    descriptionInput.addEventListener('input', function() {
-        document.cookie = `field${36 + index}=${this.value}; path=/`;
-    });
+    statusMessage.innerText = message; // Update the message
 
-    qtyInput.addEventListener('input', function() {
-        document.cookie = `field${40 + index}=${this.value}; path=/`;
-    });
+    // Apply classes for success or error
+    if (type === 'success') {
+        statusMessage.classList.add('success');
+        statusMessage.classList.remove('error');
+        
+        // Show the popup after success message
+        setTimeout(() => {
+            showPopup();
+        }, 3500); // Show popup after the success notification fades out
+    } else {
+        statusMessage.classList.add('error');
+        statusMessage.classList.remove('success');
+    }
 
-    statusSelect.addEventListener('change', function() {
-        document.cookie = `field${44 + index}=${this.value}; path=/`;
-    });
+    // Trigger the animation to slide up and show
+    statusMessage.style.visibility = 'visible'; // Make it visible
+    statusMessage.style.bottom = '20px'; // Move it to the visible position
+    statusMessage.style.opacity = '1'; // Fade in
+
+    // After 3 seconds, fade it out
+    setTimeout(() => {
+        statusMessage.style.opacity = '0'; // Fade out
+        setTimeout(() => {
+            statusMessage.style.visibility = 'hidden'; // Hide after fading out
+            statusMessage.style.bottom = '-100px'; // Move back down out of view
+        }, 500); // Wait for the fade out to complete
+    }, 3000); // Display for 3 seconds
+}
+
+// Function to show the popup
+function showPopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'block'; // Make the popup visible
+}
+
+// Event listener for the Print button
+document.getElementById('printBtn').addEventListener('click', () => {
+    const printFrame = document.getElementById('printFrame');
+    printFrame.src = 'General_service_print.html'; // Set the iframe source to the page you want to print
+
+    // Wait until the iframe has loaded the content before printing
+    printFrame.onload = function() {
+        printFrame.contentWindow.print(); // Trigger the print dialog
+        closePopup(); // Close the popup
+    };
 });
-    </script>
-<script>
+
+// Event listener for the Report button
+document.getElementById('reportBtn').addEventListener('click', () => {
+    window.location.href = 'Genearlservice_report.html'; // Redirect to report.html
+});
+
+
+// Function to close the popup
+function closePopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none'; // Hide the popup
+}
+
+
+
+// Modify the submitForm function
+function submitForm() {
+    // Prepare headers for the request
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", getCookieValue("token")); // Adjust token cookie name if needed
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "profile_id": getCookieValue("profile_id") || "",
+        "description": getCookieValue("description") || "",
+        "gender": getCookieValue("gender") || "",
+        "images": getCookieValue("images") || "",
+        "bio": getCookieValue("bio") || "",
+        "field1": getCookieValue("field1") || "",
+        "field2": getCookieValue("field2") || "",
+        "field3": getCookieValue("field3") || "",
+        "field4": getCookieValue("field4") || "",
+        "field5": getCookieValue("field5") || "",
+        "field6": getCookieValue("field6") || "",
+        "field7": getCookieValue("field7") || "",
+        "field8": getCookieValue("field8") || "",
+        "field9": getCookieValue("field9") || "",
+        "field10": getCookieValue("field10") || "",
+        "field11": getCookieValue("field11") || "",
+        "field12": getCookieValue("field12") || "",
+        "field13": getCookieValue("field13") || "",
+        "field14": getCookieValue("field14") || "",
+        "field15": getCookieValue("field15") || "",
+        "field16": getCookieValue("field16") || "",
+        "field17": getCookieValue("field17") || "",
+        "field18": getCookieValue("field18") || "",
+        "field19": getCookieValue("field19") || "",
+        "field20": getCookieValue("field20") || "",
+        "field21": getCookieValue("field21") || "",
+        "field22": getCookieValue("field22") || "",
+        "field23": getCookieValue("field23") || "",
+        "field24": getCookieValue("field24") || "",
+        "field25": getCookieValue("field25") || "",
+        "field26": getCookieValue("field26") || "",
+        "field27": getCookieValue("field27") || "",
+        "field28": getCookieValue("field28") || "",
+        "field29": getCookieValue("field29") || "",
+        "field30": getCookieValue("field30") || "",
+        "field31": getCookieValue("field31") || "",
+        "field32": getCookieValue("field32") || "",
+        "field33": getCookieValue("field33") || "",
+        "field34": getCookieValue("field34") || "",
+        "field35": getCookieValue("field35") || "",
+        "field36": getCookieValue("field36") || "",
+        "field37": getCookieValue("field37") || "",
+        "field38": getCookieValue("field38") || "",
+        "field39": getCookieValue("field39") || "",
+        "field40": getCookieValue("field40") || "",
+        "field41": getCookieValue("field41") || "",
+    "field42": getCookieValue("field42") || "",
+    "field43": getCookieValue("field43") || "",
+    "field44": getCookieValue("field44") || "",
+    "field45": getCookieValue("field45") || "",
+    "field46": getCookieValue("field46") || "",
+    "field47": getCookieValue("field47") || "",
+    "field48": getCookieValue("field48") || "",
+    "field49": getCookieValue("field49") || "",
+    "field50": getCookieValue("field50") || ""
+    });
+
+    const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions) // Replace with your actual API endpoint
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(result => {
+            console.log(result); // Handle the API response
+            displayNotification("Form submitted successfully!", "success"); // Display success message
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            displayNotification("Error submitting form. Please try again.", "error"); // Display error message
+        });
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const partsTable = document.getElementById("partsTable").getElementsByTagName('tbody')[0];
+
+    // Function to add a new row to the table
+    function addRow() {
+        const rowCount = partsTable.rows.length;
+
+        // Check if the number of rows is less than 4
+        if (rowCount < 4) {
+            const newRow = partsTable.insertRow(rowCount);
+            newRow.innerHTML = `
+                <td>
+                    <button class="deleteBtn"><i class="fas fa-trash"></i></button>
+                    <button class="addBtn">+</button>
+                </td>
+                <td data-label="slno">${rowCount + 1}</td>
+                <td data-label="Uee Part No"><input type="text" placeholder="Enter Part No"></td>
+                <td data-label="Description"><input type="text" placeholder="Enter Description"></td>
+                <td data-label="Qty"><input type="number" placeholder="Enter Qty" min="1"></td>
+                <td data-label="Repair/Reject/To Be Replaced">
+                    <select>
+                        <option value="Repair">Repair</option>
+                        <option value="Reject">Reject</option>
+                        <option value="To Be Replaced">To Be Replaced</option>
+                    </select>
+                </td>
+            `;
+
+            // Add event listener to the newly created buttons
+            newRow.querySelector('.addBtn').addEventListener('click', addRow);
+            newRow.querySelector('.deleteBtn').addEventListener('click', deleteRow);
+        } else {
+            alert("Maximum of 4 rows allowed.");
+        }
+    }
+
+    // Function to delete a row from the table
+    function deleteRow(event) {
+        const row = event.target.closest('tr');
+        const rowIndex = row.rowIndex - 1; // Adjust for the header row
+        partsTable.deleteRow(rowIndex); // Remove the row
+
+        // Update cookies after deletion
+        removeRowFromCookies(rowIndex);
+        
+        // Reassign serial numbers for remaining rows
+        updateSerialNumbers();
+    }
+
+    // Function to update serial numbers
+    function updateSerialNumbers() {
+        const rows = partsTable.rows;
+        for (let i = 0; i < rows.length; i++) {
+            rows[i].cells[1].innerText = i + 1; // Update serial number
+        }
+    }
+
+    // Function to set cookies
+    function setCookie(name, value) {
+        document.cookie = `${name}=${value}; path=/;`;
+    }
+
+    // Function to get cookies
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+   // Function to store input values in cookies
+function storeValuesInCookies() {
+    const rows = partsTable.rows;
+    for (let i = 0; i < rows.length; i++) {
+        const partNo = rows[i].cells[2].querySelector('input').value;
+        const description = rows[i].cells[3].querySelector('input').value;
+        const qty = rows[i].cells[4].querySelector('input').value;
+        const repairStatus = rows[i].cells[5].querySelector('select').value;
+
+        // Store each value in cookies with only field numbers (no row numbers)
+        setCookie(`field${33 + i}`, partNo);         // field33, field34, etc.
+        setCookie(`field${37 + i}`, description);    // field37, field38, etc.
+        setCookie(`field${41 + i}`, qty);            // field41, field42, etc.
+        setCookie(`field${45 + i}`, repairStatus);   // field45, field46, etc.
+    }
+}
+
+// Function to remove row cookies based on index
+function removeRowFromCookies(rowIndex) {
+    // Remove the cookies related to the deleted row
+    setCookie(`field${33 + rowIndex}`, ''); // Clear cookie for part no
+    setCookie(`field${37 + rowIndex}`, ''); // Clear cookie for description
+    setCookie(`field${41 + rowIndex}`, ''); // Clear cookie for quantity
+    setCookie(`field${45 + rowIndex}`, ''); // Clear cookie for repair status
+}
+
+
+    // Attach event listeners to the existing buttons
+    const addButtons = document.querySelectorAll(".addBtn");
+    const deleteButtons = document.querySelectorAll(".deleteBtn");
+
+    addButtons.forEach(button => {
+        button.addEventListener('click', addRow);
+    });
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', deleteRow);
+    });
+
+    // Store values in cookies whenever a new row is added or modified
+    partsTable.addEventListener('input', storeValuesInCookies);
+});
+
+
+
+
+
 // Function to set a cookie
-// Set a cookie
 function setCookie(name, value, days) {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -1150,179 +1364,72 @@ function setCookie(name, value, days) {
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
-// Get a cookie value
+// Function to get a cookie value
 function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    const cname = name + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(';');
+    for (let i = 0; i < cookieArray.length; i++) {
+        let cookie = cookieArray[i];
+        while (cookie.charAt(0) === ' ') {
+            cookie = cookie.substring(1);
+        }
+        if (cookie.indexOf(cname) === 0) {
+            return cookie.substring(cname.length, cookie.length);
+        }
     }
-    return null;
+    return "";
 }
 
-// Function to validate that at least one checkbox is checked in each group
-function validateCheckboxGroup(checkboxes) {
-    return Array.from(checkboxes).some(checkbox => checkbox.checked);
-}
-
-// Store selected checkbox values in cookies
-function storeCheckboxValues() {
-    const checkboxes = document.querySelectorAll('.status-checkbox');
-    const selectedValues = {};
-
-    // Iterate over checkboxes and check the status
-    checkboxes.forEach(checkbox => {
-        const name = checkbox.name;
-
-        // Check if the checkbox is checked
-        if (checkbox.checked) {
-            selectedValues[name] = checkbox.value;
-        } else if (!selectedValues[name]) {
-            selectedValues[name] = 'Good Condition'; // Default if unchecked
-        }
-    });
-
-    // Store each name's selected values as a cookie
-    for (const name in selectedValues) {
-        setCookie(name, selectedValues[name], 7); // Store for 7 days
-    }
-
-    // Check overall status
-    checkStatus();
-}
-
-// Check the status of checkboxes and update result
-function checkStatus() {
-    const checkboxes = document.querySelectorAll('.status-checkbox');
-    let anyDamage = false;
-
-    checkboxes.forEach((checkbox) => {
-        if (checkbox.checked && checkbox.value === 'Damage') {
-            anyDamage = true;
-        }
-    });
-
-    // Determine result
-    const result = anyDamage ? 'Damage' : 'Good';
-    const statusResult = document.getElementById('statusResult');
-
-    // Update the status display
-    statusResult.textContent = result;
-    statusResult.style.color = anyDamage ? 'red' : 'green';
-
-    // Store the result in cookies
-    setCookie('overallStatus', result, 7); // Store for 7 days
-}
-
-// Add event listeners to checkboxes
-document.querySelectorAll('.status-checkbox').forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-        const groupCheckboxes = document.querySelectorAll(`input[name="${checkbox.name}"]`);
-        if (!validateCheckboxGroup(groupCheckboxes)) {
-            alert(`Please select at least one option for ${checkbox.name}.`);
-            checkbox.checked = true; // Keep the checkbox checked if none are selected
-        } else {
-            storeCheckboxValues(); // Call to store values if valid
-        }
+// Store the selected warranty status in cookies when a user selects an option
+document.querySelectorAll('input[name="warranty"]').forEach((radio) => {
+    radio.addEventListener('change', function() {
+        setCookie('field19', this.value, 7); // Save for 7 days
     });
 });
 
-// Load values from cookies on page load (if needed)
+// When the page loads, check if a cookie is set and update the radio button accordingly
 window.onload = function() {
-    const checkboxes = document.querySelectorAll('.status-checkbox');
-
-    checkboxes.forEach(checkbox => {
-        const cookieValue = getCookie(checkbox.name);
-        if (cookieValue) {
-            checkbox.checked = (cookieValue === checkbox.value);
-        }
-    });
-
-    // Initial check to set status on page load
-    checkStatus();
+    const savedWarranty = getCookie('warrantyStatus');
+    if (savedWarranty) {
+        document.querySelector(`input[value="${savedWarranty}"]`).checked = true;
+    }
 };
 
 
-// Function to close the modal
-function closeModal() {
-    const modal = document.getElementById("successModal");
-    modal.style.display = "none"; // Hide the modal
-}
-
-// Function to print from the iframe
-function printFromIframe() {
-    const iframe = document.getElementById("printFrame");
-    
-    // Wait until the iframe content is loaded
-    iframe.onload = function() {
-        // Access the iframe's contentWindow and call the print method
-        iframe.contentWindow.print();
-    };
-    
-    // Ensure the iframe source is loaded before printing
-    iframe.src = 'General_service_print.html';
-    
-    // Optionally hide the modal after printing
-    closeModal();
-}
-
-// To show the modal (if needed)
-function showModal() {
-    const modal = document.getElementById("successModal");
-    modal.style.display = "block"; // Show the modal
-}
-
-
-
-
-
-
-
-// Function to store the selected warranty status in cookies
-function storeWarrantyStatus() {
-    const selectedWarranty = document.querySelector('input[name="warranty"]:checked');
-    if (selectedWarranty) {
-        setCookie('field31', selectedWarranty.value, 7); // Store for 7 days
-    }
-}
-
-// Add event listeners to radio buttons
-document.querySelectorAll('input[name="warranty"]').forEach(radio => {
-    radio.addEventListener('change', storeWarrantyStatus);
+// Add event listeners for validation
+document.getElementById("installation-hrm").addEventListener("input", function() {
+    validateAlphanumeric("installation-hrm", "installation-hrm-error", "field31"); // Store in field31
 });
 
-// Load warranty status from cookies on page load
-window.onload = function() {
-    const warrantyStatus = getCookie('warrantyStatus');
-    if (warrantyStatus) {
-        const radio = document.querySelector(`input[name="warranty"][value="${warrantyStatus}"]`);
-        if (radio) {
-            radio.checked = true;
-        }
-    }
-};
+document.getElementById("failure-hmr").addEventListener("input", function() {
+    validateAlphanumeric("failure-hmr", "failure-hmr-error", "field32"); // Store in field32
+});
 
 // Function to set a cookie
 function setCookie(name, value, days) {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
-    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
 }
 
-// Add event listeners to input fields
-document.getElementById('installation-hrm').addEventListener('input', function() {
-    setCookie('field48', this.value, 7); // Store for 7 days
-});
+// Function to validate alphanumeric input
+function validateAlphanumeric(inputId, errorId, cookieField) {
+    const input = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+    const value = input.value;
 
-document.getElementById('failure-hmr').addEventListener('input', function() {
-    setCookie('field49', this.value, 7); // Store for 7 days
-});
+    // Check if the value contains only alphanumeric characters
+    if (!/^[A-Za-z0-9\s]+$/.test(value)) {
+        errorMessage.textContent = "This field must contain alphanumeric characters only.";
+        input.classList.add("invalid");
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        input.classList.remove("invalid");
+        setCookie(cookieField, value, 7); // Store value in cookie
+    }
+}
 
 
-
-
-
-</script>
+    </script>
 </body>
 </html>

@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Genearl service report</title>
     <link href="css/i.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="img/icon.png" type="image/x-icon">
 
     <style>
  /* Label Styling */
@@ -408,9 +409,9 @@ input[type="text"], input[type="number"], select {
             <a class="nav-link" href="installationreport.html" style="color: #008f7e; font-weight: bold;">Installation Report</a>
             <a class="nav-link" href="Genearlservice_report.html" style="color: #008f7e; font-weight: bold;">General Service Report</a>
 
-<!-- <h5 class="text-light">Updation</h5>
-            <a class="nav-link" href="installationreport.html" style="color: #008f7e; font-weight: bold;">Installation Updation</a>
-            <a class="nav-link" href="report2.html" style="color: #008f7e; font-weight: bold;"> General Service Updation</a>             -->
+<h5 class="text-light">Updation</h5>
+            <a class="nav-link" href="insatallation_updation.html" style="color: #008f7e; font-weight: bold;">Installation Updation</a>
+            <a class="nav-link" href="General_service_updation.html" style="color: #008f7e; font-weight: bold;"> General Service Updation</a>            
         </div>
     </div>
 
@@ -995,9 +996,9 @@ function updateProfileDetails(profileDetails) {
         'fireSensorWireInput': 'field28',
         'hoseKitInput': 'field29',
         'msPartInput': 'field30',
-        'warrantyStatus': 'field31',
-        'installation-hrm': 'field48',
-        'failure-hmr' : 'field49'
+        'warrantyStatus': 'field19',
+        'installation-hrm': 'field31',
+        'failure-hmr' : 'field32'
     };
 
     // Iterate over the fieldMappings and update input values
@@ -1018,22 +1019,22 @@ function updateProfileDetails(profileDetails) {
 function updatePartsDetails(profileDetails) {
     // Define a mapping for part inputs based on your fields from field32 to field47
     const partsMappings = [
-        { idPrefix: 'partNo', fieldKey: 'field32' },
-        { idPrefix: 'description', fieldKey: 'field33' },
-        { idPrefix: 'qty', fieldKey: 'field34' },
-        { idPrefix: 'status', fieldKey: 'field35' },
-        { idPrefix: 'partNo', fieldKey: 'field36' },
+        { idPrefix: 'partNo', fieldKey: 'field33' },
         { idPrefix: 'description', fieldKey: 'field37' },
-        { idPrefix: 'qty', fieldKey: 'field38' },
-        { idPrefix: 'status', fieldKey: 'field39' },
-        { idPrefix: 'partNo', fieldKey: 'field40' },
-        { idPrefix: 'description', fieldKey: 'field41' },
+        { idPrefix: 'qty', fieldKey: 'field41' },
+        { idPrefix: 'status', fieldKey: 'field45' },
+        { idPrefix: 'partNo', fieldKey: 'field34' },
+        { idPrefix: 'description', fieldKey: 'field37' },
         { idPrefix: 'qty', fieldKey: 'field42' },
-        { idPrefix: 'status', fieldKey: 'field43' },
-        { idPrefix: 'partNo', fieldKey: 'field44' },
-        { idPrefix: 'description', fieldKey: 'field45' },
-        { idPrefix: 'qty', fieldKey: 'field46' },
-        { idPrefix: 'status', fieldKey: 'field47' }
+        { idPrefix: 'status', fieldKey: 'field46' },
+        { idPrefix: 'partNo', fieldKey: 'field35' },
+        { idPrefix: 'description', fieldKey: 'field39' },
+        { idPrefix: 'qty', fieldKey: 'field43' },
+        { idPrefix: 'status', fieldKey: 'field47' },
+        { idPrefix: 'partNo', fieldKey: 'field36' },
+        { idPrefix: 'description', fieldKey: 'field40' },
+        { idPrefix: 'qty', fieldKey: 'field44' },
+        { idPrefix: 'status', fieldKey: 'field48' }
     ];
 
     // Calculate how many parts you have based on your mapping
