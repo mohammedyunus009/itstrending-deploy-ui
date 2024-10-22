@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>installation-form</title>
     <link href="css/i.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="img/icon.png" type="image/x-icon">
 
     <style>
  /* Label Styling */
@@ -283,10 +284,10 @@
             <a class="nav-link" href="installation_report.html" style="color: #008f7e; font-weight: bold;">Installation Report</a>
             <a class="nav-link" href="Genearlservice_report.html" style="color: #008f7e; font-weight: bold;">General Service Report</a>
 
-            <!-- <h5 class="text-light">Updation</h5>
+           
+ <h5 class="text-light">Updation</h5>
             <a class="nav-link" href="insatallation_updation.html" style="color: #008f7e; font-weight: bold;">Installation Updation</a>
-            <a class="nav-link" href="report2.html" style="color: #008f7e; font-weight: bold;">General Service Updation</a> -->
-        </div>
+            <a class="nav-link" href="General_service_updation.html" style="color: #008f7e; font-weight: bold;">General Service Updation</a>        </div>
     </div>
 
     <script>
@@ -312,7 +313,7 @@
         <h2>Installation Form</h2>
         <div class="underline"></div>
         <label for="serial-number"><strong>Serial Number: </strong></label>
-        <input type="text" id="serial-number" name="serial-number" placeholder="Enter Serial Number" required>
+        <input type="text" id="serial-number" name="serial-number" placeholder="Enter Serial Number" required oninput="validateSerialNumber()">
         <span class="error-message" id="serial-number-error"></span>
     </div>
     
@@ -321,7 +322,6 @@
         <div class="navbar-item left">
             <h3 style="margin: 0; color:#00bfa6;">Customer Information</h3>
         </div>
-
         <div class="navbar-item middle"></div>
         <div class="navbar-item right"></div>
     </header>
@@ -349,7 +349,7 @@
     
         <div class="form-group">
             <label for="ponumber-date"><strong>PO Date: </strong></label>
-            <input type="text" id="ponumber-date" name="ponumber-date" placeholder="dd-mm-yyyy" required>
+            <input type="date" id="ponumber-date" name="ponumber-date" required>
             <span class="error-message" id="ponumber-date-error"></span>
         </div>
     </div>
@@ -363,7 +363,7 @@
     
         <div class="form-group">
             <label for="invoice-date"><strong>Invoice Date: </strong></label>
-            <input type="text" id="invoice-date" name="invoice-date" placeholder="dd-mm-yyyy" required>
+            <input type="date" id="invoice-date" name="invoice-date" required>
             <span class="error-message" id="invoice-date-error"></span>
         </div>
     </div>
@@ -658,6 +658,7 @@
     </div>
 
     <div id="resultMessage" style="margin-top: 20px; font-size: 1.5em;"></div>
+    <div id="validationMessage"></div>
 
     </div>
 </div>
@@ -668,122 +669,351 @@
     <div class="form-group">
         <label for="installation-hrm-new" class="label-uee"><strong>For UEE:</strong></label>
         <input type="text" id="installation-hrm-new" name="installation-hrm" placeholder="Enter UEE" required>
+        <span id="installation-hrm-new-error" class="error-message"></span> <!-- Error message span -->
     </div>
 
     <!-- Failure HMR Field -->
     <div class="form-group">
         <label for="failure-hmr-new" class="label-customer"><strong>For Customer:</strong></label>
         <input type="text" id="failure-hmr-new" name="failure-hmr" placeholder="Enter customer" required>
+        <span id="failure-hmr-new-error" class="error-message"></span> <!-- Error message span -->
     </div>
 </div>
+
+
 
 <div class="error-container" id="error-container" style="color: red;"></div> <!-- Error message container -->
 
-<div class="button-container">
-    <button type="submit" class="submit-button" onclick="validateForm(event)">Submit</button>
+<button type="button"class="submit-button"  onclick="validateForm()">Submit</button>
+
+
+<div id="statusMessage" class="status-message"></div>
+
+<div id="loadingScreen" class="loading-screen">
+    <div class="loader">Loading...</div>
 </div>
 
-
-<!-- Popup Modal -->
-<div id="successModal" class="modal">
-    <div class="modal-content">
-        <div class="circle">
-            <img src="img/printer.png" alt="Printer" class="printer-image">
-        </div>
-        <div class="modal-buttons">
-            <button id="warranty-btn" onclick="window.location.href='cert.html'">Warranty</button>
-            <button id="print-btn" onclick="printInstallationPage()">Print</button>
-        </div>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <img src="img/printer.png" alt="Printer Logo" class="printer-logo">
+        <h2>Welcome!</h2>
+        <p>Please choose an option:</p>
+        <button id="printBtn">Print</button>
+        <button id="warrantyBtn">Warranty</button>
     </div>
 </div>
 
-
-<!-- Hidden Iframe -->
-<iframe id="printFrame" style="display: none;"></iframe>
+<!-- Hidden iframe for printing -->
+<iframe id="printFrame" style="display:none;"></iframe>
 
   
 
 <script>
-
-function showError(message) {
-    const errorContainer = document.getElementById('error-container');
-    
-    // Create a new error message element
-    const errorMessage = document.createElement('span');
-    errorMessage.innerText = message;
-    errorMessage.style.marginRight = '10px'; // Add space between messages
-
-    // Append the new error message to the container
-    errorContainer.appendChild(errorMessage);
+// Function to set a cookie
+function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
 }
-function validateForm() {
-    let isValid = true; // Flag to track overall form validity
-    const errorContainer = document.getElementById('error-container');
-    errorContainer.innerHTML = ''; // Clear previous error messages
 
-    const fields = [
-        { id: 'serial-number', regex: /^[0-9]+$/, errorMessage: 'Serial number must be numeric,' },
-        { id: 'customer-details', regex: /^[a-zA-Z\s]+$/, errorMessage: 'Customer details must contain only alphabets,' },
-        { id: 'project', regex: /^[a-zA-Z\s]+$/, errorMessage: 'Project must contain only alphabets,' },
-        { id: 'pno', regex: /^[0-9]+$/, errorMessage: 'PNO number must be numeric,' },
-        { id: 'ponumber-date', regex: /^\d{2}-\d{2}-\d{4}$/, errorMessage: 'PO date must be in format dd-mm-yyyy,' },
-        { id: 'invoice-number', regex: /^[0-9]+$/, errorMessage: 'Invoice number must be numeric,' },
-        { id: 'invoice-date', regex: /^\d{2}-\d{2}-\d{4}$/, errorMessage: 'Invoice date must be in format dd-mm-yyyy,' },
-        { id: 'vehicle-model', regex: /^[a-zA-Z0-9\s]+$/, errorMessage: 'Vehicle model must be alphanumeric,' },
-        { id: 'vehicle-sl-no', regex: /^[a-zA-Z0-9\s]+$/, errorMessage: 'Vehicle Serial No must be alphanumeric,' },
-        { id: 'equipment-type', regex: /^[a-zA-Z0-9\s]+$/, errorMessage: 'Equipment type must be alphanumeric,' },
-        { id: 'equipment-sl-no', regex: /^[a-zA-Z0-9\s]+$/, errorMessage: 'Equipment Serial No must be alphanumeric,' },
-        { id: 'installation-hrm', regex: /^[a-zA-Z\s]+$/, errorMessage: 'Installation HRM must contain only alphabets,' },
-        { id: 'failure-hmr', regex: /^[a-zA-Z\s]+$/, errorMessage: 'Failure HMR must contain only alphabets,' }
+// Function to validate serial number
+function validateSerialNumber() {
+    const serialNumberInput = document.getElementById("serial-number");
+    const errorMessage = document.getElementById("serial-number-error");
+    const value = serialNumberInput.value;
+
+    // Check if the value is numeric
+    if (!/^\d+$/.test(value)) {
+        errorMessage.textContent = "Serial Number must be numeric.";
+        serialNumberInput.classList.add("invalid");
+        disableNextField("customer-details");
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        serialNumberInput.classList.remove("invalid");
+        setCookie("field1", value, 7); // Store value in cookie
+        enableNextField("customer-details");
+    }
+}
+
+// Function to validate customer details
+function validateCustomerDetails() {
+    const customerDetailsInput = document.getElementById("customer-details");
+    const errorMessage = document.getElementById("customer-details-error");
+    const value = customerDetailsInput.value;
+
+    // Check if the value contains only alphabets
+    if (!/^[A-Za-z\s]+$/.test(value)) {
+        errorMessage.textContent = "Customer Details must contain alphabets only.";
+        customerDetailsInput.classList.add("invalid");
+        disableNextField("project");
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        customerDetailsInput.classList.remove("invalid");
+        setCookie("field2", value, 7); // Store value in cookie
+        enableNextField("project");
+    }
+}
+
+// Function to validate project name
+function validateProject() {
+    const projectInput = document.getElementById("project");
+    const errorMessage = document.getElementById("project-error");
+    const value = projectInput.value;
+
+    // Check if the value contains only alphabets
+    if (!/^[A-Za-z\s]+$/.test(value)) {
+        errorMessage.textContent = "Project must contain alphabets only.";
+        projectInput.classList.add("invalid");
+        disableNextField("pno");
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        projectInput.classList.remove("invalid");
+        setCookie("field3", value, 7); // Store value in cookie
+        enableNextField("pno");
+    }
+}
+
+// Function to validate numeric input
+function validateNumericInput(inputId, errorId, cookieField) {
+    const input = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+    const value = input.value;
+
+    // Check if the value is numeric
+    if (!/^\d+$/.test(value)) {
+        errorMessage.textContent = "This field must be numeric.";
+        input.classList.add("invalid");
+        disableNextField(getNextFieldId(inputId));
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        input.classList.remove("invalid");
+        setCookie(cookieField, value, 7); // Store value in cookie
+        enableNextField(getNextFieldId(inputId));
+    }
+}
+
+// Function to validate date format
+function validateDate(inputId, errorId, cookieField) {
+    const dateInput = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+    const value = dateInput.value;
+
+    // Check if the date is valid (non-empty)
+    if (!value) {
+        errorMessage.textContent = "Date cannot be empty.";
+        dateInput.classList.add("invalid");
+        disableNextField(getNextFieldId(inputId));
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        dateInput.classList.remove("invalid");
+        setCookie(cookieField, value, 7); // Store value in cookie
+        enableNextField(getNextFieldId(inputId));
+    }
+}
+
+// Function to validate alphanumeric input
+function validateAlphanumeric(inputId, errorId, cookieField) {
+    const input = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+    const value = input.value;
+
+    // Check if the value contains only alphanumeric characters
+    if (!/^[A-Za-z0-9\s]+$/.test(value)) {
+        errorMessage.textContent = "This field must contain alphanumeric characters only.";
+        input.classList.add("invalid");
+        disableNextField(getNextFieldId(inputId));
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        input.classList.remove("invalid");
+        setCookie(cookieField, value, 7); // Store value in cookie
+        enableNextField(getNextFieldId(inputId));
+    }
+}
+
+// Disable the next input field
+function disableNextField(nextFieldId) {
+    const nextField = document.getElementById(nextFieldId);
+    if (nextField) {
+        nextField.disabled = true; // Disable the next input
+        nextField.value = ''; // Clear the value of the disabled input
+    }
+}
+
+// Enable the next input field only if all previous fields are valid
+function enableNextField(nextFieldId) {
+    const nextField = document.getElementById(nextFieldId);
+    const prevFieldId = getPreviousFieldId(nextFieldId);
+    const prevField = document.getElementById(prevFieldId);
+
+    if (nextField && prevField && !prevField.classList.contains("invalid")) {
+        nextField.disabled = false; // Enable the next input
+    }
+}
+
+// Get the previous field ID based on current field ID
+function getPreviousFieldId(currentId) {
+    const fieldOrder = [
+        "serial-number",
+        "customer-details",
+        "project",
+        "pno",
+        "invoice-number",
+        "ponumber-date",
+        "invoice-date",
+        "vehicle-model",
+        "vehicle-sl-no",
+        "equipment-type",
+        "equipment-sl-no",
+        "installation-hrm",
+        "failure-hmr"
+    ];
+    const currentIndex = fieldOrder.indexOf(currentId);
+    return currentIndex > 0 ? fieldOrder[currentIndex - 1] : null; // Return the previous field ID or null if it’s the first field
+}
+
+// Get the next field ID based on current field ID
+function getNextFieldId(currentId) {
+    const fieldOrder = [
+        "serial-number",
+        "customer-details",
+        "project",
+        "pno",
+        "invoice-number",
+        "ponumber-date",
+        "invoice-date",
+        "vehicle-model",
+        "vehicle-sl-no",
+        "equipment-type",
+        "equipment-sl-no",
+        "installation-hrm",
+        "failure-hmr"
+    ];
+    const currentIndex = fieldOrder.indexOf(currentId);
+    return currentIndex >= 0 && currentIndex < fieldOrder.length - 1
+        ? fieldOrder[currentIndex + 1]
+        : null; // Return the next field ID or null if it’s the last field
+}
+
+// Add event listeners for validation
+document.getElementById("serial-number").addEventListener("input", validateSerialNumber);
+document.getElementById("customer-details").addEventListener("input", validateCustomerDetails);
+document.getElementById("project").addEventListener("input", validateProject);
+document.getElementById("pno").addEventListener("input", function() {
+    validateNumericInput("pno", "pno-error", "field4");
+});
+document.getElementById("invoice-number").addEventListener("input", function() {
+    validateNumericInput("invoice-number", "invoice-number-error", "field5");
+});
+document.getElementById("ponumber-date").addEventListener("change", function() {
+    validateDate("ponumber-date", "ponumber-date-error", "field6");
+});
+document.getElementById("invoice-date").addEventListener("change", function() {
+    validateDate("invoice-date", "invoice-date-error", "field7");
+});
+document.getElementById("vehicle-model").addEventListener("input", function() {
+    validateAlphanumeric("vehicle-model", "vehicle-model-error", "field8");
+});
+document.getElementById("vehicle-sl-no").addEventListener("input", function() {
+    validateAlphanumeric("vehicle-sl-no", "vehicle-sl-no-error", "field9");
+});
+document.getElementById("equipment-type").addEventListener("input", function() {
+    validateAlphanumeric("equipment-type", "equipment-type-error", "field10");
+});
+document.getElementById("equipment-sl-no").addEventListener("input", function() {
+    validateAlphanumeric("equipment-sl-no", "equipment-sl-no-error", "field11");
+});
+document.getElementById("installation-hrm").addEventListener("input", function() {
+    validateAlphanumeric("installation-hrm", "installation-hrm-error", "field13");
+});
+document.getElementById("failure-hmr").addEventListener("input", function() {
+    validateAlphanumeric("failure-hmr", "failure-hmr-error", "field14");
+});
+
+
+
+
+function validateForm() {
+    let allChecked = true;
+    let anyDamage = false; // Flag to check if there's any "Not OK" selected
+    const sections = [
+        { name: 'field15', label: 'DCP Cylinder Mounting Bracket - 50/20' },
+        { name: 'field16', label: 'Distributor Pad' },
+        { name: 'field17', label: 'Nozzle Bracket' },
+        { name: 'field18', label: 'Automatic Actuator Bracket Pad' },
+        { name: 'field19', label: 'Manual Actuator Bracket Pad' },
+        { name: 'field20', label: 'Control Unit Pad' },
+        { name: 'field21', label: 'Sensor Wire Routing Bosses 8MM' },
+        { name: 'field22', label: 'Fitment of DCP Cylinder - 50/25' },
+        { name: 'field23', label: 'Fitment of Nozzles along with protective caps' },
+        { name: 'field24', label: 'Fitment of Nitrogen Cartridge along with protective caps' },
+        { name: 'field25', label: 'Nitrogen Cartridge inside the cabin' },
+        { name: 'field26', label: '3/4"R2, 1/2"R2, 1/4"R2 Hose' },
+        { name: 'field27', label: 'Sensor Wire Routing' },
+        { name: 'field28', label: 'Control Unit Connections including Sensor' },
+        { name: 'field29', label: 'Wire, SP Adaptor, and Battery Connections' },
+        { name: 'field30', label: 'Glow of Power OK LED' },
     ];
 
-    fields.forEach(field => {
-        const inputField = document.getElementById(field.id);
-        if (!field.regex.test(inputField.value)) {
-            inputField.classList.add('invalid'); // Add red border
-            showError(field.errorMessage); // Show the error message
-            isValid = false;
-        } else {
-            inputField.classList.remove('invalid'); // Remove red border if valid
+    // Clear previous errors
+    clearErrors();
+
+    // Iterate through each section to check the status of the checkboxes
+    sections.forEach(section => {
+        const checkboxes = document.querySelectorAll(`input[name="${section.name}"]`);
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        const isNotOk = Array.from(checkboxes).some(checkbox => checkbox.checked && checkbox.value === 'Not OK'); // Check for "Not OK"
+
+        if (!isChecked) {
+            allChecked = false;
+            showError(section.name);
+        }
+
+        if (isNotOk) {
+            anyDamage = true; // Set damage flag if "Not OK" is selected
         }
     });
-       
-        // Only submit the form if valid
-        if (isValid) {
-            // Store data in cookies
-            document.cookie = `field1=${serialNumber.value}; path=/;`;
-            document.cookie = `field2=${customerDetails.value}; path=/;`;
-            document.cookie = `field3=${project.value}; path=/;`;
-            document.cookie = `field4=${pno.value}; path=/;`;
-            document.cookie = `field5=${poDate.value}; path=/;`;
-            document.cookie = `field6=${invoiceNumber.value}; path=/;`;
-            document.cookie = `field7=${invoiceDate.value}; path=/;`;
-            document.cookie = `field8=${vehicleModel.value}; path=/;`;
-            document.cookie = `field9=${vehicleSlNo.value}; path=/;`;
-            document.cookie = `field10=${equipmentType.value}; path=/;`;
-            document.cookie = `field11=${equipmentSlNo.value}; path=/;`;
-            document.cookie = `field13=${installationHrm.value}; path=/;`;
-            document.cookie = `field14=${failureHmr.value}; path=/;`;
 
-            // Store new values from installation-hrm-new and failure-hmr-new inputs
-            const newInstallationHrm = document.getElementById('installation-hrm-new').value;
-            const newFailureHmr = document.getElementById('failure-hmr-new').value;
-            document.cookie = `field31=${newInstallationHrm}; path=/;`;
-            document.cookie = `field32=${newFailureHmr}; path=/;`;
+    const resultMessage = document.getElementById("validationMessage");
+    if (anyDamage) {
+        displayValidationMessage("Damage!", "damage");
+    } else if (allChecked) {
+        displayValidationMessage("Good!", "good");
+    }
 
-            // Prepare headers for the request
-            const myHeaders = new Headers();
-            myHeaders.append("Authorization", getCookieValue("token")); // Change this if your token cookie is named differently
-            myHeaders.append("Content-Type", "application/json");
+    // Store checkbox values in cookies
+    storeCheckboxValues(sections); 
 
-            // Prepare the payload with cookie values for fields 1 to 40
-            const raw = JSON.stringify({
-                "profile_id": getCookieValue("profile_id") || "", // Default to "1" if cookie doesn't exist
-                "description": getCookieValue("description") || "", // Default description
-                "gender": getCookieValue("gender") || "", // Default gender
-                "images": getCookieValue("images") || "", // Default images
-                "bio": getCookieValue("bio") || "", // Default bio
-                "field1": getCookieValue("field1") || "",
+    // Always execute the API request if at least one checkbox is checked
+    if (allChecked) {
+        submitForm(); // Execute the API request
+    } else {
+        resultMessage.classList.remove("show");
+    }
+}
+
+
+// Function to get the value of a cookie by its name
+function getCookieValue(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null; // Return null if the cookie is not found
+}
+
+
+function submitForm() {
+    // Prepare headers for the request
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", getCookieValue("token")); // Adjust token cookie name if needed
+    myHeaders.append("Content-Type", "application/json");
+
+    // Prepare the payload with cookie values for fields 1 to 40
+    const raw = JSON.stringify({
+        "profile_id": getCookieValue("profile_id") || "",
+        "description": getCookieValue("description") || "",
+        "gender": getCookieValue("gender") || "",
+        "images": getCookieValue("images") || "",
+        "bio": getCookieValue("bio") || "",
+        "field1": getCookieValue("field1") || "",
                 "field2": getCookieValue("field2") || "",
                 "field3": getCookieValue("field3") || "",
                 "field4": getCookieValue("field4") || "",
@@ -797,220 +1027,283 @@ function validateForm() {
                 "field12": getCookieValue("field12") || "",
                 "field13": getCookieValue("field13") || "",
                 "field14": getCookieValue("field14") || "",
-                "field15": getCookieValue("field15") || "",
-                "field16": getCookieValue("field16") || "",
-                "field17": getCookieValue("field17") || "",
-                "field18": getCookieValue("field18") || "",
-                "field19": getCookieValue("field19") || "",
-                "field20": getCookieValue("field20") || "",
-                "field21": getCookieValue("field21") || "",
-                "field22": getCookieValue("field22") || "",
-                "field23": getCookieValue("field23") || "",
-                "field24": getCookieValue("field24") || "",
-                "field25": getCookieValue("field25") || "",
-                "field26": getCookieValue("field26") || "",
-                "field27": getCookieValue("field27") || "",
-                "field28": getCookieValue("field28") || "",
-                "field29": getCookieValue("field29") || "",
-                "field30": getCookieValue("field30") || "",
-                "field31": getCookieValue("field31") || "",
-                "field32": getCookieValue("field32") || "",
-                "field33": getCookieValue("field33") || "",
-                "field34": getCookieValue("field34") || "",
-                "field35": getCookieValue("field35") || "",
-                "field36": getCookieValue("field36") || "",
-                "field37": getCookieValue("field37") || "",
-                "field38": getCookieValue("field38") || "",
-                "field39": getCookieValue("field39") || "",
-                "field40": getCookieValue("field40") || ""
-            });
+        "field15": getCookieValue("field15") || "",
+        "field16": getCookieValue("field16") || "",
+        "field17": getCookieValue("field17") || "",
+        "field18": getCookieValue("field18") || "",
+        "field19": getCookieValue("field19") || "",
+        "field20": getCookieValue("field20") || "",
+        "field21": getCookieValue("field21") || "",
+        "field22": getCookieValue("field22") || "",
+        "field23": getCookieValue("field23") || "",
+        "field24": getCookieValue("field24") || "",
+        "field25": getCookieValue("field25") || "",
+        "field26": getCookieValue("field26") || "",
+        "field27": getCookieValue("field27") || "",
+        "field28": getCookieValue("field28") || "",
+        "field29": getCookieValue("field29") || "",
+        "field30": getCookieValue("field30") || "",
+        "field31": getCookieValue("field31") || "",
+        "field32": getCookieValue("field32") || "",
+        "field33": getCookieValue("field33") || "",
+        "field34": getCookieValue("field34") || "",
+        "field35": getCookieValue("field35") || "",
+        "field36": getCookieValue("field36") || "",
+        "field37": getCookieValue("field37") || "",
+        "field38": getCookieValue("field38") || "",
+        "field39": getCookieValue("field39") || "",
+        "field40": getCookieValue("field40") || ""
+    });
 
-            // Sending the request to the API
-            fetch("https://api2.itstrending.in/api/v1/profiles", {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw
-            })
-            .then(response => response.json())
-    .then(data => {
-        console.log('API Response:', data);  // Log the response
-
-        // Assuming your API returns a field like 'status' or 'message' to indicate success
-        if (data.status === 'success' || data.message === 'Form submitted successfully') {
-            alert('Form submitted successfully!');
-            // After clicking OK on alert, show the modal
-            document.getElementById('successModal').style.display = 'flex';
-        } else {
-            alert('Form not submitted. Please try again after correcting the errors.');
-        }
+  
+    // Sending the request to the API
+    fetch("https://api2.itstrending.in/api/v1/profiles", {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw
     })
-    .catch((error) => {
+    .then(response => response.json())
+    .then(data => {
+        console.log('API Response:', data); // Log the response
+
+        const statusMessage = document.getElementById('statusMessage');
+        statusMessage.style.opacity = '1'; // Make the message visible
+        statusMessage.style.transform = 'translateY(0)'; // Move it to the original position
+
+        if (data.status === 'success' || data.message === 'Form submitted successfully') {
+            statusMessage.textContent = 'Form submitted successfully!';
+            statusMessage.className = 'status-message success';
+        } else {
+            statusMessage.textContent = 'Form not submitted. Please try again.';
+            statusMessage.className = 'status-message error';
+        }
+
+        // Show loading screen for 5 seconds
+        showLoadingScreen();
+
+        // Fade out the status message after 3 seconds
+        setTimeout(() => {
+            statusMessage.style.opacity = '0'; // Fade out
+            statusMessage.style.transform = 'translateY(20px)'; // Move it down
+        }, 3000);
+    })
+    .catch(error => {
         console.error('Error:', error);
-        alert('Form not submitted. Please try again after correcting the errors.');
+        const statusMessage = document.getElementById('statusMessage');
+        statusMessage.style.opacity = '1'; // Make the message visible
+        statusMessage.style.transform = 'translateY(0)'; // Move it to the original position
+
+        statusMessage.textContent = 'Form not submitted. Please try again.';
+        statusMessage.className = 'status-message error';
+
+        // Fade out after 3 seconds
+        setTimeout(() => {
+            statusMessage.style.opacity = '0'; // Fade out
+            statusMessage.style.transform = 'translateY(20px)'; // Move it down
+        }, 3000);
     });
+}
 
-// Close the modal when clicking outside of it
-window.onclick = function(event) {
-  const modal = document.getElementById('successModal');
-  if (event.target === modal) {
-    modal.style.display = 'none';
-  }
-};
+function showLoadingScreen() {
+    const loadingScreen = document.getElementById('loadingScreen');
+    loadingScreen.style.display = 'flex'; // Show loading screen
 
-        }
-    }
+    // Hide loading screen after 5 seconds and show the popup
+    setTimeout(() => {
+        loadingScreen.style.display = 'none'; // Hide loading screen
+        showPopup(); // Show the popup
+    }, 5000);
+}
 
-    // Function to get cookie value by name
-    function getCookieValue(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
+function showPopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'block'; // Show the popup
+}
 
+// Other supporting functions remain the same (e.g., showError, clearErrors, etc.)
 
-
-
-
-</script>
-
-
-<script>
-
- // Function to evaluate checkbox status for all sections
-function evaluateAllSections() {
-    // Get all checkbox elements
-    const checkboxes = document.querySelectorAll('.status-checkbox');
-    let allOk = true;
-    let allSelected = true; // To check if all groups have a selection
-
-    // Create a set to track the unique names (sections) of checkboxes
-    const sections = new Set();
-
-    // Iterate through checkboxes
-    checkboxes.forEach(checkbox => {
-        // Add checkbox name (section) to the set
-        sections.add(checkbox.name);
-
-        // Check if no checkbox is selected in a section
-        const isSectionChecked = [...document.querySelectorAll(`input[name="${checkbox.name}"]`)].some(c => c.checked);
-        if (!isSectionChecked) {
-            allSelected = false; // If any section has no selected checkbox, set allSelected to false
-        }
-
-        // Check if "Not OK" is checked
-        if (checkbox.checked && checkbox.value === 'Not OK') {
-            allOk = false;
-        }
-    });
-
-    // Display result message only if all sections have been selected
-    const resultMessage = document.getElementById('resultMessage');
-    if (allSelected) {
-        if (allOk) {
-            resultMessage.innerHTML = 'Result: Working in Normal Conditions';
-            resultMessage.style.color = 'green';
-        } else {
-            resultMessage.innerHTML = 'Result: Faults in the System';
-            resultMessage.style.color = 'red';
-        }
-    } else {
-        resultMessage.innerHTML = ''; // Clear result message if not all checkboxes are selected
+function showError(fieldName) {
+    const checkboxes = document.querySelectorAll(`input[name="${fieldName}"]`);
+    const label = checkboxes[0].closest('.row').querySelector('label');
+    if (label) {
+        label.style.color = 'red'; // Change the label color to red to indicate an error
     }
 }
 
-// Function to handle checkbox selection
-function handleCheckboxChange(event) {
-    const currentCheckbox = event.target;
-
-    // Uncheck other checkboxes with the same name
-    const checkboxes = document.querySelectorAll(`input[name="${currentCheckbox.name}"]`);
-    checkboxes.forEach(checkbox => {
-        if (checkbox !== currentCheckbox) {
-            checkbox.checked = false;
-        }
+function clearErrors() {
+    const labels = document.querySelectorAll('.form-label');
+    labels.forEach(label => {
+        label.style.color = ''; // Reset the label color to default
     });
-
-    // Re-evaluate after a change
-    evaluateAllSections();
 }
 
-// Add event listeners to checkboxes
-document.querySelectorAll('.status-checkbox').forEach(checkbox => {
-    checkbox.addEventListener('change', handleCheckboxChange);
-});
+// Function to display validation messages with animation
+function displayValidationMessage(message, type) {
+    const resultMessage = document.getElementById("validationMessage");
+    resultMessage.innerText = message;
 
-// Call evaluateAllSections initially to set the result based on default checkbox values
-evaluateAllSections();
+    // Set the appropriate class for the message type
+    resultMessage.classList.remove("good", "damage"); // Remove previous types
+    resultMessage.classList.add(type); // Add the new type class
+    resultMessage.classList.add("show"); // Add class to animate in
 
+    // Store the message type in cookies
+    document.cookie = `field33=${type}; path=/; max-age=3600`; // Store for 1 hour
 
-</script>
+    // Remove the message after a delay
+    setTimeout(() => {
+        resultMessage.classList.remove("show"); // Hide message after 3 seconds
+    }, 3000); // Duration of message display
+}
 
-<script>
-    function setCookie(name, value, days) {
-        let expires = "";
-        if (days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/";
-    }
-
-    function getCookie(name) {
-        const nameEQ = name + "=";
-        const ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
-
-    function handleCheckboxChange(event) {
-        const checkbox = event.target;
-        const name = checkbox.name;
-        const value = checkbox.value;
-
-        // Store the value in cookies when checked
-        if (checkbox.checked) {
-            setCookie(name, value, 7); // Store for 7 days
-        } else {
-            // Optionally remove the cookie if unchecked
-            setCookie(name, "", -1); // Remove cookie
-        }
-    }
-
-    // Attach event listeners to checkboxes
-    document.addEventListener("DOMContentLoaded", () => {
-        const checkboxes = document.querySelectorAll('.status-checkbox');
+// Function to store checkbox values in cookies
+function storeCheckboxValues(sections) {
+    sections.forEach(section => {
+        const checkboxes = document.querySelectorAll(`input[name="${section.name}"]`);
         checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', handleCheckboxChange);
-
-            // Pre-fill checkbox state based on cookies
-            const cookieValue = getCookie(checkbox.name);
-            if (cookieValue === checkbox.value) {
-                checkbox.checked = true;
+            if (checkbox.checked) {
+                const cookieValue = `${section.name}=${checkbox.value}; path=/; max-age=3600`; // Store for 1 hour
+                document.cookie = cookieValue; // Store in cookie
             }
         });
     });
-    function printInstallationPage() {
-    const printFrame = document.getElementById('printFrame');
-    printFrame.src = 'InstallationPrint.html'; // Set the source of the iframe
+}
 
-    // Wait for the iframe to load, then print
-    printFrame.onload = function() {
-        printFrame.contentWindow.print(); // Trigger the print dialog
-    };
+// Function to ensure only one checkbox can be checked at a time
+function enforceSingleSelection(fieldName) {
+    const checkboxes = document.querySelectorAll(`input[name="${fieldName}"]`);
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                checkboxes.forEach(otherCheckbox => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false; // Uncheck other checkboxes
+                    }
+                });
+            }
+        });
+    });
+}
+
+// Initialize the event listeners for each section
+const sections = [
+    'field15', 'field16', 'field17', 'field18', 'field19', 
+    'field20', 'field21', 'field22', 'field23', 'field24', 
+    'field25', 'field26', 'field27', 'field28', 'field29', 
+    'field30'
+];
+
+sections.forEach(section => {
+    enforceSingleSelection(section);
+});
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// Usage example to get the validation message type
+const validationMessageType = getCookie('validationMessage');
+console.log(validationMessageType); // Outputs the stored validation message type
+
+
+
+// Function to validate alphanumeric input
+function validateAlphanumeric(inputId, errorId) {
+    const input = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+    const value = input.value;
+
+    // Check if the value contains only alphanumeric characters
+    if (!/^[A-Za-z0-9\s]+$/.test(value)) {
+        errorMessage.textContent = "This field must contain alphanumeric characters only.";
+        input.classList.add("invalid");
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        input.classList.remove("invalid");
+    }
 }
 
 
 
 
+// Add event listeners for validation
+document.getElementById("installation-hrm-new").addEventListener("input", function() {
+    validateAlphanumeric("installation-hrm-new", "installation-hrm-new-error", "field31"); // Store in field31
+});
+document.getElementById("failure-hmr-new").addEventListener("input", function() {
+    validateAlphanumeric("failure-hmr-new", "failure-hmr-new-error", "field32"); // Store in field32
+});
 
+// Function to set a cookie
+function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+}
+
+// Function to validate alphanumeric input
+function validateAlphanumeric(inputId, errorId, cookieField) {
+    const input = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+    const value = input.value;
+
+    // Check if the value contains only alphanumeric characters
+    if (!/^[A-Za-z0-9\s]+$/.test(value)) {
+        errorMessage.textContent = "This field must contain alphanumeric characters only.";
+        input.classList.add("invalid");
+    } else {
+        errorMessage.textContent = ""; // Clear error message
+        input.classList.remove("invalid");
+        setCookie(cookieField, value, 7); // Store value in cookie
+    }
+}
+
+
+   // Function to print the installation report
+   function printInstallationReport() {
+        const iframe = document.getElementById('printFrame');
+        
+        // Set the iframe source to the HTML file
+        iframe.src = 'InstallationPrint.html';
+        
+        // Wait for the iframe to load and then print
+        iframe.onload = function() {
+            setTimeout(() => {
+                iframe.contentWindow.print(); // Print the content of the iframe
+            }, 1000); // Adjust timeout as needed
+        };
+    }
+
+    // Event listener for the print button
+    document.getElementById('printBtn').addEventListener('click', printInstallationReport);
+
+    // Event listener for the warranty button
+    document.getElementById('warrantyBtn').addEventListener('click', function() {
+        window.location.href = 'cert.html'; // Redirects to cert.html
+    });
+
+// Function to check for the token in cookies
+function checkToken() {
+    const token = getCookie('token'); // Replace 'authToken' with your actual cookie name
+
+    if (!token) {
+        // If the token is not found, redirect to index.html
+        window.location.href = 'index.html';
+    }
+}
+
+// Function to retrieve a cookie by name
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// Call the checkToken function when the script loads
+checkToken();
 
 </script>
-
 
 
 </body>
