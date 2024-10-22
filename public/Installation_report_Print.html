@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Installation Report</title>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
     <style>
-        body {
+       body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: -200px;
+    padding: 0; /* Removed negative padding */
     background-color: #fff;
 }
 
@@ -47,18 +49,7 @@ textarea {
     border-radius: 4px;
 }
 
-.warranty-status {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.for-user {
-    margin-top: 20px;
-    text-align: left;
-}
- 
-
- .customer-details, .procedure-section, .remarks, .footer-section {
+.warranty-status, .for-user, .customer-details, .procedure-section, .remarks, .footer-section {
     margin-top: 20px;
 }
 
@@ -76,62 +67,182 @@ th, td {
     padding: 10px;
     text-align: left;
 }
+
 .footer-line {
-    border: none; /* Remove default border */
-    height: 1px; /* Height of the line */
-    background-color: #000; /* Line color */
-    margin: 20px 0; /* Space above and below the line */
+    border: none; 
+    height: 1px; 
+    background-color: #000; 
+    margin: 20px 0;
 }
+
 footer {
-    text-align: center; /* Center the text in the footer */
-    margin-top: 20px; /* Add margin to the top of the footer */
+    text-align: center;
+    margin-top: 20px;
 }
+
 .navbar {
-    display: flex;                    /* Use flexbox to align items in a row */
-    justify-content: space-between;   /* Space between left and right items */
-    align-items: center;              /* Vertically center items */
-    padding: 10px;                    /* Add some padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
 }
 
 .navbar-item.left {
-    display: flex;                    /* Flexbox for the left item */
-    align-items: center;              /* Vertically center the logo */
+    display: flex;
+    align-items: center;
 }
 
 .logo {
-    height: 50px;                     /* Set height for the company logo */
-    margin-right: 300px;               /* Space between logo and company info */
+    height: 50px;
+    margin-right: 300px;
 }
 
 .navbar-item.right {
-    margin-left: auto;                /* Push this section to the right */
+    margin-left: auto;
 }
 
 .company-info {
-    display: flex;                    /* Flexbox for additional images */
+    display: flex;
 }
 
 .company-info img {
-    height: 30px;                     /* Set a smaller height for additional images */
-    margin-left: 10px;                /* Space between additional images */
+    height: 30px;
+    margin-left: 10px;
 }
+
 .remarks-display {
-    background-color: #f9f9f9; /* Light background for visibility */
+    background-color: #f9f9f9;
     padding: 10px;
-    border: 1px solid #ccc; /* Border for distinction */
-    margin-bottom: 10px; /* Spacing between the display and textarea */
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
 }
 
 .remarks-display p {
-    margin: 0; /* Remove default margin */
+    margin: 0;
 }
 
 .remarks-input {
-    width: 100%; /* Full width */
-    padding: 10px; /* Padding for better input experience */
-    font-size: 14px; /* Font size */
-    border: 1px solid #ccc; /* Border for the textarea */
-    border-radius: 4px; /* Rounded corners */
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Print Styles */
+@media print {
+    body, .container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        background-color: white;
+    }
+
+    .container {
+        border: none; /* Remove border to save space */
+        padding: 10px; /* Reduce padding for print */
+        page-break-inside: avoid; /* Avoid breaking the content across pages */
+    }
+
+    h1, h2, h3, h4 {
+        margin: 0;
+        padding: 5px 0; /* Reduce margins for headings in print */
+    }
+
+    .report-table, .checklist-table, .failed-parts-table {
+        margin-bottom: 10px; /* Reduce space between tables */
+        font-size: 12px; /* Reduce font size for tables */
+    }
+
+    .report-table td, .checklist-table th, .checklist-table td, .failed-parts-table th, .failed-parts-table td {
+        padding: 4px; /* Reduce padding for cells */
+    }
+
+    .navbar, .footer-line, footer {
+        display: none; /* Hide navigation and footer in print */
+    }
+
+    textarea, .remarks-input {
+        display: none; /* Hide text areas in print */
+    }
+
+    .remarks-display {
+        border: none; /* Remove border for display */
+        margin-bottom: 5px; /* Reduce margin for print */
+    }
+
+    /* Ensure all content fits within the page */
+    .container, .table, th, td {
+        page-break-inside: avoid;
+        page-break-after: auto;
+        page-break-before: auto;
+    }
+
+    /* Adjust font size for print */
+    body {
+        font-size: 12px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body, .container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        background-color: white;
+    }
+
+    /* Hide the header and footer added by the browser */
+    @page {
+        margin: 0; /* Set the margins to 0 to eliminate headers and footers */
+        size: auto; /* Use auto size */
+    }
+
+    .container {
+        border: none; /* Remove border to save space */
+        padding: 10px; /* Reduce padding for print */
+        page-break-inside: avoid; /* Avoid breaking the content across pages */
+    }
+
+    h1, h2, h3, h4 {
+        margin: 0;
+        padding: 5px 0; /* Reduce margins for headings in print */
+    }
+
+    .report-table, .checklist-table, .failed-parts-table {
+        margin-bottom: 10px; /* Reduce space between tables */
+        font-size: 12px; /* Reduce font size for tables */
+    }
+
+    .report-table td, .checklist-table th, .checklist-table td, .failed-parts-table th, .failed-parts-table td {
+        padding: 4px; /* Reduce padding for cells */
+    }
+
+    .navbar, .footer-line, footer {
+        display: none; /* Hide navigation and footer in print */
+    }
+
+    textarea, .remarks-input {
+        display: none; /* Hide text areas in print */
+    }
+
+    .remarks-display {
+        border: none; /* Remove border for display */
+        margin-bottom: 5px; /* Reduce margin for print */
+    }
+
+    /* Ensure all content fits within the page */
+    .container, .table, th, td {
+        page-break-inside: avoid;
+        page-break-after: auto;
+        page-break-before: auto;
+    }
+
+    /* Adjust font size for print */
+    body {
+        font-size: 12px;
+    }
 }
 
 
@@ -262,6 +373,8 @@ footer {
                 <strong>• Continue regular inspections to keep everything in good condition and catch any future issues early.</strong><br>
                 <strong>• Regular maintenance and testing are recommended to ensure continued optimal performance.</strong>
             </p>
+            <div id="qrcode"></div>
+
         </div>
         
         
@@ -360,7 +473,7 @@ fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", requestOpti
       .then(detailsResult => {
         if (detailsResult && detailsResult.data && detailsResult.data.profile) {
           const profileDetails = detailsResult.data.profile; // Extract the profile details
-          
+
           // Populate the form fields directly from profileDetails
           document.querySelector('input[readonly]').value = profileDetails.field1 || '';
           document.querySelector('input[placeholder="DD/MM/YYYY"]').value = profileDetails.field5 || '';
@@ -368,11 +481,11 @@ fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", requestOpti
           document.querySelector('input[placeholder="Vehicle Model"]').value = profileDetails.field8 || '';
           document.querySelector('input[placeholder="Project"]').value = profileDetails.field3 || '';
           document.querySelector('input[placeholder="Vehicle Sl No."]').value = profileDetails.field9 || '';
-// Populate the form fields using profileDetails
-document.querySelector('input[placeholder="P.O. No."]').value = profileDetails.field4 || '';
-document.querySelector('input[placeholder="Type of Equipment"]').value = profileDetails.field10 || '';
-document.querySelector('input[placeholder="Installation HMR"]').value = profileDetails.field13 || '';
-document.querySelector('input[placeholder="Failure HMR"]').value = profileDetails.field14 || '';
+          document.querySelector('input[placeholder="P.O. No."]').value = profileDetails.field4 || '';
+          document.querySelector('input[placeholder="Type of Equipment"]').value = profileDetails.field10 || '';
+          document.querySelector('input[placeholder="Installation HMR"]').value = profileDetails.field13 || '';
+          document.querySelector('input[placeholder="Failure HMR"]').value = profileDetails.field14 || '';
+
           // Set the values to the respective spans
           document.getElementById('dcpCylinderMountingBracket').innerText = profileDetails.field15 || 'N/A';
           document.getElementById('distributorPad').innerText = profileDetails.field16 || 'N/A';
@@ -395,6 +508,19 @@ document.querySelector('input[placeholder="Failure HMR"]').value = profileDetail
           document.getElementById('uee-value').textContent = profileDetails.field31 || 'No value set';
           document.getElementById('customer-value').textContent = profileDetails.field32 || 'No value set';
 
+         // Generate the QR code link
+var qrcodeUrl = `https://universal.itstrending.in/warranty.html?serial=${encodeURIComponent(profileDetails.field1)}&customer=${encodeURIComponent(profileDetails.field2)}&project=${encodeURIComponent(profileDetails.field3)}&pno=${encodeURIComponent(profileDetails.field4)}`; // Shortened for demo
+
+// Create the QR code
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+    text: qrcodeUrl,  // Use the generated link
+    width: 128,  // The width of the QR code
+    height: 128,  // The height of the QR code
+    version: 10, // Increase the version if necessary
+    errorCorrectionLevel: 'L' // Set the error correction level (L, M, Q, H)
+});
+
+
         } else {
           console.error("No profile details found in the response.");
         }
@@ -409,7 +535,11 @@ function getCookieValue(name) {
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
+
+
+
 </script>
+
 
 
         

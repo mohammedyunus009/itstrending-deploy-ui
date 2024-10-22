@@ -28,14 +28,14 @@
                     <strong>Customer Name:</strong> <span id="customer-name"></span>
                 </div>
                 <div class="detail-row">
-                    <strong>Invoice No:</strong> <span id="invoice-no"></span>
+                    <strong>Vehicle Sl No::</strong> <span id="invoice-no"></span>
                 </div>
                 <div class="detail-row">
                     <strong>Model No.:</strong> <span id="model-no"></span>
                     <strong>Serial No.:</strong> <span id="serial-no"></span>
                 </div>
                 <div class="detail-row">
-                    <strong>Purchase Date:</strong> <span id="purchase-date"></span>
+                    <strong>PNO Number:</strong> <span id="purchase-date"></span>
                 </div>
             </div>
         </div>
@@ -72,10 +72,10 @@
     
     // Populate span elements from URL parameters
     document.getElementById('customer-name').innerText = getUrlParameter('customer') || 'Not Available';
-    document.getElementById('invoice-no').innerText = getUrlParameter('invoice_number') || 'Not Available';
+    document.getElementById('invoice-no').innerText = getUrlParameter('vehicle_sl_no') || 'Not Available';
     document.getElementById('model-no').innerText = getUrlParameter('vehicle_model') || 'Not Available';
     document.getElementById('serial-no').innerText = getUrlParameter('serial') || 'Not Available';
-    document.getElementById('purchase-date').innerText = getUrlParameter('invoice_date') || 'Not Available';
+    document.getElementById('purchase-date').innerText = getUrlParameter('pno') || 'Not Available';
     document.getElementById('signature').innerText = getUrlParameter('customer') || 'Not Available';
     
     // Automatically fill today's date for signature
