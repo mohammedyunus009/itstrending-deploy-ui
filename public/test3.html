@@ -73,7 +73,7 @@
 
         /* Navbar links */
     .navbar-links {
-            display: flex;
+            display: ruby-text;
             list-style-type: none;
             gap: 22px; /* Adds space between each menu item */
         }
@@ -153,14 +153,14 @@
 <body>
     <header class="navbar">
         <div class="navbar-item left">
-            <img src="img/Screenshot from 2024-09-27 11-50-56.png" alt="Logo" class="logo">
+            <img src="img/Alisom Logo .png" alt="Logo" class="logo">
         </div>
         <div>
           <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="navbar-links">
                 <li><a href="index.html">Login</a></li>
                 <li><a href="Add_client.html">Add Client</a></li>
-                <!-- <li><a href="#">Update Client</a></li> -->
+                <li><a href="Due-Payment.html">Due Payment</a></li>
                 <li><a href="search.html">Search</a></li>
             </ul>
         </div>
@@ -496,20 +496,23 @@
             // Create and append profile detail elements with editable fields
             const profileHTML = `
                 <div id="color-legend">
-    <div class="color-legend-item">
-        <div class="color-box" style="background-color: red;"></div>
-        <span>On Hold - The particular month's PM Schedule is on hold.</span>
-    </div>
-    <div class="color-legend-item">
-        <div class="color-box" style="background-color: green;"></div>
-        <span>Completed - The particular month's PM Schedule is completed.</span>
-    </div>
-    <div class="color-legend-item">
-        <div class="color-box" style="background-color: yellow;"></div>
-        <span>Pending - The particular month's PM Schedule is pending.</span>
-    </div>
-</div>
-
+                    <div class="color-legend-item">
+                        <div class="color-box" style="background-color: red;"></div>
+                        <span>On Hold - The particular month's PM Schedule is on hold.</span>
+                    </div>
+                    <div class="color-legend-item">
+                        <div class="color-box" style="background-color: green;"></div>
+                        <span>Completed - The particular month's PM Schedule is completed.</span>
+                    </div>
+                    <div class="color-legend-item">
+                        <div class="color-box" style="background-color: yellow;"></div>
+                        <span>Scheduled - The particular month's PM Schedule is pending.</span>
+                    </div>
+                    <div class="color-legend-item">
+                        <div class="color-box" style="background-color: purple;"></div>
+                        <span>Split - The particular month's PM Schedule is splited.</span>
+                    </div>
+                </div>
                 <!-- PM Schedules Section -->
                 <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
                     <thead>
@@ -527,8 +530,51 @@
                         </tr>
                     </tbody>
                 </table>
+                <!-- Invoice Schedules Section -->
+<table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
+    <thead>
+        <tr>
+            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
+                Invoice Schedules:
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Start Date:</strong></td>
+            <td style="border: 1px solid #ccc; padding: 8px;" id="start-date">${profile.field5.split('T')[0]}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Due Date:</strong></td>
+            <td style="border: 1px solid #ccc; padding: 8px;" id="payment-due-date">${getDueDate(profile.field1)}</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;"><strong>Documents:</strong></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;" id="document-links">${getDocumentLinks(profile.field1)}</td>
+        </tr>
+    </tbody>
+</table>
+                <!-- Breakdown Schedules Section -->
+<table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
+    <thead>
+        <tr>
+            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
+                Breakdown Schedules:
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
+                <div id="breakdown-schedules" style="margin-top: 8px;"></div>
+            </td>
+        </tr>
+    </tbody>
+</table>
                 <!-- Documents Section -->
-                <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
+                <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #F9F9F9;">
                     <thead>
                         <tr>
                             <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
@@ -541,7 +587,7 @@
                             <td style="border: 1px solid #ccc; padding: 8px;">
                                 <div id="imagePreview">
                                     ${profile.images.split(',').map(img => `
-                                        <img src="${img.trim()}" alt="Profile Image" style="width: 100%; height: auto; margin: 4px; border-radius: 4px;">
+                                        <a href="${img.trim()}" target="_blank" style="display: block; margin: 4px; color: blue;">${img.trim()}</a>
                                     `).join(' ')}
                                 </div>
                             </td>
@@ -566,10 +612,6 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Sl. No:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field1" value="${profile.field1}" /></td>
-                            </tr>
-                            <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Customer Name:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field2" value="${profile.field2}" /></td>
                             </tr>
@@ -583,7 +625,7 @@
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Place:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field5" value="${profile.field5}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field16" value="${profile.field16}" /></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Phone Number:</strong></td>
@@ -627,7 +669,7 @@
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Contract Period From:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="date" id="field16" value="${profile.field16.split('T')[0]}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="date" id="field5" value="${profile.field5.split('T')[0]}" /></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Contract Period To:</strong></td>
@@ -646,17 +688,31 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field20" value="${profile.field20}" /></td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Expiration Date:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="date" id="field21" value="${profile.field21.split('T')[0]}" /></td>
-                            </tr>
-                            <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Payment Terms:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field22" value="${profile.field22}" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Data:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field1" rows="5" style="width: 100%;">${profile.field1}</textarea>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>PM Data:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
                                     <textarea id="field30" rows="5" style="width: 100%;">${profile.field30}</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Invoice Data:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field31" rows="5" style="width: 100%;">${profile.field31}</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Breakdown Data:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field32" rows="5" style="width: 100%;">${profile.field32}</textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -678,16 +734,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Recent submissions:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field29" value="${profile.field29}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Comments:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field23" rows="4" style="width: 100%;">${profile.field23}</textarea>
+                                </td>
                             </tr>
-                            <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;"><strong>Comments:</strong></td>
-    <td style="border: 1px solid #ccc; padding: 8px;">
-        <textarea id="field23" rows="4" style="width: 100%;">${profile.field23}</textarea>
-    </td>
-</tr>
-
                         </tbody>
                     </table>
 
@@ -714,59 +765,100 @@
                 </button>
                 <style>
                     /* Style for the color legend container */
-#color-legend {
-    margin: 20px auto; /* Center container horizontally */
-    padding: 10px;
-    border: 1px solid #ccc; /* Optional border for visibility */
-    max-width: 600px; /* Set a max width for larger screens */
-    width: fit-content; /* Ensure width fits content */
-    display: flex; /* Use flexbox for alignment */
-    flex-direction: column; /* Stack items vertically */
-}
+                    #color-legend {
+                        margin: 20px auto; /* Center container horizontally */
+                        padding: 10px;
+                        border: 1px solid #ccc; /* Optional border for visibility */
+                        max-width: 600px; /* Set a max width for larger screens */
+                        width: fit-content; /* Ensure width fits content */
+                        display: flex; /* Use flexbox for alignment */
+                        flex-direction: column; /* Stack items vertically */
+                    }
 
-/* Style for each color legend item */
-.color-legend-item {
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Align items vertically */
-    margin-bottom: 8px; /* Space between items */
-}
+                    /* Style for each color legend item */
+                    .color-legend-item {
+                        display: flex; /* Use flexbox for layout */
+                        align-items: center; /* Align items vertically */
+                        margin-bottom: 8px; /* Space between items */
+                    }
 
-/* Style for color boxes */
-.color-box {
-    width: 20px; /* Box width */
-    height: 20px; /* Box height */
-    margin-right: 10px; /* Space between box and text */
-    border: 1px solid #000; /* Border around color box */
-}
-@media (max-width: 600px) {
-    #color-legend {
-        padding: 10px; /* Adjust padding if needed */
-        width: 90%; /* Ensure it takes more width on mobile */
-        margin: 20px auto; /* Center container */
-    }
+                    /* Style for color boxes */
+                    .color-box {
+                        width: 20px; /* Box width */
+                        height: 20px; /* Box height */
+                        margin-right: 10px; /* Space between box and text */
+                        border: 1px solid #000; /* Border around color box */
+                    }
+                    @media (max-width: 600px) {
+                        #color-legend {
+                            padding: 10px; /* Adjust padding if needed */
+                            width: 90%; /* Ensure it takes more width on mobile */
+                            margin: 20px auto; /* Center container */
+                        }
 
-    .color-legend-item {
-        justify-content: center; /* Center items on mobile */
-        text-align: center; /* Center text */
-    }
+                        .color-legend-item {
+                            justify-content: center; /* Center items on mobile */
+                            text-align: center; /* Center text */
+                        }
 
-    .color-box {
-        width: 15px; /* Smaller box for mobile */
-        height: 15px; /* Smaller box for mobile */
-    }
-}
-/* Style for the button */
-button[type="button"] {
-    background-color: #333; /* Dark background */
-    color: white; /* White text */
-    border: none; /* Remove border */
-    padding: 4px 10px; /* Add padding for button */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor for button */
-    font-size: 14px; /* Adjust font size */
-    margin-top: 8px; /* Add margin on top */
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
-}
+                        .color-box {
+                            width: 15px; /* Smaller box for mobile */
+                            height: 15px; /* Smaller box for mobile */
+                        }
+                    }
+                    /* Style for the button */
+                    button[type="button"] {
+                        background-color: #333; /* Dark background */
+                        color: white; /* White text */
+                        border: none; /* Remove border */
+                        padding: 4px 10px; /* Add padding for button */
+                        border-radius: 4px; /* Rounded corners */
+                        cursor: pointer; /* Pointer cursor for button */
+                        font-size: 14px; /* Adjust font size */
+                        margin-top: 8px; /* Add margin on top */
+                        transition: background-color 0.3s ease; /* Smooth transition on hover */
+                    }
+                        .month-container {
+                        margin: 10px 0;
+                    }
+                    
+                    .month-header {
+                        cursor: pointer;
+                        background-color: #f1f1f1;
+                        padding: 10px;
+                        font-weight: bold;
+                        border: 1px solid #ccc;
+                    }
+
+                    .month-content {
+                        display: none;
+                        padding: 10px;
+                        background-color: #fafafa;
+                        border-left: 1px solid #ccc;
+                        border-right: 1px solid #ccc;
+                        border-bottom: 1px solid #ccc;
+                    }
+
+                    .status-button {
+                        padding: 5px 10px;
+                        margin: 5px;
+                        cursor: pointer;
+                        border: none;
+                        color: white;
+                    }
+
+                    .onhold {
+                        background-color: red;
+                    }
+
+                    .completed {
+                        background-color: green;
+                    }
+
+                    .pending {
+                        background-color: yellow;
+                        color: black;
+                    }
                 </style>
                 </form>
             `;
@@ -774,11 +866,15 @@ button[type="button"] {
             searchResultsDiv.innerHTML = profileHTML;
 
             // Generate PM Schedules
-            generatePMSchedules(profile.field16, profile.field17, profile.field18);
+            generatePMSchedules(profile.field5, profile.field17, profile.field18);
+            
+            // Generate Breakdown Schedules
+            generateBreakdownSchedules(profile.field5, profile.field17, profile.field18);
         }
 
-        
-    // Static array to hold the status of each month
+
+// PM Schedules code starts from here    
+// Static array to hold the status of each month
 let monthStatuses = [];
 
 // Function to generate PM Schedules
@@ -787,103 +883,236 @@ function generatePMSchedules(contractFrom, contractTo, totalVisits) {
     const endDate = new Date(contractTo);
     const pmSchedulesDiv = document.getElementById('pm-schedules');
 
-    // Calculate total months between the two dates
     const totalMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
-
-    // Calculate visits per month
     const visitsPerMonth = Math.ceil(totalVisits / totalMonths);
+    let calendarHTML = '';
 
-    // Create a calendar representation
-    let calendarHTML = `<div style="display: flex; flex-wrap: wrap; margin: -8px; justify-content: center;">`;
-
+    // Generate schedule for each month
     for (let month = 0; month <= totalMonths; month++) {
         const currentMonth = new Date(startDate.getFullYear(), startDate.getMonth() + month);
         const monthName = currentMonth.toLocaleString('default', { month: 'long' });
         const year = currentMonth.getFullYear();
 
-        // Initialize status for each month in the array
-        monthStatuses[month] = { month: `${monthName} ${year}`, status: 'pending' };
+        monthStatuses[month] = { month: `${monthName} ${year}`, status: 'pending', images: [], comments: '', image: '' };
 
-        // Each month will have its own ID for easy selection
         const monthId = `month-${month}`;
 
         calendarHTML += `
-            <div id="${monthId}" style="border: 1px solid #ccc; padding: 16px; margin: 8px; width: 120px; text-align: center; background-color: yellow;">
-                <strong>${monthName} ${year}</strong><br />
-                <div>Visits: ${visitsPerMonth}</div>
-                <button type="button" onclick="updateStatus('${monthId}', ${month}, 'onhold')">On Hold</button>
-                <button type="button" onclick="updateStatus('${monthId}', ${month}, 'completed')">Completed</button>
+            <div style="margin-bottom: 16px; border: 1px solid #ccc;">
+                <div onclick="toggleDropdown('${monthId}-content', '${monthId}-arrow')" style="padding: 16px; cursor: pointer;">
+                    <strong>${monthName} ${year}</strong>
+                    <span id="${monthId}-arrow" style="float: right;">&#9660;</span>
+                </div>
+                <div id="${monthId}-content" style="display: none; padding: 16px; background-color: #f9f9f9;">
+                    <div>Visits: ${visitsPerMonth}</div>
+                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'onhold')">On Hold</button>
+                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'completed')">Completed</button>
+                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'schedule')">Schedule</button>
+                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'split')">Split</button>
+                    <br><br>
+                    <!-- File Upload for Images -->
+                    <label for="file-${month}" class="custom-file-upload" style="margin: 4px;">
+                        Choose Files
+                    </label>
+                    <input type="file" id="file-${month}" style="display: none;" multiple onchange="uploadFile(${month})"/>
+
+                    <br><br>
+                    <!-- Display uploaded images -->
+                    <div>
+                        <strong>Uploaded Images:</strong>
+                        <ul style="padding-left: 20px;">
+                            ${monthStatuses[month].images.map(img => `<li><a href="${img}" target="_blank">${img}</a></li>`).join('')}
+                            ${monthStatuses[month].image ? `<li><a href="${monthStatuses[month].image}" target="_blank">${monthStatuses[month].image}</a></li>` : ''}
+                        </ul>
+                    </div>
+                    <br>
+                    <!-- Comment Section -->
+                    <strong>Comment Section:</strong>
+                    <textarea id="comment-${month}" style="width: 100%; margin-top: 18px; height: 100px;" 
+                        placeholder="Add your comment here..." 
+                        oninput="updateComment(${month}, this.value)">
+                        ${monthStatuses[month].comments}
+                    </textarea>
+
+                    <!-- Display old comments -->
+                    <div>
+                        <strong>Comments list:</strong>
+                        <p>${monthStatuses[month].comments}</p>
+                    </div>
+                    
+                    <button type="button" style="margin: 4px;" onclick="saveProfileDetails()">Submit</button>
+                </div>
             </div>
+            <style>
+.custom-file-upload {
+    display: inline-block;
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Change background color */
+    color: white; /* Text color */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: #45a049; /* Darker background on hover */
+}
+</style>
+
         `;
     }
-    calendarHTML += `</div>`;
 
     pmSchedulesDiv.innerHTML = calendarHTML;
-
-    // Restore the previous statuses if they exist
     restoreStatuses();
 }
 
-// Function to update the status and change background color
-function updateStatus(monthId, monthIndex, status) {
-    const monthDiv = document.getElementById(monthId);
+// Function to dynamically update comments in monthStatuses array when the user types
+function updateComment(monthIndex, newComment) {
+    monthStatuses[monthIndex].comments = newComment;
+    console.log(`Updated comment for ${monthStatuses[monthIndex].month}:`, newComment);
+    updateField30(); // Update the field30 textarea with new data
+}
 
-    if (status === 'onhold') {
-        monthDiv.style.backgroundColor = 'red';
-        monthStatuses[monthIndex].status = 'onhold'; // Update status in the array
-        showPopup("The selected month status updated to 'On Hold' do you want to update the status");
-    } else if (status === 'completed') {
-        monthDiv.style.backgroundColor = 'green';
-        monthStatuses[monthIndex].status = 'completed'; // Update status in the array
-        showPopup("The selected month status updated to 'Completed' do you want to update the status");
-    } else if (status === 'pending') {
-        monthDiv.style.backgroundColor = 'yellow';
-        monthStatuses[monthIndex].status = 'pending'; // Update status in the array
-        showPopup("The selected month status updated to 'Pending' do you want to update the status");
+
+// Function to upload multiple files and send to API
+function uploadFile(monthIndex) {
+    const fileInput = document.getElementById(`file-${monthIndex}`);
+    const files = fileInput.files; // Get all selected files
+    if (!files.length) return;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "{{Autho}}");
+
+    // Iterate through all selected files
+    Array.from(files).forEach(file => {
+        const formdata = new FormData();
+        formdata.append("file", file);
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: formdata,
+            redirect: "follow"
+        };
+
+        fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                const imageLink = result.data.images[0] + "?alt=media"; // Get the image link from the API response
+                const { month } = monthStatuses[monthIndex]; // Get month information
+
+                // Check if monthStatuses[monthIndex] is valid
+                if (monthStatuses[monthIndex]) {
+                    console.log(`Image uploaded for ${month}:`, imageLink); // Log the month/year along with the image link
+
+                    // Append the new image link to the existing image property
+                    if (monthStatuses[monthIndex].image) {
+                        monthStatuses[monthIndex].image += `,${imageLink}`; // Append new link with a comma
+                    } else {
+                        monthStatuses[monthIndex].image = imageLink; // First image entry
+                    }
+
+                    // Update the image list in the HTML dynamically
+                    const imageList = document.querySelector(`#month-${monthIndex}-content ul`);
+                    const newImageItem = document.createElement('li');
+                    newImageItem.innerHTML = `<a href="${imageLink}" target="_blank">${imageLink}</a>`;
+                    imageList.appendChild(newImageItem);  // Append new image link to the list
+
+                    console.log(`Updated status for ${month}:`, monthStatuses[monthIndex]); // Log updated month object with the image link
+                } else {
+                    console.error(`monthStatuses[${monthIndex}] is undefined. Check initialization.`);
+                }
+
+                updateField30();  // Update the field30 with new data
+            })
+            .catch(error => console.error("Error uploading file:", error));
+    });
+}
+
+// Function to toggle dropdown visibility and arrow direction
+function toggleDropdown(contentId, arrowId) {
+    const content = document.getElementById(contentId);
+    const arrow = document.getElementById(arrowId);
+    
+    // Toggle the display of the dropdown content
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+    arrow.innerHTML = content.style.display === 'none' ? '&#9660;' : '&#9650;';
+    
+    const monthIndex = parseInt(contentId.split('-')[1]); // Gets the index from 'month-0', 'month-1', etc.
+    if (monthStatuses[monthIndex]) {
+        console.log(`Data for ${monthStatuses[monthIndex].month}:`, monthStatuses[monthIndex]);
+    } else {
+        console.error(`No data found for month index ${monthIndex}`);
     }
+}
 
-    // Update the field30 textarea with the updated statuses
+// Function to update status and change background color
+function updateStatus(monthId, monthIndex, status) {
+    const monthDiv = document.getElementById(`${monthId}-content`).parentNode;
+    monthDiv.style.backgroundColor = getStatusColor(status);
+    monthStatuses[monthIndex].status = status;
+    showPopup(`The selected month status updated to '${status}'`);
     updateField30();
 }
 
-// Function to update the field30 textarea with the new data
-function updateField30() {
-    const statusJSON = JSON.stringify(monthStatuses);
-    document.getElementById('field30').value = statusJSON;
+// Function to get color based on status
+function getStatusColor(status) {
+    return status === 'onhold' ? 'red' :
+           status === 'completed' ? 'green' :
+           status === 'split' ? 'purple' :
+           status === 'schedule' ? 'yellow' : 'white';
 }
 
-// Function to restore the saved statuses from the field30 textarea
+// Function to update field30 textarea with JSON data
+function updateField30() {
+    document.getElementById('field30').value = JSON.stringify(monthStatuses);
+}
+
+// Function to restore statuses from field30 textarea
 function restoreStatuses() {
     const field30Value = document.getElementById('field30').value;
-    
-    // Parse the JSON data from field30
-    let savedStatuses = [];
     try {
-        savedStatuses = JSON.parse(field30Value);
+        const savedStatuses = JSON.parse(field30Value);
+        savedStatuses.forEach((monthStatus, index) => {
+            const monthDiv = document.getElementById(`month-${index}-content`).parentNode;
+            if (monthDiv) {
+                monthStatuses[index] = monthStatus;
+                monthDiv.style.backgroundColor = getStatusColor(monthStatus.status);
+
+                // Check and display images if they exist
+                if (monthStatus.image) {
+                    const imageLinks = monthStatus.image.split(',');
+                    imageLinks.forEach(link => {
+                        monthDiv.querySelector('ul').innerHTML += `<li><a href="${link}" target="_blank">${link}</a></li>`;
+                    });
+                }
+
+                // Restore comments if they exist
+                if (monthStatus.comments) {
+                    document.getElementById(`comment-${index}`).value = monthStatus.comments;
+                    monthDiv.querySelector('p').innerText = monthStatus.comments;
+                }
+            }
+        });
     } catch (e) {
-        console.error('Error parsing field30:', e);
-        return;
+        console.error('Error restoring statuses:', e);
     }
-
-    // Restore the background colors based on saved statuses
-    savedStatuses.forEach((monthStatus, index) => {
-        const monthId = `month-${index}`;
-        const monthDiv = document.getElementById(monthId);
-        if (!monthDiv) return; // Skip if no div is found
-
-        // Update the monthStatuses array
-        monthStatuses[index] = monthStatus;
-
-        // Apply the background color based on the status
-        if (monthStatus.status === 'onhold') {
-            monthDiv.style.backgroundColor = 'red';
-        } else if (monthStatus.status === 'completed') {
-            monthDiv.style.backgroundColor = 'green';
-        } else if (monthStatus.status === 'pending') {
-            monthDiv.style.backgroundColor = 'yellow';
-        }
-    });
 }
+
+// Function to show confirmation popup
+function showPopup(message) {
+    alert(message);
+}
+
+// Function to save profile details
+function saveProfileDetails() {
+    const profileData = document.getElementById('field30').value;
+    console.log("Profile data to be saved:", profileData);
+    // Implement saving logic as needed
+}
+
+
 
 // Function to show the popup message
 function showPopup(message) {
@@ -905,6 +1134,317 @@ function closePopup() {
     popup.style.display = 'none';
     overlay.style.display = 'none';
 }
+
+
+
+
+
+
+
+
+
+function displayInvoiceDetails(profile) {
+    console.log('Step 1: displayInvoiceDetails function called.');
+
+    // Get the start date from field5 (Contract Period From)
+    const startDate = new Date(profile.field5);
+    console.log('Step 2: Start Date:', startDate.toLocaleDateString());
+
+    let paymentData;
+    try {
+        // Parse the payment data from field1
+        paymentData = JSON.parse(profile.field1);
+        console.log('Step 3: Parsed Payment Data:', paymentData);
+    } catch (error) {
+        console.error('Step 4: Error parsing payment data:', error);
+        return; // Exit the function if parsing fails
+    }
+
+    // Create the container for invoice details
+    const invoiceSchedulesDiv = document.getElementById('invoice-schedules');
+    if (!invoiceSchedulesDiv) {
+        console.error('Invoice schedules div not found in the DOM.');
+        return;
+    }
+
+    // Initialize HTML for displaying invoice details
+    let invoiceHTML = '<div style="margin-top: 16px;">';
+
+    // Loop through each payment data entry
+    paymentData.forEach((payment, index) => {
+        console.log(`Step 5: Processing Payment Entry ${index + 1}:`, payment);
+
+        // Extract the due date and format it
+        const formattedDueDate = payment.dueDate ? new Date(payment.dueDate).toLocaleDateString() : 'N/A';
+        console.log(`Step 6: Payment Due Date for Entry ${index + 1}:`, formattedDueDate);
+
+        // Generate HTML for displaying the payment details
+        invoiceHTML += `
+            <div style="margin-bottom: 16px;">
+                <strong>Start Date:</strong> ${startDate.toLocaleDateString()}<br />
+                <strong>Payment Due Date:</strong> ${formattedDueDate}<br />
+                <strong>Documents:</strong><br />
+                ${payment.document.split(',').map(doc => `<a href="${doc.trim()}" target="_blank">${doc.trim()}</a>`).join('<br />')}
+            </div>
+        `;
+    });
+
+    invoiceHTML += '</div>';
+
+    // Append the generated HTML to the invoice schedules div
+    invoiceSchedulesDiv.innerHTML = invoiceHTML;
+    console.log('Step 8: Invoice HTML appended to the div.');
+}
+
+// Function to extract due date from payment data
+function getDueDate(field1) {
+    try {
+        const paymentData = JSON.parse(field1);
+        return paymentData[0]?.dueDate ? new Date(paymentData[0].dueDate).toLocaleDateString() : 'N/A';
+    } catch (error) {
+        console.error('Error extracting due date:', error);
+        return 'N/A';
+    }
+}
+
+// Function to extract document links from payment data
+function getDocumentLinks(field1) {
+    try {
+        const paymentData = JSON.parse(field1);
+        return paymentData[0]?.document ? paymentData[0].document.split(',').map(doc => `<a href="${doc.trim()}" target="_blank">${doc.trim()}</a>`).join('<br />') : 'No Documents Available';
+    } catch (error) {
+        console.error('Error extracting document links:', error);
+        return 'No Documents Available';
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Breakdown Schedules code starts from here
+// Static array to hold the status of each month for breakdown schedules
+let breakdownStatuses = [];
+
+// Function to generate Breakdown Schedules
+function generateBreakdownSchedules(contractFrom, contractTo, totalBreakdowns) {
+    const startDate = new Date(contractFrom);
+    const endDate = new Date(contractTo);
+    const breakdownSchedulesDiv = document.getElementById('breakdown-schedules');
+
+    const totalMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
+    const breakdownsPerMonth = Math.ceil(totalBreakdowns / totalMonths);
+    let calendarHTML = '';
+
+    // Generate schedule for each month
+    for (let month = 0; month <= totalMonths; month++) {
+        const currentMonth = new Date(startDate.getFullYear(), startDate.getMonth() + month);
+        const monthName = currentMonth.toLocaleString('default', { month: 'long' });
+        const year = currentMonth.getFullYear();
+
+        breakdownStatuses[month] = { month: `${monthName} ${year}`, status: 'pending', images: [], comments: '', image: '' };
+
+        const monthId = `breakdown-month-${month}`;
+
+        calendarHTML += `
+            <div style="margin-bottom: 16px; border: 1px solid #ccc;">
+                <div onclick="toggleDropdown('${monthId}-content', '${monthId}-arrow')" style="padding: 16px; cursor: pointer;">
+                    <strong>${monthName} ${year}</strong>
+                    <span id="${monthId}-arrow" style="float: right;">&#9660;</span>
+                </div>
+                <div id="${monthId}-content" style="display: none; padding: 16px; background-color: #f9f9f9;">
+                    <div>Breakdowns: ${breakdownsPerMonth}</div>
+                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'onhold')">On Hold</button>
+                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'completed')">Completed</button>
+                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'schedule')">Schedule</button>
+                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'split')">Split</button>
+                    <br><br>
+                    <!-- File Upload for Images -->
+                    <label for="breakdown-file-${month}" class="custom-file-upload" style="margin: 4px;">
+                        Choose Files
+                    </label>
+                    <input type="file" id="breakdown-file-${month}" style="display: none;" multiple onchange="uploadBreakdownFile(${month})"/>
+
+                    <br><br>
+                    <!-- Display uploaded images -->
+                    <div>
+                        <strong>Uploaded Images:</strong>
+                        <ul style="padding-left: 20px;">
+                            ${breakdownStatuses[month].images.map(img => `<li><a href="${img}" target="_blank">${img}</a></li>`).join('')}
+                            ${breakdownStatuses[month].image ? `<li><a href="${breakdownStatuses[month].image}" target="_blank">${breakdownStatuses[month].image}</a></li>` : ''}
+                        </ul>
+                    </div>
+                    <br>
+                    <!-- Comment Section -->
+                    <strong>Comment Section:</strong>
+                    <textarea id="breakdown-comment-${month}" style="width: 100%; margin-top: 18px; height: 100px;" 
+                        placeholder="Add your comment here..." 
+                        oninput="updateBreakdownComment(${month}, this.value)">
+                        ${breakdownStatuses[month].comments}
+                    </textarea>
+
+                    <!-- Display old comments -->
+                    <div style="display: none;">
+                        <strong>Comments list:</strong>
+                        <p>${breakdownStatuses[month].comments}</p>
+                    </div>
+                    
+                    <button type="button" style="margin: 4px;" onclick="handleSubmit()">Submit</button>
+                </div>
+            </div>
+        `;
+    }
+
+    breakdownSchedulesDiv.innerHTML = calendarHTML;
+    restoreBreakdownStatuses();
+}
+// Function to handle submit button actions
+function handleSubmit() {
+    // Call the existing function immediately
+    saveBreakdownProfileDetails();
+    
+    // Set a timeout to call saveProfileDetails() after 2 seconds
+    setTimeout(() => {
+        saveProfileDetails();
+    }, 2000); // 2000 milliseconds = 2 seconds
+}
+
+// Function to dynamically update comments in breakdownStatuses array when the user types
+function updateBreakdownComment(monthIndex, newComment) {
+    breakdownStatuses[monthIndex].comments = newComment;
+    console.log(`Updated comment for ${breakdownStatuses[monthIndex].month}:`, newComment);
+    updateField32(); // Update the field32 textarea with new data
+}
+
+// Function to upload multiple files for breakdown schedules and send to API
+function uploadBreakdownFile(monthIndex) {
+    const fileInput = document.getElementById(`breakdown-file-${monthIndex}`);
+    const files = fileInput.files; // Get all selected files
+    if (!files.length) return;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "{{Autho}}");
+
+    // Iterate through all selected files
+    Array.from(files).forEach(file => {
+        const formdata = new FormData();
+        formdata.append("file", file);
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: formdata,
+            redirect: "follow"
+        };
+
+        fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                const imageLink = result.data.images[0] + "?alt=media"; // Get the image link from the API response
+                const { month } = breakdownStatuses[monthIndex]; // Get month information
+
+                // Check if breakdownStatuses[monthIndex] is valid
+                if (breakdownStatuses[monthIndex]) {
+                    console.log(`Image uploaded for ${month}:`, imageLink); // Log the month/year along with the image link
+
+                    // Append the new image link to the existing image property
+                    if (breakdownStatuses[monthIndex].image) {
+                        breakdownStatuses[monthIndex].image += `,${imageLink}`; // Append new link with a comma
+                    } else {
+                        breakdownStatuses[monthIndex].image = imageLink; // First image entry
+                    }
+
+                    // Update the image list in the HTML dynamically
+                    const imageList = document.querySelector(`#breakdown-month-${monthIndex}-content ul`);
+                    const newImageItem = document.createElement('li');
+                    newImageItem.innerHTML = `<a href="${imageLink}" target="_blank">${imageLink}</a>`;
+                    imageList.appendChild(newImageItem);  // Append new image link to the list
+
+                    console.log(`Updated status for ${month}:`, breakdownStatuses[monthIndex]); // Log updated month object with the image link
+                } else {
+                    console.error(`breakdownStatuses[${monthIndex}] is undefined. Check initialization.`);
+                }
+
+                updateField32();  // Update the field32 with new data
+            })
+            .catch(error => console.error("Error uploading file:", error));
+    });
+}
+
+// Function to update breakdown status and change background color
+function updateBreakdownStatus(monthId, monthIndex, status) {
+    const monthDiv = document.getElementById(`${monthId}-content`).parentNode;
+    monthDiv.style.backgroundColor = getStatusColor(status);
+    breakdownStatuses[monthIndex].status = status;
+    showPopup(`The selected month status updated to '${status}'`);
+    updateField32();
+}
+
+// Function to update field32 textarea with JSON data
+function updateField32() {
+    document.getElementById('field32').value = JSON.stringify(breakdownStatuses);
+}
+
+// Function to restore statuses from field32 textarea
+function restoreBreakdownStatuses() {
+    const field32Value = document.getElementById('field32').value;
+    try {
+        const savedStatuses = JSON.parse(field32Value);
+        savedStatuses.forEach((monthStatus, index) => {
+            const monthDiv = document.getElementById(`breakdown-month-${index}-content`).parentNode;
+            if (monthDiv) {
+                breakdownStatuses[index] = monthStatus;
+                monthDiv.style.backgroundColor = getStatusColor(monthStatus.status);
+
+                // Check and display images if they exist
+                if (monthStatus.image) {
+                    const imageLinks = monthStatus.image.split(',');
+                    imageLinks.forEach(link => {
+                        monthDiv.querySelector('ul').innerHTML += `<li><a href="${link}" target="_blank">${link}</a></li>`;
+                    });
+                }
+
+                // Restore comments if they exist
+                if (monthStatus.comments) {
+                    document.getElementById(`breakdown-comment-${index}`).value = monthStatus.comments;
+                    monthDiv.querySelector('p').innerText = monthStatus.comments;
+                }
+            }
+        });
+    } catch (e) {
+        console.error('Error restoring breakdown statuses:', e);
+    }
+}
+
+// Function to save breakdown profile details
+function saveBreakdownProfileDetails() {
+    const profileData = document.getElementById('field32').value;
+    console.log("Breakdown profile data to be saved:", profileData);
+    // Implement saving logic as needed
+}
+
+
+
+
+
+
+
+
 
         // Function to save profile details (Edit and Save functionality)
         function saveProfileDetails() {
@@ -946,7 +1486,7 @@ function closePopup() {
                 "field18": document.getElementById('field18').value,
                 "field19": document.getElementById('field19').value,
                 "field20": document.getElementById('field20').value,
-                "field21": document.getElementById('field21').value,
+                // "field21": document.getElementById('field21').value,
                 "field22": document.getElementById('field22').value,
                 "field23": document.getElementById('field23').value,
                 "field24": document.getElementById('field24').value,
@@ -956,8 +1496,8 @@ function closePopup() {
                 "field28": "",
                 "field29": "",
                 "field30": document.getElementById('field30').value, // Retrieve field30 from cookies
-                "field31": "",
-                "field32": "",
+                "field31": document.getElementById('field31').value,
+                "field32": document.getElementById('field32').value,
                 "field33": "",
                 "field34": "",
                 "field35": "",
@@ -996,11 +1536,12 @@ function closePopup() {
             .then(response => response.json())
             .then(result => {
                 console.log('Profile Updated:', result);
-                // if (result.success) {
-                //     alert('Profile updated successfully!');
-                // } else {
-                //     alert('Profile updated successfully!.');
-                // }
+                if (result.success) {
+                    alert('Profile updated successfully!');
+                } else {
+                    alert('Profile updated successfully!.');
+                }
+                // showPopup("Profile details have been successfully saved.");
             })
             .catch(error => {
                 console.error('Error updating profile:', error);
@@ -1023,7 +1564,7 @@ function closePopup() {
             popupMessage.style.display = 'block';
         
             // Automatically hide the popup after 30 seconds
-            setTimeout(closePopup, 30000);
+            setTimeout(closePopup, 10000);
         }
         
         function closePopup() {
@@ -1032,67 +1573,58 @@ function closePopup() {
         }
         
         function addImage() {
-            const fileInput = document.getElementById('imageUploader');
-            const files = fileInput.files;
-        
-            if (files.length === 0) {
-                showPopup('No files selected.');
-                return;
+    const fileInput = document.getElementById('imageUploader');
+    const files = fileInput.files;
+    if (files.length === 0) {
+        showPopup('No files selected.');
+        return;
+    }
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", token); // Replace with your actual token
+    const formdata = new FormData();
+    // Loop through the selected files and append each to the FormData
+    for (let i = 0; i < files.length; i++) {
+        formdata.append("file", files[i], files[i].name);
+    }
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow"
+    };
+    fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        
-            const myHeaders = new Headers();
-            myHeaders.append("Authorization", token); // Replace with your actual token
-        
-            const formdata = new FormData();
-        
-            // Loop through the selected files and append each to the FormData
-            for (let i = 0; i < files.length; i++) {
-                formdata.append("file", files[i], files[i].name);
-            }
-        
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: formdata,
-                redirect: "follow"
-            };
-        
-            fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json(); // Get response as JSON
-                })
-                .then((result) => {
-                    console.log('API Response:', result);
-                    // Extract the image URLs from the API response
-                    const imageUrls = result.data.images.map(url => url + '?alt=media'); // Append ?alt=media
-        
-                    // Get the current images from the textarea
-                    const imagesTextArea = document.getElementById('images');
-                    const existingImages = imagesTextArea.value;
-        
-                    // Append the new URLs to the textarea
-                    imagesTextArea.value = existingImages ? `${existingImages}, ${imageUrls.join(', ')}` : imageUrls.join(', ');
-        
-                    // Display the newly uploaded images in the preview section
-                    const imagePreviewDiv = document.getElementById('imagePreview');
-                    imageUrls.forEach(newImageUrl => {
-                        const newImageElement = document.createElement('img');
-                        newImageElement.src = newImageUrl; // Set the source to the new image URL
-                        newImageElement.alt = "Profile Image";
-                        newImageElement.style = "width: 100%; height: auto; margin: 4px; border-radius: 4px;";
-                        imagePreviewDiv.appendChild(newImageElement); // Append the new image to the preview section
-                    });
-        
-                    showPopup('Images uploaded successfully, Are you sure you want to update your profile?');
-                })
-                .catch((error) => {
-                    console.error('Error uploading images:', error);
-                    showPopup('Image upload failed. Please try again.');
-                });
-        }
+            return response.json(); // Get response as JSON
+        })
+        .then((result) => {
+            console.log('API Response:', result);
+            // Extract the image URLs from the API response
+            const imageUrls = result.data.images.map(url => url + '?alt=media'); // Append ?alt=media
+            // Get the current images from the textarea
+            const imagesTextArea = document.getElementById('images');
+            const existingImages = imagesTextArea.value;
+            // Append the new URLs to the textarea
+            imagesTextArea.value = existingImages ? `${existingImages}, ${imageUrls.join(', ')}` : imageUrls.join(', ');
+            // Display the newly uploaded image URLs as clickable links in the preview section
+            const imagePreviewDiv = document.getElementById('imagePreview');
+            imageUrls.forEach(newImageUrl => {
+                const newLinkElement = document.createElement('a');
+                newLinkElement.href = newImageUrl; // Set the href to the new image URL
+                newLinkElement.target = "_blank"; // Open link in a new tab
+                newLinkElement.textContent = newImageUrl; // Set the link text to the image URL
+                newLinkElement.style = "display: block; margin: 4px; color: blue;";
+                imagePreviewDiv.appendChild(newLinkElement); // Append the new link to the preview section
+            });
+            showPopup('Images uploaded successfully, Are you sure you want to update your profile?');
+        })
+        .catch((error) => {
+            console.error('Error uploading images:', error);
+            showPopup('Image upload failed. Please try again.');
+        });
+}
         </script>
     <script>
         // Function to check for required cookies

@@ -63,10 +63,11 @@ body {
 
 /* Left section with 90% width */
 .navbar-item.left {
-    flex: 0 0 72%;
+    /* flex: 0 0 72%; */
     display: flex;
     align-items: center;
     padding-left: 15px;
+    width: 100%;
 }
 
 .navbar-item.left .logo {
@@ -294,7 +295,7 @@ body {
 }
 /* Navbar links */
 .navbar-links {
-            display: flex;
+            display: ruby-text;
             list-style-type: none;
             gap: 22px; /* Adds space between each menu item */
         }
@@ -362,14 +363,14 @@ body {
 
     <header class="navbar">
         <div class="navbar-item left">
-            <img src="img/Screenshot from 2024-09-27 11-50-56.png" alt="Logo" class="logo">
+            <img src="img/Alisom Logo .png" alt="Logo" class="logo">
         </div>
         <div>
           <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="navbar-links">
                 <li><a href="index.html">Login</a></li>
                 <li><a href="Add_client.html">Add Client</a></li>
-                <!-- <li><a href="#">Update Client</a></li> -->
+                <li><a href="Due-Payment.html">Due Payment</a></li>
                 <li><a href="search.html">Search</a></li>
             </ul>
         </div>
