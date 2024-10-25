@@ -99,7 +99,20 @@
 .suggestions-list li:hover {
     background-color: #f0f0f0;
 }
+.custom-file-upload {
+            display: inline-block;
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: #00bfa6; /* Change background color */
+            color: white; /* Text color */
+            border: 1px solid #ccc; /* Border styling */
+            border-radius: 4px; /* Rounded corners */
+            transition: background-color 0.3s ease;
+        }
 
+        .custom-file-upload:hover {
+            background-color: #45a049; /* Darker background on hover */
+        }
 
     </style>
 </head>
@@ -258,7 +271,10 @@
 
         <div class="form-group">
             <label for="po-document"><strong>PO Document: </strong></label>
-            <input type="file" id="po-document" name="po-document" accept="image/*" multiple required>
+            <label for="po-document" class="custom-file-upload" style="margin: 4px;">
+                Choose Files
+            </label>
+            <input type="file" id="po-document" name="po-document" multiple required style="display: none;">
         </div>
         <div id="total-image-count">Total docs:<span id="image-count-display">0</span></div>
         <button id="preview-images-button" style="margin-left: 10px; background-color: #00bfa6; color: white; border-radius: 5px; padding: 2px; border-color: #00bfa6;">Preview docs</button>
@@ -324,7 +340,10 @@
 
         <div class="form-group">
             <label for="file_upload"><strong>Upload Payment Documents: </strong></label>
-            <input type="file" id="file_upload" name="file_upload" required multiple onchange="uploadImages(event)" />
+            <label for="file_upload" class="custom-file-upload" style="margin: 4px;">
+                Choose Files
+            </label>
+            <input type="file" id="file_upload" name="file_upload" required multiple onchange="uploadImages(event)" style="display: none;">
         </div>
     </div>
 
@@ -427,6 +446,10 @@
         setCookie('field1', JSON.stringify(paymentDataArray));
         console.log("Cookie updated with payment data.");
         alert("All images uploaded successfully!");
+
+        // Display the count of uploaded files
+        document.getElementById('upload-count').innerText = `Total documents/images uploaded: ${uploadCount}`;
+        alert(`Total documents/images uploaded: ${uploadCount}`);
     }
     
     // Function to calculate due date based on contract start date and payment status
@@ -1041,7 +1064,33 @@ function updateImageCountDisplay() {
                     "field50": ""
                 });
     
-                // Request options
+                // Function to show popup message
+function showPopup(message) {
+    // Create popup element
+    const popup = document.createElement("div");
+    popup.textContent = message;
+    popup.style.position = "fixed";
+    popup.style.bottom = "500px";
+    popup.style.left = "50%";
+    popup.style.transform = "translateX(-50%)";
+    popup.style.backgroundColor = "#4CAF50"; // Success color
+    popup.style.color = "white";
+    popup.style.padding = "10px 20px";
+    popup.style.borderRadius = "5px";
+    popup.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+    popup.style.fontSize = "16px";
+    popup.style.zIndex = "1000";
+
+    // Add popup to the document body
+    document.body.appendChild(popup);
+
+    // Remove popup after 3 seconds
+    setTimeout(() => {
+        popup.remove();
+    }, 3000);
+}
+
+// Request options
 const requestOptions = {
     method: "POST",
     headers: myHeaders,
@@ -1053,20 +1102,21 @@ const requestOptions = {
 fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
     .then((response) => {
         if (response.ok) {
-            // Display success message
-            alert("Form submitted successfully!");
+            // Show success popup message
+            showPopup("Profile created successfully!");
         } else {
-            // Display error message for failed submission
-            alert("Form not submitted due to an error.");
+            // Show error popup message for failed submission
+            showPopup("Form not submitted due to an error.");
         }
         return response.text();
     })
     .then((result) => console.log(result))
     .catch((error) => {
-        // Display error message for network or other issues
-        alert("An error occurred while submitting the form.");
+        // Show error popup message for network or other issues
+        showPopup("An error occurred while submitting the form.");
         console.error(error);
     });
+
             }
         </script>
 </body>
