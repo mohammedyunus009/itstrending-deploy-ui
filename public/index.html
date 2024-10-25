@@ -418,7 +418,69 @@ input[type="password"] {
         this.classList.toggle("fa-eye-slash");
     });
 </script>
+<script>
+// function getCookie(name) {
+//     let nameEQ = name + "=";
+//     let decodedCookies = decodeURIComponent(document.cookie);
+//     let ca = decodedCookies.split(';');
+//     for(let i = 0; i < ca.length; i++) {
+//         let c = ca[i];
+//         while (c.charAt(0) === ' ') {
+//             c = c.substring(1);
+//         }
+//         if (c.indexOf(nameEQ) === 0) {
+//             return c.substring(nameEQ.length, c.length);
+//         }
+//     }
+//     return null;
+// }
 
+// window.onload = function() {
+//     let email = getCookie("email");
+//     let token = getCookie("token");
+
+//     if (email && token) {
+//         window.location.href = "Add_client.html";
+//     }
+// };
+
+
+
+
+
+  function getCookie(name) {
+    let nameEQ = name + "=";
+    let decodedCookies = decodeURIComponent(document.cookie); // To handle special characters in cookies
+    let ca = decodedCookies.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(nameEQ) === 0) {
+            return c.substring(nameEQ.length, c.length);
+        }
+    }
+    return null;
+}
+
+function isDirectAccess() {
+    // Check if there is no "Referer" header indicating direct access
+    return document.referrer === "";
+}
+
+window.onload = function() {
+    if (isDirectAccess()) {  // Only proceed if it's a direct access
+        let email = getCookie("email");
+        let token = getCookie("token");
+
+        if (email && token) {
+            window.location.href = "Add_client.html";
+        }
+    }
+};
+
+</script>
     <script src="js/login.js"></script>
 </body>
 </html>

@@ -437,7 +437,7 @@ input[type="file"] {
 }
 
 .form-group label {
-    width: 80px; /* Fixed width for labels */
+    width: 127px; /* Fixed width for labels */
     font-weight: bold; /* Bold font for labels */
     margin-right: 15px; /* Space between label and input */
 }
