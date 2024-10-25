@@ -204,15 +204,13 @@
          
     <div id="search-results"></div> 
     <!-- Popup Message -->
-<div id="popupMessage" style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #333; color: white; padding: 20px; border-radius: 8px; z-index: 1000;">
+<div id="popupMessage" style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #4CAF50; color: white; padding: 20px; border-radius: 8px; z-index: 1000;">
     <span id="popupText"></span>
-    <button onclick="saveProfileDetails(); closePopup();" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Yes</button>
-    <button onclick="closePopup()" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">No</button>
 </div>
 <!-- Popup Modal HTML -->
 <div id="statusPopup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); padding:20px; background-color:#fff; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000;">
     <span id="popupMessage" style="font-size:16px;"></span><br><br>
-    <button onclick="closePopup()" style="padding:10px; background-color:#333; color:white; border:none;">OK</button>
+    <button onclick="closePopup()" style="padding:10px; background-color:#4CAF50; color:white; border:none;">OK</button>
 </div>
 
 <!-- Modal Overlay -->
@@ -531,66 +529,71 @@
                     </tbody>
                 </table>
                 <!-- Invoice Schedules Section -->
-<!-- Invoice Schedules Section -->
-<table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #F9F9F9;">
-    <thead>
-        <tr>
-            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
-                Invoice Schedules:
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Start Date:</strong></td>
-            <td style="border: 1px solid #ccc; padding: 8px;" id="start-date">${profile.field5.split('T')[0]}</td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Due Date:</strong></td>
-            <td style="border: 1px solid #ccc; padding: 8px;" id="payment-due-date">${getDueDate(profile.field1)}</td>
-        </tr>
-        <tr>
-            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;"><strong>Documents:</strong></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;" id="document-links">
-                ${getDocumentLinks(profile.field1)}
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
-                <input type="file" id="fileInput" style="display: none;" multiple accept="image/*" onchange="uploadFiles(event)">
-                <button onclick="document.getElementById('fileInput').click();" style="padding: 8px 12px; background-color: #007BFF; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
-                    Add Files
-                </button>
-                <div id="fileDisplay" style="margin-top: 10px;"></div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
-                <strong>Comments:</strong><br>
-                <textarea rows="4" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 8px;" placeholder="Add your comments here..."></textarea>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #F9F9F9;">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
+                                Invoice Schedules:
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Start Date:</strong></td>
+                            <td style="border: 1px solid #ccc; padding: 8px;" id="start-date">${profile.field5.split('T')[0]}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Due Date:</strong></td>
+                            <td style="border: 1px solid #ccc; padding: 8px;" id="payment-due-date">${getDueDate(profile.field1)}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;"><strong>Documents:</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;" id="document-links">
+                                ${getDocumentLinks(profile.field1)}
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
+                                <strong>Comments:</strong><br>
+                                <textarea id="commentInput" rows="4" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 8px;" placeholder="Add your comments here..."></textarea>
+                                <button type="button" style="margin: 4px;" onclick="addComment()">Add Comment</button>
+                                <div id="commentList" style="margin-top: 8px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
+                                <strong>Add More Documents:</strong>
+                                <label for="fileInput" class="custom-file-upload" style="margin: 4px;">
+                                    Choose Files
+                                </label>
+                                <input type="file" id="fileInput" multiple onchange="uploadFiles(event)" style="display: none;" />
+
+                                <div id="fileDisplay" style="margin-top: 8px;"></div>
+                                <button type="button" style="margin: 4px;" onclick="saveProfileDetails()">Submit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <!-- Breakdown Schedules Section -->
-<table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
-    <thead>
-        <tr>
-            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
-                Breakdown Schedules:
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
-                <div id="breakdown-schedules" style="margin-top: 8px;"></div>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
+                                Breakdown Schedules:
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
+                                <div id="breakdown-schedules" style="margin-top: 8px;"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <!-- Documents Section -->
                 <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #F9F9F9;">
                     <thead>
@@ -612,8 +615,12 @@
                         </tr>
                         <tr>
                             <td style="border: 1px solid #ccc; padding: 8px;">
-                                <input type="file" id="imageUploader" accept="image/*" style="margin-top: 8px;" multiple />
+                                <label for="imageUploader" class="custom-file-upload" style="margin-top: 8px; margin-left: 4px;">
+                                    Choose Files
+                                </label>
+                                <input type="file" id="imageUploader" accept="image/*" style="display: none;" multiple />
                                 <button type="button" onclick="addImage()">Add Images</button>
+
                             </td>
                         </tr>
                     </tbody>
@@ -654,7 +661,7 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field7" value="${profile.field7}" /></td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>CHL No:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>CHL Type:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field8" value="${profile.field8}" /></td>
                             </tr>
                             <tr>
@@ -662,7 +669,7 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field9" value="${profile.field9}" /></td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PAC No:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PAC Type:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field10" value="${profile.field10}" /></td>
                             </tr>
                             <tr>
@@ -670,7 +677,7 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field11" value="${profile.field11}" /></td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>S. A/c:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>S. A/c Type:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field24" value="${profile.field24}" /></td>
                             </tr>
                             <tr>
@@ -709,31 +716,31 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Payment Terms:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field22" value="${profile.field22}" /></td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Data:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
                                     <textarea id="field1" rows="5" style="width: 100%;">${profile.field1}</textarea>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>PM Data:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
                                     <textarea id="field30" rows="5" style="width: 100%;">${profile.field30}</textarea>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Invoice Data:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
                                     <textarea id="field31" rows="5" style="width: 100%;">${profile.field31}</textarea>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Breakdown Data:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
                                     <textarea id="field32" rows="5" style="width: 100%;">${profile.field32}</textarea>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Documents:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
                                     <textarea id="images" rows="3" style="width: 100%;">${profile.images}</textarea>
@@ -923,10 +930,11 @@ function generatePMSchedules(contractFrom, contractTo, totalVisits) {
                 </div>
                 <div id="${monthId}-content" style="display: none; padding: 16px; background-color: #f9f9f9;">
                     <div>Visits: ${visitsPerMonth}</div>
-                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'onhold')">On Hold</button>
-                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'completed')">Completed</button>
-                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'schedule')">Schedule</button>
-                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'split')">Split</button>
+                    <button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'onhold')">On Hold</button>
+                    <button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'completed')">Completed</button>
+                    <button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'schedule')">Schedule</button>
+                    <button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'split')">Split</button>
+
                     <br><br>
                     <!-- File Upload for Images -->
                     <label for="file-${month}" class="custom-file-upload" style="margin: 4px;">
@@ -948,35 +956,34 @@ function generatePMSchedules(contractFrom, contractTo, totalVisits) {
                     <strong>Comment Section:</strong>
                     <textarea id="comment-${month}" style="width: 100%; margin-top: 18px; height: 100px;" 
                         placeholder="Add your comment here..." 
-                        oninput="updateComment(${month}, this.value)">
-                        ${monthStatuses[month].comments}
-                    </textarea>
+                        oninput="updateComment(${month}, this.value)">${monthStatuses[month].comments}</textarea>
+
 
                     <!-- Display old comments -->
                     <div>
                         <strong>Comments list:</strong>
-                        <p>${monthStatuses[month].comments}</p>
+                        <p id="comments-list-${month}">${monthStatuses[month].comments}</p>
                     </div>
-                    
+
                     <button type="button" style="margin: 4px;" onclick="saveProfileDetails()">Submit</button>
                 </div>
             </div>
             <style>
-.custom-file-upload {
-    display: inline-block;
-    padding: 8px 12px;
-    cursor: pointer;
-    background-color: #4CAF50; /* Change background color */
-    color: white; /* Text color */
-    border: 1px solid #ccc; /* Border styling */
-    border-radius: 4px; /* Rounded corners */
-    transition: background-color 0.3s ease;
-}
+            .custom-file-upload {
+                display: inline-block;
+                padding: 8px 12px;
+                cursor: pointer;
+                background-color: #4CAF50; /* Change background color */
+                color: white; /* Text color */
+                border: 1px solid #ccc; /* Border styling */
+                border-radius: 4px; /* Rounded corners */
+                transition: background-color 0.3s ease;
+            }
 
-.custom-file-upload:hover {
-    background-color: #45a049; /* Darker background on hover */
-}
-</style>
+            .custom-file-upload:hover {
+                background-color: #45a049; /* Darker background on hover */
+            }
+            </style>
 
         `;
     }
@@ -986,9 +993,14 @@ function generatePMSchedules(contractFrom, contractTo, totalVisits) {
 }
 
 // Function to dynamically update comments in monthStatuses array when the user types
+// Function to dynamically update comments in monthStatuses array when the user types
 function updateComment(monthIndex, newComment) {
     monthStatuses[monthIndex].comments = newComment;
     console.log(`Updated comment for ${monthStatuses[monthIndex].month}:`, newComment);
+    
+    // Update the displayed comment list immediately
+    document.getElementById(`comments-list-${monthIndex}`).innerText = newComment;
+    
     updateField30(); // Update the field30 textarea with new data
 }
 
@@ -1066,12 +1078,29 @@ function toggleDropdown(contentId, arrowId) {
 }
 
 // Function to update status and change background color
+function updateAndSave(monthId, monthIndex, status) {
+    // Update status and background color
+    updateStatus(monthId, monthIndex, status);
+    
+    // Delay 2 seconds before running saveProfileDetails
+    setTimeout(() => {
+        saveProfileDetails();
+    }, 2000);
+}
+
+// Existing updateStatus function
 function updateStatus(monthId, monthIndex, status) {
     const monthDiv = document.getElementById(`${monthId}-content`).parentNode;
     monthDiv.style.backgroundColor = getStatusColor(status);
     monthStatuses[monthIndex].status = status;
     showPopup(`The selected month status updated to '${status}'`);
     updateField30();
+}
+
+// Function to save profile details
+function saveProfileDetails() {
+    // Logic to save profile details
+    console.log("Profile details saved.");
 }
 
 // Function to get color based on status
@@ -1109,7 +1138,7 @@ function restoreStatuses() {
                 // Restore comments if they exist
                 if (monthStatus.comments) {
                     document.getElementById(`comment-${index}`).value = monthStatus.comments;
-                    monthDiv.querySelector('p').innerText = monthStatus.comments;
+                    document.getElementById(`comments-list-${index}`).innerText = monthStatus.comments;
                 }
             }
         });
@@ -1203,6 +1232,13 @@ function displayInvoiceDetails(profile) {
     // Append the generated HTML to the invoice schedules div
     invoiceSchedulesDiv.innerHTML = invoiceHTML;
     console.log('Step 8: Invoice HTML appended to the div.');
+    // Now handle comments
+    if (paymentData[0].comments) {
+        displayComments(paymentData[0].comments); // Display existing comments
+    } else {
+        displayComments([]); // No comments available
+    }
+
 }
 // Function to extract due date from payment data
 function getDueDate(field1) {
@@ -1224,49 +1260,128 @@ function getDocumentLinks(field1) {
         return 'No Documents Available';
     }
 }
-function uploadFiles(event) {
-    const fileInput = document.getElementById('fileInput');
-    const fileDisplay = document.getElementById('fileDisplay');
-    const documentLinksContainer = document.getElementById('document-links');
-    fileDisplay.innerHTML = ''; // Clear previous file display
-    const files = fileInput.files; // Get selected files
-    if (files.length > 0) {
-        const myHeaders = new Headers();
-        myHeaders.append("Authorization", "{{Autho}}");
-        const formdata = new FormData();
-        for (let i = 0; i < files.length; i++) {
-            formdata.append("file", files[i], files[i].name); // Append each file
-        }
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: formdata,
-            redirect: "follow"
-        };
-        fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
-            .then((response) => response.json()) // Parse response as JSON
-            .then((result) => {
-                console.log(result); // Log the original API response
-                // Check if the response is successful
-                if (result.status === "success" && result.data && result.data.images) {
-                    // Extract image URLs and modify them
-                    const imageLinks = result.data.images.map(url => url + '?alt=media');
-                    // Append new image links to the document links section
-                    const existingLinks = documentLinksContainer.innerHTML || ''; // Get existing document links
-                    documentLinksContainer.innerHTML = existingLinks + '<br>' + imageLinks.join('<br>');
-                } else {
-                    // Handle error message from the response
-                    documentLinksContainer.innerHTML += '<br><strong>Error:</strong> ' + (result.message || 'Failed to fetch images.');
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-                documentLinksContainer.innerHTML += '<br><strong>Error:</strong> Unable to upload files.';
+async function uploadFiles(event) {
+    const fileInput = event.target; // Get the input element
+    const apiEndpoint = 'https://api2.itstrending.in/api/v1/profiles/upload_images';
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "{{Autho}}"); // Replace {{Autho}} with your actual token
+
+    const formdata = new FormData();
+
+    // Loop through each selected file and append to FormData
+    for (let i = 0; i < fileInput.files.length; i++) {
+        formdata.append("file", fileInput.files[i], fileInput.files[i].name);
+    }
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow"
+    };
+
+    try {
+        const response = await fetch(apiEndpoint, requestOptions);
+        const data = await response.json(); // Parse the response JSON
+
+        // Retrieve the profile data from the textarea
+        const profileField1 = document.getElementById('field1').value; // Get the field1 value
+        const profileData = JSON.parse(profileField1); // Parse it as JSON
+
+        // Check if images were uploaded successfully
+        if (data.data && data.data.images) {
+            const documentUrls = []; // Array to hold new document URLs
+
+            // Iterate through the uploaded image URLs and append ?alt=media
+            data.data.images.forEach(image => {
+                const imageUrl = `${image}?alt=media`;
+                console.log("Uploaded image URL with alt parameter:", imageUrl);
+                documentUrls.push(imageUrl); // Store the modified URL
             });
+
+            // Now update field1 with the new document URLs
+            const oldField1 = profileData; // Use the retrieved profile data
+            oldField1[0].document = oldField1[0].document ? oldField1[0].document + ',' + documentUrls.join(',') : documentUrls.join(',');
+
+            // Update the textarea with the new field1 data
+            document.getElementById('field1').value = JSON.stringify(oldField1);
+            console.log("Updated field1 with new document URLs:", oldField1);
+
+            // Update the document links in the invoice schedules section
+            updateDocumentLinks(oldField1[0].document); // Pass the updated document string
+        }
+    } catch (error) {
+        console.error('Error uploading files:', error); // Log any errors
+    }
+}
+
+// Function to update document links in the invoice schedule table
+function updateDocumentLinks(documents) {
+    const documentLinksElement = document.getElementById('document-links');
+    if (documentLinksElement) {
+        // Generate HTML for the document links
+        if (documents) {
+            const documentLinks = documents.split(',').map(doc => `<a href="${doc.trim()}" target="_blank">${doc.trim()}</a>`).join('<br />');
+            documentLinksElement.innerHTML = documentLinks;
+        } else {
+            documentLinksElement.innerHTML = 'No Documents Available';
+        }
+    } else {
+        console.error('Document links element not found in the DOM.');
     }
 }
 
 
+
+// Function to add a comment
+function addComment() {
+    const commentInput = document.getElementById('commentInput').value.trim();
+    if (!commentInput) {
+        alert('Please enter a comment before submitting.');
+        return;
+    }
+
+    // Retrieve the profile data from field1
+    const profileField1 = document.getElementById('field1').value; // Get the field1 value
+    let profileData;
+
+    try {
+        profileData = JSON.parse(profileField1); // Parse it as JSON
+    } catch (error) {
+        console.error('Error parsing profileField1:', error);
+        return; // Exit if parsing fails
+    }
+
+    // Add the new comment to the comments array
+    if (!profileData[0].comments) {
+        profileData[0].comments = []; // Initialize comments if it doesn't exist
+    }
+    profileData[0].comments.push(commentInput); // Add new comment
+
+    // Update field1 with the new profile data
+    document.getElementById('field1').value = JSON.stringify(profileData);
+
+    // Clear the input field
+    document.getElementById('commentInput').value = '';
+
+    // Update the comment list display
+    displayComments(profileData[0].comments);
+}
+
+// Function to display comments
+function displayComments(comments) {
+    const commentListElement = document.getElementById('commentList');
+    commentListElement.innerHTML = ''; // Clear the current list
+
+    if (comments && comments.length > 0) {
+        comments.forEach((comment, index) => {
+            commentListElement.innerHTML += `<div><strong>Comment ${index + 1}:</strong> ${comment}</div>`;
+        });
+    } else {
+        commentListElement.innerHTML = 'No comments yet.';
+    }
+}
 
 
 
@@ -1342,12 +1457,10 @@ function generateBreakdownSchedules(contractFrom, contractTo, totalBreakdowns) {
                     <strong>Comment Section:</strong>
                     <textarea id="breakdown-comment-${month}" style="width: 100%; margin-top: 18px; height: 100px;" 
                         placeholder="Add your comment here..." 
-                        oninput="updateBreakdownComment(${month}, this.value)">
-                        ${breakdownStatuses[month].comments}
-                    </textarea>
+                        oninput="updateBreakdownComment(${month}, this.value)">${breakdownStatuses[month].comments}</textarea>
 
                     <!-- Display old comments -->
-                    <div style="display: none;">
+                    <div>
                         <strong>Comments list:</strong>
                         <p>${breakdownStatuses[month].comments}</p>
                     </div>
@@ -1372,12 +1485,20 @@ function handleSubmit() {
     }, 2000); // 2000 milliseconds = 2 seconds
 }
 
-// Function to dynamically update comments in breakdownStatuses array when the user types
+// Function to dynamically update comments in breakdownStatuses array and display them immediately in the comment list
 function updateBreakdownComment(monthIndex, newComment) {
     breakdownStatuses[monthIndex].comments = newComment;
     console.log(`Updated comment for ${breakdownStatuses[monthIndex].month}:`, newComment);
+
+    // Update the displayed comments list immediately
+    const commentList = document.querySelector(`#breakdown-month-${monthIndex}-content p`);
+    if (commentList) {
+        commentList.innerText = newComment;
+        commentList.parentNode.style.display = 'block'; // Show the comments list div
+    }
     updateField32(); // Update the field32 textarea with new data
 }
+
 
 // Function to upload multiple files for breakdown schedules and send to API
 function uploadBreakdownFile(monthIndex) {
@@ -1584,12 +1705,12 @@ function saveBreakdownProfileDetails() {
             .then(response => response.json())
             .then(result => {
                 console.log('Profile Updated:', result);
-                if (result.success) {
-                    alert('Profile updated successfully!');
-                } else {
-                    alert('Profile updated successfully!.');
-                }
-                // showPopup("Profile details have been successfully saved.");
+                // if (result.success) {
+                //     alert('Profile updated successfully!');
+                // } else {
+                //     alert('Profile updated successfully!.');
+                // }
+                showPopup("Profile details have been successfully saved.");
             })
             .catch(error => {
                 console.error('Error updating profile:', error);
@@ -1674,6 +1795,24 @@ function saveBreakdownProfileDetails() {
         });
 }
         </script>
+        <script>
+            function showPopup(message) {
+                // Display the popup with the message
+                const popup = document.getElementById("popupMessage");
+                document.getElementById("popupText").innerText = message;
+                popup.style.display = "block";
+            
+                // Hide the popup automatically after 3 seconds
+                setTimeout(() => {
+                    popup.style.display = "none";
+                }, 3000);
+            }
+            
+            function closePopup() {
+                // Hide the popup immediately if needed
+                document.getElementById("popupMessage").style.display = "none";
+            }
+            </script>
     <script>
         // Function to check for required cookies
         function checkLoginStatus() {
