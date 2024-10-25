@@ -948,7 +948,7 @@ function generatePMSchedules(contractFrom, contractTo, totalVisits) {
                         <strong>Uploaded Images:</strong>
                         <ul style="padding-left: 20px;">
                             ${monthStatuses[month].images.map(img => `<li><a href="${img}" target="_blank">${img}</a></li>`).join('')}
-                            ${monthStatuses[month].image ? `<li><a href="${monthStatuses[month].image}" target="_blank">${monthStatuses[month].image}</a></li>` : ''}
+                            ${monthStatuses[month].image ? `<li style="padding: 5px;"><a href="${monthStatuses[month].image}" target="_blank">${monthStatuses[month].image.slice(-18, -10)}</a></li>` : ''}
                         </ul>
                     </div>
                     <br>
