@@ -73,7 +73,7 @@ a:focus {
 .top-bar {
     position: relative;
     height: 35px;
-    background: #343148;
+    background: #D8A7B1;
 }
 
 .top-bar .top-bar-left {
@@ -198,7 +198,7 @@ a:focus {
 
 .navbar .navbar-brand img {
     max-width: 100%;
-    max-height: 80px;
+    max-height: 50px;
 }
 
 .navbar-dark .navbar-nav .nav-link,
@@ -207,6 +207,8 @@ a:focus {
 .navbar-dark .navbar-nav .nav-link.active {
     padding: 10px 10px 8px 10px;
     color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
@@ -234,7 +236,7 @@ a:focus {
     
     .navbar.nav-sticky {
         padding: 10px 60px;
-        background: #343148 !important;
+        background: #D8A7B1 !important;
     }
     
     .navbar a.nav-link {
@@ -434,7 +436,7 @@ a:focus {
 
 @media (max-width: 767.98px) {
     .page-header h2 {
-        font-size: 35px;
+        font-size: 50px;
     }
     
     .page-header a {
@@ -526,8 +528,8 @@ a:focus {
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 1px;
-    color: #F7CAC9;
-    background: #343148;
+    color: white;
+    background: #D8A7B1;
     border-radius: 0;
     transition: .3s;
 }
@@ -566,7 +568,7 @@ a:focus {
 
 .service .service-item:hover,
 .service .service-item.active {
-    background: #343148;
+    background: #D8A7B1;
     color: #ffffff;
 }
 
@@ -1381,76 +1383,138 @@ a:focus {
 /*******************************/
 /********* Contact CSS *********/
 /*******************************/
+/* General Styles */
 .contact {
-    position: relative;
-    width: 100%;
-    padding: 45px 0;
+    padding: 60px 0;
+    background-color: #f8f9fa;
 }
 
-.contact .container {
-    max-width: 900px;
+.section-header p {
+    font-size: 18px;
+    color: #6c757d;
+    margin-bottom: 10px;
 }
 
-.contact .contact-item {
-    text-align: center;
+.section-header h2 {
+    font-size: 28px;
+    color: #343a40;
+}
+
+/* Contact Information */
+.contact-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
     margin-bottom: 30px;
 }
 
-.contact .contact-item i {
-    width: 50px;
-    height: 50px;
-    padding: 12px 0;
-    font-size: 25px;
-    color: #343148;
-    margin-bottom: 15px;
-    border: 1px solid #F7CAC9;
-    border-radius: 50px;
+.contact-item {
+    text-align: center;
+    padding: 20px;
+    background: #ffffff;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 300px;
+    min-width: 250px;
 }
 
-.contact .contact-item h2 {
-    font-size: 25px;
-    font-weight: 700;
+.contact-item i {
+    font-size: 40px;
+    color: #D8A7B1;
+    margin-bottom: 10px;
 }
 
-.contact .contact-form {
-    position: relative;
+.contact-text h2 {
+    font-size: 20px;
+    color: #343a40;
+    margin-bottom: 10px;
 }
 
-.contact .contact-form input {
-    height: 45px;
-    padding: 15px;
-    background: none;
-    border-radius: 0;
-}
-
-.contact .contact-form textarea {
-    height: 150px;
-    padding: 15px;
-    background: none;
-    border-radius: 0;
-}
-
-.contact .contact-form .btn {
-    padding: 12px 25px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: #F7CAC9;
-    background: #343148;
-    border-radius: 0;
-    transition: .3s;
-}
-
-.contact .contact-form .btn:hover {
-    color: #343148;
-    background: #F7CAC9;
-}
-
-.contact .help-block ul {
+.contact-text p {
+    font-size: 16px;
+    color: #6c757d;
     margin: 0;
-    padding: 0;
-    list-style-type: none;
 }
+
+/* Contact Form */
+.contact-form {
+    padding: 30px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #495057;
+    background: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #D8A7B1;
+    outline: 0;
+    box-shadow: none;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #D8A7B1;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #D8A7B1;
+}
+
+.help-block.text-danger {
+    font-size: 12px;
+    color: #dc3545;
+    margin-top: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-item {
+        max-width: 100%;
+    }
+
+    .contact-text h2 {
+        font-size: 18px;
+    }
+
+    .contact-text p {
+        font-size: 14px;
+    }
+
+    .form-control, .btn {
+        font-size: 14px;
+    }
+}
+
 
 
 
@@ -1897,7 +1961,7 @@ a:focus {
 
 .footer .container-fluid {
     padding: 90px 0 0 0;
-    background: linear-gradient(rgba(52, 49, 72, .9), rgba(52, 49, 72, .9)), url(../img/footer-bg.png);
+    background: #D8A7B1;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -1911,7 +1975,7 @@ a:focus {
 
 .footer .footer-info .footer-logo {
     display: inline-block;
-    color: #F7CAC9;
+    color: white;
     font-size: 60px;
     line-height: 60px;
     font-weight: 700;
@@ -2077,26 +2141,9 @@ img {
     text-align: justify; /* Align text to both left and right edges */
     margin: 20px; /* Add some space around the text container */
 }
-
-.about-text p {
-    margin-bottom: 20px; /* Add space between paragraphs */
-}
-
-.about-text p:last-child {
-    margin-bottom: 0; /* Remove bottom margin for the last paragraph */
-}
-
-@media only screen and (max-width: 768px) {
-    .about-text {
-        font-size: 14px; /* Adjust font size for smaller screens */
-        margin: 15px; /* Reduce margins for better fit */
+@media (max-width: 991.98px) {
+    .navbar {
+        padding: 15px;
+        background: #D8A7B1 !important;
     }
-}
-.row {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -150px;
-    margin-left: -15px;
 }
