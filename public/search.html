@@ -1442,10 +1442,10 @@ function generateBreakdownSchedules(contractFrom, contractTo, totalBreakdowns) {
                 </div>
                 <div id="${monthId}-content" style="display: none; padding: 16px; background-color: #f9f9f9;">
                     <div>Breakdowns: ${breakdownsPerMonth}</div>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'onhold')">On Hold</button>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'completed')">Completed</button>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'schedule')">Schedule</button>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'split')">Split</button>
+                    <button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'onhold')">On Hold</button>
+<button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'completed')">Completed</button>
+<button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'schedule')">Schedule</button>
+<button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'split')">Split</button>
                     <br><br>
                     <!-- File Upload for Images -->
                     <label for="breakdown-file-${month}" class="custom-file-upload" style="margin: 4px;">
@@ -1494,6 +1494,20 @@ function handleSubmit() {
         saveProfileDetails();
     }, 2000); // 2000 milliseconds = 2 seconds
 }
+// Function to update status and change background color
+function updateAndSave(monthId, monthIndex, status) {
+    // Update status and background color
+    updateBreakdownStatus(monthId, monthIndex, status);
+    // Delay 2 seconds before running saveProfileDetails
+    setTimeout(() => {
+        saveProfileDetails();
+    }, 2000);
+}
+
+
+
+
+
 
 // Function to dynamically update comments in breakdownStatuses array and display them immediately in the comment list
 function updateBreakdownComment(monthIndex, newComment) {
