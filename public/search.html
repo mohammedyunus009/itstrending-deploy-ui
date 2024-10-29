@@ -607,9 +607,12 @@
                         <tr>
                             <td style="border: 1px solid #ccc; padding: 8px;">
                                 <div id="imagePreview">
-                                    ${profile.images.split(',').map(img => `
-                                        <a href="${img.trim()}" target="_blank" style="display: block; margin: 4px; color: blue;">${img.trim()}</a>
-                                    `).join(' ')}
+                                    ${profile.images.split(',').map(img => {
+                                        const displayText = img.trim().slice(-18, -10);
+                                        return `
+                                            <a href="${img.trim()}" target="_blank" style="display: block; margin: 4px; color: blue;">${displayText}</a>
+                                        `;
+                                    }).join(' ')}
                                 </div>
                             </td>
                         </tr>
@@ -620,7 +623,6 @@
                                 </label>
                                 <input type="file" id="imageUploader" accept="image/*" style="display: none;" multiple />
                                 <button type="button" onclick="addImage()">Add Images</button>
-
                             </td>
                         </tr>
                     </tbody>
@@ -1046,11 +1048,13 @@ function uploadFile(monthIndex) {
                     // Update the image list in the HTML dynamically
                     const imageList = document.querySelector(`#month-${monthIndex}-content ul`);
                     const newImageItem = document.createElement('li');
-                    newImageItem.innerHTML = `<a href="${imageLink}" target="_blank">${imageLink}</a>`;
+                    const displayText = imageLink.slice(-18, -10); // Extract a portion of the link
+                    newImageItem.innerHTML = `<a href="${imageLink}" target="_blank">${displayText}</a>`;
                     imageList.appendChild(newImageItem);  // Append new image link to the list
 
                     console.log(`Updated status for ${month}:`, monthStatuses[monthIndex]); // Log updated month object with the image link
-                } else {
+                }
+                else {
                     console.error(`monthStatuses[${monthIndex}] is undefined. Check initialization.`);
                 }
 
@@ -1131,9 +1135,11 @@ function restoreStatuses() {
                 if (monthStatus.image) {
                     const imageLinks = monthStatus.image.split(',');
                     imageLinks.forEach(link => {
-                        monthDiv.querySelector('ul').innerHTML += `<li><a href="${link}" target="_blank">${link}</a></li>`;
+                        const displayText = link.slice(-18, -10);
+                        monthDiv.querySelector('ul').innerHTML += `<li><a href="${link}" target="_blank">${displayText}</a></li>`;
                     });
                 }
+
 
                 // Restore comments if they exist
                 if (monthStatus.comments) {
@@ -1233,12 +1239,9 @@ function displayInvoiceDetails(profile) {
     invoiceSchedulesDiv.innerHTML = invoiceHTML;
     console.log('Step 8: Invoice HTML appended to the div.');
     // Now handle comments
-    if (paymentData[0].comments) {
-        displayComments(paymentData[0].comments); // Display existing comments
-    } else {
-        displayComments([]); // No comments available
-    }
-
+    // Display comments if they exist, or an empty array if they don't
+    const comments = paymentData[0]?.comments || [];  // Use optional chaining to avoid errors
+    displayComments(comments);
 }
 // Function to extract due date from payment data
 function getDueDate(field1) {
@@ -1254,11 +1257,17 @@ function getDueDate(field1) {
 function getDocumentLinks(field1) {
     try {
         const paymentData = JSON.parse(field1);
-        return paymentData[0]?.document ? paymentData[0].document.split(',').map(doc => `<a href="${doc.trim()}" target="_blank">${doc.trim()}</a>`).join('<br />') : 'No Documents Available';
+        return paymentData[0]?.document
+            ? paymentData[0].document.split(',').map(doc => {
+                const displayText = doc.trim().slice(-18, -10);
+                return `<a href="${doc.trim()}" target="_blank">${displayText}</a>`;
+            }).join('<br />')
+            : 'No Documents Available';
     } catch (error) {
         console.error('Error extracting document links:', error);
         return 'No Documents Available';
     }
+
 }
 async function uploadFiles(event) {
     const fileInput = event.target; // Get the input element
@@ -1322,9 +1331,14 @@ function updateDocumentLinks(documents) {
     if (documentLinksElement) {
         // Generate HTML for the document links
         if (documents) {
-            const documentLinks = documents.split(',').map(doc => `<a href="${doc.trim()}" target="_blank">${doc.trim()}</a>`).join('<br />');
+            const documentLinks = documents.split(',').map(doc => {
+                const trimmedDoc = doc.trim();
+                const displayText = trimmedDoc.slice(-18, -10); // Extract a portion of the link
+                return `<a href="${trimmedDoc}" target="_blank">${displayText}</a>`;
+            }).join('<br />');
             documentLinksElement.innerHTML = documentLinks;
-        } else {
+        }
+        else {
             documentLinksElement.innerHTML = 'No Documents Available';
         }
     } else {
@@ -1374,18 +1388,14 @@ function displayComments(comments) {
     const commentListElement = document.getElementById('commentList');
     commentListElement.innerHTML = ''; // Clear the current list
 
-    if (comments && comments.length > 0) {
+    if (comments.length > 0) {
         comments.forEach((comment, index) => {
             commentListElement.innerHTML += `<div><strong>Comment ${index + 1}:</strong> ${comment}</div>`;
         });
     } else {
-        commentListElement.innerHTML = 'No comments yet.';
+        commentListElement.innerHTML = '<div>No comments yet.</div>';
     }
 }
-
-
-
-
 
 
 
@@ -1432,10 +1442,10 @@ function generateBreakdownSchedules(contractFrom, contractTo, totalBreakdowns) {
                 </div>
                 <div id="${monthId}-content" style="display: none; padding: 16px; background-color: #f9f9f9;">
                     <div>Breakdowns: ${breakdownsPerMonth}</div>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'onhold')">On Hold</button>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'completed')">Completed</button>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'schedule')">Schedule</button>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'split')">Split</button>
+                    <button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'onhold')">On Hold</button>
+<button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'completed')">Completed</button>
+<button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'schedule')">Schedule</button>
+<button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'split')">Split</button>
                     <br><br>
                     <!-- File Upload for Images -->
                     <label for="breakdown-file-${month}" class="custom-file-upload" style="margin: 4px;">
@@ -1484,6 +1494,20 @@ function handleSubmit() {
         saveProfileDetails();
     }, 2000); // 2000 milliseconds = 2 seconds
 }
+// Function to update status and change background color
+function updateAndSave(monthId, monthIndex, status) {
+    // Update status and background color
+    updateBreakdownStatus(monthId, monthIndex, status);
+    // Delay 2 seconds before running saveProfileDetails
+    setTimeout(() => {
+        saveProfileDetails();
+    }, 2000);
+}
+
+
+
+
+
 
 // Function to dynamically update comments in breakdownStatuses array and display them immediately in the comment list
 function updateBreakdownComment(monthIndex, newComment) {
@@ -1541,7 +1565,8 @@ function uploadBreakdownFile(monthIndex) {
                     // Update the image list in the HTML dynamically
                     const imageList = document.querySelector(`#breakdown-month-${monthIndex}-content ul`);
                     const newImageItem = document.createElement('li');
-                    newImageItem.innerHTML = `<a href="${imageLink}" target="_blank">${imageLink}</a>`;
+                    const displayText = imageLink.slice(-18, -10); // Extract a portion of the link
+                    newImageItem.innerHTML = `<a href="${imageLink}" target="_blank">${displayText}</a>`;
                     imageList.appendChild(newImageItem);  // Append new image link to the list
 
                     console.log(`Updated status for ${month}:`, breakdownStatuses[monthIndex]); // Log updated month object with the image link
@@ -1584,9 +1609,11 @@ function restoreBreakdownStatuses() {
                 if (monthStatus.image) {
                     const imageLinks = monthStatus.image.split(',');
                     imageLinks.forEach(link => {
-                        monthDiv.querySelector('ul').innerHTML += `<li><a href="${link}" target="_blank">${link}</a></li>`;
+                        const displayText = link.slice(-18, -10); // Extract a portion of the link
+                        monthDiv.querySelector('ul').innerHTML += `<li><a href="${link}" target="_blank">${displayText}</a></li>`;
                     });
                 }
+
 
                 // Restore comments if they exist
                 if (monthStatus.comments) {
