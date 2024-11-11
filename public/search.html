@@ -73,7 +73,7 @@
 
         /* Navbar links */
     .navbar-links {
-            display: ruby-text;
+            display: flex;
             list-style-type: none;
             gap: 22px; /* Adds space between each menu item */
         }
@@ -683,6 +683,10 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field24" value="${profile.field24}" /></td>
                             </tr>
                             <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>S. A/c Quantity:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field21" value="${profile.field21}" /></td>
+                            </tr>
+                            <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Total Quantity:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field13" value="${profile.field13}" /></td>
                             </tr>
@@ -995,7 +999,6 @@ function generatePMSchedules(contractFrom, contractTo, totalVisits) {
 }
 
 // Function to dynamically update comments in monthStatuses array when the user types
-// Function to dynamically update comments in monthStatuses array when the user types
 function updateComment(monthIndex, newComment) {
     monthStatuses[monthIndex].comments = newComment;
     console.log(`Updated comment for ${monthStatuses[monthIndex].month}:`, newComment);
@@ -1152,6 +1155,13 @@ function restoreStatuses() {
         console.error('Error restoring statuses:', e);
     }
 }
+
+function deleteImage(monthIndex, imageUrl) {
+    monthStatuses[monthIndex].images = monthStatuses[monthIndex].images.filter(img => img !== imageUrl);
+    updateField30(); // Update data in the field30 textarea
+    restoreStatuses(); // Refresh the UI
+}
+
 
 // Function to show confirmation popup
 function showPopup(message) {
@@ -1442,10 +1452,10 @@ function generateBreakdownSchedules(contractFrom, contractTo, totalBreakdowns) {
                 </div>
                 <div id="${monthId}-content" style="display: none; padding: 16px; background-color: #f9f9f9;">
                     <div>Breakdowns: ${breakdownsPerMonth}</div>
-                    <button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'onhold')">On Hold</button>
-<button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'completed')">Completed</button>
-<button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'schedule')">Schedule</button>
-<button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'split')">Split</button>
+                    <button type="button" style="margin: 4px;" onclick="updateAndSaveBreakdown('${monthId}', ${month}, 'onhold')">On Hold</button>
+                    <button type="button" style="margin: 4px;" onclick="updateAndSaveBreakdown('${monthId}', ${month}, 'completed')">Completed</button>
+                    <button type="button" style="margin: 4px;" onclick="updateAndSaveBreakdown('${monthId}', ${month}, 'schedule')">Schedule</button>
+                    <button type="button" style="margin: 4px;" onclick="updateAndSaveBreakdown('${monthId}', ${month}, 'split')">Split</button>
                     <br><br>
                     <!-- File Upload for Images -->
                     <label for="breakdown-file-${month}" class="custom-file-upload" style="margin: 4px;">
@@ -1494,20 +1504,6 @@ function handleSubmit() {
         saveProfileDetails();
     }, 2000); // 2000 milliseconds = 2 seconds
 }
-// Function to update status and change background color
-function updateAndSave(monthId, monthIndex, status) {
-    // Update status and background color
-    updateBreakdownStatus(monthId, monthIndex, status);
-    // Delay 2 seconds before running saveProfileDetails
-    setTimeout(() => {
-        saveProfileDetails();
-    }, 2000);
-}
-
-
-
-
-
 
 // Function to dynamically update comments in breakdownStatuses array and display them immediately in the comment list
 function updateBreakdownComment(monthIndex, newComment) {
@@ -1589,6 +1585,15 @@ function updateBreakdownStatus(monthId, monthIndex, status) {
     updateField32();
 }
 
+// Function to update status and change background color
+function updateAndSaveBreakdown(monthId, monthIndex, status) {
+    // Update status and background color
+    updateBreakdownStatus(monthId, monthIndex, status);
+    // Delay 2 seconds before running saveProfileDetails
+    setTimeout(() => {
+        saveProfileDetails();
+    }, 2000);
+}
 // Function to update field32 textarea with JSON data
 function updateField32() {
     document.getElementById('field32').value = JSON.stringify(breakdownStatuses);
@@ -1682,7 +1687,7 @@ function saveBreakdownProfileDetails() {
                 "field18": document.getElementById('field18').value,
                 "field19": document.getElementById('field19').value,
                 "field20": document.getElementById('field20').value,
-                // "field21": document.getElementById('field21').value,
+                "field21": document.getElementById('field21').value,
                 "field22": document.getElementById('field22').value,
                 "field23": document.getElementById('field23').value,
                 "field24": document.getElementById('field24').value,
@@ -1771,74 +1776,90 @@ function saveBreakdownProfileDetails() {
         function addImage() {
     const fileInput = document.getElementById('imageUploader');
     const files = fileInput.files;
+
+    console.log('Starting image upload process.');
+
     if (files.length === 0) {
+        console.log('No files selected for upload.');
         showPopup('No files selected.');
         return;
     }
+
+    console.log(`Number of files selected: ${files.length}`);
+    
     const myHeaders = new Headers();
     myHeaders.append("Authorization", token); // Replace with your actual token
+
     const formdata = new FormData();
-    // Loop through the selected files and append each to the FormData
     for (let i = 0; i < files.length; i++) {
         formdata.append("file", files[i], files[i].name);
+        console.log(`Added file to form data: ${files[i].name}`);
     }
+
+    console.log('Form data prepared. Sending request to API.');
+
     const requestOptions = {
         method: "POST",
         headers: myHeaders,
         body: formdata,
         redirect: "follow"
     };
+
     fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
         .then((response) => {
+            console.log('API request sent. Awaiting response...');
             if (!response.ok) {
+                console.error(`HTTP error! status: ${response.status}`);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+            console.log('Response received. Parsing JSON...');
             return response.json(); // Get response as JSON
         })
         .then((result) => {
-            console.log('API Response:', result);
+            console.log('API response parsed successfully:', result);
+
             // Extract the image URLs from the API response
             const imageUrls = result.data.images.map(url => url + '?alt=media'); // Append ?alt=media
+            console.log('Extracted image URLs:', imageUrls);
+
             // Get the current images from the textarea
             const imagesTextArea = document.getElementById('images');
             const existingImages = imagesTextArea.value;
+            console.log('Existing images in textarea:', existingImages);
+
             // Append the new URLs to the textarea
             imagesTextArea.value = existingImages ? `${existingImages}, ${imageUrls.join(', ')}` : imageUrls.join(', ');
+            console.log('Updated textarea content:', imagesTextArea.value);
+
             // Display the newly uploaded image URLs as clickable links in the preview section
             const imagePreviewDiv = document.getElementById('imagePreview');
             imageUrls.forEach(newImageUrl => {
+                const displayText = newImageUrl.trim().slice(-18, -10); // Extract part of the link
+                console.log(`Adding new image link to preview: ${displayText}`);
                 const newLinkElement = document.createElement('a');
                 newLinkElement.href = newImageUrl; // Set the href to the new image URL
                 newLinkElement.target = "_blank"; // Open link in a new tab
-                newLinkElement.textContent = newImageUrl; // Set the link text to the image URL
+                newLinkElement.textContent = displayText; // Set the link text to the sliced part of the URL
                 newLinkElement.style = "display: block; margin: 4px; color: blue;";
                 imagePreviewDiv.appendChild(newLinkElement); // Append the new link to the preview section
             });
-            showPopup('Images uploaded successfully, Are you sure you want to update your profile?');
+
+            showPopup('Images uploaded successfully');
+
+            // Schedule saveProfileDetails to execute after 2 seconds
+            console.log('Scheduling saveProfileDetails to execute in 2 seconds...');
+            setTimeout(saveProfileDetails, 2000);
         })
         .catch((error) => {
-            console.error('Error uploading images:', error);
+            console.error('Error during image upload process:', error);
             showPopup('Image upload failed. Please try again.');
+        })
+        .finally(() => {
+            console.log('Image upload process completed.');
         });
 }
-        </script>
-        <script>
-            function showPopup(message) {
-                // Display the popup with the message
-                const popup = document.getElementById("popupMessage");
-                document.getElementById("popupText").innerText = message;
-                popup.style.display = "block";
-            
-                // Hide the popup automatically after 3 seconds
-                setTimeout(() => {
-                    popup.style.display = "none";
-                }, 3000);
-            }
-            
-            function closePopup() {
-                // Hide the popup immediately if needed
-                document.getElementById("popupMessage").style.display = "none";
-            }
+
+
             </script>
     <script>
         // Function to check for required cookies
