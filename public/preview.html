@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Profile</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+    <link href="fonts/css/solid.min.css" rel="stylesheet" />
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/prview.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    .profile-container {
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    #profilePhoto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navButton {
+  background-color: #F9F9F9; /* Adjust the button background color */
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+#prevButton {
+  order: 1; /* Ensure prevButton comes first */
+}
+#nextButton {
+  order: 2; /* Ensure nextButton comes last */
+}
+    @media (min-width: 768px) {
+        .profile-container {
+            width: 60%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+    }
+
+ /* Logo Image Styling */
+ .logo-img {
+    width: 220px; /* Adjust size for desktop view */
+    height: 75px;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        max-width: 120px; /* Adjust size for mobile view */
+    }
+}
+/* Base styles for desktop view */
+#on-hold-reason {
+    margin-left: 300px;
+}
+#marital-tenure{
+    margin-left: 350px;
+}
+#children {
+    margin-left: 390px;
+}
+#divorce-document {
+    margin-left: 230px;
+    display: inline-table;
+}
+
+/* Styles for mobile view */
+@media (max-width: 768px) {
+    #on-hold-reason,
+    #marital-tenure {
+        margin-left: 220px;
+    }
+    #children {
+        margin-left: 260px;
+    }
+    #divorce-document {
+        margin-left: 70px;
+    }
+}
+.detail-container {
+  display: flex;
+}
+
+.detail-container label {
+  width: 35%; /* Adjust this percentage if necessary */
+  text-align: left;
+}
+
+.detail-container span {
+  width: 65%; /* Span takes 65% of the width */
+  text-align: left;
+  margin-left: auto; /* Push the span to the right side */
+}
+.detail-item label {
+      color: purple;
+      font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<section id="top" class="bg_brown pt-2 pb-2">
+    <div class="container-xl">
+     <div class="row top_1">
+      <div class="col-md-6">
+       <div class="top_1l mt-1">
+      <ul class="mb-0 font_14">
+         <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmail.com</li>
+       </ul>
+     </div>
+      </div>
+      <div class="col-md-6">
+       <div class="top_1r text-end">
+        <ul class="mb-0">
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+       </ul>
+     </div>
+      </div>
+     </div>
+    </div>
+</section>
+   
+<section id="header">
+     <nav class="navbar navbar-expand-md navbar-light p-0 pt-2 pb-2" id="navbar_sticky">
+       <div class="container-xl">
+       <a class="navbar-brand p-0 me-0" href="index.html">
+				<img src="img/IMG-20240813-WA0001-removebg-preview.png" alt="ISC Logo" class="logo-img">
+			</a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-0 ms-auto">
+          <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login/Register
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
+            <a class="dropdown-item" href="register-process.html">Create Profile</a>
+<a class="dropdown-item" href="modifyprofile.html">Modify Profile</a>
+            <a class="dropdown-item" href="plans.html">Plans</a>
+          </div>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="filter.html">Search</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="payment.html">Payment</a>
+          </li>
+        
+          <!-- Dropdown for Event -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Resources
+            </a>
+          <ul class="dropdown-menu" aria-labelledby="eventDropdown">
+            <li><a class="dropdown-item" href="khajoor-pe-nikah.html">Khajoor pe Nikah(KPN)</a></li>
+            <li><a class="dropdown-item" href="islamic-matrimonial-tips.html">Marriage Tips</a></li>
+            <li><a class="dropdown-item" href="HealthWellness.html">Health & Wellness Advice</a></li>
+            <li><a class="dropdown-item" href="islamic-relationship-advice.html">Relationship Advice/Consultant</a></li>
+            <li><a class="dropdown-item" href="wedding-planning.html">Islamic wedding Planning</a></li>
+							<li><a class="dropdown-item" href="faq.html">FAQ's</a></li>
+          </ul>
+          </li>
+        
+          <!-- Dropdown for Donation -->
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="donationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Donation
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="donationDropdown">
+            <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
+            <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
+            <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food/Ration Distribution</a></li>
+            <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+<li><a class="dropdown-item" href="bloodbank.html">Blood bank Directory</a></li>
+            <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
+            <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment/Business Support</a></li>
+          </ul>
+          </li>
+          <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Media</a>
+          </li> -->
+          <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <!-- <li class="nav-item">
+          <a class="nav-link" href="login.html">Sign In/Sign Up</a>
+          </li> -->
+        </ul>
+       </div>
+       </div>
+     </nav>
+</section>
+
+<div class="header">
+  <div class="back-button" onclick="goBack()"> < </div>
+  <div class="title">Profile</div>
+</div>
+
+  <div class="profile-container">
+<div id="profilePhoto" class="resizeable">
+  <button id="prevButton" class="navButton">◀</button>
+  <button id="nextButton" class="navButton">▶</button>
+</div>
+
+      <div class="profile-details" style="width: 500px;">
+          <h2>Marriage Profile</h2>
+          
+          <div class="detail-item">
+            <label>Name:</label>
+            <span id="name"></span>
+          </div>
+          <div class="detail-item">
+              <label>Gender:</label>
+              <span id="gender"></span>
+          </div>
+          <div class="detail-item">
+              <label>Year of Birth:</label>
+              <span id="yearOfBirth"></span>
+          </div>
+          <div class="detail-item">
+              <label>Height:</label>
+              <span id="height"></span>
+          </div>
+          <div class="detail-item">
+              <label>Family/Subcaste:</label>
+              <span id="family-subcaste"></span>
+          </div>
+          <div class="detail-item">
+              <label>Follow:</label>
+              <span id="follow"></span>
+          </div>
+          <div class="detail-item">
+            <label>Marital Status:</label>
+            <span id="marital-status" onchange="toggleMaritalDetails()"></span>
+          </div>
+          <div class="detail-item" id="marital-tenure-container" style="display: none;">
+            <label>Marital Tenure:</label>
+            <span id="marital-tenure"></span>
+          </div>
+          <div class="detail-item" id="children-container" style="display: none;">
+            <label>Children:</label>
+            <span id="children"></span>
+          </div>
+          <div class="detail-item" id="document-status-container" style="display: none;">
+            <label>Document Status:</label>
+            <span id="document-status"></span>
+          </div>
+          <div class="detail-item" id="divorce-document-container" style="display: none;">
+            <label>Valid Divorce Document:</label>
+            <span id="divorce-document"></span>
+          </div>
+          <div class="detail-item">
+              <label>Education:</label>
+              <span id="education"></span>
+          </div>
+          <div class="detail-item">
+              <label>Profession:</label>
+              <span id="profession"></span>
+          </div>
+          <div class="detail-item">
+              <label>Company:</label>
+              <span id="company"></span>
+          </div>
+          <div class="detail-item">
+              <label>Job Location:</label>
+              <span id="job-location"></span>
+          </div>
+          <div class="detail-item">
+              <label>Home Address:</label>
+              <span id="home-address"></span>
+          </div>
+          <div class="detail-item">
+              <label>Father's Name:</label>
+              <span id="father-name"></span>
+          </div>
+          <div class="detail-item">
+              <label>Father's Occupation:</label>
+              <span id="father-occupation"></span>
+          </div>
+          <div class="detail-item">
+              <label>Mother's Name:</label>
+              <span id="mother-name"></span>
+          </div>
+          <div class="detail-item">
+              <label>Mother's Occupation:</label>
+              <span id="mother-occupation"></span>
+          </div>
+          <div class="detail-item">
+              <label>No of Sisters:</label>
+              <span id="no-of-sisters"></span>
+          </div>
+          <div class="detail-item">
+            <label>Sister's marital status:</label>
+            <span id="sister-marital-status"></span>
+          </div>
+          <div class="detail-item">
+            <label>Sisters's occupation:</label>
+            <span id="sister-occupation"></span>
+          </div>
+          <div class="detail-item">
+              <label>No of Brothers:</label>
+              <span id="no-of-brothers"></span>
+          </div>
+          <div class="detail-item">
+            <label>Brother's marital status:</label>
+            <span id="brother-marital-status"></span>
+          </div>
+          <div class="detail-item">
+            <label>Brother's occupation:</label>
+            <span id="brother-occupation"></span>
+          </div>
+          <div class="detail-item">
+            <label>Family contact number:</label>
+            <span id="family-contact-number"></span>
+          </div>
+          <div class="detail-item">
+              <label>Preferred Family/Subcaste:</label>
+              <span id="partner-caste"></span>
+          </div>
+          <div class="detail-item">
+              <label>Preferred Education:</label>
+              <span id="partner-education"></span>
+          </div>
+          <div class="detail-item">
+              <label>Prefered Profession:</label>
+              <span id="partner-profession"></span>
+          </div>
+          <div class="detail-item">
+              <label>Preferred Age:</label>
+              <span id="custom-age"></span>
+          </div>
+          <div class="detail-item">
+              <label>Preferred Height:</label>
+              <span id="custom-height"></span>
+          </div>
+          <div class="detail-item">
+              <label>Personal Attributes:</label>
+              <span id="personal-attributes"></span>
+          </div>
+          <div class="detail-item">
+              <label>Prefered Follow & Practice:</label>
+              <span id="partner-follow"></span>
+          </div>
+          <div class="detail-item">
+              <label>Family Type:</label>
+              <span id="family-type"></span>
+          </div>
+          <div class="detail-item">
+            <label>Prefered Location:</label>
+            <span id="partner-location"></span>
+          </div>
+          <div class="detail-item">
+              <label>Religious Attributes:</label>
+              <span id="religious-attributes"></span>
+          </div>
+          <!-- <div class="detail-item">
+            <label>Partner Working Status to be:</label>
+            <span id="partner-working-status"></span>
+          </div> -->
+          <div class="detail-item">
+            <label>ISC Sl. No:</label>
+            <span id="slno"></span>
+          </div>
+          <div class="detail-item">
+            <label>ISC Coordinator Name:</label>
+            <span id="coordinator-name"></span>
+          </div>
+          <div class="detail-item">
+            <label>ISC Coordinator Number:</label>
+            <span id="coordinator-number"></span>
+          </div>
+          <div class="detail-item">
+            <label>Profile Status:</label>
+            <span id="profile-status" onchange="toggleOnHoldReason()"></span>
+          </div>
+          <div class="detail-item" id="on-hold-reason-container" style="display: none;">
+            <label>Reason for On Hold:</label>
+            <span id="on-hold-reason" class="left-align"></span>
+          </div>
+
+   <div class="footer">
+        <button onclick="continueToFilters()" style="
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #333;
+            color: white;">Continue</button>
+    </div>
+    </div>
+    </div>
+  
+<section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
+      <div class="container-fluid" style="background-color: #5c0951;">
+        <div class="footer_m bg_light p-4">
+          <div class="footer_1 row">
+          <div class="col-md-3">
+         <div class="footer_1i">
+           <h1 class="mb-3"><a class="family_1" href="index.html"><i class="fa fa-heart me-1 col_brown"></i>  ISC <br>
+     <span class="family_2 fw-normal font_14 col_brown">Lookimg for a patner </span>
+     </a></h1>
+     <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+     <ul class="mb-0"> 
+     <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
+     <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
+     <li class="mt-3" style="color: white;"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+     </ul>
+         </div>
+        </div>
+          <div class="col-md-3">
+         <div class="footer_1i">
+            <h5 class="mt-3 mb-4">Social media</h5>
+          <ul class="mb-0">
+            <li><a href="#">Facebook</a></li>
+           <li class="mt-3"><a href="#">Twitter</a></li>
+           <li class="mt-3"><a href="#">Pinterest</a></li>
+           <li class="mt-3"><a href="#">Instagram</a></li>
+          </ul>
+         </div>
+        </div> 
+        
+        <div class="col-md-3">
+         <div class="footer_1i">
+            <h5 class="mt-3 mb-4">Get TO Know US</h5>
+          <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+       
+           <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+          
+         </div>
+        </div>
+        <div class="col-md-3">
+         <div class="footer_1i">
+            <h5 class="mt-3 mb-4">TELEGRAM</h5>
+          <div class="footer_1i1 row mx-0">
+           <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+         <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+         <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+          </div>
+          <div class="footer_1i1 row mx-0">
+           <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+         <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+         <div class="col-md-4 p-0">
+           <div class="footer_1i1l">
+             <div class="grid clearfix">
+           <figure class="effect-jazz mb-0">
+           <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+           </figure>
+           </div>
+           </div>
+         </div>
+          </div>
+         </div>
+        </div>
+        </div><hr class="mt-4 mb-4">
+        <div class="footer_2 row">
+          <div class="col-md-8">
+         <div class="footer_2l">
+             <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+         </div>
+        </div>
+       <!-- <div class="col-md-4">
+         <div class="footer_2r text-end">
+            <ul class="text-uppercase font_13 mb-0">
+             <li class="d-inline-block"><a href="#"> Facebook</a></li>
+           <li class="d-inline-block mx-2 text-muted">|</li>
+            <li class="d-inline-block"><a href="#"> Twitter</a></li>
+            <li class="d-inline-block mx-2 text-muted">|</li>
+            <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+            <li class="d-inline-block mx-2 text-muted">|</li>
+            <li class="d-inline-block"><a href="#"> Instagram</a></li>
+           </ul>
+         </div>
+        </div> -->
+        </div>
+        </div>
+       </div>
+      </div>
+</section>
+
+<div id="footerPlaceholder"></div>
+<script src="js/prview.js"></script>
+
+<script>
+      function toggleOnHoldReason() {
+    const profileStatus = document.getElementById('profile-status').innerText;
+    const onHoldReasonContainer = document.getElementById('on-hold-reason-container');
+
+    if (profileStatus.toLowerCase() === 'on hold') {
+        onHoldReasonContainer.style.display = 'block';
+    } else {
+        onHoldReasonContainer.style.display = 'none';
+    }
+}
+
+function toggleMaritalDetails() {
+    const maritalStatus = document.getElementById('marital-status').innerText;
+    const maritalTenureContainer = document.getElementById('marital-tenure-container');
+    const childrenContainer = document.getElementById('children-container');
+    const documentstatuscontainer = document.getElementById('document-status-container');
+    const divorceDocumentContainer = document.getElementById('divorce-document-container');
+
+    if (maritalStatus.toLowerCase() === 'divorced' || maritalStatus.toLowerCase() === 'widowed') {
+        maritalTenureContainer.style.display = 'block';
+        childrenContainer.style.display = 'block';
+        documentstatuscontainer.style.display = 'block';
+        divorceDocumentContainer.style.display = 'block';
+    } else {
+        maritalTenureContainer.style.display = 'none';
+        childrenContainer.style.display = 'none';
+        documentstatuscontainer.style.display = 'none';
+        divorceDocumentContainer.style.display = 'none';
+    }
+}
+
+function toggleSiblingDetails() {
+    const noOfSisters = document.getElementById('no-of-sisters').innerText;
+    const sistersDetails = document.getElementById('sisters-details');
+    const noOfBrothers = document.getElementById('no-of-brothers').innerText;
+    const brothersDetails = document.getElementById('brothers-details');
+
+    if (noOfSisters.toLowerCase() !== 'N/A') {
+        document.querySelectorAll('#sisters-details').forEach(function(item) {
+            item.style.display = 'block';
+        });
+    } else {
+        document.querySelectorAll('#sisters-details').forEach(function(item) {
+            item.style.display = 'none';
+        });
+    }
+
+    if (noOfBrothers.toLowerCase() !== 'N/A') {
+        document.querySelectorAll('#brothers-details').forEach(function(item) {
+            item.style.display = 'block';
+        });
+    } else {
+        document.querySelectorAll('#brothers-details').forEach(function(item) {
+            item.style.display = 'none';
+        });
+    }
+}
+
+// Run the functions on page load in case the status is already set
+document.addEventListener("DOMContentLoaded", function() {
+    toggleOnHoldReason();
+    toggleMaritalDetails();
+    toggleSiblingDetails();
+});
+
+</script>
+
+<script>
+    // Function to get the value of a cookie by name, considering the full value with special characters
+    function getCookie(name) {
+        let decodedCookies = decodeURIComponent(document.cookie);
+        let cookiesArray = decodedCookies.split('; ');
+        for (let i = 0; i < cookiesArray.length; i++) {
+            let cookiePair = cookiesArray[i].split('=');
+            if (cookiePair[0] === name) {
+                // Rejoining everything after the first '=' to handle cases where '=' is part of the value
+                return cookiePair.slice(1).join('=');
+            }
+        }
+        return "";
+    }
+    
+    // Function to display divorce documents
+    function displayDivorceDocuments() {
+        const divorceDocumentContainer = document.getElementById("divorce-document");
+        const cookieNames = ["images6", "images7", "images8", "images9", "images10", "images11"];
+    
+        let documentCount = 0;
+    
+        cookieNames.forEach((cookieName, index) => {
+            const documentUrl = decodeURIComponent(getCookie(cookieName)) || null;
+    
+            if (documentUrl && documentUrl !== "null") {
+                documentCount++;
+                const documentLabel = `Click to View Document ${documentCount}`;
+                
+                if (documentUrl.endsWith(".jpg") || documentUrl.endsWith(".jpeg") || documentUrl.endsWith(".png") || documentUrl.endsWith(".gif")) {
+                    // Display as an image
+                    const imgElement = document.createElement("img");
+                    imgElement.src = documentUrl;
+                    imgElement.alt = documentLabel;
+                    imgElement.style.maxWidth = "100%";
+                    imgElement.style.height = "auto";
+                    divorceDocumentContainer.appendChild(imgElement);
+                } else {
+                    // Display as a link with red text color
+                    const linkElement = document.createElement("a");
+                    linkElement.href = documentUrl;
+                    linkElement.innerText = documentLabel;
+                    linkElement.target = "_blank";
+                    linkElement.style.color = "red";
+                    
+                    // Only append the link if the URL is valid (not "null")
+                    if (documentUrl !== "null") {
+                        divorceDocumentContainer.appendChild(linkElement);
+                    }
+                }
+                // Add a line break for better spacing
+                divorceDocumentContainer.appendChild(document.createElement("br"));
+            }
+        });
+    
+        // If no document is found, display "N/A"
+        if (documentCount === 0) {
+            divorceDocumentContainer.innerText = "N/A";
+        }
+    }
+    
+    // Call the function to display the documents when the page loads
+    displayDivorceDocuments();
+    
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function setFieldValueOrHide(fieldId, cookieName) {
+        const value = decodeURIComponent(getCookie(cookieName));
+        const field = document.getElementById(fieldId);
+        if (value && value !== 'undefined') {
+            field.innerText = value;
+        } else {
+            field.parentElement.style.display = 'none'; // Hide the <div> if no value
+        }
+    }
+
+    // Fetch the data from cookies and hide the fields if no data is available
+    setFieldValueOrHide("coordinator-name", "field10");
+    setFieldValueOrHide("coordinator-number", "field41");
+    setFieldValueOrHide("profile-status", "field11");
+    setFieldValueOrHide("on-hold-reason", "field13");
+    setFieldValueOrHide("slno", "field1");
+    setFieldValueOrHide("name", "field5");
+    setFieldValueOrHide("gender", "gender");
+    setFieldValueOrHide("yearOfBirth", "field6");
+    setFieldValueOrHide("height", "field14");
+    setFieldValueOrHide("family-subcaste", "field8");
+    setFieldValueOrHide("follow", "field4");
+    setFieldValueOrHide("marital-status", "field3");
+    setFieldValueOrHide("marital-tenure", "field15");
+    setFieldValueOrHide("children", "field16");
+    setFieldValueOrHide("document-status", "field43");
+    // setFieldValueOrHide("divorce-document", "field17");
+    setFieldValueOrHide("education", "field2");
+    setFieldValueOrHide("profession", "field9");
+    setFieldValueOrHide("company", "field18");
+    setFieldValueOrHide("job-location", "field19");
+    setFieldValueOrHide("home-address", "field7");
+    setFieldValueOrHide("father-name", "field20");
+    setFieldValueOrHide("father-occupation", "field21");
+    setFieldValueOrHide("mother-name", "field22");
+    setFieldValueOrHide("mother-occupation", "field23");
+    setFieldValueOrHide("family-contact-number", "field42");
+    setFieldValueOrHide("no-of-sisters", "field24");
+    setFieldValueOrHide("sister-marital-status", "field37");
+    setFieldValueOrHide("sister-occupation", "field38");
+    setFieldValueOrHide("no-of-brothers", "field25");
+    setFieldValueOrHide("brother-marital-status", "field39");
+    setFieldValueOrHide("brother-occupation", "field40");
+    setFieldValueOrHide("partner-caste", "field26");
+    setFieldValueOrHide("partner-education", "field27");
+    setFieldValueOrHide("partner-profession", "field28");
+    setFieldValueOrHide("custom-age", "field29");
+    setFieldValueOrHide("custom-height", "field30");
+    setFieldValueOrHide("personal-attributes", "field31");
+    setFieldValueOrHide("partner-follow", "field32");
+    setFieldValueOrHide("family-type", "field33");
+    setFieldValueOrHide("partner-location", "field34");
+    setFieldValueOrHide("religious-attributes", "field35");
+    // setFieldValueOrHide("partner-working-status", "field36");
+});
+
+</script>
+</body>
+</html>
