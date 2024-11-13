@@ -1172,12 +1172,11 @@ button[type="submit"]:hover {
 </script> -->
 
 <script>
-   // Helper functions to manage cookies
-   function setCookie(name, value, years = 1) {
-    const expires = new Date(Date.now() + years * 365 * 24 * 60 * 60 * 1000).toUTCString(); // Set cookie expiration to 1 year
+// Helper functions to manage cookies
+function setCookie(name, value, hours = 1) {
+    const expires = new Date(Date.now() + hours * 60 * 60 * 1000).toUTCString(); // Set cookie expiration to 1 hour
     document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
 }
-
 
 function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -1257,6 +1256,17 @@ function updateImagePreview(imagesUrls) {
         img.alt = `images ${index + 1}`;
         img.classList.add('preview-image');
 
+        // Log the image URL to check if it's correct
+        console.log(`Previewing image: ${url}`);
+
+        img.onload = () => {
+            console.log(`Image loaded successfully: ${url}`);
+        };
+
+        img.onerror = () => {
+            console.error(`Failed to load image: ${url}`);
+        };
+
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
         removeButton.classList.add('remove-btn');
@@ -1271,20 +1281,39 @@ function updateImagePreview(imagesUrls) {
     });
 }
 
+// Function to load images from cookies on page load
+function loadImagesFromCookies() {
+    const imagesUrls = [];
+    let index = 0;
+    while (getCookie(`images${index}`)) {
+        imagesUrls.push(getCookie(`images${index}`));
+        index++;
+    }
+
+    // If there are any images stored in cookies, update the preview
+    if (imagesUrls.length > 0) {
+        updateImagePreview(imagesUrls);
+    } else {
+        console.log("No images found in cookies.");
+    }
+}
+
 // Call handleImageUpload when files are selected
 const fileInput = document.getElementById('image-upload');
 fileInput.addEventListener('change', () => handleImageUpload(fileInput));
+
+// Call loadImagesFromCookies when the page is loaded
+window.addEventListener('load', loadImagesFromCookies);
+
 
 
 </script>
 
 <script>
-    function setCookie(name, value) {
-    const oneYear = 365 * 24 * 60 * 60 * 1000; // 1 year in milliseconds
-    const expires = new Date(Date.now() + oneYear).toUTCString(); // Set cookie expiration to 1 year
+    function setCookie(name, value, hours = 1) {
+    const expires = new Date(Date.now() + hours * 60 * 60 * 1000).toUTCString(); // Set cookie expiration to 1 hour
     document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
 }
-
 
 function eraseCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
@@ -1356,6 +1385,7 @@ function updateDocumentPreview(documentUrls) {
         const docLink = document.createElement('a');
         docLink.href = url;
         docLink.target = "_blank";
+        docLink.style.color = 'red';
         docLink.textContent = `Document ${index + 6}`;
         docLink.classList.add('preview-document');
 
@@ -1797,13 +1827,12 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
 </script>
 
 <script>
-    function setCookie(name, value) {
+    function setCookie(name, value, hours) {
     const d = new Date();
-    d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000)); // Set expiration time to 1 year
+    d.setTime(d.getTime() + (hours * 60 * 60 * 1000)); // Set expiration time to specified hours
     const expires = "expires=" + d.toUTCString();
-    document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
-
 
 function getCookie(name) {
     const cname = name + "=";
