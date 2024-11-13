@@ -1,0 +1,77 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    width: 100%;
+}
+
+
+ .header {
+    background-color: #ffffff; /* White background */
+    border-bottom: 1px solid #dddddd; /* Light gray border bottom */
+}
+.logo {
+    font-size: 1.5rem; /* Adjust logo font size */
+}
+.language-change button {
+    min-width: 100px; /* Adjust button minimum width */
+}
+@media (max-width: 576px) {
+    .language-change button {
+        min-width: auto; /* Remove minimum width on smaller screens */
+    }
+}
+.logo {
+    font-size: 34px;
+    color: #D32F2F;
+}
+
+.language-change {
+    font-size: 30px;
+    
+}
+.row{
+display: flex;
+}
+
+  .background-image {
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.custom-margin-left {
+    margin-left: 150px;
+    position: relative;
+}
+.card {
+    max-width: 600px; /* Limit maximum width */
+    padding: 20px;
+    background-color: #f8f9fa; /* Light gray background */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Center horizontally */
+}
+.card h2 {
+    color: #dc3545; /* Red title color */
+}
+.card .btn-danger {
+    background-color: #dc3545; /* Red button background */
+    border-color: #dc3545; /* Red button border */
+}
+@media (max-width: 992px) {
+    .custom-margin-left {
+        margin-left: 0;
+    }
+    .form-control option{
+        width: 100px;
+    }
+}
+
+.container1 {
+    color: #D32F2F;
+}
