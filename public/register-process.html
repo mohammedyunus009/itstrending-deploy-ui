@@ -1286,6 +1286,7 @@ function loadImagesFromCookies() {
     const imagesUrls = [];
     let index = 0;
 
+
     // Retrieve image URLs stored in cookies
     while (getCookie(`images${index}`)) {
         let imageUrl = getCookie(`images${index}`);
@@ -1296,6 +1297,10 @@ function loadImagesFromCookies() {
         }
         
         imagesUrls.push(imageUrl);
+
+    while (getCookie(`images${index}`)) {
+        imagesUrls.push(getCookie(`images${index}`));
+
         index++;
     }
 
