@@ -1285,8 +1285,22 @@ function updateImagePreview(imagesUrls) {
 function loadImagesFromCookies() {
     const imagesUrls = [];
     let index = 0;
+
+
+    // Retrieve image URLs stored in cookies
+    while (getCookie(`images${index}`)) {
+        let imageUrl = getCookie(`images${index}`);
+        
+        // Ensure "?alt=media" is appended to the URL
+        if (!imageUrl.endsWith("=media")) {
+            imageUrl += "=media";
+        }
+        
+        imagesUrls.push(imageUrl);
+
     while (getCookie(`images${index}`)) {
         imagesUrls.push(getCookie(`images${index}`));
+
         index++;
     }
 
