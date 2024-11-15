@@ -1286,7 +1286,6 @@ function loadImagesFromCookies() {
     const imagesUrls = [];
     let index = 0;
 
-
     // Retrieve image URLs stored in cookies
     while (getCookie(`images${index}`)) {
         let imageUrl = getCookie(`images${index}`);
@@ -1297,10 +1296,6 @@ function loadImagesFromCookies() {
         }
         
         imagesUrls.push(imageUrl);
-
-    while (getCookie(`images${index}`)) {
-        imagesUrls.push(getCookie(`images${index}`));
-
         index++;
     }
 
@@ -1311,6 +1306,7 @@ function loadImagesFromCookies() {
         console.log("No images found in cookies.");
     }
 }
+
 
 // Call handleImageUpload when files are selected
 const fileInput = document.getElementById('image-upload');
