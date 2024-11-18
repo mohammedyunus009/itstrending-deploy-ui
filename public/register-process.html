@@ -1534,20 +1534,39 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
     }).val(localStorage.getItem('selectedHeight') || null).trigger('change'); // Retrieve value from localStorage if exists
 
     // Initialize Select2 for Family/Subcaste dropdown
-    $('#family-subcaste').select2({
-        tags: true,
-        placeholder: "Select or type a family/subcaste",
-        allowClear: true,
-        data: [
-            { id: 'Syed ', text: 'Syed' },
-            { id: 'Pathan/Khan ', text: 'Pathan/Khan' },
-            { id: 'Shaik ', text: 'Shaik' },
-            { id: 'Reverted Muslims ', text: 'Reverted Muslims' },
-            { id: 'Maimun sait ', text: 'Maimun sait' },
-            { id: 'Baig ', text: 'Baig' }
-        ]
-    }).val(localStorage.getItem('selectedFamilySubcaste') || null).trigger('change'); // Retrieve value from localStorage if exists
+    $(document).ready(function () {
+        // Initialize Select2 for Family/Subcaste dropdown
+        $('#family-subcaste').select2({
+            tags: true,
+            placeholder: "Select or type a family/subcaste",
+            allowClear: true,
+            data: [
+                { id: 'Syed', text: 'Syed' },
+                { id: 'Pathan/Khan', text: 'Pathan/Khan' },
+                { id: 'Shaik', text: 'Shaik' },
+                { id: 'Reverted Muslims', text: 'Reverted Muslims' },
+                { id: 'Maimun sait', text: 'Maimun sait' },
+                { id: 'Baig', text: 'Baig' }
+            ]
+        }).val(localStorage.getItem('selectedFamilySubcaste') || null).trigger('change'); // Retrieve value from localStorage if exists
 
+        // Save selected value to localStorage
+        $('#family-subcaste').on('change', function () {
+            localStorage.setItem('selectedFamilySubcaste', $(this).val());
+        });
+
+        // Fix Caps Lock issue
+        $('#family-subcaste').on('select2:open', function () {
+            // Add a custom handler to prevent resetting the Caps Lock
+            $('.select2-search__field').on('input', function (event) {
+                const inputField = $(this);
+                const currentValue = inputField.val();
+
+                // Prevent automatic resetting of Caps Lock by ensuring text is preserved
+                inputField.val(currentValue);
+            });
+        });
+    });
     // Initialize Select2 for Follow dropdown
     $('#follow').select2({
         tags: true,
@@ -1649,11 +1668,11 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
       placeholder: "Select or type partner professions",
       allowClear: true,
       data: [
-        { id: 'Job - Job only', text: 'Job - Job only' },
-        { id: 'Business - Business only', text: 'Business - Business only' },
+        { id: 'Job only', text: 'Job only' },
+        { id: 'Business only', text: 'Business only' },
         { id: 'Job/Business/Any', text: 'Job/Business/Any' },
-        { id: 'Working - Working girl only', text: 'Working - Working girl only' },
-        { id: 'Non-working - Non-working homely girl', text: 'Non-working - Non-working homely girl' },
+        { id: 'Working girl only', text: 'Working girl only' },
+        { id: 'Non-working homely girl', text: 'Non-working homely girl' },
         { id: 'Working/Non-working', text: 'Working/Non-working' }
       ]
     });
@@ -2016,6 +2035,36 @@ window.onload = checkAuthorization;
             nameInput.value = nameInput.value.replace("|confidential", "");
         }
     });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+  // Function to get a specific cookie by name
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return decodeURIComponent(parts.pop().split(';').shift()); // Decode the cookie value
+    }
+    return null;
+  }
+
+  // Check the email cookie
+  const userEmail = getCookie('email');
+
+  // Redirect based on the cookie value
+  const modifyProfileLink = document.querySelector("a[href='modifyprofile.html']");
+  if (modifyProfileLink) {
+    modifyProfileLink.addEventListener('click', function (e) {
+      e.preventDefault(); // Prevent default navigation
+      if (userEmail === 'iscadmin@gmail.com') {
+        window.location.href = 'dashboard.html'; // Redirect to dashboard
+      } else {
+        window.location.href = 'modifyprofile.html'; // Redirect to modify profile
+      }
+    });
+  }
+});
+
 </script>
 </body>
 </html>
