@@ -185,6 +185,15 @@
         max-width: 120px; /* Adjust size for mobile view */
     }
 }
+.profile-count {
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(112, 77, 112);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
   </style>
 </head>
 <body>
@@ -212,9 +221,9 @@
     </div>
    </div>
   </div>
- </section>
+</section>
  
- <section id="header">
+<section id="header">
    <nav class="navbar navbar-expand-md navbar-light p-0 pt-2 pb-2" id="navbar_sticky">
      <div class="container-xl">
      <a class="navbar-brand p-0 me-0" href="index.html">
@@ -292,12 +301,15 @@
      </div>
      </div>
    </nav>
-   </section>
-   <div class="header">
+</section>
+
+<div class="header">
     <div class="back-button" onclick="goBack()"> &lt; </div>
     <div class="title">Profiles</div>
 </div>
-  <div id="profileContainer" class="profile-container"></div>
+<div id="profileCount" class="profile-count"></div>
+
+<div id="profileContainer" class="profile-container"></div>
   
 
 
@@ -305,7 +317,7 @@
 
   <!-- footer -->
   
-  <section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
+<section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
     <div class="container-fluid" style="background-color: #5c0951;">
       <div class="footer_m bg_light p-4">
         <div class="footer_1 row">
@@ -430,13 +442,15 @@
       </div>
      </div>
     </div>
-   </section>
-   <script>
+</section>
+
+<script>
     function goBack() {
         window.location.href = "filter.html";
     }
 </script>
-   <script>
+
+<script>
     function getCookie(name) {
         let value = `; ${document.cookie}`;
         let parts = value.split(`; ${name}=`);
@@ -681,11 +695,15 @@ if (searchCriteria.serialNo) {
   }
 </script>
 
-  <script>
+<script>
     // Function to create and display profile cards
-function displayProfiles(profiles) {
-  const container = document.getElementById('profileContainer');
-  container.innerHTML = ''; // Clear any existing content
+    function displayProfiles(profiles) {
+  const profileContainer = document.getElementById('profileContainer');
+  const profileCount = document.getElementById('profileCount');
+
+  profileContainer.innerHTML = ''; // Clear any existing content in profile container
+  profileCount.textContent = `Total Profiles Found: ${profiles.length}`; // Update count text
+
   profiles.forEach(profile => {
     const card = document.createElement('div');
     card.className = 'profile-card';
@@ -719,7 +737,7 @@ function displayProfiles(profiles) {
     `;
 
     // Append card to container
-    container.appendChild(card);
+    profileContainer.appendChild(card);
   });
 
   // Handle clicks on profile cards
@@ -730,6 +748,7 @@ function displayProfiles(profiles) {
     });
   });
 }
+
 
 // Retrieve data from session storage
 const data = JSON.parse(sessionStorage.getItem('profileData'));
