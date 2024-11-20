@@ -25,7 +25,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <!-- Include jQuery and Select2 JS --><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <style>
   /* Logo Image Styling */
 .logo-img {
@@ -636,7 +635,12 @@ button[type="submit"]:hover {
                 </select>
             </div>
 
-            <div class="form-group" style="display: flex; align-items: center; margin: 20px;"><label for="follow" style="margin-right: 10px;">Follow:</label><select id="follow" name="field4" multiple="multiple" style="width: 65%;"><!-- Predefined options --><option value="Dargah Fateha">Dargah Fateha</option><option value="Tabligh">Tabligh</option><option value="Jamaat e Islam">Jamaat e Islam</option><option value="Ahle hadees">Ahle hadees</option><option value="Moderate Practising Muslims">Moderate Practising Muslims</option></select></div>
+            <div class="form-group" style="display: flex;">
+                <label for="follow" style="margin-right: 10px;">Follow:</label>
+                    <select id="follow" name="field4" multiple="multiple" style="width: 65%;">
+                <!-- Options will be populated by JavaScript -->
+                    </select>
+            </div>
 
             <h2>Marital Details</h2>
             <div class="form-group" style="display: flex;">
@@ -1545,18 +1549,18 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
     }).val(localStorage.getItem('selectedFamilySubcaste') || null).trigger('change'); // Retrieve value from localStorage if exists
 
     // Initialize Select2 for Follow dropdown
-    // $('#follow').select2({
-    //     tags: true,
-    //     placeholder: "Select or type follow options",
-    //     allowClear: true,
-    //     data: [
-    //         { id: 'Dargah Fateha ', text: 'Dargah Fateha' },
-    //         { id: 'Tabligh ', text: 'Tabligh' },
-    //         { id: 'Jamaat e Islam ', text: 'Jamaat e Islam' },
-    //         { id: 'Ahle hadees ', text: 'Ahle hadees' },
-    //         { id: 'Moderate Practising Muslims ', text: 'Moderate Practising Muslims' }
-    //     ]
-    // }).val(localStorage.getItem('selectedFollow') ? localStorage.getItem('selectedFollow').split(',') : []).trigger('change'); // Retrieve and split values from localStorage
+    $('#follow').select2({
+        tags: true,
+        placeholder: "Select or type follow options",
+        allowClear: true,
+        data: [
+            { id: 'Dargah Fateha ', text: 'Dargah Fateha' },
+            { id: 'Tabligh ', text: 'Tabligh' },
+            { id: 'Jamaat e Islam ', text: 'Jamaat e Islam' },
+            { id: 'Ahle hadees ', text: 'Ahle hadees' },
+            { id: 'Moderate Practising Muslims ', text: 'Moderate Practising Muslims' }
+        ]
+    }).val(localStorage.getItem('selectedFollow') ? localStorage.getItem('selectedFollow').split(',') : []).trigger('change'); // Retrieve and split values from localStorage
 
     // Initialize Select2 for Education dropdown
     $('#education').select2({
@@ -2042,35 +2046,6 @@ window.onload = checkAuthorization;
   }
 });
 
-</script>
-<script>
-    $(document).ready(function () {
-        // Initialize Select2
-        $('#follow').select2({
-            tags: true, // Allow custom options
-            placeholder: "Select or type follow options",
-            allowClear: true
-        });
-        // Restore previous selections from localStorage
-        const savedValues = localStorage.getItem('selectedFollow');
-        if (savedValues) {
-            $('#follow').val(savedValues.split(',')).trigger('change');
-        }
-        // Save selected values to localStorage on change
-        $('#follow').on('change', function () {
-            const selectedOptions = $(this).val() || []; // Handle empty selections
-            localStorage.setItem('selectedFollow', selectedOptions.join(','));
-        });
-        // Force all input text to uppercase
-        $('#follow').on('select2:selecting', function (e) {
-            e.params.args.data.text = e.params.args.data.text.toUpperCase();
-        });
-        $('#follow').on('select2:close', function () {
-            const options = $(this).val() || [];
-            const uppercasedOptions = options.map(option => option.toUpperCase());
-            $(this).val(uppercasedOptions).trigger('change');
-        });
-    });
 </script>
 </body>
 </html>
