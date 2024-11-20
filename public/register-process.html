@@ -635,11 +635,11 @@ button[type="submit"]:hover {
                 </select>
             </div>
 
-            <div class="form-group" style="display: flex;">
+            <div class="form-group" style="display: flex; align-items: center;">
                 <label for="follow" style="margin-right: 10px;">Follow:</label>
-                    <select id="follow" name="field4" multiple="multiple" style="width: 65%;">
-                <!-- Options will be populated by JavaScript -->
-                    </select>
+                <select id="follow" name="field4" multiple="multiple" style="width: 65%;">
+                    <!-- Options will be populated dynamically -->
+                </select>
             </div>
 
             <h2>Marital Details</h2>
@@ -1560,7 +1560,7 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
             { id: 'Ahle hadees ', text: 'Ahle hadees' },
             { id: 'Moderate Practising Muslims ', text: 'Moderate Practising Muslims' }
         ]
-    }).val(localStorage.getItem('selectedFollow') || null).trigger('change'); // Retrieve and split values from localStorage
+    }).val(localStorage.getItem('selectedFollow') ? localStorage.getItem('selectedFollow').split(',') : []).trigger('change'); // Retrieve and split values from localStorage
 
     // Initialize Select2 for Education dropdown
     $('#education').select2({
@@ -1586,7 +1586,7 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
     });
 
     $('#follow').on('change', function() {
-        localStorage.setItem('selectedFollow', $(this).val());
+        localStorage.setItem('selectedFollow', $(this).val().join(','));
     });
 
     $('#education').on('change', function() {
@@ -2045,8 +2045,6 @@ window.onload = checkAuthorization;
     });
   }
 });
-
-
 
 </script>
 </body>
