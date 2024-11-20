@@ -1534,33 +1534,40 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
     }).val(localStorage.getItem('selectedHeight') || null).trigger('change'); // Retrieve value from localStorage if exists
 
     // Initialize Select2 for Family/Subcaste dropdown
-    $('#family-subcaste').select2({
-        tags: true,
-        placeholder: "Select or type a family/subcaste",
-        allowClear: true,
-        data: [
-            { id: 'Syed ', text: 'Syed' },
-            { id: 'Pathan/Khan ', text: 'Pathan/Khan' },
-            { id: 'Shaik ', text: 'Shaik' },
-            { id: 'Reverted Muslims ', text: 'Reverted Muslims' },
-            { id: 'Maimun sait ', text: 'Maimun sait' },
-            { id: 'Baig ', text: 'Baig' }
-        ]
-    }).val(localStorage.getItem('selectedFamilySubcaste') || null).trigger('change'); // Retrieve value from localStorage if exists
+$('#family-subcaste').select2({
+    tags: true,
+    placeholder: "Select or type a family/subcaste",
+    allowClear: true,
+    data: [
+        { id: 'Syed', text: 'Syed' },
+        { id: 'Pathan/Khan', text: 'Pathan/Khan' },
+        { id: 'Shaik', text: 'Shaik' },
+        { id: 'Reverted Muslims', text: 'Reverted Muslims' },
+        { id: 'Maimun sait', text: 'Maimun sait' },
+        { id: 'Baig', text: 'Baig' }
+    ]
+}).val(localStorage.getItem('selectedFamilySubcaste') || null).trigger('change');
 
-    // Initialize Select2 for Follow dropdown
-    $('#follow').select2({
-        tags: true,
-        placeholder: "Select or type follow options",
-        allowClear: true,
-        data: [
-            { id: 'Dargah Fateha ', text: 'Dargah Fateha' },
-            { id: 'Tabligh ', text: 'Tabligh' },
-            { id: 'Jamaat e Islam ', text: 'Jamaat e Islam' },
-            { id: 'Ahle hadees ', text: 'Ahle hadees' },
-            { id: 'Moderate Practising Muslims ', text: 'Moderate Practising Muslims' }
-        ]
-    }).val(localStorage.getItem('selectedFollow') ? localStorage.getItem('selectedFollow').split(',') : []).trigger('change'); // Retrieve and split values from localStorage
+// Initialize Select2 for Follow dropdown
+$('#follow').select2({
+    tags: true,
+    placeholder: "Select or type follow options",
+    allowClear: true,
+    data: [
+        { id: 'Dargah Fateha', text: 'Dargah Fateha' },
+        { id: 'Tabligh', text: 'Tabligh' },
+        { id: 'Jamaat e Islam', text: 'Jamaat e Islam' },
+        { id: 'Ahle hadees', text: 'Ahle hadees' },
+        { id: 'Moderate Practising Muslims', text: 'Moderate Practising Muslims' }
+    ],
+    // Prevent auto-lowercasing for new tags
+    createTag: function (params) {
+        return {
+            id: params.term,
+            text: params.term
+        };
+    }
+}).val(localStorage.getItem('selectedFollow') ? localStorage.getItem('selectedFollow').split(',') : []).trigger('change');
 
     // Initialize Select2 for Education dropdown
     $('#education').select2({
