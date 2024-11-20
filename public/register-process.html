@@ -637,9 +637,9 @@ button[type="submit"]:hover {
 
             <div class="form-group" style="display: flex;">
                 <label for="follow" style="margin-right: 10px;">Follow:</label>
-                    <select id="follow" name="field4" style="width: 65%;">
-                <!-- Options will be populated by JavaScript -->
-                    </select>
+                <select id="follow" name="field4" multiple="multiple" style="width: 65%;">
+                    <!-- Options will be populated by JavaScript -->
+                </select>
             </div>
 
             <h2>Marital Details</h2>
@@ -1549,18 +1549,43 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
     }).val(localStorage.getItem('selectedFamilySubcaste') || null).trigger('change'); // Retrieve value from localStorage if exists
 
     // Initialize Select2 for Follow dropdown
-    $('#follow').select2({
-        tags: true,
-        placeholder: "Select or type follow options",
-        allowClear: true,
-        data: [
-            { id: 'Dargah Fateha ', text: 'Dargah Fateha' },
-            { id: 'Tabligh ', text: 'Tabligh' },
-            { id: 'Jamaat e Islam ', text: 'Jamaat e Islam' },
-            { id: 'Ahle hadees ', text: 'Ahle hadees' },
-            { id: 'Moderate Practising Muslims ', text: 'Moderate Practising Muslims' }
-        ]
-    }).val(localStorage.getItem('selectedFollow') ? localStorage.getItem('selectedFollow').split(',') : []).trigger('change'); // Retrieve and split values from localStorage
+    $(document).ready(function() {
+        // Initialize select2 with proper configurations
+        $('#follow').select2({
+            tags: true,
+            placeholder: "Select or type follow options",
+            allowClear: true,
+            closeOnSelect: false, // Prevent dropdown from closing when typing
+            data: [
+                { id: 'Dargah Fateha ', text: 'Dargah Fateha' },
+                { id: 'Tabligh ', text: 'Tabligh' },
+                { id: 'Jamaat e Islam ', text: 'Jamaat e Islam' },
+                { id: 'Ahle hadees ', text: 'Ahle hadees' },
+                { id: 'Moderate Practising Muslims ', text: 'Moderate Practising Muslims' }
+            ]
+        }).val(localStorage.getItem('selectedFollow') ? localStorage.getItem('selectedFollow').split(',') : []).trigger('change');
+        // Save selected options to localStorage
+        $('#follow').on('change', function() {
+            const selectedValues = $(this).val();
+            if (selectedValues) {
+                localStorage.setItem('selectedFollow', selectedValues.join(','));
+            }
+        });
+        // Prevent dropdown from auto-opening when typing
+        $('#follow').on('select2:open', function() {
+            const searchField = document.querySelector('.select2-search__field');
+            if (searchField) {
+                searchField.focus(); // Ensure the focus stays on the input field
+            }
+        });
+        // Fix for Caps Lock issue
+        $('.select2-search__field').on('keydown', function(e) {
+            if (e.getModifierState('CapsLock')) {
+                // Ensure Caps Lock functionality remains intact
+                return true;
+            }
+        });
+    });
 
     // Initialize Select2 for Education dropdown
     $('#education').select2({
