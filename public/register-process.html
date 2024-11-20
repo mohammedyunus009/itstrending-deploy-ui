@@ -25,6 +25,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/select2.min.css" rel="stylesheet" />
+
 <style>
   /* Logo Image Styling */
 .logo-img {
@@ -1550,43 +1554,40 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
 
     // Initialize Select2 for Follow dropdown
     $(document).ready(function() {
-        // Initialize select2 with proper configurations
+        // Initialize select2
         $('#follow').select2({
             tags: true,
             placeholder: "Select or type follow options",
             allowClear: true,
-            closeOnSelect: false, // Prevent dropdown from closing when typing
             data: [
-                { id: 'Dargah Fateha ', text: 'Dargah Fateha' },
-                { id: 'Tabligh ', text: 'Tabligh' },
-                { id: 'Jamaat e Islam ', text: 'Jamaat e Islam' },
-                { id: 'Ahle hadees ', text: 'Ahle hadees' },
-                { id: 'Moderate Practising Muslims ', text: 'Moderate Practising Muslims' }
-            ]
+                { id: 'Dargah Fateha', text: 'Dargah Fateha' },
+                { id: 'Tabligh', text: 'Tabligh' },
+                { id: 'Jamaat e Islam', text: 'Jamaat e Islam' },
+                { id: 'Ahle hadees', text: 'Ahle hadees' },
+                { id: 'Moderate Practising Muslims', text: 'Moderate Practising Muslims' }
+            ],
+            createTag: function(params) {
+                const term = params.term;
+                // Preserve the exact case of the user's input
+                return {
+                    id: term,
+                    text: term
+                };
+            }
         }).val(localStorage.getItem('selectedFollow') ? localStorage.getItem('selectedFollow').split(',') : []).trigger('change');
         // Save selected options to localStorage
         $('#follow').on('change', function() {
             const selectedValues = $(this).val();
-            if (selectedValues) {
-                localStorage.setItem('selectedFollow', selectedValues.join(','));
-            }
+            localStorage.setItem('selectedFollow', selectedValues ? selectedValues.join(',') : '');
         });
-        // Prevent dropdown from auto-opening when typing
-        $('#follow').on('select2:open', function() {
-            const searchField = document.querySelector('.select2-search__field');
-            if (searchField) {
-                searchField.focus(); // Ensure the focus stays on the input field
-            }
-        });
-        // Fix for Caps Lock issue
-        $('.select2-search__field').on('keydown', function(e) {
-            if (e.getModifierState('CapsLock')) {
-                // Ensure Caps Lock functionality remains intact
-                return true;
-            }
+        // Fix for mobile: Prevent default text transformations
+        $('.select2-search__field').attr('autocapitalize', 'characters'); // Enforce uppercase
+        $('.select2-search__field').attr('autocomplete', 'off'); // Disable autocomplete
+        $('.select2-search__field').on('input', function() {
+            const inputValue = $(this).val();
+            $(this).val(inputValue); // Preserve the case of user input
         });
     });
-
     // Initialize Select2 for Education dropdown
     $('#education').select2({
         placeholder: "Select or type your education",
@@ -1610,9 +1611,9 @@ documentFileInput.addEventListener('change', () => handleDocumentUpload(document
         localStorage.setItem('selectedFamilySubcaste', $(this).val());
     });
 
-    $('#follow').on('change', function() {
-        localStorage.setItem('selectedFollow', $(this).val().join(','));
-    });
+    // $('#follow').on('change', function() {
+    //     localStorage.setItem('selectedFollow', $(this).val().join(','));
+    // });
 
     $('#education').on('change', function() {
         localStorage.setItem('selectedEducation', $(this).val().join(','));
