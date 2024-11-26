@@ -1017,18 +1017,26 @@ document.getElementById('submitBtn').addEventListener('click', function() {
 
 
 function handleSubmit() {
-            // Show the alert message
-            alert('Profile updated successfully');
-            
-            // Reload the page after the user clicks OK
-            location.reload();
-        }
-        
-        window.onload = function() {
-            // Attach the event handler to the submit button
-            const submitButton = document.getElementById('submitBtn');
-            submitButton.addEventListener('click', handleSubmit);
-        }
+    // Disable the submit button to prevent multiple clicks
+    const submitButton = document.getElementById('submitBtn');
+    submitButton.disabled = true;
+
+    // Show the alert message
+    alert('Profile updated successfully');
+    
+    // Simulate a delay to ensure the data is processed before reloading
+    setTimeout(function() {
+        // Reload the page after a slight delay
+        location.reload();
+    }, 1000); // Delay for 1 second (you can adjust this time)
+}
+
+window.onload = function() {
+    // Attach the event handler to the submit button
+    const submitButton = document.getElementById('submitBtn');
+    submitButton.addEventListener('click', handleSubmit);
+}
+
 
     // Import required modules
 const express = require('express');
