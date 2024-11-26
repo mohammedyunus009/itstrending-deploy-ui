@@ -670,6 +670,10 @@ detailsContainer.appendChild(fileInput); // Append file input to the container
   <input type="text" id="profileCoordinatorNameInput" value="${profile.field10 ? decodeURIComponent(profile.field10) : 'N/A'}">
 </div>
 <div class="detail-item">
+  <label class="label">ISC Contact Number:</label>
+  <input type="text" id="coordinatornumberInput" value="${profile.field41 ? decodeURIComponent(profile.field41) : 'N/A'}">
+</div>
+<div class="detail-item">
   <label class="label">Profile Status:</label>
   <input type="text" id="profileStatusInput" value="${profile.field11 ? decodeURIComponent(profile.field11) : 'N/A'}">
 </div>
@@ -712,6 +716,10 @@ detailsContainer.appendChild(fileInput); // Append file input to the container
 <div class="detail-item">
   <label class="label">Children:</label>
   <input type="text" id="childrenInput" value="${profile.field16 ? decodeURIComponent(profile.field16) : 'N/A'}">
+</div>
+<div class="detail-item">
+  <label class="label">Divorce document status:</label>
+  <input type="text" id="divorcedocumentsatusInput" value="${profile.field43 ? decodeURIComponent(profile.field43) : 'N/A'}">
 </div>
 <div class="detail-item">
   <label class="label">Valid Divorce Document:</label>
@@ -822,10 +830,6 @@ detailsContainer.appendChild(fileInput); // Append file input to the container
   <label class="label">Preferred Location:</label>
   <input type="text" id="preferredLocationInput" value="${profile.field34 ? decodeURIComponent(profile.field34) : 'N/A'}">
 </div>
-<div class="detail-item">
-  <label class="label">Partner Working Status:</label>
-  <input type="text" id="partnerWorkingStatusInput" value="${profile.field36 ? decodeURIComponent(profile.field36) : 'N/A'}">
-</div>
 
 
 
@@ -919,7 +923,9 @@ document.getElementById('submitBtn').addEventListener('click', function() {
     const preferredFollowPractice = document.getElementById('preferredFollowPracticeInput').value;
     const familyType = document.getElementById('familyTypeInput').value;
     const preferredLocation = document.getElementById('preferredLocationInput').value;
-    const partnerWorkingStatus = document.getElementById('partnerWorkingStatusInput').value;
+    const coordinatornumber = document.getElementById('coordinatornumberInput').value;
+    const divorcedocumentsatus = document.getElementById('divorcedocumentsatusInput').value;
+
 
     // Get current value of images
     const currentImages = document.getElementById('imagesContainer').value;
@@ -971,14 +977,14 @@ document.getElementById('submitBtn').addEventListener('click', function() {
         "field33": familyType,
         "field34": preferredLocation,
         "field35": religiousAttributes,
-        "field36": partnerWorkingStatus,
+        "field36": "",
         "field37": sistersMaritalStatus,
         "field38": sistersOccupation,
         "field39": brothersMaritalStatus,
         "field40": brothersOccupation,
-        "field41": "",
+        "field41": coordinatornumber,
         "field42": familycontactnumber,
-        "field43": "",
+        "field43": divorcedocumentsatus,
         "field44": "",
         "field45": "",
         "field46": "",
@@ -993,7 +999,8 @@ document.getElementById('submitBtn').addEventListener('click', function() {
         method: "PUT",
         headers: myHeaders,
         body: raw,
-        redirect: "follow"
+        redirect: "follow",
+        cache: 'no-cache' // Prevent caching
     };
 
     // Make the API request
