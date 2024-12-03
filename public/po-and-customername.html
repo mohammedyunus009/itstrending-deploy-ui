@@ -171,7 +171,7 @@
     <br><br>
     <header class="sub-navbar">
         <div class="navbar-item left" style="display: flex; justify-content: center; align-items: center;">
-            <h3 style="margin: 0; color:#00bfa6 ;">Customers having due on Payment</h3>
+            <h3 style="margin: 0; color:#00bfa6 ;">Customers and their PO Number</h3>
         </div>
         <div class="navbar-item middle"></div>
         <div class="navbar-item right"></div>
@@ -183,16 +183,14 @@
                 <tr style="background-color: #00bfa6; color: white; text-align: left;">
                     <th style="padding: 8px;">S.No</th>
                     <th style="padding: 8px;">Customer Name</th>
-                    <th style="padding: 8px;">Contract Start Date</th>
-                    <th style="padding: 8px;">Due Date</th>
-                    <th style="padding: 8px;">Phone Number</th>
+                    <th style="padding: 8px;">PO Number</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Rows will be dynamically populated -->
             </tbody>
         </table>
-    </div> 
+    </div>  
  
 <script>
     function toggleMenu() {
@@ -216,79 +214,49 @@
     myHeaders.append("Authorization", `${token}`); // Use token from cookies
     myHeaders.append("Content-Type", "application/json");
 
-    // Utility function to parse 'field1' and extract 'dueDate'
-    function getDueDate(field1) {
-        if (typeof field1 === 'string') {
-            try {
-                // Parse the stringified array
-                const parsedField = JSON.parse(field1);
-                if (Array.isArray(parsedField)) {
-                    const dueDateObj = parsedField.find(item => item.dueDate && item.dueDate !== "");
-                    return dueDateObj ? dueDateObj.dueDate : null;
-                }
-            } catch (error) {
-                console.error("Error parsing field1:", error);
-            }
-        }
-        return null;
-    }
-
-    // Fetch customer names from the API
+    // Fetch customer names and PO Numbers from the API
     fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify({ "field48": "" }),
         redirect: "follow"
     })
-    .then((response) => {
-        console.log('Response received:', response);
-        return response.json();
-    })
-    .then((result) => {
-        // Extract profiles from the result
-        const profiles = result.data.profile;
-        console.log('Profiles fetched:', profiles);
-
-        // Filter profiles based on "dueDate" inside "field1" array
-        const filteredProfiles = profiles.filter(profile => {
-            const dueDate = getDueDate(profile.field1);
-            console.log(`Profile ${profile.field2} has dueDate:`, dueDate);
-            return dueDate;  // Only fetch profiles with a valid dueDate
-        });
-
-        // Get the table body element
+    .then(response => response.json())
+    .then(result => {
+        const profiles = result.data.profile; // Extract profiles from the result
         const tableBody = document.querySelector('#profile-table tbody');
-        tableBody.innerHTML = ''; // Clear previous rows if any
+        tableBody.innerHTML = ''; // Clear previous rows
 
-        filteredProfiles.forEach((profile, index) => {
-            const dueDate = getDueDate(profile.field1);
+        profiles.forEach((profile, index) => {
+            const customerName = profile.field2;
+            const poNumber = profile.field3;
 
-            // Create a new table row
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td style="padding: 8px; text-align: center;">${index + 1}</td>
-                <td style="padding: 8px;">${profile.field2}</td>
-                <td style="padding: 8px;">${profile.field5}</td>
-                <td style="padding: 8px;">${dueDate}</td>
-                <td style="padding: 8px;">${profile.field6}</td>
-            `;
-            tableBody.appendChild(row);
+            if (customerName && poNumber) {
+                // Create a new table row
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="padding: 8px; text-align: center;">${index + 1}</td>
+                    <td style="padding: 8px;">${customerName}</td>
+                    <td style="padding: 8px;">${poNumber}</td>
+                `;
+                tableBody.appendChild(row);
+            }
         });
 
-        if (filteredProfiles.length === 0) {
+        if (profiles.length === 0) {
             const noDataRow = document.createElement('tr');
             noDataRow.innerHTML = `
-                <td colspan="5" style="padding: 8px; text-align: center;">No profiles found with a valid due date.</td>
+                <td colspan="3" style="padding: 8px; text-align: center;">No profiles found.</td>
             `;
             tableBody.appendChild(noDataRow);
         }
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Error fetching profiles:', error);
         const tableBody = document.querySelector('#profile-table tbody');
         tableBody.innerHTML = `
             <tr>
-                <td colspan="5" style="padding: 8px; text-align: center;">Error fetching profiles. Please try again later.</td>
+                <td colspan="3" style="padding: 8px; text-align: center;">Error fetching profiles. Please try again later.</td>
             </tr>
         `;
     });

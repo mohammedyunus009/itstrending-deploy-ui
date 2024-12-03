@@ -87,7 +87,7 @@
     background: white;
     width: 25%;
     max-height: 200px;
-    margin-left: 165px;
+    margin-left: 143px;
     display: none;
 }
 
@@ -113,7 +113,14 @@
         .custom-file-upload:hover {
             background-color: #45a049; /* Darker background on hover */
         }
-
+/* Style for dropdown options */
+#dropdown-container div {
+    padding: 10px;
+    cursor: pointer;
+}
+#dropdown-container div:hover {
+    background-color: #f0f0f0;
+}
     </style>
 </head>
 <body>
@@ -128,6 +135,7 @@
                 <li><a href="Add_client.html">Add Client</a></li>
                 <li><a href="Due-Payment.html">Due Payment</a></li>
                 <li><a href="search.html">Search</a></li>
+                <li><a href="po-and-customername.html">Name & PO Number</a></li>
             </ul>
         </div>
         <div class="navbar-item middle"></div>
@@ -200,46 +208,57 @@
     </div>
     
     <div class="installation-form1">
-        <div class="form-group">
-            <label for="chl"><strong>CHL Type: </strong></label>
-            <input type="text" id="chl" name="chl" placeholder="Enter CHL" required oninput="setCookie('field8', this.value); validateChl()">
-            <div id="chl-error" class="error-message"></div>
+        <!-- CHL Section -->
+        <div id="chl-container">
+            <div class="form-group">
+                <label for="chl"><strong>CHL Type: </strong></label>
+                <input type="text" id="chl" name="chl[]" placeholder="Enter CHL" required oninput="updateArrayCookie('field8', 'chl[]')">
+                <div id="chl-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="chl-quantity"><strong>CHL Quantity: </strong></label>
+                <input type="number" id="chl-quantity" name="chl-quantity[]" placeholder="Enter CHL Quantity" required oninput="updateArrayCookie('field9', 'chl-quantity[]'); calculateTotal()">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="chl-quantity"><strong>CHL Quantity: </strong></label>
-            <input type="number" id="chl-quantity" name="chl-quantity" placeholder="Enter CHL Quantity" required oninput="setCookie('field9', this.value); calculateTotal()">
-        </div>
+        <button type="button" onclick="addMore('chl')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More CHL</button>
     </div>
     
     <div class="installation-form1">
-        <div class="form-group">
-            <label for="pac"><strong>PAC Type: </strong></label>
-            <input type="text" id="pac" name="pac" placeholder="Enter PAC" required oninput="setCookie('field10', this.value); validatePac()">
-            <div id="pac-error" class="error-message"></div>
+        <!-- PAC Section -->
+        <div id="pac-container">
+            <div class="form-group">
+                <label for="pac"><strong>PAC Type: </strong></label>
+                <input type="text" id="pac" name="pac[]" placeholder="Enter PAC" required oninput="updateArrayCookie('field10', 'pac[]')">
+                <div id="pac-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="pac-quantity"><strong>PAC Quantity: </strong></label>
+                <input type="number" id="pac-quantity" name="pac-quantity[]" placeholder="Enter PAC Quantity" required oninput="updateArrayCookie('field11', 'pac-quantity[]'); calculateTotal()">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="pac-quantity"><strong>PAC Quantity: </strong></label>
-            <input type="number" id="pac-quantity" name="pac-quantity" placeholder="Enter PAC Quantity" required oninput="setCookie('field11', this.value); calculateTotal()">
-        </div>
+        <button type="button" onclick="addMore('pac')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More PAC</button>
     </div>
     
     <div class="installation-form1">
-        <div class="form-group">
-            <label for="s-ac"><strong>S. A/c Type: </strong></label>
-            <input type="text" id="s-ac" name="s-ac" placeholder="Enter S. A/c" required oninput="setCookie('field24', this.value); validateAccount()">
-            <div id="s-ac-error" class="error-message"></div>
+        <!-- S. A/c Section -->
+        <div id="s-ac-container">
+            <div class="form-group">
+                <label for="s-ac"><strong>S. A/c Type: </strong></label>
+                <input type="text" id="s-ac" name="s-ac[]" placeholder="Enter S. A/c" required oninput="updateArrayCookie('field24', 's-ac[]')">
+                <div id="s-ac-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="s-ac-quantity"><strong>S. A/c Quantity: </strong></label>
+                <input type="number" id="s-ac-quantity" name="s-ac-quantity[]" placeholder="Enter S. A/c Quantity" required oninput="updateArrayCookie('field21', 's-ac-quantity[]'); calculateTotal()">
+            </div>
         </div>
-        
-        <div class="form-group">
-            <label for="s-ac-quantity"><strong>S. A/c Quantity: </strong></label>
-            <input type="number" id="s-ac-quantity" name="s-ac-quantity" placeholder="Enter S. A/c Quantity" required oninput="setCookie('field21', this.value); calculateTotal()">
-        </div>
+        <button type="button" onclick="addMore('s-ac')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More S. A/c</button>
     </div>
 
     <div class="installation-form1">
         <div class="form-group">
             <label for="total"><strong>Total: </strong></label>
-            <input type="text" id="total" name="total" placeholder="Total" required readonly oninput="setCookie('field13', this.value)">
+            <input type="text" id="total" name="total" placeholder="Total" readonly>
         </div>
 
         <div class="form-group">
@@ -263,13 +282,28 @@
     </div>
     
     <div class="installation-form1">
-        <div class="form-group">
+        <div class="form-group" style="position: relative;">
             <label for="type-of-call"><strong>Type of Call: </strong></label>
-            <input type="text" id="type-of-call" name="type-of-call" placeholder="Enter Type of Call" required oninput="setCookie('field15', this.value); validateTypeOfCall()">
+            <input 
+                type="text" 
+                id="type-of-call" 
+                name="type-of-call" 
+                placeholder="Enter Type of Call" 
+                required 
+                oninput="filterOptions(this.value)" 
+                onclick="showDropdown()">
+            
+            <!-- Custom dropdown container -->
+            <div id="dropdown-container" style="position: absolute; top: 100%; left: 143px; width: 60%; display: none; background: #fff; border: 1px solid #ccc; max-height: 150px; overflow-y: auto; z-index: 100;">
+                <div onclick="selectOption('AMC')">AMC</div>
+                <div onclick="selectOption('AMC Breakdown')">AMC Breakdown</div>
+                <div onclick="selectOption('Service Breakdown')">Service Breakdown</div>
+            </div>
+            
             <div id="type-of-call-error" class="error-message"></div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="padding-left: 35px;">
             <label for="po-document"><strong>PO Document: </strong></label>
             <label for="po-document" class="custom-file-upload" style="margin: 4px;">
                 Choose Files
@@ -277,7 +311,7 @@
             <input type="file" id="po-document" name="po-document" multiple required style="display: none;">
         </div>
         <div id="total-image-count">Total docs:<span id="image-count-display">0</span></div>
-        <button id="preview-images-button" style="margin-left: 10px; background-color: #00bfa6; color: white; border-radius: 5px; padding: 2px; border-color: #00bfa6;">Preview docs</button>
+        <!-- <button id="preview-images-button" style="margin-left: 10px; background-color: #00bfa6; color: white; border-radius: 5px; padding: 2px; border-color: #00bfa6;">Preview docs</button> -->
 
         <!-- Popup for Image Preview -->
         <div id="preview-popup" class="popup">
@@ -305,39 +339,39 @@
             <div id="visits-error" class="error-message"></div>
         </div>
         
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="file-no"><strong>File No.: </strong></label>
             <input type="text" id="file-no" name="file-no" placeholder="Enter File No." required oninput="setCookie('field22', this.value); validateFileNo()">
             <div id="file-no-error" class="error-message"></div>
-        </div>
-    </div>
-    
-    <div class="installation-form1">
+        </div> -->
         <div class="form-group">
             <label for="service-engineer"><strong>Service Engineer: </strong></label>
             <input type="text" id="service-engineer" name="service-engineer" placeholder="Enter Service Engineer" required oninput="setCookie('field19', this.value); validateServiceEngineer()">
             <div id="service-engineer-error" class="error-message"></div>
         </div>
+    </div>
+    
+    <div class="installation-form1">
         <div class="form-group">
             <label for="po-payment-terms"><strong>PO Payment Terms: </strong></label>
             <input type="text" id="po-payment-terms" name="po-payment-terms" placeholder="Enter PO Payment Terms" required oninput="setCookie('field20', this.value); validatePaymentTerms()">
             <div id="payment-terms-error" class="error-message"></div>
         </div>
-    </div>
 
-    <div class="installation-form1">
         <div class="form-group">
             <label for="payment_status"><strong>Payment Status: </strong></label>
             <select id="payment_status" name="payment_status" required class="styled-select" onchange="setCookie('field1', this.value)">
                 <option value="">Please Select</option>
-                <option value="Received">Received</option>
+                <option value="Advance Payment">Advance Payment</option>
                 <option value="17 Days">17 Days</option>
                 <option value="30 Days">30 Days</option>
                 <option value="45 Days">45 Days</option>
                 <option value="60 Days">60 Days</option>
             </select>
         </div>
+    </div>
 
+    <div class="installation-form1">
         <div class="form-group">
             <label for="file_upload"><strong>Upload Payment Documents: </strong></label>
             <label for="file_upload" class="custom-file-upload" style="margin: 4px;">
@@ -345,17 +379,53 @@
             </label>
             <input type="file" id="file_upload" name="file_upload" required multiple onchange="uploadImages(event)" style="display: none;">
         </div>
-    </div>
 
-    <div class="installation-form1">
         <div class="form-group">
             <label for="comments"><strong>Comments: </strong></label>
             <textarea id="comments" name="comments" placeholder="Enter Comments" required class="styled-textarea" oninput="setCookie('field23', this.value)"></textarea>
         </div>
     </div>
 
+
     <button class="next-button" onclick="handleNext()">Submit</button>
     <br>
+    <script>
+        function showDropdown() {
+            document.getElementById('dropdown-container').style.display = 'block';
+        }
+        
+        function hideDropdown() {
+            setTimeout(() => {
+                document.getElementById('dropdown-container').style.display = 'none';
+            }, 200); // Delay to allow click selection
+        }
+        
+        function selectOption(value) {
+            const input = document.getElementById('type-of-call');
+            input.value = value;
+            setCookie('field15', value);
+            validateTypeOfCall();
+            hideDropdown();
+        }
+        
+        function filterOptions(value) {
+            const options = document.querySelectorAll('#dropdown-container div');
+            options.forEach(option => {
+                if (option.textContent.toLowerCase().includes(value.toLowerCase())) {
+                    option.style.display = 'block';
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+        }
+        
+        // Hide dropdown on outside click
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.form-group')) {
+                hideDropdown();
+            }
+        });
+    </script>
     <script>
         function toggleMenu() {
         const navbarLinks = document.querySelector('.navbar-links');
@@ -365,137 +435,137 @@
     <script>
         let paymentDataArray = [];
     
-    // Function to upload multiple images to the API
-    async function uploadImages(event) {
-        const files = event.target.files;
-        const paymentStatus = document.getElementById('payment_status').value;
-        const contractStartDate = getCookie('field5'); // Get the start date from cookies
+        // Handle Payment Status Change
+        document.getElementById('payment_status').addEventListener('change', function () {
+            const paymentStatus = this.value;
+            const contractStartDate = getCookie('field5'); // Get the start date from cookies
     
-        console.log("Selected files:", files);
-        console.log("Selected payment status:", paymentStatus);
-    
-        if (files.length === 0 || !paymentStatus) {
-            console.warn("No files or payment status selected. Please make your selections.");
-            alert("Please select a payment status and at least one image/document to upload.");
-            return;
-        }
-    
-        // Calculate due date if payment status is 17 Days, 30 Days, 45 Days, or 60 Days
-        let dueDate = '';
-        if (paymentStatus !== "Received" && contractStartDate) {
-            dueDate = calculateDueDate(contractStartDate, paymentStatus);
-            console.log("Calculated due date:", dueDate);
-        }
-    
-        // Find the existing payment entry for the selected payment status
-        let existingEntry = paymentDataArray.find(entry => entry.status === paymentStatus);
-        let documentUrls = existingEntry ? existingEntry.document.split(',') : []; // Split existing URLs into an array
-    
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const formData = new FormData();
-            formData.append('file', file);
-            console.log("Form data prepared for upload for file:", file.name);
-    
-            try {
-                console.log(`Starting upload for ${file.name}...`);
-                const response = await fetch('https://api2.itstrending.in/api/v1/profiles/upload_images', {
-                    method: 'POST',
-                    body: formData
-                });
-    
-                if (!response.ok) {
-                    console.error('Image upload failed with status:', response.status);
-                    throw new Error('Image upload failed');
-                }
-    
-                const data = await response.json();
-                console.log("Image upload successful. Response data:", data);
-                
-                // Check if images array is available in the response
-                if (!data.data || !data.data.images || data.data.images.length === 0) {
-                    console.error("No images received in API response");
-                    alert("Failed to retrieve the image link from the API for " + file.name);
-                    continue; // Skip to the next file
-                }
-    
-                // Get the first image URL and modify it by appending '?alt=media'
-                const imageUrl = `${data.data.images[0]}?alt=media`;
-                console.log("Uploaded image URL with alt parameter for " + file.name + ":", imageUrl);
-    
-                // Add the new image URL to the document URLs array
-                documentUrls.push(imageUrl);
-                console.log("Current document URLs for payment status:", documentUrls);
-    
-            } catch (error) {
-                console.error(`Error uploading ${file.name}:`, error);
-                alert("Failed to upload " + file.name);
+            if (!paymentStatus) {
+                console.warn("No payment status selected.");
+                return;
             }
+    
+            // Calculate due date
+            let dueDate = '';
+            if (paymentStatus !== "Advance Payment" && contractStartDate) {
+                dueDate = calculateDueDate(contractStartDate, paymentStatus);
+                console.log("Calculated due date:", dueDate);
+            }
+    
+            // Find or create an entry in the payment data array
+            let existingEntry = paymentDataArray.find(entry => entry.status === paymentStatus);
+            if (existingEntry) {
+                existingEntry.dueDate = dueDate || existingEntry.dueDate;
+                existingEntry.document = existingEntry.document || ""; // Keep the current document value
+            } else {
+                paymentDataArray.push({ status: paymentStatus, document: "", dueDate });
+            }
+    
+            // Update the cookie
+            setCookie('field1', JSON.stringify(paymentDataArray));
+            console.log("Cookie updated with payment data:", paymentDataArray);
+        });
+    
+        // Handle File Upload
+        async function uploadImages(event) {
+            const files = event.target.files;
+            const paymentStatus = document.getElementById('payment_status').value;
+    
+            if (!files.length || !paymentStatus) {
+                alert("Please select a payment status and at least one image/document to upload.");
+                return;
+            }
+    
+            // Get the existing entry for the selected payment status
+            let existingEntry = paymentDataArray.find(entry => entry.status === paymentStatus);
+            let documentUrls = existingEntry ? existingEntry.document.split(',') : [];
+    
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const formData = new FormData();
+                formData.append('file', file);
+    
+                try {
+                    const response = await fetch('https://api2.itstrending.in/api/v1/profiles/upload_images', {
+                        method: 'POST',
+                        body: formData
+                    });
+    
+                    if (!response.ok) {
+                        console.error('Image upload failed with status:', response.status);
+                        throw new Error('Image upload failed');
+                    }
+    
+                    const data = await response.json();
+                    if (!data.data || !data.data.images || data.data.images.length === 0) {
+                        console.error("No images received in API response");
+                        alert("Failed to retrieve the image link from the API for " + file.name);
+                        continue;
+                    }
+    
+                    const imageUrl = `${data.data.images[0]}?alt=media`;
+                    documentUrls.push(imageUrl);
+                } catch (error) {
+                    console.error(`Error uploading ${file.name}:`, error);
+                    alert("Failed to upload " + file.name);
+                }
+            }
+    
+            // Update the payment data entry
+            if (existingEntry) {
+                existingEntry.document = documentUrls.join(','); // Update the document URLs
+            } else {
+                paymentDataArray.push({ status: paymentStatus, document: documentUrls.join(','), dueDate: "" });
+            }
+    
+            // Update the cookie
+            setCookie('field1', JSON.stringify(paymentDataArray));
+            console.log("Cookie updated with payment data:", paymentDataArray);
+            alert("All images uploaded successfully!");
         }
     
-        // Save or update the payment entry
-        if (existingEntry) {
-            existingEntry.document = documentUrls.join(','); // Update existing entry with concatenated URLs
-            if (dueDate) existingEntry.dueDate = dueDate; // Update due date if applicable
-        } else {
-            // Create new entry with concatenated URLs and due date
-            paymentDataArray.push({ status: paymentStatus, document: documentUrls.join(','), dueDate });
+        // Function to calculate due date
+        function calculateDueDate(startDate, paymentStatus) {
+            const start = new Date(startDate);
+            let daysToAdd = 0;
+    
+            switch (paymentStatus) {
+                case '17 Days':
+                    daysToAdd = 17;
+                    break;
+                case '30 Days':
+                    daysToAdd = 30;
+                    break;
+                case '45 Days':
+                    daysToAdd = 45;
+                    break;
+                case '60 Days':
+                    daysToAdd = 60;
+                    break;
+                default:
+                    return ''; // No due date for "Advance Payment"
+            }
+    
+            const dueDate = new Date(start);
+            dueDate.setDate(dueDate.getDate() + daysToAdd);
+            return dueDate.toISOString().split('T')[0]; // Return YYYY-MM-DD format
         }
     
-        // Update the cookie after all files are processed
-        setCookie('field1', JSON.stringify(paymentDataArray));
-        console.log("Cookie updated with payment data.");
-        alert("All images uploaded successfully!");
-
-        // Display the count of uploaded files
-        document.getElementById('upload-count').innerText = `Total documents/images uploaded: ${uploadCount}`;
-        alert(`Total documents/images uploaded: ${uploadCount}`);
-    }
-    
-    // Function to calculate due date based on contract start date and payment status
-    function calculateDueDate(startDate, paymentStatus) {
-        const start = new Date(startDate);
-        let daysToAdd = 0;
-    
-        // Determine days to add based on payment status
-        switch (paymentStatus) {
-            case '17 Days':
-                daysToAdd = 17;
-                break;
-            case '30 Days':
-                daysToAdd = 30;
-                break;
-            case '45 Days':
-                daysToAdd = 45;
-                break;
-            case '60 Days':
-                daysToAdd = 60;
-                break;
-            default:
-                return ''; // No due date if status is "Received"
+        // Function to set cookie
+        function setCookie(name, value) {
+            document.cookie = `${name}=${value}; path=/;`;
+            console.log(`Cookie set: ${name} = ${value}`);
         }
     
-        // Calculate the due date by adding days to the start date
-        const dueDate = new Date(start);
-        dueDate.setDate(dueDate.getDate() + daysToAdd);
-        
-        return dueDate.toISOString().split('T')[0]; // Return date in YYYY-MM-DD format
-    }
-    
-    // Function to set cookie
-    function setCookie(name, value) {
-        document.cookie = `${name}=${value}; path=/;`;
-        console.log(`Cookie set: ${name} = ${value}`);
-    }
-    
-    // Function to get cookie by name
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-        return '';
-    }
+        // Function to get cookie by name
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return '';
+        }
     </script>
+    
     
     <script>
         const places = ["Bangalore", "Mumbai", "Delhi"];
@@ -525,7 +595,7 @@ function filterOptions(input) {
 
 function selectPlace(place) {
     document.getElementById('place').value = place; // Set input value
-    setCookie('field5', place); // Save to cookie
+    setCookie('field16', place); // Save to cookie
     document.getElementById('suggestions').innerHTML = ''; // Clear suggestions
     document.getElementById('suggestions').style.display = 'none'; // Hide suggestions
 }
@@ -622,8 +692,8 @@ function selectRegion(region) {
             const chlError = document.getElementById('chl-error');
             const chlValue = chlField.value.trim();
     
-            if (chlValue.length < 3 || chlValue.length > 10) {
-                chlError.textContent = 'CHL must be between 3 and 10 characters.';
+            if (chlValue.length < 2 || chlValue.length > 30) {
+                chlError.textContent = 'CHL must be between 2 and 30 characters.';
             } else {
                 chlError.textContent = '';
             }
@@ -634,8 +704,8 @@ function selectRegion(region) {
             const pacError = document.getElementById('pac-error');
             const pacValue = pacField.value.trim();
     
-            if (pacValue.length < 3 || pacValue.length > 10) {
-                pacError.textContent = 'PAC must be between 3 and 10 characters.';
+            if (pacValue.length < 2 || pacValue.length > 30) {
+                pacError.textContent = 'PAC must be between 2 and 30 characters.';
             } else {
                 pacError.textContent = '';
             }
@@ -646,8 +716,8 @@ function selectRegion(region) {
             const accountError = document.getElementById('s-ac-error');
             const accountValue = accountField.value.trim();
     
-            if (accountValue.length < 5 || accountValue.length > 20) {
-                accountError.textContent = 'S. A/c must be between 5 and 20 characters.';
+            if (accountValue.length < 2 || accountValue.length > 30) {
+                accountError.textContent = 'S. A/c must be between 2 and 30 characters.';
             } else {
                 accountError.textContent = '';
             }
@@ -658,8 +728,8 @@ function selectRegion(region) {
             const poError = document.getElementById('po-no-error');
             const poValue = poField.value.trim();
     
-            if (poValue.length < 5 || poValue.length > 15) {
-                poError.textContent = 'PO No. must be between 5 and 15 characters.';
+            if (poValue.length < 2 || poValue.length > 30) {
+                poError.textContent = 'PO No. must be between 2 and 30 characters.';
             } else {
                 poError.textContent = '';
             }
@@ -781,25 +851,50 @@ function selectRegion(region) {
         // ... remaining code for cookie handling and file preview
     </script>
     <script>
-        function calculateTotal() {
-            // Get values from quantity inputs
-            const chlQuantity = parseFloat(document.getElementById('chl-quantity').value) || 0; // Assuming you have a chl-quantity input elsewhere
-            const pacQuantity = parseFloat(document.getElementById('pac-quantity').value) || 0;
-            const sAcQuantity = parseFloat(document.getElementById('s-ac-quantity').value) || 0;
-    
-            // Calculate total
-            const total = chlQuantity + pacQuantity + sAcQuantity;
-    
-            // Update the Total input
-            document.getElementById('total').value = total;
-    
-            // Optionally store the total in a cookie
-            setCookie('field13', total);
-        }
-    
-        function setCookie(name, value) {
-            document.cookie = name + "=" + value + "; path=/";
-        }
+        function addMore(type) {
+    const container = document.getElementById(`${type}-container`);
+    const div = document.createElement('div');
+    div.className = 'form-group';
+    div.innerHTML = `
+        <div class="form-group">
+            <label for="${type}"><strong>${type.toUpperCase()} Type: </strong></label>
+            <input type="text" name="${type}[]" placeholder="Enter ${type.toUpperCase()}" required oninput="updateArrayCookie('field${getFieldNumber(type)}', '${type}[]')">
+        </div>
+        <div class="form-group">
+            <label for="${type}-quantity"><strong>${type.toUpperCase()} Quantity: </strong></label>
+            <input type="number" name="${type}-quantity[]" placeholder="Enter ${type.toUpperCase()} Quantity" required oninput="updateArrayCookie('field${getQuantityFieldNumber(type)}', '${type}-quantity[]'); calculateTotal()">
+        </div>
+    `;
+    container.appendChild(div);
+}
+
+function calculateTotal() {
+    const chlQuantities = Array.from(document.getElementsByName('chl-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+    const pacQuantities = Array.from(document.getElementsByName('pac-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+    const sAcQuantities = Array.from(document.getElementsByName('s-ac-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+
+    const total = chlQuantities + pacQuantities + sAcQuantities;
+    document.getElementById('total').value = total;
+
+    setCookie('field13', total);
+}
+
+function updateArrayCookie(fieldName, inputName) {
+    const inputs = Array.from(document.getElementsByName(inputName)).map(input => input.value.trim()).filter(value => value);
+    setCookie(fieldName, JSON.stringify(inputs));
+}
+
+function setCookie(name, value) {
+    document.cookie = `${name}=${value}; path=/`;
+}
+
+function getFieldNumber(type) {
+    return type === 'chl' ? 8 : type === 'pac' ? 10 : 24;
+}
+
+function getQuantityFieldNumber(type) {
+    return type === 'chl' ? 9 : type === 'pac' ? 11 : 21;
+}
     </script>
     <script>
         function handleNext() {
@@ -894,7 +989,7 @@ function openImagePreview() {
 }
 
 // Event listener for preview button
-document.getElementById('preview-images-button').addEventListener('click', openImagePreview);
+// document.getElementById('preview-images-button').addEventListener('click', openImagePreview);
 
 // Function to upload images to the API
 function uploadImage(file) {
@@ -995,7 +1090,7 @@ function updateImageCountDisplay() {
                 const field20 = getCookieValue("field20") || "";
                 const field21 = getCookieValue("field21") || "";
 
-                const field22 = getCookieValue("field22") || "";
+                // const field22 = getCookieValue("field22") || "";
                 const field23 = getCookieValue("field23") || "";
                 const field24 = getCookieValue("field24") || "";
 
@@ -1033,7 +1128,7 @@ function updateImageCountDisplay() {
                     "field19": field19,
                     "field20": field20,
                     "field21": field21,
-                    "field22": field22,
+                    // "field22": field22,
                     "field23": field23,
                     "field24": field24,
                     "field25": "",

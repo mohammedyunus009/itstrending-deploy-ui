@@ -162,6 +162,7 @@
                 <li><a href="Add_client.html">Add Client</a></li>
                 <li><a href="Due-Payment.html">Due Payment</a></li>
                 <li><a href="search.html">Search</a></li>
+                <li><a href="po-and-customername.html">Name & PO Number</a></li>
             </ul>
         </div>
         <div class="navbar-item middle"></div>
@@ -599,7 +600,7 @@
                     <thead>
                         <tr>
                             <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
-                                Documents:
+                               PO Documents:
                             </th>
                         </tr>
                     </thead>
@@ -664,27 +665,39 @@
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>CHL Type:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field8" value="${profile.field8}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field8" rows="5" style="width: 100%;">${profile.field8}</textarea>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>CHL Quantity:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field9" value="${profile.field9}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field9" rows="5" style="width: 100%;">${profile.field9}</textarea>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>PAC Type:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field10" value="${profile.field10}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field10" rows="5" style="width: 100%;">${profile.field10}</textarea>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>PAC Quantity:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field11" value="${profile.field11}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field11" rows="5" style="width: 100%;">${profile.field11}</textarea>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>S. A/c Type:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field24" value="${profile.field24}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field24" rows="5" style="width: 100%;">${profile.field24}</textarea>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>S. A/c Quantity:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field21" value="${profile.field21}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field21" rows="5" style="width: 100%;">${profile.field21}</textarea>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Total Quantity:</strong></td>
@@ -711,19 +724,16 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="number" id="field18" value="${profile.field18}" /></td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>File No:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Service Engineer:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field19" value="${profile.field19}" /></td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Service Engineer:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Payment Terms:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field20" value="${profile.field20}" /></td>
                             </tr>
+                            
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Payment Terms:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field22" value="${profile.field22}" /></td>
-                            </tr>
-                            <tr style="display: none;">
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Data:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Data and status:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
                                     <textarea id="field1" rows="5" style="width: 100%;">${profile.field1}</textarea>
                                 </td>
@@ -1000,12 +1010,18 @@ function generatePMSchedules(contractFrom, contractTo, totalVisits) {
 
 // Function to dynamically update comments in monthStatuses array when the user types
 function updateComment(monthIndex, newComment) {
-    monthStatuses[monthIndex].comments = newComment;
-    console.log(`Updated comment for ${monthStatuses[monthIndex].month}:`, newComment);
-    
+    const currentDate = new Date(); // Get current date and time
+    const timestamp = currentDate.toLocaleString(); // Format timestamp as a readable string
+
+    // Update comment with timestamp
+    const formattedComment = `${newComment} (Added on: ${timestamp})`;
+
+    monthStatuses[monthIndex].comments = formattedComment; // Save the comment with timestamp
+    console.log(`Updated comment for ${monthStatuses[monthIndex].month}:`, formattedComment);
+
     // Update the displayed comment list immediately
-    document.getElementById(`comments-list-${monthIndex}`).innerText = newComment;
-    
+    document.getElementById(`comments-list-${monthIndex}`).innerText = formattedComment;
+
     updateField30(); // Update the field30 textarea with new data
 }
 
@@ -1377,11 +1393,21 @@ function addComment() {
         return; // Exit if parsing fails
     }
 
+    // Get the current timestamp
+    const currentDate = new Date();
+    const timestamp = currentDate.toLocaleString(); // Format timestamp as a readable string
+
+    // Create a comment object with text and timestamp
+    const newComment = {
+        text: commentInput,
+        timestamp: timestamp,
+    };
+
     // Add the new comment to the comments array
     if (!profileData[0].comments) {
         profileData[0].comments = []; // Initialize comments if it doesn't exist
     }
-    profileData[0].comments.push(commentInput); // Add new comment
+    profileData[0].comments.push(newComment); // Add new comment
 
     // Update field1 with the new profile data
     document.getElementById('field1').value = JSON.stringify(profileData);
@@ -1400,7 +1426,11 @@ function displayComments(comments) {
 
     if (comments.length > 0) {
         comments.forEach((comment, index) => {
-            commentListElement.innerHTML += `<div><strong>Comment ${index + 1}:</strong> ${comment}</div>`;
+            commentListElement.innerHTML += `
+                <div>
+                    <strong>Comment ${index + 1}:</strong> ${comment.text} 
+                    <div><em>(Added on: ${comment.timestamp})</em></div>
+                </div>`;
         });
     } else {
         commentListElement.innerHTML = '<div>No comments yet.</div>';
@@ -1507,17 +1537,26 @@ function handleSubmit() {
 
 // Function to dynamically update comments in breakdownStatuses array and display them immediately in the comment list
 function updateBreakdownComment(monthIndex, newComment) {
-    breakdownStatuses[monthIndex].comments = newComment;
-    console.log(`Updated comment for ${breakdownStatuses[monthIndex].month}:`, newComment);
+    const currentDate = new Date(); // Get the current date and time
+    const timestamp = currentDate.toLocaleString(); // Format timestamp as a readable string
+
+    // Append the timestamp to the comment
+    const formattedComment = `${newComment} (Added on: ${timestamp})`;
+
+    // Update the breakdownStatuses array
+    breakdownStatuses[monthIndex].comments = formattedComment;
+    console.log(`Updated comment for ${breakdownStatuses[monthIndex].month}:`, formattedComment);
 
     // Update the displayed comments list immediately
     const commentList = document.querySelector(`#breakdown-month-${monthIndex}-content p`);
     if (commentList) {
-        commentList.innerText = newComment;
+        commentList.innerText = formattedComment; // Display the comment with the timestamp
         commentList.parentNode.style.display = 'block'; // Show the comments list div
     }
+
     updateField32(); // Update the field32 textarea with new data
 }
+
 
 
 // Function to upload multiple files for breakdown schedules and send to API
@@ -1688,7 +1727,7 @@ function saveBreakdownProfileDetails() {
                 "field19": document.getElementById('field19').value,
                 "field20": document.getElementById('field20').value,
                 "field21": document.getElementById('field21').value,
-                "field22": document.getElementById('field22').value,
+                "field22": "",
                 "field23": document.getElementById('field23').value,
                 "field24": document.getElementById('field24').value,
                 "field25": "", // Assuming fields 25-50 are not editable; adjust as needed

@@ -496,10 +496,11 @@ body {
     <div>
       <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <ul class="navbar-links">
-            <li><a href="index.html">Login</a></li>
-            <li><a href="Add_client.html">Add Client</a></li>
-            <li><a href="Due-Payment.html">Due Payment</a></li>
-            <li><a href="search.html">Search</a></li>
+          <li><a href="index.html">Login</a></li>
+          <li><a href="Add_client.html">Add Client</a></li>
+          <li><a href="Due-Payment.html">Due Payment</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="po-and-customername.html">Name & PO Number</a></li>
         </ul>
     </div>
     <div class="navbar-item middle"></div>
@@ -530,11 +531,22 @@ body {
         <input type="email" name="email" id="signup-email" placeholder="Email" required>
         
         <label for="signup-password">Password</label>
+    <div style="position: relative;">
         <input type="password" name="password" id="signup-password" placeholder="Password" required>
-        
-        <label for="signup-confirm-password">Confirm Password</label>
+        <span onclick="togglePassword('signup-password')" 
+              style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+            👁️
+        </span>
+    </div>
+
+    <label for="signup-confirm-password">Confirm Password</label>
+    <div style="position: relative;">
         <input type="password" name="confirm-password" id="signup-confirm-password" placeholder="Confirm Password" required>
-       
+        <span onclick="togglePassword('signup-confirm-password')" 
+              style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+            👁️
+        </span>
+    </div>       
         
         <button type="submit" id="signup" onclick="storeData()">Signup</button>
         <!-- <button type="button" id="login-toggle">Login</button> -->
@@ -559,6 +571,15 @@ body {
     }
     
     </script> 
-    
+    <script>
+      function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+    </script>
 </body>
 </html>
