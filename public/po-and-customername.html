@@ -158,7 +158,7 @@
         <div>
           <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="navbar-links">
-                <li><a href="index.html">Login</a></li>
+                <li><a href="index.html">Logout</a></li>
                 <li><a href="Add_client.html">Add Client</a></li>
                 <li><a href="Due-Payment.html">Due Payment</a></li>
                 <li><a href="search.html">Search</a></li>
@@ -184,6 +184,7 @@
                     <th style="padding: 8px;">S.No</th>
                     <th style="padding: 8px;">Customer Name</th>
                     <th style="padding: 8px;">PO Number</th>
+                    <th style="padding: 8px;">Type of Call</th> <!-- New Column -->
                 </tr>
             </thead>
             <tbody>
@@ -214,7 +215,7 @@
     myHeaders.append("Authorization", `${token}`); // Use token from cookies
     myHeaders.append("Content-Type", "application/json");
 
-    // Fetch customer names and PO Numbers from the API
+    // Fetch customer names, PO Numbers, and Type of Call from the API
     fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", {
         method: "POST",
         headers: myHeaders,
@@ -230,6 +231,7 @@
         profiles.forEach((profile, index) => {
             const customerName = profile.field2;
             const poNumber = profile.field3;
+            const typeOfCall = profile.field8; // Extract Type of Call
 
             if (customerName && poNumber) {
                 // Create a new table row
@@ -238,6 +240,7 @@
                     <td style="padding: 8px; text-align: center;">${index + 1}</td>
                     <td style="padding: 8px;">${customerName}</td>
                     <td style="padding: 8px;">${poNumber}</td>
+                    <td style="padding: 8px;">${typeOfCall || 'N/A'}</td> <!-- Display Type of Call -->
                 `;
                 tableBody.appendChild(row);
             }
@@ -246,7 +249,7 @@
         if (profiles.length === 0) {
             const noDataRow = document.createElement('tr');
             noDataRow.innerHTML = `
-                <td colspan="3" style="padding: 8px; text-align: center;">No profiles found.</td>
+                <td colspan="4" style="padding: 8px; text-align: center;">No profiles found.</td>
             `;
             tableBody.appendChild(noDataRow);
         }
@@ -256,7 +259,7 @@
         const tableBody = document.querySelector('#profile-table tbody');
         tableBody.innerHTML = `
             <tr>
-                <td colspan="3" style="padding: 8px; text-align: center;">Error fetching profiles. Please try again later.</td>
+                <td colspan="4" style="padding: 8px; text-align: center;">Error fetching profiles. Please try again later.</td>
             </tr>
         `;
     });
