@@ -131,7 +131,7 @@
         <div>
           <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="navbar-links">
-                <li><a href="index.html">Login</a></li>
+                <li><a href="index.html">Logout</a></li>
                 <li><a href="Add_client.html">Add Client</a></li>
                 <li><a href="Due-Payment.html">Due Payment</a></li>
                 <li><a href="search.html">Search</a></li>
@@ -171,12 +171,16 @@
             <input type="text" id="phone" name="phone" placeholder="Enter Phone Number" required oninput="setCookie('field6', this.value); validatePhone()">
             <div id="phone-error" class="error-message"></div>
         </div>
-               
+        <div class="form-group">
+            <label for="contact-person-name"><strong>Contact Person Name: </strong></label>
+            <input type="text" id="contact-person-name" name="contact-person-name" placeholder="Enter Contact Person Name" required oninput="setCookie('field7', this.value); validateContactPersonName()">
+            <div id="contact-person-name-error" class="error-message"></div>
+        </div>    
     </div>
     
     <div class="installation-form1">
         <div class="form-group">
-            <label for="place"><strong>Place: </strong></label>
+            <label for="place"><strong>State: </strong></label>
             <input 
                 type="text" 
                 id="place" 
@@ -191,7 +195,7 @@
         </div> 
     
         <div class="form-group">
-            <label for="region"><strong>Region: </strong></label>
+            <label for="region"><strong>City: </strong></label>
             <input 
                 type="text" 
                 id="region" 
@@ -200,7 +204,7 @@
                 class="styled-input" 
                 placeholder="Type to search or select" 
                 oninput="filterRegionOptions(this.value)"
-                onchange="setCookie('field7', this.value)"
+                onchange="setCookie('field22', this.value)"
             />
             <ul id="region-suggestions" class="suggestions-list"></ul>
         </div>
@@ -212,7 +216,7 @@
         <div id="chl-container">
             <div class="form-group">
                 <label for="chl"><strong>CHL Type: </strong></label>
-                <input type="text" id="chl" name="chl[]" placeholder="Enter CHL" required oninput="updateArrayCookie('field8', 'chl[]')">
+                <input type="text" id="chl" name="chl[]" placeholder="Enter CHL" required oninput="updateArrayCookie('field15', 'chl[]')">
                 <div id="chl-error" class="error-message"></div>
             </div>
             <div class="form-group">
@@ -276,8 +280,14 @@
     
         <div class="form-group">
             <label for="po-value"><strong>PO Value: </strong></label>
-            <input type="text" id="po-value" name="po-value" placeholder="Enter PO Value" required oninput="setCookie('field14', this.value); validatePoValue()">
+            <input type="text" id="po-value" name="po-value" placeholder="Enter PO Value" required oninput="convertNumberToWords()">
             <div id="po-value-error" class="error-message"></div>
+        </div>
+    
+        <!-- Label to display the converted PO Value in words -->
+        <div class="form-group">
+            <label for="po-value-in-words"><strong>PO Value in Words: </strong></label>
+            <label id="po-value-in-words">Zero rupees only</label>
         </div>
     </div>
     
@@ -297,7 +307,11 @@
             <div id="dropdown-container" style="position: absolute; top: 100%; left: 143px; width: 60%; display: none; background: #fff; border: 1px solid #ccc; max-height: 150px; overflow-y: auto; z-index: 100;">
                 <div onclick="selectOption('AMC')">AMC</div>
                 <div onclick="selectOption('AMC Breakdown')">AMC Breakdown</div>
+                <div onclick="selectOption('AMC Breakdown (Spare PO)')">AMC Breakdown (Spare PO)</div>
+                <div onclick="selectOption('AMC Breakdown (Service PO)')">AMC Breakdown (Service PO)</div>
                 <div onclick="selectOption('Service Breakdown')">Service Breakdown</div>
+                <div onclick="selectOption('Service Breakdown (Spare PO)')">Service Breakdown (Spare PO)</div>
+                <div onclick="selectOption('Service Breakdown (Service PO)')">Service Breakdown (Service PO)</div>
             </div>
             
             <div id="type-of-call-error" class="error-message"></div>
@@ -363,6 +377,9 @@
             <select id="payment_status" name="payment_status" required class="styled-select" onchange="setCookie('field1', this.value)">
                 <option value="">Please Select</option>
                 <option value="Advance Payment">Advance Payment</option>
+                <option value="Partial Advance Payment">Partial Advance Payment</option>
+                <option value="Payment Received">Payment Received</option>
+                <option value="Payment Not Received">Payment Not Received</option>
                 <option value="17 Days">17 Days</option>
                 <option value="30 Days">30 Days</option>
                 <option value="45 Days">45 Days</option>
@@ -403,7 +420,7 @@
         function selectOption(value) {
             const input = document.getElementById('type-of-call');
             input.value = value;
-            setCookie('field15', value);
+            setCookie('field8', value);
             validateTypeOfCall();
             hideDropdown();
         }
@@ -568,7 +585,7 @@
     
     
     <script>
-        const places = ["Bangalore", "Mumbai", "Delhi"];
+        const places = ["Karnataka","Andhra Pradesh","Telengana", "Tamil Nadu", "Maharastra", "Kerala"];
 
 function filterOptions(input) {
     const suggestions = document.getElementById('suggestions');
@@ -600,7 +617,7 @@ function selectPlace(place) {
     document.getElementById('suggestions').style.display = 'none'; // Hide suggestions
 }
 
-const regions = ["North", "South", "East", "West"];
+const regions = ["Bangalore","Hyderabad","Chennai", "Mumbai", "Kochi"];
 
 function filterRegionOptions(input) {
     const suggestions = document.getElementById('region-suggestions');
@@ -665,16 +682,27 @@ function selectRegion(region) {
             const nameField = document.getElementById('customer-name');
             const nameError = document.getElementById('customer-name-error');
             const nameValue = nameField.value.trim();
-    
+
             if (nameValue.length < 5 || nameValue.length > 30) {
                 nameError.textContent = 'Customer name must be between 5 and 30 characters.';
-            } else if (!/^[a-zA-Z\s]*$/.test(nameValue)) {
-                nameError.textContent = 'Customer name must only contain letters and spaces.';
+            } else if (!/^[a-zA-Z0-9\s\W]*$/.test(nameValue)) { 
+                // \W allows special characters, equivalent to [^a-zA-Z0-9_]
+                nameError.textContent = 'Customer name can only contain letters, numbers, spaces, and special characters.';
             } else {
                 nameError.textContent = '';
             }
         }
-    
+
+        // Validation function for Contact Person Name
+        function validateContactPersonName() {
+            const contactPersonName = document.getElementById('contact-person-name').value;
+            const errorDiv = document.getElementById('contact-person-name-error');
+            if (contactPersonName.trim() === '') {
+                errorDiv.textContent = 'Contact Person Name is required.';
+            } else {
+                errorDiv.textContent = '';
+            }
+        }
         function validatePhone() {
             const phoneField = document.getElementById('phone');
             const phoneError = document.getElementById('phone-error');
@@ -752,8 +780,8 @@ function selectRegion(region) {
             const callError = document.getElementById('type-of-call-error');
             const callValue = callField.value.trim();
     
-            if (callValue.length < 3 || callValue.length > 20) {
-                callError.textContent = 'Type of Call must be between 3 and 20 characters.';
+            if (callValue.length < 3 || callValue.length > 50) {
+                callError.textContent = 'Type of Call must be between 3 and 50 characters.';
             } else {
                 callError.textContent = '';
             }
@@ -788,8 +816,8 @@ function selectRegion(region) {
             const engineerError = document.getElementById('service-engineer-error');
             const engineerValue = engineerField.value.trim();
     
-            if (engineerValue.length < 3 || engineerValue.length > 20) {
-                engineerError.textContent = 'Service Engineer must be between 3 and 20 characters.';
+            if (engineerValue.length < 3 || engineerValue.length > 50) {
+                engineerError.textContent = 'Service Engineer must be between 3 and 50 characters.';
             } else {
                 engineerError.textContent = '';
             }
@@ -823,6 +851,7 @@ function selectRegion(region) {
             // Check for validation errors
             validateCustomerName();
             validatePhone();
+            validateContactPersonName();
             validateChl();
             validatePac();
             validateAccount();
@@ -1090,7 +1119,7 @@ function updateImageCountDisplay() {
                 const field20 = getCookieValue("field20") || "";
                 const field21 = getCookieValue("field21") || "";
 
-                // const field22 = getCookieValue("field22") || "";
+                const field22 = getCookieValue("field22") || "";
                 const field23 = getCookieValue("field23") || "";
                 const field24 = getCookieValue("field24") || "";
 
@@ -1128,10 +1157,10 @@ function updateImageCountDisplay() {
                     "field19": field19,
                     "field20": field20,
                     "field21": field21,
-                    // "field22": field22,
+                    "field22": field22,
                     "field23": field23,
                     "field24": field24,
-                    "field25": "",
+                    "field25": field25,
                     "field26": "",
                     "field27": "",
                     "field28": "",
@@ -1192,13 +1221,24 @@ const requestOptions = {
     body: raw,
     redirect: "follow"
 };
-
+// Function to clear all cookies except for specified keys
+function clearCookiesExcept(keysToKeep) {
+    const cookies = document.cookie.split("; ");
+    cookies.forEach((cookie) => {
+        const [name] = cookie.split("=");
+        if (!keysToKeep.includes(name)) {
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        }
+    });
+}
 // Send the request
 fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
     .then((response) => {
         if (response.ok) {
             // Show success popup message
             showPopup("Profile created successfully!");
+            // Clear all cookies except 'email' and 'token'
+            clearCookiesExcept(["email", "token"]);
         } else {
             // Show error popup message for failed submission
             showPopup("Form not submitted due to an error.");
@@ -1214,5 +1254,164 @@ fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
 
             }
         </script>
+        <script>
+            // Function to clear a specific cookie by name
+            function clearCookie(name) {
+                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+            }
+        
+            // Function to show the token expired popup
+            function showTokenExpiredPopup() {
+                // Create the popup container
+                const popup = document.createElement('div');
+                popup.className = 'popup-container';
+                popup.style.position = 'fixed';
+                popup.style.top = '50%';
+                popup.style.left = '50%';
+                popup.style.transform = 'translate(-50%, -50%)';
+                popup.style.backgroundColor = '#fff';
+                popup.style.border = '1px solid #ccc';
+                popup.style.borderRadius = '8px';
+                popup.style.padding = '20px';
+                popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                popup.style.zIndex = '1000';
+        
+                // Create the message and button
+                popup.innerHTML = `
+                    <h3 style="margin: 0; padding-bottom: 10px;">Token Expired!</h3>
+                    <p style="margin: 0; padding-bottom: 20px;">Your session has expired. Please log in again.</p>
+                    <button id="loginAgainBtn" style="
+                        background-color: #007BFF;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    ">Login Again</button>
+                `;
+        
+                // Append the popup to the body
+                document.body.appendChild(popup);
+        
+                // Handle the Login Again button click
+                document.getElementById('loginAgainBtn').addEventListener('click', function() {
+                    clearCookie('token'); // Clear 'token' cookie
+                    clearCookie('email'); // Clear 'email' cookie
+                    window.location.href = 'index.html'; // Redirect to the login page
+                });
+            }
+        
+            // Monitor console errors for the specific 401 Unauthorized message
+            const originalConsoleError = console.error;
+        
+            console.error = function (...args) {
+                originalConsoleError.apply(console, args); // Call the original console.error
+        
+                // Check for the exact 401 error message in the console
+                if (
+                    args.some(arg =>
+                        typeof arg === 'string' &&
+                        arg.includes('Failed to load resource: the server responded with a status of 401 (UNAUTHORIZED)')
+                    )
+                ) {
+                    showTokenExpiredPopup(); // Show the popup for the specific 401 error
+                }
+            };
+        </script>
+        <script>
+            // Function to set a cookie
+            function setCookie(name, value) {
+                document.cookie = `${name}=${value}; path=/`;
+            }
+            
+            // Function to convert number into words (Indian numbering system)
+            function convertNumberToWords() {
+                const number = document.getElementById('po-value').value;
+                const words = convertToIndianWords(number);
+                document.getElementById('po-value-in-words').textContent = words;
+                
+                // Save both the PO Value and PO Value in words in cookies
+                setCookie('field14', number);  // Save PO Value
+                setCookie('field25', words);   // Save PO Value in words
+            }
+            
+            // Function to convert number to words (Indian numbering system)
+            function convertToIndianWords(num) {
+                const a = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+                const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+                const units = ['', 'Hundred', 'Thousand', 'Lakh', 'Crore'];
+                
+                num = num.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+                let n = parseInt(num);
+                
+                if (isNaN(n) || n === 0) return 'Zero rupees only';
+            
+                let result = '';
+                
+                // Handle Crore
+                if (n >= 10000000) {
+                    let crore = Math.floor(n / 10000000);
+                    result += convertToWordsUnderThousand(crore) + ' Crore';
+                    n = n % 10000000;
+                }
+                
+                // Handle Lakh
+                if (n >= 100000) {
+                    let lakh = Math.floor(n / 100000);
+                    result += ' ' + convertToWordsUnderThousand(lakh) + ' Lakh';
+                    n = n % 100000;
+                }
+                
+                // Handle Thousand
+                if (n >= 1000) {
+                    let thousand = Math.floor(n / 1000);
+                    result += ' ' + convertToWordsUnderThousand(thousand) + ' Thousand';
+                    n = n % 1000;
+                }
+            
+                // Handle Hundred
+                if (n >= 100) {
+                    let hundred = Math.floor(n / 100);
+                    result += ' ' + a[hundred] + ' Hundred';
+                    n = n % 100;
+                }
+            
+                // Handle Tens and Ones
+                if (n > 0) {
+                    if (n < 20) {
+                        result += ' ' + a[n];
+                    } else {
+                        result += ' ' + b[Math.floor(n / 10)];
+                        if (n % 10 !== 0) result += ' ' + a[n % 10];
+                    }
+                }
+            
+                return result.trim() + ' rupees only';
+            }
+            
+            // Helper function to convert numbers under 1000
+            function convertToWordsUnderThousand(n) {
+                const a = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+                const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+            
+                let result = '';
+            
+                if (n < 20) {
+                    result = a[n];
+                } else if (n < 100) {
+                    result = b[Math.floor(n / 10)];
+                    if (n % 10 !== 0) result += ' ' + a[n % 10];
+                } else {
+                    result = a[Math.floor(n / 100)] + ' Hundred';
+                    if (n % 100 !== 0) {
+                        result += ' ' + convertToWordsUnderThousand(n % 100);
+                    }
+                }
+            
+                return result;
+            }
+            </script>
+            
+            
 </body>
 </html>

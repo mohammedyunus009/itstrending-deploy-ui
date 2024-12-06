@@ -158,7 +158,7 @@
         <div>
           <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="navbar-links">
-                <li><a href="index.html">Login</a></li>
+                <li><a href="index.html">Logout</a></li>
                 <li><a href="Add_client.html">Add Client</a></li>
                 <li><a href="Due-Payment.html">Due Payment</a></li>
                 <li><a href="search.html">Search</a></li>
@@ -516,29 +516,68 @@
                 <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
                     <thead>
                         <tr>
-                            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
+                            <th colspan="2" 
+                                style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff; cursor: pointer;" 
+                                onclick="toggleSection('pm-schedules', 'pm-schedules-arrow')">
                                 PM Schedules:
+                                <span id="pm-schedules-arrow" style="float: right;">&#9660;</span>
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="pm-schedules" style="display: none;">
                         <tr>
                             <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
-                                <div id="pm-schedules" style="margin-top: 8px;"></div>
+                                <div id="pm-schedules-content" style="margin-top: 8px;">
+                                    <!-- Your PM Schedules Content Here -->
+                                </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <!-- Invoice Schedules Section -->
-                <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #F9F9F9;">
+                <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
                     <thead>
                         <tr>
-                            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
+                            <th colspan="2" 
+                                style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff; cursor: pointer;" 
+                                onclick="toggleSection('invoice-schedules', 'invoice-arrow')">
                                 Invoice Schedules:
+                                <span id="invoice-arrow" style="float: right;">&#9660;</span>
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="invoice-schedules" style="display: none;">
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Total Amount:</strong></td>
+                            <td style="border: 1px solid #ccc; padding: 8px;" id="total-amount">
+                                ${profile.field14 || 'N/A'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Remaining Amount:</strong></td>
+                            <td style="border: 1px solid #ccc; padding: 8px;">
+                                <input type="text" id="remaining-amount" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 8px;" placeholder="Enter remaining amount" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Invoice Generated Date:</strong></td>
+                            <td style="border: 1px solid #ccc; padding: 8px;">
+                                <input type="date" id="invoice-date" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 8px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Days Selected to Pay:</strong></td>
+                            <td style="border: 1px solid #ccc; padding: 8px;">
+                                <select id="days-to-pay" style="width: 100%; border: 1px solid #ccc; padding: 8px;">
+                                    <option value="">Please select</option>
+                                    <option value="17">17 Days</option>
+                                    <option value="30">30 Days</option>
+                                    <option value="45">45 Days</option>
+                                    <option value="60">60 Days</option>
+                                </select>
+                            </td>
+                        </tr>
+
                         <tr>
                             <td style="border: 1px solid #ccc; padding: 8px;"><strong>Start Date:</strong></td>
                             <td style="border: 1px solid #ccc; padding: 8px;" id="start-date">${profile.field5.split('T')[0]}</td>
@@ -561,7 +600,7 @@
                                 <strong>Comments:</strong><br>
                                 <textarea id="commentInput" rows="4" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 8px;" placeholder="Add your comments here..."></textarea>
                                 <button type="button" style="margin: 4px;" onclick="addComment()">Add Comment</button>
-                                <div id="commentList" style="margin-top: 8px;"></div>
+                                <div id="commentsList" style="margin-top: 8px;"></div>
                             </td>
                         </tr>
                         <tr>
@@ -582,29 +621,35 @@
                 <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
                     <thead>
                         <tr>
-                            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
+                            <th colspan="2" 
+                                style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff; cursor: pointer;" 
+                                onclick="toggleSection('breakdown-schedules', 'breakdown-arrow')">
                                 Breakdown Schedules:
+                                <span id="breakdown-arrow" style="float: right;">&#9660;</span>
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="breakdown-schedules" style="display: none;">
                         <tr>
                             <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
-                                <div id="breakdown-schedules" style="margin-top: 8px;"></div>
+                                <div id="breakdown-schedules-content" style="margin-top: 8px;"></div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <!-- Documents Section -->
+                <!-- PO Documents Section -->
                 <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #F9F9F9;">
                     <thead>
                         <tr>
-                            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
-                               PO Documents:
+                            <th colspan="2" 
+                                style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff; cursor: pointer;" 
+                                onclick="toggleSection('po-documents', 'po-documents-arrow')">
+                                PO Documents:
+                                <span id="po-documents-arrow" style="float: right;">&#9660;</span>
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="po-documents" style="display: none;">
                         <tr>
                             <td style="border: 1px solid #ccc; padding: 8px;">
                                 <div id="imagePreview">
@@ -628,17 +673,20 @@
                         </tr>
                     </tbody>
                 </table>
-
+                <!-- Profile Details Section -->
                 <form id="profile-form">
                     <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;" class="editable-table">
                         <thead>
                             <tr>
-                                <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
-                                    Profile Details
+                                <th colspan="2" 
+                                    style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff; cursor: pointer;" 
+                                    onclick="toggleSection('profile-details', 'profile-details-arrow')">
+                                    Profile Details:
+                                    <span id="profile-details-arrow" style="float: right;">&#9660;</span>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="profile-details" style="display: none;">
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Customer Name:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field2" value="${profile.field2}" /></td>
@@ -652,21 +700,26 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="date" id="field4" value="${profile.field4.split('T')[0]}" /></td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Place:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field16" value="${profile.field16}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Contact Person Name:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field7" value="${profile.field7}" /></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Phone Number:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field6" value="${profile.field6}" /></td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Region:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field7" value="${profile.field7}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>State:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field16" value="${profile.field16}" /></td>
+                            </tr>
+                            
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>City:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field22" value="${profile.field22}" /></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>CHL Type:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
-                                    <textarea id="field8" rows="5" style="width: 100%;">${profile.field8}</textarea>
+                                    <textarea id="field15" rows="5" style="width: 100%;">${profile.field15}</textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -708,8 +761,12 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field14" value="${profile.field14}" /></td>
                             </tr>
                             <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Value in words:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field25" value="${profile.field25}" /></td>
+                            </tr>
+                            <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Type of Call:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field15" value="${profile.field15}" /></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field8" value="${profile.field8}" /></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Contract Period From:</strong></td>
@@ -1421,19 +1478,19 @@ function addComment() {
 
 // Function to display comments
 function displayComments(comments) {
-    const commentListElement = document.getElementById('commentList');
-    commentListElement.innerHTML = ''; // Clear the current list
+    const commentsListElement = document.getElementById('commentsList');
+    commentsListElement.innerHTML = ''; // Clear the current list
 
     if (comments.length > 0) {
         comments.forEach((comment, index) => {
-            commentListElement.innerHTML += `
+            commentsListElement.innerHTML += `
                 <div>
                     <strong>Comment ${index + 1}:</strong> ${comment.text} 
                     <div><em>(Added on: ${comment.timestamp})</em></div>
                 </div>`;
         });
     } else {
-        commentListElement.innerHTML = '<div>No comments yet.</div>';
+        commentsListElement.innerHTML = '<div>No comments yet.</div>';
     }
 }
 
@@ -1727,10 +1784,10 @@ function saveBreakdownProfileDetails() {
                 "field19": document.getElementById('field19').value,
                 "field20": document.getElementById('field20').value,
                 "field21": document.getElementById('field21').value,
-                "field22": "",
+                "field22": document.getElementById('field22').value,
                 "field23": document.getElementById('field23').value,
                 "field24": document.getElementById('field24').value,
-                "field25": "", // Assuming fields 25-50 are not editable; adjust as needed
+                "field25": document.getElementById('field25').value, // Assuming fields 26-50 are not editable; adjust as needed
                 "field26": "",
                 "field27": "",
                 "field28": "",
@@ -1922,6 +1979,20 @@ function saveBreakdownProfileDetails() {
 
         // Call the function to check login status on page load
         checkLoginStatus();
+    </script>
+    <script>
+        function toggleSection(sectionId, arrowId) {
+            const section = document.getElementById(sectionId);
+            const arrow = document.getElementById(arrowId);
+            
+            if (section.style.display === "none") {
+                section.style.display = "table-row-group";  // or "block" depending on your layout
+                arrow.innerHTML = "&#9650;"; // Up arrow
+            } else {
+                section.style.display = "none";
+                arrow.innerHTML = "&#9660;"; // Down arrow
+            }
+        }
     </script>
 </body>
 </html>

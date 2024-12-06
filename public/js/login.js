@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Hide loading animation
                     loadingContainer.style.display = 'none';
                     // Redirect to the next page
-                    window.location.href = 'Add_client.html';
+                    window.location.href = 'search.html';
                 }, 5000); // 5 seconds
             } else {
                 console.log('Login failed:', data.message);
