@@ -222,7 +222,14 @@
         body: JSON.stringify({ "field48": "" }),
         redirect: "follow"
     })
-    .then(response => response.json())
+    .then(response => {
+        if (response.status === 401) {
+            alert("Session expired. Please log in again.");
+            window.location.href = 'index.html'; // Redirect to login page
+            throw new Error("401 Unauthorized");
+        }
+        return response.json();
+    })
     .then(result => {
         const profiles = result.data.profile; // Extract profiles from the result
         const tableBody = document.querySelector('#profile-table tbody');
