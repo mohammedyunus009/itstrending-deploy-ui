@@ -249,7 +249,14 @@
             body: JSON.stringify({ "field48": "" }),
             redirect: "follow"
         })
-            .then((response) => response.json())
+        .then(response => {
+        if (response.status === 401) {
+            alert("Session expired. Please log in again.");
+            window.location.href = 'index.html'; // Redirect to login page
+            throw new Error("401 Unauthorized");
+        }
+        return response.json();
+    })
             .then((result) => {
                 // Extract profiles from the result
                 const profiles = result.data.profile;
@@ -553,30 +560,33 @@
                                 ${profile.field14 || 'N/A'}
                             </td>
                         </tr>
+                        <!-- Remaining Amount, Invoice Date, and Days to Pay -->
                         <tr>
                             <td style="border: 1px solid #ccc; padding: 8px;"><strong>Remaining Amount:</strong></td>
                             <td style="border: 1px solid #ccc; padding: 8px;">
-                                <input type="text" id="remaining-amount" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 8px;" placeholder="Enter remaining amount" />
+                                <input type="text" id="remaining-amount" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 8px;" 
+                                    value="${getRemainingAmount(profile.field9)}" placeholder="Enter remaining amount" />
                             </td>
                         </tr>
                         <tr>
                             <td style="border: 1px solid #ccc; padding: 8px;"><strong>Invoice Generated Date:</strong></td>
                             <td style="border: 1px solid #ccc; padding: 8px;">
-                                <input type="date" id="invoice-date" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 8px;" />
+                                <input type="date" id="invoice-date" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 8px;" 
+                                    value="${getInvoiceGeneratedDate(profile.field9)}" onchange="updateDueDate()" />
                             </td>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Days Selected to Pay:</strong></td>
-                            <td style="border: 1px solid #ccc; padding: 8px;">
-                                <select id="days-to-pay" style="width: 100%; border: 1px solid #ccc; padding: 8px;">
-                                    <option value="">Please select</option>
-                                    <option value="17">17 Days</option>
-                                    <option value="30">30 Days</option>
-                                    <option value="45">45 Days</option>
-                                    <option value="60">60 Days</option>
-                                </select>
-                            </td>
-                        </tr>
+    <td style="border: 1px solid #ccc; padding: 8px;"><strong>Days Selected to Pay:</strong></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">
+        <select id="days-to-pay" style="width: 100%; border: 1px solid #ccc; padding: 8px;" onchange="updateDueDate()">
+            <option value="" ${getDaysSelectedToPay(profile.field9) === null ? 'selected' : ''}>Please select</option>
+            <option value="17" ${getDaysSelectedToPay(profile.field9) === 17 ? 'selected' : ''}>17 Days</option>
+            <option value="30" ${getDaysSelectedToPay(profile.field9) === 30 ? 'selected' : ''}>30 Days</option>
+            <option value="45" ${getDaysSelectedToPay(profile.field9) === 45 ? 'selected' : ''}>45 Days</option>
+            <option value="60" ${getDaysSelectedToPay(profile.field9) === 60 ? 'selected' : ''}>60 Days</option>
+        </select>
+    </td>
+</tr>
 
                         <tr>
                             <td style="border: 1px solid #ccc; padding: 8px;"><strong>Start Date:</strong></td>
@@ -584,7 +594,7 @@
                         </tr>
                         <tr>
                             <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Due Date:</strong></td>
-                            <td style="border: 1px solid #ccc; padding: 8px;" id="payment-due-date">${getDueDate(profile.field1)}</td>
+                            <td style="border: 1px solid #ccc; padding: 8px;" id="payment-due-date">${getPaymentDueDate(profile.field9)}</td>
                         </tr>
                         <tr>
                             <td colspan="2" style="border: 1px solid #ccc; padding: 8px;"><strong>Documents:</strong></td>
@@ -725,7 +735,7 @@
                             <tr>
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>CHL Quantity:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
-                                    <textarea id="field9" rows="5" style="width: 100%;">${profile.field9}</textarea>
+                                    <textarea id="field26" rows="5" style="width: 100%;">${profile.field26}</textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -793,6 +803,12 @@
                                 <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Data and status:</strong></td>
                                 <td style="border: 1px solid #ccc; padding: 8px;">
                                     <textarea id="field1" rows="5" style="width: 100%;">${profile.field1}</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Due data:</strong></td>
+                                <td style="border: 1px solid #ccc; padding: 8px;">
+                                    <textarea id="field9" rows="5" style="width: 100%;">${profile.field9}</textarea>
                                 </td>
                             </tr>
                             <tr style="display: none;">
@@ -1002,7 +1018,7 @@ function generatePMSchedules(contractFrom, contractTo, totalVisits) {
                     <span id="${monthId}-arrow" style="float: right;">&#9660;</span>
                 </div>
                 <div id="${monthId}-content" style="display: none; padding: 16px; background-color: #f9f9f9;">
-                    <div>Visits: ${visitsPerMonth}</div>
+                    <div style="display: none;">Visits: ${visitsPerMonth}</div>
                     <button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'onhold')">On Hold</button>
                     <button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'completed')">Completed</button>
                     <button type="button" style="margin: 4px;" onclick="updateAndSave('${monthId}', ${month}, 'schedule')">Schedule</button>
@@ -1326,16 +1342,16 @@ function displayInvoiceDetails(profile) {
     const comments = paymentData[0]?.comments || [];  // Use optional chaining to avoid errors
     displayComments(comments);
 }
-// Function to extract due date from payment data
-function getDueDate(field1) {
+function getPaymentDueDate(field9) {
     try {
-        const paymentData = JSON.parse(field1);
-        return paymentData[0]?.dueDate ? new Date(paymentData[0].dueDate).toLocaleDateString() : 'N/A';
+        const paymentData = JSON.parse(field9);
+        return paymentData[0]?.PaymentDueDate ? new Date(paymentData[0].PaymentDueDate).toLocaleDateString() : 'N/A';
     } catch (error) {
-        console.error('Error extracting due date:', error);
+        console.error('Error extracting payment due date:', error);
         return 'N/A';
     }
 }
+
 // Function to extract document links from payment data
 function getDocumentLinks(field1) {
     try {
@@ -1351,6 +1367,48 @@ function getDocumentLinks(field1) {
         return 'No Documents Available';
     }
 
+}
+// Helper functions to get data from field9
+function getRemainingAmount(field9) {
+    try {
+        const paymentData = JSON.parse(field9);
+        return paymentData[0]?.RemainingAmount || 'N/A';
+    } catch (error) {
+        console.error('Error parsing RemainingAmount:', error);
+        return 'N/A';
+    }
+}
+
+function getInvoiceGeneratedDate(field9) {
+    try {
+        const paymentData = JSON.parse(field9);
+        return paymentData[0]?.InvoiceGeneratedDate || 'N/A';
+    } catch (error) {
+        console.error('Error parsing InvoiceGeneratedDate:', error);
+        return 'N/A';
+    }
+}
+
+function getDaysSelectedToPay(field9) {
+    try {
+        const paymentData = JSON.parse(field9);
+        // Return the DaysSelectedToPay if available, else return null (for 'Please select')
+        return paymentData[0]?.DaysSelectedToPay || null;
+    } catch (error) {
+        console.error('Error parsing DaysSelectedToPay:', error);
+        return null;  // Return null in case of an error, so it selects "Please select"
+    }
+}
+
+
+function getPaymentDueDate(field9) {
+    try {
+        const paymentData = JSON.parse(field9);
+        return paymentData[0]?.PaymentDueDate ? new Date(paymentData[0].PaymentDueDate).toLocaleDateString() : 'N/A';
+    } catch (error) {
+        console.error('Error parsing PaymentDueDate:', error);
+        return 'N/A';
+    }
 }
 async function uploadFiles(event) {
     const fileInput = event.target; // Get the input element
@@ -1538,7 +1596,7 @@ function generateBreakdownSchedules(contractFrom, contractTo, totalBreakdowns) {
                     <span id="${monthId}-arrow" style="float: right;">&#9660;</span>
                 </div>
                 <div id="${monthId}-content" style="display: none; padding: 16px; background-color: #f9f9f9;">
-                    <div>Breakdowns: ${breakdownsPerMonth}</div>
+                    <div style="display: none;">Breakdowns: ${breakdownsPerMonth}</div>
                     <button type="button" style="margin: 4px;" onclick="updateAndSaveBreakdown('${monthId}', ${month}, 'onhold')">On Hold</button>
                     <button type="button" style="margin: 4px;" onclick="updateAndSaveBreakdown('${monthId}', ${month}, 'completed')">Completed</button>
                     <button type="button" style="margin: 4px;" onclick="updateAndSaveBreakdown('${monthId}', ${month}, 'schedule')">Schedule</button>
@@ -1788,7 +1846,7 @@ function saveBreakdownProfileDetails() {
                 "field23": document.getElementById('field23').value,
                 "field24": document.getElementById('field24').value,
                 "field25": document.getElementById('field25').value, // Assuming fields 26-50 are not editable; adjust as needed
-                "field26": "",
+                "field26": document.getElementById('field26').value,
                 "field27": "",
                 "field28": "",
                 "field29": "",
@@ -1994,5 +2052,58 @@ function saveBreakdownProfileDetails() {
             }
         }
     </script>
+<script>
+    const profile = {
+        field1: '[{"status":"", "document":"", "dueDate":""}]', // Default structure for field1
+        field9: [] // Initialize field9 as an empty array
+    };
+    
+    // Function to calculate and update Payment Due Date based on Invoice Generated Date and Days Selected to Pay
+    function updateDueDate() {
+        const invoiceDate = document.getElementById('invoice-date')?.value;
+        const daysToPay = parseInt(document.getElementById('days-to-pay')?.value);
+        const remainingAmount = document.getElementById('remaining-amount')?.value;
+    
+        // Ensure that the necessary values are present
+        if (invoiceDate && daysToPay && remainingAmount !== "") {
+            // Convert Invoice Generated Date to a Date object
+            const dueDate = new Date(invoiceDate);
+            dueDate.setDate(dueDate.getDate() + daysToPay);
+    
+            // Update Payment Due Date
+            document.getElementById('payment-due-date').innerText = dueDate.toISOString().split('T')[0];
+    
+            // Clear the field9 array and replace with the new data
+            profile.field9 = [{
+                "InvoiceGeneratedDate": invoiceDate,
+                "DaysSelectedToPay": daysToPay,
+                "RemainingAmount": remainingAmount, // Ensure this is captured correctly
+                "PaymentDueDate": dueDate.toISOString().split('T')[0],
+            }];
+    
+            // Immediately update the field9 textarea
+            document.getElementById('field9').value = JSON.stringify(profile.field9, null, 2);
+    
+            // Log the updated field9 array to the console for inspection
+            console.log("Updated field9:", profile.field9);
+            console.log("Remaining Amount:", remainingAmount); // Log to ensure it works
+        } else {
+            console.warn('Missing required inputs: Invoice Date, Days to Pay, or Remaining Amount');
+        }
+    }
+    
+    // Add event listeners only after ensuring the elements exist
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const invoiceDateInput = document.getElementById('invoice-date');
+        const daysToPayInput = document.getElementById('days-to-pay');
+        const remainingAmountInput = document.getElementById('remaining-amount');
+    
+        if (invoiceDateInput) invoiceDateInput.addEventListener('change', updateDueDate);
+        if (daysToPayInput) daysToPayInput.addEventListener('change', updateDueDate);
+        if (remainingAmountInput) remainingAmountInput.addEventListener('input', updateDueDate); // Added 'input' event listener
+    });
+</script>
+
+    
 </body>
 </html>

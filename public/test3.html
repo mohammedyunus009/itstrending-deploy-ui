@@ -3,77 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Updation Page</title>
-    <link href="css/i3.css" rel="stylesheet">
+    <title>Add Customer</title>
+    <link href="css/i.css" rel="stylesheet">
     <style>
-/* Basic styles for the container */
-.installation-form {
-            position: relative; /* Position relative for dropdown */
-            max-width: 380px;
-            margin: 20px auto;
-            display: flex;
-            gap: 15px;
-        }
-        /* Mobile view adjustments */
-@media (max-width: 600px) {
-    .installation-form {
-        max-width: 100%;  /* Full width on mobile */
-        margin: 10px;     /* Reduce margin on mobile */
-        padding: 15px;    /* Adjust padding for mobile */
-        display: block;
-    }
-}
-
-        /* Base styles for suggestions dropdown */
-#suggestions-list {
-    border: 0px solid #ccc; /* Use solid border */
-    max-height: 150px; /* Set a reasonable max height */
-    overflow-y: auto;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    background-color: white;
-    z-index: 1000;
-    width: calc(52% - 20px); /* Match input box width */
-    top: 59%; /* Position directly below the input */
-    left: 180px; /* Align with left side of the input */
-}
-
-/* Style for each suggestion */
-#suggestions-list li {
-    padding: 10px; /* Add padding */
-    cursor: pointer; /* Change cursor to pointer */
-}
-
-/* Highlight suggestions on hover */
-#suggestions-list li:hover {
-    background-color: #f0f0f0; /* Highlight on hover */
-}
-
-/* Mobile-specific styles */
-@media (max-width: 600px) {
-    #suggestions-list {
-        width: calc(100% - 2px); /* Maintain full width for mobile */
-        left: 0; /* Align with left side of the input */
-        max-height: 120px; /* Adjust max height for mobile */
-        top: 100%;
-    }
-
-    #customer-name {
-        width: 100%; /* Ensure the input takes full width on mobile */
-    }
-
-    .form-group {
-        position: relative; /* Ensure suggestions list positions correctly */
-        margin-bottom: 15px; /* Add space between form groups */
-        display: block;
-    }
-}
-
         /* Navbar links */
     .navbar-links {
-            display: ruby-text;
+            display: flex;
             list-style-type: none;
             gap: 22px; /* Adds space between each menu item */
         }
@@ -105,20 +40,12 @@
                 margin-right: 0px;
             }
         }
-        /* Overlay for Popup */
-    #popupOverlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
+        .error-message {
+        color: red;
+        font-size: 12px;
+        padding-left: 10px;
     }
-    
-
-.menu-btn {
+    .menu-btn {
     display: none;
     font-size: 30px;
     background: none;
@@ -148,6 +75,52 @@
     }
 }
 
+
+.suggestions-list {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    list-style: none;
+    padding: 0px;
+    margin-top: 111px;
+    position: absolute;
+    z-index: 1000;
+    background: white;
+    width: 25%;
+    max-height: 200px;
+    margin-left: 143px;
+    display: none;
+}
+
+.suggestions-list li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestions-list li:hover {
+    background-color: #f0f0f0;
+}
+.custom-file-upload {
+            display: inline-block;
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: #00bfa6; /* Change background color */
+            color: white; /* Text color */
+            border: 1px solid #ccc; /* Border styling */
+            border-radius: 4px; /* Rounded corners */
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #45a049; /* Darker background on hover */
+        }
+/* Style for dropdown options */
+#dropdown-container div {
+    padding: 10px;
+    cursor: pointer;
+}
+#dropdown-container div:hover {
+    background-color: #f0f0f0;
+}
     </style>
 </head>
 <body>
@@ -158,7 +131,7 @@
         <div>
           <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="navbar-links">
-                <li><a href="index.html">Login</a></li>
+                <li><a href="index.html">Logout</a></li>
                 <li><a href="Add_client.html">Add Client</a></li>
                 <li><a href="Due-Payment.html">Due Payment</a></li>
                 <li><a href="search.html">Search</a></li>
@@ -168,1465 +141,515 @@
         <div class="navbar-item middle"></div>
         <div class="navbar-item right"></div>
     </header>
-    <br><br>
+    <br>
+    <!-- <div class="installation-form">
+        <h2>Add Clients</h2>
+        <div class="underline"></div>
+        <label for="serial-number"><strong>Serial Number: </strong></label>
+        <input type="text" id="serial-number" name="serial-number" placeholder="Enter Serial Number" required oninput="setCookie('field1', this.value)">
+    </div> -->
+    <br>
     <header class="sub-navbar">
         <div class="navbar-item left" style="display: flex; justify-content: center; align-items: center;">
-            <h3 style="margin: 0; color:#00bfa6 ;">Search</h3>
-        </div>
-        <div class="navbar-item middle"></div>
-        <div class="navbar-item right"></div>
-    </header>
-    <div class="installation-form">
-        <div class="form-group">
-            <label for="customer-name"><strong>Customer Name: </strong></label>
-            <input type="text" id="customer-name" name="customer-name" placeholder="Enter Customer Name" required oninput="filterCustomers()">
-            <ul id="suggestions-list"></ul> <!-- Suggestions will be displayed here -->
-        </div>
-        <div class="form-group">
-            <label for="po-no"><strong>PO No.: </strong></label>
-            <input type="text" id="po-no" name="po-no" placeholder="Enter PO Number">
-        </div>
-    
-        <div class="form-group">
-            <label for="contract-period"><strong>PO Date: </strong></label>
-            <input type="date" id="contract-period" name="contract-period" class="styled-input">
-        </div>
-        <button class="next-button" onclick="handleSearch()">Search</button>
-    </div>
-    
-    
-    <header class="sub-navbar">
-        <div class="navbar-item left" style="display: flex; justify-content: center; align-items: center;">
-            <h3 style="margin: 0; color:#00bfa6 ;">Customer Data</h3>
+            <h3 style="margin: 0; color:#00bfa6 ;">PM and Invoice Schedule Form</h3>
         </div>
         <div class="navbar-item middle"></div>
         <div class="navbar-item right"></div>
     </header>
          
-    <div id="search-results"></div> 
-    <!-- Popup Message -->
-<div id="popupMessage" style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #333; color: white; padding: 20px; border-radius: 8px; z-index: 1000;">
-    <span id="popupText"></span>
-    <button onclick="saveProfileDetails(); closePopup();" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Yes</button>
-    <button onclick="closePopup()" style="margin-top: 10px; background-color: #fff; color: #333; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">No</button>
-</div>
-<!-- Popup Modal HTML -->
-<div id="statusPopup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); padding:20px; background-color:#fff; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000;">
-    <span id="popupMessage" style="font-size:16px;"></span><br><br>
-    <button onclick="closePopup()" style="padding:10px; background-color:#333; color:white; border:none;">OK</button>
-</div>
-
-<!-- Modal Overlay -->
-<div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); z-index: 999;"></div>
-    <br>
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="customer-name"><strong>Customer Name: </strong></label>
+            <input type="text" id="customer-name" name="customer-name" placeholder="Enter Customer Name" required oninput="setCookie('field2', this.value); validateCustomerName()">
+            <div id="customer-name-error" class="error-message"></div>
+        </div>
     
-<script>
-    function toggleMenu() {
-    const navbarLinks = document.querySelector('.navbar-links');
-    navbarLinks.classList.toggle('show');
-}
 
-</script>    
-<script>
-        // Function to get a specific cookie by name
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
 
-        // Retrieve the token from cookies
-        const token = getCookie('token');
+        <div class="form-group">
+            <label for="phone"><strong>Phone Number: </strong></label>
+            <input type="text" id="phone" name="phone" placeholder="Enter Phone Number" required oninput="setCookie('field6', this.value); validatePhone()">
+            <div id="phone-error" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="contact-person-name"><strong>Contact Person Name: </strong></label>
+            <input type="text" id="contact-person-name" name="contact-person-name" placeholder="Enter Contact Person Name" required oninput="setCookie('field7', this.value); validateContactPersonName()">
+            <div id="contact-person-name-error" class="error-message"></div>
+        </div>    
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="place"><strong>State: </strong></label>
+            <input 
+                type="text" 
+                id="place" 
+                name="place" 
+                required 
+                class="styled-input" 
+                placeholder="Type to search or select" 
+                oninput="filterOptions(this.value)"
+                onchange="setCookie('field16', this.value)"
+            />
+            <ul id="suggestions" class="suggestions-list"></ul>
+        </div> 
+    
+        <div class="form-group">
+            <label for="region"><strong>City: </strong></label>
+            <input 
+                type="text" 
+                id="region" 
+                name="region" 
+                required 
+                class="styled-input" 
+                placeholder="Type to search or select" 
+                oninput="filterRegionOptions(this.value)"
+                onchange="setCookie('field22', this.value)"
+            />
+            <ul id="region-suggestions" class="suggestions-list"></ul>
+        </div>
+        
+    </div>
+    
+    <div class="installation-form1">
+        <!-- CHL Section -->
+        <div id="chl-container">
+            <div class="form-group">
+                <label for="chl"><strong>CHL Type: </strong></label>
+                <input type="text" id="chl" name="chl[]" placeholder="Enter CHL" required oninput="updateArrayCookie('field15', 'chl[]')">
+                <div id="chl-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="chl-quantity"><strong>CHL Quantity: </strong></label>
+                <input type="number" id="chl-quantity" name="chl-quantity[]" placeholder="Enter CHL Quantity" required oninput="updateArrayCookie('field9', 'chl-quantity[]'); calculateTotal()">
+            </div>
+        </div>
+        <button type="button" onclick="addMore('chl')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More CHL</button>
+    </div>
+    
+    <div class="installation-form1">
+        <!-- PAC Section -->
+        <div id="pac-container">
+            <div class="form-group">
+                <label for="pac"><strong>PAC Type: </strong></label>
+                <input type="text" id="pac" name="pac[]" placeholder="Enter PAC" required oninput="updateArrayCookie('field10', 'pac[]')">
+                <div id="pac-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="pac-quantity"><strong>PAC Quantity: </strong></label>
+                <input type="number" id="pac-quantity" name="pac-quantity[]" placeholder="Enter PAC Quantity" required oninput="updateArrayCookie('field11', 'pac-quantity[]'); calculateTotal()">
+            </div>
+        </div>
+        <button type="button" onclick="addMore('pac')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More PAC</button>
+    </div>
+    
+    <div class="installation-form1">
+        <!-- S. A/c Section -->
+        <div id="s-ac-container">
+            <div class="form-group">
+                <label for="s-ac"><strong>S. A/c Type: </strong></label>
+                <input type="text" id="s-ac" name="s-ac[]" placeholder="Enter S. A/c" required oninput="updateArrayCookie('field24', 's-ac[]')">
+                <div id="s-ac-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="s-ac-quantity"><strong>S. A/c Quantity: </strong></label>
+                <input type="number" id="s-ac-quantity" name="s-ac-quantity[]" placeholder="Enter S. A/c Quantity" required oninput="updateArrayCookie('field21', 's-ac-quantity[]'); calculateTotal()">
+            </div>
+        </div>
+        <button type="button" onclick="addMore('s-ac')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More S. A/c</button>
+    </div>
 
-                const myHeaders = new Headers();
-                myHeaders.append("Authorization", `${token}`); // Use token from cookies
-                myHeaders.append("Content-Type", "application/json");
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="total"><strong>Total: </strong></label>
+            <input type="text" id="total" name="total" placeholder="Total" readonly>
+        </div>
 
-        let customerNames = []; // Array to hold customer names
+        <div class="form-group">
+            <label for="contract-period"><strong>PO Date: </strong></label>
+            <input type="date" id="contract-period" name="contract-period" required class="styled-input" onchange="setCookie('field4', this.value)">
+        </div>
+    </div>
 
-        // Fetch customer names from the API
-        fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", {
-            method: "POST",
-            headers: myHeaders,
-            body: JSON.stringify({ "field48": "" }),
-            redirect: "follow"
-        })
-            .then((response) => response.json())
-            .then((result) => {
-                // Extract profiles from the result
-                const profiles = result.data.profile;
-
-                // Populate the customerNames array with descriptions (names)
-                customerNames = profiles.map(profile => profile.field2);
-            })
-            .catch((error) => console.error('Error:', error));
-
-        // Function to filter and display customer names in the dropdown
-        function filterCustomers() {
-            const input = document.getElementById("customer-name");
-            const filter = input.value.toLowerCase();
-            const suggestionsList = document.getElementById("suggestions-list");
-
-            // Clear previous suggestions
-            suggestionsList.innerHTML = "";
-
-            // If there's no input, return
-            if (!filter) return;
-
-            // Filter customer names based on the input
-            const filteredNames = customerNames.filter(name => name.toLowerCase().includes(filter));
-
-            // Populate the suggestions list with filtered names
-            filteredNames.forEach(name => {
-                const li = document.createElement("li");
-                li.textContent = name; // Set the text content of the list item
-                li.onclick = () => {
-                    input.value = name; // Set the input value to the selected name
-                    suggestionsList.innerHTML = ""; // Clear suggestions after selection
-                    fetchCustomerData(name); // Fetch customer data for the selected name
-                };
-                suggestionsList.appendChild(li); // Append the list item to the suggestions list
-            });
-        }
-
-        // Function to fetch customer data based on the entered name
-        function fetchCustomerData(customerName) {
-            const raw = JSON.stringify({
-                "field2": customerName // Use the entered name in the request body
-            });
-
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow"
-            };
-
-            fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", requestOptions)
-                .then(response => response.json())
-                .then(result => {
-                    // Handle the fetched customer data
-                    console.log('Fetched customer data:', result);
-
-                    // Extract the profile_id from the response
-                    const profileId = result.data.profile[0].profile_id;
-                    console.log('Profile ID:', profileId);
-
-                    // Retrieve the email from cookies
-                    const email = decodeURIComponent(getCookie('email') || '');
-                    console.log('Email from cookies:', email);
-
-                    // Send the profile_id and email to the second API
-                    fetchProfileDetails(profileId, email);
-                })
-                .catch(error => console.error('Error fetching customer data:', error));
-        }
-
-        // Function to send the profile_id and email to the API
-        function fetchProfileDetails(profileId, email) {
-            const raw = JSON.stringify({
-                "profile_id": profileId,
-                "email": email
-            });
-
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow"
-            };
-
-            fetch("https://api2.itstrending.in/api/v1/profiles/get_profile_details", requestOptions)
-                .then(response => response.json())
-                .then(result => {
-                    // Log the result in the console
-                    console.log('Profile details fetched:', result);
-                })
-                .catch(error => console.error('Error fetching profile details:', error));
-        }
-
-        // Function to get a cookie by name
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
-
-</script>
-
-<script>
-        // Global variable to store current profile ID
-        let currentProfileId = null;
-
-        // Function to get a value from cookies
-        function getCookie(name) {
-            let cookieArr = document.cookie.split(";");
-            for (let i = 0; i < cookieArr.length; i++) {
-                let cookiePair = cookieArr[i].split("=");
-                if (name === cookiePair[0].trim()) {
-                    return decodeURIComponent(cookiePair[1]);
-                }
-            }
-            return null;
-        }
-
-        // Function to handle search
-        function handleSearch() {
-            // Get input values
-            const customerName = document.getElementById('customer-name').value;
-            const poNumber = document.getElementById('po-no').value;
-            const poDate = document.getElementById('contract-period').value;
-
-            // Ensure at least one search input is provided
-            if (!customerName && !poNumber && !poDate) {
-                console.error('At least one search field must be entered.');
-                alert('Please enter at least one search criterion.');
-                return;
-            }
-
-            // Get the token from cookies
-            const token = getCookie('token');
-            if (!token) {
-                console.error('Token not found in cookies.');
-                alert('Authentication token not found. Please log in.');
-                return;
-            }
-
-            // Set headers for the first API request
-            const myHeaders = new Headers();
-            myHeaders.append("Authorization", token);
-            myHeaders.append("Content-Type", "application/json");
-
-            // Create the search request body
-            const requestBody = {};
-            if (customerName) requestBody["field2"] = customerName;
-            if (poNumber) requestBody["field3"] = poNumber;
-            if (poDate) requestBody["field4"] = poDate;
-
-            // Log the request body
-            console.log('Search Request Body:', JSON.stringify(requestBody));
-
-            // Make the search API request
-            fetch("https://api2.itstrending.in/api/v1/profiles/search_multiple", {
-                method: "POST",
-                headers: myHeaders,
-                body: JSON.stringify(requestBody),
-                redirect: "follow"
-            })
-                .then(response => response.json())
-                .then(result => {
-                    console.log('Search Result:', result);
-
-                    // Extract profile_id from the result
-                    if (result && result.data && result.data.profile && result.data.profile.length > 0) {
-                        const profileId = result.data.profile[0].profile_id;
-                        console.log('Profile ID:', profileId);
-                        currentProfileId = profileId; // Store globally
-
-                        // Get email from cookies
-                        const email = getCookie('email');
-                        if (!email) {
-                            console.error('Email not found in cookies.');
-                            alert('Email not found. Please ensure you are logged in.');
-                            return;
-                        }
-                        console.log('Email:', email);
-
-                        // Call the second API to get profile details
-                        getProfileDetails(profileId, email, token);
-                    } else {
-                        console.error('No profile found in the search result.');
-                        alert('No profiles found matching the search criteria.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching search data:', error);
-                    alert('An error occurred while searching. Please try again.');
-                });
-        }
-
-        // Function to get full profile details
-        function getProfileDetails(profileId, email, token) {
-            // Set headers for the second API request
-            const myHeaders = new Headers();
-            myHeaders.append("Authorization", token);
-            myHeaders.append("Content-Type", "application/json");
-
-            // Create the request body for getting profile details
-            const requestBody = {
-                "profile_id": profileId,
-                "email": email
-            };
-
-            // Log the request details
-            console.log('Profile Details Request Body:', JSON.stringify(requestBody));
-
-            // Make the API request to get full profile details
-            fetch("https://api2.itstrending.in/api/v1/profiles/get_profile_details", {
-                method: "POST",
-                headers: myHeaders,
-                body: JSON.stringify(requestBody),
-                redirect: "follow"
-            })
-                .then(response => response.json())
-                .then(result => {
-                    console.log('Full Profile Details:', result);
-
-                    // Displaying the profile details on the webpage
-                    const profile = result.data.profile;
-                    if (profile) {
-                        displayProfileDetails(profile);
-                    } else {
-                        console.error('Profile details not found in the response.');
-                        alert('Profile details not found.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching profile details:', error);
-                    alert('An error occurred while fetching profile details.');
-                });
-        }
-
-        // Function to display profile details on the page with editable fields
-        function displayProfileDetails(profile) {
-            const searchResultsDiv = document.getElementById('search-results');
-
-            // Clear previous results
-            searchResultsDiv.innerHTML = '';
-
-            // Create and append profile detail elements with editable fields
-            const profileHTML = `
-                <div id="color-legend">
-                    <div class="color-legend-item">
-                        <div class="color-box" style="background-color: red;"></div>
-                        <span>On Hold - The particular month's PM Schedule is on hold.</span>
-                    </div>
-                    <div class="color-legend-item">
-                        <div class="color-box" style="background-color: green;"></div>
-                        <span>Completed - The particular month's PM Schedule is completed.</span>
-                    </div>
-                    <div class="color-legend-item">
-                        <div class="color-box" style="background-color: yellow;"></div>
-                        <span>Scheduled - The particular month's PM Schedule is pending.</span>
-                    </div>
-                    <div class="color-legend-item">
-                        <div class="color-box" style="background-color: purple;"></div>
-                        <span>Split - The particular month's PM Schedule is splited.</span>
-                    </div>
-                </div>
-                <!-- PM Schedules Section -->
-                <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
-                    <thead>
-                        <tr>
-                            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
-                                PM Schedules:
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
-                                <div id="pm-schedules" style="margin-top: 8px;"></div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- Invoice Schedules Section -->
-<table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
-    <thead>
-        <tr>
-            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
-                Invoice Schedules:
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Start Date:</strong></td>
-            <td style="border: 1px solid #ccc; padding: 8px;" id="start-date">${profile.field5.split('T')[0]}</td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Due Date:</strong></td>
-            <td style="border: 1px solid #ccc; padding: 8px;" id="payment-due-date">${getDueDate(profile.field1)}</td>
-        </tr>
-        <tr>
-            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;"><strong>Documents:</strong></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;" id="document-links">${getDocumentLinks(profile.field1)}</td>
-        </tr>
-    </tbody>
-</table>
-                <!-- Breakdown Schedules Section -->
-<table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;">
-    <thead>
-        <tr>
-            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
-                Breakdown Schedules:
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td colspan="2" style="border: 1px solid #ccc; padding: 8px;">
-                <div id="breakdown-schedules" style="margin-top: 8px;"></div>
-            </td>
-        </tr>
-    </tbody>
-</table>
-                <!-- Documents Section -->
-                <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #F9F9F9;">
-                    <thead>
-                        <tr>
-                            <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
-                                Documents:
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="border: 1px solid #ccc; padding: 8px;">
-                                <div id="imagePreview">
-                                    ${profile.images.split(',').map(img => `
-                                        <a href="${img.trim()}" target="_blank" style="display: block; margin: 4px; color: blue;">${img.trim()}</a>
-                                    `).join(' ')}
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid #ccc; padding: 8px;">
-                                <input type="file" id="imageUploader" accept="image/*" style="margin-top: 8px;" multiple />
-                                <button type="button" onclick="addImage()">Add Images</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <form id="profile-form">
-                    <table style="border-collapse: collapse; width: 100%; margin: 16px 0; background-color: #f9f9f9;" class="editable-table">
-                        <thead>
-                            <tr>
-                                <th colspan="2" style="border: 1px solid #ccc; padding: 16px; text-align: left; background-color: #333; color: #fff;">
-                                    Profile Details
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Customer Name:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field2" value="${profile.field2}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Number:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field3" value="${profile.field3}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Date:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="date" id="field4" value="${profile.field4.split('T')[0]}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Place:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field16" value="${profile.field16}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Phone Number:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field6" value="${profile.field6}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Region:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field7" value="${profile.field7}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>CHL No:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field8" value="${profile.field8}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>CHL Quantity:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field9" value="${profile.field9}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PAC No:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field10" value="${profile.field10}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PAC Quantity:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field11" value="${profile.field11}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>S. A/c:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field24" value="${profile.field24}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Total Quantity:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field13" value="${profile.field13}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Value:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field14" value="${profile.field14}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Type of Call:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field15" value="${profile.field15}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Contract Period From:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="date" id="field5" value="${profile.field5.split('T')[0]}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Contract Period To:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="date" id="field17" value="${profile.field17.split('T')[0]}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Total Visits:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="number" id="field18" value="${profile.field18}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>File No:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field19" value="${profile.field19}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Service Engineer:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field20" value="${profile.field20}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PO Payment Terms:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><input type="text" id="field22" value="${profile.field22}" /></td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Payment Data:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;">
-                                    <textarea id="field1" rows="5" style="width: 100%;">${profile.field1}</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>PM Data:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;">
-                                    <textarea id="field30" rows="5" style="width: 100%;">${profile.field30}</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Invoice Data:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;">
-                                    <textarea id="field31" rows="5" style="width: 100%;">${profile.field31}</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Breakdown Data:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;">
-                                    <textarea id="field32" rows="5" style="width: 100%;">${profile.field32}</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Documents:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;">
-                                    <textarea id="images" rows="3" style="width: 100%;">${profile.images}</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Profile ID:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;">
-                                    <input type="text" id="profile_id" value="${profile.profile_id}" readonly />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Last updated at:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;">
-                                    <input type="text" id="created_at" value="${new Date(profile.created_at).toLocaleString()}" readonly />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ccc; padding: 8px;"><strong>Comments:</strong></td>
-                                <td style="border: 1px solid #ccc; padding: 8px;">
-                                    <textarea id="field23" rows="4" style="width: 100%;">${profile.field23}</textarea>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <!-- Save Button -->
-                    <button type="button" 
-                        class="save-button" 
-                        onclick="saveProfileDetails()" 
-                        style="background-color: #4CAF50; /* Green background */ 
-                            color: white; /* White text */
-                            padding: 10px 20px; /* Padding for size */
-                            border: none; /* No border */
-                            border-radius: 4px; /* Rounded corners */
-                            cursor: pointer; /* Pointer cursor on hover */
-                            text-align: center; /* Center the text */
-                            display: block; /* Make it a block element */
-                            margin: 0 auto; /* Center horizontally */
-                            font-size: 16px; /* Font size */
-                            width: fit-content; /* Adjust width based on content */
-                            transition: background-color 0.3s; /* Smooth transition for background color */
-                        "
-                        onmouseover="this.style.backgroundColor='#45a049'" /* Darker green on hover */
-                        onmouseout="this.style.backgroundColor='#4CAF50'">
-                    Update Profile
-                </button>
-                <style>
-                    /* Style for the color legend container */
-                    #color-legend {
-                        margin: 20px auto; /* Center container horizontally */
-                        padding: 10px;
-                        border: 1px solid #ccc; /* Optional border for visibility */
-                        max-width: 600px; /* Set a max width for larger screens */
-                        width: fit-content; /* Ensure width fits content */
-                        display: flex; /* Use flexbox for alignment */
-                        flex-direction: column; /* Stack items vertically */
-                    }
-
-                    /* Style for each color legend item */
-                    .color-legend-item {
-                        display: flex; /* Use flexbox for layout */
-                        align-items: center; /* Align items vertically */
-                        margin-bottom: 8px; /* Space between items */
-                    }
-
-                    /* Style for color boxes */
-                    .color-box {
-                        width: 20px; /* Box width */
-                        height: 20px; /* Box height */
-                        margin-right: 10px; /* Space between box and text */
-                        border: 1px solid #000; /* Border around color box */
-                    }
-                    @media (max-width: 600px) {
-                        #color-legend {
-                            padding: 10px; /* Adjust padding if needed */
-                            width: 90%; /* Ensure it takes more width on mobile */
-                            margin: 20px auto; /* Center container */
-                        }
-
-                        .color-legend-item {
-                            justify-content: center; /* Center items on mobile */
-                            text-align: center; /* Center text */
-                        }
-
-                        .color-box {
-                            width: 15px; /* Smaller box for mobile */
-                            height: 15px; /* Smaller box for mobile */
-                        }
-                    }
-                    /* Style for the button */
-                    button[type="button"] {
-                        background-color: #333; /* Dark background */
-                        color: white; /* White text */
-                        border: none; /* Remove border */
-                        padding: 4px 10px; /* Add padding for button */
-                        border-radius: 4px; /* Rounded corners */
-                        cursor: pointer; /* Pointer cursor for button */
-                        font-size: 14px; /* Adjust font size */
-                        margin-top: 8px; /* Add margin on top */
-                        transition: background-color 0.3s ease; /* Smooth transition on hover */
-                    }
-                        .month-container {
-                        margin: 10px 0;
-                    }
-                    
-                    .month-header {
-                        cursor: pointer;
-                        background-color: #f1f1f1;
-                        padding: 10px;
-                        font-weight: bold;
-                        border: 1px solid #ccc;
-                    }
-
-                    .month-content {
-                        display: none;
-                        padding: 10px;
-                        background-color: #fafafa;
-                        border-left: 1px solid #ccc;
-                        border-right: 1px solid #ccc;
-                        border-bottom: 1px solid #ccc;
-                    }
-
-                    .status-button {
-                        padding: 5px 10px;
-                        margin: 5px;
-                        cursor: pointer;
-                        border: none;
-                        color: white;
-                    }
-
-                    .onhold {
-                        background-color: red;
-                    }
-
-                    .completed {
-                        background-color: green;
-                    }
-
-                    .pending {
-                        background-color: yellow;
-                        color: black;
-                    }
-                </style>
-                </form>
-            `;
-
-            searchResultsDiv.innerHTML = profileHTML;
-
-            // Generate PM Schedules
-            generatePMSchedules(profile.field5, profile.field17, profile.field18);
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="po-no"><strong>PO No.: </strong></label>
+            <input type="text" id="po-no" name="po-no" placeholder="Enter PO Number" required oninput="setCookie('field3', this.value); validatePoNo()">
+            <div id="po-no-error" class="error-message"></div>
+        </div>
+    
+        <div class="form-group">
+            <label for="po-value"><strong>PO Value: </strong></label>
+            <input type="text" id="po-value" name="po-value" placeholder="Enter PO Value" required oninput="convertNumberToWords()">
+            <div id="po-value-error" class="error-message"></div>
+        </div>
+    
+        <!-- Label to display the converted PO Value in words -->
+        <div class="form-group">
+            <label for="po-value-in-words"><strong>PO Value in Words: </strong></label>
+            <label id="po-value-in-words">Zero rupees only</label>
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group" style="position: relative;">
+            <label for="type-of-call"><strong>Type of Call: </strong></label>
+            <input 
+                type="text" 
+                id="type-of-call" 
+                name="type-of-call" 
+                placeholder="Enter Type of Call" 
+                required 
+                oninput="filterOptions(this.value)" 
+                onclick="showDropdown()">
             
-            // Generate Breakdown Schedules
-            generateBreakdownSchedules(profile.field5, profile.field17, profile.field18);
+            <!-- Custom dropdown container -->
+            <div id="dropdown-container" style="position: absolute; top: 100%; left: 143px; width: 60%; display: none; background: #fff; border: 1px solid #ccc; max-height: 150px; overflow-y: auto; z-index: 100;">
+                <div onclick="selectOption('AMC')">AMC</div>
+                <div onclick="selectOption('AMC Breakdown')">AMC Breakdown</div>
+                <div onclick="selectOption('AMC Breakdown (Spare PO)')">AMC Breakdown (Spare PO)</div>
+                <div onclick="selectOption('AMC Breakdown (Service PO)')">AMC Breakdown (Service PO)</div>
+                <div onclick="selectOption('Service Breakdown')">Service Breakdown</div>
+                <div onclick="selectOption('Service Breakdown (Spare PO)')">Service Breakdown (Spare PO)</div>
+                <div onclick="selectOption('Service Breakdown (Service PO)')">Service Breakdown (Service PO)</div>
+            </div>
+            
+            <div id="type-of-call-error" class="error-message"></div>
+        </div>
+
+        <div class="form-group" style="padding-left: 35px;">
+            <label for="po-document"><strong>PO Document: </strong></label>
+            <label for="po-document" class="custom-file-upload" style="margin: 4px;">
+                Choose Files
+            </label>
+            <input type="file" id="po-document" name="po-document" multiple required style="display: none;">
+        </div>
+        <div id="total-image-count">Total docs:<span id="image-count-display">0</span></div>
+        <!-- <button id="preview-images-button" style="margin-left: 10px; background-color: #00bfa6; color: white; border-radius: 5px; padding: 2px; border-color: #00bfa6;">Preview docs</button> -->
+
+        <!-- Popup for Image Preview -->
+        <div id="preview-popup" class="popup">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <div class="popup-content" id="popup-content"></div>
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="contract-period-from"><strong>Contract Period From: </strong></label>
+            <input type="date" id="contract-period-from" name="contract-period-from" required class="styled-input" onchange="setCookie('field5', this.value)">
+        </div>
+    
+        <div class="form-group">
+            <label for="contract-period-to"><strong>Contract Period To: </strong></label>
+            <input type="date" id="contract-period-to" name="contract-period-to" required class="styled-input" onchange="setCookie('field17', this.value)">
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="visits"><strong>Visits: </strong></label>
+            <input type="number" id="visits" name="visits" placeholder="Enter Visits" required oninput="setCookie('field18', this.value)" min="1" max="6">
+            <div id="visits-error" class="error-message"></div>
+        </div>
+        
+        <!-- <div class="form-group">
+            <label for="file-no"><strong>File No.: </strong></label>
+            <input type="text" id="file-no" name="file-no" placeholder="Enter File No." required oninput="setCookie('field22', this.value); validateFileNo()">
+            <div id="file-no-error" class="error-message"></div>
+        </div> -->
+        <div class="form-group">
+            <label for="service-engineer"><strong>Service Engineer: </strong></label>
+            <input type="text" id="service-engineer" name="service-engineer" placeholder="Enter Service Engineer" required oninput="setCookie('field19', this.value); validateServiceEngineer()">
+            <div id="service-engineer-error" class="error-message"></div>
+        </div>
+    </div>
+    
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="po-payment-terms"><strong>PO Payment Terms: </strong></label>
+            <input type="text" id="po-payment-terms" name="po-payment-terms" placeholder="Enter PO Payment Terms" required oninput="setCookie('field20', this.value); validatePaymentTerms()">
+            <div id="payment-terms-error" class="error-message"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="payment_status"><strong>Payment Status: </strong></label>
+            <select id="payment_status" name="payment_status" required class="styled-select" onchange="setCookie('field1', this.value)">
+                <option value="">Please Select</option>
+                <option value="Advance Payment">Advance Payment</option>
+                <option value="Partial Advance Payment">Partial Advance Payment</option>
+                <option value="Payment Received">Payment Received</option>
+                <option value="Payment Not Received">Payment Not Received</option>
+                <!-- <option value="17 Days">17 Days</option>
+                <option value="30 Days">30 Days</option>
+                <option value="45 Days">45 Days</option>
+                <option value="60 Days">60 Days</option> -->
+            </select>
+        </div>
+    </div>
+
+    <div class="installation-form1">
+        <div class="form-group">
+            <label for="file_upload"><strong>Upload Payment Documents: </strong></label>
+            <label for="file_upload" class="custom-file-upload" style="margin: 4px;">
+                Choose Files
+            </label>
+            <input type="file" id="file_upload" name="file_upload" required multiple onchange="uploadImages(event)" style="display: none;">
+        </div>
+
+        <div class="form-group">
+            <label for="comments"><strong>Comments: </strong></label>
+            <textarea id="comments" name="comments" placeholder="Enter Comments" required class="styled-textarea" oninput="setCookie('field23', this.value)"></textarea>
+        </div>
+    </div>
+
+
+    <button class="next-button" onclick="handleNext()">Submit</button>
+    <br>
+    <script>
+        function showDropdown() {
+            document.getElementById('dropdown-container').style.display = 'block';
         }
-
-
-// PM Schedules code starts from here    
-// Static array to hold the status of each month
-let monthStatuses = [];
-
-// Function to generate PM Schedules
-function generatePMSchedules(contractFrom, contractTo, totalVisits) {
-    const startDate = new Date(contractFrom);
-    const endDate = new Date(contractTo);
-    const pmSchedulesDiv = document.getElementById('pm-schedules');
-
-    const totalMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
-    const visitsPerMonth = Math.ceil(totalVisits / totalMonths);
-    let calendarHTML = '';
-
-    // Generate schedule for each month
-    for (let month = 0; month <= totalMonths; month++) {
-        const currentMonth = new Date(startDate.getFullYear(), startDate.getMonth() + month);
-        const monthName = currentMonth.toLocaleString('default', { month: 'long' });
-        const year = currentMonth.getFullYear();
-
-        monthStatuses[month] = { month: `${monthName} ${year}`, status: 'pending', images: [], comments: '', image: '' };
-
-        const monthId = `month-${month}`;
-
-        calendarHTML += `
-            <div style="margin-bottom: 16px; border: 1px solid #ccc;">
-                <div onclick="toggleDropdown('${monthId}-content', '${monthId}-arrow')" style="padding: 16px; cursor: pointer;">
-                    <strong>${monthName} ${year}</strong>
-                    <span id="${monthId}-arrow" style="float: right;">&#9660;</span>
-                </div>
-                <div id="${monthId}-content" style="display: none; padding: 16px; background-color: #f9f9f9;">
-                    <div>Visits: ${visitsPerMonth}</div>
-                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'onhold')">On Hold</button>
-                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'completed')">Completed</button>
-                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'schedule')">Schedule</button>
-                    <button type="button" style="margin: 4px;" onclick="updateStatus('${monthId}', ${month}, 'split')">Split</button>
-                    <br><br>
-                    <!-- File Upload for Images -->
-                    <label for="file-${month}" class="custom-file-upload" style="margin: 4px;">
-                        Choose Files
-                    </label>
-                    <input type="file" id="file-${month}" style="display: none;" multiple onchange="uploadFile(${month})"/>
-
-                    <br><br>
-                    <!-- Display uploaded images -->
-                    <div>
-                        <strong>Uploaded Images:</strong>
-                        <ul style="padding-left: 20px;">
-                            ${monthStatuses[month].images.map(img => `<li><a href="${img}" target="_blank">${img}</a></li>`).join('')}
-                            ${monthStatuses[month].image ? `<li><a href="${monthStatuses[month].image}" target="_blank">${monthStatuses[month].image}</a></li>` : ''}
-                        </ul>
-                    </div>
-                    <br>
-                    <!-- Comment Section -->
-                    <strong>Comment Section:</strong>
-                    <textarea id="comment-${month}" style="width: 100%; margin-top: 18px; height: 100px;" 
-                        placeholder="Add your comment here..." 
-                        oninput="updateComment(${month}, this.value)">
-                        ${monthStatuses[month].comments}
-                    </textarea>
-
-                    <!-- Display old comments -->
-                    <div>
-                        <strong>Comments list:</strong>
-                        <p>${monthStatuses[month].comments}</p>
-                    </div>
-                    
-                    <button type="button" style="margin: 4px;" onclick="saveProfileDetails()">Submit</button>
-                </div>
-            </div>
-            <style>
-.custom-file-upload {
-    display: inline-block;
-    padding: 8px 12px;
-    cursor: pointer;
-    background-color: #4CAF50; /* Change background color */
-    color: white; /* Text color */
-    border: 1px solid #ccc; /* Border styling */
-    border-radius: 4px; /* Rounded corners */
-    transition: background-color 0.3s ease;
-}
-
-.custom-file-upload:hover {
-    background-color: #45a049; /* Darker background on hover */
-}
-</style>
-
-        `;
-    }
-
-    pmSchedulesDiv.innerHTML = calendarHTML;
-    restoreStatuses();
-}
-
-// Function to dynamically update comments in monthStatuses array when the user types
-function updateComment(monthIndex, newComment) {
-    monthStatuses[monthIndex].comments = newComment;
-    console.log(`Updated comment for ${monthStatuses[monthIndex].month}:`, newComment);
-    updateField30(); // Update the field30 textarea with new data
-}
-
-
-// Function to upload multiple files and send to API
-function uploadFile(monthIndex) {
-    const fileInput = document.getElementById(`file-${monthIndex}`);
-    const files = fileInput.files; // Get all selected files
-    if (!files.length) return;
-
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", "{{Autho}}");
-
-    // Iterate through all selected files
-    Array.from(files).forEach(file => {
-        const formdata = new FormData();
-        formdata.append("file", file);
-
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: formdata,
-            redirect: "follow"
-        };
-
-        fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                const imageLink = result.data.images[0] + "?alt=media"; // Get the image link from the API response
-                const { month } = monthStatuses[monthIndex]; // Get month information
-
-                // Check if monthStatuses[monthIndex] is valid
-                if (monthStatuses[monthIndex]) {
-                    console.log(`Image uploaded for ${month}:`, imageLink); // Log the month/year along with the image link
-
-                    // Append the new image link to the existing image property
-                    if (monthStatuses[monthIndex].image) {
-                        monthStatuses[monthIndex].image += `,${imageLink}`; // Append new link with a comma
-                    } else {
-                        monthStatuses[monthIndex].image = imageLink; // First image entry
-                    }
-
-                    // Update the image list in the HTML dynamically
-                    const imageList = document.querySelector(`#month-${monthIndex}-content ul`);
-                    const newImageItem = document.createElement('li');
-                    newImageItem.innerHTML = `<a href="${imageLink}" target="_blank">${imageLink}</a>`;
-                    imageList.appendChild(newImageItem);  // Append new image link to the list
-
-                    console.log(`Updated status for ${month}:`, monthStatuses[monthIndex]); // Log updated month object with the image link
+        
+        function hideDropdown() {
+            setTimeout(() => {
+                document.getElementById('dropdown-container').style.display = 'none';
+            }, 200); // Delay to allow click selection
+        }
+        
+        function selectOption(value) {
+            const input = document.getElementById('type-of-call');
+            input.value = value;
+            setCookie('field8', value);
+            validateTypeOfCall();
+            hideDropdown();
+        }
+        
+        function filterOptions(value) {
+            const options = document.querySelectorAll('#dropdown-container div');
+            options.forEach(option => {
+                if (option.textContent.toLowerCase().includes(value.toLowerCase())) {
+                    option.style.display = 'block';
                 } else {
-                    console.error(`monthStatuses[${monthIndex}] is undefined. Check initialization.`);
+                    option.style.display = 'none';
                 }
-
-                updateField30();  // Update the field30 with new data
-            })
-            .catch(error => console.error("Error uploading file:", error));
-    });
-}
-
-// Function to toggle dropdown visibility and arrow direction
-function toggleDropdown(contentId, arrowId) {
-    const content = document.getElementById(contentId);
-    const arrow = document.getElementById(arrowId);
-    
-    // Toggle the display of the dropdown content
-    content.style.display = content.style.display === 'none' ? 'block' : 'none';
-    arrow.innerHTML = content.style.display === 'none' ? '&#9660;' : '&#9650;';
-    
-    const monthIndex = parseInt(contentId.split('-')[1]); // Gets the index from 'month-0', 'month-1', etc.
-    if (monthStatuses[monthIndex]) {
-        console.log(`Data for ${monthStatuses[monthIndex].month}:`, monthStatuses[monthIndex]);
-    } else {
-        console.error(`No data found for month index ${monthIndex}`);
-    }
-}
-
-// Function to update status and change background color
-function updateStatus(monthId, monthIndex, status) {
-    const monthDiv = document.getElementById(`${monthId}-content`).parentNode;
-    monthDiv.style.backgroundColor = getStatusColor(status);
-    monthStatuses[monthIndex].status = status;
-    showPopup(`The selected month status updated to '${status}'`);
-    updateField30();
-}
-
-// Function to get color based on status
-function getStatusColor(status) {
-    return status === 'onhold' ? 'red' :
-           status === 'completed' ? 'green' :
-           status === 'split' ? 'purple' :
-           status === 'schedule' ? 'yellow' : 'white';
-}
-
-// Function to update field30 textarea with JSON data
-function updateField30() {
-    document.getElementById('field30').value = JSON.stringify(monthStatuses);
-}
-
-// Function to restore statuses from field30 textarea
-function restoreStatuses() {
-    const field30Value = document.getElementById('field30').value;
-    try {
-        const savedStatuses = JSON.parse(field30Value);
-        savedStatuses.forEach((monthStatus, index) => {
-            const monthDiv = document.getElementById(`month-${index}-content`).parentNode;
-            if (monthDiv) {
-                monthStatuses[index] = monthStatus;
-                monthDiv.style.backgroundColor = getStatusColor(monthStatus.status);
-
-                // Check and display images if they exist
-                if (monthStatus.image) {
-                    const imageLinks = monthStatus.image.split(',');
-                    imageLinks.forEach(link => {
-                        monthDiv.querySelector('ul').innerHTML += `<li><a href="${link}" target="_blank">${link}</a></li>`;
-                    });
-                }
-
-                // Restore comments if they exist
-                if (monthStatus.comments) {
-                    document.getElementById(`comment-${index}`).value = monthStatus.comments;
-                    monthDiv.querySelector('p').innerText = monthStatus.comments;
-                }
-            }
-        });
-    } catch (e) {
-        console.error('Error restoring statuses:', e);
-    }
-}
-
-// Function to show confirmation popup
-function showPopup(message) {
-    alert(message);
-}
-
-// Function to save profile details
-function saveProfileDetails() {
-    const profileData = document.getElementById('field30').value;
-    console.log("Profile data to be saved:", profileData);
-    // Implement saving logic as needed
-}
-
-
-
-// Function to show the popup message
-function showPopup(message) {
-    const popup = document.getElementById('statusPopup');
-    const overlay = document.getElementById('modalOverlay');
-    document.getElementById('popupMessage').innerText = message;
-
-    // Show the popup and overlay
-    popup.style.display = 'block';
-    overlay.style.display = 'block';
-}
-
-// Function to close the popup
-function closePopup() {
-    const popup = document.getElementById('statusPopup');
-    const overlay = document.getElementById('modalOverlay');
-
-    // Hide the popup and overlay
-    popup.style.display = 'none';
-    overlay.style.display = 'none';
-}
-
-
-
-
-
-
-
-
-
-function displayInvoiceDetails(profile) {
-    console.log('Step 1: displayInvoiceDetails function called.');
-
-    // Get the start date from field5 (Contract Period From)
-    const startDate = new Date(profile.field5);
-    console.log('Step 2: Start Date:', startDate.toLocaleDateString());
-
-    let paymentData;
-    try {
-        // Parse the payment data from field1
-        paymentData = JSON.parse(profile.field1);
-        console.log('Step 3: Parsed Payment Data:', paymentData);
-    } catch (error) {
-        console.error('Step 4: Error parsing payment data:', error);
-        return; // Exit the function if parsing fails
-    }
-
-    // Create the container for invoice details
-    const invoiceSchedulesDiv = document.getElementById('invoice-schedules');
-    if (!invoiceSchedulesDiv) {
-        console.error('Invoice schedules div not found in the DOM.');
-        return;
-    }
-
-    // Initialize HTML for displaying invoice details
-    let invoiceHTML = '<div style="margin-top: 16px;">';
-
-    // Loop through each payment data entry
-    paymentData.forEach((payment, index) => {
-        console.log(`Step 5: Processing Payment Entry ${index + 1}:`, payment);
-
-        // Extract the due date and format it
-        const formattedDueDate = payment.dueDate ? new Date(payment.dueDate).toLocaleDateString() : 'N/A';
-        console.log(`Step 6: Payment Due Date for Entry ${index + 1}:`, formattedDueDate);
-
-        // Generate HTML for displaying the payment details
-        invoiceHTML += `
-            <div style="margin-bottom: 16px;">
-                <strong>Start Date:</strong> ${startDate.toLocaleDateString()}<br />
-                <strong>Payment Due Date:</strong> ${formattedDueDate}<br />
-                <strong>Documents:</strong><br />
-                ${payment.document.split(',').map(doc => `<a href="${doc.trim()}" target="_blank">${doc.trim()}</a>`).join('<br />')}
-            </div>
-        `;
-    });
-
-    invoiceHTML += '</div>';
-
-    // Append the generated HTML to the invoice schedules div
-    invoiceSchedulesDiv.innerHTML = invoiceHTML;
-    console.log('Step 8: Invoice HTML appended to the div.');
-}
-
-// Function to extract due date from payment data
-function getDueDate(field1) {
-    try {
-        const paymentData = JSON.parse(field1);
-        return paymentData[0]?.dueDate ? new Date(paymentData[0].dueDate).toLocaleDateString() : 'N/A';
-    } catch (error) {
-        console.error('Error extracting due date:', error);
-        return 'N/A';
-    }
-}
-
-// Function to extract document links from payment data
-function getDocumentLinks(field1) {
-    try {
-        const paymentData = JSON.parse(field1);
-        return paymentData[0]?.document ? paymentData[0].document.split(',').map(doc => `<a href="${doc.trim()}" target="_blank">${doc.trim()}</a>`).join('<br />') : 'No Documents Available';
-    } catch (error) {
-        console.error('Error extracting document links:', error);
-        return 'No Documents Available';
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Breakdown Schedules code starts from here
-// Static array to hold the status of each month for breakdown schedules
-let breakdownStatuses = [];
-
-// Function to generate Breakdown Schedules
-function generateBreakdownSchedules(contractFrom, contractTo, totalBreakdowns) {
-    const startDate = new Date(contractFrom);
-    const endDate = new Date(contractTo);
-    const breakdownSchedulesDiv = document.getElementById('breakdown-schedules');
-
-    const totalMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
-    const breakdownsPerMonth = Math.ceil(totalBreakdowns / totalMonths);
-    let calendarHTML = '';
-
-    // Generate schedule for each month
-    for (let month = 0; month <= totalMonths; month++) {
-        const currentMonth = new Date(startDate.getFullYear(), startDate.getMonth() + month);
-        const monthName = currentMonth.toLocaleString('default', { month: 'long' });
-        const year = currentMonth.getFullYear();
-
-        breakdownStatuses[month] = { month: `${monthName} ${year}`, status: 'pending', images: [], comments: '', image: '' };
-
-        const monthId = `breakdown-month-${month}`;
-
-        calendarHTML += `
-            <div style="margin-bottom: 16px; border: 1px solid #ccc;">
-                <div onclick="toggleDropdown('${monthId}-content', '${monthId}-arrow')" style="padding: 16px; cursor: pointer;">
-                    <strong>${monthName} ${year}</strong>
-                    <span id="${monthId}-arrow" style="float: right;">&#9660;</span>
-                </div>
-                <div id="${monthId}-content" style="display: none; padding: 16px; background-color: #f9f9f9;">
-                    <div>Breakdowns: ${breakdownsPerMonth}</div>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'onhold')">On Hold</button>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'completed')">Completed</button>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'schedule')">Schedule</button>
-                    <button type="button" style="margin: 4px;" onclick="updateBreakdownStatus('${monthId}', ${month}, 'split')">Split</button>
-                    <br><br>
-                    <!-- File Upload for Images -->
-                    <label for="breakdown-file-${month}" class="custom-file-upload" style="margin: 4px;">
-                        Choose Files
-                    </label>
-                    <input type="file" id="breakdown-file-${month}" style="display: none;" multiple onchange="uploadBreakdownFile(${month})"/>
-
-                    <br><br>
-                    <!-- Display uploaded images -->
-                    <div>
-                        <strong>Uploaded Images:</strong>
-                        <ul style="padding-left: 20px;">
-                            ${breakdownStatuses[month].images.map(img => `<li><a href="${img}" target="_blank">${img}</a></li>`).join('')}
-                            ${breakdownStatuses[month].image ? `<li><a href="${breakdownStatuses[month].image}" target="_blank">${breakdownStatuses[month].image}</a></li>` : ''}
-                        </ul>
-                    </div>
-                    <br>
-                    <!-- Comment Section -->
-                    <strong>Comment Section:</strong>
-                    <textarea id="breakdown-comment-${month}" style="width: 100%; margin-top: 18px; height: 100px;" 
-                        placeholder="Add your comment here..." 
-                        oninput="updateBreakdownComment(${month}, this.value)">
-                        ${breakdownStatuses[month].comments}
-                    </textarea>
-
-                    <!-- Display old comments -->
-                    <div style="display: none;">
-                        <strong>Comments list:</strong>
-                        <p>${breakdownStatuses[month].comments}</p>
-                    </div>
-                    
-                    <button type="button" style="margin: 4px;" onclick="handleSubmit()">Submit</button>
-                </div>
-            </div>
-        `;
-    }
-
-    breakdownSchedulesDiv.innerHTML = calendarHTML;
-    restoreBreakdownStatuses();
-}
-// Function to handle submit button actions
-function handleSubmit() {
-    // Call the existing function immediately
-    saveBreakdownProfileDetails();
-    
-    // Set a timeout to call saveProfileDetails() after 2 seconds
-    setTimeout(() => {
-        saveProfileDetails();
-    }, 2000); // 2000 milliseconds = 2 seconds
-}
-
-// Function to dynamically update comments in breakdownStatuses array when the user types
-function updateBreakdownComment(monthIndex, newComment) {
-    breakdownStatuses[monthIndex].comments = newComment;
-    console.log(`Updated comment for ${breakdownStatuses[monthIndex].month}:`, newComment);
-    updateField32(); // Update the field32 textarea with new data
-}
-
-// Function to upload multiple files for breakdown schedules and send to API
-function uploadBreakdownFile(monthIndex) {
-    const fileInput = document.getElementById(`breakdown-file-${monthIndex}`);
-    const files = fileInput.files; // Get all selected files
-    if (!files.length) return;
-
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", "{{Autho}}");
-
-    // Iterate through all selected files
-    Array.from(files).forEach(file => {
-        const formdata = new FormData();
-        formdata.append("file", file);
-
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: formdata,
-            redirect: "follow"
-        };
-
-        fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                const imageLink = result.data.images[0] + "?alt=media"; // Get the image link from the API response
-                const { month } = breakdownStatuses[monthIndex]; // Get month information
-
-                // Check if breakdownStatuses[monthIndex] is valid
-                if (breakdownStatuses[monthIndex]) {
-                    console.log(`Image uploaded for ${month}:`, imageLink); // Log the month/year along with the image link
-
-                    // Append the new image link to the existing image property
-                    if (breakdownStatuses[monthIndex].image) {
-                        breakdownStatuses[monthIndex].image += `,${imageLink}`; // Append new link with a comma
-                    } else {
-                        breakdownStatuses[monthIndex].image = imageLink; // First image entry
-                    }
-
-                    // Update the image list in the HTML dynamically
-                    const imageList = document.querySelector(`#breakdown-month-${monthIndex}-content ul`);
-                    const newImageItem = document.createElement('li');
-                    newImageItem.innerHTML = `<a href="${imageLink}" target="_blank">${imageLink}</a>`;
-                    imageList.appendChild(newImageItem);  // Append new image link to the list
-
-                    console.log(`Updated status for ${month}:`, breakdownStatuses[monthIndex]); // Log updated month object with the image link
-                } else {
-                    console.error(`breakdownStatuses[${monthIndex}] is undefined. Check initialization.`);
-                }
-
-                updateField32();  // Update the field32 with new data
-            })
-            .catch(error => console.error("Error uploading file:", error));
-    });
-}
-
-// Function to update breakdown status and change background color
-function updateBreakdownStatus(monthId, monthIndex, status) {
-    const monthDiv = document.getElementById(`${monthId}-content`).parentNode;
-    monthDiv.style.backgroundColor = getStatusColor(status);
-    breakdownStatuses[monthIndex].status = status;
-    showPopup(`The selected month status updated to '${status}'`);
-    updateField32();
-}
-
-// Function to update field32 textarea with JSON data
-function updateField32() {
-    document.getElementById('field32').value = JSON.stringify(breakdownStatuses);
-}
-
-// Function to restore statuses from field32 textarea
-function restoreBreakdownStatuses() {
-    const field32Value = document.getElementById('field32').value;
-    try {
-        const savedStatuses = JSON.parse(field32Value);
-        savedStatuses.forEach((monthStatus, index) => {
-            const monthDiv = document.getElementById(`breakdown-month-${index}-content`).parentNode;
-            if (monthDiv) {
-                breakdownStatuses[index] = monthStatus;
-                monthDiv.style.backgroundColor = getStatusColor(monthStatus.status);
-
-                // Check and display images if they exist
-                if (monthStatus.image) {
-                    const imageLinks = monthStatus.image.split(',');
-                    imageLinks.forEach(link => {
-                        monthDiv.querySelector('ul').innerHTML += `<li><a href="${link}" target="_blank">${link}</a></li>`;
-                    });
-                }
-
-                // Restore comments if they exist
-                if (monthStatus.comments) {
-                    document.getElementById(`breakdown-comment-${index}`).value = monthStatus.comments;
-                    monthDiv.querySelector('p').innerText = monthStatus.comments;
-                }
-            }
-        });
-    } catch (e) {
-        console.error('Error restoring breakdown statuses:', e);
-    }
-}
-
-// Function to save breakdown profile details
-function saveBreakdownProfileDetails() {
-    const profileData = document.getElementById('field32').value;
-    console.log("Breakdown profile data to be saved:", profileData);
-    // Implement saving logic as needed
-}
-
-
-
-
-
-
-
-
-
-        // Function to save profile details (Edit and Save functionality)
-        function saveProfileDetails() {
-            if (!currentProfileId) {
-                console.error('No profile selected to save.');
-                alert('No profile selected to save.');
-                return;
-            }
-
-            // Get the token from cookies
-            const token = getCookie('token');
-            if (!token) {
-                console.error('Token not found in cookies.');
-                alert('Authentication token not found. Please log in.');
-                return;
-            }
-
-            // Collect updated data from input fields
-            const updatedProfile = {
-                "profile_id": document.getElementById('profile_id').value,
-                "images": document.getElementById('images').value.trim(),
-                "field1": document.getElementById('field1').value,
-                "field2": document.getElementById('field2').value,
-                "field3": document.getElementById('field3').value,
-                "field4": document.getElementById('field4').value,
-                "field5": document.getElementById('field5').value,
-                "field6": document.getElementById('field6').value,
-                "field7": document.getElementById('field7').value,
-                "field8": document.getElementById('field8').value,
-                "field9": document.getElementById('field9').value,
-                "field10": document.getElementById('field10').value,
-                "field11": document.getElementById('field11').value,
-                "field12": "", // Assuming field12 is not editable; adjust as needed
-                "field13": document.getElementById('field13').value,
-                "field14": document.getElementById('field14').value,
-                "field15": document.getElementById('field15').value,
-                "field16": document.getElementById('field16').value,
-                "field17": document.getElementById('field17').value,
-                "field18": document.getElementById('field18').value,
-                "field19": document.getElementById('field19').value,
-                "field20": document.getElementById('field20').value,
-                // "field21": document.getElementById('field21').value,
-                "field22": document.getElementById('field22').value,
-                "field23": document.getElementById('field23').value,
-                "field24": document.getElementById('field24').value,
-                "field25": "", // Assuming fields 25-50 are not editable; adjust as needed
-                "field26": "",
-                "field27": "",
-                "field28": "",
-                "field29": "",
-                "field30": document.getElementById('field30').value, // Retrieve field30 from cookies
-                "field31": document.getElementById('field31').value,
-                "field32": document.getElementById('field32').value,
-                "field33": "",
-                "field34": "",
-                "field35": "",
-                "field36": "",
-                "field37": "",
-                "field38": "",
-                "field39": "",
-                "field40": "",
-                "field41": "",
-                "field42": "",
-                "field43": "",
-                "field44": "",
-                "field45": "",
-                "field46": "",
-                "field47": "",
-                "field48": "",
-                "field49": "",
-                "field50": "" // Assuming field50 is not editable; adjust as needed
-            };
-
-            // Set headers for the PUT API request
-            const myHeaders = new Headers();
-            myHeaders.append("Authorization", token);
-            myHeaders.append("Content-Type", "application/json");
-
-            // Log the updated profile data
-            console.log('Updated Profile Data:', JSON.stringify(updatedProfile));
-
-            // Send the PUT request to update profile details
-            fetch("https://api2.itstrending.in/api/v1/profiles", {
-                method: "PUT",
-                headers: myHeaders,
-                body: JSON.stringify(updatedProfile),
-                redirect: "follow"
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log('Profile Updated:', result);
-                if (result.success) {
-                    alert('Profile updated successfully!');
-                } else {
-                    alert('Profile updated successfully!.');
-                }
-                // showPopup("Profile details have been successfully saved.");
-            })
-            .catch(error => {
-                console.error('Error updating profile:', error);
-                alert('An error occurred while updating the profile.');
             });
         }
-
-        // Helper function to retrieve field30 from cookies
-        function getField30FromCookies() {
-            const savedStatuses = readFromCookies();
-            return savedStatuses ? JSON.stringify(savedStatuses) : "";
-        }
+        
+        // Hide dropdown on outside click
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.form-group')) {
+                hideDropdown();
+            }
+        });
     </script>
     <script>
-        function showPopup(message) {
-            const popupText = document.getElementById('popupText');
-            const popupMessage = document.getElementById('popupMessage');
-            
-            popupText.innerText = message;
-            popupMessage.style.display = 'block';
-        
-            // Automatically hide the popup after 30 seconds
-            setTimeout(closePopup, 10000);
-        }
-        
-        function closePopup() {
-            const popupMessage = document.getElementById('popupMessage');
-            popupMessage.style.display = 'none';
-        }
-        
-        function addImage() {
-    const fileInput = document.getElementById('imageUploader');
-    const files = fileInput.files;
-    if (files.length === 0) {
-        showPopup('No files selected.');
-        return;
+        function toggleMenu() {
+        const navbarLinks = document.querySelector('.navbar-links');
+        navbarLinks.classList.toggle('show');
     }
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", token); // Replace with your actual token
-    const formdata = new FormData();
-    // Loop through the selected files and append each to the FormData
-    for (let i = 0; i < files.length; i++) {
-        formdata.append("file", files[i], files[i].name);
-    }
-    const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: formdata,
-        redirect: "follow"
-    };
-    fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+    </script>
+    <script>
+        let paymentDataArray = [];
+    
+        // Handle Payment Status Change
+        document.getElementById('payment_status').addEventListener('change', function () {
+            const paymentStatus = this.value;
+            const contractStartDate = getCookie('field5'); // Get the start date from cookies
+    
+            if (!paymentStatus) {
+                console.warn("No payment status selected.");
+                return;
             }
-            return response.json(); // Get response as JSON
-        })
-        .then((result) => {
-            console.log('API Response:', result);
-            // Extract the image URLs from the API response
-            const imageUrls = result.data.images.map(url => url + '?alt=media'); // Append ?alt=media
-            // Get the current images from the textarea
-            const imagesTextArea = document.getElementById('images');
-            const existingImages = imagesTextArea.value;
-            // Append the new URLs to the textarea
-            imagesTextArea.value = existingImages ? `${existingImages}, ${imageUrls.join(', ')}` : imageUrls.join(', ');
-            // Display the newly uploaded image URLs as clickable links in the preview section
-            const imagePreviewDiv = document.getElementById('imagePreview');
-            imageUrls.forEach(newImageUrl => {
-                const newLinkElement = document.createElement('a');
-                newLinkElement.href = newImageUrl; // Set the href to the new image URL
-                newLinkElement.target = "_blank"; // Open link in a new tab
-                newLinkElement.textContent = newImageUrl; // Set the link text to the image URL
-                newLinkElement.style = "display: block; margin: 4px; color: blue;";
-                imagePreviewDiv.appendChild(newLinkElement); // Append the new link to the preview section
-            });
-            showPopup('Images uploaded successfully, Are you sure you want to update your profile?');
-        })
-        .catch((error) => {
-            console.error('Error uploading images:', error);
-            showPopup('Image upload failed. Please try again.');
+    
+            // Calculate due date
+            let dueDate = '';
+            if (paymentStatus !== "Advance Payment" && contractStartDate) {
+                dueDate = calculateDueDate(contractStartDate, paymentStatus);
+                console.log("Calculated due date:", dueDate);
+            }
+    
+            // Find or create an entry in the payment data array
+            let existingEntry = paymentDataArray.find(entry => entry.status === paymentStatus);
+            if (existingEntry) {
+                existingEntry.dueDate = dueDate || existingEntry.dueDate;
+                existingEntry.document = existingEntry.document || ""; // Keep the current document value
+            } else {
+                paymentDataArray.push({ status: paymentStatus, document: "", dueDate });
+            }
+    
+            // Update the cookie
+            setCookie('field1', JSON.stringify(paymentDataArray));
+            console.log("Cookie updated with payment data:", paymentDataArray);
         });
+    
+        // Handle File Upload
+        async function uploadImages(event) {
+            const files = event.target.files;
+            const paymentStatus = document.getElementById('payment_status').value;
+    
+            if (!files.length || !paymentStatus) {
+                alert("Please select a payment status and at least one image/document to upload.");
+                return;
+            }
+    
+            // Get the existing entry for the selected payment status
+            let existingEntry = paymentDataArray.find(entry => entry.status === paymentStatus);
+            let documentUrls = existingEntry ? existingEntry.document.split(',') : [];
+    
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const formData = new FormData();
+                formData.append('file', file);
+    
+                try {
+                    const response = await fetch('https://api2.itstrending.in/api/v1/profiles/upload_images', {
+                        method: 'POST',
+                        body: formData
+                    });
+    
+                    if (!response.ok) {
+                        console.error('Image upload failed with status:', response.status);
+                        throw new Error('Image upload failed');
+                    }
+    
+                    const data = await response.json();
+                    if (!data.data || !data.data.images || data.data.images.length === 0) {
+                        console.error("No images received in API response");
+                        alert("Failed to retrieve the image link from the API for " + file.name);
+                        continue;
+                    }
+    
+                    const imageUrl = `${data.data.images[0]}?alt=media`;
+                    documentUrls.push(imageUrl);
+                } catch (error) {
+                    console.error(`Error uploading ${file.name}:`, error);
+                    alert("Failed to upload " + file.name);
+                }
+            }
+    
+            // Update the payment data entry
+            if (existingEntry) {
+                existingEntry.document = documentUrls.join(','); // Update the document URLs
+            } else {
+                paymentDataArray.push({ status: paymentStatus, document: documentUrls.join(','), dueDate: "" });
+            }
+    
+            // Update the cookie
+            setCookie('field1', JSON.stringify(paymentDataArray));
+            console.log("Cookie updated with payment data:", paymentDataArray);
+            alert("All images uploaded successfully!");
+        }
+    
+        // Function to calculate due date
+        function calculateDueDate(startDate, paymentStatus) {
+            const start = new Date(startDate);
+            let daysToAdd = 0;
+    
+            switch (paymentStatus) {
+                case '17 Days':
+                    daysToAdd = 17;
+                    break;
+                case '30 Days':
+                    daysToAdd = 30;
+                    break;
+                case '45 Days':
+                    daysToAdd = 45;
+                    break;
+                case '60 Days':
+                    daysToAdd = 60;
+                    break;
+                default:
+                    return ''; // No due date for "Advance Payment"
+            }
+    
+            const dueDate = new Date(start);
+            dueDate.setDate(dueDate.getDate() + daysToAdd);
+            return dueDate.toISOString().split('T')[0]; // Return YYYY-MM-DD format
+        }
+    
+        // Function to set cookie
+        function setCookie(name, value) {
+            document.cookie = `${name}=${value}; path=/;`;
+            console.log(`Cookie set: ${name} = ${value}`);
+        }
+    
+        // Function to get cookie by name
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return '';
+        }
+    </script>
+    
+    
+    <script>
+        const places = ["Karnataka","Andhra Pradesh","Telengana", "Tamil Nadu", "Maharastra", "Kerala"];
+
+function filterOptions(input) {
+    const suggestions = document.getElementById('suggestions');
+    suggestions.innerHTML = ''; // Clear previous suggestions
+
+    if (input) {
+        const filteredPlaces = places.filter(place => 
+            place.toLowerCase().includes(input.toLowerCase())
+        );
+
+        filteredPlaces.forEach(place => {
+            const li = document.createElement('li');
+            li.textContent = place.charAt(0).toUpperCase() + place.slice(1);
+            li.onclick = () => selectPlace(place); // Set the selected place
+            suggestions.appendChild(li);
+        });
+
+        // Show suggestions if there are any
+        suggestions.style.display = filteredPlaces.length > 0 ? 'block' : 'none';
+    } else {
+        suggestions.style.display = 'none'; // Hide if input is empty
+    }
 }
-        </script>
+
+function selectPlace(place) {
+    document.getElementById('place').value = place; // Set input value
+    setCookie('field16', place); // Save to cookie
+    document.getElementById('suggestions').innerHTML = ''; // Clear suggestions
+    document.getElementById('suggestions').style.display = 'none'; // Hide suggestions
+}
+
+const regions = ["Bangalore","Hyderabad","Chennai", "Mumbai", "Kochi"];
+
+function filterRegionOptions(input) {
+    const suggestions = document.getElementById('region-suggestions');
+    suggestions.innerHTML = ''; // Clear previous suggestions
+
+    if (input) {
+        const filteredRegions = regions.filter(region => 
+            region.toLowerCase().includes(input.toLowerCase())
+        );
+
+        filteredRegions.forEach(region => {
+            const li = document.createElement('li');
+            li.textContent = region.charAt(0).toUpperCase() + region.slice(1);
+            li.onclick = () => selectRegion(region); // Set the selected region
+            suggestions.appendChild(li);
+        });
+
+        // Show suggestions if there are any
+        suggestions.style.display = filteredRegions.length > 0 ? 'block' : 'none';
+    } else {
+        suggestions.style.display = 'none'; // Hide if input is empty
+    }
+}
+
+function selectRegion(region) {
+    document.getElementById('region').value = region; // Set input value
+    setCookie('field22', region); // Save to cookie
+    document.getElementById('region-suggestions').innerHTML = ''; // Clear suggestions
+    document.getElementById('region-suggestions').style.display = 'none'; // Hide suggestions
+}
+
+    </script>
     <script>
         // Function to check for required cookies
         function checkLoginStatus() {
@@ -1650,5 +673,754 @@ function saveBreakdownProfileDetails() {
         // Call the function to check login status on page load
         checkLoginStatus();
     </script>
+    <script>
+        // function setCookie(name, value) {
+        //     document.cookie = `${name}=${value}; path=/`;
+        // }
+    
+        function validateCustomerName() {
+            const nameField = document.getElementById('customer-name');
+            const nameError = document.getElementById('customer-name-error');
+            const nameValue = nameField.value.trim();
+
+            if (nameValue.length < 5 || nameValue.length > 30) {
+                nameError.textContent = 'Customer name must be between 5 and 30 characters.';
+            } else if (!/^[a-zA-Z0-9\s\W]*$/.test(nameValue)) { 
+                // \W allows special characters, equivalent to [^a-zA-Z0-9_]
+                nameError.textContent = 'Customer name can only contain letters, numbers, spaces, and special characters.';
+            } else {
+                nameError.textContent = '';
+            }
+        }
+
+        // Validation function for Contact Person Name
+        function validateContactPersonName() {
+            const contactPersonName = document.getElementById('contact-person-name').value;
+            const errorDiv = document.getElementById('contact-person-name-error');
+            if (contactPersonName.trim() === '') {
+                errorDiv.textContent = 'Contact Person Name is required.';
+            } else {
+                errorDiv.textContent = '';
+            }
+        }
+        function validatePhone() {
+            const phoneField = document.getElementById('phone');
+            const phoneError = document.getElementById('phone-error');
+            const phoneValue = phoneField.value.trim();
+    
+            if (!/^\d{10}$/.test(phoneValue)) {
+                phoneError.textContent = 'Phone number must be exactly 10 digits.';
+            } else {
+                phoneError.textContent = '';
+            }
+        }
+    
+        function validateChl() {
+            const chlField = document.getElementById('chl');
+            const chlError = document.getElementById('chl-error');
+            const chlValue = chlField.value.trim();
+    
+            if (chlValue.length < 2 || chlValue.length > 30) {
+                chlError.textContent = 'CHL must be between 2 and 30 characters.';
+            } else {
+                chlError.textContent = '';
+            }
+        }
+    
+        function validatePac() {
+            const pacField = document.getElementById('pac');
+            const pacError = document.getElementById('pac-error');
+            const pacValue = pacField.value.trim();
+    
+            if (pacValue.length < 2 || pacValue.length > 30) {
+                pacError.textContent = 'PAC must be between 2 and 30 characters.';
+            } else {
+                pacError.textContent = '';
+            }
+        }
+    
+        function validateAccount() {
+            const accountField = document.getElementById('s-ac');
+            const accountError = document.getElementById('s-ac-error');
+            const accountValue = accountField.value.trim();
+    
+            if (accountValue.length < 2 || accountValue.length > 30) {
+                accountError.textContent = 'S. A/c must be between 2 and 30 characters.';
+            } else {
+                accountError.textContent = '';
+            }
+        }
+    
+        function validatePoNo() {
+            const poField = document.getElementById('po-no');
+            const poError = document.getElementById('po-no-error');
+            const poValue = poField.value.trim();
+    
+            if (poValue.length < 2 || poValue.length > 30) {
+                poError.textContent = 'PO No. must be between 2 and 30 characters.';
+            } else {
+                poError.textContent = '';
+            }
+        }
+    
+        function validatePoValue() {
+            const poValueField = document.getElementById('po-value');
+            const poValueError = document.getElementById('po-value-error');
+            const poValue = poValueField.value.trim();
+    
+            if (!/^\d+(\.\d{1,2})?$/.test(poValue)) {
+                poValueError.textContent = 'PO Value must be a valid decimal number.';
+            } else {
+                poValueError.textContent = '';
+            }
+        }
+    
+        function validateTypeOfCall() {
+            const callField = document.getElementById('type-of-call');
+            const callError = document.getElementById('type-of-call-error');
+            const callValue = callField.value.trim();
+    
+            if (callValue.length < 3 || callValue.length > 50) {
+                callError.textContent = 'Type of Call must be between 3 and 50 characters.';
+            } else {
+                callError.textContent = '';
+            }
+        }
+    
+        function validateVisits() {
+            const visitsField = document.getElementById('visits');
+            const visitsError = document.getElementById('visits-error');
+            const visitsValue = visitsField.value;
+    
+            if (visitsValue < 1 || visitsValue > 6) {
+                visitsError.textContent = 'Visits must be between 1 and 6.';
+            } else {
+                visitsError.textContent = '';
+            }
+        }
+    
+        function validateFileNo() {
+            const fileNoField = document.getElementById('file-no');
+            const fileNoError = document.getElementById('file-no-error');
+            const fileNoValue = fileNoField.value.trim();
+    
+            if (fileNoValue.length < 3 || fileNoValue.length > 15) {
+                fileNoError.textContent = 'File No. must be between 3 and 15 characters.';
+            } else {
+                fileNoError.textContent = '';
+            }
+        }
+    
+        function validateServiceEngineer() {
+            const engineerField = document.getElementById('service-engineer');
+            const engineerError = document.getElementById('service-engineer-error');
+            const engineerValue = engineerField.value.trim();
+    
+            if (engineerValue.length < 3 || engineerValue.length > 50) {
+                engineerError.textContent = 'Service Engineer must be between 3 and 50 characters.';
+            } else {
+                engineerError.textContent = '';
+            }
+        }
+    
+        function validatePaymentTerms() {
+            const paymentField = document.getElementById('po-payment-terms');
+            const paymentError = document.getElementById('payment-terms-error');
+            const paymentValue = paymentField.value.trim();
+    
+            if (paymentValue.length < 5 || paymentValue.length > 30) {
+                paymentError.textContent = 'Payment terms must be between 5 and 30 characters.';
+            } else {
+                paymentError.textContent = '';
+            }
+        }
+    
+        function validateComments() {
+            const commentsField = document.getElementById('comments');
+            const commentsError = document.getElementById('comments-error');
+            const commentsValue = commentsField.value.trim();
+    
+            if (commentsValue.length > 200) {
+                commentsError.textContent = 'Comments must be less than 200 characters.';
+            } else {
+                commentsError.textContent = '';
+            }
+        }
+    
+        function handleNext() {
+            // Check for validation errors
+            validateCustomerName();
+            validatePhone();
+            validateContactPersonName();
+            validateChl();
+            validatePac();
+            validateAccount();
+            validatePoNo();
+            validatePoValue();
+            validateTypeOfCall();
+            validateVisits();
+            validateFileNo();
+            validateServiceEngineer();
+            validatePaymentTerms();
+            validateComments();
+    
+            // Check for any error messages
+            const errorMessages = document.querySelectorAll('.error-message');
+            for (let i = 0; i < errorMessages.length; i++) {
+                if (errorMessages[i].textContent) {
+                    alert("Please fix the errors in the form before proceeding.");
+                    return;
+                }
+            }
+    
+            // Proceed to the next step if no errors
+            alert("Form is valid. Proceeding to the next step...");
+        }
+    
+        // ... remaining code for cookie handling and file preview
+    </script>
+    <script>
+        function addMore(type) {
+    const container = document.getElementById(`${type}-container`);
+    const div = document.createElement('div');
+    div.className = 'form-group';
+    div.innerHTML = `
+        <div class="form-group">
+            <label for="${type}"><strong>${type.toUpperCase()} Type: </strong></label>
+            <input type="text" name="${type}[]" placeholder="Enter ${type.toUpperCase()}" required oninput="updateArrayCookie('field${getFieldNumber(type)}', '${type}[]')">
+        </div>
+        <div class="form-group">
+            <label for="${type}-quantity"><strong>${type.toUpperCase()} Quantity: </strong></label>
+            <input type="number" name="${type}-quantity[]" placeholder="Enter ${type.toUpperCase()} Quantity" required oninput="updateArrayCookie('field${getQuantityFieldNumber(type)}', '${type}-quantity[]'); calculateTotal()">
+        </div>
+    `;
+    container.appendChild(div);
+}
+
+function calculateTotal() {
+    const chlQuantities = Array.from(document.getElementsByName('chl-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+    const pacQuantities = Array.from(document.getElementsByName('pac-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+    const sAcQuantities = Array.from(document.getElementsByName('s-ac-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+
+    const total = chlQuantities + pacQuantities + sAcQuantities;
+    document.getElementById('total').value = total;
+
+    setCookie('field13', total);
+}
+
+function updateArrayCookie(fieldName, inputName) {
+    const inputs = Array.from(document.getElementsByName(inputName)).map(input => input.value.trim()).filter(value => value);
+    setCookie(fieldName, JSON.stringify(inputs));
+}
+
+function setCookie(name, value) {
+    document.cookie = `${name}=${value}; path=/`;
+}
+
+function getFieldNumber(type) {
+    return type === 'chl' ? 15 : type === 'pac' ? 10 : 24;
+}
+
+function getQuantityFieldNumber(type) {
+    return type === 'chl' ? 9 : type === 'pac' ? 11 : 21;
+}
+    </script>
+    <script>
+        function handleNext() {
+                const visits = parseInt(document.getElementById('visits').value);
+                const contractDate = document.getElementById('contract-period').value;
+    
+                if (visits && contractDate) {
+                    let contractStartDate = new Date(contractDate);
+                    let currentDate = new Date();
+                    
+                    // Calculate contract end date by adding (visits - 1) * 3 months
+                    let contractEndDate = new Date(contractStartDate);
+                    contractEndDate.setMonth(contractEndDate.getMonth() + (visits - 1) * 3);
+                    
+                    // Format dates for display
+                    let formattedContractStartDate = contractStartDate.toLocaleDateString('en-US');
+                    let formattedCurrentDate = currentDate.toLocaleDateString('en-US');
+                    let formattedContractEndDate = contractEndDate.toLocaleDateString('en-US');
+    
+                    // Display the alert with the calculated values
+                    alert(`Current Date: ${formattedCurrentDate}\nVisits: ${visits}\nContract Start Date: ${formattedContractStartDate}\nContract End Date: ${formattedContractEndDate}`);
+                } else {
+                    alert('Please enter both the contract period date and the number of visits.');
+                }
+            }
+    
+            function setCookie(name, value) {
+                document.cookie = name + "=" + value + "; path=/";
+            }
+    
+    
+            let modifiedImageUrls = []; // Array to store modified image URLs
+let imageCount = 0; // Counter for the total number of images
+
+document.getElementById('po-document').addEventListener('change', function (event) {
+    const files = event.target.files;
+    const popupContent = document.getElementById('popup-content');
+
+    // Clear previous content
+    popupContent.innerHTML = '';
+
+    // Loop through the files and create image elements
+    for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.maxWidth = '100px'; // Set max width for preview images
+            img.style.margin = '5px'; // Add some margin
+            popupContent.appendChild(img);
+
+            // Send the image to the API
+            uploadImage(file);
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // Update the image count based on the array and newly added images
+    imageCount = modifiedImageUrls.length + files.length; // Total count includes previously uploaded images and new uploads
+
+    // Update the image count display
+    updateImageCountDisplay(); // Call function to update the count display
+});
+
+// Function to close the popup
+function closePopup() {
+    const popup = document.getElementById('preview-popup');
+    popup.style.display = 'none';
+}
+
+// Function to open the popup and display all uploaded images
+function openImagePreview() {
+    const popupContent = document.getElementById('popup-content');
+
+    // Clear previous content
+    popupContent.innerHTML = '';
+
+    // Loop through modified image URLs and create image elements
+    modifiedImageUrls.forEach(url => {
+        const img = document.createElement('img');
+        img.src = url; // Use the modified URL from the array
+        img.style.maxWidth = '80%'; // Set max width for better visibility
+        img.style.maxHeight = '80%'; // Set max height for better visibility
+        img.style.margin = '5px'; // Add some margin
+        img.style.objectFit = 'contain'; // Ensure image fits well within the dimensions
+        popupContent.appendChild(img);
+    });
+
+    // Show popup
+    const popup = document.getElementById('preview-popup');
+    popup.style.display = 'flex';
+}
+
+// Event listener for preview button
+// document.getElementById('preview-images-button').addEventListener('click', openImagePreview);
+
+// Function to upload images to the API
+function uploadImage(file) {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mjg1MzcwNDYsImlhdCI6MTcyODQ1MDY0NiwidXNlciI6eyJpZCI6NSwiY3JlYXRlZF9hdCI6IjIwMjQtMTAtMDNUMDc6MDg6MjQuOTc1MTE0IiwidXBkYXRlZF9hdCI6bnVsbCwiZmlyc3RuYW1lIjoiSGFyc2hpdGgiLCJsYXN0bmFtZSI6Ik4iLCJlbWFpbCI6ImhhcnNoaXRoZ293ZGExODgwMUBnbWFpbC5jb20iLCJpc19hZG1pbiI6ZmFsc2UsImlzX2FjdGl2YXRlZCI6ZmFsc2V9fQ.6zahZQPxWjNxuYdWhxVXIfUgy3zjA2ZR97KXcHi9aEc"); // Replace {{Autho}} with your actual authorization token
+
+    const formdata = new FormData();
+    formdata.append("file", file, file.name); // Use the actual file name
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow"
+    };
+
+    fetch("https://api2.itstrending.in/api/v1/profiles/upload_images", requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json(); // Parse JSON response
+        })
+        .then((result) => {
+            console.log(result); // Log the entire result for debugging
+            if (result.status === "success" && result.data && result.data.images) {
+                // Extract the image URLs, modify them, and store in the array
+                result.data.images.forEach(imageUrl => {
+                    console.log(imageUrl); // Log the raw image URL
+                    const modifiedImageUrl = imageUrl + "?alt=media"; // Append ?alt=media
+                    modifiedImageUrls.push(modifiedImageUrl); // Store the modified URL in the array
+                });
+
+                // Join the modified image URLs into a string and store in cookies
+                const imageUrlsString = modifiedImageUrls.join(','); // Join without brackets
+                document.cookie = `imageUrls=${imageUrlsString}; path=/`; // Store in cookies
+
+                // Log the string for verification
+                console.log("Stored in cookies:", imageUrlsString);
+                
+                // Update image count after successful upload
+                updateImageCountDisplay(); // Call function to update the count display
+            }
+        })
+        .catch((error) => console.error('Error uploading image:', error));
+}
+
+// Function to update the image count display
+function updateImageCountDisplay() {
+    const countDisplayElement = document.getElementById('image-count-display');
+    countDisplayElement.textContent = imageCount; // Update the displayed count
+}
+
+    
+            
+    
+    
+      // Function to get a cookie value by name
+      function getCookieValue(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+    
+            function handleNext() {
+                // Retrieve the token from the cookies
+                const token = getCookieValue("token") || ""; // Default to empty string if not found
+    
+                // Prepare headers
+                const myHeaders = new Headers();
+                myHeaders.append("Authorization", token); // Use the token from cookies
+                myHeaders.append("Content-Type", "application/json");
+    
+                // Retrieve values from cookies for fields 1 to 15
+                const field1 = getCookieValue("field1") || "";
+                const field2 = getCookieValue("field2") || "";
+                const field3 = getCookieValue("field3") || "";
+                const field4 = getCookieValue("field4") || "";
+                const field5 = getCookieValue("field5") || "";
+                const field6 = getCookieValue("field6") || "";
+                const field7 = getCookieValue("field7") || "";
+                const field8 = getCookieValue("field8") || "";
+                const field9 = getCookieValue("field9") || "";
+                const field10 = getCookieValue("field10") || "";
+                const field11 = getCookieValue("field11") || "";
+                const field12 = getCookieValue("field12") || "";
+                const field13 = getCookieValue("field13") || "";
+                const field14 = getCookieValue("field14") || "";
+                const field15 = getCookieValue("field15") || "";
+                const field16 = getCookieValue("field16") || "";
+    
+                const field17 = getCookieValue("field17") || "";
+    
+                const field18 = getCookieValue("field18") || "";
+    
+                const field19 = getCookieValue("field19") || "";
+    
+                const field20 = getCookieValue("field20") || "";
+                const field21 = getCookieValue("field21") || "";
+
+                const field22 = getCookieValue("field22") || "";
+                const field23 = getCookieValue("field23") || "";
+                const field24 = getCookieValue("field24") || "";
+                const field25 = getCookieValue("field25") || "";
+
+
+
+                const images = getCookieValue("imageUrls") || ""; // Assuming 'imageUrls' contains comma-separated image URLs
+    
+    
+    
+                // Prepare the raw body for the request
+                const raw = JSON.stringify({
+                    "profile_id": "",
+                    "description": "",
+                    "gender": "",
+                    "images": images, // Use the retrieved image URLs
+                    "bio": "",
+                    "field1": field1,
+                    "field2": field2,
+                    "field3": field3,
+                    "field4": field4,
+                    "field5": field5,
+                    "field6": field6,
+                    "field7": field7,
+                    "field8": field8,
+                    "field9": field9,
+                    "field10": field10,
+                    "field11": field11,
+                    "field12": field12,
+                    "field13": field13,
+                    "field14": field14,
+                    "field15": field15,
+                    "field16": field16,
+                    "field17": field17,
+                    "field18": field18,
+                    "field19": field19,
+                    "field20": field20,
+                    "field21": field21,
+                    "field22": field22,
+                    "field23": field23,
+                    "field24": field24,
+                    "field25": field25,
+                    "field26": "",
+                    "field27": "",
+                    "field28": "",
+                    "field29": "",
+                    "field30": "",
+                    "field31": "",
+                    "field32": "",
+                    "field33": "",
+                    "field34": "",
+                    "field35": "",
+                    "field36": "",
+                    "field37": "",
+                    "field38": "",
+                    "field39": "",
+                    "field40": "",
+                    "field41": "",
+                    "field42": "",
+                    "field43": "",
+                    "field44": "",
+                    "field45": "",
+                    "field46": "",
+                    "field47": "",
+                    "field48": "",
+                    "field49": "",
+                    "field50": ""
+                });
+    
+                // Function to show popup message
+function showPopup(message) {
+    // Create popup element
+    const popup = document.createElement("div");
+    popup.textContent = message;
+    popup.style.position = "fixed";
+    popup.style.bottom = "500px";
+    popup.style.left = "50%";
+    popup.style.transform = "translateX(-50%)";
+    popup.style.backgroundColor = "#4CAF50"; // Success color
+    popup.style.color = "white";
+    popup.style.padding = "10px 20px";
+    popup.style.borderRadius = "5px";
+    popup.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+    popup.style.fontSize = "16px";
+    popup.style.zIndex = "1000";
+
+    // Add popup to the document body
+    document.body.appendChild(popup);
+
+    // Remove popup after 3 seconds
+    setTimeout(() => {
+        popup.remove();
+    }, 3000);
+}
+
+// Request options
+const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+};
+// Function to clear all cookies except for specified keys
+function clearCookiesExcept(keysToKeep) {
+    const cookies = document.cookie.split("; ");
+    cookies.forEach((cookie) => {
+        const [name] = cookie.split("=");
+        if (!keysToKeep.includes(name)) {
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        }
+    });
+}
+// Send the request
+fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
+    .then((response) => {
+        if (response.status === 401) {
+            // Show alert message and redirect to login page
+            alert("Session expired. Please log in again.");
+            window.location.href = 'index.html'; // Redirect to login page
+            throw new Error("401 Unauthorized");
+        } else if (response.ok) {
+            // Show success popup message
+            showPopup("Profile created successfully!");
+            // Clear all cookies except 'email' and 'token'
+            clearCookiesExcept(["email", "token"]);
+        } else {
+            // Show error popup message for failed submission
+            showPopup("Form not submitted due to an error.");
+        }
+        return response.text();
+    })
+    .then((result) => console.log(result))
+    .catch((error) => {
+        if (error.message === "401 Unauthorized") {
+            console.log("User session expired, redirected to login.");
+        } else {
+            // Show error popup message for network or other issues
+            showPopup("An error occurred while submitting the form.");
+            console.error(error);
+        }
+    });
+            }
+        </script>
+        <script>
+            // Function to clear a specific cookie by name
+            function clearCookie(name) {
+                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+            }
+        
+            // Function to show the token expired popup
+            function showTokenExpiredPopup() {
+                // Create the popup container
+                const popup = document.createElement('div');
+                popup.className = 'popup-container';
+                popup.style.position = 'fixed';
+                popup.style.top = '50%';
+                popup.style.left = '50%';
+                popup.style.transform = 'translate(-50%, -50%)';
+                popup.style.backgroundColor = '#fff';
+                popup.style.border = '1px solid #ccc';
+                popup.style.borderRadius = '8px';
+                popup.style.padding = '20px';
+                popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                popup.style.zIndex = '1000';
+        
+                // Create the message and button
+                popup.innerHTML = `
+                    <h3 style="margin: 0; padding-bottom: 10px;">Token Expired!</h3>
+                    <p style="margin: 0; padding-bottom: 20px;">Your session has expired. Please log in again.</p>
+                    <button id="loginAgainBtn" style="
+                        background-color: #007BFF;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    ">Login Again</button>
+                `;
+        
+                // Append the popup to the body
+                document.body.appendChild(popup);
+        
+                // Handle the Login Again button click
+                document.getElementById('loginAgainBtn').addEventListener('click', function() {
+                    clearCookie('token'); // Clear 'token' cookie
+                    clearCookie('email'); // Clear 'email' cookie
+                    window.location.href = 'index.html'; // Redirect to the login page
+                });
+            }
+        
+            // Monitor console errors for the specific 401 Unauthorized message
+            const originalConsoleError = console.error;
+        
+            console.error = function (...args) {
+                originalConsoleError.apply(console, args); // Call the original console.error
+        
+                // Check for the exact 401 error message in the console
+                if (
+                    args.some(arg =>
+                        typeof arg === 'string' &&
+                        arg.includes('Failed to load resource: the server responded with a status of 401 (UNAUTHORIZED)')
+                    )
+                ) {
+                    showTokenExpiredPopup(); // Show the popup for the specific 401 error
+                }
+            };
+        </script>
+        <script>
+            // Function to set a cookie
+            function setCookie(name, value) {
+                document.cookie = `${name}=${value}; path=/`;
+            }
+            
+            // Function to convert number into words (Indian numbering system)
+            function convertNumberToWords() {
+                const number = document.getElementById('po-value').value;
+                const words = convertToIndianWords(number);
+                document.getElementById('po-value-in-words').textContent = words;
+                
+                // Save both the PO Value and PO Value in words in cookies
+                setCookie('field14', number);  // Save PO Value
+                setCookie('field25', words);   // Save PO Value in words
+            }
+            
+            // Function to convert number to words (Indian numbering system)
+            function convertToIndianWords(num) {
+                const a = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+                const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+                const units = ['', 'Hundred', 'Thousand', 'Lakh', 'Crore'];
+                
+                num = num.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+                let n = parseInt(num);
+                
+                if (isNaN(n) || n === 0) return 'Zero rupees only';
+            
+                let result = '';
+                
+                // Handle Crore
+                if (n >= 10000000) {
+                    let crore = Math.floor(n / 10000000);
+                    result += convertToWordsUnderThousand(crore) + ' Crore';
+                    n = n % 10000000;
+                }
+                
+                // Handle Lakh
+                if (n >= 100000) {
+                    let lakh = Math.floor(n / 100000);
+                    result += ' ' + convertToWordsUnderThousand(lakh) + ' Lakh';
+                    n = n % 100000;
+                }
+                
+                // Handle Thousand
+                if (n >= 1000) {
+                    let thousand = Math.floor(n / 1000);
+                    result += ' ' + convertToWordsUnderThousand(thousand) + ' Thousand';
+                    n = n % 1000;
+                }
+            
+                // Handle Hundred
+                if (n >= 100) {
+                    let hundred = Math.floor(n / 100);
+                    result += ' ' + a[hundred] + ' Hundred';
+                    n = n % 100;
+                }
+            
+                // Handle Tens and Ones
+                if (n > 0) {
+                    if (n < 20) {
+                        result += ' ' + a[n];
+                    } else {
+                        result += ' ' + b[Math.floor(n / 10)];
+                        if (n % 10 !== 0) result += ' ' + a[n % 10];
+                    }
+                }
+            
+                return result.trim() + ' rupees only';
+            }
+            
+            // Helper function to convert numbers under 1000
+            function convertToWordsUnderThousand(n) {
+                const a = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+                const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+            
+                let result = '';
+            
+                if (n < 20) {
+                    result = a[n];
+                } else if (n < 100) {
+                    result = b[Math.floor(n / 10)];
+                    if (n % 10 !== 0) result += ' ' + a[n % 10];
+                } else {
+                    result = a[Math.floor(n / 100)] + ' Hundred';
+                    if (n % 100 !== 0) {
+                        result += ' ' + convertToWordsUnderThousand(n % 100);
+                    }
+                }
+            
+                return result;
+            }
+            </script>
+            
+            
 </body>
 </html>
