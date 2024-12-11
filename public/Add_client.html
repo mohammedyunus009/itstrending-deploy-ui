@@ -160,20 +160,19 @@
     <div class="installation-form1">
         <div class="form-group">
             <label for="customer-name"><strong>Customer Name: </strong></label>
-            <input type="text" id="customer-name" name="customer-name" placeholder="Enter Customer Name" required oninput="setCookie('field2', this.value); validateCustomerName()">
+            <input type="text" id="customer-name" name="customer-name" placeholder="Enter Customer Name" required oninput="validateCustomerName()">
             <div id="customer-name-error" class="error-message"></div>
         </div>
     
-
-
         <div class="form-group">
             <label for="phone"><strong>Phone Number: </strong></label>
-            <input type="text" id="phone" name="phone" placeholder="Enter Phone Number" required oninput="setCookie('field6', this.value); validatePhone()">
+            <input type="text" id="phone" name="phone" placeholder="Enter Phone Number" required oninput="validatePhone()">
             <div id="phone-error" class="error-message"></div>
         </div>
+    
         <div class="form-group">
             <label for="contact-person-name"><strong>Contact Person Name: </strong></label>
-            <input type="text" id="contact-person-name" name="contact-person-name" placeholder="Enter Contact Person Name" required oninput="setCookie('field7', this.value); validateContactPersonName()">
+            <input type="text" id="contact-person-name" name="contact-person-name" placeholder="Enter Contact Person Name" required oninput="validateContactPersonName()">
             <div id="contact-person-name-error" class="error-message"></div>
         </div>    
     </div>
@@ -189,7 +188,7 @@
                 class="styled-input" 
                 placeholder="Type to search or select" 
                 oninput="filterOptions(this.value)"
-                onchange="setCookie('field16', this.value)"
+                onchange="updateFieldValue('place', 'field16')"
             />
             <ul id="suggestions" class="suggestions-list"></ul>
         </div> 
@@ -204,11 +203,10 @@
                 class="styled-input" 
                 placeholder="Type to search or select" 
                 oninput="filterRegionOptions(this.value)"
-                onchange="setCookie('field22', this.value)"
+                onchange="updateFieldValue('region', 'field22')"
             />
             <ul id="region-suggestions" class="suggestions-list"></ul>
         </div>
-        
     </div>
     
     <div class="installation-form1">
@@ -216,12 +214,12 @@
         <div id="chl-container">
             <div class="form-group">
                 <label for="chl"><strong>CHL Type: </strong></label>
-                <input type="text" id="chl" name="chl[]" placeholder="Enter CHL" required oninput="updateArrayCookie('field15', 'chl[]')">
+                <input type="text" id="chl" name="chl[]" placeholder="Enter CHL" required oninput="updateArray('field15', 'chl[]')">
                 <div id="chl-error" class="error-message"></div>
             </div>
             <div class="form-group">
                 <label for="chl-quantity"><strong>CHL Quantity: </strong></label>
-                <input type="number" id="chl-quantity" name="chl-quantity[]" placeholder="Enter CHL Quantity" required oninput="updateArrayCookie('field9', 'chl-quantity[]'); calculateTotal()">
+                <input type="number" id="chl-quantity" name="chl-quantity[]" placeholder="Enter CHL Quantity" required oninput="updateArray('field26', 'chl-quantity[]'); calculateTotal()">
             </div>
         </div>
         <button type="button" onclick="addMore('chl')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More CHL</button>
@@ -232,12 +230,12 @@
         <div id="pac-container">
             <div class="form-group">
                 <label for="pac"><strong>PAC Type: </strong></label>
-                <input type="text" id="pac" name="pac[]" placeholder="Enter PAC" required oninput="updateArrayCookie('field10', 'pac[]')">
+                <input type="text" id="pac" name="pac[]" placeholder="Enter PAC" required oninput="updateArray('field10', 'pac[]')">
                 <div id="pac-error" class="error-message"></div>
             </div>
             <div class="form-group">
                 <label for="pac-quantity"><strong>PAC Quantity: </strong></label>
-                <input type="number" id="pac-quantity" name="pac-quantity[]" placeholder="Enter PAC Quantity" required oninput="updateArrayCookie('field11', 'pac-quantity[]'); calculateTotal()">
+                <input type="number" id="pac-quantity" name="pac-quantity[]" placeholder="Enter PAC Quantity" required oninput="updateArray('field11', 'pac-quantity[]'); calculateTotal()">
             </div>
         </div>
         <button type="button" onclick="addMore('pac')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More PAC</button>
@@ -248,33 +246,32 @@
         <div id="s-ac-container">
             <div class="form-group">
                 <label for="s-ac"><strong>S. A/c Type: </strong></label>
-                <input type="text" id="s-ac" name="s-ac[]" placeholder="Enter S. A/c" required oninput="updateArrayCookie('field24', 's-ac[]')">
+                <input type="text" id="s-ac" name="s-ac[]" placeholder="Enter S. A/c" required oninput="updateArray('field24', 's-ac[]')">
                 <div id="s-ac-error" class="error-message"></div>
             </div>
             <div class="form-group">
                 <label for="s-ac-quantity"><strong>S. A/c Quantity: </strong></label>
-                <input type="number" id="s-ac-quantity" name="s-ac-quantity[]" placeholder="Enter S. A/c Quantity" required oninput="updateArrayCookie('field21', 's-ac-quantity[]'); calculateTotal()">
+                <input type="number" id="s-ac-quantity" name="s-ac-quantity[]" placeholder="Enter S. A/c Quantity" required oninput="updateArray('field21', 's-ac-quantity[]'); calculateTotal()">
             </div>
         </div>
         <button type="button" onclick="addMore('s-ac')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More S. A/c</button>
     </div>
-
+    
     <div class="installation-form1">
         <div class="form-group">
             <label for="total"><strong>Total: </strong></label>
             <input type="text" id="total" name="total" placeholder="Total" readonly>
         </div>
-
         <div class="form-group">
             <label for="contract-period"><strong>PO Date: </strong></label>
-            <input type="date" id="contract-period" name="contract-period" required class="styled-input" onchange="setCookie('field4', this.value)">
+            <input type="date" id="contract-period" name="contract-period" required class="styled-input" onchange="setFieldValue('field4', this.value)">
         </div>
     </div>
 
     <div class="installation-form1">
         <div class="form-group">
             <label for="po-no"><strong>PO No.: </strong></label>
-            <input type="text" id="po-no" name="po-no" placeholder="Enter PO Number" required oninput="setCookie('field3', this.value); validatePoNo()">
+            <input type="text" id="po-no" name="po-no" placeholder="Enter PO Number" required oninput="validatePoNo()">
             <div id="po-no-error" class="error-message"></div>
         </div>
     
@@ -337,30 +334,25 @@
     <div class="installation-form1">
         <div class="form-group">
             <label for="contract-period-from"><strong>Contract Period From: </strong></label>
-            <input type="date" id="contract-period-from" name="contract-period-from" required class="styled-input" onchange="setCookie('field5', this.value)">
+            <input type="date" id="contract-period-from" name="contract-period-from" required class="styled-input" onchange="handleInputChange('field5', this.value)">
         </div>
     
         <div class="form-group">
             <label for="contract-period-to"><strong>Contract Period To: </strong></label>
-            <input type="date" id="contract-period-to" name="contract-period-to" required class="styled-input" onchange="setCookie('field17', this.value)">
+            <input type="date" id="contract-period-to" name="contract-period-to" required class="styled-input" onchange="handleInputChange('field17', this.value)">
         </div>
     </div>
     
     <div class="installation-form1">
         <div class="form-group">
             <label for="visits"><strong>Visits: </strong></label>
-            <input type="number" id="visits" name="visits" placeholder="Enter Visits" required oninput="setCookie('field18', this.value)" min="1" max="6">
+            <input type="number" id="visits" name="visits" placeholder="Enter Visits" required oninput="handleInputChange('field18', this.value)" min="1" max="6">
             <div id="visits-error" class="error-message"></div>
         </div>
-        
-        <!-- <div class="form-group">
-            <label for="file-no"><strong>File No.: </strong></label>
-            <input type="text" id="file-no" name="file-no" placeholder="Enter File No." required oninput="setCookie('field22', this.value); validateFileNo()">
-            <div id="file-no-error" class="error-message"></div>
-        </div> -->
+    
         <div class="form-group">
             <label for="service-engineer"><strong>Service Engineer: </strong></label>
-            <input type="text" id="service-engineer" name="service-engineer" placeholder="Enter Service Engineer" required oninput="setCookie('field19', this.value); validateServiceEngineer()">
+            <input type="text" id="service-engineer" name="service-engineer" placeholder="Enter Service Engineer" required oninput="handleInputChange('field19', this.value)">
             <div id="service-engineer-error" class="error-message"></div>
         </div>
     </div>
@@ -368,10 +360,10 @@
     <div class="installation-form1">
         <div class="form-group">
             <label for="po-payment-terms"><strong>PO Payment Terms: </strong></label>
-            <input type="text" id="po-payment-terms" name="po-payment-terms" placeholder="Enter PO Payment Terms" required oninput="setCookie('field20', this.value); validatePaymentTerms()">
+            <input type="text" id="po-payment-terms" name="po-payment-terms" placeholder="Enter PO Payment Terms" required oninput="handleInputChange('field20', this.value)">
             <div id="payment-terms-error" class="error-message"></div>
         </div>
-
+    
         <div class="form-group">
             <label for="payment_status"><strong>Payment Status: </strong></label>
             <select id="payment_status" name="payment_status" required class="styled-select" onchange="setCookie('field1', this.value)">
@@ -380,10 +372,10 @@
                 <option value="Partial Advance Payment">Partial Advance Payment</option>
                 <option value="Payment Received">Payment Received</option>
                 <option value="Payment Not Received">Payment Not Received</option>
-                <option value="17 Days">17 Days</option>
+                <!-- <option value="17 Days">17 Days</option>
                 <option value="30 Days">30 Days</option>
                 <option value="45 Days">45 Days</option>
-                <option value="60 Days">60 Days</option>
+                <option value="60 Days">60 Days</option> -->
             </select>
         </div>
     </div>
@@ -396,10 +388,10 @@
             </label>
             <input type="file" id="file_upload" name="file_upload" required multiple onchange="uploadImages(event)" style="display: none;">
         </div>
-
+    
         <div class="form-group">
             <label for="comments"><strong>Comments: </strong></label>
-            <textarea id="comments" name="comments" placeholder="Enter Comments" required class="styled-textarea" oninput="setCookie('field23', this.value)"></textarea>
+            <textarea id="comments" name="comments" placeholder="Enter Comments" required class="styled-textarea" oninput="handleInputChange('field23', this.value)"></textarea>
         </div>
     </div>
 
@@ -420,7 +412,6 @@
         function selectOption(value) {
             const input = document.getElementById('type-of-call');
             input.value = value;
-            setCookie('field8', value);
             validateTypeOfCall();
             hideDropdown();
         }
@@ -442,6 +433,31 @@
                 hideDropdown();
             }
         });
+        
+        // Function to validate Type of Call (can be modified to suit your validation)
+        function validateTypeOfCall() {
+            const value = document.getElementById('type-of-call').value;
+            const errorElement = document.getElementById('type-of-call-error');
+            if (!value) {
+                errorElement.textContent = 'Type of Call is required.';
+            } else {
+                errorElement.textContent = '';
+            }
+        }
+    
+        // On page load, check if there's a saved value in the input field
+        window.onload = function() {
+            const savedValue = localStorage.getItem('typeOfCallValue');
+            if (savedValue) {
+                document.getElementById('type-of-call').value = savedValue;
+            }
+        };
+    
+        // Save the value when it's selected
+        document.getElementById('type-of-call').addEventListener('change', function() {
+            const value = document.getElementById('type-of-call').value;
+            localStorage.setItem('typeOfCallValue', value);
+        });
     </script>
     <script>
         function toggleMenu() {
@@ -453,9 +469,9 @@
         let paymentDataArray = [];
     
         // Handle Payment Status Change
-        document.getElementById('payment_status').addEventListener('change', function () {
-            const paymentStatus = this.value;
-            const contractStartDate = getCookie('field5'); // Get the start date from cookies
+        function handlePaymentStatusChange() {
+            const paymentStatus = document.getElementById('payment_status').value;
+            const contractStartDate = document.getElementById('contract-period-from').value; // Get the start date from input field
     
             if (!paymentStatus) {
                 console.warn("No payment status selected.");
@@ -478,10 +494,8 @@
                 paymentDataArray.push({ status: paymentStatus, document: "", dueDate });
             }
     
-            // Update the cookie
-            setCookie('field1', JSON.stringify(paymentDataArray));
-            console.log("Cookie updated with payment data:", paymentDataArray);
-        });
+            console.log("Payment Data Array:", paymentDataArray);
+        }
     
         // Handle File Upload
         async function uploadImages(event) {
@@ -534,11 +548,14 @@
             } else {
                 paymentDataArray.push({ status: paymentStatus, document: documentUrls.join(','), dueDate: "" });
             }
-    
-            // Update the cookie
-            setCookie('field1', JSON.stringify(paymentDataArray));
-            console.log("Cookie updated with payment data:", paymentDataArray);
-            alert("All images uploaded successfully!");
+// Convert the paymentDataArray to a JSON string (no encoding)
+const paymentDataJSON = JSON.stringify(paymentDataArray);
+document.cookie = `field1=${paymentDataJSON}; path=/; max-age=3600`; // Expires in 1 hour
+
+console.log("Updated Payment Data Array with Documents:", paymentDataArray);
+alert("All images uploaded successfully!");
+
+
         }
     
         // Function to calculate due date
@@ -568,87 +585,87 @@
             return dueDate.toISOString().split('T')[0]; // Return YYYY-MM-DD format
         }
     
-        // Function to set cookie
-        function setCookie(name, value) {
-            document.cookie = `${name}=${value}; path=/;`;
-            console.log(`Cookie set: ${name} = ${value}`);
-        }
-    
-        // Function to get cookie by name
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-            return '';
+        // Function to handle input field change (replacing setCookie)
+        function handleInputChange(fieldName, value) {
+            console.log(`Input change detected for ${fieldName}:`, value);
+            // You can update cookies or another storage mechanism if needed, or just use this to handle the data
         }
     </script>
     
     
     <script>
-        const places = ["Karnataka","Andhra Pradesh","Telengana", "Tamil Nadu", "Maharastra", "Kerala"];
-
-function filterOptions(input) {
-    const suggestions = document.getElementById('suggestions');
-    suggestions.innerHTML = ''; // Clear previous suggestions
-
-    if (input) {
-        const filteredPlaces = places.filter(place => 
-            place.toLowerCase().includes(input.toLowerCase())
-        );
-
-        filteredPlaces.forEach(place => {
-            const li = document.createElement('li');
-            li.textContent = place.charAt(0).toUpperCase() + place.slice(1);
-            li.onclick = () => selectPlace(place); // Set the selected place
-            suggestions.appendChild(li);
-        });
-
-        // Show suggestions if there are any
-        suggestions.style.display = filteredPlaces.length > 0 ? 'block' : 'none';
-    } else {
-        suggestions.style.display = 'none'; // Hide if input is empty
-    }
-}
-
-function selectPlace(place) {
-    document.getElementById('place').value = place; // Set input value
-    setCookie('field16', place); // Save to cookie
-    document.getElementById('suggestions').innerHTML = ''; // Clear suggestions
-    document.getElementById('suggestions').style.display = 'none'; // Hide suggestions
-}
-
-const regions = ["Bangalore","Hyderabad","Chennai", "Mumbai", "Kochi"];
-
-function filterRegionOptions(input) {
-    const suggestions = document.getElementById('region-suggestions');
-    suggestions.innerHTML = ''; // Clear previous suggestions
-
-    if (input) {
-        const filteredRegions = regions.filter(region => 
-            region.toLowerCase().includes(input.toLowerCase())
-        );
-
-        filteredRegions.forEach(region => {
-            const li = document.createElement('li');
-            li.textContent = region.charAt(0).toUpperCase() + region.slice(1);
-            li.onclick = () => selectRegion(region); // Set the selected region
-            suggestions.appendChild(li);
-        });
-
-        // Show suggestions if there are any
-        suggestions.style.display = filteredRegions.length > 0 ? 'block' : 'none';
-    } else {
-        suggestions.style.display = 'none'; // Hide if input is empty
-    }
-}
-
-function selectRegion(region) {
-    document.getElementById('region').value = region; // Set input value
-    setCookie('field7', region); // Save to cookie
-    document.getElementById('region-suggestions').innerHTML = ''; // Clear suggestions
-    document.getElementById('region-suggestions').style.display = 'none'; // Hide suggestions
-}
-
+        let field16 = ""; // Variable to store the selected state
+        let field22 = ""; // Variable to store the selected city
+    
+        const places = ["Karnataka", "Andhra Pradesh", "Telangana", "Tamil Nadu", "Maharashtra", "Kerala"];
+        const regions = ["Bangalore", "Hyderabad", "Chennai", "Mumbai", "Kochi"];
+    
+        function filterOptions(input) {
+            const suggestions = document.getElementById('suggestions');
+            suggestions.innerHTML = ''; // Clear previous suggestions
+    
+            if (input) {
+                const filteredPlaces = places.filter(place => 
+                    place.toLowerCase().includes(input.toLowerCase())
+                );
+    
+                filteredPlaces.forEach(place => {
+                    const li = document.createElement('li');
+                    li.textContent = place.charAt(0).toUpperCase() + place.slice(1);
+                    li.onclick = () => selectPlace(place); // Set the selected place
+                    suggestions.appendChild(li);
+                });
+    
+                suggestions.style.display = filteredPlaces.length > 0 ? 'block' : 'none';
+            } else {
+                suggestions.style.display = 'none'; // Hide if input is empty
+            }
+        }
+    
+        function selectPlace(place) {
+            document.getElementById('place').value = place; // Set input value
+            updateFieldValue('place', 'field16'); // Call function to update field value
+            document.getElementById('suggestions').innerHTML = ''; // Clear suggestions
+            document.getElementById('suggestions').style.display = 'none'; // Hide suggestions
+        }
+    
+        function filterRegionOptions(input) {
+            const suggestions = document.getElementById('region-suggestions');
+            suggestions.innerHTML = ''; // Clear previous suggestions
+    
+            if (input) {
+                const filteredRegions = regions.filter(region => 
+                    region.toLowerCase().includes(input.toLowerCase())
+                );
+    
+                filteredRegions.forEach(region => {
+                    const li = document.createElement('li');
+                    li.textContent = region.charAt(0).toUpperCase() + region.slice(1);
+                    li.onclick = () => selectRegion(region); // Set the selected region
+                    suggestions.appendChild(li);
+                });
+    
+                suggestions.style.display = filteredRegions.length > 0 ? 'block' : 'none';
+            } else {
+                suggestions.style.display = 'none'; // Hide if input is empty
+            }
+        }
+    
+        function selectRegion(region) {
+            document.getElementById('region').value = region; // Set input value
+            updateFieldValue('region', 'field22'); // Call function to update field value
+            document.getElementById('region-suggestions').innerHTML = ''; // Clear suggestions
+            document.getElementById('region-suggestions').style.display = 'none'; // Hide suggestions
+        }
+    
+        function updateFieldValue(inputId, fieldVar) {
+            const value = document.getElementById(inputId)?.value || ""; // Get the value of the input field
+            if (fieldVar === 'field16') {
+                field16 = value; // Store the value of the 'state' in field16
+            } else if (fieldVar === 'field22') {
+                field22 = value; // Store the value of the 'city' in field22
+            }
+        }
     </script>
     <script>
         // Function to check for required cookies
@@ -881,50 +898,60 @@ function selectRegion(region) {
     </script>
     <script>
         function addMore(type) {
-    const container = document.getElementById(`${type}-container`);
-    const div = document.createElement('div');
-    div.className = 'form-group';
-    div.innerHTML = `
-        <div class="form-group">
-            <label for="${type}"><strong>${type.toUpperCase()} Type: </strong></label>
-            <input type="text" name="${type}[]" placeholder="Enter ${type.toUpperCase()}" required oninput="updateArrayCookie('field${getFieldNumber(type)}', '${type}[]')">
-        </div>
-        <div class="form-group">
-            <label for="${type}-quantity"><strong>${type.toUpperCase()} Quantity: </strong></label>
-            <input type="number" name="${type}-quantity[]" placeholder="Enter ${type.toUpperCase()} Quantity" required oninput="updateArrayCookie('field${getQuantityFieldNumber(type)}', '${type}-quantity[]'); calculateTotal()">
-        </div>
-    `;
-    container.appendChild(div);
-}
-
-function calculateTotal() {
-    const chlQuantities = Array.from(document.getElementsByName('chl-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
-    const pacQuantities = Array.from(document.getElementsByName('pac-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
-    const sAcQuantities = Array.from(document.getElementsByName('s-ac-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
-
-    const total = chlQuantities + pacQuantities + sAcQuantities;
-    document.getElementById('total').value = total;
-
-    setCookie('field13', total);
-}
-
-function updateArrayCookie(fieldName, inputName) {
-    const inputs = Array.from(document.getElementsByName(inputName)).map(input => input.value.trim()).filter(value => value);
-    setCookie(fieldName, JSON.stringify(inputs));
-}
-
-function setCookie(name, value) {
-    document.cookie = `${name}=${value}; path=/`;
-}
-
-function getFieldNumber(type) {
-    return type === 'chl' ? 8 : type === 'pac' ? 10 : 24;
-}
-
-function getQuantityFieldNumber(type) {
-    return type === 'chl' ? 9 : type === 'pac' ? 11 : 21;
-}
+            const container = document.getElementById(`${type}-container`);
+            const div = document.createElement('div');
+            div.className = 'form-group';
+            div.innerHTML = `
+                <div class="form-group">
+                    <label for="${type}"><strong>${type.toUpperCase()} Type: </strong></label>
+                    <input type="text" name="${type}[]" placeholder="Enter ${type.toUpperCase()}" required oninput="updateArray('field${getFieldNumber(type)}', '${type}[]')">
+                </div>
+                <div class="form-group">
+                    <label for="${type}-quantity"><strong>${type.toUpperCase()} Quantity: </strong></label>
+                    <input type="number" name="${type}-quantity[]" placeholder="Enter ${type.toUpperCase()} Quantity" required oninput="updateArray('field${getQuantityFieldNumber(type)}', '${type}-quantity[]'); calculateTotal()">
+                </div>
+            `;
+            container.appendChild(div);
+        }
+    
+        function calculateTotal() {
+            const getTotal = (name) => Array.from(document.getElementsByName(name)).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+            const total = getTotal('chl-quantity[]') + getTotal('pac-quantity[]') + getTotal('s-ac-quantity[]');
+            const totalField = document.getElementById('total');
+            if (totalField) totalField.value = total;
+            setFieldValue('field13', total);
+        }
+    
+        function updateArray(fieldName, inputName) {
+            const inputs = Array.from(document.getElementsByName(inputName)).map(input => input.value.trim()).filter(value => value);
+            const field = document.getElementById(fieldName);
+            if (field) {
+                field.value = JSON.stringify(inputs);
+            } else {
+                console.warn(`Field with id '${fieldName}' not found.`);
+            }
+        }
+    
+        function setFieldValue(fieldName, value) {
+            const field = document.getElementById(fieldName);
+            if (field) {
+                field.value = value;
+            } else {
+                console.warn(`Field with id '${fieldName}' not found.`);
+            }
+        }
+    
+        function getFieldNumber(type) {
+            const fieldMap = { chl: 15, pac: 10, 's-ac': 24 };
+            return fieldMap[type] || 0;
+        }
+    
+        function getQuantityFieldNumber(type) {
+            const quantityFieldMap = { chl: 26, pac: 11, 's-ac': 21 };
+            return quantityFieldMap[type] || 0;
+        }
     </script>
+    
     <script>
         function handleNext() {
                 const visits = parseInt(document.getElementById('visits').value);
@@ -1084,109 +1111,118 @@ function updateImageCountDisplay() {
             }
     
             function handleNext() {
-                // Retrieve the token from the cookies
-                const token = getCookieValue("token") || ""; // Default to empty string if not found
-    
-                // Prepare headers
-                const myHeaders = new Headers();
-                myHeaders.append("Authorization", token); // Use the token from cookies
-                myHeaders.append("Content-Type", "application/json");
-    
-                // Retrieve values from cookies for fields 1 to 15
-                const field1 = getCookieValue("field1") || "";
-                const field2 = getCookieValue("field2") || "";
-                const field3 = getCookieValue("field3") || "";
-                const field4 = getCookieValue("field4") || "";
-                const field5 = getCookieValue("field5") || "";
-                const field6 = getCookieValue("field6") || "";
-                const field7 = getCookieValue("field7") || "";
-                const field8 = getCookieValue("field8") || "";
-                const field9 = getCookieValue("field9") || "";
-                const field10 = getCookieValue("field10") || "";
-                const field11 = getCookieValue("field11") || "";
-                const field12 = getCookieValue("field12") || "";
-                const field13 = getCookieValue("field13") || "";
-                const field14 = getCookieValue("field14") || "";
-                const field15 = getCookieValue("field15") || "";
-                const field16 = getCookieValue("field16") || "";
-    
-                const field17 = getCookieValue("field17") || "";
-    
-                const field18 = getCookieValue("field18") || "";
-    
-                const field19 = getCookieValue("field19") || "";
-    
-                const field20 = getCookieValue("field20") || "";
-                const field21 = getCookieValue("field21") || "";
+    // Retrieve the token from cookies
+    const token = getCookieValue("token") || ""; // Keep token from cookies
 
-                const field22 = getCookieValue("field22") || "";
-                const field23 = getCookieValue("field23") || "";
-                const field24 = getCookieValue("field24") || "";
+    // Prepare headers
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", token); // Use the token from cookies
+    myHeaders.append("Content-Type", "application/json");
 
+    const field1 = getCookieValue("field1") || "";
+    const field2 = document.getElementById("customer-name")?.value || "";
+    const field3 = document.getElementById("po-no")?.value || "";
+    const field4 = document.getElementById("contract-period")?.value || "";
+    const field5 = document.getElementById("contract-period-from")?.value || "";
+    const field6 = document.getElementById("phone")?.value || "";
+    const field7 = document.getElementById("contact-person-name")?.value || "";
+    const field8 = document.getElementById("type-of-call")?.value || "";
+    const field26 = document.getElementById("chl-quantity")?.value || "";
+    const field10 = document.getElementById("pac")?.value || "";
+    const field11 = document.getElementById("pac-quantity")?.value || "";
+    const field12 = document.getElementById("")?.value || "";
+    const field13 = document.getElementById("total")?.value || "";
+    const field14 = document.getElementById("po-value")?.value || "";
+    const field15 = document.getElementById("chl")?.value || "";
+    const field16 = document.getElementById("place")?.value || "";
+    const field17 = document.getElementById("contract-period-to")?.value || "";
+    const field18 = document.getElementById("visits")?.value || "";
+    const field19 = document.getElementById("service-engineer")?.value || "";
+    const field20 = document.getElementById("po-payment-terms")?.value || "";
+    const field21 = document.getElementById("s-ac-quantity")?.value || "";
+    const field22 = document.getElementById("region")?.value || "";
+    const field23 = document.getElementById("comments")?.value || "";
+    const field24 = document.getElementById("s-ac")?.value || "";
+    const field25 = document.getElementById("po-value-in-words")?.value || "";
 
+    // Retrieve the images value from the form input
+// Function to get a value from cookies
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+        return parts.pop().split(';').shift();
+    }
+    return "";
+}
 
-                const images = getCookieValue("imageUrls") || ""; // Assuming 'imageUrls' contains comma-separated image URLs
-    
-    
-    
-                // Prepare the raw body for the request
-                const raw = JSON.stringify({
-                    "profile_id": "",
-                    "description": "",
-                    "gender": "",
-                    "images": images, // Use the retrieved image URLs
-                    "bio": "",
-                    "field1": field1,
-                    "field2": field2,
-                    "field3": field3,
-                    "field4": field4,
-                    "field5": field5,
-                    "field6": field6,
-                    "field7": field7,
-                    "field8": field8,
-                    "field9": field9,
-                    "field10": field10,
-                    "field11": field11,
-                    "field12": field12,
-                    "field13": field13,
-                    "field14": field14,
-                    "field15": field15,
-                    "field16": field16,
-                    "field17": field17,
-                    "field18": field18,
-                    "field19": field19,
-                    "field20": field20,
-                    "field21": field21,
-                    "field22": field22,
-                    "field23": field23,
-                    "field24": field24,
-                    "field25": field25,
-                    "field26": "",
-                    "field27": "",
-                    "field28": "",
-                    "field29": "",
-                    "field30": "",
-                    "field31": "",
-                    "field32": "",
-                    "field33": "",
-                    "field34": "",
-                    "field35": "",
-                    "field36": "",
-                    "field37": "",
-                    "field38": "",
-                    "field39": "",
-                    "field40": "",
-                    "field41": "",
-                    "field42": "",
-                    "field43": "",
-                    "field44": "",
-                    "field45": "",
-                    "field46": "",
-                    "field47": "",
-                    "field48": "",
-                    "field49": "",
-                    "field50": ""
-                });
+// Retrieve 'imageUrls' from cookies
+const images = getCookie("imageUrls") || ""; // Assuming 'imageUrls' contains comma-separated image URLs
+
+console.log(images); // Log the retrieved image URLs
+
+    // Prepare the raw body for the request
+    const raw = JSON.stringify({
+        "profile_id": "",
+        "description": "",
+        "gender": "",
+        "images": images, // Use the retrieved image URLs
+        "bio": "",
+        "field1": field1,
+        "field2": field2,
+        "field3": field3,
+        "field4": field4,
+        "field5": field5,
+        "field6": field6,
+        "field7": field7,
+        "field8": field8,
+        "field9": "",
+        "field10": field10,
+        "field11": field11,
+        "field12": field12,
+        "field13": field13,
+        "field14": field14,
+        "field15": field15,
+        "field16": field16,
+        "field17": field17,
+        "field18": field18,
+        "field19": field19,
+        "field20": field20,
+        "field21": field21,
+        "field22": field22,
+        "field23": field23,
+        "field24": field24,
+        "field25": field25,
+        "field26": field26,
+        "field27": "",
+        "field28": "",
+        "field29": "",
+        "field30": "",
+        "field31": "",
+        "field32": "",
+        "field33": "",
+        "field34": "",
+        "field35": "",
+        "field36": "",
+        "field37": "",
+        "field38": "",
+        "field39": "",
+        "field40": "",
+        "field41": "",
+        "field42": "",
+        "field43": "",
+        "field44": "",
+        "field45": "",
+        "field46": "",
+        "field47": "",
+        "field48": "",
+        "field49": "",
+        "field50": ""
+    });
+
+    console.log("Data to be sent:", raw);
+    // You can now use the raw data in a fetch request or any other logic as needed
+
     
                 // Function to show popup message
 function showPopup(message) {
@@ -1234,7 +1270,12 @@ function clearCookiesExcept(keysToKeep) {
 // Send the request
 fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
     .then((response) => {
-        if (response.ok) {
+        if (response.status === 401) {
+            // Show alert message and redirect to login page
+            alert("Session expired. Please log in again.");
+            window.location.href = 'index.html'; // Redirect to login page
+            throw new Error("401 Unauthorized");
+        } else if (response.ok) {
             // Show success popup message
             showPopup("Profile created successfully!");
             // Clear all cookies except 'email' and 'token'
@@ -1247,11 +1288,14 @@ fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
     })
     .then((result) => console.log(result))
     .catch((error) => {
-        // Show error popup message for network or other issues
-        showPopup("An error occurred while submitting the form.");
-        console.error(error);
+        if (error.message === "401 Unauthorized") {
+            console.log("User session expired, redirected to login.");
+        } else {
+            // Show error popup message for network or other issues
+            showPopup("An error occurred while submitting the form.");
+            console.error(error);
+        }
     });
-
             }
         </script>
         <script>
@@ -1319,20 +1363,11 @@ fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
             };
         </script>
         <script>
-            // Function to set a cookie
-            function setCookie(name, value) {
-                document.cookie = `${name}=${value}; path=/`;
-            }
-            
             // Function to convert number into words (Indian numbering system)
             function convertNumberToWords() {
                 const number = document.getElementById('po-value').value;
                 const words = convertToIndianWords(number);
                 document.getElementById('po-value-in-words').textContent = words;
-                
-                // Save both the PO Value and PO Value in words in cookies
-                setCookie('field14', number);  // Save PO Value
-                setCookie('field25', words);   // Save PO Value in words
             }
             
             // Function to convert number to words (Indian numbering system)
@@ -1340,28 +1375,28 @@ fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
                 const a = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
                 const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
                 const units = ['', 'Hundred', 'Thousand', 'Lakh', 'Crore'];
-                
+            
                 num = num.replace(/[^0-9]/g, ''); // Remove non-numeric characters
                 let n = parseInt(num);
-                
+            
                 if (isNaN(n) || n === 0) return 'Zero rupees only';
             
                 let result = '';
-                
+            
                 // Handle Crore
                 if (n >= 10000000) {
                     let crore = Math.floor(n / 10000000);
                     result += convertToWordsUnderThousand(crore) + ' Crore';
                     n = n % 10000000;
                 }
-                
+            
                 // Handle Lakh
                 if (n >= 100000) {
                     let lakh = Math.floor(n / 100000);
                     result += ' ' + convertToWordsUnderThousand(lakh) + ' Lakh';
                     n = n % 100000;
                 }
-                
+            
                 // Handle Thousand
                 if (n >= 1000) {
                     let thousand = Math.floor(n / 1000);
@@ -1410,8 +1445,18 @@ fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
             
                 return result;
             }
+            
+            // Example of PO No. validation (this can be expanded as per the requirement)
+            function validatePoNo() {
+                const poNo = document.getElementById('po-no').value;
+                const poError = document.getElementById('po-no-error');
+                
+                if (poNo.trim() === "") {
+                    poError.textContent = "PO No. is required.";
+                } else {
+                    poError.textContent = "";
+                }
+            }
             </script>
-            
-            
 </body>
 </html>
