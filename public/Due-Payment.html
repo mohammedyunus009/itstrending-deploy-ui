@@ -186,13 +186,14 @@
                     <th style="padding: 8px;">Contract Start Date</th>
                     <th style="padding: 8px;">Due Date</th>
                     <th style="padding: 8px;">Phone Number</th>
+                    <th style="padding: 8px;">Overdue Status</th> <!-- New Column -->
                 </tr>
             </thead>
             <tbody>
                 <!-- Rows will be dynamically populated -->
             </tbody>
         </table>
-    </div> 
+    </div>
  
 <script>
     function toggleMenu() {
@@ -216,21 +217,28 @@
     myHeaders.append("Authorization", `${token}`); // Use token from cookies
     myHeaders.append("Content-Type", "application/json");
 
-    // Utility function to parse 'field1' and extract 'dueDate'
-    function getDueDate(field1) {
-        if (typeof field1 === 'string') {
+    // Utility function to parse 'field9' and extract 'PaymentDueDate'
+    function getPaymentDueDate(field9) {
+        if (typeof field9 === 'string') {
             try {
                 // Parse the stringified array
-                const parsedField = JSON.parse(field1);
+                const parsedField = JSON.parse(field9);
                 if (Array.isArray(parsedField)) {
-                    const dueDateObj = parsedField.find(item => item.dueDate && item.dueDate !== "");
-                    return dueDateObj ? dueDateObj.dueDate : null;
+                    const paymentDueDateObj = parsedField.find(item => item.PaymentDueDate && item.PaymentDueDate !== "");
+                    return paymentDueDateObj ? paymentDueDateObj.PaymentDueDate : null;
                 }
             } catch (error) {
-                console.error("Error parsing field1:", error);
+                console.error("Error parsing field9:", error);
             }
         }
         return null;
+    }
+
+    // Utility function to calculate the days difference between two dates
+    function daysBetweenDates(date1, date2) {
+        const diffTime = new Date(date2) - new Date(date1);
+        const diffDays = diffTime / (1000 * 3600 * 24); // Convert milliseconds to days
+        return Math.floor(diffDays);
     }
 
     // Fetch customer names from the API
@@ -242,6 +250,12 @@
     })
     .then((response) => {
         console.log('Response received:', response);
+        // Check for 401 status (Unauthorized)
+        if (response.status === 401) {
+            alert("Your session has expired. Please log in again.");
+            window.location.href = 'index.html'; // Redirect to login page
+            throw new Error("Unauthorized access - Redirecting to login page.");
+        }
         return response.json();
     })
     .then((result) => {
@@ -249,11 +263,11 @@
         const profiles = result.data.profile;
         console.log('Profiles fetched:', profiles);
 
-        // Filter profiles based on "dueDate" inside "field1" array
+        // Filter profiles based on "PaymentDueDate" inside "field9" array
         const filteredProfiles = profiles.filter(profile => {
-            const dueDate = getDueDate(profile.field1);
-            console.log(`Profile ${profile.field2} has dueDate:`, dueDate);
-            return dueDate;  // Only fetch profiles with a valid dueDate
+            const paymentDueDate = getPaymentDueDate(profile.field9);
+            console.log(`Profile ${profile.field2} has PaymentDueDate:`, paymentDueDate);
+            return paymentDueDate;  // Only fetch profiles with a valid PaymentDueDate
         });
 
         // Get the table body element
@@ -261,7 +275,20 @@
         tableBody.innerHTML = ''; // Clear previous rows if any
 
         filteredProfiles.forEach((profile, index) => {
-            const dueDate = getDueDate(profile.field1);
+            const paymentDueDate = getPaymentDueDate(profile.field9);
+            let overdueMessage = '';
+            let overdueStyle = '';
+
+            if (paymentDueDate) {
+                const dueDate = new Date(paymentDueDate);
+                const currentDate = new Date();
+                const daysOverdue = daysBetweenDates(dueDate, currentDate);
+
+                if (daysOverdue > 0) {
+                    overdueMessage = `Payment due has been crossed about ${daysOverdue} days.`;
+                    overdueStyle = 'color: red; font-weight: bold;';
+                }
+            }
 
             // Create a new table row
             const row = document.createElement('tr');
@@ -269,11 +296,14 @@
                 <td style="padding: 8px; text-align: center;">${index + 1}</td>
                 <td style="padding: 8px;">${profile.field2}</td>
                 <td style="padding: 8px;">${profile.field5}</td>
-                <td style="padding: 8px;">${dueDate}</td>
+                <td style="padding: 8px;">${paymentDueDate}</td>
                 <td style="padding: 8px;">
-                    <a href="tel:${profile.field6}" style="color: #blue; text-decoration: none;">
+                    <a href="tel:${profile.field6}" style="color: blue; text-decoration: none;">
                         ${profile.field6}
                     </a>
+                </td>
+                <td style="padding: 8px; ${overdueStyle}">
+                    ${overdueMessage}
                 </td>
             `;
             tableBody.appendChild(row);
@@ -282,7 +312,7 @@
         if (filteredProfiles.length === 0) {
             const noDataRow = document.createElement('tr');
             noDataRow.innerHTML = `
-                <td colspan="5" style="padding: 8px; text-align: center;">No profiles found with a valid due date.</td>
+                <td colspan="6" style="padding: 8px; text-align: center;">No profiles found with a valid PaymentDueDate.</td>
             `;
             tableBody.appendChild(noDataRow);
         }
@@ -292,7 +322,7 @@
         const tableBody = document.querySelector('#profile-table tbody');
         tableBody.innerHTML = `
             <tr>
-                <td colspan="5" style="padding: 8px; text-align: center;">Error fetching profiles. Please try again later.</td>
+                <td colspan="6" style="padding: 8px; text-align: center;">Error fetching profiles. Please try again later.</td>
             </tr>
         `;
     });
