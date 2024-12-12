@@ -132,9 +132,9 @@
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 45px;
-        left: 100px;
-        width: 100%;
+        top: 10px;
+        left: 150px;
+        width: 50%;
         text-align: center;
     }
 
@@ -576,17 +576,17 @@
                             </td>
                         </tr>
                         <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;"><strong>Days Selected to Pay:</strong></td>
-    <td style="border: 1px solid #ccc; padding: 8px;">
-        <select id="days-to-pay" style="width: 100%; border: 1px solid #ccc; padding: 8px;" onchange="updateDueDate()">
-            <option value="" ${getDaysSelectedToPay(profile.field9) === null ? 'selected' : ''}>Please select</option>
-            <option value="17" ${getDaysSelectedToPay(profile.field9) === 17 ? 'selected' : ''}>17 Days</option>
-            <option value="30" ${getDaysSelectedToPay(profile.field9) === 30 ? 'selected' : ''}>30 Days</option>
-            <option value="45" ${getDaysSelectedToPay(profile.field9) === 45 ? 'selected' : ''}>45 Days</option>
-            <option value="60" ${getDaysSelectedToPay(profile.field9) === 60 ? 'selected' : ''}>60 Days</option>
-        </select>
-    </td>
-</tr>
+                            <td style="border: 1px solid #ccc; padding: 8px;"><strong>Days Selected to Pay:</strong></td>
+                            <td style="border: 1px solid #ccc; padding: 8px;">
+                                <select id="days-to-pay" style="width: 100%; border: 1px solid #ccc; padding: 8px;" onchange="updateDueDate()">
+                                    <option value="" ${getDaysSelectedToPay(profile.field9) === null ? 'selected' : ''}>Please select</option>
+                                    <option value="17" ${getDaysSelectedToPay(profile.field9) === 17 ? 'selected' : ''}>17 Days</option>
+                                    <option value="30" ${getDaysSelectedToPay(profile.field9) === 30 ? 'selected' : ''}>30 Days</option>
+                                    <option value="45" ${getDaysSelectedToPay(profile.field9) === 45 ? 'selected' : ''}>45 Days</option>
+                                    <option value="60" ${getDaysSelectedToPay(profile.field9) === 60 ? 'selected' : ''}>60 Days</option>
+                                </select>
+                            </td>
+                        </tr>
 
                         <tr>
                             <td style="border: 1px solid #ccc; padding: 8px;"><strong>Start Date:</strong></td>
