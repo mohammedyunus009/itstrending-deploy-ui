@@ -59,9 +59,9 @@
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 45px;
-        left: 100px;
-        width: 100%;
+        top: 12px;
+        left: 150px;
+        width: 50%;
         text-align: center;
     }
 
@@ -214,12 +214,12 @@
         <div id="chl-container">
             <div class="form-group">
                 <label for="chl"><strong>CHL Type: </strong></label>
-                <input type="text" id="chl" name="chl[]" placeholder="Enter CHL" required oninput="updateArray('field15', 'chl[]')">
+                <input type="text" id="chl" name="chl[]" placeholder="Enter CHL" required oninput="updateArrayCookie('field15', 'chl[]')">
                 <div id="chl-error" class="error-message"></div>
             </div>
             <div class="form-group">
                 <label for="chl-quantity"><strong>CHL Quantity: </strong></label>
-                <input type="number" id="chl-quantity" name="chl-quantity[]" placeholder="Enter CHL Quantity" required oninput="updateArray('field26', 'chl-quantity[]'); calculateTotal()">
+                <input type="number" id="chl-quantity" name="chl-quantity[]" placeholder="Enter CHL Quantity" required oninput="updateArrayCookie('field26', 'chl-quantity[]'); calculateTotal()">
             </div>
         </div>
         <button type="button" onclick="addMore('chl')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More CHL</button>
@@ -230,12 +230,12 @@
         <div id="pac-container">
             <div class="form-group">
                 <label for="pac"><strong>PAC Type: </strong></label>
-                <input type="text" id="pac" name="pac[]" placeholder="Enter PAC" required oninput="updateArray('field10', 'pac[]')">
+                <input type="text" id="pac" name="pac[]" placeholder="Enter PAC" required oninput="updateArrayCookie('field10', 'pac[]')">
                 <div id="pac-error" class="error-message"></div>
             </div>
             <div class="form-group">
                 <label for="pac-quantity"><strong>PAC Quantity: </strong></label>
-                <input type="number" id="pac-quantity" name="pac-quantity[]" placeholder="Enter PAC Quantity" required oninput="updateArray('field11', 'pac-quantity[]'); calculateTotal()">
+                <input type="number" id="pac-quantity" name="pac-quantity[]" placeholder="Enter PAC Quantity" required oninput="updateArrayCookie('field11', 'pac-quantity[]'); calculateTotal()">
             </div>
         </div>
         <button type="button" onclick="addMore('pac')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More PAC</button>
@@ -246,17 +246,17 @@
         <div id="s-ac-container">
             <div class="form-group">
                 <label for="s-ac"><strong>S. A/c Type: </strong></label>
-                <input type="text" id="s-ac" name="s-ac[]" placeholder="Enter S. A/c" required oninput="updateArray('field24', 's-ac[]')">
+                <input type="text" id="s-ac" name="s-ac[]" placeholder="Enter S. A/c" required oninput="updateArrayCookie('field24', 's-ac[]')">
                 <div id="s-ac-error" class="error-message"></div>
             </div>
             <div class="form-group">
                 <label for="s-ac-quantity"><strong>S. A/c Quantity: </strong></label>
-                <input type="number" id="s-ac-quantity" name="s-ac-quantity[]" placeholder="Enter S. A/c Quantity" required oninput="updateArray('field21', 's-ac-quantity[]'); calculateTotal()">
+                <input type="number" id="s-ac-quantity" name="s-ac-quantity[]" placeholder="Enter S. A/c Quantity" required oninput="updateArrayCookie('field21', 's-ac-quantity[]'); calculateTotal()">
             </div>
         </div>
         <button type="button" onclick="addMore('s-ac')" style="background-color: skyblue;padding: 6px;border-radius: 8px;">Add More S. A/c</button>
     </div>
-    
+
     <div class="installation-form1">
         <div class="form-group">
             <label for="total"><strong>Total: </strong></label>
@@ -898,58 +898,49 @@ alert("All images uploaded successfully!");
     </script>
     <script>
         function addMore(type) {
-            const container = document.getElementById(`${type}-container`);
-            const div = document.createElement('div');
-            div.className = 'form-group';
-            div.innerHTML = `
-                <div class="form-group">
-                    <label for="${type}"><strong>${type.toUpperCase()} Type: </strong></label>
-                    <input type="text" name="${type}[]" placeholder="Enter ${type.toUpperCase()}" required oninput="updateArray('field${getFieldNumber(type)}', '${type}[]')">
-                </div>
-                <div class="form-group">
-                    <label for="${type}-quantity"><strong>${type.toUpperCase()} Quantity: </strong></label>
-                    <input type="number" name="${type}-quantity[]" placeholder="Enter ${type.toUpperCase()} Quantity" required oninput="updateArray('field${getQuantityFieldNumber(type)}', '${type}-quantity[]'); calculateTotal()">
-                </div>
-            `;
-            container.appendChild(div);
-        }
-    
-        function calculateTotal() {
-            const getTotal = (name) => Array.from(document.getElementsByName(name)).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
-            const total = getTotal('chl-quantity[]') + getTotal('pac-quantity[]') + getTotal('s-ac-quantity[]');
-            const totalField = document.getElementById('total');
-            if (totalField) totalField.value = total;
-            setFieldValue('field13', total);
-        }
-    
-        function updateArray(fieldName, inputName) {
-            const inputs = Array.from(document.getElementsByName(inputName)).map(input => input.value.trim()).filter(value => value);
-            const field = document.getElementById(fieldName);
-            if (field) {
-                field.value = JSON.stringify(inputs);
-            } else {
-                console.warn(`Field with id '${fieldName}' not found.`);
-            }
-        }
-    
-        function setFieldValue(fieldName, value) {
-            const field = document.getElementById(fieldName);
-            if (field) {
-                field.value = value;
-            } else {
-                console.warn(`Field with id '${fieldName}' not found.`);
-            }
-        }
-    
-        function getFieldNumber(type) {
-            const fieldMap = { chl: 15, pac: 10, 's-ac': 24 };
-            return fieldMap[type] || 0;
-        }
-    
-        function getQuantityFieldNumber(type) {
-            const quantityFieldMap = { chl: 26, pac: 11, 's-ac': 21 };
-            return quantityFieldMap[type] || 0;
-        }
+    const container = document.getElementById(`${type}-container`);
+    const div = document.createElement('div');
+    div.className = 'form-group';
+    div.innerHTML = `
+        <div class="form-group">
+            <label for="${type}"><strong>${type.toUpperCase()} Type: </strong></label>
+            <input type="text" name="${type}[]" placeholder="Enter ${type.toUpperCase()}" required oninput="updateArrayCookie('field${getFieldNumber(type)}', '${type}[]')">
+        </div>
+        <div class="form-group">
+            <label for="${type}-quantity"><strong>${type.toUpperCase()} Quantity: </strong></label>
+            <input type="number" name="${type}-quantity[]" placeholder="Enter ${type.toUpperCase()} Quantity" required oninput="updateArrayCookie('field${getQuantityFieldNumber(type)}', '${type}-quantity[]'); calculateTotal()">
+        </div>
+    `;
+    container.appendChild(div);
+}
+
+function calculateTotal() {
+    const chlQuantities = Array.from(document.getElementsByName('chl-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+    const pacQuantities = Array.from(document.getElementsByName('pac-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+    const sAcQuantities = Array.from(document.getElementsByName('s-ac-quantity[]')).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+
+    const total = chlQuantities + pacQuantities + sAcQuantities;
+    document.getElementById('total').value = total;
+
+    setCookie('field13', total);
+}
+
+function updateArrayCookie(fieldName, inputName) {
+    const inputs = Array.from(document.getElementsByName(inputName)).map(input => input.value.trim()).filter(value => value);
+    setCookie(fieldName, JSON.stringify(inputs));
+}
+
+function setCookie(name, value) {
+    document.cookie = `${name}=${value}; path=/`;
+}
+
+function getFieldNumber(type) {
+    return type === 'chl' ? 15 : type === 'pac' ? 10 : 24;
+}
+
+function getQuantityFieldNumber(type) {
+    return type === 'chl' ? 26 : type === 'pac' ? 11 : 21;
+}
     </script>
     
     <script>
@@ -1127,23 +1118,31 @@ function updateImageCountDisplay() {
     const field6 = document.getElementById("phone")?.value || "";
     const field7 = document.getElementById("contact-person-name")?.value || "";
     const field8 = document.getElementById("type-of-call")?.value || "";
-    const field26 = document.getElementById("chl-quantity")?.value || "";
-    const field10 = document.getElementById("pac")?.value || "";
-    const field11 = document.getElementById("pac-quantity")?.value || "";
+    const field26 = getCookieValue("field26") || "";
+    // const field26 = document.getElementById("chl-quantity")?.value || "";
+    const field10 = getCookieValue("field10") || "";
+    // const field10 = document.getElementById("pac")?.value || "";
+    const field11 = getCookieValue("field11") || "";
+    // const field11 = document.getElementById("pac-quantity")?.value || "";
     const field12 = document.getElementById("")?.value || "";
     const field13 = document.getElementById("total")?.value || "";
+    // const field14 = getCookieValue("field14") || "";
     const field14 = document.getElementById("po-value")?.value || "";
-    const field15 = document.getElementById("chl")?.value || "";
+    const field15 = getCookieValue("field15") || "";
+    // const field15 = document.getElementById("chl")?.value || "";
     const field16 = document.getElementById("place")?.value || "";
     const field17 = document.getElementById("contract-period-to")?.value || "";
     const field18 = document.getElementById("visits")?.value || "";
     const field19 = document.getElementById("service-engineer")?.value || "";
     const field20 = document.getElementById("po-payment-terms")?.value || "";
-    const field21 = document.getElementById("s-ac-quantity")?.value || "";
+    const field21 = getCookieValue("field21") || "";
+    // const field21 = document.getElementById("s-ac-quantity")?.value || "";
     const field22 = document.getElementById("region")?.value || "";
     const field23 = document.getElementById("comments")?.value || "";
-    const field24 = document.getElementById("s-ac")?.value || "";
-    const field25 = document.getElementById("po-value-in-words")?.value || "";
+    const field24 = getCookieValue("field24") || "";
+    // const field24 = document.getElementById("s-ac")?.value || "";
+    const field25 = getCookieValue("field25") || "";
+    // const field25 = document.getElementById("po-value-in-words")?.value || "";
 
     // Retrieve the images value from the form input
 // Function to get a value from cookies
@@ -1363,11 +1362,20 @@ fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
             };
         </script>
         <script>
+            // Function to set a cookie
+            function setCookie(name, value) {
+                document.cookie = `${name}=${value}; path=/`;
+            }
+            
             // Function to convert number into words (Indian numbering system)
             function convertNumberToWords() {
                 const number = document.getElementById('po-value').value;
                 const words = convertToIndianWords(number);
                 document.getElementById('po-value-in-words').textContent = words;
+                
+                // Save both the PO Value and PO Value in words in cookies
+                setCookie('field14', number);  // Save PO Value
+                setCookie('field25', words);   // Save PO Value in words
             }
             
             // Function to convert number to words (Indian numbering system)
@@ -1375,28 +1383,28 @@ fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
                 const a = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
                 const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
                 const units = ['', 'Hundred', 'Thousand', 'Lakh', 'Crore'];
-            
+                
                 num = num.replace(/[^0-9]/g, ''); // Remove non-numeric characters
                 let n = parseInt(num);
-            
+                
                 if (isNaN(n) || n === 0) return 'Zero rupees only';
             
                 let result = '';
-            
+                
                 // Handle Crore
                 if (n >= 10000000) {
                     let crore = Math.floor(n / 10000000);
                     result += convertToWordsUnderThousand(crore) + ' Crore';
                     n = n % 10000000;
                 }
-            
+                
                 // Handle Lakh
                 if (n >= 100000) {
                     let lakh = Math.floor(n / 100000);
                     result += ' ' + convertToWordsUnderThousand(lakh) + ' Lakh';
                     n = n % 100000;
                 }
-            
+                
                 // Handle Thousand
                 if (n >= 1000) {
                     let thousand = Math.floor(n / 1000);
@@ -1444,18 +1452,6 @@ fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
                 }
             
                 return result;
-            }
-            
-            // Example of PO No. validation (this can be expanded as per the requirement)
-            function validatePoNo() {
-                const poNo = document.getElementById('po-no').value;
-                const poError = document.getElementById('po-no-error');
-                
-                if (poNo.trim() === "") {
-                    poError.textContent = "PO No. is required.";
-                } else {
-                    poError.textContent = "";
-                }
             }
             </script>
 </body>
