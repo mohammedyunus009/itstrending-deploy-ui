@@ -89,6 +89,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("partner-location").innerText = decodeURIComponent(getCookie("field34"));
     document.getElementById("religious-attributes").innerText = decodeURIComponent(getCookie("field35"));
     document.getElementById("partner-working-status").innerText = decodeURIComponent(getCookie("field36"));
+    document.getElementById("newphno").innerText = decodeURIComponent(getCookie("field44"));
+    document.getElementById("newemail").innerText = decodeURIComponent(getCookie("field45"));
+
 
     if (numBrothers > 0) {
         showBrothersDetails(numBrothers);
