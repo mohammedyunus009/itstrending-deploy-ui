@@ -383,8 +383,8 @@
             <input type="text" id="preferedReligiousAttributeInput" placeholder="Enter Preferred Religious Attribute">
         </div>
         <div class="filter-container1">
-            <button onclick="filterProfiles()">Search</button>
-        </div>
+	    <button onclick="filterProfiles()" id="searchButton">Search</button>
+	</div>
         <div id="error-message" style="color: red; display: none;"></div> <!-- Error message container -->
     </div>
 </div>
@@ -666,17 +666,29 @@ function displayErrorMessage(message) {
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    // Check for the token in cookies
-    const token = getCookie('token'); // Replace 'authToken' with your actual token name
+    // Add event listener to the search button
+    const searchButton = document.getElementById('searchButton');
+    if (searchButton) {
+        searchButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default button behavior
 
-    // if (!token) {
-    //     // Token not found, alert user and redirect
-    //     alert('User not logged in. Please log in.');
-    //     window.location.href = 'login.html';
-    // }
-});
+            // Check for email and token in cookies
+            const email = getCookie('email');
+            const token = getCookie('token');
 
+            if (!email || !token) {
+                // Email or token not found, alert user and redirect
+                alert('User not logged in. Please log in.');
+                window.location.href = 'login.html';
+            } else {
+                // Proceed with filterProfiles function if logged in
+                filterProfiles();
+            }
+        });
+    }
+  });
 </script>
+
 <script>
   function goBack() {
       window.location.href = "register-process.html";
