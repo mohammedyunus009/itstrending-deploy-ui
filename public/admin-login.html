@@ -387,7 +387,31 @@ form.login-form1{
   </section>
 	<div class="container1">
         <form action="#" class="signup-form1" id="signupForm1">
-            <h2 class="form-heading">Admin Signup</h2>
+          <h2 class="form-heading">Admin Login</h2>
+  
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Email" required>
+          
+          <label for="password">Password</label>
+          <div class="password-container">
+              <input type="password" name="password" id="password" placeholder="Password" required>
+              <span id="toggle-password" class="eye-icon"><i class="fas fa-eye"></i></span>
+          </div>
+          
+          <button type="submit" id="login">Login</button>
+          <!-- <button type="button" id="signup-toggle">Signup</button> -->
+          </form>
+        <!-- Popup Container -->
+<div id="signup-popup" style="display: none;">
+  <div class="popup-content">
+    <h2>Account Created Successfully!</h2>
+    <p>Your account has been created. You can now proceed to the next step.</p>
+    <button id="done-button">Done</button>
+  </div>
+</div>
+
+<form action="#" class="login-form1" id="loginForm1">
+  <h2 class="form-heading">Admin Signup</h2>
             <label for="signup-firstname">First Name</label>
             <input type="text" name="firstname" id="signup-firstname" placeholder="First Name" required>
             
@@ -405,30 +429,7 @@ form.login-form1{
             
             <button type="submit" id="signup">Signup</button>
             <button type="button" id="login-toggle">Login</button>
-          </form>
-        <!-- Popup Container -->
-<div id="signup-popup" style="display: none;">
-  <div class="popup-content">
-    <h2>Account Created Successfully!</h2>
-    <p>Your account has been created. You can now proceed to the next step.</p>
-    <button id="done-button">Done</button>
-  </div>
-</div>
-
-<form action="#" class="login-form1" id="loginForm1">
-  <h2 class="form-heading">Admin Login</h2>
   
-  <label for="email">Email</label>
-  <input type="email" name="email" id="email" placeholder="Email" required>
-  
-  <label for="password">Password</label>
-  <div class="password-container">
-      <input type="password" name="password" id="password" placeholder="Password" required>
-      <span id="toggle-password" class="eye-icon"><i class="fas fa-eye"></i></span>
-  </div>
-  
-  <button type="submit" id="login">Login</button>
-  <button type="button" id="signup-toggle">Signup</button>
 </form>
           
         <!-- Popup HTML -->
@@ -601,7 +602,7 @@ form.login-form1{
             });
         });
 
-        const signupForm = document.getElementById('signupForm1');
+        const signupForm = document.getElementById('loginForm1');
         if (signupForm) {
             signupForm.addEventListener('submit', function (event) {
                 event.preventDefault();
@@ -651,7 +652,7 @@ form.login-form1{
             console.error('signupForm1 element not found');
         }
         
-        const signInForm = document.getElementById('loginForm1');
+        const signInForm = document.getElementById('signupForm1');
         const successPopup = document.getElementById('successPopup');
         const doneButton = document.getElementById('doneButton');
         
