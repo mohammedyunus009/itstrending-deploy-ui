@@ -387,7 +387,31 @@ form.login-form1{
   </section>
 	<div class="container1">
         <form action="#" class="signup-form1" id="signupForm1">
-            <h2 class="form-heading">Admin Signup</h2>
+          <h2 class="form-heading">Admin Login</h2>
+  
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Email" required>
+          
+          <label for="password">Password</label>
+          <div class="password-container">
+              <input type="password" name="password" id="password" placeholder="Password" required>
+              <span id="toggle-password" class="eye-icon"><i class="fas fa-eye"></i></span>
+          </div>
+          
+          <button type="submit" id="login">Login</button>
+          <!-- <button type="button" id="signup-toggle">Signup</button> -->
+          </form>
+        <!-- Popup Container -->
+<div id="signup-popup" style="display: none;">
+  <div class="popup-content">
+    <h2>Account Created Successfully!</h2>
+    <p>Your account has been created. You can now proceed to the next step.</p>
+    <button id="done-button">Done</button>
+  </div>
+</div>
+
+<form action="#" class="login-form1" id="loginForm1">
+  <h2 class="form-heading">Admin Signup</h2>
             <label for="signup-firstname">First Name</label>
             <input type="text" name="firstname" id="signup-firstname" placeholder="First Name" required>
             
@@ -405,30 +429,7 @@ form.login-form1{
             
             <button type="submit" id="signup">Signup</button>
             <button type="button" id="login-toggle">Login</button>
-          </form>
-        <!-- Popup Container -->
-<div id="signup-popup" style="display: none;">
-  <div class="popup-content">
-    <h2>Account Created Successfully!</h2>
-    <p>Your account has been created. You can now proceed to the next step.</p>
-    <button id="done-button">Done</button>
-  </div>
-</div>
-
-<form action="#" class="login-form1" id="loginForm1">
-  <h2 class="form-heading">Admin Login</h2>
   
-  <label for="email">Email</label>
-  <input type="email" name="email" id="email" placeholder="Email" required>
-  
-  <label for="password">Password</label>
-  <div class="password-container">
-      <input type="password" name="password" id="password" placeholder="Password" required>
-      <span id="toggle-password" class="eye-icon"><i class="fas fa-eye"></i></span>
-  </div>
-  
-  <button type="submit" id="login">Login</button>
-  <button type="button" id="signup-toggle">Signup</button>
 </form>
           
         <!-- Popup HTML -->
@@ -552,7 +553,7 @@ form.login-form1{
       <div class="footer_2 row">
         <div class="col-md-8">
        <div class="footer_2l">
-           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="https://hitechdesign.in/">Hitech Design</a></p>
        </div>
       </div>
      <!-- <div class="col-md-4">
@@ -601,7 +602,7 @@ form.login-form1{
             });
         });
 
-        const signupForm = document.getElementById('signupForm1');
+        const signupForm = document.getElementById('loginForm1');
         if (signupForm) {
             signupForm.addEventListener('submit', function (event) {
                 event.preventDefault();
@@ -651,7 +652,7 @@ form.login-form1{
             console.error('signupForm1 element not found');
         }
         
-        const signInForm = document.getElementById('loginForm1');
+        const signInForm = document.getElementById('signupForm1');
         const successPopup = document.getElementById('successPopup');
         const doneButton = document.getElementById('doneButton');
         
@@ -754,6 +755,36 @@ form.login-form1{
             forgotPasswordModal.style.display = 'none';
         });
     });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+// Function to get a specific cookie by name
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return decodeURIComponent(parts.pop().split(';').shift()); // Decode the cookie value
+  }
+  return null;
+}
+
+// Check the email cookie
+const userEmail = getCookie('email');
+
+// Redirect based on the cookie value
+const modifyProfileLink = document.querySelector("a[href='modifyprofile.html']");
+if (modifyProfileLink) {
+  modifyProfileLink.addEventListener('click', function (e) {
+    e.preventDefault(); // Prevent default navigation
+    if (userEmail === 'iscadmin@gmail.com') {
+      window.location.href = 'dashboard.html'; // Redirect to dashboard
+    } else {
+      window.location.href = 'modifyprofile.html'; // Redirect to modify profile
+    }
+  });
+}
+});
+
 </script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
