@@ -223,7 +223,7 @@
 					<section id="inner-headline">
 						<div class="row">
                             <div class="text-center">
-                                <img src="img/WhatsApp Image 2024-08-29 at 5.54.38 PM.jpeg" alt="Scanner" style="width: 50%; padding-top: 30px;">
+                                <img src="img/WhatsApp Image 2024-08-29 at 5.54.38 PM.jpeg" alt="Scanner" style="width: 20%; padding-top: 30px;">
                               </div>
 							<div class="col-lg-12">
 								<h2 class="pageTitle">Payment page</h2>
@@ -549,7 +549,7 @@
       <div class="footer_2 row">
         <div class="col-md-8">
        <div class="footer_2l">
-           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="https://hitechdesign.in/">Hitech Design</a></p>
+           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
        </div>
       </div>
      <!-- <div class="col-md-4">
@@ -590,33 +590,33 @@
       });
     });
   </script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-// Function to get a specific cookie by name
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) {
-    return decodeURIComponent(parts.pop().split(';').shift()); // Decode the cookie value
-  }
-  return null;
-}
-
-// Check the email cookie
-const userEmail = getCookie('email');
-
-// Redirect based on the cookie value
-const modifyProfileLink = document.querySelector("a[href='modifyprofile.html']");
-if (modifyProfileLink) {
-  modifyProfileLink.addEventListener('click', function (e) {
-    e.preventDefault(); // Prevent default navigation
-    if (userEmail === 'iscadmin@gmail.com') {
-      window.location.href = 'dashboard.html'; // Redirect to dashboard
-    } else {
-      window.location.href = 'modifyprofile.html'; // Redirect to modify profile
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+  // Function to get a specific cookie by name
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return decodeURIComponent(parts.pop().split(';').shift()); // Decode the cookie value
     }
-  });
-}
+    return null;
+  }
+
+  // Check the email cookie
+  const userEmail = getCookie('email');
+
+  // Redirect based on the cookie value
+  const modifyProfileLink = document.querySelector("a[href='modifyprofile.html']");
+  if (modifyProfileLink) {
+    modifyProfileLink.addEventListener('click', function (e) {
+      e.preventDefault(); // Prevent default navigation
+      if (userEmail === 'iscadmin@gmail.com') {
+        window.location.href = 'dashboard.html'; // Redirect to dashboard
+      } else {
+        window.location.href = 'modifyprofile.html'; // Redirect to modify profile
+      }
+    });
+  }
 });
 
 </script>
