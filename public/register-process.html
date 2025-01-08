@@ -892,17 +892,6 @@ button[type="submit"]:hover {
                 <input type="text" id="on-hold-reason" name="field13">
             </div>
 
-            <h2>If You are New User</h2>
-
-            <div class="form-group" style="display: flex;">
-                <label for="new-user-phone-no">Phone No:</label>
-                <input type="text" id="newphno" name="field44">
-            </div>
-
-            <div class="form-group" style="display: flex;">
-                <label for="new-user-email-id">Email id:</label>
-                <input type="text" id="newemail" name="field45">
-            </div>
 
             <button type="submit" onclick="window.location.href='preview.html';">Submit</button>
       </form>
@@ -1014,7 +1003,7 @@ button[type="submit"]:hover {
       <div class="footer_2 row">
         <div class="col-md-8">
        <div class="footer_2l">
-           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="https://hitechdesign.in/">Hitech Design</a></p>
+           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
        </div>
       </div>
      <!-- <div class="col-md-4">
@@ -1993,18 +1982,18 @@ function getCookie(name) {
 }
 
 // Function to check for authorization
-// function checkAuthorization() {
-//     const token = getCookie("token"); 
+function checkAuthorization() {
+    const token = getCookie("token"); // Change 'token' to whatever the name of your token cookie is
 
-//     if (!token) {
-        
-//         alert("You are not logged in. Please login to continue.");
-//         window.location.href = "login.html"; 
-//     }
-// }
+    if (!token) {
+        // If token is not found, alert the user and redirect to login page
+        alert("You are not logged in. Please login to continue.");
+        window.location.href = "login.html"; // Redirect to login page
+    }
+}
 
 // Call the checkAuthorization function when the page loads
-// window.onload = checkAuthorization;
+window.onload = checkAuthorization;
 
 </script>
 
@@ -2029,32 +2018,32 @@ function getCookie(name) {
     });
 </script>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-// Function to get a specific cookie by name
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) {
-    return decodeURIComponent(parts.pop().split(';').shift()); // Decode the cookie value
-  }
-  return null;
-}
-
-// Check the email cookie
-const userEmail = getCookie('email');
-
-// Redirect based on the cookie value
-const modifyProfileLink = document.querySelector("a[href='modifyprofile.html']");
-if (modifyProfileLink) {
-  modifyProfileLink.addEventListener('click', function (e) {
-    e.preventDefault(); // Prevent default navigation
-    if (userEmail === 'iscadmin@gmail.com') {
-      window.location.href = 'dashboard.html'; // Redirect to dashboard
-    } else {
-      window.location.href = 'modifyprofile.html'; // Redirect to modify profile
+    document.addEventListener("DOMContentLoaded", function () {
+  // Function to get a specific cookie by name
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return decodeURIComponent(parts.pop().split(';').shift()); // Decode the cookie value
     }
-  });
-}
+    return null;
+  }
+
+  // Check the email cookie
+  const userEmail = getCookie('email');
+
+  // Redirect based on the cookie value
+  const modifyProfileLink = document.querySelector("a[href='modifyprofile.html']");
+  if (modifyProfileLink) {
+    modifyProfileLink.addEventListener('click', function (e) {
+      e.preventDefault(); // Prevent default navigation
+      if (userEmail === 'iscadmin@gmail.com') {
+        window.location.href = 'dashboard.html'; // Redirect to dashboard
+      } else {
+        window.location.href = 'modifyprofile.html'; // Redirect to modify profile
+      }
+    });
+  }
 });
 
 </script>
