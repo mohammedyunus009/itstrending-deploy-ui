@@ -107,7 +107,7 @@
 
 /* Input field styling */
 .filter-container1 input[type="text"] {
-    width: calc(100% - 320px); /* Full width minus button width */
+    width: calc(100% - 185px); /* Full width minus button width */
     padding: 8px;
     font-size: 16px;
     border: 0px solid #ccc; /* Light border */
@@ -142,58 +142,6 @@
     font-size: 16px;
     color: red; /* Red color for error messages */
 }
-/* General styling for mobile view */
-@media only screen and (max-width: 768px) {
-    .filter-container1 {
-        margin: 10px 0; /* Reduce margins for compact layout */
-        padding: 8px; /* Reduce padding */
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        width: 100%;
-    }
-
-    /* Input field styling */
-    .filter-container1 input[type="text"] {
-        width: calc(100% - 0px); /* Full width */
-        padding: 10px; /* Increase padding for touch-friendliness */
-        font-size: 14px; /* Slightly smaller font size */
-        border: 1px solid #ccc; /* Light border for better visibility */
-        border-radius: 4px;
-        margin: 0; /* Remove right margin */
-        box-sizing: border-box; /* Ensure padding doesn't affect width */
-    }
-
-    /* Button styling */
-    .filter-container1 button {
-        width: 100%; /* Full width for buttons */
-        padding: 12px; /* Increase padding for better clickability */
-        font-size: 14px;
-        color: #fff;
-        background-color: #007bff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-top: 10px; /* Add spacing above button */
-    }
-
-    .filter-container1 button:hover {
-        background-color: #0056b3;
-    }
-
-    .filter-container1 button:focus {
-        outline: none;
-        box-shadow: 0 0 2px 2px rgba(38, 143, 255, 0.5);
-    }
-
-    /* Error message styling */
-    #error-message {
-        font-size: 14px;
-        color: red;
-        margin-top: 8px;
-    }
-}
-
 </style>
 
 </head>
@@ -251,9 +199,15 @@
             <a class="dropdown-item" href="plans.html">Plans</a>
           </div>
         </li>
-          <li class="nav-item">
-          <a class="nav-link" href="filter.html">Search</a>
-          </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Search
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="filter.html">Advanced Search</a>
+            <a class="dropdown-item" href="filter_old.html">Simple Search</a>
+          </div>
+        </li>
           <li class="nav-item">
           <a class="nav-link" href="payment.html">Payment</a>
           </li>
@@ -308,86 +262,196 @@
   <div class="title">Filter Page</div>
 </div>
 <div id="content">
-    <div class="container">
-        <div class="filter-container1">
-            <input type="text" id="serialNoInput" placeholder="Enter Serial No">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="nameInput" placeholder="Enter Name">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="locationInput" placeholder="Enter Location">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="ageInput" placeholder="Enter Age">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="educationInput" placeholder="Enter Education">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="maritalStatusInput" placeholder="Enter Marital Status">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="followInput" placeholder="Enter Follow">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="familySubcasteInput" placeholder="Enter Family/Subcaste">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="professionInput" placeholder="Enter Profession">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="iscCoordinatorInput" placeholder="Enter ISC Coordinator Name">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="profileStatusInput" placeholder="Enter Profile Status">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="heightInput" placeholder="Enter Height">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="jobLocationInput" placeholder="Enter Job Location">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="genderInput" placeholder="Enter Gender">
-        </div>
-        <!-- New filter inputs -->
-        <div class="filter-container1">
-            <input type="text" id="preferedFamilySubcasteInput" placeholder="Enter Preferred Family/Subcaste">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="preferedEducationInput" placeholder="Enter Preferred Education">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="preferedProfessionInput" placeholder="Enter Preferred Profession">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="preferedAgeInput" placeholder="Enter Preferred Age">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="preferedHeightInput" placeholder="Enter Preferred Height">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="preferedPersonalAttributesInput" placeholder="Enter Preferred Personal/Family Attributes">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="preferedFollowInput" placeholder="Enter Preferred Follow and Practice">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="preferedFamilyTypeInput" placeholder="Enter Preferred Family Type">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="preferedLocationInput" placeholder="Enter Preferred Location">
-        </div>
-        <div class="filter-container1">
-            <input type="text" id="preferedReligiousAttributeInput" placeholder="Enter Preferred Religious Attribute">
-        </div>
-        <div class="filter-container1">
-	    <button onclick="filterProfiles()" id="searchButton">Search</button>
-	</div>
-        <div id="error-message" style="color: red; display: none;"></div> <!-- Error message container -->
-    </div>
+  <div class="container">
+      <div class="filter-container1">
+          <input type="text" id="serialNoInput" placeholder="Enter Serial No">
+          <button onclick="filterBySerialNo()">Filter by Serial No</button>
+      </div>
+      <div id="error-message" style="color: red; display: none;"></div> <!-- Error message container -->
+  </div>
 </div>
+<div id="content">
+  <div class="container">
+      <div class="filter-container1">
+          <input type="text" id="nameInput" placeholder="Enter Name">
+          <button onclick="filterByName()">Filter by Name</button>
+      </div>
+      <div id="error-message-name" style="color: red; display: none;"></div> <!-- Error message container -->
+  </div>
+</div>
+<div id="content">
+  <div class="container">
+      <div class="filter-container1">
+          <input type="text" id="locationInput" placeholder="Enter Location">
+          <button onclick="filterByLocation()">Filter by Location</button>
+      </div>
+      <div id="error-message-location" style="color: red; display: none;"></div> <!-- Error message for location -->
+  </div>
+</div>
+<div id="content">
+  <div class="container">
+      <div class="filter-container1">
+   <!--       <input type="text" id="ageInput" placeholder="Enter Age">-->
+          <div class="form-group" style="display: flex;">
+            <label for="yearOfBirth">Year of Birth:</label>
+            <select id="yearOfBirth" name="field6">
+                <option value="">Select year of birth</option>
+                <!-- Manually created options with value including year and age -->
+                <option value="1950-Age-74">1950 - Age 74</option>
+                <option value="1951-Age-73">1951 - Age 73</option>
+                <option value="1952-Age-72">1952 - Age 72</option>
+                <option value="1953-Age-71">1953 - Age 71</option>
+                <option value="1954-Age-70">1954 - Age 70</option>
+                <option value="1955-Age-69">1955 - Age 69</option>
+                <option value="1956-Age-68">1956 - Age 68</option>
+                <option value="1957-Age-67">1957 - Age 67</option>
+                <option value="1958-Age-66">1958 - Age 66</option>
+                <option value="1959-Age-65">1959 - Age 65</option>
+                <option value="1960-Age-64">1960 - Age 64</option>
+                <option value="1961-Age-63">1961 - Age 63</option>
+                <option value="1962-Age-62">1962 - Age 62</option>
+                <option value="1963-Age-61">1963 - Age 61</option>
+                <option value="1964-Age-60">1964 - Age 60</option>
+                <option value="1965-Age-59">1965 - Age 59</option>
+                <option value="1966-Age-58">1966 - Age 58</option>
+                <option value="1967-Age-57">1967 - Age 57</option>
+                <option value="1968-Age-56">1968 - Age 56</option>
+                <option value="1969-Age-55">1969 - Age 55</option>
+                <option value="1970-Age-54">1970 - Age 54</option>
+                <option value="1971-Age-53">1971 - Age 53</option>
+                <option value="1972-Age-52">1972 - Age 52</option>
+                <option value="1973-Age-51">1973 - Age 51</option>
+                <option value="1974-Age-50">1974 - Age 50</option>
+                <option value="1975-Age-49">1975 - Age 49</option>
+                <option value="1976-Age-48">1976 - Age 48</option>
+                <option value="1977-Age-47">1977 - Age 47</option>
+                <option value="1978-Age-46">1978 - Age 46</option>
+                <option value="1979-Age-45">1979 - Age 45</option>
+                <option value="1980-Age-44">1980 - Age 44</option>
+                <option value="1981-Age-43">1981 - Age 43</option>
+                <option value="1982-Age-42">1982 - Age 42</option>
+                <option value="1983-Age-41">1983 - Age 41</option>
+                <option value="1984-Age-40">1984 - Age 40</option>
+                <option value="1985-Age-39">1985 - Age 39</option>
+                <option value="1986-Age-38">1986 - Age 38</option>
+                <option value="1987-Age-37">1987 - Age 37</option>
+                <option value="1988-Age-36">1988 - Age 36</option>
+                <option value="1989-Age-35">1989 - Age 35</option>
+                <option value="1990-Age-34">1990 - Age 34</option>
+                <option value="1991-Age-33">1991 - Age 33</option>
+                <option value="1992-Age-32">1992 - Age 32</option>
+                <option value="1993-Age-31">1993 - Age 31</option>
+                <option value="1994-Age-30">1994 - Age 30</option>
+                <option value="1995-Age-29">1995 - Age 29</option>
+                <option value="1996-Age-28">1996 - Age 28</option>
+                <option value="1997-Age-27">1997 - Age 27</option>
+                <option value="1998-Age-26">1998 - Age 26</option>
+                <option value="1999-Age-25">1999 - Age 25</option>
+                <option value="2000-Age-24">2000 - Age 24</option>
+                <option value="2001-Age-23">2001 - Age 23</option>
+                <option value="2002-Age-22">2002 - Age 22</option>
+                <option value="2003-Age-21">2003 - Age 21</option>
+                <option value="2004-Age-20">2004 - Age 20</option>
+                <option value="2005-Age-19">2005 - Age 19</option>
+                <option value="2006-Age-18">2006 - Age 18</option>
+                <option value="2007-Age-17">2007 - Age 17</option>
+                <option value="2008-Age-16">2008 - Age 16</option>
+                <option value="2009-Age-15">2009 - Age 15</option>
+                <option value="2010-Age-14">2010 - Age 14</option>
+                <option value="2011-Age-13">2011 - Age 13</option>
+                <option value="2012-Age-12">2012 - Age 12</option>
+                <option value="2013-Age-11">2013 - Age 11</option>
+                <option value="2014-Age-10">2014 - Age 10</option>
+                <option value="2015-Age-9">2015 - Age 9</option>
+                <option value="2016-Age-8">2016 - Age 8</option>
+                <option value="2017-Age-7">2017 - Age 7</option>
+                <option value="2018-Age-6">2018 - Age 6</option>
+                <option value="2019-Age-5">2019 - Age 5</option>
+                <option value="2020-Age-4">2020 - Age 4</option>
+                <option value="2021-Age-3">2021 - Age 3</option>
+                <option value="2022-Age-2">2022 - Age 2</option>
+                <option value="2023-Age-1">2023 - Age 1</option>
+                <option value="2024-Age-0">2024 - Age 0</option>
+            </select>
+        </div>
+          <button onclick="filterByAge()">Filter by Age</button>
+      </div>
+      <div id="error-message-age" style="color: red; display: none;"></div> <!-- Error message container -->
+  </div>
+</div>
+<div class="container-wrapper">
+  <div class="container mt-4">
+    <div class="list-group" id="filterButtons">
+      <!-- Filter Buttons -->
+      <a href="#" class="list-group-item list-group-item-action" data-filter="Gender">
+        Looking-for <span id="genderCount" class="filter-count">0</span>
+      </a>
+      <br>
+  
+      <a href="#" class="list-group-item list-group-item-action" data-filter="Marital">
+        Marital Status <span id="maritalCount" class="filter-count">0</span>
+      </a>
+
+      <a href="#" class="list-group-item list-group-item-action" data-filter="Religion" style="display: none;">
+        Religion <span id="religionCount" class="filter-count">0</span>
+      </a>
+     
+      <a href="#" class="list-group-item list-group-item-action" data-filter="Height" style="display: none;">
+        Height <span id="heightCount" class="filter-count">0</span>
+      </a>
+      
+      <a href="#" class="list-group-item list-group-item-action" data-filter="Age" style="display: none;">
+        Age <span id="ageCount" class="filter-count">0</span>
+      </a>
+      <br>
+      <a href="#" class="list-group-item list-group-item-action" data-filter="State" style="display: none;">
+        State <span id="stateCount" class="filter-count">0</span>
+      </a>
+      
+
+      <a href="#" class="list-group-item list-group-item-action" data-filter="Qualification">
+        Education <span id="qualificationCount" class="filter-count">0</span>
+      </a>
+
+      <a href="#" class="list-group-item list-group-item-action" data-filter="Job" style="display: none;">
+        Job/Business <span id="jobCount" class="filter-count">0</span>
+      </a>
+      <br>
+
+
+      <a href="#" class="list-group-item list-group-item-action" data-filter="Follow">
+        Follow <span id="followCount" class="filter-count">0</span>
+      </a>
+      <br>
+
+      <a href="#" class="list-group-item list-group-item-action" data-filter="Personal" style="display: none;">
+        Personal Attributes <span id="personalCount" class="filter-count">0</span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="filter-container">
+    <div id="selectedFilters">
+      <!-- Filter options will be displayed here -->
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div id="errorMessage" style="color: red; display: none; text-align: center;"></div>
+
+<div class="submit-button-wrapper">
+  <button class="Submit" id="submitButton">
+    Submit
+  </button>
+</div>
+
+<div id="selectedFiltersDisplay" style="margin-left: 50px; color: black;"></div>
+
+
+
+
 
 <section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
   <div class="container-fluid" style="background-color: #5c0951;">
@@ -494,7 +558,7 @@
       <div class="footer_2 row">
         <div class="col-md-8">
        <div class="footer_2l">
-           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="https://hitechdesign.in/">Hitech Design</a></p>
+           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
        </div>
       </div>
      <!-- <div class="col-md-4">
@@ -511,152 +575,549 @@
        </div>
       </div> -->
       </div>
+      </div>
     </div>
-  </div>
+    </div>
 </section>
   
   
 <script src="js/matrimony/scripts.js"></script>
+
 <script>
-function getCookie(name) {
-    let value = `; ${document.cookie}`;
-    let parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
+  function getCookie(name) {
+      let value = `; ${document.cookie}`;
+      let parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+  }
 
-function filterProfiles() {
-    const serialNo = document.getElementById('serialNoInput').value.trim();
-    const name = document.getElementById('nameInput').value.trim();
-    const location = document.getElementById('locationInput').value.trim();
-    const age = document.getElementById('ageInput').value.trim();
-    const education = document.getElementById('educationInput').value.trim();
-    const maritalStatus = document.getElementById('maritalStatusInput').value.trim();
-    const follow = document.getElementById('followInput').value.trim();
-    const familySubcaste = document.getElementById('familySubcasteInput').value.trim();
-    const profession = document.getElementById('professionInput').value.trim();
-    const iscCoordinator = document.getElementById('iscCoordinatorInput').value.trim();
-    const profileStatus = document.getElementById('profileStatusInput').value.trim();
-    const height = document.getElementById('heightInput').value.trim();
-    const jobLocation = document.getElementById('jobLocationInput').value.trim();
-    const gender = document.getElementById('genderInput').value.trim();
-    const preferedFamilySubcaste = document.getElementById('preferedFamilySubcasteInput').value.trim();
-    const preferedEducation = document.getElementById('preferedEducationInput').value.trim();
-    const preferedProfession = document.getElementById('preferedProfessionInput').value.trim();
-    const preferedAge = document.getElementById('preferedAgeInput').value.trim();
-    const preferedHeight = document.getElementById('preferedHeightInput').value.trim();
-    const preferedPersonalAttributes = document.getElementById('preferedPersonalAttributesInput').value.trim();
-    const preferedFollow = document.getElementById('preferedFollowInput').value.trim();
-    const preferedFamilyType = document.getElementById('preferedFamilyTypeInput').value.trim();
-    const preferedLocation = document.getElementById('preferedLocationInput').value.trim();
-    const preferedReligiousAttribute = document.getElementById('preferedReligiousAttributeInput').value.trim();
-    const token = getCookie('token'); // Get the token from cookies
-    
-    if (!token) {
-        console.error('No token found in cookies.');
-        return;
-    }
+  function filterBySerialNo() {
+      const serialNo = document.getElementById('serialNoInput').value.trim();
+      const token = getCookie('token'); // Get the token from cookies
+      
+      if (!token) {
+          console.error('No token found in cookies.');
+          return;
+      }
 
-    // Create a body object dynamically based on inputs
-    const bodyData = {};
-    if (serialNo) bodyData.field1 = serialNo;
-    if (name) bodyData.field5 = name;
-    if (location) bodyData.field7 = location;
-    if (age) bodyData.field6 = age;
-    if (education) bodyData.field2 = education;
-    if (maritalStatus) bodyData.field3 = maritalStatus;
-    if (follow) bodyData.field4 = follow;
-    if (familySubcaste) bodyData.field8 = familySubcaste;
-    if (profession) bodyData.field9 = profession;
-    if (iscCoordinator) bodyData.field10 = iscCoordinator;
-    if (profileStatus) bodyData.field11 = profileStatus;
-    if (height) bodyData.field14 = height;
-    if (jobLocation) bodyData.field19 = jobLocation;
-    if (gender) bodyData.gender = gender;
-    if (preferedFamilySubcaste) bodyData.field26 = preferedFamilySubcaste;
-    if (preferedEducation) bodyData.field27 = preferedEducation;
-    if (preferedProfession) bodyData.field28 = preferedProfession;
-    if (preferedAge) bodyData.field29 = preferedAge;
-    if (preferedHeight) bodyData.field30 = preferedHeight;
-    if (preferedPersonalAttributes) bodyData.field31 = preferedPersonalAttributes;
-    if (preferedFollow) bodyData.field32 = preferedFollow;
-    if (preferedFamilyType) bodyData.field33 = preferedFamilyType;
-    if (preferedLocation) bodyData.field34 = preferedLocation;
-    if (preferedReligiousAttribute) bodyData.field35 = preferedReligiousAttribute;
+      const bodyData = {
+          field1: serialNo // Add serial number filter if provided
+      };
 
-    if (Object.keys(bodyData).length === 0) {
-        displayErrorMessage('Please enter at least one filter criteria to search.');
-        return;
-    }
+      fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token // Use the token from cookies
+          },
+          body: JSON.stringify(bodyData)
+      })
+      .then(response => {
+          if (!response.ok) {
+              return response.json().then(err => { throw err });
+          }
+          return response.json();
+      })
+      .then(data => {
+          const errorMessage = document.getElementById('error-message');
+          
+          // Check if profiles exist and are an array
+          if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
+              // Display error message if no profiles are found
+              errorMessage.textContent = 'The following Sl. No. does not contain any profile, Please enter a valid Sl. No.';
+              errorMessage.style.display = 'block';
+          } else {
+              // Hide error message and redirect to profilesearch.html with serial number
+              errorMessage.style.display = 'none';
+              window.location.href = `profileSearch.html?serial_no=${encodeURIComponent(serialNo)}`;
+          }
+      })
+      .catch((error) => {
+          console.error('Error:', error.message);
+          alert(`Error: ${error.message}`); // Alert the user about the error
+      });
+  }
+</script>
+<script>
+  function filterByName() {
+      const name = document.getElementById('nameInput').value.trim();
+      const token = getCookie('token'); // Get the token from cookies
+      
+      if (!token) {
+          console.error('No token found in cookies.');
+          return;
+      }
 
-    fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token // Use the token from cookies
-        },
-        body: JSON.stringify(bodyData)
-    })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(err => { throw err });
-        }
-        return response.json();
-    })
-    .then(data => {
-        const errorMessage = document.getElementById('error-message');
-        
-        // Check if profiles exist and are an array
-        if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
-            // Display error message if no profiles are found
-            displayErrorMessage('No profiles match the provided criteria. Please try again.');
-        } else {
-            // Hide error message and redirect to profile search results page
-            errorMessage.style.display = 'none';
+      const bodyData = {
+          field5: name // Use the name field for filtering
+      };
 
-            // Build URL query string based on entered inputs
-            const queryParams = new URLSearchParams();
-            if (serialNo) queryParams.append('serial_no', serialNo);
-            if (name) queryParams.append('name', name);
-            if (location) queryParams.append('location', location);
-            if (age) queryParams.append('age', age);
-            if (education) queryParams.append('education', education);
-            if (maritalStatus) queryParams.append('marital_status', maritalStatus);
-            if (follow) queryParams.append('follow', follow);
-            if (familySubcaste) queryParams.append('family_subcaste', familySubcaste);
-            if (profession) queryParams.append('profession', profession);
-            if (iscCoordinator) queryParams.append('isc_coordinator', iscCoordinator);
-            if (profileStatus) queryParams.append('profile_status', profileStatus);
-            if (height) queryParams.append('height', height);
-            if (jobLocation) queryParams.append('job_location', jobLocation);
-            if (gender) queryParams.append('gender', gender);
-            if (preferedFamilySubcaste) queryParams.append('prefered_family_subcaste', preferedFamilySubcaste);
-            if (preferedEducation) queryParams.append('prefered_education', preferedEducation);
-            if (preferedProfession) queryParams.append('prefered_profession', preferedProfession);
-            if (preferedAge) queryParams.append('prefered_age', preferedAge);
-            if (preferedHeight) queryParams.append('prefered_height', preferedHeight);
-            if (preferedPersonalAttributes) queryParams.append('prefered_personal_attributes', preferedPersonalAttributes);
-            if (preferedFollow) queryParams.append('prefered_follow', preferedFollow);
-            if (preferedFamilyType) queryParams.append('prefered_family_type', preferedFamilyType);
-            if (preferedLocation) queryParams.append('prefered_location', preferedLocation);
-            if (preferedReligiousAttribute) queryParams.append('prefered_religious_attribute', preferedReligiousAttribute);
-            
-            window.location.href = `profileSearch.html?${queryParams.toString()}`;
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error.message);
-        alert(`Error: ${error.message}`); // Alert the user about the error
+      fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token // Use the token from cookies
+          },
+          body: JSON.stringify(bodyData)
+      })
+      .then(response => {
+          if (!response.ok) {
+              return response.json().then(err => { throw err });
+          }
+          return response.json();
+      })
+      .then(data => {
+          const errorMessage = document.getElementById('error-message-name');
+          
+          // Check if profiles exist and are an array
+          if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
+              // Display error message if no profiles are found
+              errorMessage.textContent = 'No profiles found for the entered name. Please try again.';
+              errorMessage.style.display = 'block';
+          } else {
+              // Hide error message and redirect to profilesearch.html with name
+              errorMessage.style.display = 'none';
+              window.location.href = `profileSearch.html?name=${encodeURIComponent(name)}`;
+          }
+      })
+      .catch((error) => {
+          console.error('Error:', error.message);
+          alert(`Error: ${error.message}`); // Alert the user about the error
+      });
+  }
+</script>
+<script>
+  function filterByLocation() {
+      const location = document.getElementById('locationInput').value.trim();
+      const token = getCookie('token'); // Get the token from cookies
+      
+      if (!token) {
+          console.error('No token found in cookies.');
+          return;
+      }
+
+      const bodyData = {
+          field7: location // Add location filter if provided
+      };
+
+      fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token // Use the token from cookies
+          },
+          body: JSON.stringify(bodyData)
+      })
+      .then(response => {
+          if (!response.ok) {
+              return response.json().then(err => { throw err });
+          }
+          return response.json();
+      })
+      .then(data => {
+          const errorMessage = document.getElementById('error-message-location');
+          
+          // Check if profiles exist and are an array
+          if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
+              // Display error message if no profiles are found
+              errorMessage.textContent = 'No profiles found for the entered location. Please enter a valid location.';
+              errorMessage.style.display = 'block';
+          } else {
+              // Hide error message and redirect to profilesearch.html with location
+              errorMessage.style.display = 'none';
+              window.location.href = `profileSearch.html?location=${encodeURIComponent(location)}`;
+          }
+      })
+      .catch((error) => {
+          console.error('Error:', error.message);
+          alert(`Error: ${error.message}`); // Alert the user about the error
+      });
+  }
+</script>
+<script>
+  function filterByAge() {
+      const age = document.getElementById('ageInput').value.trim();
+      const token = getCookie('token'); // Get the token from cookies
+      
+      if (!token) {
+          console.error('No token found in cookies.');
+          return;
+      }
+
+      const bodyData = {
+          field6: age // Use the age field for filtering
+      };
+
+      fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token // Use the token from cookies
+          },
+          body: JSON.stringify(bodyData)
+      })
+      .then(response => {
+          if (!response.ok) {
+              return response.json().then(err => { throw err });
+          }
+          return response.json();
+      })
+      .then(data => {
+          const errorMessage = document.getElementById('error-message-age');
+          
+          // Check if profiles exist and are an array
+          if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
+              // Display error message if no profiles are found
+              errorMessage.textContent = 'No profiles found for the entered age. Please try again.';
+              errorMessage.style.display = 'block';
+          } else {
+              // Hide error message and redirect to profilesearch.html with age
+              errorMessage.style.display = 'none';
+              window.location.href = `profileSearch.html?age=${encodeURIComponent(age)}`;
+          }
+      })
+      .catch((error) => {
+          console.error('Error:', error.message);
+          alert(`Error: ${error.message}`); // Alert the user about the error
+      });
+  }
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Load saved filters and counts on page load
+    loadSavedFilters();
+
+    // Attach event listeners to filter buttons
+    const filterButtons = document.querySelectorAll('#filterButtons a');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const filter = button.getAttribute('data-filter');
+        displayFilterOptions(filter);
+      });
     });
+
+    // Attach submit button event listener
+    document.getElementById('submitButton').addEventListener('click', () => {
+      applyFilters();
+    });
+  });
+
+  // Function to display filter options based on the selected filter
+  function displayFilterOptions(filter) {
+    const selectedFilters = document.getElementById('selectedFilters');
+    selectedFilters.innerHTML = ''; // Clear previous filter options
+    const filterSection = document.createElement('div');
+    filterSection.className = 'filter-section show';
+    filterSection.id = filter + 'Buttons';
+
+    let filterHtml = '';
+    if (filter === 'Gender') {
+      filterHtml = `
+        <label class="checkbox-label"><input type="checkbox" value="Male"> Male</label>
+        <label class="checkbox-label"><input type="checkbox" value="Female"> Female</label>
+      `;
+    } else if (filter === 'Religion') {
+      filterHtml = `
+        <label class="checkbox-label"><input type="checkbox" value="Sunni"> Sunni</label>
+        <label class="checkbox-label"><input type="checkbox" value="Syed"> Syed</label>
+        <label class="checkbox-label"><input type="checkbox" value="Pathan/Khan"> Pathan</label>
+        <label class="checkbox-label"><input type="checkbox" value="Sheikh"> Sheikh</label>
+        <label class="checkbox-label"><input type="checkbox" value="Reverted muslims"> Reverted Muslims</label>
+        <label class="checkbox-label"><input type="checkbox" value="Others"> Others</label>
+      `;
+    } else if (filter === 'Height') {
+      filterHtml = `
+        <label class="checkbox-label"><input type="checkbox" value="4-4.5"> 4 to 4.5 ft</label>
+        <label class="checkbox-label"><input type="checkbox" value="4.5-5"> 4.5 to 5 ft</label>
+        <label class="checkbox-label"><input type="checkbox" value="5-5.5"> 5 to 5.5 ft</label>
+        <label class="checkbox-label"><input type="checkbox" value="5.5-6"> 5.5 to 6 ft</label>
+        <label class="checkbox-label"><input type="checkbox" value="6-6.5"> 6 to 6.5 ft</label>
+      `;
+    } else if (filter === 'Age') {
+      filterHtml = `
+        <label class="checkbox-label"><input type="checkbox" value="18-25"> 18-25</label>
+        <label class="checkbox-label"><input type="checkbox" value="26-35"> 26-35</label>
+        <label class="checkbox-label"><input type="checkbox" value="36-45"> 36-45</label>
+        <label class="checkbox-label"><input type="checkbox" value="46-60"> 46-60</label>
+      `;
+    } else if (filter === 'State') {
+      filterHtml = `
+  <label class="checkbox-label"><input type="checkbox" value="Andhra Pradesh"> Andhra Pradesh</label>
+<label class="checkbox-label"><input type="checkbox" value="Arunachal Pradesh"> Arunachal Pradesh</label>
+<label class="checkbox-label"><input type="checkbox" value="Assam"> Assam</label>
+<label class="checkbox-label"><input type="checkbox" value="Bihar"> Bihar</label>
+<label class="checkbox-label"><input type="checkbox" value="Chhattisgarh"> Chhattisgarh</label>
+<label class="checkbox-label"><input type="checkbox" value="Goa"> Goa</label>
+<label class="checkbox-label"><input type="checkbox" value="Gujarat"> Gujarat</label>
+<label class="checkbox-label"><input type="checkbox" value="Haryana"> Haryana</label>
+<label class="checkbox-label"><input type="checkbox" value="Himachal Pradesh"> Himachal Pradesh</label>
+<label class="checkbox-label"><input type="checkbox" value="Jharkhand"> Jharkhand</label>
+<label class="checkbox-label"><input type="checkbox" value="Karnataka"> Karnataka</label>
+<label class="checkbox-label"><input type="checkbox" value="Kerala"> Kerala</label>
+<label class="checkbox-label"><input type="checkbox" value="Madhya Pradesh"> Madhya Pradesh</label>
+<label class="checkbox-label"><input type="checkbox" value="Maharashtra"> Maharashtra</label>
+<label class="checkbox-label"><input type="checkbox" value="Manipur"> Manipur</label>
+<label class="checkbox-label"><input type="checkbox" value="Meghalaya"> Meghalaya</label>
+<label class="checkbox-label"><input type="checkbox" value="Mizoram"> Mizoram</label>
+<label class="checkbox-label"><input type="checkbox" value="Nagaland"> Nagaland</label>
+<label class="checkbox-label"><input type="checkbox" value="Odisha"> Odisha</label>
+<label class="checkbox-label"><input type="checkbox" value="Punjab"> Punjab</label>
+<label class="checkbox-label"><input type="checkbox" value="Rajasthan"> Rajasthan</label>
+<label class="checkbox-label"><input type="checkbox" value="Sikkim"> Sikkim</label>
+<label class="checkbox-label"><input type="checkbox" value="Tamil Nadu"> Tamil Nadu</label>
+<label class="checkbox-label"><input type="checkbox" value="Telangana"> Telangana</label>
+<label class="checkbox-label"><input type="checkbox" value="Tripura"> Tripura</label>
+<label class="checkbox-label"><input type="checkbox" value="Uttar Pradesh"> Uttar Pradesh</label>
+<label class="checkbox-label"><input type="checkbox" value="Uttarakhand"> Uttarakhand</label>
+<label class="checkbox-label"><input type="checkbox" value="West Bengal"> West Bengal</label>
+`;
+    } else if (filter === 'Qualification') {
+  filterHtml = `
+   <label class="checkbox-label"><input type="checkbox" value="phd"> PhD</label>
+<label class="checkbox-label"><input type="checkbox" value="masters"> Masters</label>
+<label class="checkbox-label"><input type="checkbox" value="bachelor"> Bachelor\'s Degree</label>
+<label class="checkbox-label"><input type="checkbox" value="diploma"> Diploma</label>
+<label class="checkbox-label"><input type="checkbox" value="highschool"> High School</label>
+  `;
+
+} else if (filter === 'Job') {
+      filterHtml = `
+       <label class="checkbox-label"><input type="checkbox" value="Propriteor"> Propriteor</label>
+<label class="checkbox-label"><input type="checkbox" value="Partner"> Partner</label>
+<label class="checkbox-label"><input type="checkbox" value="Family"> Family</label>
+`;
+    } else if (filter === 'Marital') {
+      filterHtml = `
+  <label class="checkbox-label"><input type="checkbox" value="Unmarried"> Unmarried</label>
+<label class="checkbox-label"><input type="checkbox" value="Divorced"> Divorced</label>
+<label class="checkbox-label"><input type="checkbox" value="Widowed"> Widowed</label>
+`;
+
+    } else if (filter === 'Follow') {
+      filterHtml = `
+       <label class="checkbox-label"><input type="checkbox" value="dargah-fateha"> Dargah Fateha</label>
+<label class="checkbox-label"><input type="checkbox" value="tabligh"> Tabligh</label>
+<label class="checkbox-label"><input type="checkbox" value="jamaat-e-islam"> Jamaat e Islam</label>
+<label class="checkbox-label"><input type="checkbox" value="ahle-hadees"> Ahle hadees</label>
+<label class="checkbox-label"><input type="checkbox" value="moderate-practising"> Moderate Practising Muslims</label>
+      `;
+    } else if (filter === 'Personal') {
+      filterHtml = `
+        <label class="checkbox-label"><input type="checkbox" value="Fair"> Fair</label>
+        <label class="checkbox-label"><input type="checkbox" value="Beautiful"> Beautiful</label>
+        <label class="checkbox-label"><input type="checkbox" value="Deendar"> Deendar</label>
+        <label class="checkbox-label"><input type="checkbox" value="Practising"> Practising</label>
+        <label class="checkbox-label"><input type="checkbox" value="Namazi"> Namazi</label>
+        <label class="checkbox-label"><input type="checkbox" value="Hijabi"> Hijabi</label>
+      `;
+    }
+
+    filterSection.innerHTML = filterHtml;
+    selectedFilters.appendChild(filterSection);
+
+    // Attach change event listeners to checkboxes
+    filterSection.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+      checkbox.addEventListener('change', (event) => {
+        if (filter === 'Gender') {
+          // Uncheck all other checkboxes in the Gender filter group
+          const checkboxes = filterSection.querySelectorAll('input[type="checkbox"]');
+          checkboxes.forEach(cb => {
+            if (cb !== event.target) {
+              cb.checked = false;
+            }
+          });
+        }
+        updateFilterCount(filter);
+      });
+    });
+
+    // Load saved filter options
+    loadSavedFilterOptions(filter);
+  }
+
+  // Function to update the count of selected options for a specific filter
+  function updateFilterCount(filter) {
+    const checkboxes = document.querySelectorAll(`#${filter}Buttons input[type="checkbox"]`);
+    const count = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+    document.getElementById(`${filter.toLowerCase()}Count`).innerText = count;
+
+    // Save the filter options to local storage
+    saveFilterOptions(filter);
+
+    // Update the selected gender if the Gender filter is updated
+    if (filter === 'Gender') {
+      selectedGender = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
+    }
+   
+    // if (filter === 'State') {
+    //   selectedState = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
+    // }
+    if (filter === 'Follow') {
+      selectedFollow = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
+    }
+    if (filter === 'Qualification') {
+      selectedQualification = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
+    }
+    // if (filter === 'Job') {
+    //   selectedJob = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
+    // }
+    if (filter === 'Marital') {
+      selectedMarital = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value).join(', ');
+    }
+
+  }
+  
+
+  // Function to save filter options to local storage
+  function saveFilterOptions(filter) {
+    const checkboxes = document.querySelectorAll(`#${filter}Buttons input[type="checkbox"]`);
+    const selectedValues = Array.from(checkboxes)
+      .filter(checkbox => checkbox.checked)
+      .map(checkbox => checkbox.value);
+    localStorage.setItem(filter, JSON.stringify(selectedValues));
+  }
+
+  // Function to load saved filter options
+  function loadSavedFilterOptions(filter) {
+    const savedOptions = JSON.parse(localStorage.getItem(filter)) || [];
+    document.querySelectorAll(`#${filter}Buttons input[type="checkbox"]`).forEach(checkbox => {
+      checkbox.checked = savedOptions.includes(checkbox.value);
+    });
+    updateFilterCount(filter); // Update the count based on saved options
+  }
+
+  // Function to load saved filters and counts
+  function loadSavedFilters() {
+    ['Gender', 'Religion', 'Height', 'Age', 'State', 'Qualification', 'Job', 'Marital', 'Follow', 'Personal'].forEach(filter => {
+      loadSavedFilterOptions(filter);
+      updateFilterCount(filter);
+    });
+  }
+
+ // Function to get token from cookies
+function getTokenFromCookies() {
+const name = 'token=';
+const decodedCookie = decodeURIComponent(document.cookie);
+const ca = decodedCookie.split(';');
+for (let i = 0; i < ca.length; i++) {
+  let c = ca[i];
+  while (c.charAt(0) === ' ') {
+    c = c.substring(1);
+  }
+  if (c.indexOf(name) === 0) {
+    return c.substring(name.length, c.length);
+  }
+}
+return '';
 }
 
-function displayErrorMessage(message) {
-    const errorMessage = document.getElementById('error-message');
-    errorMessage.textContent = message;
-    errorMessage.style.display = 'block';
+// Function to check login status
+function checkLogin() {
+const token = getTokenFromCookies();
+if (!token) {
+  // Token not found, redirect to login page
+  window.location.href = 'login.html';
+} else {
+  // Token found, redirect to the next page
+  // This might be the page you want to access
+  // window.location.href = 'profileSearch.html';
 }
+}
+
+// Check login status on page load
+window.onload = function() {
+checkLogin();
+}
+  // Get the token from cookies
+  const authToken = getTokenFromCookies();
+
+  // Function to apply filters and fetch data from the API
+// Function to apply filters and fetch data from the API
+function applyFilters() {
+// Prepare the payload dynamically
+const payload = {};
+
+if (selectedGender) payload.gender = selectedGender;
+// if (selectedState) payload.field2 = selectedState;
+if (selectedFollow) payload.field4 = selectedFollow;
+if (selectedQualification) payload.field2 = selectedQualification;
+// if (selectedJob) payload.field4 = selectedJob;
+if (selectedMarital) payload.field3 = selectedMarital;
+
+console.log('Payload:', payload);
+
+// Check if there's any data to send
+if (Object.keys(payload).length === 0) {
+  console.warn('No filters selected. Please select at least one filter.');
+  return;
+}
+
+fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': authToken
+    
+  },
+  body: JSON.stringify(payload)
+})
+.then(response => response.json())
+.then(data => {
+  console.log('API Response:', data);
+  console.log('Payload:', payload);
+  // Store the fetched data in session storage
+  sessionStorage.setItem('profileData', JSON.stringify(data.data));
+  
+  // Redirect to the next page
+  window.location.href = 'profileSearch.html';
+})
+.catch((error) => {
+  console.error('Error during fetch:', error);
+});
+}
+
+
+// Store the fetched data in session storage
+sessionStorage.setItem('profileData', JSON.stringify(data.data));
+console.log('Data stored in sessionStorage:', data.data); // Debug log
+
+
+
+
+const express = require('express');
+const app = express();
+
+// CORS middleware
+app.use((req, res, next) => {
+res.header('Access-Control-Allow-Origin', '*'); // Replace * with your domain if possible
+res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+next();
+});
+
+// Other middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Define your API endpoints here
+app.get('/api/v1/profiles/get_profile_details', (req, res) => {
+// Your logic for GET request
+res.json({ message: 'GET profile details endpoint' });
+});
+
+app.post('/api/v1/profiles/search_multiple', (req, res) => {
+// Your logic for POST request
+res.json({ message: 'POST search multiple profiles endpoint' });
+});
+
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+console.log(`Server running on port ${PORT}`);
+});
+
 
 </script>
-
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     // Function to get a cookie by name
@@ -666,35 +1127,44 @@ function displayErrorMessage(message) {
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    // Add event listener to the search button
-    const searchButton = document.getElementById('searchButton');
-    if (searchButton) {
-        searchButton.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default button behavior
+    // Check for the token in cookies
+    const token = getCookie('token'); // Replace 'authToken' with your actual token name
 
-            // Check for email and token in cookies
-            const email = getCookie('email');
-            const token = getCookie('token');
-
-            if (!email || !token) {
-                // Email or token not found, alert user and redirect
-                alert('User not logged in. Please log in.');
-                window.location.href = 'login.html';
-            } else {
-                // Proceed with filterProfiles function if logged in
-                filterProfiles();
-            }
-        });
+    if (!token) {
+        // Token not found, alert user and redirect
+        alert('User not logged in. Please log in.');
+        window.location.href = 'login.html';
     }
-  });
-</script>
+});
 
+</script>
 <script>
   function goBack() {
       window.location.href = "register-process.html";
   }
 </script>
+<script>
+  document.getElementById("submitButton").addEventListener("click", function(event) {
+    // Get all selected filters by checking if any filter checkboxes are selected
+    const selectedFilters = document.querySelectorAll('input[type="checkbox"]:checked');
+    
+    // Get the error message div
+    const errorMessageDiv = document.getElementById("errorMessage");
+    
+    // Check if the count of selected filters is less than or equal to zero
+    if (selectedFilters.length === 0) {
+        // Prevent form submission or default action
+        event.preventDefault();
 
+        // Display error message on the page
+        errorMessageDiv.textContent = "Please select any one of the filters to see the profile.";
+        errorMessageDiv.style.display = "block";
+    } else {
+        // Hide the error message if filters are selected
+        errorMessageDiv.style.display = "none";
+    }
+});
+</script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
 // Function to get a specific cookie by name
@@ -727,3 +1197,8 @@ if (modifyProfileLink) {
 </script>
 </body>
 </html>
+
+
+
+
+

@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Matrimonial</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+     <link href="fonts/css/solid.min.css" rel="stylesheet" />
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+
+<style>
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      background-color: black;
+      color: #ccc;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .header .back-button {
+     
+      position: absolute;
+      left: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .header .title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .container-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .container.mt-4 {
+      width: 60%;
+    }
+    .filter-container {
+      width: 35%;
+      margin-left: 0px;
+      padding: 5px;
+      border: 0px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-right: 20px;
+      margin-top: 17px;
+    }
+    .submit-button-wrapper {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #submitButton {
+      width: 50%;
+      color: whitesmoke;
+      background-color: black;
+      text-align: center;
+    }
+    .checkbox-label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .filter-count {
+      color: red;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .filter-section {
+      display: none;
+    }
+    .filter-section.show {
+      display: block;
+    }
+    /* Logo Image Styling */
+.logo-img {
+    width: 220px; /* Adjust size for desktop view */
+    height: 75px;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        max-width: 120px; /* Adjust size for mobile view */
+    }
+}
+/* General container styling */
+.filter-container1 {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f9f9f9; /* Light background for the filter section */
+    border: 1px solid #ddd; /* Light border for separation */
+    border-radius: 5px; /* Rounded corners */
+    width: 100%;
+    margin-left: -7px;
+}
+
+/* Input field styling */
+.filter-container1 input[type="text"] {
+    width: calc(100% - 320px); /* Full width minus button width */
+    padding: 8px;
+    font-size: 16px;
+    border: 0px solid #ccc; /* Light border */
+    border-radius: 4px; /* Slightly rounded corners */
+    margin-right: 10px; /* Space between input and button */
+}
+
+/* Button styling */
+.filter-container1 button {
+    padding: 8px 15px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff; /* Bootstrap primary color or any color of your choice */
+    border: none;
+    border-radius: 4px; /* Slightly rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.filter-container1 button:hover {
+    background-color: #0056b3; /* Darker color for hover effect */
+}
+
+.filter-container1 button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 0px rgba(38, 143, 255, 0.5); /* Custom focus outline */
+}
+
+/* Error message styling */
+#error-message {
+    margin-top: 10px;
+    font-size: 16px;
+    color: red; /* Red color for error messages */
+}
+/* General styling for mobile view */
+@media only screen and (max-width: 768px) {
+    .filter-container1 {
+        margin: 10px 0; /* Reduce margins for compact layout */
+        padding: 8px; /* Reduce padding */
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    /* Input field styling */
+    .filter-container1 input[type="text"] {
+        width: calc(100% - 0px); /* Full width */
+        padding: 10px; /* Increase padding for touch-friendliness */
+        font-size: 14px; /* Slightly smaller font size */
+        border: 1px solid #ccc; /* Light border for better visibility */
+        border-radius: 4px;
+        margin: 0; /* Remove right margin */
+        box-sizing: border-box; /* Ensure padding doesn't affect width */
+    }
+
+    /* Button styling */
+    .filter-container1 button {
+        width: 100%; /* Full width for buttons */
+        padding: 12px; /* Increase padding for better clickability */
+        font-size: 14px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px; /* Add spacing above button */
+    }
+
+    .filter-container1 button:hover {
+        background-color: #0056b3;
+    }
+
+    .filter-container1 button:focus {
+        outline: none;
+        box-shadow: 0 0 2px 2px rgba(38, 143, 255, 0.5);
+    }
+
+    /* Error message styling */
+    #error-message {
+        font-size: 14px;
+        color: red;
+        margin-top: 8px;
+    }
+}
+
+</style>
+
+</head>
+<body>
+<section id="top" class="bg_brown pt-2 pb-2">
+    <div class="container-xl">
+     <div class="row top_1">
+      <div class="col-md-6">
+       <div class="top_1l mt-1">
+      <ul class="mb-0 font_14">
+         <li class="text-white d-inline-block"><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+       <li class="text-white d-inline-block ms-3"><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmail.com</li>
+       </ul>
+     </div>
+      </div>
+      <div class="col-md-6">
+       <div class="top_1r text-end">
+        <ul class="mb-0">
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+         <li class="d-inline-block"><a class="d-inline-block  text-center text-white" href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+       </ul>
+     </div>
+      </div>
+     </div>
+    </div>
+</section>
+
+<section id="header">
+     <nav class="navbar navbar-expand-md navbar-light p-0 pt-2 pb-2" id="navbar_sticky">
+       <div class="container-xl">
+       <a class="navbar-brand p-0 me-0" href="index.html">
+				<img src="img/IMG-20240813-WA0001-removebg-preview.png" alt="ISC Logo" class="logo-img">
+			</a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-0 ms-auto">
+          <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login/Register
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="login.html">Sign In/Sign Up</a>
+            <a class="dropdown-item" href="register-process.html">Create Profile</a>
+<a class="dropdown-item" href="modifyprofile.html">Modify Profile</a>
+            <a class="dropdown-item" href="plans.html">Plans</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Search
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="filter.html">Advanced Search</a>
+                <a class="dropdown-item" href="filter_old.html">Simple Search</a>
+            </div>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="payment.html">Payment</a>
+          </li>
+        
+          <!-- Dropdown for Event -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Resources
+            </a>
+          <ul class="dropdown-menu" aria-labelledby="eventDropdown">
+            <li><a class="dropdown-item" href="khajoor-pe-nikah.html">Khajoor pe Nikah(KPN)</a></li>
+            <li><a class="dropdown-item" href="islamic-matrimonial-tips.html">Marriage Tips</a></li>
+            <li><a class="dropdown-item" href="HealthWellness.html">Health & Wellness Advice</a></li>
+            <li><a class="dropdown-item" href="islamic-relationship-advice.html">Relationship Advice/Consultant</a></li>
+            <li><a class="dropdown-item" href="wedding-planning.html">Islamic wedding Planning</a></li>
+							<li><a class="dropdown-item" href="faq.html">FAQ's</a></li>
+          </ul>
+          </li>
+        
+          <!-- Dropdown for Donation -->
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="donationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Donation
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="donationDropdown">
+            <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
+            <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
+            <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food/Ration Distribution</a></li>
+            <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+<li><a class="dropdown-item" href="bloodbank.html">Blood bank Directory</a></li>
+            <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
+            <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment/Business Support</a></li>
+          </ul>
+          </li>
+          <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Media</a>
+          </li> -->
+          <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <!-- <li class="nav-item">
+          <a class="nav-link" href="login.html">Sign In/Sign Up</a>
+          </li> -->
+        </ul>
+       </div>
+       </div>
+     </nav>
+</section>
+
+<div class="header">
+  <div class="back-button" onclick="goBack()"> < </div>
+  <div class="title">Filter Page</div>
+</div>
+<div id="content">
+    <div class="container">
+        <div class="filter-container1">
+            <label>Looking for:</label>
+            <div class="gender-options">
+                <input type="radio" id="male" name="gender" value="Male">
+                <label for="male">Bride Groom</label>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Bride</label>
+            
+        </div>
+        
+        <div class="filter-container1">
+            <input type="text" id="ageInput" placeholder="Enter Age">
+
+            <label for="ageSelect">Choose Age Range:</label>
+            <select id="ageSelect" name="age">
+                <option value="18-25">18-25</option>
+                <option value="26-35">26-35</option>
+                <option value="36-45">36-45</option>
+                <option value="46-60">46-60</option>
+            </select>
+        </div>
+        <div class="filter-container1">
+            
+            <label>Select Height Range:</label><br>
+            <input type="checkbox" name="heightRange" value="4-4.5"> 4'0" - 4'5"<br>
+            <input type="checkbox" name="heightRange" value="4.6-5"> 4'6" - 5'0"<br>
+            <input type="checkbox" name="heightRange" value="5.1-5.5"> 5'1" - 5'5"<br>
+            <input type="checkbox" name="heightRange" value="5.6-6"> 5'6" - 6'0"<br>
+
+        </div>
+        <div class="filter-container1">
+            
+            <label for="marital-status">Marital Status:</label>
+              <select id="marital-status" name="field3" required>
+                  <!-- <option value="">Please select</option> -->
+                  <option value="Unmarried">Unmarried</option>
+                  <option value="Divorced">Divorced</option>
+                  <option value="Widowed">Widowed</option>
+              </select>
+        </div>
+        <div class="filter-container1">
+            
+            <label for="education" style="margin-right: 10px;">Education:</label>
+                <select id="education" name="field2" multiple>
+        </div>
+        <div class="filter-container1">
+            
+            <label for="family-subcaste" style="margin-right: 10px;">Family or Subcaste:</label>
+                <select id="family-subcaste" name="field8" >
+                    <!-- Options will be populated dynamically -->
+                </select>
+        </div>
+        <div class="filter-container1">
+            <input type="text" id="professionInput" placeholder="Enter Profession">
+        </div>
+        <div class="filter-container1">
+            <label for="education" style="margin-right: 10px;">Education:</label>
+            <select id="education" name="field2" multiple>
+                <!-- Options will be populated by JavaScript -->
+            </select>
+        </div>
+        <div class="filter-container1">
+            <label for="profession" style="margin-right: 10px;">Profession:</label>
+            <input type="text" id="profession" name="field9">
+                <!-- Options will be populated by JavaScript -->
+            </select>
+            <input type="text" id="selectedProfessionTextbox" placeholder="Selected values will appear here" style="width: 100%; display: none;" readonly>
+        </div>
+        <div class="form-group" style="display: flex;">
+            <label for="partner-location" style="margin-right: 10px;">Location:</label>
+            <select id="partner-location" name="field34" multiple="multiple" style="width: 65%;">
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+        <div class="filter-container1">
+	    <button onclick="filterProfiles()" id="searchButton">Search</button>
+	</div>
+        <div id="error-message" style="color: red; display: none;"></div> <!-- Error message container -->
+    </div>
+</div>
+
+<section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
+  <div class="container-fluid" style="background-color: #5c0951;">
+      <div class="footer_m bg_light p-4">
+        <div class="footer_1 row">
+        <div class="col-md-3">
+       <div class="footer_1i">
+         <h1 class="mb-3"><a class="family_1" href="index.html"><i class="fa fa-heart me-1 col_brown"></i>  ISC <br>
+   <span class="family_2 fw-normal font_14 col_brown">Lookimg for a patner </span>
+   </a></h1>
+   <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+   <ul class="mb-0"> 
+   <li><a href="#"><i class="fa fa-envelope col_brown me-1 align-middle"></i> asif@gmail.com</a></li>
+   <li class="mt-3"><a href="#"><i class="fa fa-phone col_brown me-1 align-middle"></i> 91+ 9980835923</a></li>
+   <li class="mt-3" style="color: white;"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+   </ul>
+       </div>
+      </div>
+        <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">Social media</h5>
+        <ul class="mb-0">
+          <li><a href="#">Facebook</a></li>
+         <li class="mt-3"><a href="#">Twitter</a></li>
+         <li class="mt-3"><a href="#">Pinterest</a></li>
+         <li class="mt-3"><a href="#">Instagram</a></li>
+        </ul>
+       </div>
+      </div> 
+      
+      <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">Get TO Know US</h5>
+        <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+     
+         <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+        
+       </div>
+      </div>
+      <div class="col-md-3">
+       <div class="footer_1i">
+          <h5 class="mt-3 mb-4">TELEGRAM</h5>
+        <div class="footer_1i1 row mx-0">
+         <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+        </div>
+        <div class="footer_1i1 row mx-0">
+         <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+       <div class="col-md-4 p-0">
+         <div class="footer_1i1l">
+           <div class="grid clearfix">
+         <figure class="effect-jazz mb-0">
+         <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+         </figure>
+         </div>
+         </div>
+       </div>
+        </div>
+       </div>
+      </div>
+      </div><hr class="mt-4 mb-4">
+      <div class="footer_2 row">
+        <div class="col-md-8">
+       <div class="footer_2l">
+           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="https://hitechdesign.in/">Hitech Design</a></p>
+       </div>
+      </div>
+     <!-- <div class="col-md-4">
+       <div class="footer_2r text-end">
+          <ul class="text-uppercase font_13 mb-0">
+           <li class="d-inline-block"><a href="#"> Facebook</a></li>
+         <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Twitter</a></li>
+          <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+          <li class="d-inline-block mx-2 text-muted">|</li>
+          <li class="d-inline-block"><a href="#"> Instagram</a></li>
+         </ul>
+       </div>
+      </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+  
+  
+<script src="js/matrimony/scripts.js"></script>
+<script>
+function getCookie(name) {
+    let value = `; ${document.cookie}`;
+    let parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function filterProfiles() {
+    const serialNo = document.getElementById('serialNoInput').value.trim();
+    const name = document.getElementById('nameInput').value.trim();
+    const location = document.getElementById('locationInput').value.trim();
+    const age = document.getElementById('ageInput').value.trim();
+    const education = document.getElementById('educationInput').value.trim();
+    const maritalStatus = document.getElementById('maritalStatusInput').value.trim();
+    const follow = document.getElementById('followInput').value.trim();
+    const familySubcaste = document.getElementById('familySubcasteInput').value.trim();
+    const profession = document.getElementById('professionInput').value.trim();
+    const iscCoordinator = document.getElementById('iscCoordinatorInput').value.trim();
+    const profileStatus = document.getElementById('profileStatusInput').value.trim();
+    const height = document.getElementById('heightInput').value.trim();
+    const jobLocation = document.getElementById('jobLocationInput').value.trim();
+    const gender = document.getElementById('genderInput').value.trim();
+    const preferedFamilySubcaste = document.getElementById('preferedFamilySubcasteInput').value.trim();
+    const preferedEducation = document.getElementById('preferedEducationInput').value.trim();
+    const preferedProfession = document.getElementById('preferedProfessionInput').value.trim();
+    const preferedAge = document.getElementById('preferedAgeInput').value.trim();
+    const preferedHeight = document.getElementById('preferedHeightInput').value.trim();
+    const preferedPersonalAttributes = document.getElementById('preferedPersonalAttributesInput').value.trim();
+    const preferedFollow = document.getElementById('preferedFollowInput').value.trim();
+    const preferedFamilyType = document.getElementById('preferedFamilyTypeInput').value.trim();
+    const preferedLocation = document.getElementById('preferedLocationInput').value.trim();
+    const preferedReligiousAttribute = document.getElementById('preferedReligiousAttributeInput').value.trim();
+    const token = getCookie('token'); // Get the token from cookies
+    
+    if (!token) {
+        console.error('No token found in cookies.');
+        return;
+    }
+
+    // Create a body object dynamically based on inputs
+    const bodyData = {};
+    if (serialNo) bodyData.field1 = serialNo;
+    if (name) bodyData.field5 = name;
+    if (location) bodyData.field7 = location;
+    if (age) bodyData.field6 = age;
+    if (education) bodyData.field2 = education;
+    if (maritalStatus) bodyData.field3 = maritalStatus;
+    if (follow) bodyData.field4 = follow;
+    if (familySubcaste) bodyData.field8 = familySubcaste;
+    if (profession) bodyData.field9 = profession;
+    if (iscCoordinator) bodyData.field10 = iscCoordinator;
+    if (profileStatus) bodyData.field11 = profileStatus;
+    if (height) bodyData.field14 = height;
+    if (jobLocation) bodyData.field19 = jobLocation;
+    if (gender) bodyData.gender = gender;
+    if (preferedFamilySubcaste) bodyData.field26 = preferedFamilySubcaste;
+    if (preferedEducation) bodyData.field27 = preferedEducation;
+    if (preferedProfession) bodyData.field28 = preferedProfession;
+    if (preferedAge) bodyData.field29 = preferedAge;
+    if (preferedHeight) bodyData.field30 = preferedHeight;
+    if (preferedPersonalAttributes) bodyData.field31 = preferedPersonalAttributes;
+    if (preferedFollow) bodyData.field32 = preferedFollow;
+    if (preferedFamilyType) bodyData.field33 = preferedFamilyType;
+    if (preferedLocation) bodyData.field34 = preferedLocation;
+    if (preferedReligiousAttribute) bodyData.field35 = preferedReligiousAttribute;
+
+    if (Object.keys(bodyData).length === 0) {
+        displayErrorMessage('Please enter at least one filter criteria to search.');
+        return;
+    }
+
+    fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token // Use the token from cookies
+        },
+        body: JSON.stringify(bodyData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(err => { throw err });
+        }
+        return response.json();
+    })
+    .then(data => {
+        const errorMessage = document.getElementById('error-message');
+        
+        // Check if profiles exist and are an array
+        if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
+            // Display error message if no profiles are found
+            displayErrorMessage('No profiles match the provided criteria. Please try again.');
+        } else {
+            // Hide error message and redirect to profile search results page
+            errorMessage.style.display = 'none';
+
+            // Build URL query string based on entered inputs
+            const queryParams = new URLSearchParams();
+            if (serialNo) queryParams.append('serial_no', serialNo);
+            if (name) queryParams.append('name', name);
+            if (location) queryParams.append('location', location);
+            if (age) queryParams.append('age', age);
+            if (education) queryParams.append('education', education);
+            if (maritalStatus) queryParams.append('marital_status', maritalStatus);
+            if (follow) queryParams.append('follow', follow);
+            if (familySubcaste) queryParams.append('family_subcaste', familySubcaste);
+            if (profession) queryParams.append('profession', profession);
+            if (iscCoordinator) queryParams.append('isc_coordinator', iscCoordinator);
+            if (profileStatus) queryParams.append('profile_status', profileStatus);
+            if (height) queryParams.append('height', height);
+            if (jobLocation) queryParams.append('job_location', jobLocation);
+            if (gender) queryParams.append('gender', gender);
+            if (preferedFamilySubcaste) queryParams.append('prefered_family_subcaste', preferedFamilySubcaste);
+            if (preferedEducation) queryParams.append('prefered_education', preferedEducation);
+            if (preferedProfession) queryParams.append('prefered_profession', preferedProfession);
+            if (preferedAge) queryParams.append('prefered_age', preferedAge);
+            if (preferedHeight) queryParams.append('prefered_height', preferedHeight);
+            if (preferedPersonalAttributes) queryParams.append('prefered_personal_attributes', preferedPersonalAttributes);
+            if (preferedFollow) queryParams.append('prefered_follow', preferedFollow);
+            if (preferedFamilyType) queryParams.append('prefered_family_type', preferedFamilyType);
+            if (preferedLocation) queryParams.append('prefered_location', preferedLocation);
+            if (preferedReligiousAttribute) queryParams.append('prefered_religious_attribute', preferedReligiousAttribute);
+            
+            window.location.href = `profileSearch.html?${queryParams.toString()}`;
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error.message);
+        alert(`Error: ${error.message}`); // Alert the user about the error
+    });
+}
+
+function displayErrorMessage(message) {
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.textContent = message;
+    errorMessage.style.display = 'block';
+}
+
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Function to get a cookie by name
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // Add event listener to the search button
+    const searchButton = document.getElementById('searchButton');
+    if (searchButton) {
+        searchButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default button behavior
+
+            // Check for email and token in cookies
+            const email = getCookie('email');
+            const token = getCookie('token');
+
+            if (!email || !token) {
+                // Email or token not found, alert user and redirect
+                alert('User not logged in. Please log in.');
+                window.location.href = 'login.html';
+            } else {
+                // Proceed with filterProfiles function if logged in
+                filterProfiles();
+            }
+        });
+    }
+  });
+</script>
+
+<script>
+  function goBack() {
+      window.location.href = "register-process.html";
+  }
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+// Function to get a specific cookie by name
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return decodeURIComponent(parts.pop().split(';').shift()); // Decode the cookie value
+  }
+  return null;
+}
+
+// Check the email cookie
+const userEmail = getCookie('email');
+
+// Redirect based on the cookie value
+const modifyProfileLink = document.querySelector("a[href='modifyprofile.html']");
+if (modifyProfileLink) {
+  modifyProfileLink.addEventListener('click', function (e) {
+    e.preventDefault(); // Prevent default navigation
+    if (userEmail === 'iscadmin@gmail.com') {
+      window.location.href = 'dashboard.html'; // Redirect to dashboard
+    } else {
+      window.location.href = 'modifyprofile.html'; // Redirect to modify profile
+    }
+  });
+}
+});
+
+
+
+ $(document).ready(function() {
+    // Initialize the Select2 plugin for Age dropdown
+    $('#age').select2({
+        tags: true,
+        placeholder: "Select or type an age",
+        allowClear: true,
+        data: [
+            { id: '18', text: '18' },
+            { id: '19', text: '19' },
+            { id: '20', text: '20' },
+            { id: '21', text: '21' },
+            { id: '22', text: '22' },
+            { id: '23', text: '23' },
+            { id: '24', text: '24' },
+            { id: '25', text: '25' }
+        ]
+    }).val(null).trigger('change'); // Clear any pre-selected value
+
+    // Initialize Select2 for Height
+    $('#height').select2({
+        tags: true,
+        placeholder: "Select or type a height",
+        allowClear: true,
+        data: [
+            { id: '4 feet 5 inches', text: '4 feet 5 inches' },
+            { id: '4 feet 6 inches', text: '4 feet 6 inches' },
+            { id: '4 feet 7 inches', text: '4 feet 7 inches' },
+            { id: '4 feet 8 inches', text: '4 feet 8 inches' },
+            { id: '4 feet 9 inches', text: '4 feet 9 inches' },
+            { id: '4 feet 10 inches', text: '4 feet 10 inches' },
+            { id: '4 feet 11 inches', text: '4 feet 11 inches' },
+            { id: '5 feet 0 inches', text: '5 feet 0 inches' },
+            { id: '5 feet 1 inch', text: '5 feet 1 inch' },
+            { id: '5 feet 2 inches', text: '5 feet 2 inches' },
+            { id: '5 feet 3 inches', text: '5 feet 3 inches' },
+            { id: '5 feet 4 inches', text: '5 feet 4 inches' },
+            { id: '5 feet 5 inches', text: '5 feet 5 inches' },
+            { id: '5 feet 6 inches', text: '5 feet 6 inches' },
+            { id: '5 feet 7 inches', text: '5 feet 7 inches' },
+            { id: '5 feet 8 inches', text: '5 feet 8 inches' },
+            { id: '5 feet 9 inches', text: '5 feet 9 inches' },
+            { id: '5 feet 10 inches', text: '5 feet 10 inches' },
+            { id: '5 feet 11 inches', text: '5 feet 11 inches' },
+            { id: '6 feet 0 inches', text: '6 feet 0 inches' },
+            { id: '6 feet 1 inch', text: '6 feet 1 inch' },
+            { id: '6 feet 2 inches', text: '6 feet 2 inches' },
+            { id: '6 feet 3 inches', text: '6 feet 3 inches' },
+            { id: '6 feet 4 inches', text: '6 feet 4 inches' },
+            { id: '6 feet 5 inches', text: '6 feet 5 inches' }
+        ]
+    }).val(localStorage.getItem('selectedHeight') || null).trigger('change'); // Retrieve value from localStorage if exists
+
+    // Initialize Select2 for Family/Subcaste dropdown
+    $('#family-subcaste').select2({
+        tags: true,
+        placeholder: "Select or type a family/subcaste",
+        allowClear: true,
+        data: [
+            { id: 'Syed ', text: 'Syed' },
+            { id: 'Pathan/Khan ', text: 'Pathan/Khan' },
+            { id: 'Shaik ', text: 'Shaik' },
+            { id: 'Reverted Muslims ', text: 'Reverted Muslims' },
+            { id: 'Maimun sait ', text: 'Maimun sait' },
+            { id: 'Baig ', text: 'Baig' }
+        ]
+    }).val(localStorage.getItem('selectedFamilySubcaste') || null).trigger('change'); // Retrieve value from localStorage if exists
+
+    // Initialize Select2 for Follow dropdown
+    $('#follow').select2({
+        tags: true,
+        placeholder: "Select or type follow options",
+        allowClear: true,
+        data: [
+            { id: 'Dargah Fateha ', text: 'Dargah Fateha' },
+            { id: 'Tabligh ', text: 'Tabligh' },
+            { id: 'Jamaat e Islam ', text: 'Jamaat e Islam' },
+            { id: 'Ahle hadees ', text: 'Ahle hadees' },
+            { id: 'Moderate Practising Muslims ', text: 'Moderate Practising Muslims' }
+        ]
+    }).val(localStorage.getItem('selectedFollow') ? localStorage.getItem('selectedFollow').split(',') : []).trigger('change'); // Retrieve and split values from localStorage
+
+    // Initialize Select2 for Education dropdown
+    $('#education').select2({
+        placeholder: "Select or type your education",
+        allowClear: true,
+        data: [
+            { id: 'Phd ', text: 'PhD' },
+            { id: 'Masters ', text: 'Masters' },
+            { id: 'Bachelors-degree ', text: 'Bachelor\'s Degree' },
+            { id: 'Diploma ', text: 'Diploma' },
+            { id: 'High school ', text: 'High School' }
+        ],
+        tags: true
+    }).val(localStorage.getItem('selectedEducation') ? localStorage.getItem('selectedEducation').split(',') : []).trigger('change'); // Retrieve and split values from localStorage
+
+    // Save selected values to localStorage whenever the user changes the selection
+    $('#height').on('change', function() {
+        localStorage.setItem('selectedHeight', $(this).val());
+    });
+
+    $('#family-subcaste').on('change', function() {
+        localStorage.setItem('selectedFamilySubcaste', $(this).val());
+    });
+
+    $('#follow').on('change', function() {
+        localStorage.setItem('selectedFollow', $(this).val().join(','));
+    });
+
+    $('#education').on('change', function() {
+        localStorage.setItem('selectedEducation', $(this).val().join(','));
+    });
+});
+
+        $(document).ready(function() {
+      // Initialize select2 with options
+      $('#partner-caste').select2({
+        tags: true,
+        placeholder: "Select or type partner castes",
+        allowClear: true,
+        data: [
+          { id: 'Syed/Shaik/Sharif/Khan/Baig', text: 'Syed/Shaik/Sharif/Khan/Baig' },
+          { id: 'Syed/Shaik/Sharif/Khan', text: 'Syed/Shaik/Sharif/Khan' },
+          { id: 'Shaik/Sharif/Khan/Baig', text: 'Shaik/Sharif/Khan/Baig' },
+          { id: 'Syed/Shaik/Sharif', text: 'Syed/Shaik/Sharif' },
+          { id: 'Shaik/Sharif/Khan', text: 'Shaik/Sharif/Khan' },
+          { id: 'Any Subcaste', text: 'Any Subcaste' }
+        ]
+      });
+      // Retrieve saved values from local storage
+      const savedValues = localStorage.getItem('selectedPartnerCaste');
+      if (savedValues) {
+        // Set the saved values in the dropdown and textbox
+        const selectedValuesArray = savedValues.split(',');
+        $('#partner-caste').val(selectedValuesArray).trigger('change');
+        $('#selectedValuesTextbox').val(selectedValuesArray.join(', '));
+      }
+      // Update local storage and textbox when dropdown selection changes
+      $('#partner-caste').on('change', function() {
+        const selectedValues = $(this).val() || []; // Default to empty array if no selection
+        // Save selected values to local storage
+        localStorage.setItem('selectedPartnerCaste', selectedValues.join(','));
+        // Update the textbox
+        $('#selectedValuesTextbox').val(selectedValues.join(', '));
+      });
+
+
+     
+    // Initialize select2 with options for Education
+    $('#partner-education').select2({
+      tags: true,
+      placeholder: "Select or type partner education",
+      allowClear: true,
+      data: [
+        { id: 'Educated-Working girl only', text: 'Educated; Working girl only' },
+        { id: 'Educated-Non-working only', text: 'Educated; Non-working only' },
+        { id: 'Educated-Working/Non-working girl', text: 'Educated; Working/Non-working girl' },
+        { id: 'Educated-Employed only', text: 'Educated; Employed only' },
+        { id: 'Educated-Business only', text: 'Educated; Business only' },
+        { id: 'Educated-Employed/Business', text: 'Educated; Employed/Business' }
+      ]
+    });
+
+    // Initialize select2 with options for Profession
+    $('#partner-profession').select2({
+      tags: true,
+      placeholder: "Select or type partner professions",
+      allowClear: true,
+      data: [
+        { id: 'Job only', text: 'Job only' },
+        { id: 'Business only', text: 'Business only' },
+        { id: 'Job/Business/Any', text: 'Job/Business/Any' },
+        { id: 'Working girl only', text: 'Working girl only' },
+        { id: 'Non-working homely girl', text: 'Non-working homely girl' },
+        { id: 'Working/Non-working', text: 'Working/Non-working' }
+      ]
+    });
+
+    // Retrieve saved values from localStorage for Education
+    const savedEducationValues = localStorage.getItem('selectedPartnerEducation');
+    if (savedEducationValues) {
+      const selectedEducationArray = savedEducationValues.split(',');
+      $('#partner-education').val(selectedEducationArray).trigger('change');
+      $('#selectedEducationTextbox').val(selectedEducationArray.join(', '));
+    }
+
+    // Retrieve saved values from localStorage for Profession
+    const savedProfessionValues = localStorage.getItem('selectedPartnerProfession');
+    if (savedProfessionValues) {
+      const selectedProfessionArray = savedProfessionValues.split(',');
+      $('#partner-profession').val(selectedProfessionArray).trigger('change');
+      $('#selectedProfessionTextbox').val(selectedProfessionArray.join(', '));
+    }
+
+    // Update localStorage and textbox when Education dropdown selection changes
+    $('#partner-education').on('change', function() {
+      const selectedEducationValues = $(this).val() || []; // Default to empty array if no selection
+      localStorage.setItem('selectedPartnerEducation', selectedEducationValues.join(','));
+      $('#selectedEducationTextbox').val(selectedEducationValues.join(', '));
+    });
+
+    // Update localStorage and textbox when Profession dropdown selection changes
+    $('#partner-profession').on('change', function() {
+      const selectedProfessionValues = $(this).val() || []; // Default to empty array if no selection
+      localStorage.setItem('selectedPartnerProfession', selectedProfessionValues.join(','));
+      $('#selectedProfessionTextbox').val(selectedProfessionValues.join(', '));
+    });
+  });
+  $(document).ready(function() {
+    // Personal Attributes
+    $('#personal-attributes').select2({
+        tags: true,
+        placeholder: "Select or type personal attributes",
+        allowClear: true,
+        data: [
+            { id: 'Fair, beautiful & Good-looking ', text: 'Fair, beautiful & Good-looking' },
+            { id: 'Hijabi-practising-muslim-only ', text: 'Hijabi practising muslim only' },
+            { id: 'Fair, Handsome & Good-looking ', text: 'Fair, Handsome & Good-looking' },
+            { id: 'Beard practising Muslim ', text: 'Beard practising Muslim' },
+            { id: 'Deendar homely girl ', text: 'Deendar homely girl' },
+            { id: 'Flexible to work/non-work ', text: 'Flexible to work/non-work' },
+            { id: 'Willing to work after marriage ', text: 'Willing to work after marriage' },
+            { id: 'No dowry demands ', text: 'No dowry demands' },
+            { id: 'No dowry seekers ', text: 'No dowry seekers' }
+        ]
+    });
+
+/* start of test */
+
+$(document).ready(function() {
+    // Initialize the Select2 plugin for Age dropdown
+    $('#age').select2({
+        tags: true,
+        placeholder: "Select or type an age",
+        allowClear: true,
+        data: [
+            { id: '18', text: '18' },
+            { id: '19', text: '19' },
+            { id: '20', text: '20' },
+            { id: '21', text: '21' },
+            { id: '22', text: '22' },
+            { id: '23', text: '23' },
+            { id: '24', text: '24' },
+            { id: '25', text: '25' }
+        ]
+    }).val(null).trigger('change'); // Clear any pre-selected value
+
+    // Initialize Select2 for Height
+    $('#height').select2({
+        tags: true,
+        placeholder: "Select or type a height",
+        allowClear: true,
+        data: [
+            { id: '4 feet 5 inches', text: '4 feet 5 inches' },
+            { id: '4 feet 6 inches', text: '4 feet 6 inches' },
+            { id: '4 feet 7 inches', text: '4 feet 7 inches' },
+            { id: '4 feet 8 inches', text: '4 feet 8 inches' },
+            { id: '4 feet 9 inches', text: '4 feet 9 inches' },
+            { id: '4 feet 10 inches', text: '4 feet 10 inches' },
+            { id: '4 feet 11 inches', text: '4 feet 11 inches' },
+            { id: '5 feet 0 inches', text: '5 feet 0 inches' },
+            { id: '5 feet 1 inch', text: '5 feet 1 inch' },
+            { id: '5 feet 2 inches', text: '5 feet 2 inches' },
+            { id: '5 feet 3 inches', text: '5 feet 3 inches' },
+            { id: '5 feet 4 inches', text: '5 feet 4 inches' },
+            { id: '5 feet 5 inches', text: '5 feet 5 inches' },
+            { id: '5 feet 6 inches', text: '5 feet 6 inches' },
+            { id: '5 feet 7 inches', text: '5 feet 7 inches' },
+            { id: '5 feet 8 inches', text: '5 feet 8 inches' },
+            { id: '5 feet 9 inches', text: '5 feet 9 inches' },
+            { id: '5 feet 10 inches', text: '5 feet 10 inches' },
+            { id: '5 feet 11 inches', text: '5 feet 11 inches' },
+            { id: '6 feet 0 inches', text: '6 feet 0 inches' },
+            { id: '6 feet 1 inch', text: '6 feet 1 inch' },
+            { id: '6 feet 2 inches', text: '6 feet 2 inches' },
+            { id: '6 feet 3 inches', text: '6 feet 3 inches' },
+            { id: '6 feet 4 inches', text: '6 feet 4 inches' },
+            { id: '6 feet 5 inches', text: '6 feet 5 inches' }
+        ]
+    }).val(localStorage.getItem('selectedHeight') || null).trigger('change'); // Retrieve value from localStorage if exists
+
+    // Initialize Select2 for Family/Subcaste dropdown
+    $('#family-subcaste').select2({
+        tags: true,
+        placeholder: "Select or type a family/subcaste",
+        allowClear: true,
+        data: [
+            { id: 'Syed ', text: 'Syed' },
+            { id: 'Pathan/Khan ', text: 'Pathan/Khan' },
+            { id: 'Shaik ', text: 'Shaik' },
+            { id: 'Reverted Muslims ', text: 'Reverted Muslims' },
+            { id: 'Maimun sait ', text: 'Maimun sait' },
+            { id: 'Baig ', text: 'Baig' }
+        ]
+    }).val(localStorage.getItem('selectedFamilySubcaste') || null).trigger('change'); // Retrieve value from localStorage if exists
+
+    // Initialize Select2 for Follow dropdown
+    $('#follow').select2({
+        tags: true,
+        placeholder: "Select or type follow options",
+        allowClear: true,
+        data: [
+            { id: 'Dargah Fateha ', text: 'Dargah Fateha' },
+            { id: 'Tabligh ', text: 'Tabligh' },
+            { id: 'Jamaat e Islam ', text: 'Jamaat e Islam' },
+            { id: 'Ahle hadees ', text: 'Ahle hadees' },
+            { id: 'Moderate Practising Muslims ', text: 'Moderate Practising Muslims' }
+        ]
+    }).val(localStorage.getItem('selectedFollow') ? localStorage.getItem('selectedFollow').split(',') : []).trigger('change'); // Retrieve and split values from localStorage
+
+    // Initialize Select2 for Education dropdown
+    $('#education').select2({
+        placeholder: "Select or type your education",
+        allowClear: true,
+        data: [
+            { id: 'Phd ', text: 'PhD' },
+            { id: 'Masters ', text: 'Masters' },
+            { id: 'Bachelors-degree ', text: 'Bachelor\'s Degree' },
+            { id: 'Diploma ', text: 'Diploma' },
+            { id: 'High school ', text: 'High School' }
+        ],
+        tags: true
+    }).val(localStorage.getItem('selectedEducation') ? localStorage.getItem('selectedEducation').split(',') : []).trigger('change'); // Retrieve and split values from localStorage
+
+    // Save selected values to localStorage whenever the user changes the selection
+    $('#height').on('change', function() {
+        localStorage.setItem('selectedHeight', $(this).val());
+    });
+
+    $('#family-subcaste').on('change', function() {
+        localStorage.setItem('selectedFamilySubcaste', $(this).val());
+    });
+
+    $('#follow').on('change', function() {
+        localStorage.setItem('selectedFollow', $(this).val().join(','));
+    });
+
+    $('#education').on('change', function() {
+        localStorage.setItem('selectedEducation', $(this).val().join(','));
+    });
+});
+
+        $(document).ready(function() {
+      // Initialize select2 with options
+      $('#partner-caste').select2({
+        tags: true,
+        placeholder: "Select or type partner castes",
+        allowClear: true,
+        data: [
+          { id: 'Syed/Shaik/Sharif/Khan/Baig', text: 'Syed/Shaik/Sharif/Khan/Baig' },
+          { id: 'Syed/Shaik/Sharif/Khan', text: 'Syed/Shaik/Sharif/Khan' },
+          { id: 'Shaik/Sharif/Khan/Baig', text: 'Shaik/Sharif/Khan/Baig' },
+          { id: 'Syed/Shaik/Sharif', text: 'Syed/Shaik/Sharif' },
+          { id: 'Shaik/Sharif/Khan', text: 'Shaik/Sharif/Khan' },
+          { id: 'Any Subcaste', text: 'Any Subcaste' }
+        ]
+      });
+      // Retrieve saved values from local storage
+      const savedValues = localStorage.getItem('selectedPartnerCaste');
+      if (savedValues) {
+        // Set the saved values in the dropdown and textbox
+        const selectedValuesArray = savedValues.split(',');
+        $('#partner-caste').val(selectedValuesArray).trigger('change');
+        $('#selectedValuesTextbox').val(selectedValuesArray.join(', '));
+      }
+      // Update local storage and textbox when dropdown selection changes
+      $('#partner-caste').on('change', function() {
+        const selectedValues = $(this).val() || []; // Default to empty array if no selection
+        // Save selected values to local storage
+        localStorage.setItem('selectedPartnerCaste', selectedValues.join(','));
+        // Update the textbox
+        $('#selectedValuesTextbox').val(selectedValues.join(', '));
+      });
+
+
+     
+    // Initialize select2 with options for Education
+    $('#partner-education').select2({
+      tags: true,
+      placeholder: "Select or type partner education",
+      allowClear: true,
+      data: [
+        { id: 'Educated-Working girl only', text: 'Educated; Working girl only' },
+        { id: 'Educated-Non-working only', text: 'Educated; Non-working only' },
+        { id: 'Educated-Working/Non-working girl', text: 'Educated; Working/Non-working girl' },
+        { id: 'Educated-Employed only', text: 'Educated; Employed only' },
+        { id: 'Educated-Business only', text: 'Educated; Business only' },
+        { id: 'Educated-Employed/Business', text: 'Educated; Employed/Business' }
+      ]
+    });
+
+    // Initialize select2 with options for Profession
+    $('#partner-profession').select2({
+      tags: true,
+      placeholder: "Select or type partner professions",
+      allowClear: true,
+      data: [
+        { id: 'Job only', text: 'Job only' },
+        { id: 'Business only', text: 'Business only' },
+        { id: 'Job/Business/Any', text: 'Job/Business/Any' },
+        { id: 'Working girl only', text: 'Working girl only' },
+        { id: 'Non-working homely girl', text: 'Non-working homely girl' },
+        { id: 'Working/Non-working', text: 'Working/Non-working' }
+      ]
+    });
+
+    // Retrieve saved values from localStorage for Education
+    const savedEducationValues = localStorage.getItem('selectedPartnerEducation');
+    if (savedEducationValues) {
+      const selectedEducationArray = savedEducationValues.split(',');
+      $('#partner-education').val(selectedEducationArray).trigger('change');
+      $('#selectedEducationTextbox').val(selectedEducationArray.join(', '));
+    }
+
+    // Retrieve saved values from localStorage for Profession
+    const savedProfessionValues = localStorage.getItem('selectedPartnerProfession');
+    if (savedProfessionValues) {
+      const selectedProfessionArray = savedProfessionValues.split(',');
+      $('#partner-profession').val(selectedProfessionArray).trigger('change');
+      $('#selectedProfessionTextbox').val(selectedProfessionArray.join(', '));
+    }
+
+    // Update localStorage and textbox when Education dropdown selection changes
+    $('#partner-education').on('change', function() {
+      const selectedEducationValues = $(this).val() || []; // Default to empty array if no selection
+      localStorage.setItem('selectedPartnerEducation', selectedEducationValues.join(','));
+      $('#selectedEducationTextbox').val(selectedEducationValues.join(', '));
+    });
+
+    // Update localStorage and textbox when Profession dropdown selection changes
+    $('#partner-profession').on('change', function() {
+      const selectedProfessionValues = $(this).val() || []; // Default to empty array if no selection
+      localStorage.setItem('selectedPartnerProfession', selectedProfessionValues.join(','));
+      $('#selectedProfessionTextbox').val(selectedProfessionValues.join(', '));
+    });
+  });
+  $(document).ready(function() {
+    // Personal Attributes
+    $('#personal-attributes').select2({
+        tags: true,
+        placeholder: "Select or type personal attributes",
+        allowClear: true,
+        data: [
+            { id: 'Fair, beautiful & Good-looking ', text: 'Fair, beautiful & Good-looking' },
+            { id: 'Hijabi-practising-muslim-only ', text: 'Hijabi practising muslim only' },
+            { id: 'Fair, Handsome & Good-looking ', text: 'Fair, Handsome & Good-looking' },
+            { id: 'Beard practising Muslim ', text: 'Beard practising Muslim' },
+            { id: 'Deendar homely girl ', text: 'Deendar homely girl' },
+            { id: 'Flexible to work/non-work ', text: 'Flexible to work/non-work' },
+            { id: 'Willing to work after marriage ', text: 'Willing to work after marriage' },
+            { id: 'No dowry demands ', text: 'No dowry demands' },
+            { id: 'No dowry seekers ', text: 'No dowry seekers' }
+        ]
+    });
+
+
+
+</script>
+</body>
+</html>

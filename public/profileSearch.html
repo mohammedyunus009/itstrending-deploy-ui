@@ -422,7 +422,7 @@
       <div class="footer_2 row">
         <div class="col-md-8">
        <div class="footer_2l">
-           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="https://hitechdesign.in/">Hitech Design</a></p>
+           <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
        </div>
       </div>
      <!-- <div class="col-md-4">
@@ -451,81 +451,157 @@
 </script>
 
 <script>
-// Helper function to get cookie value by name
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
+    function getCookie(name) {
+        let value = `; ${document.cookie}`;
+        let parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
 
-// Extract search criteria from URL parameters
-function getSearchCriteriaFromURL() {
+    function getSerialNoFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('serial_no');
+    }
+
+    function fetchProfiles(serialNo) {
+        const token = getCookie('token'); // Get the token from cookies
+        
+        if (!token) {
+            console.error('No token found in cookies.');
+            return;
+        }
+
+        fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token // Use the token from cookies
+            },
+            body: JSON.stringify({ field1: serialNo })
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => { throw err });
+            }
+            return response.json();
+        })
+        .then(data => {
+            const container = document.getElementById('profileContainer');
+            
+            if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
+                container.innerHTML = 'No profiles found for this serial number.';
+            } else {
+                displayProfiles(data.data.profile);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error.message);
+            alert(`Error: ${error.message}`); // Alert the user about the error
+        });
+    }
+
+    function displayProfiles(profiles) {
+        const container = document.getElementById('profileContainer');
+        container.innerHTML = ''; // Clear any existing content
+        profiles.forEach(profile => {
+            const card = document.createElement('div');
+            card.className = 'profile-card';
+            // Extract first image URL from the comma-separated string
+            const imagesArray = profile.images ? profile.images.split(',') : [];
+            const firstImage = imagesArray.length > 0 ? imagesArray[0].replace(/[{}"]/g, '').trim() : '';
+            // Create card content
+            card.innerHTML = `
+                <img src="${firstImage}" alt="Profile Image">
+                <p class="field5">${decodeURIComponent(profile.field5)}</p>
+                <p class="field1"><span>Sl. No: </span>${decodeURIComponent(profile.field1)}</p>
+                <p class="gender"><span>Gender: </span>${decodeURIComponent(profile.gender)}</p>
+                <p class="field10"><span>Profile Co-ordinator: </span>${decodeURIComponent(profile.field10)}</p>
+                <p class="field6"><span>Year of Birth: </span>${decodeURIComponent(profile.field6)}</p>
+                <p class="field7"><span>Address: </span>${decodeURIComponent(profile.field7)}</p>
+                <p class="field2"><span>Education: </span>${decodeURIComponent(profile.field2)}</p>
+                <p class="field3"><span>Marital Status: </span>${decodeURIComponent(profile.field3)}</p>
+                <p class="field8"><span>Family/Subcaste: </span>${decodeURIComponent(profile.field8)}</p>
+                <p class="field9"><span>Profession: </span>${decodeURIComponent(profile.field9)}</p>
+            `;
+            // Append card to container
+            container.appendChild(card);
+        });
+    }
+
+    // Fetch and display profiles based on serial_no from URL
+    const serialNo = getSerialNoFromURL();
+    if (serialNo) {
+        fetchProfiles(serialNo);
+    } else {
+        document.getElementById('profileContainer').innerHTML = 'No serial number provided.';
+    }
+</script>
+<script>
+  function getNameFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('name');
+  }
+
+  function fetchProfilesByName(name) {
+      const token = getCookie('token'); // Get the token from cookies
+      
+      if (!token) {
+          console.error('No token found in cookies.');
+          return;
+      }
+
+      fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token // Use the token from cookies
+          },
+          body: JSON.stringify({ field5: name })
+      })
+      .then(response => {
+          if (!response.ok) {
+              return response.json().then(err => { throw err });
+          }
+          return response.json();
+      })
+      .then(data => {
+          const container = document.getElementById('profileContainer');
+          
+          if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
+              container.innerHTML = 'No profiles found for this name.';
+          } else {
+              displayProfiles(data.data.profile);
+          }
+      })
+      .catch((error) => {
+          console.error('Error:', error.message);
+          alert(`Error: ${error.message}`); // Alert the user about the error
+      });
+  }
+
+  // Fetch and display profiles based on name from URL
+  const name = getNameFromURL();
+  if (name) {
+      fetchProfilesByName(name);
+  } else {
+      document.getElementById('profileContainer').innerHTML = 'No name provided.';
+  }
+</script>
+<script>
+  function getSearchCriteriaFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     return {
-        name: urlParams.get('name'),
-        location: urlParams.get('location'),
-        age: urlParams.get('age'),
         serialNo: urlParams.get('serial_no'),
-        education: urlParams.get('education'),
-        maritalStatus: urlParams.get('marital_status'),
-        follow: urlParams.get('follow'),
-        familySubcaste: urlParams.get('family_subcaste'),
-        profession: urlParams.get('profession'),
-        iscCoordinatorName: urlParams.get('isc_coordinator_name'),
-        profileStatus: urlParams.get('profile_status'),
-        height: urlParams.get('height'),
-        jobLocation: urlParams.get('job_location'),
-        gender: urlParams.get('gender'),
-        preferedFamilySubcaste: urlParams.get('prefered_family_subcaste'),
-        preferedEducation: urlParams.get('prefered_education'),
-        preferedProfession: urlParams.get('prefered_profession'),
-        preferedAge: urlParams.get('prefered_age'),
-        preferedHeight: urlParams.get('prefered_height'),
-        preferedPersonalAttributes: urlParams.get('prefered_personal_attributes'),
-        preferedFollow: urlParams.get('prefered_follow'),
-        preferedFamilyType: urlParams.get('prefered_family_type'),
-        preferedLocation: urlParams.get('prefered_location'),
-        preferedReligiousAttribute: urlParams.get('prefered_religious_attribute')
+        location: urlParams.get('location')
     };
 }
 
-// Function to fetch profiles from the API based on all criteria
-function fetchProfilesByCriteria(criteria) {
+function fetchProfilesByLocation(location) {
     const token = getCookie('token'); // Get the token from cookies
-
+    
     if (!token) {
         console.error('No token found in cookies.');
         return;
     }
-
-    // Prepare the body object with only the criteria that have values
-    const requestBody = {};
-    if (criteria.name) requestBody.field5 = criteria.name; // Assuming field5 corresponds to "name"
-    if (criteria.location) requestBody.field7 = criteria.location; // Assuming field7 corresponds to "location"
-    if (criteria.age) requestBody.field6 = criteria.age; // Assuming field6 corresponds to "age"
-    if (criteria.serialNo) requestBody.field1 = criteria.serialNo; // Assuming serial_no is also required
-    if (criteria.education) requestBody.field2 = criteria.education; // Assuming field2 corresponds to "education"
-    if (criteria.maritalStatus) requestBody.field3 = criteria.maritalStatus; // Assuming field3 corresponds to "marital status"
-    if (criteria.follow) requestBody.field4 = criteria.follow; // Assuming field4 corresponds to "follow"
-    if (criteria.familySubcaste) requestBody.field8 = criteria.familySubcaste; // Assuming field8 corresponds to "family/subcaste"
-    if (criteria.profession) requestBody.field9 = criteria.profession; // Assuming field9 corresponds to "profession"
-    if (criteria.iscCoordinatorName) requestBody.field10 = criteria.iscCoordinatorName; // Assuming field10 corresponds to "ISC Coordinator name"
-    if (criteria.profileStatus) requestBody.field11 = criteria.profileStatus; // Assuming field11 corresponds to "profile status"
-    if (criteria.height) requestBody.field14 = criteria.height; // Assuming field14 corresponds to "height"
-    if (criteria.jobLocation) requestBody.field19 = criteria.jobLocation; // Assuming field19 corresponds to "job location"
-    if (criteria.gender) requestBody.gender = criteria.gender; // Assuming gender is a separate field
-    if (criteria.preferedFamilySubcaste) requestBody.field26 = criteria.preferedFamilySubcaste; // Assuming field19 corresponds to "job location"
-    if (criteria.preferedEducation) requestBody.field27 = criteria.preferedEducation; 
-    if (criteria.preferedProfession) requestBody.field28 = criteria.preferedProfession; 
-    if (criteria.preferedAge) requestBody.field29 = criteria.preferedAge; 
-    if (criteria.preferedHeight) requestBody.field30 = criteria.preferedHeight; 
-    if (criteria.preferedPersonalAttributes) requestBody.field31 = criteria.preferedPersonalAttributes; 
-    if (criteria.preferedFollow) requestBody.field32 = criteria.preferedFollow; 
-    if (criteria.preferedFamilyType) requestBody.field33 = criteria.preferedFamilyType; 
-    if (criteria.preferedLocation) requestBody.field34 = criteria.preferedLocation; 
-    if (criteria.preferedReligiousAttribute) requestBody.field35 = criteria.preferedReligiousAttribute; 
-
-    console.log('Request Body:', requestBody); // For debugging
 
     fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
         method: 'POST',
@@ -533,7 +609,7 @@ function fetchProfilesByCriteria(criteria) {
             'Content-Type': 'application/json',
             'Authorization': token // Use the token from cookies
         },
-        body: JSON.stringify(requestBody)
+        body: JSON.stringify({ field7: location })
     })
     .then(response => {
         if (!response.ok) {
@@ -545,7 +621,7 @@ function fetchProfilesByCriteria(criteria) {
         const container = document.getElementById('profileContainer');
         
         if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
-            container.innerHTML = 'No profiles found matching the given criteria.';
+            container.innerHTML = 'No profiles found for this location.';
         } else {
             displayProfiles(data.data.profile);
         }
@@ -556,54 +632,68 @@ function fetchProfilesByCriteria(criteria) {
     });
 }
 
-// Function to display profiles in the container
-function displayProfiles(profiles) {
-    const container = document.getElementById('profileContainer');
-    container.innerHTML = ''; // Clear previous profiles
-
-    profiles.forEach(profile => {
-        const profileElement = document.createElement('div');
-        profileElement.classList.add('profile-card'); // Add your custom class for profile styling
-        profileElement.innerHTML = `
-            <h3>Name: ${profile.name || 'N/A'}</h3>
-            <p>Location: ${profile.location || 'N/A'}</p>
-            <p>Age: ${profile.age || 'N/A'}</p>
-            <p>Serial No: ${profile.serial_no || 'N/A'}</p>
-            <p>Education: ${profile.education || 'N/A'}</p>
-            <p>Marital Status: ${profile.marital_status || 'N/A'}</p>
-            <p>Follow: ${profile.follow || 'N/A'}</p>
-            <p>Family/Subcaste: ${profile.family_subcaste || 'N/A'}</p>
-            <p>Profession: ${profile.profession || 'N/A'}</p>
-            <p>ISC Coordinator Name: ${profile.isc_coordinator_name || 'N/A'}</p>
-            <p>Profile Status: ${profile.profile_status || 'N/A'}</p>
-            <p>Height: ${profile.height || 'N/A'}</p>
-            <p>Job Location: ${profile.job_location || 'N/A'}</p>
-            <p>Gender: ${profile.gender || 'N/A'}</p>
-            <p>Prefered Family/Subcaste: ${profile.prefered_family_subcaste || 'N/A'}</p>
-            <p>Preferred Education: ${profile.prefered_education || 'N/A'}</p>
-            <p>Prefered Profession: ${profile.prefered_profession || 'N/A'}</p>
-            <p>Prefered Age: ${profile.prefered_age || 'N/A'}</p>
-            <p>Prefered Height: ${profile.prefered_height || 'N/A'}</p>
-            <p>Prefered Personal_attributes: ${profile.prefered_personal_attributes || 'N/A'}</p>
-            <p>Prefered Follow: ${profile.prefered_follow || 'N/A'}</p>
-            <p>Prefered Family type: ${profile.prefered_family_type || 'N/A'}</p>
-            <p>Prefered Location: ${profile.prefered_location || 'N/A'}</p>
-            <p>Prefered Religious attribute: ${profile.prefered_religious_attribute || 'N/A'}</p>
-        `;
-        container.appendChild(profileElement);
-    });
-}
-
-// Extract criteria from URL and fetch profiles based on it
+// Check for serial number or location in URL
 const searchCriteria = getSearchCriteriaFromURL();
-if (searchCriteria.name || searchCriteria.location || searchCriteria.age || searchCriteria.serialNo || searchCriteria.education || searchCriteria.maritalStatus || searchCriteria.follow || searchCriteria.familySubcaste || searchCriteria.profession || searchCriteria.iscCoordinatorName || searchCriteria.profileStatus || searchCriteria.height || searchCriteria.jobLocation || searchCriteria.gender || searchCriteria.preferedFamilySubcaste || searchCriteria.preferedEducation || searchCriteria.preferedProfession || searchCriteria.preferedAge || searchCriteria.preferedHeight || searchCriteria.preferedPersonalAttributes || searchCriteria.preferedFollow || searchCriteria.preferedFamilyType || searchCriteria.preferedLocation || searchCriteria.preferedReligiousAttribute) {
-    fetchProfilesByCriteria(searchCriteria);
+if (searchCriteria.serialNo) {
+    fetchProfiles(searchCriteria.serialNo);
+} else if (searchCriteria.location) {
+    fetchProfilesByLocation(searchCriteria.location);
 } else {
     document.getElementById('profileContainer').innerHTML = 'No search criteria provided.';
 }
+
 </script>
+<script>
+  function getAgeFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('age');
+  }
 
+  function fetchProfilesByAge(age) {
+      const token = getCookie('token'); // Get the token from cookies
+      
+      if (!token) {
+          console.error('No token found in cookies.');
+          return;
+      }
 
+      fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token // Use the token from cookies
+          },
+          body: JSON.stringify({ field6: age })
+      })
+      .then(response => {
+          if (!response.ok) {
+              return response.json().then(err => { throw err });
+          }
+          return response.json();
+      })
+      .then(data => {
+          const container = document.getElementById('profileContainer');
+          
+          if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
+              container.innerHTML = 'No profiles found for this age.';
+          } else {
+              displayProfiles(data.data.profile);
+          }
+      })
+      .catch((error) => {
+          console.error('Error:', error.message);
+          alert(`Error: ${error.message}`); // Alert the user about the error
+      });
+  }
+
+  // Fetch and display profiles based on age from URL
+  const age = getAgeFromURL();
+  if (age) {
+      fetchProfilesByAge(age);
+  } else {
+      document.getElementById('profileContainer').innerHTML = 'No age provided.';
+  }
+</script>
 
 <script>
     // Function to create and display profile cards
@@ -676,35 +766,5 @@ if (data && data.profile) {
 }
 
   </script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-// Function to get a specific cookie by name
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) {
-    return decodeURIComponent(parts.pop().split(';').shift()); // Decode the cookie value
-  }
-  return null;
-}
-
-// Check the email cookie
-const userEmail = getCookie('email');
-
-// Redirect based on the cookie value
-const modifyProfileLink = document.querySelector("a[href='modifyprofile.html']");
-if (modifyProfileLink) {
-  modifyProfileLink.addEventListener('click', function (e) {
-    e.preventDefault(); // Prevent default navigation
-    if (userEmail === 'iscadmin@gmail.com') {
-      window.location.href = 'dashboard.html'; // Redirect to dashboard
-    } else {
-      window.location.href = 'modifyprofile.html'; // Redirect to modify profile
-    }
-  });
-}
-});
-
-</script>
 </body>
 </html>
