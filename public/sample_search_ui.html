@@ -50,7 +50,7 @@
 
         <div class="filter-container">
             <label for="custom-height">Height:</label>
-            <select id="custom-height" name="field30"></select>
+            <select id="custom-height" name="field14"></select>
         </div>
 
         <div class="filter-container">
@@ -75,16 +75,16 @@
 
         <div class="filter-container">
             <label for="partner-location">Location:</label>
-            <select id="partner-location" name="field34" multiple></select>
+            <select id="partner-location" name="field7" multiple></select>
         </div>
         <div class="filter-container">
           <label for="family-subcaste">Family or Subcaste:</label>
-          <select id="family-subcaste" name="field8" multiple></select>
+          <select id="family-subcaste" name="field4" multiple></select>
       </div>
        
 
         <div class="text-center">
-            <button class="btn btn-primary" onclick="filterProfiles()">Search</button>
+            <button class="btn btn-primary" onclick="construck_url_redirect()">Search</button>
         </div>
     </div>
 
@@ -93,27 +93,363 @@
             /** ✅ Populate Year of Birth **/
             let yearDropdown = $("#yearOfBirth");
             yearDropdown.append('<option value="">Select Year</option>');
-            for (let year = 2024; year >= 1950; year--) {
-                yearDropdown.append(`<option value="${year}">${year} - Age ${2024 - year}</option>`);
+            for (let year = 2008; year >= 1980; year--) {
+                yearDropdown.append(`<option value="${year}-Age-${2025 - year -1}">${year}-Age-${2025 - year -1}</option>`);
             }
             yearDropdown.select2({ placeholder: "Select Year", allowClear: true });
 
             /** ✅ Populate Height Dropdown (Display Feet & Inches, Store as Decimal) **/
             let heightDropdown = $("#custom-height");
             heightDropdown.append('<option value="">Select Height</option>');
-            for (let feet = 4; feet <= 7; feet++) {
+            for (let feet = 5; feet <= 7; feet++) {
                 for (let inches = 0; inches < 12; inches += 1) {
                     let displayHeight = `${feet} feet ${inches} inches`;
-                    let storedHeight = `${feet}.${inches}`;
+                    let storedHeight = `${feet} feet ${inches} inches`;
                     heightDropdown.append(`<option value="${storedHeight}">${displayHeight}</option>`);
                 }
             }
             heightDropdown.select2({ placeholder: "Select Height", allowClear: true });
 
             /** ✅ Populate Other Dropdowns **/
-            const educationOptions = ['PhD', 'Masters', 'Bachelors', 'Diploma', 'High School'];
-            const professionOptions = ['Doctor', 'Engineer', 'Teacher', 'Business', 'Government Employee'];
-            const locationOptions = ['Delhi', 'Mumbai', 'Bengaluru', 'Hyderabad', 'Chennai', 'Kolkata'];
+            const educationOptions = [
+    'B Arch, M.L.A',
+    'B Architecture',
+    'BA',
+    'BA discontinue',
+    'BA, BED',
+    'BA, BED, MA',
+    'BA, Diploma in Skin & Hair',
+    'BA, MA',
+    'BA, Pursuing Arabic Course',
+    'BA,BED.MA',
+    'BBA',
+    'BBM',
+    'BBM, MBA',
+    'BCA',
+    'BCOM',
+    'BCOM, LLB',
+    'BCOM, MBA',
+    'BCOM, PGDM',
+    'BDS',
+    'BE',
+    'BE CIVIL',
+    'BE Civil',
+    'BE Mechanical',
+    'BE, LLB',
+    'BE, MBA',
+    'BE, MS',
+    'BE, MSC',
+    'BSC',
+    'BTECH',
+    'BUMS',
+    'Bachelor - Islamic Studies',
+    'Bachelor in VOC',
+    'CA, MBA',
+    'Diploma',
+    'Diploma in Pharmacy',
+    'Graduate',
+    'IGC Health & Safety',
+    'INTER',
+    'ITI',
+    'Inter',
+    'MA',
+    'MA, BeD',
+    'MBA',
+    'MBBS',
+    'MBBS, MD',
+    'MBBS, Preparing for PG',
+    'MBBS, Pursuing MS',
+    'MCA',
+    'MCOM',
+    'MCOM, Diploma in Architect',
+    'MSC',
+    'MSC Pursuing',
+    'MTECH',
+    'Master Of Science, US',
+    'Master of Science',
+    'Masters',
+    'Masters in Clinical Neurology',
+    'Masters in Finance',
+    'PGDM',
+    'PU',
+    'Pursuing Degree 3rd year',
+    'SSLC',
+    'SSLC & Arabic course',
+    'SSLC / MADARASA',
+    'Syed/Shaik/Sharif'];
+            const professionOptions = [
+    'Account Manager',
+    'Accountant',
+    'Accounts & Finance Head',
+    'Accounts Executive',
+    'Advisory Solution',
+    'Advocate',
+    'Aesthetic',
+    'Analytics Consultant',
+    'Appliance Technician',
+    'Application Developer',
+    'Assistant Engineer',
+    'Assistant Manager',
+    'Assistant Professor',
+    'Associate',
+    'Associate Software Engineer',
+    'Associate professor',
+    'Asst Operation Manager',
+    'Audit Analyst',
+    'Audit Associate',
+    'Auditor',
+    'Automation Engineer',
+    'Bank Employee',
+    'Brand Management',
+    'Business',
+    'Business Analyst',
+    'Business Developers',
+    'Business Development',
+    'Business Distributor',
+    'Business Entrepreneur',
+    'Business Executive',
+    'Business Manager',
+    'Business Merchant',
+    'Business Owner',
+    'Business Proprietor',
+    'Business VP',
+    'Buying & Merchandising',
+    'CSR',
+    'Chartered Engineer',
+    'Civil Construction',
+    'Civil Contractor',
+    'Civil Engineer - KUDA & CMC',
+    'Clinical Nutritionist',
+    'Clinical Pharmacist',
+    'Clinical Research',
+    'Clinical Territory Associate',
+    'Coding Instructor',
+    'Consultant',
+    'Credit Controller',
+    'DBM',
+    'Data Engineer',
+    'Data Operation',
+    'Data Scientist',
+    'Database Admin',
+    'Database Administrator',
+    'Dental Doctor',
+    'Dental Surgeon',
+    'Dentist',
+    'Dentist & Consultant',
+    'Deputy Manager',
+    'Design Engineer',
+    'Designer -LED Sign Board',
+    'Devops Engineer',
+    'Digital Analyst',
+    'Director',
+    'Distributor Agency',
+    'Doctor',
+    'ER Resident Doctor',
+    'Editor',
+    'Emergency physician',
+    'Employed',
+    'Engineer',
+    'Engineer, Govt Job',
+    'Entrepreneur',
+    'Estimation Engineer',
+    'FC Officer',
+    'Family Business',
+    'Finance & Accounts',
+    'Finance Head & Consultancy Proprietor',
+    'Finance Manager',
+    'First Division Assistant',
+    'Graphic Designer',
+    'HR',
+    'HVAC design Engineer',
+    'Head Reporter',
+    'High School Educator',
+    'IT Service Engineer',
+    'Incident Manager',
+    'Infrastructure Analyst',
+    'Interior Architect',
+    'Interior Designer',
+    'Job Employed',
+    'Junior Doctor',
+    'KG Teacher',
+    'L&D Manager',
+    'Lab Technician',
+    'Landscape Architect',
+    'Lawyer',
+    'Lead Engineer',
+    'Lead Specialist HR Ops',
+    'Leather Business',
+    'Lecturer',
+    'Make up Artist',
+    'Makeup Artist',
+    'Manager',
+    'Manager (Government Job)',
+    'Managing Director (Dimension Engr)',
+    'Material Expeditioner',
+    'Media Planner',
+    'Medical Consultant',
+    'N/A',
+    'NON-WORKING',
+    'Non Working',
+    'Non-working',
+    'OEM manufacturing firm',
+    'Online Tutor',
+    'Operation Analyst',
+    'Operation Site Manager',
+    'Own Garage',
+    'Own business',
+    'PWD Contractor',
+    'Pharmacist',
+    'Power tools Business',
+    'Preparing for Govt Exam',
+    'Preparing for NEET',
+    'Process Engineer',
+    'Procurement officer',
+    'Production Head',
+    'Program Manager',
+    'Project Director',
+    'Project Engineer',
+    'Pursuing DNBS',
+    'Pursuing MA',
+    'QA Engineer',
+    'Quality Assurance Analyst',
+    'Quality Executive',
+    'Regional HR Manager',
+    'Registered Dietician',
+    'Relationship Manager',
+    'Reporting Analyst',
+    'Russell Finex Ltd',
+    'SAP ABAP Consultant',
+    'SAP Consultant',
+    'SME',
+    'SR Executive',
+    'SR Software Developer',
+    'SW Consultant',
+    'Safety Officer',
+    'Sales Manager',
+    'Sales Professional',
+    'Shift Manager',
+    'Shipping Dispatcher',
+    'Software Analyst',
+    'Software Engineer',
+    'Specialist (Finance & Accounts)',
+    'Sr Advisor',
+    'Sr Analyst',
+    'Sr Associate',
+    'Sr CAE Stress Engineer',
+    'Sr Compliance Associate',
+    'Sr Consultant',
+    'Sr Dermatologist',
+    'Sr Enterprise Analyst',
+    'Sr Manager',
+    'Sr Nutritionist',
+    'Sr Pharmacist',
+    'Sr Quality Analyst',
+    'Sr Resident Doctor',
+    'Sr SOC Analyst',
+    'Sr Sales Representative',
+    'Sr Software Engineer',
+    'Sr Tax Analyst',
+    'Storage Engineer',
+    'Store Manager',
+    'Structural Engineer',
+    'Student',
+    'Studying',
+    'Supervisor',
+    'System Analyst',
+    'Teacher',
+    'Team Lead',
+    'Team Lead Analyst',
+    'Team Leader',
+    'Tech Specialist',
+    'Tech Support',
+    'Technical Consultant',
+    'Technical Supervisor',
+    'Telecom Business',
+    'Territory Sales Manager',
+    'Timber Merchant',
+    'Tutor',
+    'VRO (Govt Job)',
+    'Wholesale Business',
+    'Wholesale Flower Merchant',
+    'Working',
+    'Working (WFH)',
+    'Writer'
+];
+            const locationOptions = [
+    'Ananthapur, AP',
+    'Badavanhalli, Tumkur Dist',
+    'Bagalkot',
+    'Ballari',
+    'Bandit 6',
+    'Bangalore',
+    'Bangarpet',
+    'Belgaum',
+    'Bellary',
+    'Bethamangala, Kolar district',
+    'Bijapur',
+    'Canada (Native Mysore)',
+    'Channapatna',
+    'Chennai',
+    'Chennai / Bangalore',
+    'Chintamani, Kolar Dist',
+    'Chitradurga',
+    'Dakanakotai, Tamilnadu',
+    'Davangere',
+    'Doddabalapur, Karnataka',
+    'Doddavalagamadi, Kolar Dist',
+    'Gangavathi, Koppal Dist',
+    'Gauribidanur',
+    'Goa, Karnataka',
+    'Gulbarga',
+    'Hassan',
+    'Heggere, Tumkur (T)',
+    'Hosapete, Karnataka',
+    'Hoskote',
+    'Hubli',
+    'Hyderabad',
+    'Jeddah, Saudi/Bangalore',
+    'KGF',
+    'Kadapa, Andhra',
+    'Kanakapura',
+    'Kolar',
+    'Kolkata',
+    'Kunigal',
+    'Kurnool, Andhra',
+    'London (Bangalore Native)',
+    'London/Bangalore',
+    'Madanapalli',
+    'Madanapalli, Andhra',
+    'Malur (Own house)',
+    'Mandya',
+    'Mulbagal',
+    'Mumbai',
+    'Mumbai, India',
+    'Mysore',
+    'Nellore',
+    'Odugathur, Vellore',
+    'Palamaner',
+    'Piler (200km from Bangalore)',
+    'Punganur, Andhra',
+    'Raichur',
+    'Ramnagar',
+    'Salem, TN',
+    'Sangli, Karnataka',
+    'Shimoga (own house)',
+    'Solapur',
+    'Srinivaspur, Kolar Dist',
+    'T Nagar, Mysore Dist',
+    'Tayalur, Kolar district',
+    'Triveni Nagar, Mysore Dist',
+    'Tumkur',
+    'Tumkur, Turuvakere',
+    'USA',
+    'USA/Oman, Native of Gulbarga',
+    'Uthiramerur, Tamilnadu',
+    'Vaniyambadi',
+    'Vempalli, Kadapa Dist, Andhra',
+    'Vijayawada, Andhra',
+    'Vizag, Andhra'
+];
             const subcasteOptions = ['Syed', 'Pathan/Khan', 'Shaik', 'Reverted Muslims', 'Maimun sait', 'Baig'];
 
             /** ✅ Populate Select2 Dropdowns **/
@@ -130,48 +466,62 @@
             let parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
+        function construck_url_redirect() {
+            const params = new URLSearchParams();
+            
+            // Handle gender (multiple)
+            const genderInputs = document.querySelectorAll('input[name="gender"]:checked');
+            genderInputs.forEach(input => params.append('gender', input.value));
 
-        function filterProfiles() {
-            const gender = document.querySelector('input[name="gender"]:checked')?.value;
-            const yearOfBirth = document.getElementById('yearOfBirth')?.value.trim();
-            const height = document.getElementById('custom-height')?.value.trim();
-            const maritalStatus = document.getElementById('marital-status')?.value.trim();
+            // Handle multiple values
             const education = $('#education').val() || [];
-            const profession = $('#profession').val() || [];
-            const location = $('#partner-location').val() || [];
-           
-            const familySubcaste = $('#family-subcaste').val() || [];
-
-            let confirmationMessage = `You have entered the following details:\n\n` +
-                                      `Gender: ${gender || "Not selected"}\n` +
-                                      `Year of Birth: ${yearOfBirth || "Not selected"}\n` +
-                                      `Height: ${height || "Not selected"} (Stored as decimal: ${height})\n` +
-                                      `Marital Status: ${maritalStatus || "Not selected"}\n` +
-                                      `Education: ${education.length > 0 ? education.join(', ') : "Not selected"}\n` +
-                                      `Profession: ${profession.length > 0 ? profession.join(', ') : "Not selected"}\n` +
-                                      `Location: ${location.length > 0 ? location.join(', ') : "Not selected"}\n` +
-                                      `Family Subcaste: ${familySubcaste || "Not selected"}\n\n` +
-                                      `Do you want to proceed with the search?`;
-
-            if (!confirm(confirmationMessage)) return;
-
-            const token = getCookie('token');
-
-            if (!token) {
-                alert('Authentication failed. Please login.');
-                return;
+            if (education.length > 0) {
+                education.forEach(edu => params.append('field2', edu));
             }
 
-            const bodyData = { gender, field6: yearOfBirth, field30: height, field3: maritalStatus, field2: education, field9: profession, field34: location, field8: familySubcaste };
+            const maritalStatus = document.getElementById('marital-status')?.value;
+            if (maritalStatus) {
+                maritalStatus.split(',').forEach(status => {
+                    if (status.trim()) params.append('filed3', status.trim());
+                });
+            }
 
-            fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Authorization': token },
-                body: JSON.stringify(bodyData)
-            }).then(response => response.json())
-              .then(data => alert('Search successful!'))
-              .catch(error => alert(`Error: ${error.message}`));
+            const subcaste = $('#family-subcaste').val() || [];
+            if (subcaste.length > 0) {
+                subcaste.forEach(sub => params.append('field4', sub));
+            }
+
+            // Handle yearOfBirth (multiple)
+            const yearOfBirth = document.getElementById('yearOfBirth')?.value.trim();
+            if (yearOfBirth) {
+                yearOfBirth.split(',').forEach(year => {
+                    if (year.trim()) params.append('field6', year.trim());
+                });
+            }
+            const location = $('#partner-location').val() || [];
+            if (location.length > 0) {
+                location.forEach(loc => params.append('field7', loc));
+            }
+            
+            // Handle profession (already multiple from select)
+            const profession = $('#profession').val() || [];
+            if (profession.length > 0) {
+                profession.forEach(prof => params.append('field9', prof));
+            }
+
+            // Handle height (multiple)
+            const height = document.getElementById('custom-height')?.value.trim();
+            if (height) {
+                height.split(',').forEach(h => {
+                    if (h.trim()) params.append('field14', h.trim());
+                });
+            }
+            
+            // Redirect with constructed query string
+            const queryString = params.toString();
+            window.location.href = `profileSearch_latest.html${queryString ? '?' + queryString : ''}`;
         }
+
     </script>
 </body>
 </html>
