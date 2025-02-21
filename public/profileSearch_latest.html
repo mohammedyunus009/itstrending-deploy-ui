@@ -457,48 +457,6 @@
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    function getSerialNoFromURL() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('serial_no');
-    }
-
-    function fetchProfiles(serialNo) {
-        const token = getCookie('token'); // Get the token from cookies
-        
-        if (!token) {
-            console.error('No token found in cookies.');
-            return;
-        }
-
-        fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token // Use the token from cookies
-            },
-            body: JSON.stringify({ field1: serialNo })
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(err => { throw err });
-            }
-            return response.json();
-        })
-        .then(data => {
-            const container = document.getElementById('profileContainer');
-            
-            if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
-                container.innerHTML = 'No profiles found for this serial number.';
-            } else {
-                displayProfiles(data.data.profile);
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error.message);
-            alert(`Error: ${error.message}`); // Alert the user about the error
-        });
-    }
-
     function displayProfiles(profiles) {
         const container = document.getElementById('profileContainer');
         container.innerHTML = ''; // Clear any existing content
@@ -587,29 +545,58 @@
   }
 </script>
 <script>
-  function getSearchCriteriaFromURL() {
+function getSearchCriteriaFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    return {
-        serialNo: urlParams.get('serial_no'),
-        location: urlParams.get('location')
-    };
+    const criteria = {};
+    
+    // Get single values
+    const gender = urlParams.getAll('gender');
+    if (gender.length > 0) criteria.gender = gender;
+
+    const education = urlParams.getAll('field2');
+    if (education.length > 0) criteria.field2 = education;
+    
+    const maritalStatus = urlParams.getAll('field3');
+    if (maritalStatus.length > 0) criteria.field3 = maritalStatus;
+    
+    const subcaste = urlParams.getAll('field4');
+    if (subcaste.length > 0) criteria.field4 = subcaste;
+
+    const yearOfBirth = urlParams.getAll('field6');
+    if (yearOfBirth.length > 0) criteria.field6 = yearOfBirth;
+    
+    const location = urlParams.getAll('field7');
+    if (location.length > 0) criteria.field7 = location;
+   
+    // Get multiple values
+    const profession = urlParams.getAll('field9');
+    if (profession.length > 0) criteria.field9 = profession;
+
+    const height = urlParams.getAll('field14');
+    if (height.length > 0) criteria.field14 = height;
+
+    console.log(criteria);
+    return criteria;
 }
 
-function fetchProfilesByLocation(location) {
+
+function fetchProfilesbyoptionalfields() {
     const token = getCookie('token'); // Get the token from cookies
     
     if (!token) {
         console.error('No token found in cookies.');
         return;
     }
+    const searchCriteri = getSearchCriteriaFromURL();
+    console.log(searchCriteri);
 
-    fetch('https://api.itstrending.in:5000/api/v1/profiles/search_multiple', {
+    fetch('https://api.itstrending.in:5000/api/v1/profiles/search_by_fields', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': token // Use the token from cookies
         },
-        body: JSON.stringify({ field7: location })
+        body: JSON.stringify(searchCriteri)
     })
     .then(response => {
         if (!response.ok) {
@@ -619,9 +606,9 @@ function fetchProfilesByLocation(location) {
     })
     .then(data => {
         const container = document.getElementById('profileContainer');
-        
+        console.log(data);
         if (!data.data || !data.data.profile || !Array.isArray(data.data.profile) || data.data.profile.length === 0) {
-            container.innerHTML = 'No profiles found for this location.';
+            container.innerHTML = 'No profiles found for these criterias.';
         } else {
             displayProfiles(data.data.profile);
         }
@@ -631,7 +618,7 @@ function fetchProfilesByLocation(location) {
         alert(`Error: ${error.message}`); // Alert the user about the error
     });
 }
-
+const locaaaa = fetchProfilesbyoptionalfields();
 // Check for serial number or location in URL
 const searchCriteria = getSearchCriteriaFromURL();
 if (searchCriteria.serialNo) {
@@ -691,7 +678,7 @@ if (searchCriteria.serialNo) {
   if (age) {
       fetchProfilesByAge(age);
   } else {
-      document.getElementById('profileContainer').innerHTML = 'No age provided.';
+      document.getElementById('profileContainer').innerHTML = 'Searching....';
   }
 </script>
 
@@ -750,20 +737,20 @@ if (searchCriteria.serialNo) {
 }
 
 
-// Retrieve data from session storage
-const data = JSON.parse(sessionStorage.getItem('profileData'));
-if (data && data.profile) {
-  console.log('Profile array:', data.profile);
-  // Display profiles if data is available
-  if (data.profile.length > 0) {
-    displayProfiles(data.profile);
-  } else {
-    document.getElementById('profileContainer').innerHTML = '<p>No profiles found.</p>';
-  }
-} else {
-  console.log('No profile data found in session storage.');
-  document.getElementById('profileContainer').innerHTML = '<p>No profiles found.</p>';
-}
+// // Retrieve data from session storage
+// const data = JSON.parse(sessionStorage.getItem('profileData'));
+// if (data && data.profile) {
+//   console.log('Profile array:', data.profile);
+//   // Display profiles if data is available
+//   if (data.profile.length > 0) {
+//     displayProfiles(data.profile);
+//   } else {
+//     document.getElementById('profileContainer').innerHTML = '<p>No profiles found.</p>';
+//   }
+// } else {
+//   console.log('No profile data found in session storage.');
+//   document.getElementById('profileContainer').innerHTML = '<p>No profiles found.</p>';
+// }
 
   </script>
 </body>
