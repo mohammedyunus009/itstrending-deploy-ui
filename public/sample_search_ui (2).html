@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Matrimonial</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	 <link href="fonts/css/fontawesome.min.css" rel="stylesheet" >
+	<link href="fonts/css/brands.min.css" rel="stylesheet" />
+     <link href="fonts/css/solid.min.css" rel="stylesheet" />
+        <link href="css/global.css" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+    <!-- Bootstrap & Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
+<!-- Bootstrap Bundle (Includes Popper.js for dropdowns) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- jQuery & Select2 JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+
+
+
+<!-- ✅ JavaScript to Initialize Select2 -->
+<script>
+    $(document).ready(function() {
+        $(".select2").select2(); // Initialize Select2 for styling
+    });
+</script>
+
+
+
+
+<style>  
+ /* Top Bar */
+#top {
+    padding: 5px 0;
+    background-color: #5c0951;
+    color: white;
+}
+
+/* Flexbox container for proper alignment */
+.top_1 {
+    display: flex;
+    justify-content: space-between; /* Push left & right */
+    align-items: center;
+    flex-wrap: wrap; /* Ensures proper layout on smaller screens */
+}
+
+/* Contact Details - Fully Left */
+.top_1l {
+    display: flex;
+    justify-content: flex-start; /* Aligns to the left */
+    align-items: center;
+}
+
+.top_1l ul {
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.top_1l ul li {
+    font-size: 14px;
+    color: white;
+}
+
+/* Social Media Icons - Fully Right */
+.top_1r {
+    display: flex;
+    justify-content: flex-end; /* Aligns to the right */
+    align-items: center;
+}
+
+.top_1r ul {
+    display: flex;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.top_1r ul li {
+    list-style: none;
+}
+
+.top_1r ul li a {
+    color: white;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.top_1r ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #5c0951 !important;
+    padding: 10px 20px; /* Improved spacing */
+}
+
+/* Navbar Logo */
+.navbar-brand img {
+    max-height: 100px; /* Adjusted for better fit */
+    width: auto; /* Ensures the aspect ratio is maintained */
+}
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Navbar Item Padding */
+.navbar-nav .nav-item {
+    padding: 0 10px;
+}
+
+/* Hover Effect */
+.navbar-nav .nav-item:hover .nav-link {
+    color: #ffcc00 !important;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    background-color: #5c0951;
+    border: none;
+    margin-top: 10px; /* Adds space between navbar and dropdown */
+    z-index: 1050; /* Ensures it appears above other elements */
+}
+
+/* Dropdown Menu Links */
+.dropdown-menu a {
+    color: white;
+    padding: 10px 15px;
+    display: block;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.dropdown-menu a:hover {
+    background-color: #ffcc00;
+    color: black;
+}
+
+/* Ensure Dropdown Works on Hover (Optional) */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Social Icons */
+.top_1r ul {
+    display: flex;
+    gap: 10px;
+    padding: 0; /* Ensures no extra padding */
+    margin: 0; /* Removes unnecessary margin */
+}
+
+.top_1r ul li {
+    list-style: none;
+}
+
+.top_1r ul li a {
+    color: white;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Social Icons Hover Effect */
+.top_1r ul li a:hover {
+    color: #ffcc00;
+} 
+
+
+
+
+
+
+/* ✅ Gender Selection Layout */
+.gender-selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+}
+
+/* ✅ Hide Default Radio Buttons */
+.gender-option input[type="radio"] {
+    display: none;
+}
+
+/* ✅ Gender Option Styling */
+.gender-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* ✅ Image Styling */
+.gender-option img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    border: 3px solid transparent;  /* Default border hidden */
+    transition: transform 0.3s, border 0.3s;
+}
+
+/* ✅ Hover Effect */
+.gender-option:hover img {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* ✅ Selected Effect (Border Highlight) */
+.gender-option input[type="radio"]:checked + img {
+    border: 4px solid #5c0951;  /* Purple border when selected */
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(92, 9, 81, 0.5);
+}
+
+
+
+
+/* ✅ Remove White Line Issue */
+body, html {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: #fff;
+}
+
+/* ✅ Centered Container */
+.container-xl {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+/* ✅ Header Bar */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: black;
+    color: #ccc;
+    padding: 10px 0;
+    position: relative;
+}
+
+.header .back-button {
+    position: absolute;
+    left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.header .title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* ✅ Centering Form Container */
+.container.mt-4 {
+    max-width: 600px; /* Optimized for better centering */
+    margin: auto;
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Filter Box - Centered */
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Centered Inputs & Dropdowns */
+.filter-container select,
+.filter-container input {
+    width: 100%;  /* Full width */
+    max-width: 400px;  /* Set max width for consistency */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+/* ✅ Marital Status Dropdown Styling */
+#marital-status {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* ✅ Proper Spacing for Labels */
+.form-label {
+    
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* ✅ Fix for Select2 Dropdown */
+.select2-container {
+    width: 100% !important;
+}
+
+/* ✅ Centered Submit Button */
+.submit-button-wrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-button {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #5c0951;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.submit-button:hover {
+    background-color: #3d0737;
+}
+
+/* ✅ Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .container.mt-4 {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .filter-container select,
+    .filter-container input,
+    #marital-status {
+        max-width: 100%;
+    }
+}
+
+
+
+
+       
+#submitButton {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #5c0951;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+#submitButton:hover {
+    background-color: #3d0737;
+}
+        
+       /* ✅ Footer Styling */
+#footer {
+    background-color: #4c034c; /* Dark purple */
+    color: white;
+    padding: 40px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ✅ Footer Layout */
+.footer_1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    text-align: left;
+    max-width: 1200px;
+    margin: auto;
+    padding-bottom: 20px;
+    gap: 20px; /* Adds space between items */
+}
+
+/* ✅ Footer Columns */
+.footer_1 .col-md-3 {
+    flex: 1;
+    min-width: 250px;
+    padding: 10px;
+}
+
+/* ✅ Footer Links */
+#footer a {
+    color: #ffcc00; /* Light orange */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+#footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* ✅ Footer Headings */
+.footer_1i h5 {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ✅ Footer List Styling */
+.footer_1i ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer_1i ul li {
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer_1i ul li:hover {
+    color: #ffcc00;
+}
+
+/* ✅ Footer Image Grid */
+.footer_1i1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.footer_1i1 img {
+    width: 100%;
+    max-width: 100px;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.footer_1i1 img:hover {
+    transform: scale(1.1);
+}
+
+/* ✅ Copyright Section */
+.footer_2 {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 15px;
+    font-size: 13px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+/* ✅ Centering Button */
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.text-center button {
+    width: 160px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.text-center button:hover {
+    background-color: #d4a700;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+    .footer_1 {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .footer_1 .col-md-3 {
+        text-align: center;
+        padding-bottom: 15px;
+    }
+
+    .footer_1i1 {
+        justify-content: center;
+    }
+}
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <section id="top" class="bg_brown pt-2 pb-2">
+    <div class="container-xl">
+        <div class="row top_1">
+            <!-- Contact Details (Full Left) -->
+            <div class="col-md-6">
+                <div class="top_1l">
+                    <ul class="mb-0">
+                        <li><i class="fa fa-phone me-1 align-middle col_dark"></i> +91 9980835923</li>
+                        <li><i class="fa fa-envelope me-1 align-middle col_dark"></i> asif@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Social Media (Full Right) -->
+            <div class="col-md-6 text-end">
+                <div class="top_1r">
+                    <ul class="mb-0">
+                        <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    
+    <section id="header">
+  <nav class="navbar navbar-expand-md navbar-light p-0 pt-2 pb-2" id="navbar_sticky">
+    <div class="container-xl">
+      <a class="navbar-brand p-0 me-0" href="index.html">
+  <img src="img/IMG-20240813-WA0001-removebg-preview.png" 
+       alt="ISC Logo" 
+       class="logo-img">
+</a>
+
+
+      <!-- Mobile Toggle Button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-0 ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+
+          <!-- Login/Register Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" 
+              aria-haspopup="true" aria-expanded="false">
+              Login/Register
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+              <li><a class="dropdown-item" href="login.html">Sign In/Sign Up</a></li>
+              <li><a class="dropdown-item" href="register-process.html">Create Profile</a></li>
+              <li><a class="dropdown-item" href="modifyprofile.html">Modify Profile</a></li>
+              <li><a class="dropdown-item" href="plans.html">Plans</a></li>
+            </ul>
+          </li>
+
+          <!-- Search Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-bs-toggle="dropdown" 
+              aria-haspopup="true" aria-expanded="false">
+              Search
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="searchDropdown">
+              <li><a class="dropdown-item" href="filter.html">Advanced Search</a></li>
+              <li><a class="dropdown-item" href="filter_old.html">Simple Search</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="payment.html">Payment</a>
+          </li>
+
+          <!-- Resources Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" 
+              aria-expanded="false">
+              Resources
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+              <li><a class="dropdown-item" href="khajoor-pe-nikah.html">Khajoor pe Nikah (KPN)</a></li>
+              <li><a class="dropdown-item" href="islamic-matrimonial-tips.html">Marriage Tips</a></li>
+              <li><a class="dropdown-item" href="HealthWellness.html">Health & Wellness Advice</a></li>
+              <li><a class="dropdown-item" href="islamic-relationship-advice.html">Relationship Advice/Consultant</a></li>
+              <li><a class="dropdown-item" href="wedding-planning.html">Islamic Wedding Planning</a></li>
+              <li><a class="dropdown-item" href="faq.html">FAQ's</a></li>
+            </ul>
+          </li>
+
+          <!-- Donation Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="donationDropdown" role="button" data-bs-toggle="dropdown" 
+              aria-expanded="false">
+              Donation
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="donationDropdown">
+              <li><a class="dropdown-item" href="EducationalSupport.html">Educational Support</a></li>
+              <li><a class="dropdown-item" href="WidowSupport.html">Widow Support</a></li>
+              <li><a class="dropdown-item" href="Ramadanfoodkit.html">Food/Ration Distribution</a></li>
+              <li><a class="dropdown-item" href="MedicalSupport.html">Medical Support</a></li>
+              <li><a class="dropdown-item" href="bloodbank.html">Blood Bank Directory</a></li>
+              <li><a class="dropdown-item" href="Marriagesupport.html">Marriage Support</a></li>
+              <li><a class="dropdown-item" href="EmploymentBusiness.html">Employment/Business Support</a></li>
+            </ul>
+          </li>
+
+          <!-- Contact Page -->
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>
+
+
+
+
+
+ <div class="container mt-4">
+    <h2 class="text-center">Matrimonial Profile Filter</h2>
+
+    <div class="filter-container">
+        <label>Looking for:</label>
+        <div class="gender-selection">
+            <label class="gender-option">
+                <input type="radio" name="gender" value="Male" id="male">
+                <img src="img/groom.png" alt="Bride Groom">
+                <p>Groom</p>
+            </label>
+            <label class="gender-option">
+                <input type="radio" name="gender" value="Female" id="female">
+                <img src="img/bride.png" alt="Bride">
+                <p>Bride</p>
+            </label>
+        </div>
+    </div>
+</div>
+
+
+
+    
+    
+    
+        <div class="filter-container">
+            <label for="yearOfBirth">Year of Birth:</label>
+            <select id="yearOfBirth" name="field6"></select>
+        </div>
+
+        <div class="filter-container">
+            <label for="custom-height">Height:</label>
+            <select id="custom-height" name="field14"></select>
+        </div>
+
+        <div class="filter-container">
+        <label for="marital-status" class="form-label">Marital Status:</label>
+        <select id="marital-status" class="form-select select2">
+                        <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Divorced">Divorced</option>
+            <option value="Widowed">Widowed</option>
+        </select>
+    </div>
+</div>
+
+        <div class="filter-container">
+            <label for="education">Education:</label>
+            <select id="education" name="field2" multiple></select>
+        </div>
+
+        <div class="filter-container">
+            <label for="profession">Profession:</label>
+            <select id="profession" name="field9" multiple></select>
+        </div>
+
+        <div class="filter-container">
+            <label for="partner-location">Location:</label>
+            <select id="partner-location" name="field7" multiple></select>
+        </div>
+        <div class="filter-container">
+          <label for="family-subcaste">Family or Subcaste:</label>
+          <select id="family-subcaste" name="field4" multiple></select>
+      </div>
+       
+
+        <div class="text-center">
+            <button class="btn btn-primary" onclick="construck_url_redirect()">Search</button>
+        </div>
+    </div>
+
+    <section id="footer" class="p_3 px_4" style="background-color: #5c0951;">
+        <div class="container-fluid" style="background-color: #5c0951;">
+          <div class="footer_m bg_light p-4">
+            <div class="footer_1 row">
+            <div class="col-md-3">
+           <div class="footer_1i">
+             <h1 class="mb-3"><a class="family_1" href="index.html" style="color: white;"><i class="fa fa-heart me-1 col_brown" ></i>  ISC <br>
+       <span class="family_2 fw-normal font_14 col_brown" style="color: white;">Looking for a patner </span>
+       </a></h1>
+       <p class="fst-italic">Connecting Hearts, Creating Futures.</p>
+       <ul class="mb-0"> 
+       <li><a href="#" style=" color: white;"><i class="fa fa-envelope col_brown me-1 align-middle" style="color: white;"></i> asif@gmail.com</a></li>
+       <li class="mt-3"><a href="#" style="color: white;"><i class="fa fa-phone col_brown me-1 align-middle" style="color: white;"></i> 91+ 9980835923</a></li>
+       <li class="mt-3" style="color: white;"><i class="fa fa-home col_brown me-1 align-middle"></i> Vidyaranapura</li>
+       </ul>
+           </div>
+          </div>
+            <div class="col-md-3">
+           <div class="footer_1i">
+              <h5 class="mt-3 mb-4">Social media</h5>
+            <ul class="mb-0">
+              <li><a href="#" style="color: white;">Facebook</a></li>
+             <li class="mt-3" ><a href="#" style="color: white;">Twitter</a></li>
+             <li class="mt-3"><a href="#" style="color: white;">Pinterest</a></li>
+             <li class="mt-3"><a href="#" style="color: white;">Instagram</a></li>
+            </ul>
+           </div>
+          </div> 
+          
+          <div class="col-md-3">
+           <div class="footer_1i">
+              <h5 class="mt-3 mb-4">Get TO Know US</h5>
+            <h6 class="family_2 font_14 fw-normal">ABOUT US</h6>
+         
+             <h6 class="family_2 font_14 fw-normal mt-3">Contact US</h6>
+            
+           </div>
+          </div>
+          <div class="col-md-3">
+           <div class="footer_1i">
+              <h5 class="mt-3 mb-4">TELEGRAM</h5>
+            <div class="footer_1i1 row mx-0">
+             <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+           <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/34.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+           <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/35.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+            </div>
+            <div class="footer_1i1 row mx-0">
+             <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/13.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+           <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/14.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+           <div class="col-md-4 p-0">
+             <div class="footer_1i1l">
+               <div class="grid clearfix">
+             <figure class="effect-jazz mb-0">
+             <a href="#"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+             </figure>
+             </div>
+             </div>
+           </div>
+            </div>
+           </div>
+          </div>
+          </div>
+          <div class="footer_2 row">
+            <div class="col-md-8">
+           <div class="footer_2l">
+               <p class="mb-0">© 2013 Your Website Name. All Rights Reserved | Design by <a class="col_brown fw-bold" href="http://www.hitechdesign.in/">Hitech Design</a></p>
+           </div>
+          </div>
+         <!-- <div class="col-md-4">
+           <div class="footer_2r text-end">
+              <ul class="text-uppercase font_13 mb-0">
+               <li class="d-inline-block"><a href="#"> Facebook</a></li>
+             <li class="d-inline-block mx-2 text-muted">|</li>
+              <li class="d-inline-block"><a href="#"> Twitter</a></li>
+              <li class="d-inline-block mx-2 text-muted">|</li>
+              <li class="d-inline-block"><a href="#"> Pinterest</a></li>
+              <li class="d-inline-block mx-2 text-muted">|</li>
+              <li class="d-inline-block"><a href="#"> Instagram</a></li>
+             </ul>
+           </div>
+          </div> -->
+          </div>
+          </div>
+         </div>
+        </div>
+       </section>
+    <script>
+        $(document).ready(function () {
+            /** ✅ Populate Year of Birth **/
+            let yearDropdown = $("#yearOfBirth");
+            yearDropdown.append('<option value="">Select Year</option>');
+            for (let year = 2008; year >= 1980; year--) {
+                yearDropdown.append(`<option value="${year}-Age-${2025 - year -1}">${year}-Age-${2025 - year -1}</option>`);
+            }
+            yearDropdown.select2({ placeholder: "Select Year", allowClear: true });
+
+            /** ✅ Populate Height Dropdown (Display Feet & Inches, Store as Decimal) **/
+            let heightDropdown = $("#custom-height");
+            heightDropdown.append('<option value="">Select Height</option>');
+            for (let feet = 5; feet <= 7; feet++) {
+                for (let inches = 0; inches < 12; inches += 1) {
+                    let displayHeight = `${feet} feet ${inches} inches`;
+                    let storedHeight = `${feet} feet ${inches} inches`;
+                    heightDropdown.append(`<option value="${storedHeight}">${displayHeight}</option>`);
+                }
+            }
+            heightDropdown.select2({ placeholder: "Select Height", allowClear: true });
+
+            /** ✅ Populate Other Dropdowns **/
+            const educationOptions = [
+    'B Arch, M.L.A',
+    'B Architecture',
+    'BA',
+    'BA discontinue',
+    'BA, BED',
+    'BA, BED, MA',
+    'BA, Diploma in Skin & Hair',
+    'BA, MA',
+    'BA, Pursuing Arabic Course',
+    'BA,BED.MA',
+    'BBA',
+    'BBM',
+    'BBM, MBA',
+    'BCA',
+    'BCOM',
+    'BCOM, LLB',
+    'BCOM, MBA',
+    'BCOM, PGDM',
+    'BDS',
+    'BE',
+    'BE CIVIL',
+    'BE Civil',
+    'BE Mechanical',
+    'BE, LLB',
+    'BE, MBA',
+    'BE, MS',
+    'BE, MSC',
+    'BSC',
+    'BTECH',
+    'BUMS',
+    'Bachelor - Islamic Studies',
+    'Bachelor in VOC',
+    'CA, MBA',
+    'Diploma',
+    'Diploma in Pharmacy',
+    'Graduate',
+    'IGC Health & Safety',
+    'INTER',
+    'ITI',
+    'Inter',
+    'MA',
+    'MA, BeD',
+    'MBA',
+    'MBBS',
+    'MBBS, MD',
+    'MBBS, Preparing for PG',
+    'MBBS, Pursuing MS',
+    'MCA',
+    'MCOM',
+    'MCOM, Diploma in Architect',
+    'MSC',
+    'MSC Pursuing',
+    'MTECH',
+    'Master Of Science, US',
+    'Master of Science',
+    'Masters',
+    'Masters in Clinical Neurology',
+    'Masters in Finance',
+    'PGDM',
+    'PU',
+    'Pursuing Degree 3rd year',
+    'SSLC',
+    'SSLC & Arabic course',
+    'SSLC / MADARASA',
+    'Syed/Shaik/Sharif'];
+            const professionOptions = [
+    'Account Manager',
+    'Accountant',
+    'Accounts & Finance Head',
+    'Accounts Executive',
+    'Advisory Solution',
+    'Advocate',
+    'Aesthetic',
+    'Analytics Consultant',
+    'Appliance Technician',
+    'Application Developer',
+    'Assistant Engineer',
+    'Assistant Manager',
+    'Assistant Professor',
+    'Associate',
+    'Associate Software Engineer',
+    'Associate professor',
+    'Asst Operation Manager',
+    'Audit Analyst',
+    'Audit Associate',
+    'Auditor',
+    'Automation Engineer',
+    'Bank Employee',
+    'Brand Management',
+    'Business',
+    'Business Analyst',
+    'Business Developers',
+    'Business Development',
+    'Business Distributor',
+    'Business Entrepreneur',
+    'Business Executive',
+    'Business Manager',
+    'Business Merchant',
+    'Business Owner',
+    'Business Proprietor',
+    'Business VP',
+    'Buying & Merchandising',
+    'CSR',
+    'Chartered Engineer',
+    'Civil Construction',
+    'Civil Contractor',
+    'Civil Engineer - KUDA & CMC',
+    'Clinical Nutritionist',
+    'Clinical Pharmacist',
+    'Clinical Research',
+    'Clinical Territory Associate',
+    'Coding Instructor',
+    'Consultant',
+    'Credit Controller',
+    'DBM',
+    'Data Engineer',
+    'Data Operation',
+    'Data Scientist',
+    'Database Admin',
+    'Database Administrator',
+    'Dental Doctor',
+    'Dental Surgeon',
+    'Dentist',
+    'Dentist & Consultant',
+    'Deputy Manager',
+    'Design Engineer',
+    'Designer -LED Sign Board',
+    'Devops Engineer',
+    'Digital Analyst',
+    'Director',
+    'Distributor Agency',
+    'Doctor',
+    'ER Resident Doctor',
+    'Editor',
+    'Emergency physician',
+    'Employed',
+    'Engineer',
+    'Engineer, Govt Job',
+    'Entrepreneur',
+    'Estimation Engineer',
+    'FC Officer',
+    'Family Business',
+    'Finance & Accounts',
+    'Finance Head & Consultancy Proprietor',
+    'Finance Manager',
+    'First Division Assistant',
+    'Graphic Designer',
+    'HR',
+    'HVAC design Engineer',
+    'Head Reporter',
+    'High School Educator',
+    'IT Service Engineer',
+    'Incident Manager',
+    'Infrastructure Analyst',
+    'Interior Architect',
+    'Interior Designer',
+    'Job Employed',
+    'Junior Doctor',
+    'KG Teacher',
+    'L&D Manager',
+    'Lab Technician',
+    'Landscape Architect',
+    'Lawyer',
+    'Lead Engineer',
+    'Lead Specialist HR Ops',
+    'Leather Business',
+    'Lecturer',
+    'Make up Artist',
+    'Makeup Artist',
+    'Manager',
+    'Manager (Government Job)',
+    'Managing Director (Dimension Engr)',
+    'Material Expeditioner',
+    'Media Planner',
+    'Medical Consultant',
+    'N/A',
+    'NON-WORKING',
+    'Non Working',
+    'Non-working',
+    'OEM manufacturing firm',
+    'Online Tutor',
+    'Operation Analyst',
+    'Operation Site Manager',
+    'Own Garage',
+    'Own business',
+    'PWD Contractor',
+    'Pharmacist',
+    'Power tools Business',
+    'Preparing for Govt Exam',
+    'Preparing for NEET',
+    'Process Engineer',
+    'Procurement officer',
+    'Production Head',
+    'Program Manager',
+    'Project Director',
+    'Project Engineer',
+    'Pursuing DNBS',
+    'Pursuing MA',
+    'QA Engineer',
+    'Quality Assurance Analyst',
+    'Quality Executive',
+    'Regional HR Manager',
+    'Registered Dietician',
+    'Relationship Manager',
+    'Reporting Analyst',
+    'Russell Finex Ltd',
+    'SAP ABAP Consultant',
+    'SAP Consultant',
+    'SME',
+    'SR Executive',
+    'SR Software Developer',
+    'SW Consultant',
+    'Safety Officer',
+    'Sales Manager',
+    'Sales Professional',
+    'Shift Manager',
+    'Shipping Dispatcher',
+    'Software Analyst',
+    'Software Engineer',
+    'Specialist (Finance & Accounts)',
+    'Sr Advisor',
+    'Sr Analyst',
+    'Sr Associate',
+    'Sr CAE Stress Engineer',
+    'Sr Compliance Associate',
+    'Sr Consultant',
+    'Sr Dermatologist',
+    'Sr Enterprise Analyst',
+    'Sr Manager',
+    'Sr Nutritionist',
+    'Sr Pharmacist',
+    'Sr Quality Analyst',
+    'Sr Resident Doctor',
+    'Sr SOC Analyst',
+    'Sr Sales Representative',
+    'Sr Software Engineer',
+    'Sr Tax Analyst',
+    'Storage Engineer',
+    'Store Manager',
+    'Structural Engineer',
+    'Student',
+    'Studying',
+    'Supervisor',
+    'System Analyst',
+    'Teacher',
+    'Team Lead',
+    'Team Lead Analyst',
+    'Team Leader',
+    'Tech Specialist',
+    'Tech Support',
+    'Technical Consultant',
+    'Technical Supervisor',
+    'Telecom Business',
+    'Territory Sales Manager',
+    'Timber Merchant',
+    'Tutor',
+    'VRO (Govt Job)',
+    'Wholesale Business',
+    'Wholesale Flower Merchant',
+    'Working',
+    'Working (WFH)',
+    'Writer'
+];
+            const locationOptions = [
+    'Ananthapur, AP',
+    'Badavanhalli, Tumkur Dist',
+    'Bagalkot',
+    'Ballari',
+    'Bandit 6',
+    'Bangalore',
+    'Bangarpet',
+    'Belgaum',
+    'Bellary',
+    'Bethamangala, Kolar district',
+    'Bijapur',
+    'Canada (Native Mysore)',
+    'Channapatna',
+    'Chennai',
+    'Chennai / Bangalore',
+    'Chintamani, Kolar Dist',
+    'Chitradurga',
+    'Dakanakotai, Tamilnadu',
+    'Davangere',
+    'Doddabalapur, Karnataka',
+    'Doddavalagamadi, Kolar Dist',
+    'Gangavathi, Koppal Dist',
+    'Gauribidanur',
+    'Goa, Karnataka',
+    'Gulbarga',
+    'Hassan',
+    'Heggere, Tumkur (T)',
+    'Hosapete, Karnataka',
+    'Hoskote',
+    'Hubli',
+    'Hyderabad',
+    'Jeddah, Saudi/Bangalore',
+    'KGF',
+    'Kadapa, Andhra',
+    'Kanakapura',
+    'Kolar',
+    'Kolkata',
+    'Kunigal',
+    'Kurnool, Andhra',
+    'London (Bangalore Native)',
+    'London/Bangalore',
+    'Madanapalli',
+    'Madanapalli, Andhra',
+    'Malur (Own house)',
+    'Mandya',
+    'Mulbagal',
+    'Mumbai',
+    'Mumbai, India',
+    'Mysore',
+    'Nellore',
+    'Odugathur, Vellore',
+    'Palamaner',
+    'Piler (200km from Bangalore)',
+    'Punganur, Andhra',
+    'Raichur',
+    'Ramnagar',
+    'Salem, TN',
+    'Sangli, Karnataka',
+    'Shimoga (own house)',
+    'Solapur',
+    'Srinivaspur, Kolar Dist',
+    'T Nagar, Mysore Dist',
+    'Tayalur, Kolar district',
+    'Triveni Nagar, Mysore Dist',
+    'Tumkur',
+    'Tumkur, Turuvakere',
+    'USA',
+    'USA/Oman, Native of Gulbarga',
+    'Uthiramerur, Tamilnadu',
+    'Vaniyambadi',
+    'Vempalli, Kadapa Dist, Andhra',
+    'Vijayawada, Andhra',
+    'Vizag, Andhra'
+];
+            const subcasteOptions = ['Syed', 'Pathan/Khan', 'Shaik', 'Reverted Muslims', 'Maimun sait', 'Baig'];
+
+            /** ✅ Populate Select2 Dropdowns **/
+            $('#education').select2({ placeholder: "Select Education", allowClear: true, data: educationOptions.map(item => ({ id: item, text: item })), tags: true });
+            $('#profession').select2({ placeholder: "Select Profession", allowClear: true, data: professionOptions.map(item => ({ id: item, text: item })), tags: true });
+            $('#partner-location').select2({ placeholder: "Select Location", allowClear: true, data: locationOptions.map(item => ({ id: item, text: item })) });
+         
+            $('#family-subcaste').select2({    placeholder: "Select Family Subcaste",allowClear: true, data: subcasteOptions.map(item => ({ id: item, text: item }))});
+
+          });
+
+        function getCookie(name) {
+            let value = `; ${document.cookie}`;
+            let parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+        function construck_url_redirect() {
+            const params = new URLSearchParams();
+            
+            // Handle gender (multiple)
+            const genderInputs = document.querySelectorAll('input[name="gender"]:checked');
+            genderInputs.forEach(input => params.append('gender', input.value));
+
+            // Handle multiple values
+            const education = $('#education').val() || [];
+            if (education.length > 0) {
+                education.forEach(edu => params.append('field2', edu));
+            }
+
+            const maritalStatus = document.getElementById('marital-status')?.value;
+            if (maritalStatus) {
+                maritalStatus.split(',').forEach(status => {
+                    if (status.trim()) params.append('filed3', status.trim());
+                });
+            }
+
+            const subcaste = $('#family-subcaste').val() || [];
+            if (subcaste.length > 0) {
+                subcaste.forEach(sub => params.append('field4', sub));
+            }
+
+            // Handle yearOfBirth (multiple)
+            const yearOfBirth = document.getElementById('yearOfBirth')?.value.trim();
+            if (yearOfBirth) {
+                yearOfBirth.split(',').forEach(year => {
+                    if (year.trim()) params.append('field6', year.trim());
+                });
+            }
+            const location = $('#partner-location').val() || [];
+            if (location.length > 0) {
+                location.forEach(loc => params.append('field7', loc));
+            }
+            
+            // Handle profession (already multiple from select)
+            const profession = $('#profession').val() || [];
+            if (profession.length > 0) {
+                profession.forEach(prof => params.append('field9', prof));
+            }
+
+            // Handle height (multiple)
+            const height = document.getElementById('custom-height')?.value.trim();
+            if (height) {
+                height.split(',').forEach(h => {
+                    if (h.trim()) params.append('field14', h.trim());
+                });
+            }
+            
+            // Redirect with constructed query string
+            const queryString = params.toString();
+            window.location.href = `profileSearch_latest.html${queryString ? '?' + queryString : ''}`;
+        }
+
+    </script>
+</body>
+</html>
