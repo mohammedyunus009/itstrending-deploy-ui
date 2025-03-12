@@ -22,19 +22,85 @@
   gtag('config', 'G-PQLTG22ZFC');
 </script>
 <style>
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
+ *{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
 
-    body, html {
-        width: 100%;
-        height: 100%;
-        font-size: 16px;
-        background: #f4f4f4;
-    }
+  body, html{
+    width:100%;
+    height:100%;
+    font-size:16px;
+  }
 
+  body{
+    background: white;
+  }
+
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 54px; /* Prevent content from being hidden under the fixed navbar */
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    background-color: #002d50; /* Main dark blue background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Left section with 90% width */
+.navbar-item.left {
+    /* flex: 0 0 72%; */
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    width: 100%;
+}
+
+.navbar-item.left .logo {
+    width: 102px;
+    margin-right: 15px;
+}
+
+.company-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.company-info img {
+    margin-left: 10px;
+    width: 30px;
+}
+
+/* Middle and Right sections with 5% width */
+.navbar-item.middle,
+.navbar-item.right {
+    flex: 0 0 3%;
+    height: 100%;
+}
+
+.navbar-item.middle {
+    background-color: #005b66;
+}
+
+.navbar-item.right {
+    background-color: #00bfa6;
+}
     .container1 {
         background-color: #ffffff;
         border-radius: 8px;
@@ -45,6 +111,8 @@
         text-align: center;
         margin: auto;
         margin-top: 100px; /* Adjust if needed */
+        border: 2px solid #00bfa6;
+
     }
 
     .form-heading {
@@ -64,7 +132,7 @@
         width: 100%;
         padding: 10px;
         margin-bottom: 20px;
-        border: 1px solid #ddd;
+        border: 2px solid #00bfa6;
         border-radius: 4px;
         font-size: 14px;
     }
@@ -72,7 +140,7 @@
 
 /* Basic button styling */
 #submit {
-  background-color: #007bff; /* Change this to your preferred color */
+  background-color: #005b66; /* Change this to your preferred color */
   color: white; /* Text color */
   border: none; /* Remove border */
   border-radius: 4px; /* Rounded corners */
@@ -92,7 +160,7 @@
 
 /* Optional: Add hover effect */
 #submit:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #005b66; /* Darker shade on hover */
 }
     .form-links {
         margin-top: 20px;
@@ -225,11 +293,95 @@
     font-size: 1.5em;
     border-radius: 5px;
 }
+/* Navbar links */
+.navbar-links {
+            display: flex;
+            list-style-type: none;
+            gap: 22px; /* Adds space between each menu item */
+        }
 
+        
 
+        .navbar-links a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 11px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column; /* Stack items vertically */
+                gap: 0px;
+            }
+            .navbar-item.left {
+    flex: 0 0 87%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+            .navbar-links li {
+                margin-bottom: 0px; /* Optional, adds space between menu items in mobile view */
+                margin-right: 0px;
+            }
+        }
+        .menu-btn {
+    display: none;
+    font-size: 30px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 10px;
+        left: 130px;
+        width: 50%;
+        text-align: center;
+        background-color: #002d50;
+    }
+
+    .navbar-links.show {
+        display: flex;
+        margin-top: -10px;
+    }
+
+    .menu-btn {
+        display: block;
+        margin-bottom: 50px;
+    }
+}
 </style>
 </head>
 <body>
+
+    <header class="navbar">
+        <div class="navbar-item left">
+            <img src="img/Alisom Logo .png" alt="Logo" class="logo">
+        </div>
+        <div>
+          <button class="menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="navbar-links">
+                <li><a href="index.html">Login</a></li>
+                <li><a href="Add_client.html">Add Client</a></li>
+                <li><a href="Due-Payment.html">Due Payment</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="po-and-customername.html">Name & PO Number</a></li>
+            </ul>
+        </div>
+        <div class="navbar-item middle"></div>
+        <div class="navbar-item right"></div>
+    </header>
+
+
+
     <div id="headerPlaceholder"></div>
     <div class="container1">
         <div id="messageContainer" class="message-container"></div> <!-- Message container -->
@@ -252,7 +404,13 @@
     
     <div id="footerPlaceholder"></div>
     <script src="js/include.js"></script>
-    
+    <script>
+        function toggleMenu() {
+        const navbarLinks = document.querySelector('.navbar-links');
+        navbarLinks.classList.toggle('show');
+      }
+      
+      </script> 
     
     <script>
  document.getElementById('signupForm1').addEventListener('submit', function(event) {

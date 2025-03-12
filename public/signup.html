@@ -46,6 +46,69 @@ body{
 }
 
 
+
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 54px; /* Prevent content from being hidden under the fixed navbar */
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    background-color: #002d50; /* Main dark blue background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Left section with 90% width */
+.navbar-item.left {
+    /* flex: 0 0 72%; */
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    width: 100%;
+}
+
+.navbar-item.left .logo {
+    width: 102px;
+    margin-right: 15px;
+}
+
+.company-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.company-info img {
+    margin-left: 10px;
+    width: 30px;
+}
+
+/* Middle and Right sections with 5% width */
+.navbar-item.middle,
+.navbar-item.right {
+    flex: 0 0 3%;
+    height: 100%;
+}
+
+.navbar-item.middle {
+    background-color: #005b66;
+}
+
+.navbar-item.right {
+    background-color: #00bfa6;
+}
+
  /* Popup styles */
  .popup {
     display: none;
@@ -229,7 +292,7 @@ body{
   max-width: 400px;
   padding: 20px;
   margin: 50px auto;
-  border: 1px solid #ddd;
+  border: 2px solid #00bfa6;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -253,7 +316,7 @@ body{
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ddd;
+  border: 2px solid #00bfa6;
   border-radius: 4px;
   box-sizing: border-box;
 }
@@ -276,7 +339,7 @@ body{
 }
 
 #signup {
-  background-color: #007bff;
+  background-color: #005b66;
   color: white;
   border: none;
   border-radius: 4px;
@@ -290,7 +353,7 @@ body{
 }
 
 #signup:hover {
-  background-color: #0056b3;
+  background-color: #005b66;
 }
 
 #signup-popup {
@@ -360,10 +423,94 @@ body{
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+/* Navbar links */
+.navbar-links {
+            display: flex;
+            list-style-type: none;
+            gap: 22px; /* Adds space between each menu item */
+        }
 
+        
 
+        .navbar-links a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 11px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column; /* Stack items vertically */
+                gap: 0px;
+            }
+            .navbar-item.left {
+    flex: 0 0 87%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+            .navbar-links li {
+                margin-bottom: 0px; /* Optional, adds space between menu items in mobile view */
+                margin-right: 0px;
+            }
+        }
+        .menu-btn {
+    display: none;
+    font-size: 30px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 10px;
+        left: 130px;
+        width: 50%;
+        text-align: center;
+        background-color: #002d50;
+    }
+
+    .navbar-links.show {
+        display: flex;
+        margin-top: -10px;
+    }
+
+    .menu-btn {
+        display: block;
+        margin-bottom: 50px;
+    }
+}
 </style>
 <body>
+  <header class="navbar">
+    <div class="navbar-item left">
+        <img src="img/Alisom Logo .png" alt="Logo" class="logo">
+    </div>
+    <div>
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <ul class="navbar-links">
+          <li><a href="index.html">Login</a></li>
+          <li><a href="Add_client.html">Add Client</a></li>
+          <li><a href="Due-Payment.html">Due Payment</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="po-and-customername.html">Name & PO Number</a></li>
+        </ul>
+    </div>
+    <div class="navbar-item middle"></div>
+    <div class="navbar-item right"></div>
+</header>
+
+<br>
+<br>
+
   <div id="headerPlaceholder"></div>
 
   <div class="container1">
@@ -385,11 +532,22 @@ body{
         <input type="email" name="email" id="signup-email" placeholder="Email" required>
         
         <label for="signup-password">Password</label>
+    <div style="position: relative;">
         <input type="password" name="password" id="signup-password" placeholder="Password" required>
-        
-        <label for="signup-confirm-password">Confirm Password</label>
+        <span onclick="togglePassword('signup-password')" 
+              style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+            👁️
+        </span>
+    </div>
+
+    <label for="signup-confirm-password">Confirm Password</label>
+    <div style="position: relative;">
         <input type="password" name="confirm-password" id="signup-confirm-password" placeholder="Confirm Password" required>
-       
+        <span onclick="togglePassword('signup-confirm-password')" 
+              style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+            👁️
+        </span>
+    </div>       
         
         <button type="submit" id="signup" onclick="storeData()">Signup</button>
         <!-- <button type="button" id="login-toggle">Login</button> -->
@@ -406,33 +564,23 @@ body{
 
 
     <script src="js/login.js"></script>
+ 
     <script>
-        function toggleContactFields() {
-            let howIKnowDropdown = document.getElementById('how-i-know');
-            let contactFields = document.getElementById('contact-fields');
-            let selectedValue = howIKnowDropdown.value;
-
-            if (selectedValue === 'I am from TLI Family / Samparkk' || selectedValue === 'I am from his deeni circle' || selectedValue === 'I am his relative / acquaintances' || selectedValue === 'I know him through a common friend') {
-                contactFields.style.display = 'block';
-            } else {
-                contactFields.style.display = 'none';
-            }
-        }
-
-
-        function toggleContactFields() {
-    const selectElement = document.getElementById('how-i-know');
-    const contactFields = document.getElementById('contact-fields');
-
-    if (selectElement.value === 'I do not know brother Khurshid Imam') {
-        contactFields.style.display = 'none';
+      function toggleMenu() {
+      const navbarLinks = document.querySelector('.navbar-links');
+      navbarLinks.classList.toggle('show');
+    }
+    
+    </script> 
+    <script>
+      function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    if (input.type === "password") {
+        input.type = "text";
     } else {
-        contactFields.style.display = 'block';
+        input.type = "password";
     }
 }
-
-
     </script>
-    
 </body>
 </html>

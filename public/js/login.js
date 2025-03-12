@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
                     // Redirect to login page after 5 seconds
                     setTimeout(() => {
-                        window.location.href = 'login.html';
+                        window.location.href = 'index.html';
                     }, 5000); // 5 seconds delay
                 })
                 .catch(error => {
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Hide loading animation
                     loadingContainer.style.display = 'none';
                     // Redirect to the next page
-                    window.location.href = 'installationform1.html';
+                    window.location.href = 'search.html';
                 }, 5000); // 5 seconds
             } else {
                 console.log('Login failed:', data.message);
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
               };
   
               try {
-                  const response = await fetch("https://api.itstrending.in:5000/api/v1/auth/reset-password", requestOptions);
+                  const response = await fetch("https://api2.itstrending.in/api/v1/auth/reset-password", requestOptions);
                   
                   if (response.ok) {
                       const result = await response.text();
