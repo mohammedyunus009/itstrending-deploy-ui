@@ -2029,7 +2029,8 @@ function saveBreakdownProfileDetails() {
             const email = cookies['email'];
             const token = cookies['token'];
 
-            if (!email || !token) {
+          //  if (!email || !token) {
+  if (!email) {
                 alert("You have not been logged in. Please log in.");
                 window.location.href = 'index.html'; // Redirect to index.html
             }
