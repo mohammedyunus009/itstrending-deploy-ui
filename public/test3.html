@@ -1420,6 +1420,152 @@ fetch("https://api2.itstrending.in/api/v1/profiles", requestOptions)
                 return result;
             }
             </script>
+
+
+<script>
+    // Define cookie functions
+    function getCookie(name) {
+      let nameEQ = name + "=";
+      let decodedCookies = decodeURIComponent(document.cookie);
+      let ca = decodedCookies.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(nameEQ) === 0) {
+          return c.substring(nameEQ.length, c.length);
+        }
+      }
+      return null;
+    }
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+    }
+    function clearCookie(name) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+    }
+    // Check if the token is expired (after 12 hours)
+    function checkTokenExpiry() {
+      const loginTime = localStorage.getItem("loginTime");
+      const twelveHours = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
+      if (loginTime && Date.now() - parseInt(loginTime) > twelveHours) {
+        clearCookie("email");
+        clearCookie("token");
+        localStorage.removeItem("loginTime");
+        window.location.href = "index.html";  // Redirect to login page
+      }
+    }
+    // Direct access check
+    function isDirectAccess() {
+      return document.referrer === "";
+    }
+    // Check login status and show logout popup if already logged in
+    function checkLoginStatus() {
+      const email = getCookie("email");
+      const token = getCookie("token");
+      if (email && token) {
+        showLogoutPopup();
+      }
+    }
+    // Show logout confirmation popup
+    function showLogoutPopup() {
+      const popup = document.createElement("div");
+      popup.className = "popup-container";
+      popup.innerHTML = `
+          <div class="popup-content">
+              <h3>You are already logged in!</h3>
+              <p>Do you want to log out?</p>
+              <button id="logoutBtn" class="popup-btn">Logout</button>
+              <button id="cancelBtn" class="popup-btn">Cancel</button>
+          </div>
+      `;
+      document.body.appendChild(popup);
+      document.getElementById("logoutBtn").addEventListener("click", function() {
+        clearCookie("email");
+        clearCookie("token");
+        localStorage.removeItem("loginTime");
+        location.reload();
+      });
+      document.getElementById("cancelBtn").addEventListener("click", function() {
+        document.body.removeChild(popup);
+      });
+    }
+    // Show token expired popup
+    function showTokenExpiredPopup() {
+      const popup = document.createElement("div");
+      popup.className = "popup-container";
+      popup.innerHTML = `
+          <div class="popup-content">
+              <h3>Token Expired!</h3>
+              <p>Your session has expired. Please log in again.</p>
+              <button id="loginAgainBtn" class="popup-btn">Login Again</button>
+          </div>
+      `;
+      document.body.appendChild(popup);
+      document.getElementById("loginAgainBtn").addEventListener("click", function() {
+        window.location.href = "index.html";
+      });
+    }
+    // Override console.log to detect 401 errors
+    const originalConsoleLog = console.log;
+    console.log = function(message) {
+      if (message && message.includes("401")) {
+        showTokenExpiredPopup();
+      }
+      originalConsoleLog.apply(console, arguments);
+    };
+
+    // --- New: Function to fetch profile details and check token validity ---
+    async function fetchProfileDetails(profileId) {
+      try {
+        const token = getCookie("token");
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        headers.append("Authorization", token); // Adjust if "Bearer" prefix is needed
+        const response = await fetch(`https://api2.itstrending.in/api/v1/profile/${profileId}`, {
+          method: "GET",
+          headers: headers
+        });
+        const data = await response.json();
+        if (data.message === "The provided authorization token is invalid") {
+          window.location.href = "index.html";  // Redirect to login page if token is invalid
+          return null;
+        }
+        return data;
+      } catch (error) {
+        console.error("Error fetching profile details:", error);
+        window.location.href = "index.html";
+      }
+    }
+
+    // Example usage: Replace '12345' with the actual profile ID
+    fetchProfileDetails("12345").then(profile => {
+      if (profile) {
+        console.log("Profile details:", profile);
+        // Do something with profile details...
+      }
+    });
+
+    // Combine window.onload to run all checks
+    window.onload = function() {
+      // If accessed directly and already logged in, redirect to index.html
+      if (isDirectAccess()) {
+        let email = getCookie("email");
+        let token = getCookie("token");
+        if (email && token) {
+          window.location.href = "index.html";
+          return;
+        }
+      }
+      // Check token expiry (12 hours)
+      checkTokenExpiry();
+      // Check login status to possibly show logout popup
+      checkLoginStatus();
+    };
+  </script>
             
             
 </body>
